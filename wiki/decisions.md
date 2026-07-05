@@ -455,3 +455,9 @@ Reason: Section 5 needs visual inspection for layer parity, but gameplay data mu
 Decision: Keep `MapRuntime` as the owner of `setmetatile` current-map mutation and attach runtime-only `runtime_layer_updates` metadata to emitted map data. Let `LayerAwareMapRenderer` consume that metadata into a renderer-local per-cell redraw cache instead of mutating generated files or owning gameplay collision/elevation state.
 
 Reason: Source `ScrCmd_setmetatile`/`MapGridSetMetatileIdAt` updates the backup map grid while visible redraw is a presentation concern through `CurrentMapDrawMetatileAt`. Splitting mutation and redraw cache this way preserves source state boundaries while giving the Godot renderer enough affected-cell data to refresh bottom/middle/top layer records.
+
+## 2026-07-05 - Render border and connection cells through layer-aware lookup
+
+Decision: Let `LayerAwareMapRenderer` resolve presentation cells across the source-shaped `MAP_OFFSET` backup margin before drawing layer atlas records. Local cells read current map `block_ids`, connection cells read generated connected-map strips, and remaining edge cells read the generated border grid; this is presentation-only and does not move local map coordinates or mutate map, collision, elevation, or generated data.
+
+Reason: Source `InitBackupMapLayoutData`, `InitBackupMapLayoutConnections`, `GetBorderBlockAt`, and `DrawMetatileAt` draw connected strips and border cells from the same metatile/layer rules as local cells. Keeping this as a renderer lookup step advances Section 5 layer parity while leaving full camera backup-map streaming and connection transition lifecycle to the later camera/transition TODOs.

@@ -12,8 +12,11 @@ class TopLayerOverlay:
 const OVERWORLD_DEPTH := preload("res://scripts/overworld/overworld_depth.gd")
 const OWNER_NAME := "LayerAwareMapRenderer"
 const LEGACY_RENDERER_NAME := "DebugMapPlane"
-const RUNTIME_STATUS := "normal_covered_split_source_subpriority_first_pass"
+const RUNTIME_STATUS := "normal_covered_split_border_connection_source_subpriority_first_pass"
 const DEFAULT_TILE_SIZE := 16
+const MAP_OFFSET := 7
+const MAP_OFFSET_W := MAP_OFFSET * 2 + 1
+const MAP_OFFSET_H := MAP_OFFSET * 2
 const NORMAL_LAYER_TYPE := 0
 const COVERED_LAYER_TYPE := 1
 const SPLIT_LAYER_TYPE := 2
@@ -33,7 +36,7 @@ const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
 const UNSUPPORTED_OBJECT_DEPTH_LIMITS := "bridge_shadow_reflection_priority_pending"
 const UNSUPPORTED_DOOR_LAYER := "door_forced_covered_layer_pending"
-const UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES := "border_connection_animation_redraw_cache_pending"
+const UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES := "door_tileset_animation_redraw_cache_pending"
 
 var map_size := Vector2i.ZERO
 var tile_size := DEFAULT_TILE_SIZE
@@ -42,6 +45,8 @@ var _tileset_data: Dictionary = {}
 var _data_registry: Node = null
 var _debug_fallback: Node = null
 var _grid_visible := false
+var _border_grid: Dictionary = {}
+var _connections: Array = []
 var _layer_textures: Dictionary = {}
 var _layer_atlas_info: Dictionary = {}
 var _metatile_layer_types: Dictionary = {}
@@ -86,6 +91,7 @@ func configure_from_map_data(new_map_data: Dictionary, new_tileset_data: Diction
 	_tileset_data = new_tileset_data.duplicate(true)
 	tile_size = _tile_size_from_tileset(_tileset_data)
 	map_size = _map_size_from_map_data(_map_data)
+	_configure_border_and_connections(_map_data)
 	_ensure_top_layer_overlay()
 	_configure_layer_rendering(_tileset_data)
 	_configure_flattened_atlas(_tileset_data)
@@ -160,9 +166,7 @@ func get_door_animation_overlay_count() -> int:
 
 
 func get_render_block_id(cell: Vector2i) -> int:
-	if _debug_fallback != null and _debug_fallback.has_method("get_render_block_id"):
-		return int(_debug_fallback.get_render_block_id(cell))
-	return _local_block_id(cell)
+	return _render_block_id(cell)
 
 
 func get_normal_layer_rendering_status() -> Dictionary:
@@ -186,11 +190,13 @@ func get_sprite_depth_record_for_event(event_data: Dictionary) -> Dictionary:
 
 
 func get_layer_draw_records_for_cell(cell: Vector2i) -> Dictionary:
-	var block_id := _local_block_id(cell)
+	var block_record := _render_block_record(cell)
+	var block_id := int(block_record.get("value", -1))
 	if block_id < 0:
 		return {
 			"cell": [cell.x, cell.y],
 			"block_id": block_id,
+			"source_cell_region": String(block_record.get("region", "missing")),
 			"runtime_layer_path": "empty",
 			"records": [],
 		}
@@ -203,6 +209,11 @@ func get_layer_draw_records_for_cell(cell: Vector2i) -> Dictionary:
 		return {
 			"cell": [cell.x, cell.y],
 			"block_id": block_id,
+			"source_cell_region": String(block_record.get("region", "local")),
+			"source_connection_direction": String(block_record.get("connection_direction", "")),
+			"source_connection_map": String(block_record.get("connection_map", "")),
+			"source_connection_destination_cell": block_record.get("connection_destination_cell", []),
+			"source_border_index": int(block_record.get("border_index", -1)),
 			"source_layer_type": source_layer_type_name,
 			"source_layer_type_value": int(_metatile_layer_types.get(block_id, -1)),
 			"runtime_layer_path": "%s_layer_atlases" % _source_layer_type_slug(source_layer_type_name),
@@ -212,6 +223,11 @@ func get_layer_draw_records_for_cell(cell: Vector2i) -> Dictionary:
 	return {
 		"cell": [cell.x, cell.y],
 		"block_id": block_id,
+		"source_cell_region": String(block_record.get("region", "local")),
+		"source_connection_direction": String(block_record.get("connection_direction", "")),
+		"source_connection_map": String(block_record.get("connection_map", "")),
+		"source_connection_destination_cell": block_record.get("connection_destination_cell", []),
+		"source_border_index": int(block_record.get("border_index", -1)),
 		"source_layer_type": _source_layer_type_name(block_id),
 		"source_layer_type_value": int(_metatile_layer_types.get(block_id, -1)),
 		"runtime_layer_path": "flattened_fallback_or_pending",
@@ -246,6 +262,38 @@ func get_layer_redraw_record_for_cell(cell: Vector2i) -> Dictionary:
 	return {}
 
 
+func get_border_connection_layer_status() -> Dictionary:
+	var draw_rect := _source_backup_draw_rect()
+	return {
+		"status": "implemented_first_pass" if _runtime_layer_rendering_available() else "missing_generated_layer_data",
+		"source": "src/fieldmap.c:InitBackupMapLayoutData/InitBackupMapLayoutConnections + src/field_camera.c:DrawMetatileAt",
+		"map_offset": MAP_OFFSET,
+		"map_offset_w": MAP_OFFSET_W,
+		"map_offset_h": MAP_OFFSET_H,
+		"map_size": [map_size.x, map_size.y],
+		"source_backup_draw_rect": {
+			"x": draw_rect.position.x,
+			"y": draw_rect.position.y,
+			"w": draw_rect.size.x,
+			"h": draw_rect.size.y,
+		},
+		"connection_count": _connections.size(),
+		"has_border_grid": not _border_grid.is_empty(),
+		"connection_directions": _connection_directions(),
+		"uses_layer_atlases": _runtime_layer_rendering_available(),
+		"mutates_gameplay_data": false,
+		"mutates_map_data": false,
+		"mutates_collision_or_elevation": false,
+		"source_trace": [
+			"include/fieldmap.h:MAP_OFFSET/MAP_OFFSET_W/MAP_OFFSET_H",
+			"src/fieldmap.c:GetBorderBlockAt",
+			"src/fieldmap.c:InitBackupMapLayoutConnections",
+			"src/field_camera.c:DrawWholeMapViewInternal",
+			"src/field_camera.c:DrawMetatileAt",
+		],
+	}
+
+
 func get_renderer_contract() -> Dictionary:
 	return {
 		"schema_version": 1,
@@ -260,6 +308,7 @@ func get_renderer_contract() -> Dictionary:
 		"top_layer_overlay": _top_layer_overlay_status(),
 		"layer_debug_view": get_layer_debug_view_status(),
 		"layer_redraw_cache": get_layer_redraw_cache_status(),
+		"border_connection_layer_rendering": get_border_connection_layer_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"debug_fallback_script": _debug_fallback_script_path(),
 		"compatible_methods": [
@@ -277,6 +326,7 @@ func get_renderer_contract() -> Dictionary:
 			"get_layer_draw_records_for_cell",
 			"get_layer_redraw_cache_status",
 			"get_layer_redraw_record_for_cell",
+			"get_border_connection_layer_status",
 			"get_object_depth_interleave_status",
 			"get_sprite_depth_record",
 			"get_sprite_depth_record_for_event",
@@ -288,6 +338,8 @@ func get_renderer_contract() -> Dictionary:
 			"include/global.fieldmap.h:METATILE_LAYER_TYPE_*",
 			"src/field_camera.c:DrawMetatile",
 			"src/field_camera.c:CurrentMapDrawMetatileAt",
+			"src/fieldmap.c:GetBorderBlockAt",
+			"src/fieldmap.c:InitBackupMapLayoutConnections",
 			"src/fieldmap.c:MapGridSetMetatileIdAt",
 			"src/field_door.c:DrawDoorMetatileAt",
 			"src/event_object_movement.c:sElevationToPriority",
@@ -315,6 +367,7 @@ func get_renderer_contract() -> Dictionary:
 			"Wrap DebugMapPlane so Main and TransitionSequencePlayer keep their renderer API.",
 			"Build or export separate bottom, middle, and top render records.",
 			"Render normal, covered, and split metatile layer rules from generated entries.",
+			"Render source backup-map border and connection cells through the same layer atlas path as in-bounds cells.",
 			"Interleave player and object-event presentation between middle and top map layers using source elevation priority.",
 			"Move door, border, connection, and animation redraws onto the same layer-aware path.",
 		],
@@ -334,6 +387,7 @@ func get_runtime_layer_status() -> Dictionary:
 		"top_layer_overlay": _top_layer_overlay_status(),
 		"layer_debug_view": get_layer_debug_view_status(),
 		"layer_redraw_cache": get_layer_redraw_cache_status(),
+		"border_connection_layer_rendering": get_border_connection_layer_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"source_equivalent_for_runtime_layering": false,
 		"unsupported": get_unsupported(),
@@ -389,7 +443,7 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_SOURCE_EQUIVALENT,
 			"status": "partially_implemented",
 			"source": "src/field_camera.c:DrawMetatile",
-			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data, and player/object nodes use source elevation priority plus SetObjectSubpriorityByElevation-style y-sort. Full source equivalence still needs bridge/shadow/reflection priority side effects, door forced-covered updates, and redraw caches.",
+			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data for in-bounds, border, and connection cells. Player/object nodes use source elevation priority plus SetObjectSubpriorityByElevation-style y-sort. Full source equivalence still needs bridge/shadow/reflection priority side effects, door forced-covered updates, and dynamic redraw caches.",
 		},
 		{
 			"code": UNSUPPORTED_FLATTENED_ATLAS,
@@ -413,7 +467,7 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES,
 			"status": "pending",
 			"source": "src/field_camera.c:CurrentMapDrawMetatileAt",
-			"detail": "Setmetatile single-cell layer redraw cache is implemented first-pass; border, connection, door, and tileset animation redraw caches remain pending.",
+			"detail": "Setmetatile single-cell layer redraw cache and first-pass border/connection layer presentation are implemented; door and tileset animation redraw caches remain pending.",
 		},
 	]
 
@@ -460,10 +514,11 @@ func _draw() -> void:
 	if not has_layer_rendering and not should_draw_flattened_fallback:
 		return
 
-	for y in range(map_size.y):
-		for x in range(map_size.x):
+	var cell_rect := _draw_cell_rect()
+	for y in range(cell_rect.position.y, cell_rect.position.y + cell_rect.size.y):
+		for x in range(cell_rect.position.x, cell_rect.position.x + cell_rect.size.x):
 			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
-			var block_id := _local_block_id(Vector2i(x, y))
+			var block_id := _render_block_id(Vector2i(x, y))
 			if has_layer_rendering and _is_implemented_layer_block(block_id):
 				if _draw_layered_metatile_roles(block_id, rect, _visible_base_layer_roles()):
 					continue
@@ -482,10 +537,11 @@ func _draw_top_layer_overlay(draw_target: CanvasItem) -> void:
 	if not _runtime_layer_rendering_available():
 		return
 
-	for y in range(map_size.y):
-		for x in range(map_size.x):
+	var cell_rect := _draw_cell_rect()
+	for y in range(cell_rect.position.y, cell_rect.position.y + cell_rect.size.y):
+		for x in range(cell_rect.position.x, cell_rect.position.x + cell_rect.size.x):
 			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
-			var block_id := _local_block_id(Vector2i(x, y))
+			var block_id := _render_block_id(Vector2i(x, y))
 			if _is_implemented_layer_block(block_id) and _is_layer_role_visible(TOP_LAYER_ROLE_ID):
 				_draw_layer_atlas_tile(TOP_LAYER_ROLE_ID, block_id, rect, draw_target)
 			if _grid_visible:
@@ -603,6 +659,15 @@ func _configure_flattened_atlas(source_tileset_data: Dictionary) -> void:
 	_flattened_atlas_columns = int(atlas_info.get("columns", 0))
 	_flattened_atlas_total_metatiles = int(atlas_info.get("total_metatiles", 0))
 	_flattened_atlas_texture = _texture_from_image_record(atlas_info)
+
+
+func _configure_border_and_connections(source_map_data: Dictionary) -> void:
+	_border_grid = {}
+	_connections = []
+	var border_grid = source_map_data.get("border_grid", {})
+	if typeof(border_grid) == TYPE_DICTIONARY:
+		_border_grid = border_grid.duplicate(true)
+	_index_connections(source_map_data)
 
 
 func _consume_runtime_layer_updates(source_map_data: Dictionary) -> void:
@@ -876,6 +941,279 @@ func _texture_from_image_record(record: Dictionary) -> Texture2D:
 		push_warning("Could not load layer-aware map texture: %s" % image_path)
 		return null
 	return ImageTexture.create_from_image(image)
+
+
+func _draw_cell_rect() -> Rect2i:
+	if map_size == Vector2i.ZERO:
+		return Rect2i(Vector2i.ZERO, Vector2i.ZERO)
+	return _source_backup_draw_rect()
+
+
+func _source_backup_draw_rect() -> Rect2i:
+	return Rect2i(
+		Vector2i(-MAP_OFFSET, -MAP_OFFSET),
+		Vector2i(map_size.x + MAP_OFFSET_W, map_size.y + MAP_OFFSET_H)
+	)
+
+
+func _render_block_id(cell: Vector2i) -> int:
+	return int(_render_block_record(cell).get("value", -1))
+
+
+func _render_block_record(cell: Vector2i) -> Dictionary:
+	var local := _local_block_record(cell)
+	if bool(local.get("found", false)):
+		return local
+	var connected := _connected_block_record(cell)
+	if bool(connected.get("found", false)):
+		return connected
+	var border := _border_block_record(cell)
+	if bool(border.get("found", false)):
+		return border
+	return {
+		"found": false,
+		"value": -1,
+		"region": "missing",
+	}
+
+
+func _local_block_record(cell: Vector2i) -> Dictionary:
+	var block_id := _local_block_id(cell)
+	if block_id < 0:
+		return {"found": false}
+	return {
+		"found": true,
+		"value": block_id,
+		"region": "local",
+	}
+
+
+func _index_connections(source_map_data: Dictionary) -> void:
+	var connections = source_map_data.get("connections", [])
+	if typeof(connections) != TYPE_ARRAY:
+		var events = source_map_data.get("events", {})
+		if typeof(events) == TYPE_DICTIONARY:
+			connections = events.get("connections", [])
+	if typeof(connections) != TYPE_ARRAY:
+		return
+
+	for source_connection in connections:
+		if typeof(source_connection) != TYPE_DICTIONARY:
+			continue
+		var connection = source_connection.duplicate(true)
+		connection["direction"] = _normalize_connection_direction(String(connection.get("direction", "")))
+		connection["offset"] = int(connection.get("offset", 0))
+		if String(connection.get("direction", "")).is_empty():
+			continue
+		if String(connection.get("map", "")).is_empty():
+			continue
+		_connections.append(connection)
+
+
+func _connected_block_record(cell: Vector2i) -> Dictionary:
+	var connection := _connection_for_cell(cell)
+	if connection.is_empty():
+		return {"found": false}
+	var connected_map_id := String(connection.get("map", ""))
+	var connected_map := _connected_map_data(connected_map_id)
+	if connected_map.is_empty():
+		return {"found": false}
+
+	var destination_position := _connection_destination_position(connection, cell)
+	var destination_size := _map_size_from_map_data(connected_map)
+	if not _is_cell_in_size(destination_position, destination_size):
+		return {"found": false}
+
+	var value_record := _grid_cell_value(connected_map.get("block_ids", []), destination_position)
+	if not bool(value_record.get("found", false)):
+		return {"found": false}
+	return {
+		"found": true,
+		"value": int(value_record.get("value", -1)),
+		"region": "connection",
+		"connection_direction": String(connection.get("direction", "")),
+		"connection_map": connected_map_id,
+		"connection_destination_cell": [destination_position.x, destination_position.y],
+	}
+
+
+func _border_block_record(cell: Vector2i) -> Dictionary:
+	if _border_grid.is_empty():
+		return {"found": false}
+	var values = _border_grid.get("metatile_ids", [])
+	if typeof(values) != TYPE_ARRAY:
+		values = _border_grid.get("block_ids", [])
+	if typeof(values) != TYPE_ARRAY or values.is_empty():
+		return {"found": false}
+
+	var dimensions := _border_grid_dimensions(values)
+	if dimensions.x <= 0 or dimensions.y <= 0:
+		return {"found": false}
+
+	var index := _border_grid_index(cell, dimensions.x, dimensions.y)
+	if index < 0 or index >= values.size():
+		return {"found": false}
+	return {
+		"found": true,
+		"value": int(values[index]),
+		"region": "border",
+		"border_index": index,
+	}
+
+
+func _border_grid_dimensions(values: Array) -> Vector2i:
+	var width := int(_border_grid.get("width", 0))
+	var height := int(_border_grid.get("height", 0))
+	if width <= 0:
+		width = 2 if values.size() >= 2 else 1
+	if height <= 0:
+		height = int(values.size() / width)
+		if values.size() % width != 0:
+			height += 1
+	return Vector2i(width, height)
+
+
+func _border_grid_index(cell: Vector2i, width: int, height: int) -> int:
+	var rule := String(_border_grid.get("source_index_rule", ""))
+	var map_offset := int(_border_grid.get("map_offset", MAP_OFFSET))
+	if rule == "emerald_2x2_parity":
+		return (
+			_positive_mod(cell.y + map_offset + 1, height) * width
+			+ _positive_mod(cell.x + map_offset + 1, width)
+		)
+	if rule == "frlg_wrapped_border":
+		return _positive_mod(cell.y, height) * width + _positive_mod(cell.x, width)
+	return _positive_mod(cell.y, height) * width + _positive_mod(cell.x, width)
+
+
+func _connection_for_cell(cell: Vector2i) -> Dictionary:
+	if _is_cell_in_size(cell, map_size):
+		return {}
+	for connection in _connections:
+		if typeof(connection) != TYPE_DICTIONARY:
+			continue
+		if _connection_matches_cell(connection, cell):
+			return connection
+	return {}
+
+
+func _connection_matches_cell(connection: Dictionary, cell: Vector2i) -> bool:
+	var direction := String(connection.get("direction", ""))
+	var destination_size := _map_size_for_connection(connection)
+	if destination_size == Vector2i.ZERO:
+		destination_size = map_size
+	var offset := int(connection.get("offset", 0))
+	match direction:
+		"north":
+			return cell.y < 0 and _is_axis_in_destination(cell.x - offset, destination_size.x)
+		"south":
+			return cell.y >= map_size.y and _is_axis_in_destination(cell.x - offset, destination_size.x)
+		"west":
+			return cell.x < 0 and _is_axis_in_destination(cell.y - offset, destination_size.y)
+		"east":
+			return cell.x >= map_size.x and _is_axis_in_destination(cell.y - offset, destination_size.y)
+	return false
+
+
+func _connection_destination_position(connection: Dictionary, cell: Vector2i) -> Vector2i:
+	var direction := String(connection.get("direction", ""))
+	var destination_size := _map_size_for_connection(connection)
+	if destination_size == Vector2i.ZERO:
+		destination_size = map_size
+	var offset := int(connection.get("offset", 0))
+	match direction:
+		"north":
+			return Vector2i(cell.x - offset, destination_size.y + cell.y)
+		"south":
+			return Vector2i(cell.x - offset, cell.y - map_size.y)
+		"west":
+			return Vector2i(destination_size.x + cell.x, cell.y - offset)
+		"east":
+			return Vector2i(cell.x - map_size.x, cell.y - offset)
+	return Vector2i(-1, -1)
+
+
+func _map_size_for_connection(connection: Dictionary) -> Vector2i:
+	var connected_map := _connected_map_data(String(connection.get("map", "")))
+	if connected_map.is_empty():
+		return Vector2i.ZERO
+	return _map_size_from_map_data(connected_map)
+
+
+func _connected_map_data(map_id: String) -> Dictionary:
+	if map_id.is_empty():
+		return {}
+	var registry := _registry()
+	if registry == null or not registry.has_method("get_map_data"):
+		return {}
+	var map_data = registry.get_map_data(map_id)
+	return map_data if typeof(map_data) == TYPE_DICTIONARY else {}
+
+
+func _registry() -> Node:
+	if _data_registry != null:
+		return _data_registry
+	if is_inside_tree():
+		return get_node_or_null("/root/DataRegistry")
+	return null
+
+
+func _grid_cell_value(grid, cell: Vector2i) -> Dictionary:
+	if typeof(grid) != TYPE_ARRAY:
+		return {"found": false}
+	if cell.y < 0 or cell.y >= grid.size():
+		return {"found": false}
+	var row = grid[cell.y]
+	if typeof(row) != TYPE_ARRAY or cell.x < 0 or cell.x >= row.size():
+		return {"found": false}
+	return {
+		"found": true,
+		"value": int(row[cell.x]),
+	}
+
+
+func _connection_directions() -> Array:
+	var directions := []
+	for connection in _connections:
+		if typeof(connection) != TYPE_DICTIONARY:
+			continue
+		var direction := String(connection.get("direction", ""))
+		if not direction.is_empty() and not directions.has(direction):
+			directions.append(direction)
+	return directions
+
+
+func _is_axis_in_destination(axis_value: int, destination_max: int) -> bool:
+	return destination_max > 0 and axis_value >= 0 and axis_value < destination_max
+
+
+func _is_cell_in_size(cell: Vector2i, size: Vector2i) -> bool:
+	return cell.x >= 0 and cell.y >= 0 and cell.x < size.x and cell.y < size.y
+
+
+func _normalize_connection_direction(direction: String) -> String:
+	var normalized := direction.to_lower()
+	if normalized.begins_with("connection_"):
+		normalized = normalized.replace("connection_", "")
+	match normalized:
+		"up", "north":
+			return "north"
+		"down", "south":
+			return "south"
+		"left", "west":
+			return "west"
+		"right", "east":
+			return "east"
+	return normalized
+
+
+func _positive_mod(value: int, modulo: int) -> int:
+	if modulo <= 0:
+		return 0
+	var result := value % modulo
+	if result < 0:
+		result += modulo
+	return result
 
 
 func _local_block_id(cell: Vector2i) -> int:

@@ -40,14 +40,14 @@ func _run() -> void:
 	_assert(String(contract.get("owner", "")) == "LayerAwareMapRenderer", "expected layer-aware owner name")
 	_assert(String(contract.get("replaces_or_wraps", "")) == "DebugMapPlane", "expected DebugMapPlane wrapper contract")
 	_assert(
-		String(contract.get("runtime_status", "")) == "normal_covered_split_source_subpriority_first_pass",
-		"expected normal+covered+split+source-subpriority layer runtime status"
+		String(contract.get("runtime_status", "")) == "normal_covered_split_border_connection_source_subpriority_first_pass",
+		"expected normal+covered+split+border+connection+source-subpriority layer runtime status"
 	)
 	_assert(not bool(contract.get("source_equivalent_for_runtime_layering", true)), "expected layer rendering to stay non-equivalent")
 	_assert(bool(contract.get("debug_fallback_active", false)), "expected debug fallback to be active")
 	_assert(
-		String(status.get("status", "")) == "normal_covered_split_source_subpriority_first_pass",
-		"expected runtime normal+covered+split+source-subpriority layer status"
+		String(status.get("status", "")) == "normal_covered_split_border_connection_source_subpriority_first_pass",
+		"expected runtime normal+covered+split+border+connection+source-subpriority layer status"
 	)
 	_assert(not bool(status.get("source_equivalent_for_runtime_layering", true)), "expected runtime status to stay non-equivalent")
 	_assert(bool(status.get("debug_fallback_active", false)), "expected runtime status to expose active fallback")
@@ -68,6 +68,21 @@ func _run() -> void:
 	_assert(_array_has_string(layer_status.get("drawn_roles", []), "middle"), "expected middle role loaded")
 	_assert(_array_has_string(layer_status.get("drawn_roles", []), "top"), "expected top role loaded")
 	_assert(String(layer_status.get("object_depth_interleave", "")) == "implemented_first_pass", "expected object-depth first-pass status")
+	var border_connection_status: Dictionary = renderer.get_border_connection_layer_status()
+	_assert(String(border_connection_status.get("status", "")) == "implemented_first_pass", "expected border/connection first-pass status")
+	_assert(int(border_connection_status.get("map_offset", 0)) == 7, "expected source MAP_OFFSET")
+	_assert(int(border_connection_status.get("map_offset_w", 0)) == 15, "expected source MAP_OFFSET_W")
+	_assert(int(border_connection_status.get("map_offset_h", 0)) == 14, "expected source MAP_OFFSET_H")
+	_assert(bool(border_connection_status.get("has_border_grid", false)), "expected border grid in status")
+	_assert(int(border_connection_status.get("connection_count", 0)) == 1, "expected Littleroot north connection")
+	_assert(_array_has_string(border_connection_status.get("connection_directions", []), "north"), "expected north connection direction")
+	var source_backup_draw_rect: Dictionary = border_connection_status.get("source_backup_draw_rect", {})
+	_assert(int(source_backup_draw_rect.get("x", 0)) == -7, "expected backup draw rect x")
+	_assert(int(source_backup_draw_rect.get("y", 0)) == -7, "expected backup draw rect y")
+	_assert(int(source_backup_draw_rect.get("w", 0)) == 35, "expected backup draw rect width")
+	_assert(int(source_backup_draw_rect.get("h", 0)) == 34, "expected backup draw rect height")
+	_assert(not bool(border_connection_status.get("mutates_map_data", true)), "expected border/connection rendering not to mutate map data")
+	_assert(not bool(border_connection_status.get("mutates_collision_or_elevation", true)), "expected border/connection rendering not to mutate collision/elevation")
 
 	var object_depth: Dictionary = renderer.get_object_depth_interleave_status()
 	_assert(String(object_depth.get("status", "")) == "implemented_first_pass", "expected object-depth contract implementation")
@@ -144,7 +159,8 @@ func _run() -> void:
 	_assert(unsupported_codes.has("bridge_shadow_reflection_priority_pending"), "expected bridge/shadow/reflection priority gap")
 	_assert(unsupported_codes.has("door_forced_covered_layer_pending"), "expected door layer gap")
 	_assert(not unsupported_codes.has("per_layer_redraw_cache_pending"), "expected setmetatile redraw cache pending gap to be retired")
-	_assert(unsupported_codes.has("border_connection_animation_redraw_cache_pending"), "expected non-setmetatile redraw cache gap")
+	_assert(not unsupported_codes.has("border_connection_animation_redraw_cache_pending"), "expected border/connection redraw cache gap to be retired")
+	_assert(unsupported_codes.has("door_tileset_animation_redraw_cache_pending"), "expected door/tileset animation redraw cache gap")
 
 	_assert_no_disallowed_runtime_keys(contract)
 	_assert_no_disallowed_runtime_keys(status)
@@ -162,6 +178,7 @@ func _run() -> void:
 	_assert_layer_draw_records(renderer, tileset_data, 0, "METATILE_LAYER_TYPE_NORMAL", "normal_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 1, "METATILE_LAYER_TYPE_COVERED", "covered_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 2, "METATILE_LAYER_TYPE_SPLIT", "split_layer_atlases")
+	_assert_border_connection_layer_draw_records(renderer, debug_renderer, map_data, tileset_data)
 
 	var animation := _first_door_animation(tileset_data)
 	_assert(not animation.is_empty(), "expected generated door animation")
@@ -294,6 +311,45 @@ func _assert_setmetatile_layer_redraw_cache(
 	_assert(renderer.get_render_block_id(target_cell) == metatile_id, "expected renderer block id to update")
 	_assert(debug_renderer.get_render_block_id(target_cell) == metatile_id, "expected fallback block id to update")
 	runtime.free()
+
+
+func _assert_border_connection_layer_draw_records(
+	renderer: Node,
+	debug_renderer: Node,
+	map_data: Dictionary,
+	tileset_data: Dictionary
+) -> void:
+	var source_block_ids = map_data.get("block_ids", []).duplicate(true)
+	renderer.configure_from_map_data(map_data, tileset_data)
+	var north_connection_cell := Vector2i(10, -1)
+	var connection_plan: Dictionary = renderer.get_layer_draw_records_for_cell(north_connection_cell)
+	_assert(String(connection_plan.get("source_cell_region", "")) == "connection", "expected north edge cell to draw from connection")
+	_assert(String(connection_plan.get("source_connection_direction", "")) == "north", "expected north connection direction")
+	_assert(String(connection_plan.get("source_connection_map", "")) == "MAP_ROUTE101", "expected Route101 connection map")
+	_assert(
+		connection_plan.get("source_connection_destination_cell", []) == [10, 19],
+		"expected source connection destination cell from Route101 bottom strip"
+	)
+	_assert(
+		int(connection_plan.get("block_id", -1)) == debug_renderer.get_render_block_id(north_connection_cell),
+		"expected connection block id to match fallback lookup"
+	)
+	_assert(int(connection_plan.get("block_id", -1)) >= 0, "expected connection block id")
+	_assert(connection_plan.get("records", []).size() == 3, "expected connection bottom/middle/top draw records")
+	_assert(String(connection_plan.get("runtime_layer_path", "")) != "flattened_fallback_or_pending", "expected connection to use layer atlas path")
+
+	var border_cell := Vector2i(-1, -1)
+	var border_plan: Dictionary = renderer.get_layer_draw_records_for_cell(border_cell)
+	_assert(String(border_plan.get("source_cell_region", "")) == "border", "expected corner edge cell to draw from border")
+	_assert(int(border_plan.get("source_border_index", -1)) == 3, "expected Emerald 2x2 border index")
+	_assert(
+		int(border_plan.get("block_id", -1)) == debug_renderer.get_render_block_id(border_cell),
+		"expected border block id to match fallback lookup"
+	)
+	_assert(int(border_plan.get("block_id", -1)) >= 0, "expected border block id")
+	_assert(border_plan.get("records", []).size() == 3, "expected border bottom/middle/top draw records")
+	_assert(String(border_plan.get("runtime_layer_path", "")) != "flattened_fallback_or_pending", "expected border to use layer atlas path")
+	_assert(map_data.get("block_ids", []) == source_block_ids, "expected border/connection query not to mutate map data")
 
 
 func _assert_layer_debug_view(renderer: Node, map_data: Dictionary, tileset_data: Dictionary) -> void:
