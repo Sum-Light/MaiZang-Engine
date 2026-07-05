@@ -7,6 +7,11 @@ import re
 import sys
 from pathlib import Path
 
+try:
+    from PIL import Image
+except ImportError:  # pragma: no cover - import-time dependency check
+    raise SystemExit("Pillow is required to export overworld tileset animation frame strips: pip install Pillow")
+
 from export_map import MAPGRID_METATILE_ID_MASK, load_map_group_index, read_u16le_file, write_json, write_manifest
 from export_overworld_metatile_behavior_trace import parse_metatile_constants, parse_tile_bit_attributes
 from source_probe import load_config, path_status, symbol_to_tileset_dir, to_project_path
@@ -14,6 +19,7 @@ from source_probe import load_config, path_status, symbol_to_tileset_dir, to_pro
 
 GENERATED_BY = "tools/importer/export_overworld_tileset_headers.py"
 REPORT_PATH = Path("overworld/tileset_header_report.json")
+TILESET_ANIMATION_ASSET_DIR = Path("tileset_anims")
 
 SOURCE_FILES = [
     "src/data/tilesets/headers.h",
@@ -162,6 +168,11 @@ def read_text(path):
 
 def normalize_ws(value):
     return re.sub(r"\s+", " ", value.strip())
+
+
+def slugify_asset_name(value):
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", value).strip("_").lower()
+    return slug or "asset"
 
 
 def bool_value(expr):
@@ -1602,6 +1613,152 @@ def frames_for_tileset_base(animation_frames, base_path):
         for frame in animation_frames
         if base_path in frame.get("tileset_base_paths", [])
     ]
+
+
+def build_tileset_animation_frame_strip_export(
+    source_root,
+    animation_frames,
+    output_asset_root=None,
+    write_assets=False,
+):
+    output_asset_root = Path(output_asset_root or "assets/generated")
+    output_root = output_asset_root / TILESET_ANIMATION_ASSET_DIR
+    strips = []
+    missing_source_images = []
+    invalid_source_images = []
+    total_source_image_count = 0
+    total_existing_source_image_count = 0
+    total_written_count = 0
+    total_width_pixels = 0
+    total_height_pixels = 0
+
+    for frame in animation_frames:
+        source_images = []
+        opened_images = []
+        strip_width = 0
+        strip_height = 0
+        status = "exported"
+
+        for candidate in frame.get("editable_source_candidates", []):
+            total_source_image_count += 1
+            source_path_text = candidate.get("path", "")
+            source_path = source_root / source_path_text
+            image_row = {
+                "path": source_path_text,
+                "exists": bool(candidate.get("exists")),
+                "source_format": "indexed_png",
+                "output_format": "rgba8",
+                "source_rect": None,
+                "strip_rect": None,
+                "width": None,
+                "height": None,
+                "error": None,
+            }
+            if not image_row["exists"]:
+                status = "missing_source_image"
+                missing_source_images.append({
+                    "frame_symbol": frame.get("symbol"),
+                    "path": source_path_text,
+                })
+                source_images.append(image_row)
+                continue
+
+            try:
+                with Image.open(source_path) as image:
+                    rgba = image.convert("RGBA")
+            except (OSError, ValueError) as error:
+                status = "invalid_source_image"
+                image_row["error"] = str(error)
+                invalid_source_images.append({
+                    "frame_symbol": frame.get("symbol"),
+                    "path": source_path_text,
+                    "error": str(error),
+                })
+                source_images.append(image_row)
+                continue
+
+            total_existing_source_image_count += 1
+            width, height = rgba.size
+            image_row["width"] = width
+            image_row["height"] = height
+            image_row["source_rect"] = {
+                "x": 0,
+                "y": 0,
+                "w": width,
+                "h": height,
+            }
+            image_row["strip_rect"] = {
+                "x": strip_width,
+                "y": 0,
+                "w": width,
+                "h": height,
+            }
+            strip_width += width
+            strip_height = max(strip_height, height)
+            opened_images.append((rgba, image_row["strip_rect"]))
+            source_images.append(image_row)
+
+        asset_name = "{}.png".format(slugify_asset_name(frame.get("symbol", "")))
+        output_path = output_root / asset_name
+        image_project_path = to_project_path(output_path)
+        if status == "exported" and not opened_images:
+            status = "missing_source_image"
+        if status == "exported" and write_assets:
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            strip = Image.new("RGBA", (strip_width, strip_height), (0, 0, 0, 0))
+            for image, rect in opened_images:
+                strip.paste(image, (rect["x"], rect["y"]))
+            strip.save(output_path)
+            total_written_count += 1
+
+        if status == "exported":
+            total_width_pixels += strip_width
+            total_height_pixels += strip_height
+
+        strips.append({
+            "frame_symbol": frame.get("symbol"),
+            "status": status,
+            "artifact_kind": "tileset_animation_rgba_frame_strip",
+            "image": "res://{}".format(image_project_path),
+            "image_project_path": image_project_path,
+            "generated_path": image_project_path,
+            "source": frame.get("source"),
+            "source_bins": frame.get("source_bins", []),
+            "source_bin_count": int(frame.get("source_bin_count", 0)),
+            "tileset_base_paths": frame.get("tileset_base_paths", []),
+            "source_image_count": len(source_images),
+            "strip_source_image_count": len(opened_images),
+            "pixel_format": "RGBA8",
+            "conversion": "source_indexed_png_to_rgba_frame_strip",
+            "strip_size": {
+                "w": strip_width if status == "exported" else None,
+                "h": strip_height if status == "exported" else None,
+            },
+            "source_images": source_images,
+        })
+
+    exported_strip_count = sum(1 for strip in strips if strip["status"] == "exported")
+    return {
+        "status": "exported_rgba_frame_strips",
+        "artifact_kind": "tileset_animation_rgba_frame_strips",
+        "runtime_tileset_animation_required": False,
+        "source_color_runtime_required": False,
+        "source_palette_runtime_required": False,
+        "asset_root": to_project_path(output_root),
+        "write_assets": bool(write_assets),
+        "frame_declaration_count": len(animation_frames),
+        "source_image_count": total_source_image_count,
+        "existing_source_image_count": total_existing_source_image_count,
+        "generated_strip_count": exported_strip_count,
+        "written_strip_count": total_written_count,
+        "missing_source_image_count": len(missing_source_images),
+        "invalid_source_image_count": len(invalid_source_images),
+        "total_strip_width_pixels": total_width_pixels,
+        "total_strip_height_pixels": total_height_pixels,
+        "strips": strips,
+        "missing_source_images": missing_source_images,
+        "invalid_source_images": invalid_source_images,
+    }
 
 
 def metatile_label_resolution_for_header(label, header_symbol):
@@ -3229,6 +3386,7 @@ def build_stats(
     source_files,
     records,
     animation_frames=None,
+    animation_frame_strip_export=None,
     init_functions=None,
     metatile_label_rules=None,
     metatile_label_pair_lookup=None,
@@ -3237,6 +3395,7 @@ def build_stats(
     tileset_callback_map_report=None,
 ):
     animation_frames = animation_frames or []
+    animation_frame_strip_export = animation_frame_strip_export or {}
     init_functions = init_functions or []
     metatile_label_rules = metatile_label_rules or {}
     metatile_label_pair_lookup = metatile_label_pair_lookup or {}
@@ -3852,6 +4011,30 @@ def build_stats(
         ),
         "animation_missing_editable_source_candidate_count": len(missing_animation_image_candidates),
         "animation_missing_editable_source_candidates": missing_animation_image_candidates,
+        "animation_rgba_frame_strip_count": int(
+            animation_frame_strip_export.get("generated_strip_count", 0)
+        ),
+        "animation_rgba_frame_strip_written_count": int(
+            animation_frame_strip_export.get("written_strip_count", 0)
+        ),
+        "animation_rgba_frame_strip_source_image_count": int(
+            animation_frame_strip_export.get("source_image_count", 0)
+        ),
+        "animation_rgba_frame_strip_existing_source_image_count": int(
+            animation_frame_strip_export.get("existing_source_image_count", 0)
+        ),
+        "animation_rgba_frame_strip_missing_source_image_count": int(
+            animation_frame_strip_export.get("missing_source_image_count", 0)
+        ),
+        "animation_rgba_frame_strip_invalid_source_image_count": int(
+            animation_frame_strip_export.get("invalid_source_image_count", 0)
+        ),
+        "animation_rgba_frame_strip_total_width_pixels": int(
+            animation_frame_strip_export.get("total_strip_width_pixels", 0)
+        ),
+        "animation_rgba_frame_strip_total_height_pixels": int(
+            animation_frame_strip_export.get("total_strip_height_pixels", 0)
+        ),
         "animation_tileset_base_count": len(animation_base_paths),
         "animation_tileset_base_paths": animation_base_paths,
         "orphan_animation_tileset_base_count": len(orphan_animation_base_paths),
@@ -3927,15 +4110,29 @@ def manifest_entry_for(exported, output_path):
         ],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
+        "animation_rgba_frame_strip_count": stats["animation_rgba_frame_strip_count"],
+        "animation_rgba_frame_strip_source_image_count": stats["animation_rgba_frame_strip_source_image_count"],
+        "animation_rgba_frame_strip_missing_source_image_count": stats[
+            "animation_rgba_frame_strip_missing_source_image_count"
+        ],
+        "animation_rgba_frame_strip_invalid_source_image_count": stats[
+            "animation_rgba_frame_strip_invalid_source_image_count"
+        ],
         "missing_callback_source_count": stats["missing_callback_source_count"],
         "missing_asset_declaration_count": stats["missing_asset_declaration_count"],
     }
 
 
-def build_export(source_root):
+def build_export(source_root, output_asset_root=None, write_assets=False):
     source_root = Path(source_root)
     source_files = source_file_presence(source_root)
     animation_frames = parse_animation_frame_declarations(source_root)
+    animation_frame_strip_export = build_tileset_animation_frame_strip_export(
+        source_root,
+        animation_frames,
+        output_asset_root=output_asset_root,
+        write_assets=write_assets,
+    )
     init_functions = parse_init_function_symbols(source_root)
     palette_rules = parse_palette_slot_rules(source_root)
     metatile_rules = parse_metatile_decode_rules(source_root)
@@ -3971,6 +4168,7 @@ def build_export(source_root):
         source_files,
         records,
         animation_frames,
+        animation_frame_strip_export,
         init_functions,
         metatile_label_rules,
         metatile_label_pair_lookup,
@@ -3993,6 +4191,7 @@ def build_export(source_root):
         "metatile_tile_image_reference_report": metatile_tile_image_reference_report,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
+        "tileset_animation_frame_strips": animation_frame_strip_export,
         "tileset_animation_init_functions": init_functions,
         "runtime_policy": {
             "runtime_palette_required": False,
@@ -4007,7 +4206,7 @@ def build_export(source_root):
             {
                 "code": "tileset_animation_runtime_pending",
                 "status": "unsupported",
-                "detail": "Header callback symbols, callback source bindings, and animation frame image provenance are exported, but no source-equivalent Godot tileset animation scheduler is implemented yet.",
+                "detail": "Header callback symbols, callback source bindings, animation frame image provenance, and generated RGBA frame strips are exported, but no source-equivalent Godot tileset animation scheduler is implemented yet.",
             },
             {
                 "code": "source_equivalent_layer_renderer_pending",
@@ -4029,14 +4228,16 @@ def main(argv):
     parser.add_argument("--config", type=Path, help="JSON config with source and output roots.")
     parser.add_argument("--source", type=Path, help="pokeemerald-expansion source root.")
     parser.add_argument("--output-root", type=Path, help="Generated data output root.")
+    parser.add_argument("--output-asset-root", type=Path, help="Generated asset output root.")
     args = parser.parse_args(argv)
 
     config = load_config(args.config)
     source_root = args.source or Path(config.get("source_root", ""))
     output_root = args.output_root or Path(config.get("generated_data_root", "data/generated"))
+    output_asset_root = args.output_asset_root or Path(config.get("generated_asset_root", "assets/generated"))
     output_path = output_root / REPORT_PATH
 
-    exported = build_export(source_root)
+    exported = build_export(source_root, output_asset_root=output_asset_root, write_assets=True)
     write_json(output_path, exported)
     manifest_entry = manifest_entry_for(exported, output_path)
     write_manifest(

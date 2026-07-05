@@ -120,6 +120,26 @@ def main(argv):
         "unexpected generated animation frame declaration count",
     )
     _assert(generated["tileset_animation_source_image_count"] == 182, "unexpected animation source image count")
+    _assert(
+        generated["tileset_animation_rgba_frame_strip_count"] == 174,
+        "unexpected animation RGBA frame strip count",
+    )
+    _assert(
+        generated["tileset_animation_rgba_frame_strip_source_image_count"] == 182,
+        "unexpected animation RGBA frame strip source image count",
+    )
+    _assert(
+        generated["tileset_animation_rgba_frame_strip_existing_source_image_count"] == 182,
+        "unexpected animation RGBA frame strip existing image count",
+    )
+    _assert(
+        generated["tileset_animation_rgba_frame_strip_missing_source_image_count"] == 0,
+        "unexpected missing animation RGBA frame strip source image count",
+    )
+    _assert(
+        generated["tileset_animation_rgba_frame_strip_invalid_source_image_count"] == 0,
+        "unexpected invalid animation RGBA frame strip source image count",
+    )
     _assert(generated["tileset_palette_slot_mapping_count"] == 2224, "unexpected palette slot mapping count")
     _assert(
         generated["active_emerald_tileset_palette_slot_mapping_count"] == 1200,
@@ -433,6 +453,14 @@ def main(argv):
     _assert(
         coverage["tileset_animation_source_images"]["percent"] == 100.0,
         "unexpected tileset animation source image coverage percent",
+    )
+    _assert(
+        coverage["tileset_animation_rgba_frame_strips"]["percent"] == 100.0,
+        "unexpected tileset animation RGBA frame strip coverage percent",
+    )
+    _assert(
+        coverage["tileset_animation_rgba_frame_sources"]["percent"] == 100.0,
+        "unexpected tileset animation RGBA frame source coverage percent",
     )
     _assert(coverage["tileset_callback_maps"]["percent"] == 100.0, "unexpected callback-map map coverage")
     _assert(coverage["tileset_callback_layouts"]["percent"] == 100.0, "unexpected callback-map layout coverage")

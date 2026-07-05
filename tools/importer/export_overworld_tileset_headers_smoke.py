@@ -5,7 +5,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from export_overworld_tileset_headers import build_export
+from export_overworld_tileset_headers import build_export, read_png_dimensions
 from source_probe import load_config
 
 
@@ -17,13 +17,15 @@ def main(argv):
 
     config = load_config(args.config)
     source_root = args.source or Path(config.get("source_root", ""))
-    exported = build_export(source_root)
+    output_asset_root = Path(config.get("generated_asset_root", "assets/generated"))
+    exported = build_export(source_root, output_asset_root=output_asset_root, write_assets=True)
     stats = exported["stats"]
     rules = exported["palette_slot_rules"]
     attribute_rules = exported["metatile_attribute_rules"]
     label_rules = exported["metatile_label_rules"]
     pair_lookup = exported["metatile_label_pair_lookup"]
     callback_map_report = exported["tileset_callback_map_report"]
+    frame_strip_report = exported["tileset_animation_frame_strips"]
     map_reference_report = exported["metatile_map_reference_report"]
     tile_image_reference_report = exported["metatile_tile_image_reference_report"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
@@ -394,6 +396,24 @@ def main(argv):
         stats["animation_missing_editable_source_candidate_count"] == 0,
         "unexpected missing animation source images",
     )
+    _assert(stats["animation_rgba_frame_strip_count"] == 174, "unexpected RGBA frame strip count")
+    _assert(stats["animation_rgba_frame_strip_written_count"] == 174, "unexpected written frame strip count")
+    _assert(
+        stats["animation_rgba_frame_strip_source_image_count"] == 182,
+        "unexpected RGBA frame strip source image count",
+    )
+    _assert(
+        stats["animation_rgba_frame_strip_existing_source_image_count"] == 182,
+        "unexpected RGBA frame strip existing source image count",
+    )
+    _assert(
+        stats["animation_rgba_frame_strip_missing_source_image_count"] == 0,
+        "unexpected missing RGBA frame strip source images",
+    )
+    _assert(
+        stats["animation_rgba_frame_strip_invalid_source_image_count"] == 0,
+        "unexpected invalid RGBA frame strip source images",
+    )
     _assert(stats["animation_tileset_base_count"] == 27, "unexpected animation tileset base count")
     _assert(
         stats["headers_with_animation_image_provenance_count"] == 26,
@@ -409,6 +429,35 @@ def main(argv):
         "unexpected orphan animation base path",
     )
     _assert(len(exported["tileset_animation_frames"]) == 174, "unexpected top-level animation frame count")
+    _assert(frame_strip_report["status"] == "exported_rgba_frame_strips", "unexpected frame strip report status")
+    _assert(frame_strip_report["runtime_tileset_animation_required"] is False, "frame strip report should be metadata")
+    _assert(frame_strip_report["asset_root"] == "assets/generated/tileset_anims", "unexpected frame strip asset root")
+    _assert(frame_strip_report["frame_declaration_count"] == 174, "unexpected frame strip declaration count")
+    _assert(frame_strip_report["source_image_count"] == 182, "unexpected frame strip source image count")
+    _assert(frame_strip_report["existing_source_image_count"] == 182, "unexpected existing frame strip image count")
+    _assert(frame_strip_report["generated_strip_count"] == 174, "unexpected generated frame strip count")
+    _assert(frame_strip_report["written_strip_count"] == 174, "unexpected written frame strip count")
+    _assert(frame_strip_report["missing_source_image_count"] == 0, "unexpected frame strip missing image count")
+    _assert(frame_strip_report["invalid_source_image_count"] == 0, "unexpected frame strip invalid image count")
+    _assert(len(frame_strip_report["strips"]) == 174, "unexpected frame strip row count")
+    frame_strips = {row["frame_symbol"]: row for row in frame_strip_report["strips"]}
+    flower_strip = frame_strips["gTilesetAnims_General_Flower_Frame0"]
+    _assert(flower_strip["strip_size"] == {"w": 16, "h": 16}, "General flower strip size mismatch")
+    _assert(flower_strip["source_image_count"] == 1, "General flower source image count mismatch")
+    _assert(Path(flower_strip["image_project_path"]).exists(), "General flower strip file missing")
+    _assert(
+        read_png_dimensions(Path(flower_strip["image_project_path"])) == (16, 16),
+        "General flower generated PNG dimensions mismatch",
+    )
+    stormy_strip = frame_strips["gTilesetAnims_Sootopolis_StormyWater_Frame0"]
+    _assert(stormy_strip["strip_size"] == {"w": 128, "h": 48}, "Sootopolis stormy strip size mismatch")
+    _assert(stormy_strip["source_image_count"] == 2, "Sootopolis stormy source image count mismatch")
+    _assert(stormy_strip["source_images"][1]["strip_rect"]["x"] == 64, "Sootopolis second source offset mismatch")
+    _assert(Path(stormy_strip["image_project_path"]).exists(), "Sootopolis stormy strip file missing")
+    _assert(
+        read_png_dimensions(Path(stormy_strip["image_project_path"])) == (128, 48),
+        "Sootopolis stormy generated PNG dimensions mismatch",
+    )
     _assert(len(exported["tileset_animation_init_functions"]) == 31, "unexpected top-level init function count")
     _assert(rules["status"] == "import_metadata_only", "palette rules should be import metadata")
     _assert(rules["runtime_palette_required"] is False, "palette rules must not require runtime palettes")

@@ -784,6 +784,21 @@ def build_export(source_root, output_root):
     tileset_animation_source_image_count = int(
         tileset_header_stats.get("animation_existing_editable_source_candidate_count", 0)
     )
+    tileset_animation_rgba_frame_strip_count = int(
+        tileset_header_stats.get("animation_rgba_frame_strip_count", 0)
+    )
+    tileset_animation_rgba_frame_strip_source_image_count = int(
+        tileset_header_stats.get("animation_rgba_frame_strip_source_image_count", 0)
+    )
+    tileset_animation_rgba_frame_strip_existing_source_image_count = int(
+        tileset_header_stats.get("animation_rgba_frame_strip_existing_source_image_count", 0)
+    )
+    tileset_animation_rgba_frame_strip_missing_source_image_count = int(
+        tileset_header_stats.get("animation_rgba_frame_strip_missing_source_image_count", 0)
+    )
+    tileset_animation_rgba_frame_strip_invalid_source_image_count = int(
+        tileset_header_stats.get("animation_rgba_frame_strip_invalid_source_image_count", 0)
+    )
     tileset_palette_slot_mapping_count = int(
         tileset_header_stats.get("palette_slot_mapping_count", 0)
     )
@@ -1064,6 +1079,19 @@ def build_export(source_root, output_root):
         "active_emerald_tileset_header_record_count": active_tileset_header_record_count,
         "tileset_animation_frame_declaration_count": tileset_animation_frame_declaration_count,
         "tileset_animation_source_image_count": tileset_animation_source_image_count,
+        "tileset_animation_rgba_frame_strip_count": tileset_animation_rgba_frame_strip_count,
+        "tileset_animation_rgba_frame_strip_source_image_count": (
+            tileset_animation_rgba_frame_strip_source_image_count
+        ),
+        "tileset_animation_rgba_frame_strip_existing_source_image_count": (
+            tileset_animation_rgba_frame_strip_existing_source_image_count
+        ),
+        "tileset_animation_rgba_frame_strip_missing_source_image_count": (
+            tileset_animation_rgba_frame_strip_missing_source_image_count
+        ),
+        "tileset_animation_rgba_frame_strip_invalid_source_image_count": (
+            tileset_animation_rgba_frame_strip_invalid_source_image_count
+        ),
         "tileset_palette_slot_mapping_count": tileset_palette_slot_mapping_count,
         "active_emerald_tileset_palette_slot_mapping_count": active_tileset_palette_slot_mapping_count,
         "tileset_loaded_palette_slot_mapping_count": tileset_loaded_palette_slot_mapping_count,
@@ -1313,6 +1341,14 @@ def build_export(source_root, output_root):
             generated_counts["tileset_animation_source_image_count"],
             source_counts["tileset_anim_source_frame_count"],
         ),
+        "tileset_animation_rgba_frame_strips": ratio(
+            generated_counts["tileset_animation_rgba_frame_strip_count"],
+            source_counts["tileset_anim_source_group_count"],
+        ),
+        "tileset_animation_rgba_frame_sources": ratio(
+            generated_counts["tileset_animation_rgba_frame_strip_existing_source_image_count"],
+            source_counts["tileset_anim_source_frame_count"],
+        ),
         "tileset_callback_maps": ratio(
             generated_counts["tileset_callback_map_map_count"],
             source_counts["map_count"],
@@ -1428,7 +1464,7 @@ def build_explicit_unsupported(source_counts, generated_counts):
             "status": "unsupported",
             "source_count": source_counts["tileset_callback_count"],
             "generated_count": generated_counts["tileset_animation_count"],
-            "detail": "Source tileset animation callbacks exist, but no generated tileset animation runtime records are exported yet.",
+            "detail": "Source tileset animation callbacks and RGBA frame strips exist, but no source-equivalent Godot scheduler/runtime records are exported yet.",
         },
         {
             "code": "door_overlay_not_source_equivalent",
@@ -1508,6 +1544,18 @@ def manifest_entry_for(exported, output_path):
         "generated_tileset_record_count": generated["tileset_record_count"],
         "generated_tileset_header_record_count": generated["tileset_header_record_count"],
         "generated_tileset_animation_source_image_count": generated["tileset_animation_source_image_count"],
+        "generated_tileset_animation_rgba_frame_strip_count": generated[
+            "tileset_animation_rgba_frame_strip_count"
+        ],
+        "generated_tileset_animation_rgba_frame_strip_source_image_count": generated[
+            "tileset_animation_rgba_frame_strip_source_image_count"
+        ],
+        "tileset_animation_rgba_frame_strip_missing_source_image_count": generated[
+            "tileset_animation_rgba_frame_strip_missing_source_image_count"
+        ],
+        "tileset_animation_rgba_frame_strip_invalid_source_image_count": generated[
+            "tileset_animation_rgba_frame_strip_invalid_source_image_count"
+        ],
         "generated_tileset_callback_map_layout_count": generated["tileset_callback_map_layout_count"],
         "generated_tileset_callback_map_map_count": generated["tileset_callback_map_map_count"],
         "generated_tileset_callback_map_pair_count": generated["tileset_callback_map_pair_count"],
