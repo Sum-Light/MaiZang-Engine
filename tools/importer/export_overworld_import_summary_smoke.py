@@ -35,6 +35,9 @@ def main(argv):
     _assert(source["layout_blockdata_invalid_file_count"] == 0, "unexpected invalid source layout blockdata count")
     _assert(source["primary_tileset_image_count"] == 5, "unexpected source primary tileset count")
     _assert(source["secondary_tileset_image_count"] == 127, "unexpected source secondary tileset count")
+    _assert(source["tileset_tile_image_count"] == 138, "unexpected recursive source tile image count")
+    _assert(source["tileset_tile_image_tile_count"] == 39376, "unexpected recursive source tile image tile count")
+    _assert(source["tileset_invalid_tile_image_count"] == 0, "unexpected invalid source tile image count")
     _assert(source["tileset_header_count"] == 139, "unexpected source tileset header count")
     _assert(source["tileset_callback_count"] == 31, "unexpected source tileset callback count")
     _assert(source["tileset_anim_init_function_count"] == 31, "unexpected source tileset anim init count")
@@ -275,6 +278,70 @@ def main(argv):
         generated["tileset_header_metatile_map_reference_size_mismatch_layout_count"] == 20,
         "unexpected generated map reference size mismatch count",
     )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_count"] == 139,
+        "unexpected generated tile image reference header count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_image_binding_count"] == 139,
+        "unexpected generated tile image binding count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_decoded_image_binding_count"] == 139,
+        "unexpected generated decoded tile image binding count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_unique_source_image_count"] == 138,
+        "unexpected generated unique tile image count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_unique_source_image_tile_count"] == 39376,
+        "unexpected generated unique tile image tile count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_checked_tile_entry_count"] == 128122,
+        "unexpected generated header checked tile image entry count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_foreign_tile_entry_count"] == 105582,
+        "unexpected generated header foreign tile image entry count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_absent_tile_entry_count"] == 44,
+        "unexpected generated header absent tile image entry count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_absent_unique_tile_reference_count"] == 22,
+        "unexpected generated header absent tile image unique count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_header_with_absent_tile_count"] == 3,
+        "unexpected generated header-with-absent tile image count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_pair_count"] == 137,
+        "unexpected generated pair tile image reference count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_pair_checked_tile_entry_count"] == 674424,
+        "unexpected generated pair checked tile image entry count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_pair_absent_tile_entry_count"] == 3782,
+        "unexpected generated pair absent tile image entry count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_pair_absent_unique_tile_reference_count"] == 1629,
+        "unexpected generated pair absent tile image unique count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_pair_with_absent_tile_count"] == 30,
+        "unexpected generated pair-with-absent tile image count",
+    )
+    _assert(
+        generated["tileset_header_tile_image_reference_pair_missing_header_count"] == 1,
+        "unexpected generated pair missing header tile image count",
+    )
     _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
     _assert(generated["shared_script_bundle_count"] == 84, "unexpected generated shared script bundle count")
@@ -371,6 +438,36 @@ def main(argv):
     _assert(
         coverage["tileset_metatile_map_reference_cells"]["percent"] == 100.0,
         "unexpected map reference cell coverage percent",
+    )
+    _assert(coverage["tileset_tile_images"]["generated"] == 138, "unexpected tile image coverage count")
+    _assert(coverage["tileset_tile_images"]["source"] == 138, "unexpected tile image coverage source")
+    _assert(coverage["tileset_tile_images"]["percent"] == 100.0, "unexpected tile image coverage percent")
+    _assert(coverage["tileset_tile_image_tiles"]["generated"] == 39376, "unexpected tile image tile coverage")
+    _assert(coverage["tileset_tile_image_tiles"]["source"] == 39376, "unexpected tile image tile source")
+    _assert(coverage["tileset_tile_image_tiles"]["percent"] == 100.0, "unexpected tile image tile coverage percent")
+    _assert(
+        coverage["tileset_tile_image_header_bindings"]["generated"] == 139,
+        "unexpected tile image binding coverage count",
+    )
+    _assert(
+        coverage["tileset_tile_image_header_bindings"]["source"] == 139,
+        "unexpected tile image binding coverage source",
+    )
+    _assert(
+        coverage["tileset_tile_image_header_bindings"]["percent"] == 100.0,
+        "unexpected tile image binding coverage percent",
+    )
+    _assert(
+        coverage["tileset_metatile_tile_image_pairs"]["generated"] == 137,
+        "unexpected metatile tile image pair coverage count",
+    )
+    _assert(
+        coverage["tileset_metatile_tile_image_pairs"]["source"] == 137,
+        "unexpected metatile tile image pair coverage source",
+    )
+    _assert(
+        coverage["tileset_metatile_tile_image_pairs"]["percent"] == 100.0,
+        "unexpected metatile tile image pair coverage percent",
     )
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}

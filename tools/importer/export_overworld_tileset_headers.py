@@ -92,6 +92,8 @@ NUM_METATILES_IN_PRIMARY_FRLG = 640
 NUM_METATILES_TOTAL = 1024
 NUM_TILES_TOTAL = 1024
 NUM_TILES_PER_METATILE = 8
+TILE_SIZE_PIXELS = 8
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 TILE_ENTRY_INDEX_MASK = 0x03FF
 TILE_ENTRY_HFLIP_MASK = 0x0400
 TILE_ENTRY_VFLIP_MASK = 0x0800
@@ -2274,6 +2276,351 @@ def build_metatile_map_reference_report(source_root, records):
     }
 
 
+def metatile_tile_image_absent_record_encoding():
+    return {
+        "version": "compact_metatile_tile_image_absent_v1",
+        "detail": (
+            "Each absent tile row stores [owner_tileset_symbol, target_tileset_symbol, "
+            "source_tileset_kind_code, local_tile_id, source_image_tile_count, count, "
+            "reason, samples]. Each sample stores [global_metatile_id, local_metatile_id, "
+            "tile_entry_index, raw_tile_entry, tile_id]."
+        ),
+        "absent_tile_fields": [
+            "owner_tileset_symbol",
+            "target_tileset_symbol",
+            "source_tileset_kind_code",
+            "local_tile_id",
+            "source_image_tile_count",
+            "count",
+            "reason",
+            "samples",
+        ],
+        "sample_fields": [
+            "global_metatile_id",
+            "local_metatile_id",
+            "tile_entry_index",
+            "raw_tile_entry",
+            "tile_id",
+        ],
+        "source_tileset_kind_codes": TILE_SOURCE_KIND_CODES,
+        "reason_codes": [
+            "source_header_missing",
+            "source_image_missing",
+            "source_image_invalid_png",
+            "source_image_not_8px_aligned",
+            "source_tile_absent",
+        ],
+    }
+
+
+def read_png_dimensions(path):
+    data = path.read_bytes()
+    if len(data) < 24 or data[:8] != PNG_SIGNATURE or data[12:16] != b"IHDR":
+        raise ValueError("{} is not a PNG with an IHDR chunk".format(path))
+    return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+
+
+def tileset_image_binding(source_root, header):
+    tiles_png = header.get("expected_source_directory", {}).get("tiles_png", {})
+    path_text = tiles_png.get("path")
+    row = {
+        "status": "missing_source_image",
+        "tileset_symbol": header.get("symbol"),
+        "source_kind": header.get("kind"),
+        "source_rules_profile": metatile_source_profile_for_branch(header.get("branch")),
+        "source": tiles_png,
+        "width": None,
+        "height": None,
+        "tile_width": None,
+        "tile_height": None,
+        "tile_count": 0,
+    }
+    if not path_text or not tiles_png.get("exists"):
+        return row
+
+    try:
+        width, height = read_png_dimensions(source_root / path_text)
+    except ValueError as error:
+        row["status"] = "source_image_invalid_png"
+        row["error"] = str(error)
+        return row
+
+    row["width"] = width
+    row["height"] = height
+    row["tile_width"] = width // TILE_SIZE_PIXELS
+    row["tile_height"] = height // TILE_SIZE_PIXELS
+    row["tile_count"] = row["tile_width"] * row["tile_height"]
+    if width % TILE_SIZE_PIXELS != 0 or height % TILE_SIZE_PIXELS != 0:
+        row["status"] = "source_image_not_8px_aligned"
+    else:
+        row["status"] = "decoded"
+    return row
+
+
+def source_kind_name_from_code(code):
+    by_code = {
+        value: key
+        for key, value in TILE_SOURCE_KIND_CODES.items()
+    }
+    return by_code[int(code)]
+
+
+def iter_metatile_tile_entries(header):
+    decode = header.get("metatile_binary_decode", {})
+    for metatile in decode.get("metatiles", []):
+        local_metatile_id = metatile[0]
+        global_metatile_id = metatile[1]
+        for entry_index, entry in enumerate(metatile[2]):
+            source_kind = source_kind_name_from_code(entry[4])
+            yield {
+                "owner_tileset_symbol": header.get("symbol"),
+                "owner_source_kind": decode.get("source_kind"),
+                "local_metatile_id": local_metatile_id,
+                "global_metatile_id": global_metatile_id,
+                "tile_entry_index": entry_index,
+                "raw": entry[0],
+                "tile_id": entry[1],
+                "source_tileset_kind": source_kind,
+                "source_tileset_kind_code": entry[4],
+                "local_tile_id": entry[5],
+                "out_of_range": bool(entry[6]),
+            }
+
+
+def classify_tile_image_reference(entry, target_header, target_image):
+    if target_header is None:
+        return "source_header_missing"
+    if target_image.get("status") != "decoded":
+        return target_image.get("status", "source_image_missing")
+    if int(entry["local_tile_id"]) >= int(target_image.get("tile_count", 0)):
+        return "source_tile_absent"
+    return None
+
+
+def add_absent_tile_image_reference(absent_by_key, entry, target_symbol, target_image, reason):
+    key = (
+        entry["owner_tileset_symbol"],
+        target_symbol,
+        entry["source_tileset_kind_code"],
+        entry["local_tile_id"],
+        target_image.get("tile_count", 0),
+        reason,
+    )
+    row = absent_by_key.setdefault(key, {
+        "owner_tileset_symbol": entry["owner_tileset_symbol"],
+        "target_tileset_symbol": target_symbol,
+        "source_tileset_kind_code": entry["source_tileset_kind_code"],
+        "local_tile_id": entry["local_tile_id"],
+        "source_image_tile_count": target_image.get("tile_count", 0),
+        "count": 0,
+        "reason": reason,
+        "samples": [],
+    })
+    row["count"] += 1
+    if len(row["samples"]) < 5:
+        row["samples"].append([
+            entry["global_metatile_id"],
+            entry["local_metatile_id"],
+            entry["tile_entry_index"],
+            entry["raw"],
+            entry["tile_id"],
+        ])
+
+
+def compact_absent_tile_image_rows(absent_by_key):
+    return [
+        [
+            row["owner_tileset_symbol"],
+            row["target_tileset_symbol"],
+            row["source_tileset_kind_code"],
+            row["local_tile_id"],
+            row["source_image_tile_count"],
+            row["count"],
+            row["reason"],
+            row["samples"],
+        ]
+        for row in sorted(
+            absent_by_key.values(),
+            key=lambda item: (
+                item["reason"],
+                item["target_tileset_symbol"] or "",
+                item["owner_tileset_symbol"] or "",
+                item["local_tile_id"],
+            ),
+        )
+    ]
+
+
+def build_metatile_tile_image_reference_report(source_root, records):
+    source_root = Path(source_root)
+    rows_by_symbol = {
+        row["symbol"]: row
+        for row in records
+    }
+    image_by_symbol = {
+        row["symbol"]: tileset_image_binding(source_root, row)
+        for row in records
+    }
+    unique_images = {}
+    for image in image_by_symbol.values():
+        path_text = image.get("source", {}).get("path")
+        if path_text and image.get("status") == "decoded":
+            unique_images[path_text] = image
+
+    header_rows = []
+    header_absent_total = 0
+    header_checked_total = 0
+    header_foreign_total = 0
+    header_absent_unique = set()
+    header_reason_counts = {}
+
+    for symbol in sorted(rows_by_symbol):
+        header = rows_by_symbol[symbol]
+        image = image_by_symbol[symbol]
+        checked = 0
+        foreign = 0
+        referenced_ids = set()
+        absent_by_key = {}
+        reason_counts = {}
+        max_local_tile_id = None
+
+        for entry in iter_metatile_tile_entries(header):
+            if entry["source_tileset_kind"] != header["kind"]:
+                foreign += 1
+                continue
+            checked += 1
+            referenced_ids.add(entry["local_tile_id"])
+            max_local_tile_id = (
+                entry["local_tile_id"]
+                if max_local_tile_id is None
+                else max(max_local_tile_id, entry["local_tile_id"])
+            )
+            reason = classify_tile_image_reference(entry, header, image)
+            if not reason:
+                continue
+            add_absent_tile_image_reference(absent_by_key, entry, symbol, image, reason)
+            bump_counter(reason_counts, reason)
+            bump_counter(header_reason_counts, reason)
+            header_absent_unique.add((symbol, entry["local_tile_id"], reason))
+
+        absent_rows = compact_absent_tile_image_rows(absent_by_key)
+        header_checked_total += checked
+        header_foreign_total += foreign
+        header_absent_total += sum(row[5] for row in absent_rows)
+        header_rows.append({
+            "tileset_symbol": symbol,
+            "source_kind": header["kind"],
+            "source_rules_profile": metatile_source_profile_for_branch(header.get("branch")),
+            "active_in_emerald": header.get("active_in_emerald"),
+            "image": image,
+            "checked_tile_entry_count": checked,
+            "foreign_tile_entry_count": foreign,
+            "referenced_local_tile_id_count": len(referenced_ids),
+            "max_referenced_local_tile_id": max_local_tile_id,
+            "absent_tile_entry_count": sum(row[5] for row in absent_rows),
+            "absent_unique_tile_reference_count": len(absent_rows),
+            "absent_reason_counts": dict(sorted(reason_counts.items())),
+            "absent_tile_ids": absent_rows,
+        })
+
+    source_pairs = source_layout_tileset_pairs(source_root)
+    pair_rows = []
+    pair_checked_total = 0
+    pair_absent_total = 0
+    pair_absent_unique = set()
+    pair_reason_counts = {}
+    pair_missing_header_count = 0
+
+    for source_pair in source_pairs["pairs"]:
+        primary_symbol = source_pair["primary_tileset"]
+        secondary_symbol = source_pair["secondary_tileset"]
+        primary_header = rows_by_symbol.get(primary_symbol)
+        secondary_header = rows_by_symbol.get(secondary_symbol)
+        if primary_header is None or secondary_header is None:
+            pair_missing_header_count += 1
+
+        checked = 0
+        referenced_ids = set()
+        absent_by_key = {}
+        reason_counts = {}
+
+        for owner_header in [primary_header, secondary_header]:
+            if owner_header is None:
+                continue
+            for entry in iter_metatile_tile_entries(owner_header):
+                target_symbol = primary_symbol if entry["source_tileset_kind"] == "primary" else secondary_symbol
+                target_header = rows_by_symbol.get(target_symbol)
+                target_image = image_by_symbol.get(target_symbol, {
+                    "status": "source_header_missing",
+                    "source": {"path": None, "exists": False},
+                    "tile_count": 0,
+                })
+                checked += 1
+                referenced_ids.add((target_symbol, entry["local_tile_id"]))
+                reason = classify_tile_image_reference(entry, target_header, target_image)
+                if not reason:
+                    continue
+                add_absent_tile_image_reference(absent_by_key, entry, target_symbol, target_image, reason)
+                bump_counter(reason_counts, reason)
+                bump_counter(pair_reason_counts, reason)
+                pair_absent_unique.add((source_pair["pair_key"], target_symbol, entry["local_tile_id"], reason))
+
+        absent_rows = compact_absent_tile_image_rows(absent_by_key)
+        pair_checked_total += checked
+        pair_absent_total += sum(row[5] for row in absent_rows)
+        pair_rows.append({
+            "pair_key": source_pair["pair_key"],
+            "primary_tileset": primary_symbol,
+            "secondary_tileset": secondary_symbol,
+            "primary_header_found": primary_header is not None,
+            "secondary_header_found": secondary_header is not None,
+            "primary_image": image_by_symbol.get(primary_symbol),
+            "secondary_image": image_by_symbol.get(secondary_symbol),
+            "layout_count": source_pair["layout_count"],
+            "layout_ids": source_pair["layout_ids"],
+            "layout_versions": dict(sorted(source_pair["layout_versions"].items())),
+            "checked_tile_entry_count": checked,
+            "referenced_tile_id_count": len(referenced_ids),
+            "absent_tile_entry_count": sum(row[5] for row in absent_rows),
+            "absent_unique_tile_reference_count": len(absent_rows),
+            "absent_reason_counts": dict(sorted(reason_counts.items())),
+            "absent_tile_ids": absent_rows,
+        })
+
+    return {
+        "status": "decoded_import_metadata",
+        "runtime_binary_tiles_required": False,
+        "tile_size_pixels": TILE_SIZE_PIXELS,
+        "source_header_count": len(records),
+        "header_image_binding_count": len(image_by_symbol),
+        "decoded_image_binding_count": sum(
+            1 for image in image_by_symbol.values() if image.get("status") == "decoded"
+        ),
+        "unique_source_image_count": len(unique_images),
+        "unique_source_image_tile_count": sum(int(image.get("tile_count", 0)) for image in unique_images.values()),
+        "header_checked_tile_entry_count": header_checked_total,
+        "header_foreign_tile_entry_count": header_foreign_total,
+        "header_absent_tile_entry_count": header_absent_total,
+        "header_absent_unique_tile_reference_count": len(header_absent_unique),
+        "header_with_absent_tile_count": sum(
+            1 for row in header_rows if row["absent_tile_entry_count"] > 0
+        ),
+        "header_absent_reason_counts": dict(sorted(header_reason_counts.items())),
+        "pair_count": len(pair_rows),
+        "pair_checked_tile_entry_count": pair_checked_total,
+        "pair_absent_tile_entry_count": pair_absent_total,
+        "pair_absent_unique_tile_reference_count": len(pair_absent_unique),
+        "pair_with_absent_tile_count": sum(
+            1 for row in pair_rows if row["absent_tile_entry_count"] > 0
+        ),
+        "pair_missing_header_count": pair_missing_header_count,
+        "pair_absent_reason_counts": dict(sorted(pair_reason_counts.items())),
+        "compact_absent_tile_encoding": metatile_tile_image_absent_record_encoding(),
+        "headers": header_rows,
+        "pairs": pair_rows,
+    }
+
+
 def parse_tileset_headers(
     source_root,
     animation_frames=None,
@@ -2480,12 +2827,14 @@ def build_stats(
     metatile_label_rules=None,
     metatile_label_pair_lookup=None,
     metatile_map_reference_report=None,
+    metatile_tile_image_reference_report=None,
 ):
     animation_frames = animation_frames or []
     init_functions = init_functions or []
     metatile_label_rules = metatile_label_rules or {}
     metatile_label_pair_lookup = metatile_label_pair_lookup or {}
     metatile_map_reference_report = metatile_map_reference_report or {}
+    metatile_tile_image_reference_report = metatile_tile_image_reference_report or {}
     active = [row for row in records if row["active_in_emerald"]]
     callbacks = [row["callback"]["symbol"] for row in records if row["callback"]["has_callback"]]
     active_callbacks = [row["callback"]["symbol"] for row in active if row["callback"]["has_callback"]]
@@ -2992,6 +3341,60 @@ def build_stats(
             "absent_reason_counts",
             {},
         ),
+        "metatile_tile_image_reference_header_count": int(
+            metatile_tile_image_reference_report.get("source_header_count", 0)
+        ),
+        "metatile_tile_image_reference_header_image_binding_count": int(
+            metatile_tile_image_reference_report.get("header_image_binding_count", 0)
+        ),
+        "metatile_tile_image_reference_decoded_image_binding_count": int(
+            metatile_tile_image_reference_report.get("decoded_image_binding_count", 0)
+        ),
+        "metatile_tile_image_reference_unique_source_image_count": int(
+            metatile_tile_image_reference_report.get("unique_source_image_count", 0)
+        ),
+        "metatile_tile_image_reference_unique_source_image_tile_count": int(
+            metatile_tile_image_reference_report.get("unique_source_image_tile_count", 0)
+        ),
+        "metatile_tile_image_reference_header_checked_tile_entry_count": int(
+            metatile_tile_image_reference_report.get("header_checked_tile_entry_count", 0)
+        ),
+        "metatile_tile_image_reference_header_foreign_tile_entry_count": int(
+            metatile_tile_image_reference_report.get("header_foreign_tile_entry_count", 0)
+        ),
+        "metatile_tile_image_reference_header_absent_tile_entry_count": int(
+            metatile_tile_image_reference_report.get("header_absent_tile_entry_count", 0)
+        ),
+        "metatile_tile_image_reference_header_absent_unique_tile_reference_count": int(
+            metatile_tile_image_reference_report.get("header_absent_unique_tile_reference_count", 0)
+        ),
+        "metatile_tile_image_reference_header_with_absent_tile_count": int(
+            metatile_tile_image_reference_report.get("header_with_absent_tile_count", 0)
+        ),
+        "metatile_tile_image_reference_header_absent_reason_counts": (
+            metatile_tile_image_reference_report.get("header_absent_reason_counts", {})
+        ),
+        "metatile_tile_image_reference_pair_count": int(
+            metatile_tile_image_reference_report.get("pair_count", 0)
+        ),
+        "metatile_tile_image_reference_pair_checked_tile_entry_count": int(
+            metatile_tile_image_reference_report.get("pair_checked_tile_entry_count", 0)
+        ),
+        "metatile_tile_image_reference_pair_absent_tile_entry_count": int(
+            metatile_tile_image_reference_report.get("pair_absent_tile_entry_count", 0)
+        ),
+        "metatile_tile_image_reference_pair_absent_unique_tile_reference_count": int(
+            metatile_tile_image_reference_report.get("pair_absent_unique_tile_reference_count", 0)
+        ),
+        "metatile_tile_image_reference_pair_with_absent_tile_count": int(
+            metatile_tile_image_reference_report.get("pair_with_absent_tile_count", 0)
+        ),
+        "metatile_tile_image_reference_pair_missing_header_count": int(
+            metatile_tile_image_reference_report.get("pair_missing_header_count", 0)
+        ),
+        "metatile_tile_image_reference_pair_absent_reason_counts": (
+            metatile_tile_image_reference_report.get("pair_absent_reason_counts", {})
+        ),
         "init_function_count": len(init_functions),
         "animation_frame_declaration_count": len(animation_frames),
         "animation_source_bin_count": sum(frame["source_bin_count"] for frame in animation_frames),
@@ -3065,6 +3468,18 @@ def manifest_entry_for(exported, output_path):
         "metatile_map_reference_pair_with_absent_count": stats[
             "metatile_map_reference_pair_with_absent_count"
         ],
+        "metatile_tile_image_reference_decoded_image_binding_count": stats[
+            "metatile_tile_image_reference_decoded_image_binding_count"
+        ],
+        "metatile_tile_image_reference_header_absent_tile_entry_count": stats[
+            "metatile_tile_image_reference_header_absent_tile_entry_count"
+        ],
+        "metatile_tile_image_reference_pair_absent_tile_entry_count": stats[
+            "metatile_tile_image_reference_pair_absent_tile_entry_count"
+        ],
+        "metatile_tile_image_reference_pair_with_absent_tile_count": stats[
+            "metatile_tile_image_reference_pair_with_absent_tile_count"
+        ],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
         "missing_callback_source_count": stats["missing_callback_source_count"],
@@ -3099,6 +3514,10 @@ def build_export(source_root):
         source_root,
         records,
     )
+    metatile_tile_image_reference_report = build_metatile_tile_image_reference_report(
+        source_root,
+        records,
+    )
     stats = build_stats(
         source_files,
         records,
@@ -3107,6 +3526,7 @@ def build_export(source_root):
         metatile_label_rules,
         metatile_label_pair_lookup,
         metatile_map_reference_report,
+        metatile_tile_image_reference_report,
     )
     return {
         "schema_version": 1,
@@ -3119,6 +3539,7 @@ def build_export(source_root):
         "metatile_label_rules": metatile_label_rules,
         "metatile_label_pair_lookup": metatile_label_pair_lookup,
         "metatile_map_reference_report": metatile_map_reference_report,
+        "metatile_tile_image_reference_report": metatile_tile_image_reference_report,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_init_functions": init_functions,

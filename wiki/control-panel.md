@@ -24,8 +24,8 @@ Next active module:
 Reason:
 
 - The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 4 has completed source `METATILE_*` label export, per-layout tileset-pair reverse lookup coverage, and map-grid metatile reference checks.
-- Next executable task: detect and report tile ids referenced by metatiles but absent from source tileset images.
+- Section 4 has completed source `METATILE_*` label export, per-layout tileset-pair reverse lookup coverage, map-grid metatile reference checks, and tile-id versus source-image bounds checks.
+- Next executable task: keep the current flattened atlas as a temporary debug artifact only, with metadata marking it non-equivalent for runtime layering.
 
 ## Module Tracks
 
@@ -175,13 +175,13 @@ Main-agent responsibilities:
 
 Near-term:
 
-- Continue `wiki/overworld-parity-todo.md` section 4: detect and report tile ids referenced by metatiles but absent from source tileset images, using decoded per-metatile tile entries and source `tiles.png` dimensions as source-backed context.
+- Continue `wiki/overworld-parity-todo.md` section 4: mark the current flattened atlas as a temporary debug artifact only, with explicit metadata that it is non-equivalent for source runtime layering.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
 - Current B7.1-B7.7 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, battle transition textures/tilemap composites, battle asset image-quality smoke checks, Pokemon battle asset coverage, and trainer battle asset coverage are generated as Godot-friendly PNG assets plus source metadata. The B7 checklist is now 7/7 complete. Current asset reports still expose runtime and asset gaps: 2664 pending distinct Pokemon color-variant RGBA images, 2 trainer-party `SPECIES_CASTFORM` alias gaps, trainer slide/mugshot/Magma/Aqua playback pending, double battle runtime pending, text/reward flow pending, shader/material color effects pending, affine effects pending, transition/background playback pending, and audio metadata-only.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` now reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
-- Next executable task: continue overworld Section 4 with tile-id versus source tileset image bounds.
+- Next executable task: finish overworld Section 4 by marking the flattened atlas debug artifact as non-equivalent for runtime layering.
 - Import the remaining source-backed battle HUD/interface assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
 

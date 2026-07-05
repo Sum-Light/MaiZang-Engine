@@ -24,6 +24,7 @@ def main(argv):
     label_rules = exported["metatile_label_rules"]
     pair_lookup = exported["metatile_label_pair_lookup"]
     map_reference_report = exported["metatile_map_reference_report"]
+    tile_image_reference_report = exported["metatile_tile_image_reference_report"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
 
     _assert(exported["schema_version"] == 1, "unexpected schema version")
@@ -258,6 +259,78 @@ def main(argv):
         == {"secondary_header_missing": 1508, "secondary_metatile_absent": 99},
         "unexpected map reference absent reason counts",
     )
+    _assert(
+        stats["metatile_tile_image_reference_header_count"] == 139,
+        "unexpected tile image reference header count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_image_binding_count"] == 139,
+        "unexpected tile image binding count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_decoded_image_binding_count"] == 139,
+        "unexpected decoded tile image binding count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_unique_source_image_count"] == 138,
+        "unexpected unique source tile image count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_unique_source_image_tile_count"] == 39376,
+        "unexpected unique source tile image tile count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_checked_tile_entry_count"] == 128122,
+        "unexpected header checked tile image entry count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_foreign_tile_entry_count"] == 105582,
+        "unexpected header foreign tile image entry count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_absent_tile_entry_count"] == 44,
+        "unexpected header absent tile image entry count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_absent_unique_tile_reference_count"] == 22,
+        "unexpected header absent tile image unique count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_with_absent_tile_count"] == 3,
+        "unexpected header-with-absent tile image count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_header_absent_reason_counts"] == {"source_tile_absent": 44},
+        "unexpected header tile image absent reason counts",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_count"] == 137,
+        "unexpected pair tile image reference count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_checked_tile_entry_count"] == 674424,
+        "unexpected pair checked tile image entry count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_absent_tile_entry_count"] == 3782,
+        "unexpected pair absent tile image entry count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_absent_unique_tile_reference_count"] == 1629,
+        "unexpected pair absent tile image unique count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_with_absent_tile_count"] == 30,
+        "unexpected pair-with-absent tile image count",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_missing_header_count"] == 1,
+        "unexpected pair missing header count for tile image refs",
+    )
+    _assert(
+        stats["metatile_tile_image_reference_pair_absent_reason_counts"] == {"source_tile_absent": 3782},
+        "unexpected pair tile image absent reason counts",
+    )
     _assert(stats["init_function_count"] == 31, "unexpected init function count")
     _assert(stats["animation_frame_declaration_count"] == 174, "unexpected animation frame declaration count")
     _assert(stats["animation_source_bin_count"] == 182, "unexpected animation source binary count")
@@ -405,6 +478,37 @@ def main(argv):
     _assert(safari_707["local_metatile_id"] == 67, "Safari entrance 707 local id mismatch")
     _assert(safari_707["count"] == 2, "Safari entrance 707 count mismatch")
     _assert(safari_707["reason"] == "secondary_metatile_absent", "Safari entrance 707 reason mismatch")
+
+    _assert(tile_image_reference_report["status"] == "decoded_import_metadata", "tile image ref status mismatch")
+    _assert(
+        tile_image_reference_report["runtime_binary_tiles_required"] is False,
+        "tile image ref report should stay import metadata",
+    )
+    _assert(tile_image_reference_report["tile_size_pixels"] == 8, "tile image ref tile size mismatch")
+    petalburg_image_ref = _tile_image_reference_header(exported, "gTileset_Petalburg")
+    _assert(petalburg_image_ref["image"]["tile_count"] == 160, "Petalburg source tile count mismatch")
+    _assert(petalburg_image_ref["absent_tile_entry_count"] == 8, "Petalburg absent tile image count mismatch")
+    petalburg_288 = _tile_image_absent_ref(exported, petalburg_image_ref, "gTileset_Petalburg", 288)
+    _assert(petalburg_288["source_tileset_kind"] == "secondary", "Petalburg 288 source kind mismatch")
+    _assert(petalburg_288["source_image_tile_count"] == 160, "Petalburg 288 image count mismatch")
+    _assert(petalburg_288["count"] == 1, "Petalburg 288 absent count mismatch")
+    _assert(petalburg_288["samples"][0] == [586, 74, 0, 58144, 800], "Petalburg 288 sample mismatch")
+    mauville_gym_image_ref = _tile_image_reference_header(exported, "gTileset_MauvilleGym")
+    _assert(mauville_gym_image_ref["absent_tile_entry_count"] == 32, "Mauville Gym absent count mismatch")
+    school_image_ref = _tile_image_reference_header(exported, "gTileset_School")
+    school_64 = _tile_image_absent_ref(exported, school_image_ref, "gTileset_School", 64)
+    _assert(school_64["count"] == 4, "School tile 64 absent count mismatch")
+    mart_pair_image_ref = _tile_image_reference_pair(exported, "gTileset_BuildingFrlg+gTileset_Mart")
+    _assert(mart_pair_image_ref["absent_tile_entry_count"] == 234, "Mart pair tile absent count mismatch")
+    _assert(mart_pair_image_ref["absent_unique_tile_reference_count"] == 92, "Mart pair tile absent unique mismatch")
+    mart_48 = _tile_image_absent_ref(exported, mart_pair_image_ref, "gTileset_Mart", 48)
+    _assert(mart_48["owner_tileset_symbol"] == "gTileset_BuildingFrlg", "Mart 48 owner mismatch")
+    _assert(mart_48["source_image_tile_count"] == 48, "Mart 48 image count mismatch")
+    _assert(mart_48["count"] == 12, "Mart 48 absent count mismatch")
+    general_petalburg_image_ref = _tile_image_reference_pair(exported, "gTileset_General+gTileset_Petalburg")
+    _assert(general_petalburg_image_ref["absent_tile_entry_count"] == 8, "Petalburg pair tile absent count")
+    general_cave_image_ref = _tile_image_reference_pair(exported, "gTileset_General+gTileset_Cave")
+    _assert(general_cave_image_ref["absent_tile_entry_count"] == 0, "Cave pair should be image-bounded")
 
     general = rows["gTileset_General"]
     _assert(general["active_in_emerald"], "General should be active")
@@ -872,6 +976,37 @@ def _map_absent_metatile(exported, row, metatile_id):
     raise AssertionError("missing absent metatile {}".format(metatile_id))
 
 
+def _tile_image_reference_header(exported, tileset_symbol):
+    for row in exported["metatile_tile_image_reference_report"].get("headers", []):
+        if row.get("tileset_symbol") == tileset_symbol:
+            return row
+    raise AssertionError("missing tile image reference header {}".format(tileset_symbol))
+
+
+def _tile_image_reference_pair(exported, pair_key):
+    for row in exported["metatile_tile_image_reference_report"].get("pairs", []):
+        if row.get("pair_key") == pair_key:
+            return row
+    raise AssertionError("missing tile image reference pair {}".format(pair_key))
+
+
+def _tile_image_absent_ref(exported, row, target_tileset_symbol, local_tile_id):
+    for record in row.get("absent_tile_ids", []):
+        if record[1] != target_tileset_symbol or record[3] != local_tile_id:
+            continue
+        return {
+            "owner_tileset_symbol": record[0],
+            "target_tileset_symbol": record[1],
+            "source_tileset_kind": _tile_image_source_kind_name(exported, record[2]),
+            "local_tile_id": record[3],
+            "source_image_tile_count": record[4],
+            "count": record[5],
+            "reason": record[6],
+            "samples": record[7],
+        }
+    raise AssertionError("missing absent tile {}:{}".format(target_tileset_symbol, local_tile_id))
+
+
 def _label_group_count(label_rules, group_name):
     for group in label_rules.get("groups", []):
         if group.get("name") == group_name:
@@ -899,6 +1034,15 @@ def _source_kind_name(exported, code):
 
 def _map_reference_source_kind_name(exported, code):
     codes = exported["metatile_map_reference_report"]["compact_absent_metatile_encoding"]["source_kind_codes"]
+    by_code = {
+        int(value): key
+        for key, value in codes.items()
+    }
+    return by_code[int(code)]
+
+
+def _tile_image_source_kind_name(exported, code):
+    codes = exported["metatile_tile_image_reference_report"]["compact_absent_tile_encoding"]["source_tileset_kind_codes"]
     by_code = {
         int(value): key
         for key, value in codes.items()

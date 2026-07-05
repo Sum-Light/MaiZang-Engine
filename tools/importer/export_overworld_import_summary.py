@@ -13,6 +13,8 @@ from source_probe import load_config, to_project_path
 
 GENERATED_BY = "tools/importer/export_overworld_import_summary.py"
 SUMMARY_PATH = Path("overworld/import_summary.json")
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+TILE_SIZE_PIXELS = 8
 METATILE_LABEL_RE = re.compile(
     r"^\s*#define\s+(METATILE_[A-Za-z0-9_]+)\s+(0x[0-9A-Fa-f]+|\d+)\b"
 )
@@ -32,6 +34,13 @@ def count_files(root, pattern):
     if not root.exists():
         return 0
     return len(list(root.glob(pattern)))
+
+
+def read_png_dimensions(path):
+    data = path.read_bytes()
+    if len(data) < 24 or data[:8] != PNG_SIGNATURE or data[12:16] != b"IHDR":
+        raise ValueError("{} is not a PNG with an IHDR chunk".format(path))
+    return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
 
 
 def count_source_layouts(source_root):
@@ -162,6 +171,27 @@ def parse_tileset_palette_sources(source_root):
         "tileset_palette_reference_count": len(palette_refs),
         "tileset_unique_palette_reference_count": len(set(palette_refs)),
         "tileset_palette_array_symbol_count": len(set(palette_arrays)),
+    }
+
+
+def count_source_tileset_tile_images(source_root):
+    paths = sorted(source_root.glob("data/tilesets/**/tiles.png"))
+    tile_count = 0
+    invalid = 0
+    for path in paths:
+        try:
+            width, height = read_png_dimensions(path)
+        except ValueError:
+            invalid += 1
+            continue
+        if width % TILE_SIZE_PIXELS != 0 or height % TILE_SIZE_PIXELS != 0:
+            invalid += 1
+            continue
+        tile_count += (width // TILE_SIZE_PIXELS) * (height // TILE_SIZE_PIXELS)
+    return {
+        "tileset_tile_image_count": len(paths),
+        "tileset_tile_image_tile_count": tile_count,
+        "tileset_invalid_tile_image_count": invalid,
     }
 
 
@@ -606,6 +636,7 @@ def build_source_counts(source_root):
     counts.update(tileset_palette_info)
     counts.update(count_source_layout_blockdata_entries(source_root))
     counts.update(count_source_layout_tileset_pairs(source_root))
+    counts.update(count_source_tileset_tile_images(source_root))
     counts.update(count_source_tileset_metatile_binaries(source_root))
     counts.update(count_source_tileset_metatile_attribute_binaries(source_root))
     counts.update(count_source_metatile_labels(source_root))
@@ -821,6 +852,54 @@ def build_export(source_root, output_root):
     tileset_header_metatile_map_reference_size_mismatch_layout_count = int(
         tileset_header_stats.get("metatile_map_reference_size_mismatch_layout_count", 0)
     )
+    tileset_header_tile_image_reference_header_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_count", 0)
+    )
+    tileset_header_tile_image_reference_header_image_binding_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_image_binding_count", 0)
+    )
+    tileset_header_tile_image_reference_decoded_image_binding_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_decoded_image_binding_count", 0)
+    )
+    tileset_header_tile_image_reference_unique_source_image_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_unique_source_image_count", 0)
+    )
+    tileset_header_tile_image_reference_unique_source_image_tile_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_unique_source_image_tile_count", 0)
+    )
+    tileset_header_tile_image_reference_header_checked_tile_entry_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_checked_tile_entry_count", 0)
+    )
+    tileset_header_tile_image_reference_header_foreign_tile_entry_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_foreign_tile_entry_count", 0)
+    )
+    tileset_header_tile_image_reference_header_absent_tile_entry_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_absent_tile_entry_count", 0)
+    )
+    tileset_header_tile_image_reference_header_absent_unique_tile_reference_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_absent_unique_tile_reference_count", 0)
+    )
+    tileset_header_tile_image_reference_header_with_absent_tile_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_header_with_absent_tile_count", 0)
+    )
+    tileset_header_tile_image_reference_pair_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_pair_count", 0)
+    )
+    tileset_header_tile_image_reference_pair_checked_tile_entry_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_pair_checked_tile_entry_count", 0)
+    )
+    tileset_header_tile_image_reference_pair_absent_tile_entry_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_pair_absent_tile_entry_count", 0)
+    )
+    tileset_header_tile_image_reference_pair_absent_unique_tile_reference_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_pair_absent_unique_tile_reference_count", 0)
+    )
+    tileset_header_tile_image_reference_pair_with_absent_tile_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_pair_with_absent_tile_count", 0)
+    )
+    tileset_header_tile_image_reference_pair_missing_header_count = int(
+        tileset_header_stats.get("metatile_tile_image_reference_pair_missing_header_count", 0)
+    )
 
     parity_matrix = load_generated_json(project_root, "data/generated/overworld/parity_matrix.json") or {}
     parity_stats = parity_matrix.get("stats", {})
@@ -970,6 +1049,54 @@ def build_export(source_root, output_root):
         "tileset_header_metatile_map_reference_size_mismatch_layout_count": (
             tileset_header_metatile_map_reference_size_mismatch_layout_count
         ),
+        "tileset_header_tile_image_reference_header_count": (
+            tileset_header_tile_image_reference_header_count
+        ),
+        "tileset_header_tile_image_reference_header_image_binding_count": (
+            tileset_header_tile_image_reference_header_image_binding_count
+        ),
+        "tileset_header_tile_image_reference_decoded_image_binding_count": (
+            tileset_header_tile_image_reference_decoded_image_binding_count
+        ),
+        "tileset_header_tile_image_reference_unique_source_image_count": (
+            tileset_header_tile_image_reference_unique_source_image_count
+        ),
+        "tileset_header_tile_image_reference_unique_source_image_tile_count": (
+            tileset_header_tile_image_reference_unique_source_image_tile_count
+        ),
+        "tileset_header_tile_image_reference_header_checked_tile_entry_count": (
+            tileset_header_tile_image_reference_header_checked_tile_entry_count
+        ),
+        "tileset_header_tile_image_reference_header_foreign_tile_entry_count": (
+            tileset_header_tile_image_reference_header_foreign_tile_entry_count
+        ),
+        "tileset_header_tile_image_reference_header_absent_tile_entry_count": (
+            tileset_header_tile_image_reference_header_absent_tile_entry_count
+        ),
+        "tileset_header_tile_image_reference_header_absent_unique_tile_reference_count": (
+            tileset_header_tile_image_reference_header_absent_unique_tile_reference_count
+        ),
+        "tileset_header_tile_image_reference_header_with_absent_tile_count": (
+            tileset_header_tile_image_reference_header_with_absent_tile_count
+        ),
+        "tileset_header_tile_image_reference_pair_count": (
+            tileset_header_tile_image_reference_pair_count
+        ),
+        "tileset_header_tile_image_reference_pair_checked_tile_entry_count": (
+            tileset_header_tile_image_reference_pair_checked_tile_entry_count
+        ),
+        "tileset_header_tile_image_reference_pair_absent_tile_entry_count": (
+            tileset_header_tile_image_reference_pair_absent_tile_entry_count
+        ),
+        "tileset_header_tile_image_reference_pair_absent_unique_tile_reference_count": (
+            tileset_header_tile_image_reference_pair_absent_unique_tile_reference_count
+        ),
+        "tileset_header_tile_image_reference_pair_with_absent_tile_count": (
+            tileset_header_tile_image_reference_pair_with_absent_tile_count
+        ),
+        "tileset_header_tile_image_reference_pair_missing_header_count": (
+            tileset_header_tile_image_reference_pair_missing_header_count
+        ),
         "metatile_record_count": tileset_totals["metatile_record_count"],
         "script_bundle_count": script_totals["script_bundle_count"],
         "map_script_bundle_count": map_script_bundle_count,
@@ -1069,6 +1196,22 @@ def build_export(source_root, output_root):
         "tileset_metatile_map_reference_cells": ratio(
             generated_counts["tileset_header_metatile_map_reference_checked_cell_count"],
             source_counts["layout_blockdata_entry_count"],
+        ),
+        "tileset_tile_images": ratio(
+            generated_counts["tileset_header_tile_image_reference_unique_source_image_count"],
+            source_counts["tileset_tile_image_count"],
+        ),
+        "tileset_tile_image_tiles": ratio(
+            generated_counts["tileset_header_tile_image_reference_unique_source_image_tile_count"],
+            source_counts["tileset_tile_image_tile_count"],
+        ),
+        "tileset_tile_image_header_bindings": ratio(
+            generated_counts["tileset_header_tile_image_reference_decoded_image_binding_count"],
+            source_counts["tileset_header_count"],
+        ),
+        "tileset_metatile_tile_image_pairs": ratio(
+            generated_counts["tileset_header_tile_image_reference_pair_count"],
+            source_counts["layout_tileset_pair_count"],
         ),
         "object_event_graphics": ratio(
             generated_counts["object_event_graphic_count"],
@@ -1202,6 +1345,18 @@ def manifest_entry_for(exported, output_path):
         ),
         "generated_tileset_metatile_map_reference_layout_with_absent_count": (
             generated["tileset_header_metatile_map_reference_layout_with_absent_count"]
+        ),
+        "generated_tileset_tile_image_reference_decoded_image_binding_count": (
+            generated["tileset_header_tile_image_reference_decoded_image_binding_count"]
+        ),
+        "generated_tileset_tile_image_reference_unique_source_image_count": (
+            generated["tileset_header_tile_image_reference_unique_source_image_count"]
+        ),
+        "generated_tileset_tile_image_reference_header_absent_tile_entry_count": (
+            generated["tileset_header_tile_image_reference_header_absent_tile_entry_count"]
+        ),
+        "generated_tileset_tile_image_reference_pair_absent_tile_entry_count": (
+            generated["tileset_header_tile_image_reference_pair_absent_tile_entry_count"]
         ),
         "tileset_missing_palette_source_candidate_count": generated["tileset_missing_palette_source_candidate_count"],
         "tileset_header_missing_callback_source_count": generated["tileset_header_missing_callback_source_count"],
