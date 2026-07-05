@@ -21,6 +21,7 @@ UNSUPPORTED_CODE_REGISTRY = {
     "battle_transition_asset_pending": "A source battle transition asset reference is not imported as a Godot texture/resource.",
     "battle_transition_runtime_pending": "Battle transition task playback, fades, masks, scanline effects, affine transforms, and shader/color effects are not source-equivalent yet.",
     "battle_interface_runtime_pending": "Battle interface textbox/window tilemaps and text-printer rendering are imported as metadata/assets but not source-equivalent at runtime.",
+    "battle_window_source_capture_pending": "Source capture screenshots for the action, message, and move battle windows are not yet present for exact pixel comparison.",
     "battle_hud_runtime_pending": "Battle healthboxes, party summary balls, ability popups, move-info windows, last-used-ball UI, and gimmick indicators are not source-equivalent at runtime.",
     "battle_hud_pending": "Source healthboxes, windows, text printer, and menu tilemaps are not yet rendered.",
     "battle_audio_playback_pending": "Battle music, cries, fanfares, and sound effects are metadata-only.",
@@ -135,6 +136,13 @@ DEBUG_LAUNCHER_ROWS = [
             "trainer_rewards_pending",
         ],
     },
+]
+
+
+BATTLE_WINDOW_SOURCE_CAPTURE_PATHS = [
+    "assets/source/battle_window_captures/action.png",
+    "assets/source/battle_window_captures/message.png",
+    "assets/source/battle_window_captures/move.png",
 ]
 
 
@@ -585,7 +593,7 @@ def build_battle_transition_rows(transitions_data):
     return rows
 
 
-def build_battle_interface_rows(interface_data):
+def build_battle_interface_rows(interface_data, project_root):
     rows = []
     textures = interface_data.get("textures", {})
     tilemaps = interface_data.get("tilemaps", {})
@@ -608,11 +616,16 @@ def build_battle_interface_rows(interface_data):
             tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
         if group in ("textbox", "window"):
             tests.append("tools/godot_smoke/battle_window_screenshot_smoke.gd")
-        unsupported = ["battle_interface_runtime_pending"] if group in ("textbox", "window") else ["battle_hud_runtime_pending"]
+        source_capture_status = ""
+        source_capture_missing_count = 0
+        if group in ("textbox", "window"):
+            source_capture_missing_count = sum(1 for path in BATTLE_WINDOW_SOURCE_CAPTURE_PATHS if not (project_root / path).exists())
+            source_capture_status = "missing_source_captures" if source_capture_missing_count else "source_captures_available"
+        unsupported = ["battle_interface_runtime_pending", "battle_window_source_capture_pending"] if group in ("textbox", "window") else ["battle_hud_runtime_pending"]
         if asset_id == "ability_pop_up":
             unsupported.append("battle_audio_playback_pending")
         first_tilemap_composite = str(textbox_composite.get("image_project_path", "")) if asset_id == "textbox" else ""
-        rows.append({
+        row = {
             "id": str(asset_id),
             "asset_id": str(asset_id),
             "group": group,
@@ -631,7 +644,15 @@ def build_battle_interface_rows(interface_data):
             "tests": tests,
             "unsupported": unsupported,
             "source": {"file": str(record.get("source_png_path", ""))},
-        })
+        }
+        if group in ("textbox", "window"):
+            row.update({
+                "source_capture_status": source_capture_status,
+                "source_capture_paths": BATTLE_WINDOW_SOURCE_CAPTURE_PATHS,
+                "expected_source_capture_count": len(BATTLE_WINDOW_SOURCE_CAPTURE_PATHS),
+                "missing_source_capture_count": source_capture_missing_count,
+            })
+        rows.append(row)
     return rows
 
 
@@ -688,7 +709,7 @@ def build_report(project_root, source_root):
         "wild_encounters": build_wild_encounter_rows(wild_data),
         "battle_environments": build_battle_environment_rows(battle_environments_data),
         "battle_transitions": build_battle_transition_rows(battle_transitions_data),
-        "battle_interface": build_battle_interface_rows(battle_interface_data),
+        "battle_interface": build_battle_interface_rows(battle_interface_data, project_root),
         "learnsets": build_simple_rows(learnsets_data, "learnset_order", "learnsets", "learnset_id", "learnset_symbol", ["tools/godot_smoke/data_registry_learnsets_smoke.gd"]),
         "natures": build_simple_rows(natures_data, "nature_order", "natures", "nature_id", "nature_symbol", ["tools/godot_smoke/data_registry_natures_smoke.gd"]),
         "evolutions": build_evolution_rows(evolutions_data),

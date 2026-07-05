@@ -2,6 +2,13 @@ extends SceneTree
 
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const BATTLE_WINDOW_RENDERER_SCRIPT := preload("res://scripts/battle/battle_window_renderer.gd")
+const SOURCE_CAPTURE_CASES := ["action", "message", "move"]
+const SOURCE_CAPTURE_ROOT := "res://assets/source/battle_window_captures"
+const SOURCE_CAPTURE_FILENAMES := {
+	"action": "action.png",
+	"message": "message.png",
+	"move": "move.png",
+}
 
 var _failed := false
 
@@ -133,6 +140,22 @@ func _run() -> void:
 	_assert(move_signature == "43C20F69", "expected move screenshot signature")
 	_assert(not _contains_forbidden_runtime_color_key(move_snapshot), "move snapshot must not expose runtime palette/source-color keys")
 
+	var source_capture_report := _source_capture_report({
+		"action": {"image": action_image, "signature": action_signature},
+		"message": {"image": message_image, "signature": message_signature},
+		"move": {"image": move_image, "signature": move_signature},
+	})
+	var source_capture_status := String(source_capture_report.get("status", ""))
+	_assert(source_capture_status == "missing_source_captures" or source_capture_status == "source_captures_match", "expected source captures to be absent or exact-match complete")
+	_assert(int(source_capture_report.get("expected_count", 0)) == 3, "expected three source capture comparison slots")
+	if source_capture_status == "missing_source_captures":
+		_assert(int(source_capture_report.get("missing_count", 0)) == 3, "expected all source captures to be explicitly missing")
+		_assert(int(source_capture_report.get("compared_count", -1)) == 0, "expected no source capture comparisons while captures are absent")
+	else:
+		_assert(int(source_capture_report.get("missing_count", -1)) == 0, "expected no missing source captures once comparisons run")
+		_assert(int(source_capture_report.get("different_pixel_count_total", -1)) == 0, "expected exact source capture pixel match")
+		_assert(int(source_capture_report.get("max_channel_delta", -1)) == 0, "expected exact source capture channel match")
+
 	if _failed:
 		return
 	print(JSON.stringify({
@@ -150,6 +173,11 @@ func _run() -> void:
 		"prompt_clear_effects": int(clear_summary.get("effect_count", 0)),
 		"prompt_scroll_steps": int(scroll_summary.get("scroll_step_count", 0)),
 		"prompt_scroll_pixels": int(scroll_summary.get("scroll_total_px", 0)),
+		"source_capture_status": source_capture_status,
+		"source_capture_expected_count": int(source_capture_report.get("expected_count", 0)),
+		"source_capture_missing_count": int(source_capture_report.get("missing_count", 0)),
+		"source_capture_compared_count": int(source_capture_report.get("compared_count", 0)),
+		"source_capture_different_pixels": int(source_capture_report.get("different_pixel_count_total", 0)),
 	}))
 	renderer.queue_free()
 	registry.free()
@@ -319,6 +347,122 @@ func _image_signature(image: Image) -> String:
 
 func _fnv1a(hash: int, value: int) -> int:
 	return int(((hash ^ (value & 0xFF)) * 16777619) & 0xFFFFFFFF)
+
+
+func _source_capture_report(cases: Dictionary) -> Dictionary:
+	var rows := []
+	var missing := []
+	var mismatched := []
+	var compared_count := 0
+	var different_pixel_count_total := 0
+	var total_channel_delta := 0
+	var max_channel_delta := 0
+	for case_name in SOURCE_CAPTURE_CASES:
+		var expected_path := _source_capture_path(String(case_name))
+		var actual := _dict(cases.get(case_name, {}))
+		var actual_image = actual.get("image")
+		var row := {
+			"name": String(case_name),
+			"source_capture_path": expected_path,
+			"godot_signature": String(actual.get("signature", "")),
+		}
+		if not FileAccess.file_exists(expected_path):
+			row["status"] = "missing_source_capture"
+			missing.append(String(case_name))
+			rows.append(row)
+			continue
+		if not (actual_image is Image):
+			row["status"] = "missing_godot_image"
+			mismatched.append(String(case_name))
+			rows.append(row)
+			continue
+		var source_image := Image.new()
+		var load_error := source_image.load(expected_path)
+		if load_error != OK:
+			row["status"] = "source_capture_load_failed"
+			row["load_error"] = int(load_error)
+			mismatched.append(String(case_name))
+			rows.append(row)
+			continue
+		compared_count += 1
+		row["source_capture_signature"] = _image_signature(source_image)
+		var diff := _image_diff(_image(actual_image), source_image)
+		row["status"] = "source_capture_match" if int(diff.get("different_pixel_count", 0)) == 0 and int(diff.get("max_channel_delta", 0)) == 0 else "source_capture_mismatch"
+		row["different_pixel_count"] = int(diff.get("different_pixel_count", 0))
+		row["total_channel_delta"] = int(diff.get("total_channel_delta", 0))
+		row["max_channel_delta"] = int(diff.get("max_channel_delta", 0))
+		different_pixel_count_total += int(diff.get("different_pixel_count", 0))
+		total_channel_delta += int(diff.get("total_channel_delta", 0))
+		max_channel_delta = max(max_channel_delta, int(diff.get("max_channel_delta", 0)))
+		if String(row.get("status", "")) != "source_capture_match":
+			mismatched.append(String(case_name))
+		rows.append(row)
+
+	var status := "source_captures_match"
+	if compared_count == 0:
+		status = "missing_source_captures"
+	elif not missing.is_empty():
+		status = "partial_source_captures"
+	elif not mismatched.is_empty():
+		status = "source_capture_mismatch"
+	return {
+		"status": status,
+		"expected_count": SOURCE_CAPTURE_CASES.size(),
+		"missing_count": missing.size(),
+		"compared_count": compared_count,
+		"different_pixel_count_total": different_pixel_count_total,
+		"total_channel_delta": total_channel_delta,
+		"max_channel_delta": max_channel_delta,
+		"missing": missing,
+		"mismatched": mismatched,
+		"rows": rows,
+	}
+
+
+func _source_capture_path(case_name: String) -> String:
+	return "%s/%s" % [SOURCE_CAPTURE_ROOT, String(SOURCE_CAPTURE_FILENAMES.get(case_name, "%s.png" % case_name))]
+
+
+func _image(value) -> Image:
+	return value if value is Image else Image.new()
+
+
+func _image_diff(actual: Image, expected: Image) -> Dictionary:
+	if actual.get_width() != expected.get_width() or actual.get_height() != expected.get_height():
+		return {
+			"different_pixel_count": -1,
+			"total_channel_delta": -1,
+			"max_channel_delta": -1,
+			"actual_size": [actual.get_width(), actual.get_height()],
+			"expected_size": [expected.get_width(), expected.get_height()],
+		}
+	var different_pixel_count := 0
+	var total_channel_delta := 0
+	var max_channel_delta := 0
+	for y in range(actual.get_height()):
+		for x in range(actual.get_width()):
+			var actual_color := actual.get_pixel(x, y)
+			var expected_color := expected.get_pixel(x, y)
+			var deltas := [
+				abs(int(round(actual_color.r * 255.0)) - int(round(expected_color.r * 255.0))),
+				abs(int(round(actual_color.g * 255.0)) - int(round(expected_color.g * 255.0))),
+				abs(int(round(actual_color.b * 255.0)) - int(round(expected_color.b * 255.0))),
+				abs(int(round(actual_color.a * 255.0)) - int(round(expected_color.a * 255.0))),
+			]
+			var pixel_differs := false
+			for delta in deltas:
+				var channel_delta := int(delta)
+				total_channel_delta += channel_delta
+				max_channel_delta = max(max_channel_delta, channel_delta)
+				if channel_delta != 0:
+					pixel_differs = true
+			if pixel_differs:
+				different_pixel_count += 1
+	return {
+		"different_pixel_count": different_pixel_count,
+		"total_channel_delta": total_channel_delta,
+		"max_channel_delta": max_channel_delta,
+	}
 
 
 func _assert(condition: bool, message: String) -> void:
