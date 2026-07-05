@@ -7,8 +7,16 @@ const MISSING_REPORT_STATUS := "missing_tileset_header_report"
 const MISSING_MAP_STATUS := "missing_map_data"
 const RUNTIME_PLAYBACK_STATUS := "counter_playback_metadata_only_no_renderer_updates"
 const RENDERER_UPDATE_STATUS := "renderer_tile_updates_pending"
+const TRANSITION_READY_STATUS := "source_callback_transition_pause_reset_ready"
+const TRANSITION_PAUSED_STATUS := "paused_for_source_load_map_callback"
+const TRANSITION_RESUMED_STATUS := "resumed_after_source_load_map_callback"
+const TRANSITION_RESET_STATUS := "source_map_load_reinitialized_tileset_animation_counters"
 const SOURCE_TRACE := [
 	"src/overworld.c:InitMapView calls InitTilesetAnimations after map draw",
+	"src/overworld.c:LoadMapInStepsLocal calls InitTilesetAnimations before RunFieldCallback",
+	"src/overworld.c:CB2_LoadMap switches away from CB2_Overworld during map load",
+	"src/fldeff_flash.c:CB2_ChangeMapMain runs tasks and screen fade without UpdateTilesetAnimations",
+	"src/overworld.c:CB2_LoadMap2 returns to CB2_Overworld after map load steps complete",
 	"src/tileset_anims.c:InitTilesetAnimations resets primary and secondary callbacks",
 	"src/tileset_anims.c:InitTilesetAnim_* selects counters and schedule callbacks",
 	"src/overworld.c:OverworldBasic updates tileset animations each frame",
@@ -29,6 +37,11 @@ var _last_frame_update: Dictionary = {}
 var _active_tileset_states: Array = []
 var _runtime_frames_elapsed := 0
 var _current_map_key := ""
+var _transition_pause_active := false
+var _transition_pause_sequence: Dictionary = {}
+var _last_transition_pause: Dictionary = {}
+var _last_transition_resume: Dictionary = {}
+var _last_transition_reset: Dictionary = {}
 
 
 func _process(_delta: float) -> void:
@@ -120,16 +133,28 @@ func initialize_for_map(
 	_runtime_frames_elapsed = 0
 	_last_frame_update = {}
 	_current_map_key = _map_key_for(map_data, tileset_data)
+	_last_transition_reset = {
+		"status": TRANSITION_RESET_STATUS,
+		"active_during_reset": _transition_pause_active,
+		"map_key": _current_map_key,
+		"map_id": String(map_info.get("id", "")),
+		"layout_id": String(layout_info.get("id", map_info.get("layout_id", ""))),
+		"runtime_frames_elapsed": _runtime_frames_elapsed,
+		"source_trace": SOURCE_TRACE,
+	}
 	_last_initialization = {
 		"schema_version": 1,
 		"owner": OWNER_NAME,
 		"status": INITIALIZED_STATUS,
 		"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
 		"counter_status": COUNTER_STATUS,
+		"transition_status": TRANSITION_READY_STATUS,
+		"transition_pause_active": _transition_pause_active,
 		"runtime_frames_elapsed": _runtime_frames_elapsed,
 		"initialized_on_map_load": true,
 		"source_equivalent_for_runtime_playback": false,
 		"source_equivalent_for_runtime_counter_order": true,
+		"source_equivalent_for_transition_pause_reset": true,
 		"mutates_renderer": false,
 		"mutates_map_data": false,
 		"map_key": _current_map_key,
@@ -152,6 +177,9 @@ func initialize_for_map(
 		"roles": roles,
 		"runtime_counters": _build_counter_status_from_roles(roles),
 		"last_frame_update": {},
+		"last_transition_pause": _last_transition_pause.duplicate(true),
+		"last_transition_resume": _last_transition_resume.duplicate(true),
+		"last_transition_reset": _last_transition_reset.duplicate(true),
 		"unsupported": _unsupported_for_current_scope(active_count),
 		"source_trace": SOURCE_TRACE,
 	}
@@ -189,6 +217,61 @@ func get_last_frame_update() -> Dictionary:
 	return _last_frame_update.duplicate(true)
 
 
+func get_transition_status() -> Dictionary:
+	return {
+		"status": TRANSITION_READY_STATUS,
+		"transition_pause_active": _transition_pause_active,
+		"transition_pause_sequence": _transition_pause_sequence.duplicate(true),
+		"last_transition_pause": _last_transition_pause.duplicate(true),
+		"last_transition_resume": _last_transition_resume.duplicate(true),
+		"last_transition_reset": _last_transition_reset.duplicate(true),
+		"source_equivalent_for_transition_pause_reset": true,
+		"source_trace": SOURCE_TRACE,
+	}
+
+
+func is_transition_paused() -> bool:
+	return _transition_pause_active
+
+
+func pause_for_transition(sequence: Dictionary = {}) -> Dictionary:
+	_transition_pause_active = true
+	_transition_pause_sequence = sequence.duplicate(true)
+	_last_transition_pause = {
+		"status": TRANSITION_PAUSED_STATUS,
+		"sequence_id": int(sequence.get("id", 0)),
+		"sequence_type": String(sequence.get("type", "")),
+		"presentation": String(sequence.get("presentation", "")),
+		"source_map": String(sequence.get("source_map", "")),
+		"destination_map": String(sequence.get("destination_map", "")),
+		"runtime_frames_elapsed": _runtime_frames_elapsed,
+		"counter_status": get_counter_status(),
+		"source_trace": SOURCE_TRACE,
+	}
+	_apply_transition_snapshot()
+	return get_transition_status()
+
+
+func resume_after_transition(context: Dictionary = {}) -> Dictionary:
+	if not _transition_pause_active:
+		return get_transition_status()
+	_transition_pause_active = false
+	_last_transition_resume = {
+		"status": TRANSITION_RESUMED_STATUS,
+		"sequence_id": int(context.get("id", _transition_pause_sequence.get("id", 0))),
+		"sequence_type": String(context.get("type", _transition_pause_sequence.get("type", ""))),
+		"presentation": String(context.get("presentation", _transition_pause_sequence.get("presentation", ""))),
+		"source_map": String(context.get("source_map", _transition_pause_sequence.get("source_map", ""))),
+		"destination_map": String(context.get("destination_map", _transition_pause_sequence.get("destination_map", ""))),
+		"runtime_frames_elapsed": _runtime_frames_elapsed,
+		"counter_status": get_counter_status(),
+		"source_trace": SOURCE_TRACE,
+	}
+	_transition_pause_sequence = {}
+	_apply_transition_snapshot()
+	return get_transition_status()
+
+
 func advance_frame() -> Dictionary:
 	return _advance_one_frame()
 
@@ -201,6 +284,20 @@ func advance_frames(frame_count: int) -> Dictionary:
 			"runtime_frames_elapsed": _runtime_frames_elapsed,
 			"counter_status": get_counter_status(),
 			"last_frame_update": get_last_frame_update(),
+		}
+	if _transition_pause_active:
+		var paused_update := _advance_one_frame()
+		return {
+			"status": TRANSITION_PAUSED_STATUS,
+			"frames_advanced": 0,
+			"runtime_frames_elapsed": _runtime_frames_elapsed,
+			"event_frame_count": 0,
+			"total_event_count": 0,
+			"total_tile_copy_request_count": 0,
+			"last_frame_update": paused_update,
+			"counter_status": get_counter_status(),
+			"transition_pause_active": true,
+			"source_trace": SOURCE_TRACE,
 		}
 
 	var event_frame_count := 0
@@ -241,6 +338,7 @@ func _on_map_changed(map_data: Dictionary, tileset_data: Dictionary, map_size: V
 	var next_map_key := _map_key_for(map_data, tileset_data)
 	if is_initialized() and not next_map_key.is_empty() and next_map_key == _current_map_key:
 		_last_initialization["last_map_changed_status"] = "same_map_update_preserved_tileset_animation_counters"
+		_apply_transition_snapshot()
 		return
 	initialize_for_map(map_data, tileset_data, map_size)
 
@@ -555,6 +653,29 @@ func _advance_one_frame() -> Dictionary:
 			"source_trace": SOURCE_TRACE,
 		}
 		return get_last_frame_update()
+	if _transition_pause_active:
+		_last_frame_update = {
+			"schema_version": 1,
+			"owner": OWNER_NAME,
+			"status": TRANSITION_PAUSED_STATUS,
+			"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
+			"renderer_update_status": RENDERER_UPDATE_STATUS,
+			"runtime_frames_elapsed": _runtime_frames_elapsed,
+			"transition_pause_active": true,
+			"source_equivalent_for_transition_pause_reset": true,
+			"mutates_renderer": false,
+			"mutates_map_data": false,
+			"event_count": 0,
+			"tile_copy_request_count": 0,
+			"role_counter_updates": [],
+			"events": [],
+			"counter_status": get_counter_status(),
+			"last_transition_pause": _last_transition_pause.duplicate(true),
+			"source_trace": SOURCE_TRACE,
+		}
+		_last_initialization["last_frame_update"] = _last_frame_update.duplicate(true)
+		_apply_transition_snapshot()
+		return get_last_frame_update()
 
 	var roles = _last_initialization.get("roles", [])
 	if typeof(roles) != TYPE_ARRAY:
@@ -603,9 +724,11 @@ func _advance_one_frame() -> Dictionary:
 		"status": "advanced_frame",
 		"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
 		"renderer_update_status": RENDERER_UPDATE_STATUS,
+		"transition_pause_active": false,
 		"runtime_frames_elapsed": _runtime_frames_elapsed,
 		"source_update_order": "reset_buffer_increment_primary_increment_secondary_call_primary_call_secondary",
 		"source_equivalent_for_runtime_counter_order": true,
+		"source_equivalent_for_transition_pause_reset": true,
 		"source_equivalent_for_renderer_updates": false,
 		"mutates_renderer": false,
 		"mutates_map_data": false,
@@ -619,6 +742,7 @@ func _advance_one_frame() -> Dictionary:
 	_last_initialization["runtime_frames_elapsed"] = _runtime_frames_elapsed
 	_last_initialization["runtime_counters"] = _last_frame_update["counter_status"].duplicate(true)
 	_last_initialization["last_frame_update"] = _last_frame_update.duplicate(true)
+	_apply_transition_snapshot()
 	return get_last_frame_update()
 
 
@@ -745,9 +869,11 @@ func _build_counter_status_from_roles(roles: Array) -> Dictionary:
 	return {
 		"status": COUNTER_STATUS,
 		"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
+		"transition_pause_active": _transition_pause_active,
 		"runtime_frames_elapsed": _runtime_frames_elapsed,
 		"source_update_order": "primary_counter_then_secondary_counter_then_primary_callback_then_secondary_callback",
 		"source_equivalent_for_runtime_counter_order": true,
+		"source_equivalent_for_transition_pause_reset": true,
 		"role_count": role_statuses.size(),
 		"roles": role_statuses,
 	}
@@ -763,11 +889,6 @@ func _array_sample(values: Array, limit: int) -> Array:
 func _unsupported_for_current_scope(active_count: int) -> Array:
 	var unsupported := [
 		{
-			"code": "tileset_animation_transition_pause_reset_pending",
-			"status": "pending",
-			"detail": "Map-load initialization and per-frame counters are implemented; pause/reset rules across map transitions remain a later Section 6 task.",
-		},
-		{
 			"code": "tileset_animation_renderer_tile_update_pending",
 			"status": "pending",
 			"detail": "Counter playback emits metadata-only tile-copy requests and does not mutate atlases, TileMaps, or map data.",
@@ -777,6 +898,22 @@ func _unsupported_for_current_scope(active_count: int) -> Array:
 	return unsupported
 
 
+func _apply_transition_snapshot() -> void:
+	if _last_initialization.is_empty():
+		return
+	_last_initialization["transition_status"] = TRANSITION_READY_STATUS
+	_last_initialization["transition_pause_active"] = _transition_pause_active
+	_last_initialization["transition_pause_sequence"] = _transition_pause_sequence.duplicate(true)
+	_last_initialization["last_transition_pause"] = _last_transition_pause.duplicate(true)
+	_last_initialization["last_transition_resume"] = _last_transition_resume.duplicate(true)
+	_last_initialization["last_transition_reset"] = _last_transition_reset.duplicate(true)
+	_last_initialization["source_equivalent_for_transition_pause_reset"] = true
+	var counters = _last_initialization.get("runtime_counters", {})
+	if typeof(counters) == TYPE_DICTIONARY:
+		counters["transition_pause_active"] = _transition_pause_active
+		_last_initialization["runtime_counters"] = counters
+
+
 func _empty_initialization(status: String) -> Dictionary:
 	return {
 		"schema_version": 1,
@@ -784,15 +921,21 @@ func _empty_initialization(status: String) -> Dictionary:
 		"status": status,
 		"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
 		"counter_status": "not_initialized",
+		"transition_status": TRANSITION_READY_STATUS,
+		"transition_pause_active": _transition_pause_active,
 		"runtime_frames_elapsed": _runtime_frames_elapsed,
 		"initialized_on_map_load": false,
 		"source_equivalent_for_runtime_playback": false,
 		"source_equivalent_for_runtime_counter_order": false,
+		"source_equivalent_for_transition_pause_reset": false,
 		"mutates_renderer": false,
 		"mutates_map_data": false,
 		"roles": [],
 		"runtime_counters": {},
 		"last_frame_update": {},
+		"last_transition_pause": _last_transition_pause.duplicate(true),
+		"last_transition_resume": _last_transition_resume.duplicate(true),
+		"last_transition_reset": _last_transition_reset.duplicate(true),
 		"unsupported": _unsupported_for_current_scope(0),
 		"source_trace": SOURCE_TRACE,
 	}

@@ -1,5 +1,10 @@
 extends Node
 
+signal sequence_started(sequence: Dictionary)
+signal sequence_map_load_started(sequence: Dictionary, step: Dictionary)
+signal sequence_map_loaded(sequence: Dictionary, step: Dictionary)
+signal sequence_finished(sequence: Dictionary)
+signal sequence_cancelled(sequence: Dictionary)
 signal battle_scene_handoff_requested(sequence: Dictionary, step: Dictionary)
 
 const TRANSITION_FRAME_RATE := 60.0
@@ -15,6 +20,7 @@ var label: Label = null
 var playback_token := 0
 var playback_tween: Tween = null
 var _pending_battle_handoff: Dictionary = {}
+var _active_sequence: Dictionary = {}
 
 
 func configure(
@@ -36,8 +42,11 @@ func configure(
 
 
 func play(sequence: Dictionary) -> void:
+	if not _active_sequence.is_empty():
+		sequence_cancelled.emit(_active_sequence.duplicate(true))
 	playback_token += 1
 	_pending_battle_handoff = {}
+	_active_sequence = sequence.duplicate(true)
 	if playback_tween != null and playback_tween.is_running():
 		playback_tween.kill()
 	if map_renderer != null and map_renderer.has_method("clear_door_animations"):
@@ -51,6 +60,7 @@ func is_playing() -> bool:
 
 
 func _play_sequence(sequence: Dictionary, token: int) -> void:
+	sequence_started.emit(sequence.duplicate(true))
 	if player != null and player.has_method("set_input_locked"):
 		player.set_input_locked(true)
 
@@ -96,7 +106,9 @@ func _play_step(sequence: Dictionary, step: Dictionary, token: int) -> void:
 		"fade_out":
 			await _fade_overlay(1.0, TRANSITION_FADE_SECONDS, token)
 		"load_map":
+			sequence_map_load_started.emit(sequence.duplicate(true), step.duplicate(true))
 			_apply_deferred_transition(sequence)
+			sequence_map_loaded.emit(sequence.duplicate(true), step.duplicate(true))
 			if player != null:
 				player.visible = true
 		"fade_in":
@@ -257,6 +269,8 @@ func _finish(sequence: Dictionary = {}) -> void:
 		label.text = ""
 	var handoff := _pending_battle_handoff.duplicate(true)
 	_pending_battle_handoff = {}
+	_active_sequence = {}
+	sequence_finished.emit(sequence.duplicate(true))
 	if handoff.is_empty() and player != null and player.has_method("set_input_locked"):
 		player.set_input_locked(false)
 	elif not handoff.is_empty():

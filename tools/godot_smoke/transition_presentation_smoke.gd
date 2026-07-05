@@ -7,6 +7,7 @@ const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
 const GRID_MOVER_SCRIPT := preload("res://scripts/overworld/grid_mover.gd")
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
 const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
+const TILESET_ANIMATION_PLAYER_SCRIPT := preload("res://scripts/overworld/tileset_animation_player.gd")
 const TRANSITION_SEQUENCE_PLAYER_SCRIPT := preload("res://scripts/overworld/transition_sequence_player.gd")
 
 const START_MAP := "MAP_LITTLEROOT_TOWN"
@@ -85,6 +86,15 @@ func _run() -> void:
 		registry.get_start_tileset_data(),
 		registry.get_start_map_size()
 	)
+	var tileset_player = TILESET_ANIMATION_PLAYER_SCRIPT.new()
+	tileset_player.configure(registry, runtime)
+	tileset_player.initialize_for_map(
+		registry.get_start_map_data(),
+		registry.get_start_tileset_data(),
+		registry.get_start_map_size()
+	)
+	tileset_player.advance_frames(16)
+	var tileset_transition_events := []
 	var vm = SCRIPT_VM_SCRIPT.new()
 	vm.configure_from_script_data(registry.get_start_script_data())
 	vm.configure_game_state(game_state)
@@ -114,6 +124,33 @@ func _run() -> void:
 	var sequence_player = TRANSITION_SEQUENCE_PLAYER_SCRIPT.new()
 	get_root().add_child(sequence_player)
 	sequence_player.configure(manager, runtime, game_state, player, overlay, label, door_renderer)
+	sequence_player.sequence_map_load_started.connect(func(sequence: Dictionary, _step: Dictionary) -> void:
+		var event := {
+			"event": "load_started",
+			"map": game_state.current_map_id,
+			"sequence_id": int(sequence.get("id", 0)),
+			"paused_before": bool(tileset_player.is_transition_paused()),
+			"counter": _counter_value(tileset_player.get_counter_status(), "primary"),
+		}
+		tileset_player.pause_for_transition(sequence)
+		event["paused_after"] = bool(tileset_player.is_transition_paused())
+		tileset_transition_events.append(event)
+	)
+	sequence_player.sequence_map_loaded.connect(func(sequence: Dictionary, _step: Dictionary) -> void:
+		var reset: Dictionary = tileset_player.get_initialization_status().get("last_transition_reset", {})
+		var event := {
+			"event": "load_finished",
+			"map": game_state.current_map_id,
+			"sequence_id": int(sequence.get("id", 0)),
+			"paused_before": bool(tileset_player.is_transition_paused()),
+			"reset_status": String(reset.get("status", "")),
+			"reset_active": bool(reset.get("active_during_reset", false)),
+			"counter": _counter_value(tileset_player.get_counter_status(), "primary"),
+		}
+		tileset_player.resume_after_transition(sequence)
+		event["paused_after"] = bool(tileset_player.is_transition_paused())
+		tileset_transition_events.append(event)
+	)
 	manager.transition_sequence_requested.connect(func(sequence: Dictionary) -> void:
 		sequence_player.play(sequence)
 	)
@@ -132,6 +169,7 @@ func _run() -> void:
 	await create_timer(0.12).timeout
 	_assert(not overlay.visible, "expected battle-start stub overlay to finish")
 	_assert(String(label.text) == "", "expected battle-start stub label to clear")
+	_assert(tileset_transition_events.is_empty(), "expected battle-start stub not to pause map tileset animations")
 
 	manager.dispatch_interaction({
 		"type": "coord_event",
@@ -155,6 +193,23 @@ func _run() -> void:
 	)
 	_assert(player.visible, "expected player visible after non-door transition")
 	_assert(not overlay.visible, "expected overlay hidden after truck transition")
+	_assert(tileset_transition_events.size() >= 2, "expected tileset transition load events after truck transition")
+	var truck_load_started: Dictionary = tileset_transition_events[0]
+	var truck_load_finished: Dictionary = tileset_transition_events[1]
+	_assert(String(truck_load_started.get("event", "")) == "load_started", "expected truck tileset load-start event")
+	_assert(String(truck_load_finished.get("event", "")) == "load_finished", "expected truck tileset load-finished event")
+	_assert(String(truck_load_started.get("map", "")) == START_MAP, "expected tileset pause before source map changes")
+	_assert(String(truck_load_finished.get("map", "")) == BRENDANS_HOUSE_1F, "expected tileset reset after deferred map load")
+	_assert(int(truck_load_started.get("counter", -1)) == 16, "expected tileset counter to keep advancing until load-map callback")
+	_assert(bool(truck_load_started.get("paused_after", false)), "expected tileset paused during load map")
+	_assert(bool(truck_load_finished.get("paused_before", false)), "expected tileset still paused while map data resets")
+	_assert(not bool(truck_load_finished.get("paused_after", true)), "expected tileset resumed after load map")
+	_assert(
+		String(truck_load_finished.get("reset_status", "")) == "source_map_load_reinitialized_tileset_animation_counters",
+		"expected source map-load reset status"
+	)
+	_assert(bool(truck_load_finished.get("reset_active", false)), "expected transition reset while paused")
+	_assert(int(truck_load_finished.get("counter", -1)) == 0, "expected transition reset counter to zero")
 
 	var brendan_exit_warp := runtime.get_warp_event_target(Vector2i(8, 8))
 	_assert(brendan_exit_warp.get("type", "") == "warp_event", "expected Brendan house exit warp")
@@ -200,17 +255,22 @@ func _run() -> void:
 	_assert(_all_ints_equal(door_animation_metatile_ids, 584), "expected renderer to receive Littleroot door animation frames")
 	_assert(door_renderer.get_door_animation_overlay_count() == 0, "expected door overlay cleared after close")
 	_assert(not overlay.visible, "expected transition overlay hidden after door playback")
+	_assert(_transition_event_count(tileset_transition_events, "load_started") == 3, "expected three map-transition load-start events")
+	_assert(_transition_event_count(tileset_transition_events, "load_finished") == 3, "expected three map-transition load-finished events")
+	_assert(_all_finished_events_resumed(tileset_transition_events), "expected all map-transition tileset pauses to resume")
 
 	print(JSON.stringify({
 		"transition_presentation_smoke": "ok",
 		"current_map": game_state.current_map_id,
 		"player_position": _vector_to_array(game_state.player_grid_position),
 		"player_visible": player.visible,
+		"tileset_transition_pause_events": tileset_transition_events.size(),
 	}))
 	sequence_player.free()
 	door_renderer.free()
 	overlay.free()
 	player.free()
+	tileset_player.free()
 	manager.free()
 	game_state.free()
 	runtime.free()
@@ -265,3 +325,30 @@ func _all_ints_equal(values: Array, expected: int) -> bool:
 		if int(value) != expected:
 			return false
 	return true
+
+
+func _transition_event_count(events: Array, event_name: String) -> int:
+	var count := 0
+	for event in events:
+		if typeof(event) == TYPE_DICTIONARY and String(event.get("event", "")) == event_name:
+			count += 1
+	return count
+
+
+func _all_finished_events_resumed(events: Array) -> bool:
+	for event in events:
+		if typeof(event) != TYPE_DICTIONARY or String(event.get("event", "")) != "load_finished":
+			continue
+		if bool(event.get("paused_after", true)):
+			return false
+	return true
+
+
+func _counter_value(counter_status: Dictionary, role: String) -> int:
+	var roles = counter_status.get("roles", [])
+	if typeof(roles) != TYPE_ARRAY:
+		return -1
+	for role_status in roles:
+		if typeof(role_status) == TYPE_DICTIONARY and String(role_status.get("role", "")) == role:
+			return int(role_status.get("counter_value", -1))
+	return -1

@@ -258,6 +258,29 @@ func _on_battle_start_sequence_requested(sequence: Dictionary) -> void:
 		_transition_sequence_player.play(sequence)
 
 
+func _on_transition_sequence_map_load_started(sequence: Dictionary, _step: Dictionary) -> void:
+	if _tileset_animation_player == null or not _sequence_has_map_load(sequence):
+		return
+	if _tileset_animation_player.has_method("pause_for_transition"):
+		_tileset_animation_player.pause_for_transition(sequence)
+
+
+func _on_transition_sequence_map_loaded(sequence: Dictionary, _step: Dictionary) -> void:
+	if _tileset_animation_player == null or not _sequence_has_map_load(sequence):
+		return
+	if _tileset_animation_player.has_method("resume_after_transition"):
+		_tileset_animation_player.resume_after_transition(sequence)
+
+
+func _on_transition_sequence_finished(sequence: Dictionary) -> void:
+	if _tileset_animation_player == null or not _sequence_has_map_load(sequence):
+		return
+	if _tileset_animation_player.has_method("is_transition_paused") and not bool(_tileset_animation_player.is_transition_paused()):
+		return
+	if _tileset_animation_player.has_method("resume_after_transition"):
+		_tileset_animation_player.resume_after_transition(sequence)
+
+
 func _on_battle_scene_handoff_requested(sequence: Dictionary, _step: Dictionary) -> void:
 	if _battle_scene != null:
 		return
@@ -638,3 +661,30 @@ func _install_tileset_animation_player() -> void:
 	_tileset_animation_player.name = "TilesetAnimationPlayer"
 	add_child(_tileset_animation_player)
 	_tileset_animation_player.configure(DataRegistry, MapRuntime)
+	_connect_tileset_animation_transition_signals()
+
+
+func _connect_tileset_animation_transition_signals() -> void:
+	if _transition_sequence_player == null:
+		return
+	var map_load_started_callback := Callable(self, "_on_transition_sequence_map_load_started")
+	if _transition_sequence_player.has_signal("sequence_map_load_started") and not _transition_sequence_player.sequence_map_load_started.is_connected(map_load_started_callback):
+		_transition_sequence_player.sequence_map_load_started.connect(map_load_started_callback)
+	var map_loaded_callback := Callable(self, "_on_transition_sequence_map_loaded")
+	if _transition_sequence_player.has_signal("sequence_map_loaded") and not _transition_sequence_player.sequence_map_loaded.is_connected(map_loaded_callback):
+		_transition_sequence_player.sequence_map_loaded.connect(map_loaded_callback)
+	var finished_callback := Callable(self, "_on_transition_sequence_finished")
+	if _transition_sequence_player.has_signal("sequence_finished") and not _transition_sequence_player.sequence_finished.is_connected(finished_callback):
+		_transition_sequence_player.sequence_finished.connect(finished_callback)
+	if _transition_sequence_player.has_signal("sequence_cancelled") and not _transition_sequence_player.sequence_cancelled.is_connected(finished_callback):
+		_transition_sequence_player.sequence_cancelled.connect(finished_callback)
+
+
+func _sequence_has_map_load(sequence: Dictionary) -> bool:
+	var steps = sequence.get("steps", [])
+	if typeof(steps) != TYPE_ARRAY:
+		return false
+	for step in steps:
+		if typeof(step) == TYPE_DICTIONARY and String(step.get("op", "")) == "load_map":
+			return true
+	return false

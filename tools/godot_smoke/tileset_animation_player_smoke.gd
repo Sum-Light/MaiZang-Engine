@@ -151,11 +151,44 @@ func _init() -> void:
 	var unsupported: Array = snapshot.get("unsupported", [])
 	_assert(not _has_unsupported_code(unsupported, "tileset_animation_playback_pending"), "did not expect playback pending marker")
 	_assert(not _has_unsupported_code(unsupported, "tileset_animation_independent_counters_pending"), "did not expect counter pending marker")
+	_assert(not _has_unsupported_code(unsupported, "tileset_animation_transition_pause_reset_pending"), "did not expect transition reset pending marker")
 	_assert(_has_unsupported_code(unsupported, "tileset_animation_renderer_tile_update_pending"), "expected renderer update pending marker")
-	_assert(_has_unsupported_code(unsupported, "tileset_animation_transition_pause_reset_pending"), "expected transition reset pending marker")
+
+	var transition_sequence := {
+		"id": 901,
+		"type": "map_transition",
+		"presentation": "normal",
+		"source_map": START_MAP,
+		"destination_map": MAUVILLE_MAP,
+		"steps": [{"op": "load_map"}],
+	}
+	var pause_status := player.pause_for_transition(transition_sequence)
+	_assert(bool(pause_status.get("transition_pause_active", false)), "expected transition pause active")
+	_assert(bool(player.is_transition_paused()), "expected player transition paused")
+	var paused_counter_before := _counter_value(player.get_counter_status(), "primary")
+	var paused_frame := player.advance_frame()
+	_assert(String(paused_frame.get("status", "")) == "paused_for_source_load_map_callback", "expected paused frame status")
+	_assert(int(paused_frame.get("runtime_frames_elapsed", -1)) == 256, "expected paused frame not to advance runtime frames")
+	_assert(int(paused_frame.get("event_count", -1)) == 0, "expected no events while paused")
+	_assert(_counter_value(player.get_counter_status(), "primary") == paused_counter_before, "expected paused primary counter unchanged")
+	var paused_many := player.advance_frames(5)
+	_assert(String(paused_many.get("status", "")) == "paused_for_source_load_map_callback", "expected paused bulk advance status")
+	_assert(int(paused_many.get("frames_advanced", -1)) == 0, "expected paused bulk advance to report zero advanced frames")
+	_assert(_counter_value(player.get_counter_status(), "primary") == paused_counter_before, "expected paused bulk counter unchanged")
 
 	var mauville := _configure_map(player, registry, runtime, MAUVILLE_MAP)
 	_assert(String(mauville.get("map_id", "")) == MAUVILLE_MAP, "expected Mauville map id")
+	_assert(bool(player.is_transition_paused()), "expected map load reset to keep transition pause active until resume")
+	_assert(_counter_value(player.get_counter_status(), "primary") == 0, "expected transition map load to reset primary counter")
+	_assert(_counter_value(player.get_counter_status(), "secondary") == 0, "expected transition map load to reset secondary counter")
+	var transition_reset: Dictionary = mauville.get("last_transition_reset", {})
+	_assert(String(transition_reset.get("status", "")) == "source_map_load_reinitialized_tileset_animation_counters", "expected transition reset status")
+	_assert(bool(transition_reset.get("active_during_reset", false)), "expected reset while transition pause active")
+	var resume_status := player.resume_after_transition(transition_sequence)
+	_assert(not bool(resume_status.get("transition_pause_active", true)), "expected transition pause cleared after resume")
+	_assert(not bool(player.is_transition_paused()), "expected player transition resumed")
+	var mauville_resume: Dictionary = player.get_initialization_status().get("last_transition_resume", {})
+	_assert(String(mauville_resume.get("status", "")) == "resumed_after_source_load_map_callback", "expected transition resume status")
 	_assert(int(mauville.get("active_tileset_state_count", 0)) == 2, "expected Mauville primary and secondary active callbacks")
 	var mauville_secondary := player.get_tileset_state("gTileset_Mauville")
 	_assert(String(mauville_secondary.get("role", "")) == "secondary", "expected Mauville secondary role")
