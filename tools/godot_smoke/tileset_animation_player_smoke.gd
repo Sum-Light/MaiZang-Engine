@@ -17,6 +17,9 @@ func _init() -> void:
 	var registry = DATA_REGISTRY_SCRIPT.new()
 	var metadata_runtime = null
 	var metadata_player = null
+	var missing_data_runtime = null
+	var missing_data_player = null
+	var missing_data_renderer = null
 	registry._ready()
 	var map_data: Dictionary = registry.get_map_data(START_MAP, {
 		"include_debug_overlays": true,
@@ -257,6 +260,22 @@ func _init() -> void:
 	_assert(_counter_value(player.get_counter_status(), "primary") == same_map_counter_before, "expected same-map map_changed to preserve counters")
 	_assert(String(player.get_initialization_status().get("last_map_changed_status", "")) == "same_map_update_preserved_tileset_animation_counters", "expected same-map preservation status")
 
+	missing_data_runtime = MAP_RUNTIME_SCRIPT.new()
+	missing_data_runtime.configure_data_registry(registry)
+	missing_data_renderer = LAYER_RENDERER_SCRIPT.new()
+	get_root().add_child(missing_data_renderer)
+	missing_data_renderer.configure_data_registry(registry)
+	missing_data_player = TILESET_ANIMATION_PLAYER_SCRIPT.new()
+	missing_data_player.configure(registry, missing_data_runtime, missing_data_renderer)
+	missing_data_runtime.configure_from_data(map_data, tileset_data, _map_size_from_data(map_data))
+	var missing_renderer_data_first: Dictionary = missing_data_player.advance_frame()
+	_assert_metadata_only_renderer_update(
+		missing_renderer_data_first,
+		"QueueAnimTiles_General_Water",
+		"tileset_animation_callback_metadata_only_missing_renderer_data",
+		"missing_tileset_animation_renderer_data"
+	)
+
 	var underwater := _configure_map(player, registry, runtime, UNDERWATER_MAP, renderer)
 	_assert(String(underwater.get("map_id", "")) == UNDERWATER_MAP, "expected Underwater map id")
 	var underwater_secondary := player.get_tileset_state("gTileset_Underwater")
@@ -282,7 +301,7 @@ func _init() -> void:
 	_assert(String(pacifidlog_secondary.get("event_callback_symbol", "")) == "TilesetAnim_Pacifidlog", "expected Pacifidlog callback")
 	var pacifidlog_first: Dictionary = metadata_player.advance_frame()
 	_assert_runtime_queue_request(pacifidlog_first, "QueueAnimTiles_Pacifidlog_WaterCurrents", "secondary", 8, 0, 1008, 1015, "direct_tile_offset", true)
-	_assert_metadata_only_renderer_update(pacifidlog_first)
+	_assert_metadata_only_renderer_update(pacifidlog_first, "QueueAnimTiles_Pacifidlog_WaterCurrents")
 
 	var lavaridge: Dictionary = _configure_map(metadata_player, registry, metadata_runtime, LAVARIDGE_MAP)
 	_assert(String(lavaridge.get("map_id", "")) == LAVARIDGE_MAP, "expected Lavaridge map id")
@@ -290,9 +309,15 @@ func _init() -> void:
 	_assert(String(lavaridge_secondary.get("event_callback_symbol", "")) == "TilesetAnim_Lavaridge", "expected Lavaridge callback")
 	var lavaridge_first: Dictionary = metadata_player.advance_frame()
 	_assert_runtime_queue_request(lavaridge_first, "QueueAnimTiles_Lavaridge_Lava", "secondary", 4, 0, 672, 675, "direct_tile_offset", true)
-	_assert_metadata_only_renderer_update(lavaridge_first)
+	_assert_metadata_only_renderer_update(lavaridge_first, "QueueAnimTiles_Lavaridge_Lava")
 
 	if _failed:
+		if missing_data_renderer != null:
+			missing_data_renderer.free()
+		if missing_data_player != null:
+			missing_data_player.free()
+		if missing_data_runtime != null:
+			missing_data_runtime.free()
 		if metadata_player != null:
 			metadata_player.free()
 		if metadata_runtime != null:
@@ -308,6 +333,12 @@ func _init() -> void:
 			metadata_player.free()
 		if metadata_runtime != null:
 			metadata_runtime.free()
+		if missing_data_renderer != null:
+			missing_data_renderer.free()
+		if missing_data_player != null:
+			missing_data_player.free()
+		if missing_data_runtime != null:
+			missing_data_runtime.free()
 		player.free()
 		renderer.free()
 		runtime.free()
@@ -427,6 +458,7 @@ func _assert_runtime_queue_request(
 
 func _assert_renderer_patch_for_queue(frame_update: Dictionary, queue_function: String) -> void:
 	_assert(bool(frame_update.get("mutates_renderer", false)), "expected %s to mutate renderer" % queue_function)
+	_assert(_unsupported_for_queue(frame_update.get("unsupported", []), queue_function).is_empty(), "did not expect unsupported marker for %s" % queue_function)
 	var renderer_update: Dictionary = frame_update.get("renderer_update", {})
 	_assert(String(renderer_update.get("status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected %s renderer update status" % queue_function)
 	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected %s not to rebuild full map" % queue_function)
@@ -460,14 +492,27 @@ func _assert_renderer_idle_for_queue(frame_update: Dictionary, queue_function: S
 	_assert(not bool(summary.get("applied", true)), "expected renderer summary idle for %s" % queue_function)
 	_assert(String(summary.get("status", "")) == "no_matching_metatile_slots", "expected no visible metatile slots for %s" % queue_function)
 	_assert(int(summary.get("patched_slot_count", -1)) == 0, "expected no patched atlas slots for %s" % queue_function)
+	_assert_unsupported_for_queue(
+		frame_update,
+		queue_function,
+		"tileset_animation_callback_not_rendered",
+		"no_matching_metatile_slots"
+	)
 
 
-func _assert_metadata_only_renderer_update(frame_update: Dictionary) -> void:
+func _assert_metadata_only_renderer_update(
+	frame_update: Dictionary,
+	queue_function: String = "",
+	expected_code: String = "tileset_animation_callback_metadata_only_renderer_not_configured",
+	expected_renderer_status: String = "renderer_not_configured_metadata_only"
+) -> void:
 	_assert(not bool(frame_update.get("mutates_renderer", true)), "expected metadata-only animation not to mutate renderer")
-	_assert(String(frame_update.get("renderer_update_status", "")) == "renderer_not_configured_metadata_only", "expected metadata-only renderer status")
+	_assert(String(frame_update.get("renderer_update_status", "")) == expected_renderer_status, "expected metadata-only renderer status")
 	var renderer_update: Dictionary = frame_update.get("renderer_update", {})
-	_assert(String(renderer_update.get("status", "")) == "renderer_not_configured_metadata_only", "expected metadata-only renderer update")
+	_assert(String(renderer_update.get("status", "")) == expected_renderer_status, "expected metadata-only renderer update")
 	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected metadata-only update not to rebuild map")
+	if not queue_function.is_empty():
+		_assert_unsupported_for_queue(frame_update, queue_function, expected_code, expected_renderer_status)
 
 
 func _assert_mauville_flower_requests(frame_update: Dictionary, expected_source_frame_index: int, expected_range_index: int) -> void:
@@ -525,6 +570,35 @@ func _renderer_summary_for_queue(renderer_update: Dictionary, queue_function: St
 	for summary in summaries:
 		if typeof(summary) == TYPE_DICTIONARY and String(summary.get("queue_function", "")) == queue_function:
 			return summary
+	return {}
+
+
+func _assert_unsupported_for_queue(
+	frame_update: Dictionary,
+	queue_function: String,
+	expected_code: String,
+	expected_renderer_status: String
+) -> void:
+	var unsupported = frame_update.get("unsupported", [])
+	_assert(typeof(unsupported) == TYPE_ARRAY, "expected unsupported list for %s" % queue_function)
+	if typeof(unsupported) != TYPE_ARRAY:
+		return
+	_assert(int(frame_update.get("unsupported_count", -1)) == unsupported.size(), "expected unsupported count to match list")
+	var entry := _unsupported_for_queue(unsupported, queue_function)
+	_assert(not entry.is_empty(), "expected unsupported marker for %s" % queue_function)
+	if entry.is_empty():
+		return
+	_assert(String(entry.get("code", "")) == expected_code, "expected unsupported code for %s" % queue_function)
+	_assert(String(entry.get("status", "")) == "unsupported", "expected unsupported status for %s" % queue_function)
+	_assert(String(entry.get("renderer_request_status", "")) == expected_renderer_status, "expected renderer request status for %s" % queue_function)
+	_assert(String(entry.get("event_callback_symbol", "")) != "", "expected event callback symbol for %s" % queue_function)
+	_assert(not bool(entry.get("source_equivalent_for_runtime_rendering", true)), "expected non-equivalent runtime rendering marker for %s" % queue_function)
+
+
+func _unsupported_for_queue(unsupported: Array, queue_function: String) -> Dictionary:
+	for entry in unsupported:
+		if typeof(entry) == TYPE_DICTIONARY and String(entry.get("queue_function", "")) == queue_function:
+			return entry
 	return {}
 
 

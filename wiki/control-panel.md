@@ -19,14 +19,14 @@ Current focus:
 
 Next active module:
 
-- Map/overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` Section 6 dynamic metatile and tileset animations.
+- Map/overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` Section 7 door animation and door state.
 
 Reason:
 
 - The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 6 is now 13/14 complete after broadening tileset-animation smoke coverage for source-timed General water, flowers, waterfall, sand/water edges, Petalburg NULL init, Mauville flowers, Underwater seaweed, Pacifidlog currents, and Lavaridge lava.
+- Section 6 is now complete at 14/14 after adding per-callback unsupported metadata for imported and triggered tileset animation callbacks that do not render into the current runtime atlas.
 - Runtime animation logic still has 0 `palette`/`source_color`/`source_palette` references under `scripts/` and `scenes/`; source palette/color data remains import-only provenance and RGBA bake input.
-- Next executable overworld task: add unsupported metadata for callbacks not yet rendered even when their source tilesets import successfully.
+- Next executable overworld task: expand door resource parsing to every entry in `sDoorAnimGraphicsTable`.
 
 ## Module Tracks
 
@@ -177,9 +177,9 @@ Main-agent responsibilities:
 Near-term:
 
 - Continue `wiki/battle-parity-execution-plan.md` B8.2: import or record the 3 missing action/message/move source captures through `tools/importer/import_battle_window_captures.py` so the comparison gate can run exact pixels, continue exact `RenderText` pixel equivalence beyond first-pass control-code side-effect coverage, and extend link/recorded coverage beyond setup metadata/text-window propagation into real link synchronization, recorded action playback, and full battle controller flow.
-- Continue `wiki/overworld-parity-todo.md` section 6: add unsupported metadata for callbacks not yet rendered even if their source tilesets import successfully.
+- Continue `wiki/overworld-parity-todo.md` section 7: expand door resource parsing to every entry in `sDoorAnimGraphicsTable`.
 - Current overworld Section 5 status: 12/12 complete; `LayerAwareMapRenderer` now has headless layer pixel smoke coverage for roof/top, BG sign, Route101 tall grass, split/bridge-like, and indoor top-object representatives. The legacy F8 binding is removed because it can conflict with the Godot/editor/window shortcut path and exit the running preview; the presentation-only layer debug cycle is on L.
-- Current overworld Section 6 status: 13/14 complete; `tileset_header_report.json` now exports callback-to-map metadata for 785 layouts, 939 map source records, 137 layout tileset pairs, 136 referenced tilesets, 31 callback symbols, 174 generated RGBA tileset-animation frame strips, and source schedule/copy-target metadata from `src/tileset_anims.c`: 31 init functions, 25 active init functions, 59 scheduled events, 57 tile-copy events, 2 Battle Dome source-color blend metadata-only events, 41 tile-copy append records, and 58,376 affected metatile references. Runtime `TilesetAnimationPlayer` initializes on map load, advances source-order independent primary/secondary counters, preserves same-map counters, pauses only around generated map `load_map`, and sends tile-copy requests to `LayerAwareMapRenderer`. The renderer patches selected RGBA frame strips into mutable bottom/middle/top layer atlas `ImageTexture`s without rebuilding the full map and records no generated-file, map-data, collision, or elevation mutation. Smoke coverage now verifies source-timed General water, flower, sand/water edge, waterfall, and land/water edge requests, Petalburg NULL init-only state, Mauville VDest flowers, Underwater seaweed, Pacifidlog water currents, and Lavaridge lava. Source palette/color data remains import metadata, not runtime logic.
+- Current overworld Section 6 status: 14/14 complete; `tileset_header_report.json` now exports callback-to-map metadata for 785 layouts, 939 map source records, 137 layout tileset pairs, 136 referenced tilesets, 31 callback symbols, 174 generated RGBA tileset-animation frame strips, and source schedule/copy-target metadata from `src/tileset_anims.c`: 31 init functions, 25 active init functions, 59 scheduled events, 57 tile-copy events, 2 Battle Dome source-color blend metadata-only events, 41 tile-copy append records, and 58,376 affected metatile references. Runtime `TilesetAnimationPlayer` initializes on map load, advances source-order independent primary/secondary counters, preserves same-map counters, pauses only around generated map `load_map`, sends tile-copy requests to `LayerAwareMapRenderer`, and now reports per-callback unsupported entries when an imported/triggered callback cannot render because no renderer is configured, generated layer-atlas data is missing, or the current map has no patchable slot. The renderer patches selected RGBA frame strips into mutable bottom/middle/top layer atlas `ImageTexture`s without rebuilding the full map and records no generated-file, map-data, collision, or elevation mutation. Smoke coverage verifies source-timed General water, flower, sand/water edge, waterfall, and land/water edge requests, Petalburg NULL init-only state, Mauville VDest flowers, Underwater seaweed, Pacifidlog water currents, Lavaridge lava, applied/no-slot/missing-data/no-renderer metadata paths, and 0 runtime `palette`/`source_color`/`source_palette` references under `scripts/` and `scenes/`.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
@@ -188,11 +188,11 @@ Near-term:
 - Current B8.2 layout-profile status: `battle_scene_source_profile_smoke.gd` now measures 8 key rects directly from the 24 full-scene captures, including capture 00 opponent/player HP green rects `[52,33,48,2]` and `[174,92,48,2]`, capture 02 message frame/body rects `[1,115,238,42]` and `[8,117,224,38]`, and capture 23 player HP green rect `[179,91,48,2]`. `BattleScene` exposes this measured profile in snapshots and uses first-pass 48x2 two-row RGBA HP fills instead of the older 48x4 pure Godot rectangle, while still keeping source equivalence unclaimed.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
 - Next executable battle task: continue B8.2 by pushing the measured full-scene profile into healthbox sub-sprite, battler, and background placement rules, or import true transparent window-layer `action.png`, `message.png`, and `move.png` through `tools/importer/import_battle_window_captures.py` so the comparison gate moves from missing 3/3 to exact pixel comparison; broader B8.2 work also includes real link/recorded battle controller flow and exact `RenderText` pixel equivalence beyond the first-pass control-code side-effect fixtures.
-- Next executable overworld task: add unsupported metadata for callbacks not yet rendered even if their source tilesets import successfully.
+- Next executable overworld task: expand door resource parsing to every entry in `sDoorAnimGraphicsTable`.
 
 Mid-term:
 
-- Continue overworld 1:1 parity through Section 6 dynamic metatile and tileset animations for the first-slice maps.
+- Continue overworld 1:1 parity through Section 7 door animation and door state for the first-slice maps.
 - Bag runtime and `giveitem` script support after the current overworld slice is stabilized.
 - Broader item script commands such as `takeitem`, `checkitem`, and item-space checks after source tracing.
 - Overworld sprite import expansion and movement animation queues.

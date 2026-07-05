@@ -10,6 +10,7 @@ const RENDERER_UPDATE_READY_STATUS := "renderer_tile_updates_ready"
 const RENDERER_UPDATE_APPLIED_STATUS := "renderer_tile_updates_applied"
 const RENDERER_UPDATE_PENDING_STATUS := "renderer_tile_updates_pending"
 const RENDERER_NOT_CONFIGURED_STATUS := "renderer_not_configured_metadata_only"
+const MISSING_RENDERER_DATA_STATUS := "missing_tileset_animation_renderer_data"
 const TRANSITION_READY_STATUS := "source_callback_transition_pause_reset_ready"
 const TRANSITION_PAUSED_STATUS := "paused_for_source_load_map_callback"
 const TRANSITION_RESUMED_STATUS := "resumed_after_source_load_map_callback"
@@ -737,6 +738,7 @@ func _advance_one_frame() -> Dictionary:
 				tile_copy_request_count += int(event_update.get("tile_copy_request_count", 0))
 
 	var renderer_update = _apply_renderer_tile_updates(frame_events)
+	var frame_unsupported := _unsupported_for_frame_events(frame_events, renderer_update)
 	_last_frame_update = {
 		"schema_version": 1,
 		"owner": OWNER_NAME,
@@ -753,6 +755,8 @@ func _advance_one_frame() -> Dictionary:
 		"mutates_map_data": false,
 		"event_count": frame_events.size(),
 		"tile_copy_request_count": tile_copy_request_count,
+		"unsupported_count": frame_unsupported.size(),
+		"unsupported": frame_unsupported,
 		"role_counter_updates": role_counter_updates,
 		"events": frame_events,
 		"renderer_update": renderer_update,
@@ -976,6 +980,114 @@ func _apply_renderer_tile_updates(frame_events: Array) -> Dictionary:
 			"rebuilds_full_map": false,
 		}
 	return renderer_update
+
+
+func _unsupported_for_frame_events(frame_events: Array, renderer_update: Dictionary) -> Array:
+	var unsupported := []
+	if frame_events.is_empty():
+		return unsupported
+	var renderer_status := String(renderer_update.get("status", ""))
+	if renderer_status == RENDERER_NOT_CONFIGURED_STATUS:
+		for event in frame_events:
+			if typeof(event) != TYPE_DICTIONARY:
+				continue
+			unsupported.append(_unsupported_event_entry(
+				event,
+				{},
+				"tileset_animation_callback_metadata_only_renderer_not_configured",
+				renderer_status,
+				"Callback emitted source tile-copy metadata, but no layer renderer is configured to patch the runtime atlas."
+			))
+		return unsupported
+	if renderer_status == MISSING_RENDERER_DATA_STATUS:
+		for event in frame_events:
+			if typeof(event) != TYPE_DICTIONARY:
+				continue
+			unsupported.append(_unsupported_event_entry(
+				event,
+				{},
+				"tileset_animation_callback_metadata_only_missing_renderer_data",
+				renderer_status,
+				"Callback emitted source tile-copy metadata, but this map has no generated layer-atlas data to patch yet."
+			))
+		return unsupported
+	for event in frame_events:
+		if typeof(event) != TYPE_DICTIONARY:
+			continue
+		if int(event.get("tile_copy_request_count", 0)) <= 0:
+			unsupported.append(_unsupported_event_entry(
+				event,
+				{},
+				"tileset_animation_callback_metadata_only_no_tile_copy_request",
+				renderer_status,
+				"Callback was traced from the source schedule, but this runtime slice has no tile-copy request for it."
+			))
+	var failed_requests = renderer_update.get("failed_requests", [])
+	if typeof(failed_requests) != TYPE_ARRAY:
+		return unsupported
+	for request_result in failed_requests:
+		if typeof(request_result) != TYPE_DICTIONARY:
+			continue
+		if bool(request_result.get("applied", false)):
+			continue
+		var queue_function := String(request_result.get("queue_function", ""))
+		var event := _runtime_event_for_queue(frame_events, queue_function)
+		unsupported.append(_unsupported_event_entry(
+			event,
+			request_result,
+			"tileset_animation_callback_not_rendered",
+			String(request_result.get("status", renderer_status)),
+			"Callback emitted a tile-copy request, but the current layer atlas had no patchable target for it."
+		))
+	return unsupported
+
+
+func _runtime_event_for_queue(frame_events: Array, queue_function: String) -> Dictionary:
+	for event in frame_events:
+		if typeof(event) == TYPE_DICTIONARY and String(event.get("queue_function", "")) == queue_function:
+			return event
+	return {}
+
+
+func _unsupported_event_entry(
+	event: Dictionary,
+	request_result: Dictionary,
+	code: String,
+	renderer_status: String,
+	detail: String
+) -> Dictionary:
+	var queue_function := String(request_result.get("queue_function", event.get("queue_function", "")))
+	var entry := {
+		"code": code,
+		"status": "unsupported",
+		"detail": detail,
+		"queue_function": queue_function,
+		"role": String(request_result.get("role", event.get("role", ""))),
+		"tileset_symbol": String(request_result.get("tileset_symbol", event.get("tileset_symbol", ""))),
+		"event_callback_symbol": String(event.get("event_callback_symbol", "")),
+		"runtime_counter_value": int(event.get("runtime_counter_value", -1)),
+		"timer_argument": int(event.get("timer_argument", -1)),
+		"renderer_request_status": renderer_status,
+		"renderer_available": _renderer_updates_available(),
+		"metadata_only_no_renderer_mutation": bool(event.get("metadata_only_no_renderer_mutation", false)),
+		"source_equivalent_for_runtime_rendering": false,
+		"source_trace": SOURCE_TRACE,
+	}
+	if not request_result.is_empty():
+		entry["request"] = {
+			"status": String(request_result.get("status", renderer_status)),
+			"selected_source_frame_symbol": String(request_result.get("selected_source_frame_symbol", "")),
+			"selected_source_frame_image": String(request_result.get("selected_source_frame_image", "")),
+			"tile_count": int(request_result.get("tile_count", 0)),
+			"patched_slot_count": int(request_result.get("patched_slot_count", 0)),
+			"updated_metatile_count": _typed_array_size(request_result.get("updated_metatile_ids", [])),
+			"updated_tile_id_count": _typed_array_size(request_result.get("updated_tile_ids", [])),
+		}
+	return entry
+
+
+func _typed_array_size(value) -> int:
+	return value.size() if typeof(value) == TYPE_ARRAY else 0
 
 
 func _renderer_updates_available() -> bool:
