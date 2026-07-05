@@ -12,6 +12,25 @@ const KEY_PHASES := {
 	16: "send_out_ball",
 	23: "send_out_complete",
 }
+const EXPECTED_LAYOUT_RECTS := {
+	"capture_00": {
+		"opponent_hp_green_rect": [52, 33, 48, 2],
+		"player_hp_green_rect": [174, 92, 48, 2],
+		"action_prompt_red_frame_rect": [1, 115, 119, 42],
+		"action_prompt_body_rect": [8, 117, 112, 38],
+	},
+	"capture_02": {
+		"message_red_frame_rect": [1, 115, 238, 42],
+		"message_body_rect": [8, 117, 224, 38],
+	},
+	"capture_23": {
+		"opponent_hp_green_rect": [52, 33, 48, 2],
+		"player_hp_green_rect": [179, 91, 48, 2],
+	},
+}
+const HP_GREEN_COLOR_KEYS := ["90,214,132,255", "115,255,173,255"]
+const RED_FRAME_COLOR_KEYS := ["214,74,57,255"]
+const TEXTBOX_BODY_COLOR_KEYS := ["107,165,165,255"]
 const EXPECTED_SIGNATURES := [
 	"3695D0A6",
 	"E49CB0A1",
@@ -49,6 +68,7 @@ func _init() -> void:
 func _run() -> void:
 	var rows := []
 	var signatures := []
+	var layout_rects := {}
 	var nonblank_count := 0
 	for index in range(PROFILE_COUNT):
 		var path := "%s/capture_%02d.png" % [PROFILE_ROOT, index]
@@ -63,6 +83,15 @@ func _run() -> void:
 		_assert(signature == String(EXPECTED_SIGNATURES[index]), "expected stable source capture signature %02d" % index)
 		_assert(nonblack_pixels > 1000, "expected nonblank source capture %02d" % index)
 		_assert(bottom_pixels > 1, "expected non-flat bottom UI/source region %02d" % index)
+		var layout_key := "capture_%02d" % index
+		if EXPECTED_LAYOUT_RECTS.has(layout_key):
+			var measured_layout := _measure_layout_rects(index, image)
+			layout_rects[layout_key] = measured_layout
+			for rect_key in _dictionary_value(EXPECTED_LAYOUT_RECTS.get(layout_key, {})).keys():
+				_assert(
+					_array_equals(_array_value(measured_layout.get(rect_key, [])), _array_value(EXPECTED_LAYOUT_RECTS[layout_key].get(rect_key, []))),
+					"expected %s %s to match source profile" % [layout_key, rect_key]
+				)
 		rows.append({
 			"index": index,
 			"path": path,
@@ -90,6 +119,7 @@ func _run() -> void:
 		"nonblank_count": nonblank_count,
 		"key_phase_count": KEY_PHASES.size(),
 		"window_exact_capture_missing_count": window_missing.size(),
+		"measured_layout_rects": layout_rects,
 		"signatures": signatures,
 		"key_rows": _key_rows(rows),
 	}))
@@ -153,3 +183,73 @@ func _distinct_rgb_count(image: Image, rect: Rect2i) -> int:
 			]
 			values[key] = true
 	return values.size()
+
+
+func _measure_layout_rects(index: int, image: Image) -> Dictionary:
+	match index:
+		0:
+			return {
+				"opponent_hp_green_rect": _color_bbox(image, Rect2i(0, 0, 120, 60), HP_GREEN_COLOR_KEYS),
+				"player_hp_green_rect": _color_bbox(image, Rect2i(120, 60, 120, 60), HP_GREEN_COLOR_KEYS),
+				"action_prompt_red_frame_rect": _color_bbox(image, Rect2i(0, 112, 120, 48), RED_FRAME_COLOR_KEYS),
+				"action_prompt_body_rect": _color_bbox(image, Rect2i(0, 112, 120, 48), TEXTBOX_BODY_COLOR_KEYS),
+			}
+		2:
+			return {
+				"message_red_frame_rect": _color_bbox(image, Rect2i(0, 112, 240, 48), RED_FRAME_COLOR_KEYS),
+				"message_body_rect": _color_bbox(image, Rect2i(0, 112, 240, 48), TEXTBOX_BODY_COLOR_KEYS),
+			}
+		23:
+			return {
+				"opponent_hp_green_rect": _color_bbox(image, Rect2i(0, 0, 120, 60), HP_GREEN_COLOR_KEYS),
+				"player_hp_green_rect": _color_bbox(image, Rect2i(120, 60, 120, 60), HP_GREEN_COLOR_KEYS),
+			}
+	return {}
+
+
+func _color_bbox(image: Image, rect: Rect2i, color_keys: Array) -> Array:
+	var found := false
+	var min_x := image.get_width()
+	var min_y := image.get_height()
+	var max_x := -1
+	var max_y := -1
+	for y in range(rect.position.y, rect.position.y + rect.size.y):
+		for x in range(rect.position.x, rect.position.x + rect.size.x):
+			if x < 0 or y < 0 or x >= image.get_width() or y >= image.get_height():
+				continue
+			if not color_keys.has(_rgba_key(image.get_pixel(x, y))):
+				continue
+			found = true
+			min_x = min(min_x, x)
+			min_y = min(min_y, y)
+			max_x = max(max_x, x)
+			max_y = max(max_y, y)
+	if not found:
+		return []
+	return [min_x, min_y, max_x - min_x + 1, max_y - min_y + 1]
+
+
+func _rgba_key(color: Color) -> String:
+	return "%d,%d,%d,%d" % [
+		int(round(color.r * 255.0)),
+		int(round(color.g * 255.0)),
+		int(round(color.b * 255.0)),
+		int(round(color.a * 255.0)),
+	]
+
+
+func _array_equals(left: Array, right: Array) -> bool:
+	if left.size() != right.size():
+		return false
+	for index in range(left.size()):
+		if left[index] != right[index]:
+			return false
+	return true
+
+
+func _dictionary_value(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array_value(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []

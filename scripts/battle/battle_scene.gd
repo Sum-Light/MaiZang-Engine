@@ -8,9 +8,14 @@ const TILE_SIZE := 8
 const DISPLAY_HEIGHT := 160
 const FONT_SIZE := 8
 const HP_BAR_PIXELS := 48
-const HP_GREEN := Color(0.26, 0.74, 0.30, 1.0)
-const HP_YELLOW := Color(0.88, 0.76, 0.24, 1.0)
-const HP_RED := Color(0.88, 0.25, 0.22, 1.0)
+const HP_BAR_HEIGHT := 2
+const HP_GREEN_TOP := Color8(90, 214, 132, 255)
+const HP_GREEN_BOTTOM := Color8(115, 255, 173, 255)
+const HP_YELLOW_TOP := Color8(205, 172, 8, 255)
+const HP_YELLOW_BOTTOM := Color8(255, 230, 57, 255)
+const HP_RED_TOP := Color8(172, 65, 74, 255)
+const HP_RED_BOTTOM := Color8(255, 90, 57, 255)
+const HP_BAR_OUTLINE := Color8(82, 107, 90, 255)
 const PRESENTATION_STATUS := "first_slice_not_source_equivalent"
 const PRESENTATION_ASSET_LAYOUT_STATUS := "exported_asset_layout_first_pass"
 const SOURCE_FLOW_STATUS := "source_action_move_window_flow_first_pass"
@@ -51,12 +56,38 @@ const SCREEN_ASSET_RECTS := {
 	"opponent_shadow": [160, 70, 32, 8],
 	"opponent_healthbox": [12, 14, 128, 32],
 	"player_healthbox": [128, 74, 128, 64],
-	"opponent_hp_bar": [52, 32, 48, 4],
-	"player_hp_bar": [176, 92, 48, 4],
+	"opponent_hp_bar": [52, 33, 48, 2],
+	"player_hp_bar": [174, 92, 48, 2],
 	"opponent_name": [17, 17, 88, 10],
 	"opponent_hp_label": [36, 29, 18, 10],
 	"player_name": [143, 78, 82, 10],
 	"player_hp_label": [174, 99, 60, 10],
+}
+
+const SOURCE_SCENE_LAYOUT_PROFILE := {
+	"status": "measured_full_scene_layout_first_pass",
+	"profile": "emerald_2011_zh",
+	"basis": "assets/source/battle_scene_captures/emerald_2011_zh",
+	"source_capture_count": 24,
+	"measured_key_frames": {
+		"capture_00_action_menu": {
+			"opponent_hp_green_rect": [52, 33, 48, 2],
+			"player_hp_green_rect": [174, 92, 48, 2],
+			"action_prompt_red_frame_rect": [1, 115, 119, 42],
+			"action_prompt_body_rect": [8, 117, 112, 38],
+		},
+		"capture_02_move_message": {
+			"message_red_frame_rect": [1, 115, 238, 42],
+			"message_body_rect": [8, 117, 224, 38],
+		},
+		"capture_23_send_out_complete": {
+			"opponent_hp_green_rect": [52, 33, 48, 2],
+			"player_hp_green_rect": [179, 91, 48, 2],
+		},
+	},
+	"runtime_rect_policy": "use_capture_00_action_menu_static_rects_until_healthbox_subsprite_runtime",
+	"hp_bar_policy": "source_capture_two_row_color_first_pass",
+	"window_exact_capture_policy": "separate_action_message_move_window_layer_pngs",
 }
 
 const ACTION_CURSOR_POSITIONS := {
@@ -80,7 +111,7 @@ const BATTLE_PRESENTATION_ASSET_RULES := {
 	"pokemon_sprite_policy": "use_generated_battle_sprite_pngs_first_frame_static",
 	"front_sprite_frame_policy": "front_png_first_64x64_frame_until_source_animation_runtime",
 	"healthbox_policy": "use_generated_healthbox_frame_pngs_at_screenshot_aligned_rects",
-	"hp_bar_policy": "godot_rect_fill_over_generated_healthbox_first_pass",
+	"hp_bar_policy": "source_capture_two_row_color_fill_over_generated_healthbox_first_pass",
 	"audio_policy": "metadata_only",
 	"source_equivalence": "not_claimed",
 }
@@ -199,10 +230,10 @@ var _opponent_healthbox_texture: TextureRect
 var _player_healthbox_texture: TextureRect
 var _opponent_name_label: Label
 var _opponent_hp_label: Label
-var _opponent_hp_fill: ColorRect
+var _opponent_hp_fill: Control
 var _player_name_label: Label
 var _player_hp_label: Label
-var _player_hp_fill: ColorRect
+var _player_hp_fill: Control
 var _message_label: Label
 var _action_prompt_label: Label
 var _pp_label: Label
@@ -390,6 +421,7 @@ func get_ui_snapshot() -> Dictionary:
 		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
 		"source_ui_assets": SOURCE_UI_ASSETS.duplicate(true),
 		"source_scene_capture_profile": SOURCE_SCENE_CAPTURE_PROFILE.duplicate(true),
+		"source_scene_layout_profile": SOURCE_SCENE_LAYOUT_PROFILE.duplicate(true),
 		"source_window_text_info": _source_window_text_info_snapshot(),
 		"source_battle_text_controller_context": _source_battle_text_controller_context_snapshot(),
 		"source_type_display_status": _source_type_display_status(),
@@ -805,6 +837,14 @@ func _refresh_presentation_assets(player_mon: Dictionary, opponent_mon: Dictiona
 			"player": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_bar"])),
 			"opponent": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_bar"])),
 			"width_px": HP_BAR_PIXELS,
+			"height_px": HP_BAR_HEIGHT,
+			"fill_style": "source_capture_two_row_color_first_pass",
+			"hp_fill_rgba_rows": {
+				"green": [[90, 214, 132, 255], [115, 255, 173, 255]],
+				"yellow": [[205, 172, 8, 255], [255, 230, 57, 255]],
+				"red": [[172, 65, 74, 255], [255, 90, 57, 255]],
+			},
+			"layout_profile": SOURCE_SCENE_LAYOUT_PROFILE.duplicate(true),
 		},
 		"shadow": _presentation_asset_rect_snapshot(shadow_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_shadow"])),
 	}
@@ -1525,17 +1565,31 @@ func _hp_text(mon: Dictionary) -> String:
 	return "HP %d/%d" % [int(mon.get("hp", 0)), int(mon.get("max_hp", 1))]
 
 
-func _set_hp_fill(fill: ColorRect, mon: Dictionary) -> void:
+func _set_hp_fill(fill: Control, mon: Dictionary) -> void:
+	if fill == null:
+		return
 	var max_hp: int = max(1, int(mon.get("max_hp", 1)))
 	var hp: int = clampi(int(mon.get("hp", 0)), 0, max_hp)
 	var ratio: float = float(hp) / float(max_hp)
 	fill.size.x = roundi(float(HP_BAR_PIXELS) * ratio)
+	var colors := _hp_bar_colors(ratio)
+	var top := fill.get_node_or_null("Top") as ColorRect
+	var bottom := fill.get_node_or_null("Bottom") as ColorRect
+	if top != null:
+		top.color = colors[0]
+		top.size = Vector2(fill.size.x, 1)
+	if bottom != null:
+		bottom.color = colors[1]
+		bottom.position = Vector2(0, 1)
+		bottom.size = Vector2(fill.size.x, 1)
+
+
+func _hp_bar_colors(ratio: float) -> Array:
 	if ratio <= 0.2:
-		fill.color = HP_RED
-	elif ratio <= 0.5:
-		fill.color = HP_YELLOW
-	else:
-		fill.color = HP_GREEN
+		return [HP_RED_TOP, HP_RED_BOTTOM]
+	if ratio <= 0.5:
+		return [HP_YELLOW_TOP, HP_YELLOW_BOTTOM]
+	return [HP_GREEN_TOP, HP_GREEN_BOTTOM]
 
 
 func _message_texts(messages) -> Array:
@@ -1596,9 +1650,28 @@ func _add_rect(rect: Rect2, color: Color) -> ColorRect:
 	return color_rect
 
 
-func _add_hp_bar(rect: Rect2) -> ColorRect:
-	_add_rect(Rect2(rect.position - Vector2(1, 1), rect.size + Vector2(2, 2)), Color(0.16, 0.16, 0.16, 1.0))
-	return _add_rect(rect, HP_GREEN)
+func _add_hp_bar(rect: Rect2) -> Control:
+	_add_rect(Rect2(rect.position - Vector2(1, 1), rect.size + Vector2(2, 2)), HP_BAR_OUTLINE)
+	var container := Control.new()
+	container.position = rect.position
+	container.size = Vector2(rect.size.x, max(HP_BAR_HEIGHT, int(rect.size.y)))
+	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var top := ColorRect.new()
+	top.name = "Top"
+	top.position = Vector2.ZERO
+	top.size = Vector2(rect.size.x, 1)
+	top.color = HP_GREEN_TOP
+	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	container.add_child(top)
+	var bottom := ColorRect.new()
+	bottom.name = "Bottom"
+	bottom.position = Vector2(0, 1)
+	bottom.size = Vector2(rect.size.x, 1)
+	bottom.color = HP_GREEN_BOTTOM
+	bottom.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	container.add_child(bottom)
+	add_child(container)
+	return container
 
 
 func _rect_from_array(values) -> Rect2:
