@@ -2,8 +2,10 @@ extends Node2D
 
 const OWNER_NAME := "LayerAwareMapRenderer"
 const LEGACY_RENDERER_NAME := "DebugMapPlane"
-const RUNTIME_STATUS := "owner_contract_only"
+const RUNTIME_STATUS := "normal_layer_rendering_first_pass"
 const DEFAULT_TILE_SIZE := 16
+const NORMAL_LAYER_TYPE := 0
+const LAYER_ROLE_IDS := ["bottom", "middle", "top"]
 
 const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending"
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
@@ -18,6 +20,14 @@ var _tileset_data: Dictionary = {}
 var _data_registry: Node = null
 var _debug_fallback: Node = null
 var _grid_visible := false
+var _layer_textures: Dictionary = {}
+var _layer_atlas_info: Dictionary = {}
+var _metatile_layer_types: Dictionary = {}
+var _normal_layer_metatile_count := 0
+var _flattened_atlas_texture: Texture2D = null
+var _flattened_atlas_tile_size := DEFAULT_TILE_SIZE
+var _flattened_atlas_columns := 0
+var _flattened_atlas_total_metatiles := 0
 
 
 func configure_data_registry(data_registry: Node) -> void:
@@ -43,6 +53,8 @@ func configure_from_map_data(new_map_data: Dictionary, new_tileset_data: Diction
 	_tileset_data = new_tileset_data.duplicate(true)
 	tile_size = _tile_size_from_tileset(_tileset_data)
 	map_size = _map_size_from_map_data(_map_data)
+	_configure_layer_rendering(_tileset_data)
+	_configure_flattened_atlas(_tileset_data)
 	clear_door_animations()
 	if _debug_fallback != null and _debug_fallback.has_method("configure_from_map_data"):
 		_debug_fallback.configure_from_map_data(_map_data, _tileset_data)
@@ -90,6 +102,43 @@ func get_render_block_id(cell: Vector2i) -> int:
 	return _local_block_id(cell)
 
 
+func get_normal_layer_rendering_status() -> Dictionary:
+	return _normal_layer_rendering_status()
+
+
+func get_layer_draw_records_for_cell(cell: Vector2i) -> Dictionary:
+	var block_id := _local_block_id(cell)
+	if block_id < 0:
+		return {
+			"cell": [cell.x, cell.y],
+			"block_id": block_id,
+			"runtime_layer_path": "empty",
+			"records": [],
+		}
+
+	if _normal_layer_rendering_available() and _is_normal_layer_block(block_id):
+		var records := []
+		for role in LAYER_ROLE_IDS:
+			records.append(_layer_draw_record_for_role(role, block_id))
+		return {
+			"cell": [cell.x, cell.y],
+			"block_id": block_id,
+			"source_layer_type": "METATILE_LAYER_TYPE_NORMAL",
+			"source_layer_type_value": NORMAL_LAYER_TYPE,
+			"runtime_layer_path": "normal_layer_atlases",
+			"records": records,
+		}
+
+	return {
+		"cell": [cell.x, cell.y],
+		"block_id": block_id,
+		"source_layer_type": _source_layer_type_name(block_id),
+		"source_layer_type_value": int(_metatile_layer_types.get(block_id, -1)),
+		"runtime_layer_path": "flattened_fallback_or_pending",
+		"records": [],
+	}
+
+
 func get_renderer_contract() -> Dictionary:
 	return {
 		"schema_version": 1,
@@ -97,6 +146,10 @@ func get_renderer_contract() -> Dictionary:
 		"replaces_or_wraps": LEGACY_RENDERER_NAME,
 		"runtime_status": RUNTIME_STATUS,
 		"source_equivalent_for_runtime_layering": false,
+		"normal_layer_rendering": _normal_layer_rendering_status(),
+		"implemented_layer_types": [
+			"METATILE_LAYER_TYPE_NORMAL",
+		],
 		"debug_fallback_active": _debug_fallback != null,
 		"debug_fallback_script": _debug_fallback_script_path(),
 		"compatible_methods": [
@@ -109,6 +162,8 @@ func get_renderer_contract() -> Dictionary:
 			"clear_door_animation",
 			"clear_door_animations",
 			"get_door_animation_overlay_count",
+			"get_normal_layer_rendering_status",
+			"get_layer_draw_records_for_cell",
 		],
 		"source_trace": [
 			"include/global.fieldmap.h:METATILE_LAYER_TYPE_*",
@@ -152,6 +207,7 @@ func get_runtime_layer_status() -> Dictionary:
 		"status": RUNTIME_STATUS,
 		"map_size": [map_size.x, map_size.y],
 		"tile_size": tile_size,
+		"normal_layer_rendering": _normal_layer_rendering_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"source_equivalent_for_runtime_layering": false,
 		"unsupported": get_unsupported(),
@@ -203,15 +259,15 @@ func get_unsupported() -> Array:
 	return [
 		{
 			"code": UNSUPPORTED_SOURCE_EQUIVALENT,
-			"status": "pending",
+			"status": "partially_implemented",
 			"source": "src/field_camera.c:DrawMetatile",
-			"detail": "The owner contract exists, but separate bottom/middle/top runtime rendering is not implemented yet.",
+			"detail": "Normal metatiles consume exported bottom/middle/top render data; covered/split metatiles and source-equivalent object-depth interleave are still pending.",
 		},
 		{
 			"code": UNSUPPORTED_FLATTENED_ATLAS,
-			"status": "pending",
+			"status": "partial_fallback",
 			"source": "tools/importer/export_tilesets.py",
-			"detail": "The current fallback still draws flattened debug atlas tiles and is not source-equivalent for runtime layering.",
+			"detail": "Covered/split and no-layer-data fallback drawing still uses flattened debug atlas tiles when DebugMapPlane is not active.",
 		},
 		{
 			"code": UNSUPPORTED_OBJECT_DEPTH,
@@ -243,7 +299,7 @@ func _layer_rule_contract() -> Dictionary:
 			"bottom_source_slot_to_runtime_layer": "middle",
 			"top_source_slot_to_runtime_layer": "top",
 			"object_depth_effect": "top half covers object-event/player presentation",
-			"implementation_status": "pending_render_implementation",
+			"implementation_status": "implemented_first_pass_runtime_rendering",
 		},
 		"covered": {
 			"source_layer_type": "METATILE_LAYER_TYPE_COVERED",
@@ -270,6 +326,32 @@ func _layer_rule_contract() -> Dictionary:
 	}
 
 
+func _draw() -> void:
+	var has_layer_rendering := _normal_layer_rendering_available()
+	var should_draw_flattened_fallback := _debug_fallback == null
+	if not has_layer_rendering and not should_draw_flattened_fallback:
+		return
+
+	for y in range(map_size.y):
+		for x in range(map_size.x):
+			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
+			var block_id := _local_block_id(Vector2i(x, y))
+			if has_layer_rendering and _is_normal_layer_block(block_id):
+				if _draw_normal_layer_tile(block_id, rect):
+					if _grid_visible:
+						draw_rect(rect, Color(0.22, 0.31, 0.24, 0.55), false, 1.0)
+					continue
+			if should_draw_flattened_fallback:
+				if not _draw_flattened_tile(block_id, rect):
+					draw_rect(rect, _fallback_tile_color(block_id, x, y), true)
+				if _grid_visible:
+					draw_rect(rect, Color(0.22, 0.31, 0.24, 0.55), false, 1.0)
+
+	if should_draw_flattened_fallback:
+		var border := Rect2(Vector2.ZERO, Vector2(map_size.x * tile_size, map_size.y * tile_size))
+		draw_rect(border, Color(0.08, 0.12, 0.10, 0.95), false, 2.0)
+
+
 func _map_size_from_map_data(source_map_data: Dictionary) -> Vector2i:
 	var layout_info = source_map_data.get("layout", {})
 	if typeof(layout_info) != TYPE_DICTIONARY:
@@ -287,6 +369,230 @@ func _tile_size_from_tileset(source_tileset_data: Dictionary) -> int:
 	return max(1, int(atlas_info.get("tile_size", DEFAULT_TILE_SIZE)))
 
 
+func _configure_layer_rendering(source_tileset_data: Dictionary) -> void:
+	_layer_textures.clear()
+	_layer_atlas_info.clear()
+	_metatile_layer_types.clear()
+	_normal_layer_metatile_count = 0
+
+	var layer_rendering = source_tileset_data.get("layer_rendering", {})
+	if typeof(layer_rendering) != TYPE_DICTIONARY:
+		return
+	var layer_atlases = layer_rendering.get("layer_atlases", {})
+	if typeof(layer_atlases) != TYPE_DICTIONARY:
+		return
+
+	for role in LAYER_ROLE_IDS:
+		var atlas_record = layer_atlases.get(role, {})
+		if typeof(atlas_record) != TYPE_DICTIONARY:
+			continue
+		var texture := _texture_from_image_record(atlas_record)
+		if texture == null:
+			continue
+		_layer_textures[role] = texture
+		_layer_atlas_info[role] = {
+			"tile_size": max(1, int(atlas_record.get("tile_size", tile_size))),
+			"columns": int(atlas_record.get("columns", 0)),
+			"total_metatiles": int(atlas_record.get("total_metatiles", 0)),
+		}
+
+	var metatile_entries = source_tileset_data.get("metatile_entries", [])
+	if typeof(metatile_entries) != TYPE_ARRAY:
+		return
+	for entry in metatile_entries:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		var metatile_id := int(entry.get("id", -1))
+		if metatile_id < 0:
+			continue
+		var attribute = entry.get("attribute", {})
+		if typeof(attribute) != TYPE_DICTIONARY:
+			continue
+		var layer_type := int(attribute.get("layer_type", -1))
+		_metatile_layer_types[metatile_id] = layer_type
+		if layer_type == NORMAL_LAYER_TYPE:
+			_normal_layer_metatile_count += 1
+
+
+func _configure_flattened_atlas(source_tileset_data: Dictionary) -> void:
+	_flattened_atlas_texture = null
+	_flattened_atlas_tile_size = tile_size
+	_flattened_atlas_columns = 0
+	_flattened_atlas_total_metatiles = 0
+
+	var atlas_info = source_tileset_data.get("atlas", {})
+	if typeof(atlas_info) != TYPE_DICTIONARY:
+		return
+	_flattened_atlas_tile_size = max(1, int(atlas_info.get("tile_size", tile_size)))
+	_flattened_atlas_columns = int(atlas_info.get("columns", 0))
+	_flattened_atlas_total_metatiles = int(atlas_info.get("total_metatiles", 0))
+	_flattened_atlas_texture = _texture_from_image_record(atlas_info)
+
+
+func _normal_layer_rendering_status() -> Dictionary:
+	return {
+		"status": "implemented_first_pass" if _normal_layer_rendering_available() else "missing_generated_layer_data",
+		"source_layer_type": "METATILE_LAYER_TYPE_NORMAL",
+		"source_layer_type_value": NORMAL_LAYER_TYPE,
+		"drawn_roles": _loaded_layer_roles(),
+		"required_roles": LAYER_ROLE_IDS.duplicate(),
+		"normal_metatile_count": _normal_layer_metatile_count,
+		"normal_runtime_path_active": _normal_layer_rendering_available(),
+		"covered_split_runtime_path": "flattened_fallback_or_pending",
+		"object_depth_interleave": "pending",
+	}
+
+
+func _normal_layer_rendering_available() -> bool:
+	if _normal_layer_metatile_count <= 0:
+		return false
+	for role in LAYER_ROLE_IDS:
+		if not _layer_textures.has(role):
+			return false
+	return true
+
+
+func _loaded_layer_roles() -> Array:
+	var roles := []
+	for role in LAYER_ROLE_IDS:
+		if _layer_textures.has(role):
+			roles.append(role)
+	return roles
+
+
+func _is_normal_layer_block(block_id: int) -> bool:
+	if block_id < 0 or not _metatile_layer_types.has(block_id):
+		return false
+	return int(_metatile_layer_types[block_id]) == NORMAL_LAYER_TYPE
+
+
+func _draw_normal_layer_tile(block_id: int, rect: Rect2) -> bool:
+	for role in LAYER_ROLE_IDS:
+		if not _draw_layer_atlas_tile(role, block_id, rect):
+			return false
+	return true
+
+
+func _draw_layer_atlas_tile(role: String, block_id: int, rect: Rect2) -> bool:
+	var texture = _layer_textures.get(role, null)
+	if not texture is Texture2D:
+		return false
+	var source_rect := _layer_source_rect(role, block_id)
+	if source_rect.size == Vector2.ZERO:
+		return false
+	draw_texture_rect_region(texture, rect, source_rect)
+	return true
+
+
+func _draw_flattened_tile(block_id: int, rect: Rect2) -> bool:
+	return _draw_texture_atlas_tile(
+		_flattened_atlas_texture,
+		block_id,
+		rect,
+		_flattened_atlas_tile_size,
+		_flattened_atlas_columns,
+		_flattened_atlas_total_metatiles
+	)
+
+
+func _draw_texture_atlas_tile(
+	texture: Texture2D,
+	block_id: int,
+	rect: Rect2,
+	atlas_tile_size: int,
+	atlas_columns: int,
+	total_metatiles: int
+) -> bool:
+	if texture == null or atlas_columns <= 0 or block_id < 0:
+		return false
+	if total_metatiles > 0 and block_id >= total_metatiles:
+		return false
+	var atlas_column := block_id % atlas_columns
+	var atlas_row := int(floor(float(block_id) / float(atlas_columns)))
+	var source_rect := Rect2(
+		atlas_column * atlas_tile_size,
+		atlas_row * atlas_tile_size,
+		atlas_tile_size,
+		atlas_tile_size
+	)
+	draw_texture_rect_region(texture, rect, source_rect)
+	return true
+
+
+func _layer_draw_record_for_role(role: String, block_id: int) -> Dictionary:
+	var source_rect := _layer_source_rect(role, block_id)
+	return {
+		"role": role,
+		"source_bg_equivalent": _source_bg_equivalent(role),
+		"source_rect": {
+			"x": int(source_rect.position.x),
+			"y": int(source_rect.position.y),
+			"w": int(source_rect.size.x),
+			"h": int(source_rect.size.y),
+		},
+		"texture_loaded": _layer_textures.has(role),
+	}
+
+
+func _layer_source_rect(role: String, block_id: int) -> Rect2:
+	var atlas_info = _layer_atlas_info.get(role, {})
+	if typeof(atlas_info) != TYPE_DICTIONARY:
+		return Rect2()
+	var atlas_tile_size := int(atlas_info.get("tile_size", tile_size))
+	var atlas_columns := int(atlas_info.get("columns", 0))
+	var total_metatiles := int(atlas_info.get("total_metatiles", 0))
+	if atlas_tile_size <= 0 or atlas_columns <= 0 or block_id < 0:
+		return Rect2()
+	if total_metatiles > 0 and block_id >= total_metatiles:
+		return Rect2()
+	return Rect2(
+		(block_id % atlas_columns) * atlas_tile_size,
+		int(floor(float(block_id) / float(atlas_columns))) * atlas_tile_size,
+		atlas_tile_size,
+		atlas_tile_size
+	)
+
+
+func _source_bg_equivalent(role: String) -> String:
+	match role:
+		"bottom":
+			return "BG3"
+		"middle":
+			return "BG2"
+		"top":
+			return "BG1"
+	return ""
+
+
+func _source_layer_type_name(block_id: int) -> String:
+	match int(_metatile_layer_types.get(block_id, -1)):
+		0:
+			return "METATILE_LAYER_TYPE_NORMAL"
+		1:
+			return "METATILE_LAYER_TYPE_COVERED"
+		2:
+			return "METATILE_LAYER_TYPE_SPLIT"
+	return "UNKNOWN"
+
+
+func _texture_from_image_record(record: Dictionary) -> Texture2D:
+	var image_path := String(record.get("image", ""))
+	if image_path.is_empty():
+		return null
+	var loaded_resource := load(image_path)
+	if loaded_resource is Texture2D:
+		return loaded_resource
+
+	var load_path := image_path
+	if load_path.begins_with("res://") or load_path.begins_with("user://"):
+		load_path = ProjectSettings.globalize_path(load_path)
+	var image := Image.new()
+	if image.load(load_path) != OK:
+		push_warning("Could not load layer-aware map texture: %s" % image_path)
+		return null
+	return ImageTexture.create_from_image(image)
+
+
 func _local_block_id(cell: Vector2i) -> int:
 	var block_ids = _map_data.get("block_ids", [])
 	if typeof(block_ids) != TYPE_ARRAY:
@@ -299,6 +605,22 @@ func _local_block_id(cell: Vector2i) -> int:
 	if cell.x < 0 or cell.x >= row.size():
 		return -1
 	return int(row[cell.x])
+
+
+func _fallback_tile_color(block_id: int, x: int, y: int) -> Color:
+	var fallback_colors := [
+		Color(0.44, 0.68, 0.36, 1.0),
+		Color(0.58, 0.76, 0.42, 1.0),
+		Color(0.72, 0.66, 0.45, 1.0),
+		Color(0.43, 0.58, 0.72, 1.0),
+		Color(0.55, 0.46, 0.70, 1.0),
+		Color(0.70, 0.52, 0.42, 1.0),
+		Color(0.45, 0.70, 0.62, 1.0),
+		Color(0.68, 0.70, 0.50, 1.0),
+	]
+	if block_id >= 0:
+		return fallback_colors[block_id % fallback_colors.size()]
+	return Color(0.64, 0.78, 0.50, 1.0) if (x + y) % 2 == 0 else Color(0.56, 0.72, 0.45, 1.0)
 
 
 func _debug_fallback_script_path() -> String:

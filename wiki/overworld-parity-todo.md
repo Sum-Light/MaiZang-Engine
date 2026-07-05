@@ -116,7 +116,7 @@ Flattened atlas debug-artifact update: `tools/importer/export_tilesets.py` now w
 
 - [x] Design a Godot map-rendering owner to replace or wrap `DebugMapPlane` for source layer parity.
 - [x] Export or build separate render data for bottom, middle, and top layer tiles.
-- [ ] Implement `METATILE_LAYER_TYPE_NORMAL`: source bottom/middle/top placement according to `global.fieldmap.h` comments and source tile slots.
+- [x] Implement `METATILE_LAYER_TYPE_NORMAL`: source bottom/middle/top placement according to `global.fieldmap.h` comments and source tile slots.
 - [ ] Implement `METATILE_LAYER_TYPE_COVERED`.
 - [ ] Implement `METATILE_LAYER_TYPE_SPLIT`.
 - [ ] Render player and object sprites at the correct visual depth between map layers.
@@ -130,6 +130,8 @@ Flattened atlas debug-artifact update: `tools/importer/export_tilesets.py` now w
 Layer-aware renderer owner design update: `scripts/overworld/layer_aware_map_renderer.gd` now defines the presentation owner contract for replacing or wrapping `DebugMapPlane`. The owner keeps the existing `Main`/`TransitionSequencePlayer` renderer API stable, delegates to `DebugMapPlane` as a debug fallback, and exposes the required source-traced inputs, bottom/middle/top/object-depth roles, normal/covered/split layer-rule contract, and explicit unsupported codes. It remains `owner_contract_only` and `source_equivalent_for_runtime_layering = false` until the next Section 5 items build separate render data and consume it for real layer drawing. `tools/godot_smoke/layer_aware_map_renderer_smoke.gd` verifies the contract, fallback delegation, door overlay compatibility, and absence of runtime palette/source-color keys.
 
 Layer render data export update: `tools/importer/export_tilesets.py` now writes `layer_rendering` metadata and bottom/middle/top RGBA layer atlases for all four first-slice generated tilesets. `metatile_entries[].render_layers` maps normal/covered/split source tile slots to BG3/BG2/BG1 roles, keeps the normal-layer BG3 fill tile `0x3014` explicit, and leaves runtime consumption pending. `data/generated/overworld/import_summary.json` now reports 4/4 layer-rendering tilesets, 12/12 layer atlases, 2728/2728 generated metatile layer records, 0 missing layer images, and 0 missing layer records. `tools/importer/export_tilesets_layer_rendering_smoke.py` verifies layer-role records, layer-rule slot assignment, atlas image dimensions, and absence of runtime palette/source-color keys in the `layer_rendering` contract.
+
+Normal layer runtime update: `LayerAwareMapRenderer` now loads exported bottom/middle/top layer atlas textures and uses them for `METATILE_LAYER_TYPE_NORMAL` cells. Runtime status is `normal_layer_rendering_first_pass`; `get_layer_draw_records_for_cell` exposes the same normal-layer draw records used by `_draw()`, with BG3/BG2/BG1 roles and atlas source rects matching generated `metatile_entries[].render_layers`. Covered and split layer types still use flattened fallback or pending paths, and object-depth interleave remains explicitly unsupported. `tools/godot_smoke/layer_aware_map_renderer_smoke.gd` now verifies the normal runtime path, 369 Littleroot normal metatiles, loaded bottom/middle/top roles, generated rect parity, fallback delegation, and absence of runtime palette/source-color keys.
 
 ### 6. Dynamic Metatile And Tileset Animations
 
