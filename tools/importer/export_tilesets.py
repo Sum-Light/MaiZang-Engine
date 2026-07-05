@@ -48,6 +48,7 @@ DOOR_SOUND_EFFECTS = {
     "DOOR_SOUND_SLIDING": "SE_SLIDING_DOOR",
     "DOOR_SOUND_ARENA": "SE_REPEL",
 }
+FLATTENED_ATLAS_UNSUPPORTED_CODE = "flattened_debug_atlas_not_source_equivalent"
 
 FLIP_LEFT_RIGHT = Image.Transpose.FLIP_LEFT_RIGHT if hasattr(Image, "Transpose") else Image.FLIP_LEFT_RIGHT
 FLIP_TOP_BOTTOM = Image.Transpose.FLIP_TOP_BOTTOM if hasattr(Image, "Transpose") else Image.FLIP_TOP_BOTTOM
@@ -153,6 +154,23 @@ def metatile_label_records(metatile_labels):
         }
         for name in sorted(metatile_labels)
     ]
+
+
+def flattened_atlas_runtime_layering_policy():
+    return {
+        "artifact_kind": "flattened_metatile_debug_atlas",
+        "debug_only": True,
+        "intended_use": "DebugMapPlane visual preview only",
+        "source_equivalent_for_runtime_layering": False,
+        "runtime_layering_status": "not_source_equivalent",
+        "unsupported_code": FLATTENED_ATLAS_UNSUPPORTED_CODE,
+        "not_source_equivalent_reason": (
+            "The atlas alpha-composites all source metatile tile slots into one 16x16 RGBA image, "
+            "so it cannot preserve METATILE_LAYER_TYPE_NORMAL/COVERED/SPLIT BG placement, "
+            "player/object depth interleaving, per-layer setmetatile redraws, or source door forced-covered drawing."
+        ),
+        "replacement_track": "wiki/overworld-parity-todo.md section 5 layer-aware map rendering",
+    }
 
 
 def parse_int_list(value):
@@ -713,6 +731,7 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
     atlas.save(atlas_path)
 
     data_path = output_data_root / "tilesets" / "{}.json".format(map_slug)
+    flattened_atlas_policy = flattened_atlas_runtime_layering_policy()
     data = {
         "schema_version": 1,
         "generated_by": "tools/importer/export_tilesets.py",
@@ -757,7 +776,17 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
             "total_metatiles": total_metatiles,
             "primary_metatile_count": NUM_METATILES_IN_PRIMARY,
             "secondary_metatile_count": len(secondary_metatiles),
+            "artifact_kind": flattened_atlas_policy["artifact_kind"],
+            "debug_only": flattened_atlas_policy["debug_only"],
+            "intended_use": flattened_atlas_policy["intended_use"],
+            "source_equivalent_for_runtime_layering": flattened_atlas_policy[
+                "source_equivalent_for_runtime_layering"
+            ],
+            "runtime_layering_status": flattened_atlas_policy["runtime_layering_status"],
+            "unsupported_code": flattened_atlas_policy["unsupported_code"],
+            "not_source_equivalent_reason": flattened_atlas_policy["not_source_equivalent_reason"],
         },
+        "runtime_layering_policy": flattened_atlas_policy,
         "used_metatile_ids": used_metatile_ids,
         "door_animations": door_animations,
         "metatile_entries": metatile_entries,
@@ -773,6 +802,13 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
         "primary_tileset": primary_symbol,
         "secondary_tileset": secondary_symbol,
         "total_metatiles": total_metatiles,
+        "atlas_artifact_kind": flattened_atlas_policy["artifact_kind"],
+        "atlas_debug_only": flattened_atlas_policy["debug_only"],
+        "atlas_source_equivalent_for_runtime_layering": flattened_atlas_policy[
+            "source_equivalent_for_runtime_layering"
+        ],
+        "atlas_runtime_layering_status": flattened_atlas_policy["runtime_layering_status"],
+        "atlas_unsupported_code": flattened_atlas_policy["unsupported_code"],
     }
     write_manifest(
         output_data_root / "import_manifest.json",

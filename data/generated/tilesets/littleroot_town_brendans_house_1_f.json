@@ -5670,7 +5670,24 @@
     "rows": 23,
     "total_metatiles": 708,
     "primary_metatile_count": 512,
-    "secondary_metatile_count": 196
+    "secondary_metatile_count": 196,
+    "artifact_kind": "flattened_metatile_debug_atlas",
+    "debug_only": true,
+    "intended_use": "DebugMapPlane visual preview only",
+    "source_equivalent_for_runtime_layering": false,
+    "runtime_layering_status": "not_source_equivalent",
+    "unsupported_code": "flattened_debug_atlas_not_source_equivalent",
+    "not_source_equivalent_reason": "The atlas alpha-composites all source metatile tile slots into one 16x16 RGBA image, so it cannot preserve METATILE_LAYER_TYPE_NORMAL/COVERED/SPLIT BG placement, player/object depth interleaving, per-layer setmetatile redraws, or source door forced-covered drawing."
+  },
+  "runtime_layering_policy": {
+    "artifact_kind": "flattened_metatile_debug_atlas",
+    "debug_only": true,
+    "intended_use": "DebugMapPlane visual preview only",
+    "source_equivalent_for_runtime_layering": false,
+    "runtime_layering_status": "not_source_equivalent",
+    "unsupported_code": "flattened_debug_atlas_not_source_equivalent",
+    "not_source_equivalent_reason": "The atlas alpha-composites all source metatile tile slots into one 16x16 RGBA image, so it cannot preserve METATILE_LAYER_TYPE_NORMAL/COVERED/SPLIT BG placement, player/object depth interleaving, per-layer setmetatile redraws, or source door forced-covered drawing.",
+    "replacement_track": "wiki/overworld-parity-todo.md section 5 layer-aware map rendering"
   },
   "used_metatile_ids": [
     2,

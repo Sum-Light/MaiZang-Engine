@@ -144,7 +144,7 @@ Current export behavior:
 - Preserves source map header metadata including layout id, music, region map section, `requires_flash`, weather, map type, battle scene, movement flags, show-map-name flag, shared event/script map refs, `connections_no_include`, and FRLG `floor_number`.
 - Preserves existing script manifest entries when updating the shared import manifest.
 
-`tools/importer/export_tilesets.py` exports one map's primary/secondary tileset pair into a source-color-baked RGBA metatile atlas. It accepts `--config`, `--source`, `--map`, `--output-data-root`, and `--output-asset-root`.
+`tools/importer/export_tilesets.py` exports one map's primary/secondary tileset pair into source-color-baked tileset metadata plus a flattened RGBA metatile atlas. The atlas is a temporary debug-only artifact and is explicitly marked non-equivalent for runtime source-layer rendering. It accepts `--config`, `--source`, `--map`, `--output-data-root`, and `--output-asset-root`.
 
 Current tileset export behavior:
 
@@ -157,7 +157,7 @@ Current tileset export behavior:
 - Resolves source color slots with primary slots 0-5 and secondary slots 6-12 during import, then bakes colors into a normal RGBA PNG.
 - Flattens each 16x16 metatile by compositing bottom entries 0-3 and top entries 4-7.
 - Bakes supported source door animation tile strips into normal RGBA frame atlases under `assets/generated/door_anims/`; palette numbers are used only at import time.
-- Writes `assets/generated/tilesets/littleroot_town_metatiles.png`.
+- Writes `assets/generated/tilesets/littleroot_town_metatiles.png` as a debug-only flattened preview, with generated atlas metadata `source_equivalent_for_runtime_layering = false`.
 - Writes `data/generated/tilesets/littleroot_town.json` with atlas metadata, source tile entries, metatile attributes, metatile behavior names, metatile label ids, used metatile ids, coverage notes, and warnings.
 - Writes generated `door_animations` metadata into the tileset JSON for supported used door metatiles, including source labels, metatile ids, frame size, frame rectangles, 60fps frame timing, open/close frame indices, and source sound-effect symbol.
 - Updates `data/generated/import_manifest.json` with exported tileset metadata while preserving existing entries for other maps, tilesets, and scripts.

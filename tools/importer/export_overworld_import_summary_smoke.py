@@ -81,6 +81,19 @@ def main(argv):
     _assert(generated["tileset_record_count"] == 4, "unexpected generated tileset record count")
     _assert(generated["unique_primary_tileset_count"] == 2, "unexpected generated primary tileset count")
     _assert(generated["unique_secondary_tileset_count"] == 2, "unexpected generated secondary tileset count")
+    _assert(generated["tileset_flattened_debug_atlas_count"] == 4, "unexpected debug atlas count")
+    _assert(
+        generated["tileset_runtime_layering_non_equivalent_atlas_count"] == 4,
+        "unexpected non-equivalent runtime layering atlas count",
+    )
+    _assert(
+        generated["tileset_runtime_layering_source_equivalent_atlas_count"] == 0,
+        "flattened atlases must not be marked source-equivalent for runtime layering",
+    )
+    _assert(
+        generated["tileset_runtime_layering_metadata_missing_count"] == 0,
+        "missing generated atlas runtime-layering metadata",
+    )
     _assert(generated["tileset_header_report_count"] == 1, "missing tileset header report")
     _assert(generated["tileset_header_record_count"] == 139, "unexpected generated tileset header count")
     _assert(
@@ -363,7 +376,7 @@ def main(argv):
     _assert(generated["warning_count"] == 20, "unexpected generated warning count")
     _assert(generated["parity_matrix_unsupported_entry_count"] == 15, "unexpected parity unsupported entry count")
     _assert(generated["object_event_sprite_unsupported_note_count"] == 15, "unexpected object sprite unsupported note count")
-    _assert(generated["explicit_summary_unsupported_count"] == 4, "unexpected explicit unsupported summary count")
+    _assert(generated["explicit_summary_unsupported_count"] == 5, "unexpected explicit unsupported summary count")
 
     _assert(coverage["maps"]["percent"] == 100.0, "unexpected map coverage percent")
     _assert(coverage["layouts"]["percent"] == 100.0, "unexpected layout coverage percent")
@@ -475,6 +488,10 @@ def main(argv):
     _assert("audio_playback_pending" in unsupported_codes, "missing audio unsupported code")
     _assert("object_event_sprite_coverage_pending" in unsupported_codes, "missing object sprite coverage code")
     _assert("door_overlay_not_source_equivalent" in unsupported_codes, "missing door unsupported code")
+    _assert(
+        "flattened_debug_atlas_not_source_equivalent" in unsupported_codes,
+        "missing flattened atlas unsupported code",
+    )
 
     map_names = {entry["name"] for entry in exported["details"]["maps"]}
     _assert("LittlerootTown" in map_names, "missing Littleroot summary")
@@ -486,6 +503,24 @@ def main(argv):
         "missing standalone layout summary",
     )
     _assert(exported["details"]["movement_op_counts"]["step_end"] == 1472, "unexpected step_end count")
+    for tileset in exported["details"]["tilesets"]:
+        _assert(
+            tileset["atlas_artifact_kind"] == "flattened_metatile_debug_atlas",
+            "expected flattened debug atlas artifact kind",
+        )
+        _assert(bool(tileset["atlas_debug_only"]), "expected debug-only atlas")
+        _assert(
+            tileset["atlas_source_equivalent_for_runtime_layering"] is False,
+            "expected non-equivalent atlas runtime-layering metadata",
+        )
+        _assert(
+            tileset["atlas_runtime_layering_status"] == "not_source_equivalent",
+            "expected non-equivalent runtime-layering status",
+        )
+        _assert(
+            tileset["atlas_unsupported_code"] == "flattened_debug_atlas_not_source_equivalent",
+            "expected flattened atlas unsupported code",
+        )
 
     print("export_overworld_import_summary_smoke: ok")
     return 0

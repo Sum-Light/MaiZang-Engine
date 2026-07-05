@@ -565,6 +565,10 @@ def count_generated_tilesets(project_root, tileset_entries):
         "tileset_animation_count": 0,
         "warning_array_count": 0,
         "missing_tileset_file_count": 0,
+        "flattened_debug_atlas_count": 0,
+        "runtime_layering_source_equivalent_atlas_count": 0,
+        "runtime_layering_non_equivalent_atlas_count": 0,
+        "runtime_layering_metadata_missing_count": 0,
     }
     primary = set()
     secondary = set()
@@ -584,12 +588,42 @@ def count_generated_tilesets(project_root, tileset_entries):
         animations = door_animations.get("animations", [])
         frame_count = sum(len(animation.get("frames", [])) for animation in animations)
         warning_count = count_recursive_warning_arrays(data)
+        atlas_info = data.get("atlas", {})
+        if not isinstance(atlas_info, dict):
+            atlas_info = {}
+        atlas_artifact_kind = str(
+            atlas_info.get("artifact_kind", entry.get("atlas_artifact_kind", ""))
+        )
+        atlas_debug_only = bool(atlas_info.get("debug_only", entry.get("atlas_debug_only", False)))
+        source_equivalent = atlas_info.get(
+            "source_equivalent_for_runtime_layering",
+            entry.get("atlas_source_equivalent_for_runtime_layering"),
+        )
+        runtime_layering_status = str(
+            atlas_info.get("runtime_layering_status", entry.get("atlas_runtime_layering_status", ""))
+        )
+        atlas_unsupported_code = str(
+            atlas_info.get("unsupported_code", entry.get("atlas_unsupported_code", ""))
+        )
+        if atlas_artifact_kind == "flattened_metatile_debug_atlas" and atlas_debug_only:
+            totals["flattened_debug_atlas_count"] += 1
+        if source_equivalent is True:
+            totals["runtime_layering_source_equivalent_atlas_count"] += 1
+        elif source_equivalent is False:
+            totals["runtime_layering_non_equivalent_atlas_count"] += 1
+        else:
+            totals["runtime_layering_metadata_missing_count"] += 1
         summary = {
             "map": entry.get("map"),
             "path": entry.get("path"),
             "primary_tileset": primary_symbol,
             "secondary_tileset": secondary_symbol,
             "total_metatiles": int(entry.get("total_metatiles", 0)),
+            "atlas_artifact_kind": atlas_artifact_kind,
+            "atlas_debug_only": atlas_debug_only,
+            "atlas_source_equivalent_for_runtime_layering": source_equivalent,
+            "atlas_runtime_layering_status": runtime_layering_status,
+            "atlas_unsupported_code": atlas_unsupported_code,
             "door_animation_count": len(animations),
             "door_animation_frame_count": frame_count,
             "warning_array_count": warning_count,
@@ -917,6 +951,8 @@ def build_export(source_root, output_root):
     explicit_unsupported = build_explicit_unsupported(
         source_counts,
         {
+            "tileset_record_count": tileset_totals["tileset_record_count"],
+            "tileset_flattened_debug_atlas_count": tileset_totals["flattened_debug_atlas_count"],
             "door_animation_count": tileset_totals["door_animation_count"],
             "tileset_animation_count": tileset_totals["tileset_animation_count"],
             "object_event_graphic_count": object_sprite_count,
@@ -1098,6 +1134,16 @@ def build_export(source_root, output_root):
             tileset_header_tile_image_reference_pair_missing_header_count
         ),
         "metatile_record_count": tileset_totals["metatile_record_count"],
+        "tileset_flattened_debug_atlas_count": tileset_totals["flattened_debug_atlas_count"],
+        "tileset_runtime_layering_source_equivalent_atlas_count": (
+            tileset_totals["runtime_layering_source_equivalent_atlas_count"]
+        ),
+        "tileset_runtime_layering_non_equivalent_atlas_count": (
+            tileset_totals["runtime_layering_non_equivalent_atlas_count"]
+        ),
+        "tileset_runtime_layering_metadata_missing_count": (
+            tileset_totals["runtime_layering_metadata_missing_count"]
+        ),
         "script_bundle_count": script_totals["script_bundle_count"],
         "map_script_bundle_count": map_script_bundle_count,
         "shared_script_bundle_count": shared_script_bundle_count,
@@ -1266,6 +1312,13 @@ def build_explicit_unsupported(source_counts, generated_counts):
             "detail": "Only used first-slice door animation atlases are generated, and runtime playback is still overlay-based instead of source layer mutation.",
         },
         {
+            "code": "flattened_debug_atlas_not_source_equivalent",
+            "status": "first_pass",
+            "source_count": generated_counts["tileset_record_count"],
+            "generated_count": generated_counts["tileset_flattened_debug_atlas_count"],
+            "detail": "Generated metatile atlases are temporary debug-only flattened RGBA previews and are not source-equivalent for runtime BG layer ordering.",
+        },
+        {
             "code": "object_event_sprite_coverage_pending",
             "status": "first_pass",
             "source_count": source_counts["object_event_graphics_info_count"],
@@ -1357,6 +1410,16 @@ def manifest_entry_for(exported, output_path):
         ),
         "generated_tileset_tile_image_reference_pair_absent_tile_entry_count": (
             generated["tileset_header_tile_image_reference_pair_absent_tile_entry_count"]
+        ),
+        "generated_tileset_flattened_debug_atlas_count": generated["tileset_flattened_debug_atlas_count"],
+        "generated_tileset_runtime_layering_non_equivalent_atlas_count": (
+            generated["tileset_runtime_layering_non_equivalent_atlas_count"]
+        ),
+        "generated_tileset_runtime_layering_source_equivalent_atlas_count": (
+            generated["tileset_runtime_layering_source_equivalent_atlas_count"]
+        ),
+        "generated_tileset_runtime_layering_metadata_missing_count": (
+            generated["tileset_runtime_layering_metadata_missing_count"]
         ),
         "tileset_missing_palette_source_candidate_count": generated["tileset_missing_palette_source_candidate_count"],
         "tileset_header_missing_callback_source_count": generated["tileset_header_missing_callback_source_count"],
