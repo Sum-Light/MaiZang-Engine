@@ -16,10 +16,13 @@ from source_probe import load_config
 ASSET_CATEGORY = "interface"
 ASSET_OUTPUT_DIR = "battle_interface"
 COMPOSITE_OUTPUT_DIR = "battle_interface/composites"
+FONT_ATLAS_OUTPUT_DIR = "battle_fonts"
 VISIBLE_VIEWPORT = {"w": 240, "h": 160}
 TILE_SIZE = 8
+FONT_GLYPH_CELL_SIZE = 16
 
 BATTLE_INTERFACE_DIR = Path("graphics/battle_interface")
+FONT_GRAPHICS_DIR = Path("graphics/fonts")
 GRAPHICS_SOURCE = Path("src/graphics.c")
 BATTLE_BG_SOURCE = Path("src/battle_bg.c")
 BATTLE_MESSAGE_SOURCE = Path("src/battle_message.c")
@@ -177,6 +180,35 @@ FONT_WIDTH_SYMBOLS = {
     "FONT_SHORT_NARROW": "gFontShortNarrowLatinGlyphWidths",
     "FONT_SHORT_NARROWER": "gFontShortNarrowerLatinGlyphWidths",
 }
+
+FONT_LATIN_ATLAS_PNG = {
+    "FONT_SMALL": "latin_small.png",
+    "FONT_NORMAL": "latin_normal.png",
+    "FONT_SHORT": "latin_short.png",
+    "FONT_SHORT_COPY_1": "latin_short.png",
+    "FONT_SHORT_COPY_2": "latin_short.png",
+    "FONT_SHORT_COPY_3": "latin_short.png",
+    "FONT_NARROW": "latin_narrow.png",
+    "FONT_SMALL_NARROW": "latin_small_narrow.png",
+    "FONT_NARROWER": "latin_narrower.png",
+    "FONT_SMALL_NARROWER": "latin_small_narrower.png",
+    "FONT_SHORT_NARROW": "latin_short_narrow.png",
+    "FONT_SHORT_NARROWER": "latin_short_narrower.png",
+}
+
+FONT_CHINESE_ATLAS_PNG = {
+    "small": "chinese_small.png",
+    "normal": "chinese_normal.png",
+}
+
+FONT_ATLAS_SOURCE_TRACE = [
+    "src/fonts.c:gFont*LatinGlyphs",
+    "src/chinese_text.c:gFontSmallChineseGlyphs",
+    "src/chinese_text.c:gFontNormalChineseGlyphs",
+    "src/chinese_text.c:DecompressGlyph_Chinese",
+    "src/text.c:DecompressGlyphTile",
+    "graphics/fonts/*.png",
+]
 
 CHINESE_ENCODING_RULE = {
     "double_byte_high_min": 0x01,
@@ -707,6 +739,96 @@ def _parse_source_font_metrics(source_root):
     }
 
 
+def _build_source_font_atlases(source_root, output_asset_root):
+    records = {}
+    atlas_sources = sorted(set(FONT_LATIN_ATLAS_PNG.values()) | set(FONT_CHINESE_ATLAS_PNG.values()))
+    for filename in atlas_sources:
+        source_path = source_root / FONT_GRAPHICS_DIR / filename
+        atlas_id = Path(filename).stem
+        output_path = output_asset_root / FONT_ATLAS_OUTPUT_DIR / filename
+        record = {
+            "id": atlas_id,
+            "source": to_project_path(FONT_GRAPHICS_DIR / filename),
+            "kind": "source_font_atlas",
+            "runtime_asset_model": "ordinary_rgba_texture",
+            "source_trace": FONT_ATLAS_SOURCE_TRACE,
+        }
+        if not source_path.exists():
+            record["status"] = "missing_source_png"
+            records[atlas_id] = record
+            continue
+        asset = _convert_png_asset(source_path, output_path)
+        record.update(asset)
+        record.update({
+            "status": "generated_rgba_from_source_png",
+            "glyph_cell": {"w": FONT_GLYPH_CELL_SIZE, "h": FONT_GLYPH_CELL_SIZE},
+            "columns": int(asset["size"]["w"] // FONT_GLYPH_CELL_SIZE),
+            "rows": int(asset["size"]["h"] // FONT_GLYPH_CELL_SIZE),
+            "glyph_capacity": int(asset["size"]["w"] // FONT_GLYPH_CELL_SIZE) * int(asset["size"]["h"] // FONT_GLYPH_CELL_SIZE),
+            "text_color_status": "source_png_preview_colors",
+            "note": "The source PNG glyph pixels are baked to RGBA for Godot. Exact source text colors still come from RenderText color controls and remain separate presentation work.",
+        })
+        records[atlas_id] = record
+    return records
+
+
+def _font_uses_small_chinese_atlas(font_id):
+    return font_id in {"FONT_SMALL", "FONT_SMALL_NARROW", "FONT_SMALL_NARROWER"}
+
+
+def _glyph_atlas_binding_for_font(font_id, font_record, font_atlases):
+    latin_filename = FONT_LATIN_ATLAS_PNG.get(font_id, "")
+    latin_atlas_id = Path(latin_filename).stem if latin_filename else ""
+    chinese_atlas_id = "chinese_small" if _font_uses_small_chinese_atlas(font_id) else "chinese_normal"
+    latin_atlas = font_atlases.get(latin_atlas_id, {})
+    chinese_atlas = font_atlases.get(chinese_atlas_id, {})
+    binding = {
+        "status": "source_font_atlas_preview",
+        "runtime_asset_model": "ordinary_rgba_texture",
+        "glyph_cell": {"w": FONT_GLYPH_CELL_SIZE, "h": FONT_GLYPH_CELL_SIZE},
+        "latin_atlas_id": latin_atlas_id,
+        "latin_image": latin_atlas.get("image", ""),
+        "latin_columns": int(latin_atlas.get("columns", 0)),
+        "latin_rows": int(latin_atlas.get("rows", 0)),
+        "latin_glyph_capacity": int(latin_atlas.get("glyph_capacity", 0)),
+        "latin_glyph_count": int(font_record.get("latin_width_count", 0)),
+        "latin_index_rule": "glyph byte value indexes 16x16 cells left-to-right, top-to-bottom",
+        "chinese_atlas_id": chinese_atlas_id,
+        "chinese_image": chinese_atlas.get("image", ""),
+        "chinese_columns": int(chinese_atlas.get("columns", 0)),
+        "chinese_rows": int(chinese_atlas.get("rows", 0)),
+        "chinese_glyph_capacity": int(chinese_atlas.get("glyph_capacity", 0)),
+        "chinese_index_rule": CHINESE_ENCODING_RULE["glyph_index_rule"],
+        "chinese_punctuation_source": "latin_atlas",
+        "source_trace": FONT_ATLAS_SOURCE_TRACE,
+        "unsupported": [
+            "exact_render_text_color_controls_pending",
+            "exact_control_code_pixel_side_effects_pending",
+        ],
+    }
+    if not latin_atlas_id:
+        binding["status"] = "no_latin_atlas_for_font"
+    elif not latin_atlas or not chinese_atlas:
+        binding["status"] = "missing_source_font_atlas"
+    return binding
+
+
+def _attach_font_atlas_bindings(font_metrics, font_atlases):
+    if not isinstance(font_metrics, dict):
+        return 0
+    fonts = font_metrics.get("fonts", {})
+    if not isinstance(fonts, dict):
+        return 0
+    count = 0
+    for font_id, record in fonts.items():
+        if not isinstance(record, dict) or font_id not in FONT_WIDTH_SYMBOLS:
+            continue
+        binding = _glyph_atlas_binding_for_font(font_id, record, font_atlases)
+        record["glyph_atlas"] = binding
+        count += 1
+    return count
+
+
 def _font_metrics_summary(font_metrics, font_id):
     fonts = font_metrics.get("fonts", {}) if isinstance(font_metrics, dict) else {}
     record = fonts.get(font_id, {}) if isinstance(fonts, dict) else {}
@@ -724,6 +846,7 @@ def _font_metrics_summary(font_metrics, font_id):
         "latin_width_table": record.get("latin_width_table", ""),
         "latin_width_count": record.get("latin_width_count", 0),
         "chinese_width_rule": record.get("chinese_width_rule", {}),
+        "glyph_atlas": record.get("glyph_atlas", {}),
     }
 
 
@@ -1198,9 +1321,11 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
     textures, texture_order = _build_texture_inventory(source_root, output_asset_root, definitions)
     source_colors, source_color_order = _build_source_color_provenance(source_root)
     tilemaps, tilemap_order, tilemap_warnings = _build_tilemaps(source_root, output_asset_root)
+    font_atlases = _build_source_font_atlases(source_root, output_asset_root)
     window_templates = _parse_window_templates(source_root)
     window_template_composite_rect_count = _attach_textbox_composite_window_rects(window_templates, tilemaps)
     window_text_info, text_printer = _parse_battle_window_text_info(source_root)
+    source_font_atlas_binding_count = _attach_font_atlas_bindings(text_printer.get("font_metrics", {}), font_atlases)
     battle_window_text_info_count = _attach_battle_window_text_info(window_templates, window_text_info)
     sections = _build_interface_sections(source_root, textures)
 
@@ -1217,6 +1342,8 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         "window_template_composite_rect_count": window_template_composite_rect_count,
         "battle_window_text_info_count": battle_window_text_info_count,
         "source_font_metric_count": int(text_printer.get("font_metrics", {}).get("font_count", 0)),
+        "source_font_atlas_count": len(font_atlases),
+        "source_font_atlas_binding_count": source_font_atlas_binding_count,
         "latin_width_table_count": len([
             record for record in text_printer.get("font_metrics", {}).get("fonts", {}).values()
             if isinstance(record, dict) and record.get("latin_width_count", 0)
@@ -1268,6 +1395,7 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         },
         "texture_order": texture_order,
         "textures": textures,
+        "source_font_atlases": font_atlases,
         "source_graphics_definitions": definitions,
         "source_color_order": source_color_order,
         "source_color_provenance": source_colors,

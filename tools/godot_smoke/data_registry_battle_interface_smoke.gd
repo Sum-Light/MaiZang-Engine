@@ -21,6 +21,8 @@ func _init() -> void:
 	_assert(int(stats.get("window_template_composite_rect_count", 0)) == 10, "unexpected battle window composite rect count")
 	_assert(int(stats.get("battle_window_text_info_count", 0)) == 25, "unexpected battle window text info count")
 	_assert(int(stats.get("source_font_metric_count", 0)) == 14, "unexpected source font metric count")
+	_assert(int(stats.get("source_font_atlas_count", 0)) == 11, "unexpected source font atlas count")
+	_assert(int(stats.get("source_font_atlas_binding_count", 0)) == 12, "unexpected source font atlas binding count")
 	_assert(int(stats.get("latin_width_table_count", 0)) >= 10, "unexpected latin width table count")
 	_assert(int(stats.get("healthbox_coord_group_count", 0)) == 2, "unexpected healthbox coord group count")
 	_assert(int(stats.get("healthbox_frame_texture_count", 0)) == 5, "unexpected healthbox frame texture count")
@@ -124,12 +126,25 @@ func _init() -> void:
 	var font_metrics := _dict(text_printer.get("font_metrics", {}))
 	var fonts := _dict(font_metrics.get("fonts", {}))
 	var normal_metrics := _dict(fonts.get("FONT_NORMAL", {}))
+	var normal_atlas := _dict(normal_metrics.get("glyph_atlas", {}))
 	var chinese_encoding := _dict(font_metrics.get("chinese_encoding", {}))
 	_assert(String(font_metrics.get("status", "")) == "generated_from_text_c_font_tables", "expected generated source font metrics")
 	_assert(int(font_metrics.get("font_count", 0)) == 14, "expected source font metric count")
 	_assert(int(normal_metrics.get("latin_width_count", 0)) >= 256, "expected normal latin width table")
+	_assert(String(normal_atlas.get("status", "")) == "source_font_atlas_preview", "expected normal source font atlas binding")
+	_assert(String(normal_atlas.get("latin_atlas_id", "")) == "latin_normal", "expected normal latin atlas")
+	_assert(String(normal_atlas.get("chinese_atlas_id", "")) == "chinese_normal", "expected normal Chinese atlas")
+	_assert(_asset_exists({"image": normal_atlas.get("latin_image", "")}), "expected normal Latin source font atlas PNG")
+	_assert(_array(normal_atlas.get("source_trace", [])).has("src/text.c:DecompressGlyphTile"), "expected font atlas source trace")
 	_assert(int(_dict(normal_metrics.get("chinese_width_rule", {})).get("default_width", 0)) == 12, "expected normal Chinese source width")
 	_assert(int(chinese_encoding.get("low_byte_max", 0)) == 0xF6, "expected Chinese low-byte max")
+	var source_font_atlases := _dict(data.get("source_font_atlases", {}))
+	var latin_normal := _dict(source_font_atlases.get("latin_normal", {}))
+	var chinese_normal := _dict(source_font_atlases.get("chinese_normal", {}))
+	_assert(_size_is(_dict(latin_normal.get("size", {})), 256, 512), "expected Latin normal atlas size")
+	_assert(_size_is(_dict(chinese_normal.get("size", {})), 256, 7088), "expected Chinese normal atlas size")
+	_assert(int(latin_normal.get("glyph_capacity", 0)) == 512, "expected Latin normal atlas capacity")
+	_assert(int(chinese_normal.get("glyph_capacity", 0)) == 7088, "expected Chinese normal atlas capacity")
 	var recorded_speeds := _array(text_printer.get("recorded_battle_text_speeds", []))
 	_assert(recorded_speeds.size() == 4, "expected recorded battle text speed count")
 	_assert(int(recorded_speeds[0]) == 8 and int(recorded_speeds[1]) == 4 and int(recorded_speeds[2]) == 1 and int(recorded_speeds[3]) == 0, "expected recorded battle text speeds")
@@ -160,6 +175,7 @@ func _init() -> void:
 		"texture_count": int(stats.get("texture_count", 0)),
 		"window_template_count": int(stats.get("window_template_count", 0)),
 		"source_font_metric_count": int(stats.get("source_font_metric_count", 0)),
+		"source_font_atlas_count": int(stats.get("source_font_atlas_count", 0)),
 		"tilemap_composite_count": int(stats.get("tilemap_composite_count", 0)),
 	}))
 	registry.free()

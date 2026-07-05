@@ -48,7 +48,15 @@ func _run() -> void:
 	_assert(int(menu_snapshot.get("resolved_frame_delay", -1)) == 0, "expected action menu source speed zero")
 	var menu_layout := _dict(menu_snapshot.get("source_glyph_layout", {}))
 	_assert(String(menu_snapshot.get("source_glyph_layout_status", "")) == "source_metrics_layout", "expected generated source font metrics")
+	_assert(String(menu_snapshot.get("source_font_atlas_status", "")) == "source_font_atlas_preview", "expected generated source font atlas binding")
+	_assert(int(menu_snapshot.get("source_font_atlas_binding_count", 0)) == 12, "expected source font atlas binding count")
 	_assert(int(menu_layout.get("glyph_count", 0)) == String(instant_menu_printer.get_visible_text()).length(), "expected synchronous menu layout glyph count")
+	var menu_layout_glyphs := _array(menu_layout.get("glyphs", []))
+	var first_menu_glyph := _dict(menu_layout_glyphs[0])
+	_assert(String(first_menu_glyph.get("source_font_atlas_status", "")) == "source_font_atlas_preview", "expected first menu glyph atlas status")
+	_assert(String(first_menu_glyph.get("source_font_atlas_id", "")) == "latin_normal", "expected first menu glyph Latin normal atlas")
+	_assert(int(first_menu_glyph.get("source_font_atlas_glyph_index", 0)) == 70, "expected F glyph source atlas index")
+	_assert(_array(first_menu_glyph.get("source_glyph_rect", [])) == [96, 64, 16, 16], "expected F glyph atlas rect")
 
 	var instant_player_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	instant_player_printer.start("B_WIN_MSG", "XYZ", message_info, text_printer_metadata, {

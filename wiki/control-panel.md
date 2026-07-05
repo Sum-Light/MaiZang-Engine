@@ -19,14 +19,14 @@ Current focus:
 
 Next active module:
 
-- Map and Overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 5 layer-aware map rendering.
+- Battle parity TODO, currently executing `wiki/battle-parity-execution-plan.md` B8.2 source window/text rendering.
 
 Reason:
 
-- The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 4 is complete: generated tileset metadata now marks all four flattened first-slice atlases as temporary debug-only artifacts, with 4/4 non-equivalent for source runtime layering and 0 source-equivalent atlas records.
-- Section 5 is 5/12 complete: `LayerAwareMapRenderer` defines the owner contract, first-slice tilesets export bottom/middle/top layer render data with 4/4 tilesets, 12/12 layer atlases, and 2728/2728 metatile layer records, and the renderer now consumes those atlases for `METATILE_LAYER_TYPE_NORMAL`, `METATILE_LAYER_TYPE_COVERED`, and `METATILE_LAYER_TYPE_SPLIT`.
-- Next executable task: render player and object sprites at the correct visual depth between map layers.
+- The user asked to execute the battle recreation TODO list step by step until complete and report quantified progress after each answer.
+- B8.1 is complete for the current asset slice: 68/68 battle interface PNG textures, 1/1 textbox tilemap composite, 25/25 standard window templates, and 0 missing textures/tilemap warnings.
+- B8.2 is still open, but the current first pass now has 10 source-window composite rects, 25 `sTextOnWindowsInfo_Normal` text-info records, 14 source font metric records, 12 Latin width table bindings, 11 source font atlas RGBA images, 12 font-to-atlas bindings, and runtime `source_font_atlas_preview` bitmap text layers.
+- Next executable task: continue B8.2 into exact `RenderText` color/control-code pixels and screenshot comparison for action/message/move windows.
 
 ## Module Tracks
 
@@ -176,14 +176,15 @@ Main-agent responsibilities:
 
 Near-term:
 
+- Continue `wiki/battle-parity-execution-plan.md` B8.2: exact `RenderText` color/control-code pixels, exact scroll/clear window pixels, full link/recorded battle context, and screenshot comparison for action/message/move windows.
 - Continue `wiki/overworld-parity-todo.md` section 5: render player and object sprites at the correct visual depth between map layers.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
 - Current B7.1-B7.7 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, battle transition textures/tilemap composites, battle asset image-quality smoke checks, Pokemon battle asset coverage, and trainer battle asset coverage are generated as Godot-friendly PNG assets plus source metadata. The B7 checklist is now 7/7 complete. Current asset reports still expose runtime and asset gaps: 2664 pending distinct Pokemon color-variant RGBA images, 2 trainer-party `SPECIES_CASTFORM` alias gaps, trainer slide/mugshot/Magma/Aqua playback pending, double battle runtime pending, text/reward flow pending, shader/material color effects pending, affine effects pending, transition/background playback pending, and audio metadata-only.
-- Current B8.2 status: battle interface export now preserves 14 source font metric records from `src/text.c:sFontInfos` plus 12 Latin width tables from `src/fonts.c`; battle text encoding preserves 752 generated glyph spans, including 580 multi-byte spans; runtime `BattleTextPrinter` groups source-byte visible events by those spans and now exposes first-pass `source_glyph_layout` records using source width/line metrics. Smoke coverage verifies a grouped two-byte source glyph as one glyph layout with 12 px source width.
+- Current B8.2 status: battle interface export now preserves 14 source font metric records from `src/text.c:sFontInfos`, 12 Latin width tables from `src/fonts.c`, 11 source font atlas RGBA images from `graphics/fonts/*.png`, and 12 font-to-atlas bindings; battle text encoding preserves 752 generated glyph spans, including 580 multi-byte spans; runtime `BattleTextPrinter` groups source-byte visible events by those spans, exposes first-pass `source_glyph_layout` records with source atlas crop rects, and `BattleWindowRenderer` composes `source_font_atlas_preview` bitmap text layers. Smoke coverage verifies a grouped two-byte source glyph as one glyph layout with 12 px source width, the `F` glyph crop rect, 12 atlas bindings, and `action_menu_text_pixels=2068`.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
-- Next executable battle task: continue B8.2 into the exact source glyph bitmap renderer and screenshot comparison for action/message/move windows.
+- Next executable battle task: continue B8.2 into exact `RenderText` color/control-code pixels and screenshot comparison for action/message/move windows.
 - Next executable overworld task: interleave player/object sprites with bottom/middle/top map layers at the correct visual depth.
 
 Mid-term:

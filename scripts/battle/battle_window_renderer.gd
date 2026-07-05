@@ -21,14 +21,17 @@ var _interface_data: Dictionary = {}
 var _window_templates: Dictionary = {}
 var _text_printer: Dictionary = {}
 var _texture_nodes: Dictionary = {}
+var _text_texture_nodes: Dictionary = {}
 var _label_nodes: Dictionary = {}
 var _window_texts: Dictionary = {}
 var _active_text_printers: Dictionary = {}
+var _source_text_bitmap_summaries: Dictionary = {}
 var _visible_windows: Array = []
 var _bg0_y := 0
 var _textbox_composite_path := ""
 var _textbox_composite_texture: Texture2D = null
 var _textbox_composite_image: Image = null
+var _source_font_atlas_images: Dictionary = {}
 
 
 func _ready() -> void:
@@ -99,6 +102,9 @@ func clear_windows() -> void:
 	for node in _texture_nodes.values():
 		if node is CanvasItem:
 			node.visible = false
+	for node in _text_texture_nodes.values():
+		if node is CanvasItem:
+			node.visible = false
 	for node in _label_nodes.values():
 		if node is CanvasItem:
 			node.visible = false
@@ -124,9 +130,7 @@ func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}
 func set_window_text(window_id: String, text: String) -> void:
 	_window_texts[window_id] = text
 	_ensure_text_printer(window_id, text, true)
-	var label: Label = _label_nodes.get(window_id, null) as Label
-	if label is Label:
-		label.text = _visible_text_for_window(window_id)
+	_update_window_text_nodes(window_id)
 
 
 func get_window_text(window_id: String) -> String:
@@ -142,7 +146,7 @@ func advance_text_printers(frames: int = 1, input: Dictionary = {}) -> Dictionar
 		var printer = _active_text_printers.get(window_id, null)
 		if printer != null and printer.has_method("advance_frames"):
 			printer.advance_frames(frames, input)
-		_update_window_label_text(window_id)
+		_update_window_text_nodes(window_id)
 	return _text_printers_snapshot()
 
 
@@ -153,7 +157,7 @@ func skip_text_printers_to_end(window_ids: Array = []) -> Dictionary:
 		var printer = _active_text_printers.get(window_id, null)
 		if printer != null and printer.has_method("skip_to_end"):
 			printer.skip_to_end()
-		_update_window_label_text(window_id)
+		_update_window_text_nodes(window_id)
 	return _text_printers_snapshot()
 
 
@@ -208,6 +212,8 @@ func compose_window_layer_image(window_ids: Array, bg0_y: int) -> Image:
 		if dst_rect.size.x <= 0 or dst_rect.size.y <= 0:
 			continue
 		_blit_wrapped(source_image, output, src_rect, dst_rect.position)
+	for window_id_value in window_ids:
+		_blend_text_bitmap_for_window(output, String(window_id_value), bg0_y)
 	return output
 
 
@@ -238,6 +244,7 @@ func get_renderer_snapshot() -> Dictionary:
 			"source_fit_width_px": text_info.get("source_fit_width_px", null),
 			"text": String(_window_texts.get(window_id, "")),
 			"visible_text": _visible_text_for_window(window_id),
+			"source_text_bitmap": _source_text_bitmap_snapshot(window_id),
 			"text_printer": _text_printer_window_snapshot(window_id),
 			"source": template.get("source", {}) if typeof(template.get("source", {})) == TYPE_DICTIONARY else {},
 		}
@@ -271,6 +278,13 @@ func _ensure_window_nodes(window_id: String) -> void:
 		texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
 		add_child(texture_rect)
 		_texture_nodes[window_id] = texture_rect
+	if not _text_texture_nodes.has(window_id):
+		var text_texture_rect := TextureRect.new()
+		text_texture_rect.name = "%s_SourceTextBitmap" % window_id
+		text_texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		text_texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
+		add_child(text_texture_rect)
+		_text_texture_nodes[window_id] = text_texture_rect
 	if not _label_nodes.has(window_id):
 		var label := Label.new()
 		label.name = "%s_Text" % window_id
@@ -284,30 +298,37 @@ func _ensure_window_nodes(window_id: String) -> void:
 
 func _apply_window_node_layout(window_id: String) -> void:
 	var texture_rect: TextureRect = _texture_nodes[window_id]
+	var text_texture_rect: TextureRect = _text_texture_nodes[window_id]
 	var label: Label = _label_nodes[window_id]
 	var screen_rect := get_window_screen_rect(window_id)
 	var tilemap_rect := get_window_tilemap_rect(window_id)
 	texture_rect.position = Vector2(screen_rect.position)
 	texture_rect.size = Vector2(screen_rect.size)
 	texture_rect.texture = _atlas_texture(tilemap_rect)
+	text_texture_rect.position = Vector2(screen_rect.position)
+	text_texture_rect.size = Vector2(screen_rect.size)
 
 	var text_info := _source_text_info(window_id)
 	var text_offset := Vector2(int(text_info.get("text_x", 0)), int(text_info.get("text_y", 0)))
 	label.position = Vector2(screen_rect.position) + text_offset
 	label.size = Vector2(screen_rect.size) - text_offset
-	label.text = _visible_text_for_window(window_id)
 	label.add_theme_font_size_override("font_size", int(text_info.get("font_size", 8)))
+	_update_window_text_nodes(window_id)
 
 
 func _set_node_visibility() -> void:
 	for window_id in _texture_nodes.keys():
 		var visible := _visible_windows.has(window_id)
 		var texture_node: CanvasItem = _texture_nodes[window_id] as CanvasItem
+		var text_texture_node: CanvasItem = _text_texture_nodes.get(window_id, null) as CanvasItem
 		var label_node: CanvasItem = _label_nodes.get(window_id, null) as CanvasItem
 		if texture_node is CanvasItem:
 			texture_node.visible = visible
+		if text_texture_node is CanvasItem:
+			var summary := _source_text_bitmap_snapshot(window_id)
+			text_texture_node.visible = visible and int(summary.get("rendered_glyph_count", 0)) > 0
 		if label_node is CanvasItem:
-			label_node.visible = visible
+			label_node.visible = visible and not _source_text_bitmap_covers_window(window_id)
 
 
 func _atlas_texture(region: Rect2i) -> AtlasTexture:
@@ -366,6 +387,8 @@ func _text_printer_snapshot() -> Dictionary:
 		"runtime_status": "first_pass_source_glyph_layout",
 		"source_font_metric_status": String(font_metrics.get("status", "")),
 		"source_font_metric_count": int(font_metrics.get("font_count", fonts.size())),
+		"source_font_atlas_binding_count": _source_font_atlas_binding_count(font_metrics),
+		"source_font_atlas_status": "source_font_atlas_preview" if _source_font_atlas_binding_count(font_metrics) > 0 else "missing_source_font_atlas",
 		"visible_window_printer_count": _visible_windows.size(),
 	}
 
@@ -395,10 +418,108 @@ func _ensure_text_printer(window_id: String, text: String, reveal_immediately: b
 		printer.skip_to_end()
 
 
-func _update_window_label_text(window_id: String) -> void:
+func _update_window_text_nodes(window_id: String) -> void:
+	var text_image := _compose_text_bitmap_for_window(window_id)
+	var text_texture_rect: TextureRect = _text_texture_nodes.get(window_id, null) as TextureRect
+	if text_texture_rect is TextureRect:
+		if text_image != null and int(_source_text_bitmap_snapshot(window_id).get("rendered_glyph_count", 0)) > 0:
+			text_texture_rect.texture = ImageTexture.create_from_image(text_image)
+		else:
+			text_texture_rect.texture = null
 	var label: Label = _label_nodes.get(window_id, null) as Label
 	if label is Label:
 		label.text = _visible_text_for_window(window_id)
+		label.visible = _visible_windows.has(window_id) and not _source_text_bitmap_covers_window(window_id)
+	_set_node_visibility()
+
+
+func _compose_text_bitmap_for_window(window_id: String) -> Image:
+	var screen_rect := get_window_screen_rect(window_id)
+	if screen_rect.size.x <= 0 or screen_rect.size.y <= 0:
+		_source_text_bitmap_summaries[window_id] = {"status": "empty_window", "rendered_glyph_count": 0}
+		return null
+	var output := Image.create(screen_rect.size.x, screen_rect.size.y, false, Image.FORMAT_RGBA8)
+	output.fill(Color(0, 0, 0, 0))
+	var snapshot := _text_printer_window_snapshot(window_id)
+	var layout := _dictionary_value(snapshot.get("source_glyph_layout", {}))
+	var glyphs := _array_value(layout.get("glyphs", []))
+	var rendered_count := 0
+	var missing_count := 0
+	for glyph_value in glyphs:
+		var glyph := _dictionary_value(glyph_value)
+		if String(glyph.get("source_font_atlas_status", "")) != "source_font_atlas_preview":
+			missing_count += 1
+			continue
+		var atlas := _load_source_font_atlas_image(String(glyph.get("source_font_atlas_image", "")))
+		if atlas == null:
+			missing_count += 1
+			continue
+		var source_rect := _rect_from_array(_array_value(glyph.get("source_glyph_rect", [])))
+		if source_rect.size.x <= 0 or source_rect.size.y <= 0:
+			missing_count += 1
+			continue
+		var visible_rect := _rect_from_array(_array_value(glyph.get("source_glyph_visible_rect", [])))
+		var blit_rect := Rect2i(
+			source_rect.position.x + max(0, visible_rect.position.x),
+			source_rect.position.y + max(0, visible_rect.position.y),
+			max(0, min(source_rect.size.x, visible_rect.size.x)),
+			max(0, min(source_rect.size.y, visible_rect.size.y))
+		)
+		if blit_rect.size.x <= 0 or blit_rect.size.y <= 0:
+			missing_count += 1
+			continue
+		var dst := Vector2i(int(glyph.get("x", 0)), int(glyph.get("y", 0)))
+		output.blend_rect(atlas, blit_rect, dst)
+		rendered_count += 1
+	var status := "source_font_atlas_preview" if rendered_count > 0 else "no_source_font_atlas_glyphs"
+	_source_text_bitmap_summaries[window_id] = {
+		"status": status,
+		"rendered_glyph_count": rendered_count,
+		"missing_glyph_count": missing_count,
+		"window_size": [screen_rect.size.x, screen_rect.size.y],
+		"source": "BattleTextPrinter.source_glyph_layout",
+	}
+	return output
+
+
+func _blend_text_bitmap_for_window(target: Image, window_id: String, bg0_y: int) -> void:
+	var text_image := _compose_text_bitmap_for_window(window_id)
+	if text_image == null:
+		return
+	var summary := _source_text_bitmap_snapshot(window_id)
+	if int(summary.get("rendered_glyph_count", 0)) <= 0:
+		return
+	var dst_rect := get_window_screen_rect(window_id, bg0_y)
+	target.blend_rect(text_image, Rect2i(Vector2i.ZERO, Vector2i(text_image.get_width(), text_image.get_height())), dst_rect.position)
+
+
+func _source_text_bitmap_snapshot(window_id: String) -> Dictionary:
+	var summary := _dictionary_value(_source_text_bitmap_summaries.get(window_id, {}))
+	if not summary.is_empty():
+		return summary
+	return {"status": "not_composed", "rendered_glyph_count": 0, "missing_glyph_count": 0}
+
+
+func _source_text_bitmap_covers_window(window_id: String) -> bool:
+	var summary := _source_text_bitmap_snapshot(window_id)
+	var snapshot := _text_printer_window_snapshot(window_id)
+	var layout := _dictionary_value(snapshot.get("source_glyph_layout", {}))
+	var glyph_count := int(layout.get("glyph_count", 0))
+	return glyph_count > 0 and int(summary.get("rendered_glyph_count", 0)) == glyph_count
+
+
+func _load_source_font_atlas_image(path: String) -> Image:
+	if path.is_empty():
+		return null
+	if _source_font_atlas_images.has(path):
+		return _source_font_atlas_images[path]
+	var image := Image.new()
+	var image_path := ProjectSettings.globalize_path(path) if path.begins_with("res://") else path
+	var error := image.load(image_path)
+	if error != OK:
+		return null
+	_source_font_atlas_images[path] = image
+	return image
 
 
 func _visible_text_for_window(window_id: String) -> String:
@@ -571,8 +692,24 @@ func _array_value(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
 
 
+func _source_font_atlas_binding_count(font_metrics: Dictionary) -> int:
+	var count := 0
+	var fonts := _dictionary_value(font_metrics.get("fonts", {}))
+	for font_id in fonts.keys():
+		var record := _dictionary_value(fonts.get(font_id, {}))
+		if String(_dictionary_value(record.get("glyph_atlas", {})).get("status", "")) == "source_font_atlas_preview":
+			count += 1
+	return count
+
+
 func _rect_to_array(rect: Rect2i) -> Array:
 	return [rect.position.x, rect.position.y, rect.size.x, rect.size.y]
+
+
+func _rect_from_array(values: Array) -> Rect2i:
+	if values.size() < 4:
+		return Rect2i()
+	return Rect2i(int(values[0]), int(values[1]), int(values[2]), int(values[3]))
 
 
 func _posmodi(value: int, divisor: int) -> int:

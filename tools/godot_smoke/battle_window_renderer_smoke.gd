@@ -30,6 +30,8 @@ func _run() -> void:
 	_assert(int(text_printer.get("normal_window_text_info_count", 0)) == 25, "expected text printer normal window info count")
 	_assert(String(text_printer.get("source_font_metric_status", "")) == "generated_from_text_c_font_tables", "expected generated source font metrics")
 	_assert(int(text_printer.get("source_font_metric_count", 0)) == 14, "expected generated source font metric count")
+	_assert(String(text_printer.get("source_font_atlas_status", "")) == "source_font_atlas_preview", "expected source font atlas preview")
+	_assert(int(text_printer.get("source_font_atlas_binding_count", 0)) == 12, "expected source font atlas binding count")
 	_assert(int(text_printer.get("visible_window_printer_count", 0)) == 2, "expected two visible action text printers")
 	_assert(not _contains_forbidden_runtime_color_key(action_snapshot), "renderer snapshot must not expose runtime color/palette keys")
 	_assert(_array(action_snapshot.get("visible_windows", [])).has("B_WIN_ACTION_PROMPT"), "expected action prompt visible")
@@ -46,11 +48,16 @@ func _run() -> void:
 	_assert(String(action_menu.get("visible_text", "")) == "Fight    Bag\nPokemon    Run", "expected action menu text revealed immediately")
 	var action_menu_printer := _dict(action_menu.get("text_printer", {}))
 	_assert(bool(action_menu_printer.get("synchronous_render", false)), "expected speed-zero action menu printer to render synchronously")
+	var action_menu_bitmap := _dict(action_menu.get("source_text_bitmap", {}))
+	_assert(String(action_menu_bitmap.get("status", "")) == "source_font_atlas_preview", "expected action menu source font bitmap preview")
+	_assert(int(action_menu_bitmap.get("rendered_glyph_count", 0)) >= 20, "expected action menu source font glyph pixels")
 	var action_image: Image = renderer.compose_current_window_layer_image()
 	_assert(action_image.get_width() == 240 and action_image.get_height() == 160, "expected 240x160 action layer image")
 	_assert(action_image.get_pixel(0, 0).a <= 0.01, "expected transparent pixels outside source windows")
 	var action_opaque := _rect_opaque_count(action_image, Rect2i(136, 120, 96, 32))
+	var action_text_opaque := _rect_opaque_count(action_image, Rect2i(136, 121, 76, 30))
 	_assert(action_opaque > 100, "expected opaque action menu source pixels")
+	_assert(action_text_opaque > 500, "expected action menu source font atlas pixels")
 
 	renderer.show_message_window("ABC", false)
 	var reveal_start := _dict(renderer.get_renderer_snapshot())
@@ -114,12 +121,14 @@ func _run() -> void:
 	var move_windows := _dict(move_snapshot.get("windows", {}))
 	var move_name_1 := _dict(move_windows.get("B_WIN_MOVE_NAME_1", {}))
 	var move_type := _dict(move_windows.get("B_WIN_MOVE_TYPE", {}))
+	var move_bitmap := _dict(move_name_1.get("source_text_bitmap", {}))
 	_assert(_array(move_name_1.get("screen_rect", [])) == [16, 120, 128, 16], "expected first move screen rect")
 	_assert(_array(move_name_1.get("tilemap_rect", [])) == [16, 56, 128, 16], "expected first move source tilemap rect")
 	_assert(String(move_name_1.get("tilemap_composite_rect_status", "")) == "first_pass_generated_textbox_map_preview_rows", "expected first move generated composite rect status")
 	_assert(int(move_name_1.get("source_fit_width_px", 0)) == 64, "expected first move generated fit width")
 	_assert(_array(move_type.get("screen_rect", [])) == [168, 136, 64, 16], "expected move type screen rect")
 	_assert(String(move_type.get("text", "")) == "TYPE/Water", "expected move type renderer text")
+	_assert(String(move_bitmap.get("status", "")) == "source_font_atlas_preview", "expected move name source font bitmap preview")
 	var move_image: Image = renderer.compose_current_window_layer_image()
 	var move_opaque := _rect_opaque_count(move_image, Rect2i(16, 120, 128, 16))
 	var type_opaque := _rect_opaque_count(move_image, Rect2i(168, 136, 64, 16))
@@ -133,6 +142,7 @@ func _run() -> void:
 		"action_windows": _array(action_snapshot.get("visible_windows", [])).size(),
 		"move_windows": _array(move_snapshot.get("visible_windows", [])).size(),
 		"action_menu_opaque_pixels": action_opaque,
+		"action_menu_text_pixels": action_text_opaque,
 		"move_name_opaque_pixels": move_opaque,
 		"move_type_opaque_pixels": type_opaque,
 		"message_page_waits": int(page_printer.get("page_wait_count", 0)),

@@ -1,6 +1,7 @@
 extends RefCounted
 
 const STATUS := "first_pass_source_glyph_layout"
+const FONT_ATLAS_PREVIEW_STATUS := "source_font_atlas_preview"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
 const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
@@ -54,7 +55,7 @@ const SOURCE_TRACE := [
 	"src/chinese_text.c:GetChineseFontWidthFunc",
 ]
 const FIRST_PASS_UNSUPPORTED := [
-	"battle_text_glyph_bitmap_renderer_pending",
+	"battle_text_exact_color_controls_pending",
 	"battle_text_full_control_code_renderer_pending",
 	"battle_text_link_recorded_speed_overrides_pending",
 	"battle_text_screenshot_comparison_pending",
@@ -132,6 +133,7 @@ var _source_text_control_metadata_count := 0
 var _source_audio_cue_metadata_count := 0
 var _source_metadata_only_count := 0
 var _font_metrics: Dictionary = {}
+var _font_atlas_binding_count := 0
 var _layout_font_id := "FONT_NORMAL"
 var _layout_initial_font_id := "FONT_NORMAL"
 var _layout_origin := Vector2i.ZERO
@@ -302,6 +304,8 @@ func snapshot() -> Dictionary:
 		"source_audio_cue_metadata_count": _source_audio_cue_metadata_count,
 		"source_metadata_only_count": _source_metadata_only_count,
 		"source_glyph_layout_status": "source_metrics_layout" if _has_font_metrics() else "fallback_constant_width_layout",
+		"source_font_atlas_status": _source_font_atlas_status(),
+		"source_font_atlas_binding_count": _font_atlas_binding_count,
 		"source_glyph_layout": {
 			"font_id": _layout_font_id,
 			"origin": [_layout_origin.x, _layout_origin.y],
@@ -1068,15 +1072,19 @@ func _source_byte_control_summary_from_bytes(bytes: Array) -> Dictionary:
 func _resolve_font_metrics(text_info: Dictionary, text_printer_metadata: Dictionary, options: Dictionary) -> Dictionary:
 	var explicit_metrics := _dictionary_value(options.get("font_metrics", {}))
 	if not explicit_metrics.is_empty():
+		_count_font_atlas_bindings(explicit_metrics)
 		return explicit_metrics
 	var text_info_metrics := _dictionary_value(text_info.get("font_metrics", {}))
 	var printer_metrics := _dictionary_value(text_printer_metadata.get("font_metrics", {}))
 	if printer_metrics.is_empty():
+		_count_font_atlas_bindings(text_info_metrics)
 		return text_info_metrics
 	if text_info_metrics.is_empty():
+		_count_font_atlas_bindings(printer_metrics)
 		return printer_metrics
 	var result := printer_metrics.duplicate(true)
 	result["active_font_metrics"] = text_info_metrics
+	_count_font_atlas_bindings(result)
 	return result
 
 
@@ -1124,6 +1132,7 @@ func _record_visible_layout(event: Dictionary) -> void:
 		record["glyph_kind"] = "source_bytes"
 	else:
 		record["glyph_kind"] = _glyph_kind_for_event(event, text)
+	_attach_glyph_atlas_record(record, glyph_bytes, event, text)
 	_layout_glyphs.append(record)
 	_layout_cursor.x += advance
 
@@ -1250,6 +1259,62 @@ func _glyph_advance_px(width: int) -> int:
 	return width
 
 
+func _attach_glyph_atlas_record(record: Dictionary, glyph_bytes: Array, event: Dictionary, text: String) -> void:
+	var binding := _dictionary_value(_font_record(_layout_font_id).get("glyph_atlas", {}))
+	if binding.is_empty() or String(binding.get("status", "")) != FONT_ATLAS_PREVIEW_STATUS:
+		record["source_font_atlas_status"] = "missing_source_font_atlas"
+		return
+	var glyph_index := _glyph_atlas_index_for_event(event, text, glyph_bytes)
+	if glyph_index < 0:
+		record["source_font_atlas_status"] = "unsupported_glyph_index"
+		return
+	var atlas_kind := "chinese" if _is_chinese_glyph_bytes(glyph_bytes) else "latin"
+	var image := String(binding.get("%s_image" % atlas_kind, ""))
+	var columns := int(binding.get("%s_columns" % atlas_kind, 0))
+	var capacity := int(binding.get("%s_glyph_capacity" % atlas_kind, 0))
+	if image.is_empty() or columns <= 0 or glyph_index >= capacity:
+		record["source_font_atlas_status"] = "glyph_out_of_atlas_range"
+		record["source_font_atlas_glyph_index"] = glyph_index
+		return
+	var cell := _dictionary_value(binding.get("glyph_cell", {}))
+	var cell_w := int(cell.get("w", 16))
+	var cell_h := int(cell.get("h", 16))
+	record["source_font_atlas_status"] = FONT_ATLAS_PREVIEW_STATUS
+	record["source_font_atlas_kind"] = atlas_kind
+	record["source_font_atlas_id"] = String(binding.get("%s_atlas_id" % atlas_kind, ""))
+	record["source_font_atlas_image"] = image
+	record["source_font_atlas_glyph_index"] = glyph_index
+	record["source_glyph_rect"] = [
+		int(glyph_index % columns) * cell_w,
+		int(glyph_index / columns) * cell_h,
+		cell_w,
+		cell_h,
+	]
+	record["source_glyph_visible_rect"] = [0, 0, int(record.get("width", cell_w)), int(record.get("height", cell_h))]
+
+
+func _glyph_atlas_index_for_event(event: Dictionary, text: String, glyph_bytes: Array) -> int:
+	if _is_chinese_glyph_bytes(glyph_bytes):
+		return _chinese_source_glyph_index(glyph_bytes)
+	var byte_value := _glyph_first_byte(event, text, glyph_bytes)
+	if byte_value >= 0 and byte_value < 0x100:
+		return byte_value
+	return -1
+
+
+func _chinese_source_glyph_index(glyph_bytes: Array) -> int:
+	if glyph_bytes.size() < 2:
+		return -1
+	var high := int(glyph_bytes[0]) & 0xFF
+	var low := int(glyph_bytes[1]) & 0xFF
+	if high > 0x1B:
+		high -= 1
+	if high > 0x06:
+		high -= 1
+	high -= 1
+	return (high << 8) | low
+
+
 func _glyph_first_byte(event: Dictionary, text: String, glyph_bytes: Array) -> int:
 	if not glyph_bytes.is_empty():
 		return int(glyph_bytes[0]) & 0xFF
@@ -1260,7 +1325,9 @@ func _glyph_first_byte(event: Dictionary, text: String, glyph_bytes: Array) -> i
 		if source_byte >= 0 and source_byte < 0xF7:
 			return source_byte & 0xFF
 	if not text.is_empty():
-		return text.unicode_at(0) & 0xFF
+		var codepoint := text.unicode_at(0)
+		if codepoint >= 0 and codepoint < 0x100:
+			return codepoint
 	return -1
 
 
@@ -1320,6 +1387,27 @@ func _font_line_advance(font_id: String) -> int:
 
 func _font_letter_spacing(font_id: String) -> int:
 	return int(_font_record(font_id).get("letter_spacing", 0))
+
+
+func _source_font_atlas_status() -> String:
+	if _font_atlas_binding_count > 0:
+		return FONT_ATLAS_PREVIEW_STATUS
+	return "missing_source_font_atlas"
+
+
+func _count_font_atlas_bindings(metrics: Dictionary) -> void:
+	_font_atlas_binding_count = 0
+	var fonts := _dictionary_value(metrics.get("fonts", {}))
+	if fonts.is_empty():
+		var active := _dictionary_value(metrics.get("active_font_metrics", {}))
+		if String(_dictionary_value(active.get("glyph_atlas", {})).get("status", "")) == FONT_ATLAS_PREVIEW_STATUS:
+			_font_atlas_binding_count = 1
+		return
+	for font_id in fonts.keys():
+		var record := _dictionary_value(fonts.get(font_id, {}))
+		var binding := _dictionary_value(record.get("glyph_atlas", {}))
+		if String(binding.get("status", "")) == FONT_ATLAS_PREVIEW_STATUS:
+			_font_atlas_binding_count += 1
 
 
 func _font_id_from_arg(value) -> String:
