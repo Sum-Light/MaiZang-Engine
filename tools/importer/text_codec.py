@@ -167,6 +167,7 @@ class _TextEncoder:
         self.raw_text = raw_text
         self.charmap = charmap
         self.bytes = []
+        self.glyphs = []
         self.control_codes = []
         self.placeholders = []
         self.warnings = []
@@ -189,6 +190,7 @@ class _TextEncoder:
             "bytes": self.bytes,
             "hex": " ".join("{:02X}".format(byte) for byte in self.bytes),
             "terminator_present": bool(self.bytes) and self.bytes[-1] == 0xFF,
+            "glyphs": self.glyphs,
             "control_codes": self.control_codes,
             "placeholders": self.placeholders,
             "warnings": self.warnings,
@@ -199,6 +201,7 @@ class _TextEncoder:
         if sequence is None:
             self._warn("unknown character {!r} at offset {}".format(char, offset))
             return
+        byte_offset = len(self.bytes)
         self.bytes.extend(sequence)
         if char == "$":
             self.control_codes.append({
@@ -207,6 +210,15 @@ class _TextEncoder:
                 "offset": offset,
                 "bytes": sequence,
             })
+            return
+        self.glyphs.append({
+            "text": char,
+            "source_offset": offset,
+            "byte_offset": byte_offset,
+            "byte_count": len(sequence),
+            "bytes": sequence,
+            "hex": " ".join("{:02X}".format(byte) for byte in sequence),
+        })
 
     def _encode_escape(self, offset):
         if offset + 1 >= len(self.raw_text):
@@ -226,6 +238,7 @@ class _TextEncoder:
             self._warn("unknown escape {!r} at offset {}".format(token, offset))
             return offset + 2
 
+        byte_offset = len(self.bytes)
         self.bytes.extend(sequence)
         control = {
             "kind": kind,
@@ -236,6 +249,16 @@ class _TextEncoder:
         display = _escape_display_name(escaped)
         if display:
             control["display"] = display
+        if kind == "escaped_char":
+            self.glyphs.append({
+                "text": escaped,
+                "source_offset": offset,
+                "byte_offset": byte_offset,
+                "byte_count": len(sequence),
+                "bytes": sequence,
+                "hex": " ".join("{:02X}".format(byte) for byte in sequence),
+                "source_escape": token,
+            })
         self.control_codes.append(control)
         return offset + 2
 

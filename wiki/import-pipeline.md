@@ -170,7 +170,7 @@ Current event script export behavior:
 - Loads `charmap.txt` and follows the source preprocessor model from `tools/preproc/charmap.cpp`, `tools/preproc/string_parser.cpp`, and `tools/preproc/c_file.cpp` for text-byte validation.
 - Parses labels, map script tables, script instruction streams, movement labels, and local `.string` text labels. Shared bundles preserve each label/instruction `source_file` so runtime/debug output can trace records back to the include that defined them.
 - Records per-script raw operations, direct `msgbox`/`message` references, call/goto references, and simple runtime preview summaries.
-- Keeps Godot display text as UTF-8 while preserving source charmap encoding metadata for each local text label: status, source bytes, source hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
+- Keeps Godot display text as UTF-8 while preserving source charmap encoding metadata for each local text label: status, source bytes, source hex, byte count, visible glyph spans with source offsets and byte offsets/counts, `$` terminator presence, control codes, placeholders, and warnings.
 - Converts display escapes for preview/runtime text: `\n` and `\l` become newlines, `\p` becomes a blank line, and trailing `$` terminators are removed from `display_text`.
 - Records source behavior traces for supported preview behavior from `src/scrcmd.c`, `data/event_scripts.s`, and `data/scripts/std_msgbox.inc`.
 - Updates `data/generated/import_manifest.json` with exported map-script or shared-script metadata while preserving existing entries for other maps, tilesets, scripts, and text datasets. Shared bundle manifest entries use `scope = "shared"` and store their included source files. `--all-maps` writes `data/generated/overworld/script_batch_report.json`, currently covering 887/887 map script files, 52 maps without `scripts.inc`, 18,984 labels, 10,293 scripts, 1,280 movement labels, 7,411 local text labels, 0 charmap warnings, and 44 orphan instructions.
@@ -180,7 +180,7 @@ Current event script export behavior:
 Current global text export behavior:
 
 - Reads all `data/text/*.inc` files as UTF-8.
-- Parses normal `.string` labels and keeps UTF-8 `display_text` plus source charmap encoding metadata: status, source bytes, source hex, byte count, `$` terminator presence, control codes, placeholders, and warnings.
+- Parses normal `.string` labels and keeps UTF-8 `display_text` plus source charmap encoding metadata: status, source bytes, source hex, byte count, visible glyph spans with source offsets and byte offsets/counts, `$` terminator presence, control codes, placeholders, and warnings.
 - Parses `.braille` labels and the preceding `brailleformat` header. The 6-byte header is preserved in `braille_format` and `source_bytes.format_header`, while generated braille text bytes are derived from `tools/preproc/asm_file.cpp:AsmFile::ReadBraille` and `include/constants/characters.h`.
 - Records `source_pointer_skip_bytes = 6` for braille labels because `ScrCmd_braillemessage` reads the pointer plus 6 bytes before expanding the string.
 - Handles the currently used global text preprocessor branch `#if IS_FRLG/#else/#endif` with `IS_FRLG = false`, traced to `include/constants/global.h`, so generated text matches the Emerald branch.

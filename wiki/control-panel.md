@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Map and Overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 4 tileset/metatile asset import.
+- Battle parity TODO, currently executing `wiki/battle-parity-execution-plan.md` B8.2 source battle window renderer and text-printer work.
 
 Reason:
 
-- The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 4 has completed source `METATILE_*` label export, per-layout tileset-pair reverse lookup coverage, map-grid metatile reference checks, and tile-id versus source-image bounds checks.
-- Next executable task: keep the current flattened atlas as a temporary debug artifact only, with metadata marking it non-equivalent for runtime layering.
+- The user asked to execute the battle recreation TODO list step by step until complete and report quantified progress after each answer.
+- B8.2 has a first-pass source battle-window renderer and text-printer; the latest slice exports 752 battle-text glyph spans, including 580 multi-byte source glyph spans, and groups source-byte visible events by generated glyph byte spans.
+- Next executable task: continue B8.2 with exact source font/glyph rendering, fuller charmap byte-to-glyph layout behavior, source `RenderText` pixel/control-code effects, and screenshot comparison.
 
 ## Module Tracks
 
@@ -175,14 +175,14 @@ Main-agent responsibilities:
 
 Near-term:
 
-- Continue `wiki/overworld-parity-todo.md` section 4: mark the current flattened atlas as a temporary debug artifact only, with explicit metadata that it is non-equivalent for source runtime layering.
+- Continue `wiki/battle-parity-execution-plan.md` B8.2: replace the remaining source/display-text glyph fallback with an exact source font/glyph renderer and expand byte-to-glyph/layout control behavior toward source `RenderText`.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
 - Current B7.1-B7.7 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, battle transition textures/tilemap composites, battle asset image-quality smoke checks, Pokemon battle asset coverage, and trainer battle asset coverage are generated as Godot-friendly PNG assets plus source metadata. The B7 checklist is now 7/7 complete. Current asset reports still expose runtime and asset gaps: 2664 pending distinct Pokemon color-variant RGBA images, 2 trainer-party `SPECIES_CASTFORM` alias gaps, trainer slide/mugshot/Magma/Aqua playback pending, double battle runtime pending, text/reward flow pending, shader/material color effects pending, affine effects pending, transition/background playback pending, and audio metadata-only.
-- Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` now reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
-- Next executable task: finish overworld Section 4 by marking the flattened atlas debug artifact as non-equivalent for runtime layering.
-- Import the remaining source-backed battle HUD/interface assets needed by the Sawyer/Route101 single-battle fixture.
+- Current B8.2 status: battle text encoding now preserves generated glyph spans, the runtime groups source-byte visible events by those spans, and smokes verify `PP` has 2 generated glyph/source-byte events while `gText_MoveInterfaceType` starts with a multi-byte source glyph span.
+- Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
+- Next executable task: continue B8.2 exact source font/glyph rendering and screenshot/pixel validation for action and move menus at 240x160.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
 
 Mid-term:

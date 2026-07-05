@@ -76,8 +76,17 @@ func _init() -> void:
 	var move_pp := registry.get_battle_text_record("gText_MoveInterfacePP")
 	var move_type := registry.get_battle_text_record("gText_MoveInterfaceType")
 	var move_pp_type := registry.get_battle_text_record("gText_MoveInterfacePpType")
+	var move_pp_glyphs := _array(_dict(move_pp.get("encoding", {})).get("glyphs", []))
+	var move_type_glyphs := _array(_dict(move_type.get("encoding", {})).get("glyphs", []))
+	var first_pp_glyph := _dict(move_pp_glyphs[0]) if not move_pp_glyphs.is_empty() else {}
+	var first_move_type_glyph := _dict(move_type_glyphs[0]) if not move_type_glyphs.is_empty() else {}
 	_assert(String(move_pp.get("display_text", "")) == "PP", "expected PP label")
 	_assert(String(move_type.get("display_text", "")).length() > 0, "expected move type label")
+	_assert(move_pp_glyphs.size() == 2, "expected PP source glyph spans")
+	var first_pp_glyph_bytes := _array(first_pp_glyph.get("bytes", []))
+	_assert(first_pp_glyph_bytes.size() == 1 and int(first_pp_glyph_bytes[0]) == 0xCA, "expected first PP glyph source byte")
+	_assert(move_type_glyphs.size() == 3, "expected move type source glyph spans")
+	_assert(int(first_move_type_glyph.get("byte_count", 0)) == 2, "expected first move type glyph to be multi-byte")
 	_assert(_controls_have_command(move_pp_type.get("text_controls", []), "PALETTE"), "expected PP/type palette control")
 	_assert(_controls_have_command(move_pp_type.get("text_controls", []), "BACKGROUND"), "expected PP/type background control")
 	_assert(_controls_have_command(move_pp_type.get("text_controls", []), "TEXT_COLORS"), "expected PP/type text-colors control")
@@ -109,6 +118,14 @@ func _assert(condition: bool, message: String) -> void:
 	push_error(message)
 	_failed = true
 	quit(1)
+
+
+func _dict(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
 
 
 func _array_has_source_symbol(records, source_symbol: String) -> bool:

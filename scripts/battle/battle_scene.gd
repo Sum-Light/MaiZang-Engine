@@ -890,6 +890,7 @@ func _source_battle_text_printer_options(label: String, replacements: Dictionary
 		if not encoding.is_empty():
 			options["source_encoding"] = encoding
 			options["source_bytes"] = encoding.get("bytes", [])
+			options["source_glyphs"] = encoding.get("glyphs", [])
 			options["source_encoding_hex"] = String(encoding.get("hex", ""))
 	return options
 

@@ -132,6 +132,7 @@ func _run() -> void:
 	_assert(String(move_pp_printer.get("event_stream_source", "")) == "source_bytes", "expected PP label source-byte event stream")
 	_assert(String(move_pp_printer.get("source_text_label", "")) == "gText_MoveInterfacePP", "expected PP label source text")
 	_assert(int(move_pp_printer.get("source_byte_count", 0)) == 2, "expected PP label generated source byte count")
+	_assert(int(move_pp_printer.get("source_glyph_count", 0)) == 2, "expected PP label generated source glyph count")
 	_assert(int(move_pp_printer.get("source_byte_event_count", 0)) == 2, "expected PP label generated source byte event count")
 	_assert(int(move_pp_byte_summary.get("byte_count", 0)) == 2, "expected PP label source byte summary")
 	_assert(String(move_type_printer.get("event_stream_source", "")) == "source_text", "expected move type source-text event stream")

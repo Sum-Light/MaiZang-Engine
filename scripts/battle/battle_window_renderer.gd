@@ -536,6 +536,7 @@ func _text_printer_options_from_record(record: Dictionary, overrides: Dictionary
 	if not encoding.is_empty() and substitutions.is_empty():
 		options["source_encoding"] = encoding
 		options["source_bytes"] = encoding.get("bytes", [])
+		options["source_glyphs"] = encoding.get("glyphs", [])
 		options["source_encoding_hex"] = String(encoding.get("hex", ""))
 	options["text_controls"] = record.get("text_controls", nested.get("text_controls", []))
 	options["audio_cues"] = record.get("audio_cues", nested.get("audio_cues", []))

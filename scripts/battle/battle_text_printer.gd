@@ -121,6 +121,7 @@ var _event_stream_source := "display_text"
 var _source_text := ""
 var _source_text_label := ""
 var _source_bytes: Array = []
+var _source_glyphs: Array = []
 var _source_encoding_hex := ""
 var _source_byte_control_summary := {}
 var _source_byte_event_count := 0
@@ -162,6 +163,7 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_source_text_label = String(options.get("source_text_label", options.get("text_label", "")))
 	var source_encoding := _dictionary_value(options.get("source_encoding", {}))
 	_source_bytes = _int_array_value(options.get("source_bytes", source_encoding.get("bytes", [])))
+	_source_glyphs = _array_value(options.get("source_glyphs", source_encoding.get("glyphs", [])))
 	_source_encoding_hex = String(options.get("source_encoding_hex", source_encoding.get("hex", "")))
 	_source_byte_control_summary = _source_byte_control_summary_from_bytes(_source_bytes)
 	_source_text_control_metadata_count = _array_value(options.get("text_controls", [])).size()
@@ -171,7 +173,7 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
 	if _event_stream_source == "source_bytes":
 		event_text = _strip_source_text_terminator(_source_text) if not _source_text.is_empty() else _full_text
-		_events = _parse_source_byte_events(_source_bytes, event_text)
+		_events = _parse_source_byte_events(_source_bytes, event_text, _source_glyphs)
 	else:
 		_events = _parse_text_events(event_text, _event_stream_source)
 	_source_byte_event_count = _count_source_byte_events(_events)
@@ -272,6 +274,7 @@ func snapshot() -> Dictionary:
 		"source_text_label": _source_text_label,
 		"source_text_length": _source_text.length(),
 		"source_byte_count": _source_bytes.size(),
+		"source_glyph_count": _source_glyphs.size(),
 		"source_encoding_hex": _source_encoding_hex,
 		"source_byte_control_summary": _source_byte_control_summary.duplicate(true),
 		"source_byte_event_count": _source_byte_event_count,
@@ -585,13 +588,21 @@ func _control_event_from_token(token_content: String) -> Dictionary:
 	return {}
 
 
-func _parse_source_byte_events(bytes: Array, visible_fallback_text: String) -> Array:
+func _parse_source_byte_events(bytes: Array, visible_fallback_text: String, source_glyphs: Array = []) -> Array:
 	var events := []
 	var visible_chars := _visible_fallback_chars_for_source_bytes(visible_fallback_text)
+	var glyph_by_offset := _source_glyphs_by_byte_offset(source_glyphs)
 	var visible_index := 0
 	var index := 0
 	while index < bytes.size():
 		var byte := int(bytes[index]) & 0xFF
+		var glyph := _dictionary_value(glyph_by_offset.get(index, {}))
+		if byte != EOS and not glyph.is_empty():
+			var glyph_event := _source_byte_glyph_visible_event(glyph, visible_chars, visible_index, byte, index)
+			events.append(glyph_event)
+			visible_index += 1
+			index += max(1, int(glyph_event.get("source_byte_count", 1)))
+			continue
 		match byte:
 			EOS:
 				break
@@ -686,6 +697,41 @@ func _parse_source_byte_events(bytes: Array, visible_fallback_text: String) -> A
 				})
 				index += 1
 	return events
+
+
+func _source_glyphs_by_byte_offset(source_glyphs: Array) -> Dictionary:
+	var result := {}
+	for glyph_index in range(source_glyphs.size()):
+		var glyph := _dictionary_value(source_glyphs[glyph_index])
+		var byte_offset := int(glyph.get("byte_offset", -1))
+		if byte_offset < 0:
+			continue
+		var glyph_bytes := _int_array_value(glyph.get("bytes", []))
+		if glyph_bytes.is_empty():
+			continue
+		var record := glyph.duplicate(true)
+		record["source_glyph_index"] = glyph_index
+		result[byte_offset] = record
+	return result
+
+
+func _source_byte_glyph_visible_event(glyph: Dictionary, visible_chars: Array, visible_index: int, source_byte: int, source_offset: int) -> Dictionary:
+	var glyph_bytes := _int_array_value(glyph.get("bytes", []))
+	var visible_text := String(glyph.get("text", ""))
+	if visible_text.is_empty():
+		visible_text = _next_source_byte_visible_text(visible_chars, visible_index, source_byte)
+	return {
+		"kind": "visible",
+		"text": visible_text,
+		"source_event_source": "source_bytes",
+		"source_offset": source_offset,
+		"source_byte": source_byte,
+		"source_byte_span": glyph_bytes,
+		"source_byte_count": glyph_bytes.size(),
+		"source_text_offset": int(glyph.get("source_offset", -1)),
+		"source_glyph_index": int(glyph.get("source_glyph_index", -1)),
+		"source_glyph_hex": String(glyph.get("hex", "")),
+	}
 
 
 func _source_byte_ext_control_event(control_code: int, args: Array, source_offset: int) -> Dictionary:

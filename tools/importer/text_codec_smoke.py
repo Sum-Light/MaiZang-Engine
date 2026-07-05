@@ -29,6 +29,15 @@ def main(argv):
     _assert(controls["status"] == "ok", "expected control escape encoding")
     _assert(controls["bytes"] == [0xFE, 0xFB, 0xFA, 0xFF], "unexpected control bytes")
     _assert(controls["terminator_present"], "expected terminator metadata")
+    _assert(controls["glyphs"] == [], "expected no visible glyphs for source control escapes")
+
+    glyphs = encode_source_text("\u4e00$", charmap)
+    _assert(glyphs["status"] == "ok", "expected visible glyph encoding")
+    _assert(len(glyphs["glyphs"]) == 1, "expected one visible glyph span")
+    _assert(glyphs["glyphs"][0]["text"] == "\u4e00", "expected glyph text metadata")
+    _assert(glyphs["glyphs"][0]["byte_offset"] == 0, "expected glyph byte offset")
+    _assert(glyphs["glyphs"][0]["byte_count"] == 2, "expected mapped CJK glyph byte count")
+    _assert(glyphs["glyphs"][0]["bytes"] == [0x0F, 0x0B], "expected mapped CJK glyph bytes")
 
     constants = encode_source_text("{STR_VAR_1}{PAUSE 96}$", charmap)
     _assert(constants["status"] == "ok", "expected braced constants encoding")

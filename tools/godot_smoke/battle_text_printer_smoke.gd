@@ -146,6 +146,26 @@ func _run() -> void:
 	_assert(String(byte_newline_printer.get_visible_text()) == "A\nB", "expected source byte CHAR_NEWLINE event independent of source text escapes")
 	_assert(int(byte_newline.get("source_byte_event_count", 0)) == 3, "expected three source byte events for A newline B")
 
+	var byte_glyph_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	byte_glyph_printer.start("B_WIN_MSG", "G", message_info, text_printer_metadata, {
+		"source_text": "G",
+		"source_bytes": [0x0F, 0x0B],
+		"source_glyphs": [{
+			"text": "G",
+			"source_offset": 0,
+			"byte_offset": 0,
+			"byte_count": 2,
+			"bytes": [0x0F, 0x0B],
+			"hex": "0F 0B",
+		}],
+	})
+	byte_glyph_printer.advance_frames(1)
+	var byte_glyph := _dict(byte_glyph_printer.snapshot())
+	_assert(String(byte_glyph_printer.get_visible_text()) == "G", "expected one glyph from a two-byte source span")
+	_assert(int(byte_glyph.get("source_glyph_count", 0)) == 1, "expected one source glyph span")
+	_assert(int(byte_glyph.get("source_byte_event_count", 0)) == 1, "expected two source bytes to map to one glyph event")
+	_assert(int(byte_glyph.get("event_count", 0)) == 1, "expected one event for grouped source glyph bytes")
+
 	var byte_clear_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	byte_clear_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
 		"source_text": "AB",
@@ -229,6 +249,7 @@ func _run() -> void:
 		"page_waits": int(page_wait.get("page_wait_count", 0)),
 		"source_page_waits": int(source_page_wait.get("page_wait_count", 0)),
 		"byte_events": int(byte_newline.get("source_byte_event_count", 0)),
+		"byte_glyph_events": int(byte_glyph.get("source_byte_event_count", 0)),
 		"byte_prompt_clears": int(byte_clear_wait.get("prompt_clear_count", 0)),
 		"byte_prompt_scrolls": int(byte_scroll_wait.get("prompt_scroll_count", 0)),
 		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
