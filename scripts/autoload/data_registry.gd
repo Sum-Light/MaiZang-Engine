@@ -21,6 +21,7 @@ const DEFAULT_BATTLE_TRANSITION_CATEGORY := "transitions"
 const DEFAULT_BATTLE_INTERFACE_CATEGORY := "interface"
 const DEFAULT_POKEMON_BATTLE_SPRITE_CATEGORY := "battle_sprites"
 const DEFAULT_TRAINER_BATTLE_SPRITE_CATEGORY := "trainer_sprites"
+const DEFAULT_OVERWORLD_TILESET_HEADER_REPORT_CATEGORY := "overworld_tileset_header_report"
 
 var import_report: Dictionary = {}
 var _manifest_data: Dictionary = {}
@@ -34,6 +35,7 @@ var _pokemon_entries_by_category: Dictionary = {}
 var _battle_entries_by_category: Dictionary = {}
 var _map_overlay_entries_by_category: Dictionary = {}
 var _object_event_sprite_entries_by_category: Dictionary = {}
+var _overworld_report_entries_by_category: Dictionary = {}
 var _map_data_by_id: Dictionary = {}
 var _tileset_data_by_map_id: Dictionary = {}
 var _script_data_by_map_id: Dictionary = {}
@@ -43,6 +45,7 @@ var _pokemon_data_by_category: Dictionary = {}
 var _battle_data_by_category: Dictionary = {}
 var _map_overlay_data_by_category: Dictionary = {}
 var _object_event_sprite_data_by_category: Dictionary = {}
+var _overworld_report_data_by_category: Dictionary = {}
 var _species_records_by_symbol: Dictionary = {}
 var _species_records_by_id: Dictionary = {}
 var _pokemon_battle_sprite_records_by_symbol: Dictionary = {}
@@ -651,6 +654,24 @@ func get_object_event_sprite_data(category: String = DEFAULT_OBJECT_EVENT_SPRITE
 	return sprite_data
 
 
+func get_overworld_report_data(category: String) -> Dictionary:
+	if _overworld_report_data_by_category.has(category):
+		var cached = _overworld_report_data_by_category[category]
+		return cached if typeof(cached) == TYPE_DICTIONARY else {}
+
+	var entry = _overworld_report_entries_by_category.get(category, {})
+	if typeof(entry) != TYPE_DICTIONARY:
+		return {}
+
+	var report_data := _load_json_object(_resource_path(String(entry.get("path", ""))), "generated overworld report")
+	_overworld_report_data_by_category[category] = report_data
+	return report_data
+
+
+func get_overworld_tileset_header_report() -> Dictionary:
+	return get_overworld_report_data(DEFAULT_OVERWORLD_TILESET_HEADER_REPORT_CATEGORY)
+
+
 func get_object_event_sprite_record(
 	graphics_id: String,
 	category: String = DEFAULT_OBJECT_EVENT_SPRITE_CATEGORY
@@ -1179,6 +1200,8 @@ func _index_manifest() -> void:
 	_map_overlay_data_by_category = {}
 	_object_event_sprite_entries_by_category = {}
 	_object_event_sprite_data_by_category = {}
+	_overworld_report_entries_by_category = {}
+	_overworld_report_data_by_category = {}
 	_species_records_by_symbol = {}
 	_species_records_by_id = {}
 	_pokemon_battle_sprite_records_by_symbol = {}
@@ -1301,6 +1324,15 @@ func _index_manifest() -> void:
 			var category := String(entry.get("category", ""))
 			if not category.is_empty():
 				_object_event_sprite_entries_by_category[category] = entry
+
+	var overworld_reports = _manifest_data.get("overworld_reports", [])
+	if typeof(overworld_reports) == TYPE_ARRAY:
+		for entry in overworld_reports:
+			if typeof(entry) != TYPE_DICTIONARY:
+				continue
+			var category := String(entry.get("category", ""))
+			if not category.is_empty():
+				_overworld_report_entries_by_category[category] = entry
 
 
 func _map_entry_for_id(map_id: String) -> Dictionary:

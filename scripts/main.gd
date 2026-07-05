@@ -4,6 +4,7 @@ const TRANSITION_SEQUENCE_PLAYER := preload("res://scripts/overworld/transition_
 const BATTLE_SCENE := preload("res://scenes/battle/battle_scene.tscn")
 const BATTLE_DEBUG_LAUNCHER := preload("res://scripts/debug/battle_debug_launcher.gd")
 const LAYER_AWARE_MAP_RENDERER := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
+const TILESET_ANIMATION_PLAYER := preload("res://scripts/overworld/tileset_animation_player.gd")
 const DEBUG_LAYER_VIEW_MODES := ["all", "bottom", "middle", "top"]
 
 @onready var world = $World
@@ -18,6 +19,7 @@ var _movement_note := ""
 var _transition_overlay: ColorRect
 var _transition_label: Label
 var _transition_sequence_player: Node
+var _tileset_animation_player: Node
 var _battle_scene: Control = null
 var _battle_debug_launcher
 var _debug_trainer_selector: PanelContainer
@@ -68,6 +70,7 @@ func _ready() -> void:
 	)
 	if _transition_sequence_player.has_signal("battle_scene_handoff_requested"):
 		_transition_sequence_player.battle_scene_handoff_requested.connect(_on_battle_scene_handoff_requested)
+	_install_tileset_animation_player()
 	MapRuntime.configure_from_data(
 		start_map_data,
 		start_tileset_data,
@@ -626,3 +629,12 @@ func _install_layer_aware_map_renderer() -> void:
 	if layer_renderer.has_method("configure_debug_fallback"):
 		layer_renderer.configure_debug_fallback(legacy_renderer)
 	debug_map = layer_renderer
+
+
+func _install_tileset_animation_player() -> void:
+	if _tileset_animation_player != null:
+		return
+	_tileset_animation_player = TILESET_ANIMATION_PLAYER.new()
+	_tileset_animation_player.name = "TilesetAnimationPlayer"
+	add_child(_tileset_animation_player)
+	_tileset_animation_player.configure(DataRegistry, MapRuntime)
