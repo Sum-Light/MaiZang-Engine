@@ -37,6 +37,9 @@ def main(argv):
     _assert(source["tileset_anim_init_function_count"] == 31, "unexpected source tileset anim init count")
     _assert(source["tileset_anim_source_frame_count"] == 182, "unexpected source tileset anim frame source count")
     _assert(source["tileset_anim_source_group_count"] == 174, "unexpected source tileset anim group count")
+    _assert(source["tileset_palette_reference_count"] == 2224, "unexpected source tileset palette ref count")
+    _assert(source["tileset_unique_palette_reference_count"] == 2208, "unexpected unique palette ref count")
+    _assert(source["tileset_palette_array_symbol_count"] == 139, "unexpected palette array symbol count")
     _assert(source["door_animation_table_entry_count"] == 53, "unexpected active Emerald door table count")
     _assert(source["object_event_graphics_info_count"] == 393, "unexpected source object-event graphics count")
 
@@ -62,6 +65,28 @@ def main(argv):
         "unexpected generated animation frame declaration count",
     )
     _assert(generated["tileset_animation_source_image_count"] == 182, "unexpected animation source image count")
+    _assert(generated["tileset_palette_slot_mapping_count"] == 2224, "unexpected palette slot mapping count")
+    _assert(
+        generated["active_emerald_tileset_palette_slot_mapping_count"] == 1200,
+        "unexpected active palette slot mapping count",
+    )
+    _assert(
+        generated["tileset_loaded_palette_slot_mapping_count"] == 908,
+        "unexpected loaded palette slot mapping count",
+    )
+    _assert(
+        generated["active_emerald_tileset_loaded_palette_slot_mapping_count"] == 522,
+        "unexpected active loaded palette slot mapping count",
+    )
+    _assert(generated["tileset_palette_source_candidate_count"] == 2224, "unexpected palette candidate count")
+    _assert(
+        generated["tileset_existing_palette_source_candidate_count"] == 2224,
+        "unexpected existing palette candidate count",
+    )
+    _assert(
+        generated["tileset_missing_palette_source_candidate_count"] == 0,
+        "unexpected missing palette candidate count",
+    )
     _assert(
         generated["tileset_header_missing_callback_source_count"] == 0,
         "unexpected missing tileset callback source count",
@@ -97,6 +122,9 @@ def main(argv):
         coverage["tileset_animation_source_images"]["percent"] == 100.0,
         "unexpected tileset animation source image coverage percent",
     )
+    _assert(coverage["tileset_palette_sources"]["generated"] == 2224, "unexpected palette coverage generated count")
+    _assert(coverage["tileset_palette_sources"]["source"] == 2224, "unexpected palette coverage source count")
+    _assert(coverage["tileset_palette_sources"]["percent"] == 100.0, "unexpected palette coverage percent")
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing tileset animation unsupported code")

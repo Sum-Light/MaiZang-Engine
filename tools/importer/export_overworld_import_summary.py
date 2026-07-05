@@ -88,6 +88,31 @@ def parse_tileset_anim_sources(source_root):
     }
 
 
+def parse_tileset_palette_sources(source_root):
+    source_files = [
+        "src/data/tilesets/graphics.h",
+        "src/graphics.c",
+    ]
+    texts = []
+    for source_file in source_files:
+        path = source_root / source_file
+        if path.exists():
+            texts.append(read_text(path))
+    text = "\n".join(texts)
+    palette_refs = re.findall(r'"(data/tilesets/[^"]+/palettes/\d+\.gbapal)"', text)
+    palette_arrays = re.findall(
+        r"const\s+u16\s+(?:ALIGNED\(\d+\)\s+)?"
+        r"(gTilesetPalettes_[A-Za-z0-9_]+)"
+        r"\s*\[\]\[16\]\s*=\s*\{",
+        text,
+    )
+    return {
+        "tileset_palette_reference_count": len(palette_refs),
+        "tileset_unique_palette_reference_count": len(set(palette_refs)),
+        "tileset_palette_array_symbol_count": len(set(palette_arrays)),
+    }
+
+
 def parse_active_emerald_door_table(source_root):
     path = source_root / "src/field_door.c"
     if not path.exists():
@@ -423,6 +448,7 @@ def ratio(generated, source):
 def build_source_counts(source_root):
     tileset_header_info = parse_tileset_headers(source_root)
     tileset_anim_info = parse_tileset_anim_sources(source_root)
+    tileset_palette_info = parse_tileset_palette_sources(source_root)
     door_info = parse_active_emerald_door_table(source_root)
     counts = {
         "map_count": count_files(source_root, "data/maps/*/map.json"),
@@ -434,6 +460,7 @@ def build_source_counts(source_root):
     }
     counts.update(tileset_header_info)
     counts.update(tileset_anim_info)
+    counts.update(tileset_palette_info)
     counts.update(door_info)
     return counts
 
@@ -493,6 +520,27 @@ def build_export(source_root, output_root):
     tileset_animation_source_image_count = int(
         tileset_header_stats.get("animation_existing_editable_source_candidate_count", 0)
     )
+    tileset_palette_slot_mapping_count = int(
+        tileset_header_stats.get("palette_slot_mapping_count", 0)
+    )
+    active_tileset_palette_slot_mapping_count = int(
+        tileset_header_stats.get("active_palette_slot_mapping_count", 0)
+    )
+    tileset_loaded_palette_slot_mapping_count = int(
+        tileset_header_stats.get("loaded_palette_slot_mapping_count", 0)
+    )
+    active_tileset_loaded_palette_slot_mapping_count = int(
+        tileset_header_stats.get("active_loaded_palette_slot_mapping_count", 0)
+    )
+    tileset_palette_source_candidate_count = int(
+        tileset_header_stats.get("palette_editable_source_candidate_count", 0)
+    )
+    tileset_existing_palette_source_candidate_count = int(
+        tileset_header_stats.get("palette_existing_editable_source_candidate_count", 0)
+    )
+    tileset_missing_palette_source_candidate_count = int(
+        tileset_header_stats.get("palette_missing_editable_source_candidate_count", 0)
+    )
     tileset_header_missing_callback_source_count = int(
         tileset_header_stats.get("missing_callback_source_count", 0)
     )
@@ -536,6 +584,13 @@ def build_export(source_root, output_root):
         "active_emerald_tileset_header_record_count": active_tileset_header_record_count,
         "tileset_animation_frame_declaration_count": tileset_animation_frame_declaration_count,
         "tileset_animation_source_image_count": tileset_animation_source_image_count,
+        "tileset_palette_slot_mapping_count": tileset_palette_slot_mapping_count,
+        "active_emerald_tileset_palette_slot_mapping_count": active_tileset_palette_slot_mapping_count,
+        "tileset_loaded_palette_slot_mapping_count": tileset_loaded_palette_slot_mapping_count,
+        "active_emerald_tileset_loaded_palette_slot_mapping_count": active_tileset_loaded_palette_slot_mapping_count,
+        "tileset_palette_source_candidate_count": tileset_palette_source_candidate_count,
+        "tileset_existing_palette_source_candidate_count": tileset_existing_palette_source_candidate_count,
+        "tileset_missing_palette_source_candidate_count": tileset_missing_palette_source_candidate_count,
         "tileset_header_missing_callback_source_count": tileset_header_missing_callback_source_count,
         "metatile_record_count": tileset_totals["metatile_record_count"],
         "script_bundle_count": script_totals["script_bundle_count"],
@@ -596,6 +651,10 @@ def build_export(source_root, output_root):
         "tileset_animation_source_images": ratio(
             generated_counts["tileset_animation_source_image_count"],
             source_counts["tileset_anim_source_frame_count"],
+        ),
+        "tileset_palette_sources": ratio(
+            generated_counts["tileset_existing_palette_source_candidate_count"],
+            source_counts["tileset_palette_reference_count"],
         ),
         "object_event_graphics": ratio(
             generated_counts["object_event_graphic_count"],
@@ -705,6 +764,9 @@ def manifest_entry_for(exported, output_path):
         "generated_tileset_record_count": generated["tileset_record_count"],
         "generated_tileset_header_record_count": generated["tileset_header_record_count"],
         "generated_tileset_animation_source_image_count": generated["tileset_animation_source_image_count"],
+        "generated_tileset_palette_slot_mapping_count": generated["tileset_palette_slot_mapping_count"],
+        "generated_tileset_palette_source_candidate_count": generated["tileset_existing_palette_source_candidate_count"],
+        "tileset_missing_palette_source_candidate_count": generated["tileset_missing_palette_source_candidate_count"],
         "tileset_header_missing_callback_source_count": generated["tileset_header_missing_callback_source_count"],
         "generated_script_count": generated["script_count"],
         "generated_movement_action_count": generated["movement_action_count"],

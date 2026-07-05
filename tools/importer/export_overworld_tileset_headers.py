@@ -19,6 +19,7 @@ SOURCE_FILES = [
     "src/data/tilesets/graphics.h",
     "src/data/tilesets/metatiles.h",
     "src/graphics.c",
+    "src/fieldmap.c",
     "src/tileset_anims.c",
     "include/fieldmap.h",
 ]
@@ -42,6 +43,19 @@ ANIM_FRAME_DECL_RE = re.compile(
     re.S,
 )
 INIT_FUNCTION_RE = re.compile(r"\bvoid\s+(InitTilesetAnim_[A-Za-z0-9_]+)\s*\(")
+PALETTE_DEFINE_RE = re.compile(
+    r"#define\s+"
+    r"(?P<name>NUM_PALS_IN_PRIMARY_FRLG|NUM_PALS_IN_PRIMARY|NUM_PALS_TOTAL)"
+    r"\s+(?P<value>\d+)"
+)
+
+PALETTE_RULE_FUNCTIONS = [
+    "GetNumPalsInPrimary",
+    "LoadTilesetPalette",
+    "LoadPrimaryTilesetPalette",
+    "LoadSecondaryTilesetPalette",
+    "LoadMapTilesetPalettes",
+]
 
 
 def read_text(path):
@@ -289,6 +303,172 @@ def parse_init_function_symbols(source_root):
     ]
 
 
+def parse_palette_slot_rules(source_root):
+    fieldmap_h_path = source_root / "include/fieldmap.h"
+    fieldmap_c_path = source_root / "src/fieldmap.c"
+    fieldmap_h = read_text(fieldmap_h_path) if fieldmap_h_path.exists() else ""
+    fieldmap_c = read_text(fieldmap_c_path) if fieldmap_c_path.exists() else ""
+
+    constants = {}
+    for match in PALETTE_DEFINE_RE.finditer(fieldmap_h):
+        constants[match.group("name")] = {
+            "value": int(match.group("value")),
+            "source": {
+                "path": "include/fieldmap.h",
+                "line": line_number(fieldmap_h, match.start()),
+            },
+        }
+
+    total = constants.get("NUM_PALS_TOTAL", {}).get("value", 0)
+    emerald_primary = constants.get("NUM_PALS_IN_PRIMARY", {}).get("value", 0)
+    frlg_primary = constants.get("NUM_PALS_IN_PRIMARY_FRLG", {}).get("value", 0)
+
+    return {
+        "status": "import_metadata_only",
+        "runtime_palette_required": False,
+        "source_files": [
+            path_status(source_root, Path("include/fieldmap.h")),
+            path_status(source_root, Path("src/fieldmap.c")),
+        ],
+        "constants": constants,
+        "profiles": {
+            "emerald": palette_rule_profile("emerald", False, emerald_primary, total),
+            "frlg": palette_rule_profile("frlg", True, frlg_primary, total),
+        },
+        "source_functions": source_function_refs(fieldmap_c, "src/fieldmap.c", PALETTE_RULE_FUNCTIONS),
+        "source_logic": [
+            {
+                "symbol": "LoadPrimaryTilesetPalette",
+                "detail": "Primary tileset palettes are copied from local slot 0 into global BG palette slot 0 for GetNumPalsInPrimary(mapLayout) slots.",
+            },
+            {
+                "symbol": "LoadSecondaryTilesetPalette",
+                "detail": "Secondary tileset palettes are copied starting at local slot GetNumPalsInPrimary(mapLayout) into the same-numbered global BG palette slots through NUM_PALS_TOTAL - 1.",
+            },
+            {
+                "symbol": "LoadTilesetPalette",
+                "detail": "Primary slot 0 is forced to RGB_BLACK after copy; this remains source-color provenance, not a Godot runtime palette API.",
+            },
+        ],
+        "runtime_policy": {
+            "status": "import_metadata_only",
+            "detail": "Palette slot numbers and source .pal/.gbapal paths are preserved for provenance and bake-time decoding only. Godot runtime rendering consumes RGBA textures and Godot-native Shader/Material/Animation parameters.",
+        },
+    }
+
+
+def palette_rule_profile(name, is_frlg, primary_count, total_count):
+    secondary_count = max(0, total_count - primary_count)
+    return {
+        "name": name,
+        "is_frlg": is_frlg,
+        "total_bg_palette_slot_count": total_count,
+        "primary_global_slot_start": 0,
+        "primary_loaded_palette_count": primary_count,
+        "primary_loaded_local_slot_start": 0,
+        "primary_loaded_local_slot_end_exclusive": primary_count,
+        "secondary_global_slot_start": primary_count,
+        "secondary_loaded_palette_count": secondary_count,
+        "secondary_loaded_local_slot_start": primary_count,
+        "secondary_loaded_local_slot_end_exclusive": total_count,
+    }
+
+
+def source_function_refs(text, source_path, names):
+    rows = []
+    for name in names:
+        match = re.search(r"\b(?:static\s+)?(?:void|u32)\s+%s\s*\(" % re.escape(name), text)
+        rows.append({
+            "symbol": name,
+            "source": {
+                "path": source_path,
+                "line": line_number(text, match.start()) if match else None,
+            },
+            "found": match is not None,
+        })
+    return rows
+
+
+def palette_source_profile_for_branch(branch):
+    return "frlg" if branch == "frlg_metadata" else "emerald"
+
+
+def palette_slot_mapping_for_header(source_root, kind, branch, palette_group, palette_rules):
+    profile_name = palette_source_profile_for_branch(branch)
+    profile = palette_rules.get("profiles", {}).get(profile_name, {})
+    slots = []
+    for local_slot, incbin_row in enumerate(palette_group.get("incbin_paths", [])):
+        path_text = incbin_row.get("path", "")
+        editable_candidates = [
+            status_for_path(source_root, candidate)
+            for candidate in candidate_paths_for_incbin(path_text)
+        ]
+        loaded, global_slot, role = palette_slot_load_state(kind, local_slot, profile)
+        slots.append({
+            "local_palette_slot": local_slot,
+            "global_bg_palette_slot": global_slot,
+            "loaded_by_source_map_palette_copy": loaded,
+            "source_role": role,
+            "source_profile": profile_name,
+            "source_kind": kind,
+            "palette_entry_count": 16,
+            "source_incbin": incbin_row,
+            "editable_source_candidates": editable_candidates,
+            "existing_editable_source_candidate_count": sum(1 for row in editable_candidates if row["exists"]),
+            "runtime_policy": {
+                "status": "import_metadata_only",
+                "runtime_palette_required": False,
+                "detail": "This slot is source provenance for RGBA baking or later Godot-native color effects; it is not a runtime palette bank.",
+            },
+        })
+
+    loaded_slots = [slot for slot in slots if slot["loaded_by_source_map_palette_copy"]]
+    return {
+        "status": "import_metadata_only",
+        "runtime_palette_required": False,
+        "source_rules_profile": profile_name,
+        "source_palette_symbol": palette_group.get("symbol"),
+        "source_palette_declaration_found": palette_group.get("declaration_found", False),
+        "source_palette_declaration": palette_group.get("declaration_source"),
+        "source_kind": kind,
+        "declared_palette_slot_count": len(slots),
+        "loaded_palette_slot_count": len(loaded_slots),
+        "not_loaded_palette_slot_count": len(slots) - len(loaded_slots),
+        "total_bg_palette_slot_count": profile.get("total_bg_palette_slot_count"),
+        "primary_loaded_palette_count": profile.get("primary_loaded_palette_count"),
+        "secondary_loaded_palette_count": profile.get("secondary_loaded_palette_count"),
+        "secondary_loaded_local_slot_start": profile.get("secondary_loaded_local_slot_start"),
+        "loaded_global_bg_palette_slots": [
+            slot["global_bg_palette_slot"]
+            for slot in loaded_slots
+        ],
+        "slots": slots,
+    }
+
+
+def palette_slot_load_state(kind, local_slot, profile):
+    primary_end = int(profile.get("primary_loaded_local_slot_end_exclusive", 0) or 0)
+    secondary_start = int(profile.get("secondary_loaded_local_slot_start", 0) or 0)
+    secondary_end = int(profile.get("secondary_loaded_local_slot_end_exclusive", 0) or 0)
+    total = int(profile.get("total_bg_palette_slot_count", 0) or 0)
+
+    if kind == "primary":
+        if 0 <= local_slot < primary_end:
+            return True, local_slot, "primary_loaded_bg_palette"
+        if local_slot < total:
+            return False, None, "declared_global_slot_owned_by_secondary"
+        return False, None, "declared_beyond_bg_palette_total_not_loaded"
+
+    if kind == "secondary":
+        if secondary_start <= local_slot < secondary_end:
+            return True, local_slot, "secondary_loaded_bg_palette"
+        if local_slot < secondary_start:
+            return False, None, "declared_global_slot_owned_by_primary"
+        return False, None, "declared_beyond_bg_palette_total_not_loaded"
+
+    return False, None, "unknown_tileset_kind_not_loaded"
+
+
 def frames_for_tileset_base(animation_frames, base_path):
     if not base_path:
         return []
@@ -299,11 +479,12 @@ def frames_for_tileset_base(animation_frames, base_path):
     ]
 
 
-def parse_tileset_headers(source_root, animation_frames=None, init_functions=None):
+def parse_tileset_headers(source_root, animation_frames=None, init_functions=None, palette_rules=None):
     headers_path = source_root / "src/data/tilesets/headers.h"
     text = read_text(headers_path)
     declarations = parse_asset_declarations(source_root)
     animation_frames = animation_frames or []
+    palette_rules = palette_rules or parse_palette_slot_rules(source_root)
     init_function_symbols = {
         row["function"]: row
         for row in (init_functions or [])
@@ -336,6 +517,13 @@ def parse_tileset_headers(source_root, animation_frames=None, init_functions=Non
             header_line = line_number(text, (section_offset if section_offset >= 0 else 0) + match.start())
             animation_frame_rows = frames_for_tileset_base(animation_frames, expected_base_path)
             callback_source = init_function_symbols.get(callback_symbol)
+            palette_slot_mapping = palette_slot_mapping_for_header(
+                source_root,
+                kind,
+                branch,
+                assets["palettes"],
+                palette_rules,
+            )
 
             rows.append({
                 "symbol": symbol,
@@ -397,6 +585,7 @@ def parse_tileset_headers(source_root, animation_frames=None, init_functions=Non
                     ),
                 },
                 "asset_provenance": assets,
+                "palette_slot_mapping": palette_slot_mapping,
                 "asset_source_directories": asset_source_directories(assets),
                 "animation_image_provenance": {
                     "frame_declaration_count": len(animation_frame_rows),
@@ -491,6 +680,37 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         }
         for base_path in orphan_animation_base_paths
     ]
+    palette_slots = [
+        slot
+        for row in records
+        for slot in row.get("palette_slot_mapping", {}).get("slots", [])
+    ]
+    active_palette_slots = [
+        slot
+        for row in active
+        for slot in row.get("palette_slot_mapping", {}).get("slots", [])
+    ]
+    loaded_palette_slots = [
+        slot
+        for slot in palette_slots
+        if slot.get("loaded_by_source_map_palette_copy")
+    ]
+    active_loaded_palette_slots = [
+        slot
+        for slot in active_palette_slots
+        if slot.get("loaded_by_source_map_palette_copy")
+    ]
+    missing_palette_source_candidates = [
+        {
+            "tileset": row["symbol"],
+            "local_palette_slot": slot["local_palette_slot"],
+            "path": candidate["path"],
+        }
+        for row in records
+        for slot in row.get("palette_slot_mapping", {}).get("slots", [])
+        for candidate in slot.get("editable_source_candidates", [])
+        if not candidate.get("exists")
+    ]
     return {
         "source_file_count": len(source_files),
         "missing_source_file_count": sum(1 for row in source_files if not row["exists"]),
@@ -524,6 +744,42 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         ),
         "incbin_path_count": sum(group["incbin_path_count"] for group in asset_groups),
         "existing_incbin_path_count": sum(group["existing_incbin_path_count"] for group in asset_groups),
+        "palette_slot_mapping_count": len(palette_slots),
+        "active_palette_slot_mapping_count": len(active_palette_slots),
+        "loaded_palette_slot_mapping_count": len(loaded_palette_slots),
+        "active_loaded_palette_slot_mapping_count": len(active_loaded_palette_slots),
+        "not_loaded_palette_slot_mapping_count": len(palette_slots) - len(loaded_palette_slots),
+        "active_not_loaded_palette_slot_mapping_count": len(active_palette_slots) - len(active_loaded_palette_slots),
+        "palette_source_incbin_count": len(palette_slots),
+        "palette_existing_source_incbin_count": sum(
+            1
+            for slot in palette_slots
+            if slot.get("source_incbin", {}).get("exists")
+        ),
+        "palette_editable_source_candidate_count": sum(
+            len(slot.get("editable_source_candidates", []))
+            for slot in palette_slots
+        ),
+        "palette_existing_editable_source_candidate_count": sum(
+            slot.get("existing_editable_source_candidate_count", 0)
+            for slot in palette_slots
+        ),
+        "palette_missing_editable_source_candidate_count": len(missing_palette_source_candidates),
+        "palette_missing_editable_source_candidates": missing_palette_source_candidates,
+        "palette_slot_count_by_source_profile": count_by(
+            [
+                {"source_profile": slot.get("source_profile")}
+                for slot in palette_slots
+            ],
+            "source_profile",
+        ),
+        "palette_loaded_slot_count_by_source_profile": count_by(
+            [
+                {"source_profile": slot.get("source_profile")}
+                for slot in loaded_palette_slots
+            ],
+            "source_profile",
+        ),
         "init_function_count": len(init_functions),
         "animation_frame_declaration_count": len(animation_frames),
         "animation_source_bin_count": sum(frame["source_bin_count"] for frame in animation_frames),
@@ -569,6 +825,9 @@ def manifest_entry_for(exported, output_path):
         "primary_header_count": stats["primary_header_count"],
         "secondary_header_count": stats["secondary_header_count"],
         "callback_symbol_count": stats["callback_symbol_count"],
+        "palette_slot_mapping_count": stats["palette_slot_mapping_count"],
+        "palette_existing_editable_source_candidate_count": stats["palette_existing_editable_source_candidate_count"],
+        "palette_missing_editable_source_candidate_count": stats["palette_missing_editable_source_candidate_count"],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
         "missing_callback_source_count": stats["missing_callback_source_count"],
@@ -581,13 +840,15 @@ def build_export(source_root):
     source_files = source_file_presence(source_root)
     animation_frames = parse_animation_frame_declarations(source_root)
     init_functions = parse_init_function_symbols(source_root)
-    records = parse_tileset_headers(source_root, animation_frames, init_functions)
+    palette_rules = parse_palette_slot_rules(source_root)
+    records = parse_tileset_headers(source_root, animation_frames, init_functions, palette_rules)
     stats = build_stats(source_files, records, animation_frames, init_functions)
     return {
         "schema_version": 1,
         "generated_by": GENERATED_BY,
         "source_root": str(source_root),
         "source_files": source_files,
+        "palette_slot_rules": palette_rules,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_init_functions": init_functions,
