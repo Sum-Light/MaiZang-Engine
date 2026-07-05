@@ -4,6 +4,40 @@ const STATUS := "first_pass_plain_text_cadence"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
 const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
+const CHAR_PROMPT_SCROLL := 0xFA
+const CHAR_PROMPT_CLEAR := 0xFB
+const EXT_CTRL_CODE_BEGIN := 0xFC
+const PLACEHOLDER_BEGIN := 0xFD
+const CHAR_NEWLINE := 0xFE
+const EOS := 0xFF
+const EXT_CTRL_CODE_COLOR := 0x01
+const EXT_CTRL_CODE_HIGHLIGHT := 0x02
+const EXT_CTRL_CODE_SHADOW := 0x03
+const EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW := 0x04
+const EXT_CTRL_CODE_PALETTE := 0x05
+const EXT_CTRL_CODE_FONT := 0x06
+const EXT_CTRL_CODE_RESET_FONT := 0x07
+const EXT_CTRL_CODE_PAUSE := 0x08
+const EXT_CTRL_CODE_PAUSE_UNTIL_PRESS := 0x09
+const EXT_CTRL_CODE_WAIT_SE := 0x0A
+const EXT_CTRL_CODE_PLAY_BGM := 0x0B
+const EXT_CTRL_CODE_ESCAPE := 0x0C
+const EXT_CTRL_CODE_SHIFT_RIGHT := 0x0D
+const EXT_CTRL_CODE_SHIFT_DOWN := 0x0E
+const EXT_CTRL_CODE_FILL_WINDOW := 0x0F
+const EXT_CTRL_CODE_PLAY_SE := 0x10
+const EXT_CTRL_CODE_CLEAR := 0x11
+const EXT_CTRL_CODE_SKIP := 0x12
+const EXT_CTRL_CODE_CLEAR_TO := 0x13
+const EXT_CTRL_CODE_MIN_LETTER_SPACING := 0x14
+const EXT_CTRL_CODE_JPN := 0x15
+const EXT_CTRL_CODE_ENG := 0x16
+const EXT_CTRL_CODE_PAUSE_MUSIC := 0x17
+const EXT_CTRL_CODE_RESUME_MUSIC := 0x18
+const EXT_CTRL_CODE_SPEAKER := 0x19
+const EXT_CTRL_CODE_ACCENT := 0x1A
+const EXT_CTRL_CODE_BACKGROUND := 0x1B
+const EXT_CTRL_CODE_TEXT_COLORS := 0x1C
 const SOURCE_TRACE := [
 	"src/battle_message.c:BattlePutTextOnWindow",
 	"src/text.c:GetPlayerTextSpeedDelay",
@@ -83,6 +117,9 @@ var _event_index := 0
 var _event_stream_source := "display_text"
 var _source_text := ""
 var _source_text_label := ""
+var _source_bytes: Array = []
+var _source_encoding_hex := ""
+var _source_byte_control_summary := {}
 var _source_text_control_metadata_count := 0
 var _source_audio_cue_metadata_count := 0
 var _source_metadata_only_count := 0
@@ -92,6 +129,8 @@ var _style_event_count := 0
 var _audio_cue_count := 0
 var _pause_event_count := 0
 var _page_wait_count := 0
+var _prompt_scroll_count := 0
+var _prompt_clear_count := 0
 var _wait_input_count := 0
 var _wait_se_count := 0
 var _unsupported: Array = []
@@ -117,11 +156,17 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_down_arrow_visible = false
 	_source_text = String(options.get("source_text", ""))
 	_source_text_label = String(options.get("source_text_label", options.get("text_label", "")))
+	var source_encoding := _dictionary_value(options.get("source_encoding", {}))
+	_source_bytes = _int_array_value(options.get("source_bytes", source_encoding.get("bytes", [])))
+	_source_encoding_hex = String(options.get("source_encoding_hex", source_encoding.get("hex", "")))
+	_source_byte_control_summary = _source_byte_control_summary_from_bytes(_source_bytes)
 	_source_text_control_metadata_count = _array_value(options.get("text_controls", [])).size()
 	_source_audio_cue_metadata_count = _array_value(options.get("audio_cues", [])).size()
 	_source_metadata_only_count = _array_value(options.get("metadata_only", [])).size()
-	_event_stream_source = "source_text" if not _source_text.is_empty() else "display_text"
+	_event_stream_source = "source_bytes" if not _source_bytes.is_empty() else ("source_text" if not _source_text.is_empty() else "display_text")
 	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
+	if _event_stream_source == "source_bytes":
+		event_text = _strip_source_text_terminator(_source_text) if not _source_text.is_empty() else _full_text
 	_events = _parse_text_events(event_text, _event_stream_source)
 	_event_index = 0
 	_event_log = []
@@ -130,6 +175,8 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_audio_cue_count = 0
 	_pause_event_count = 0
 	_page_wait_count = 0
+	_prompt_scroll_count = 0
+	_prompt_clear_count = 0
 	_wait_input_count = 0
 	_wait_se_count = 0
 	_source_speed = text_info.get("source_speed", text_info.get("table_speed", 0))
@@ -212,11 +259,14 @@ func snapshot() -> Dictionary:
 		"pause_counter": _pause_counter,
 		"down_arrow_visible": _down_arrow_visible,
 		"synchronous_render": _synchronous_render,
-		"event_stream_status": "first_pass_source_text_events" if _event_stream_source == "source_text" else "first_pass_display_text_events",
+		"event_stream_status": _event_stream_status(),
 		"event_stream_source": _event_stream_source,
 		"source_text": _source_text,
 		"source_text_label": _source_text_label,
 		"source_text_length": _source_text.length(),
+		"source_byte_count": _source_bytes.size(),
+		"source_encoding_hex": _source_encoding_hex,
+		"source_byte_control_summary": _source_byte_control_summary.duplicate(true),
 		"source_text_control_metadata_count": _source_text_control_metadata_count,
 		"source_audio_cue_metadata_count": _source_audio_cue_metadata_count,
 		"source_metadata_only_count": _source_metadata_only_count,
@@ -227,6 +277,8 @@ func snapshot() -> Dictionary:
 		"audio_cue_count": _audio_cue_count,
 		"pause_event_count": _pause_event_count,
 		"page_wait_count": _page_wait_count,
+		"prompt_scroll_count": _prompt_scroll_count,
+		"prompt_clear_count": _prompt_clear_count,
 		"wait_input_count": _wait_input_count,
 		"wait_se_count": _wait_se_count,
 		"event_log": _event_log.duplicate(true),
@@ -332,7 +384,15 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 				_wait_state = "wait_with_down_arrow"
 				_down_arrow_visible = not _auto_scroll
 				_page_wait_count += 1
+				_prompt_scroll_count += 1
 				_event_log.append({"kind": "page_break", "source": "CHAR_PROMPT_SCROLL", "auto_scroll": _auto_scroll})
+				return
+			"page_clear":
+				_wait_state = "wait_clear"
+				_down_arrow_visible = not _auto_scroll
+				_page_wait_count += 1
+				_prompt_clear_count += 1
+				_event_log.append({"kind": "page_clear", "source": "CHAR_PROMPT_CLEAR", "auto_scroll": _auto_scroll})
 				return
 			"pause":
 				_wait_state = "pause"
@@ -399,15 +459,19 @@ func _advance_wait_state(input: Dictionary) -> void:
 				_pause_counter -= 1
 				return
 			_wait_state = ""
-		"wait", "wait_with_down_arrow":
+		"wait", "wait_with_down_arrow", "wait_clear":
 			if _auto_scroll:
 				if _auto_scroll_delay >= NUM_FRAMES_AUTO_SCROLL_DELAY:
 					_auto_scroll_delay = 0
+					if _wait_state == "wait_clear":
+						_clear_visible_text()
 					_wait_state = ""
 					_down_arrow_visible = false
 					return
 				_auto_scroll_delay += 1
 			if _is_advance_input_just_pressed(input):
+				if _wait_state == "wait_clear":
+					_clear_visible_text()
 				_wait_state = ""
 				_down_arrow_visible = false
 				_auto_scroll_delay = 0
@@ -430,18 +494,26 @@ func _parse_text_events(text: String, event_source: String = "display_text") -> 
 	var index := 0
 	while index < text.length():
 		var character := text.substr(index, 1)
-		if event_source == "source_text" and character == "\\":
+		if (event_source == "source_text" or event_source == "source_bytes") and character == "\\":
 			if index + 1 >= text.length():
 				events.append({"kind": "visible", "text": "\\"})
 				index += 1
 				continue
 			var escaped := text.substr(index + 1, 1)
 			match escaped:
-				"n", "l":
-					events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\%s" % escaped})
+				"n":
+					events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\n"})
+				"l":
+					if event_source == "source_bytes":
+						events.append({"kind": "page_break", "text": "\n", "source": "CHAR_PROMPT_SCROLL", "source_escape": "\\l"})
+					else:
+						events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\l"})
 				"p":
-					events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\p"})
-					events.append({"kind": "page_break", "text": "\n", "source": "CHAR_PROMPT_SCROLL", "source_escape": "\\p"})
+					if event_source == "source_bytes":
+						events.append({"kind": "page_clear", "source": "CHAR_PROMPT_CLEAR", "source_escape": "\\p"})
+					else:
+						events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\p"})
+						events.append({"kind": "page_break", "text": "\n", "source": "CHAR_PROMPT_SCROLL", "source_escape": "\\p"})
 				"r":
 					events.append({"kind": "visible", "text": "\r", "source_escape": "\\r"})
 				"t":
@@ -509,6 +581,8 @@ func _visible_text_from_events() -> String:
 				text += "\n"
 			"page_break":
 				text += String(event.get("text", "\n"))
+			"page_clear":
+				text = ""
 	return text
 
 
@@ -546,6 +620,19 @@ func _add_unsupported(code: String) -> void:
 		_unsupported.append(code)
 
 
+func _event_stream_status() -> String:
+	if _event_stream_source == "source_bytes":
+		return "first_pass_source_byte_control_events"
+	if _event_stream_source == "source_text":
+		return "first_pass_source_text_events"
+	return "first_pass_display_text_events"
+
+
+func _clear_visible_text() -> void:
+	_visible_text = ""
+	_visible_char_count = 0
+
+
 func _display_text(text: String) -> String:
 	return text.replace("\t", "    ")
 
@@ -556,9 +643,143 @@ func _strip_source_text_terminator(text: String) -> String:
 	return text
 
 
+func _source_byte_control_summary_from_bytes(bytes: Array) -> Dictionary:
+	var summary := {
+		"byte_count": bytes.size(),
+		"newline_count": 0,
+		"prompt_scroll_count": 0,
+		"prompt_clear_count": 0,
+		"ext_control_count": 0,
+		"placeholder_count": 0,
+		"terminator_count": 0,
+		"ext_controls": [],
+	}
+	var index := 0
+	while index < bytes.size():
+		var byte := int(bytes[index]) & 0xFF
+		match byte:
+			CHAR_NEWLINE:
+				summary["newline_count"] = int(summary["newline_count"]) + 1
+				index += 1
+			CHAR_PROMPT_SCROLL:
+				summary["prompt_scroll_count"] = int(summary["prompt_scroll_count"]) + 1
+				index += 1
+			CHAR_PROMPT_CLEAR:
+				summary["prompt_clear_count"] = int(summary["prompt_clear_count"]) + 1
+				index += 1
+			PLACEHOLDER_BEGIN:
+				summary["placeholder_count"] = int(summary["placeholder_count"]) + 1
+				index += 2
+			EOS:
+				summary["terminator_count"] = int(summary["terminator_count"]) + 1
+				index += 1
+			EXT_CTRL_CODE_BEGIN:
+				var control_code := int(bytes[index + 1]) & 0xFF if index + 1 < bytes.size() else -1
+				var arg_count := _ext_control_arg_count(control_code)
+				var control := {
+					"offset": index,
+					"code": control_code,
+					"name": _ext_control_name(control_code),
+					"arg_count": arg_count,
+					"args": [],
+				}
+				for arg_index in range(arg_count):
+					var byte_index := index + 2 + arg_index
+					if byte_index >= bytes.size():
+						break
+					control["args"].append(int(bytes[byte_index]) & 0xFF)
+				summary["ext_control_count"] = int(summary["ext_control_count"]) + 1
+				summary["ext_controls"].append(control)
+				index += 2 + arg_count
+			_:
+				index += 1
+	return summary
+
+
+func _ext_control_arg_count(control_code: int) -> int:
+	match control_code:
+		EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW, EXT_CTRL_CODE_TEXT_COLORS:
+			return 3
+		EXT_CTRL_CODE_PLAY_BGM, EXT_CTRL_CODE_PLAY_SE:
+			return 2
+		EXT_CTRL_CODE_COLOR, EXT_CTRL_CODE_HIGHLIGHT, EXT_CTRL_CODE_SHADOW, EXT_CTRL_CODE_PALETTE, EXT_CTRL_CODE_FONT, EXT_CTRL_CODE_PAUSE, EXT_CTRL_CODE_ESCAPE, EXT_CTRL_CODE_SHIFT_RIGHT, EXT_CTRL_CODE_SHIFT_DOWN, EXT_CTRL_CODE_CLEAR, EXT_CTRL_CODE_SKIP, EXT_CTRL_CODE_CLEAR_TO, EXT_CTRL_CODE_MIN_LETTER_SPACING, EXT_CTRL_CODE_SPEAKER, EXT_CTRL_CODE_ACCENT, EXT_CTRL_CODE_BACKGROUND:
+			return 1
+	return 0
+
+
+func _ext_control_name(control_code: int) -> String:
+	match control_code:
+		EXT_CTRL_CODE_COLOR:
+			return "EXT_CTRL_CODE_COLOR"
+		EXT_CTRL_CODE_HIGHLIGHT:
+			return "EXT_CTRL_CODE_HIGHLIGHT"
+		EXT_CTRL_CODE_SHADOW:
+			return "EXT_CTRL_CODE_SHADOW"
+		EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
+			return "EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW"
+		EXT_CTRL_CODE_PALETTE:
+			return "EXT_CTRL_CODE_PALETTE"
+		EXT_CTRL_CODE_FONT:
+			return "EXT_CTRL_CODE_FONT"
+		EXT_CTRL_CODE_RESET_FONT:
+			return "EXT_CTRL_CODE_RESET_FONT"
+		EXT_CTRL_CODE_PAUSE:
+			return "EXT_CTRL_CODE_PAUSE"
+		EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
+			return "EXT_CTRL_CODE_PAUSE_UNTIL_PRESS"
+		EXT_CTRL_CODE_WAIT_SE:
+			return "EXT_CTRL_CODE_WAIT_SE"
+		EXT_CTRL_CODE_PLAY_BGM:
+			return "EXT_CTRL_CODE_PLAY_BGM"
+		EXT_CTRL_CODE_ESCAPE:
+			return "EXT_CTRL_CODE_ESCAPE"
+		EXT_CTRL_CODE_SHIFT_RIGHT:
+			return "EXT_CTRL_CODE_SHIFT_RIGHT"
+		EXT_CTRL_CODE_SHIFT_DOWN:
+			return "EXT_CTRL_CODE_SHIFT_DOWN"
+		EXT_CTRL_CODE_FILL_WINDOW:
+			return "EXT_CTRL_CODE_FILL_WINDOW"
+		EXT_CTRL_CODE_PLAY_SE:
+			return "EXT_CTRL_CODE_PLAY_SE"
+		EXT_CTRL_CODE_CLEAR:
+			return "EXT_CTRL_CODE_CLEAR"
+		EXT_CTRL_CODE_SKIP:
+			return "EXT_CTRL_CODE_SKIP"
+		EXT_CTRL_CODE_CLEAR_TO:
+			return "EXT_CTRL_CODE_CLEAR_TO"
+		EXT_CTRL_CODE_MIN_LETTER_SPACING:
+			return "EXT_CTRL_CODE_MIN_LETTER_SPACING"
+		EXT_CTRL_CODE_JPN:
+			return "EXT_CTRL_CODE_JPN"
+		EXT_CTRL_CODE_ENG:
+			return "EXT_CTRL_CODE_ENG"
+		EXT_CTRL_CODE_PAUSE_MUSIC:
+			return "EXT_CTRL_CODE_PAUSE_MUSIC"
+		EXT_CTRL_CODE_RESUME_MUSIC:
+			return "EXT_CTRL_CODE_RESUME_MUSIC"
+		EXT_CTRL_CODE_SPEAKER:
+			return "EXT_CTRL_CODE_SPEAKER"
+		EXT_CTRL_CODE_ACCENT:
+			return "EXT_CTRL_CODE_ACCENT"
+		EXT_CTRL_CODE_BACKGROUND:
+			return "EXT_CTRL_CODE_BACKGROUND"
+		EXT_CTRL_CODE_TEXT_COLORS:
+			return "EXT_CTRL_CODE_TEXT_COLORS"
+	return "EXT_CTRL_CODE_%02X" % control_code
+
+
 func _dictionary_value(value) -> Dictionary:
 	return value if typeof(value) == TYPE_DICTIONARY else {}
 
 
 func _array_value(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _int_array_value(value) -> Array:
+	var result: Array = []
+	if typeof(value) != TYPE_ARRAY:
+		return result
+	for item in value:
+		result.append(int(item) & 0xFF)
+	return result

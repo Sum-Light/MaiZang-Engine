@@ -522,6 +522,7 @@ func _text_printer_options_from_record(record: Dictionary, overrides: Dictionary
 	var options := {}
 	var nested := _dictionary_value(record.get("record", {}))
 	var source_text := String(record.get("source_text", nested.get("source_text", "")))
+	var encoding := _dictionary_value(record.get("encoding", nested.get("encoding", {})))
 	var substitutions := _array_value(record.get("substitutions", []))
 	for substitution_value in substitutions:
 		var substitution := _dictionary_value(substitution_value)
@@ -532,6 +533,10 @@ func _text_printer_options_from_record(record: Dictionary, overrides: Dictionary
 	if not source_text.is_empty():
 		options["source_text"] = source_text
 		options["source_text_label"] = String(record.get("label", nested.get("label", record.get("message", ""))))
+	if not encoding.is_empty() and substitutions.is_empty():
+		options["source_encoding"] = encoding
+		options["source_bytes"] = encoding.get("bytes", [])
+		options["source_encoding_hex"] = String(encoding.get("hex", ""))
 	options["text_controls"] = record.get("text_controls", nested.get("text_controls", []))
 	options["audio_cues"] = record.get("audio_cues", nested.get("audio_cues", []))
 	options["metadata_only"] = record.get("metadata_only", nested.get("metadata_only", []))

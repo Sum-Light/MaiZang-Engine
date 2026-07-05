@@ -81,6 +81,10 @@ func _run() -> void:
 		"label": "fixture_source_record",
 		"display_text": "A\n\nB",
 		"source_text": "A\\pB",
+		"encoding": {
+			"bytes": [0x41, 0xFB, 0x42],
+			"hex": "41 FB 42",
+		},
 		"text_controls": [{"command": "PROMPT_SCROLL"}],
 	}, false)
 	renderer.advance_text_printers(1)
@@ -89,11 +93,14 @@ func _run() -> void:
 	var source_record_windows := _dict(source_record_snapshot.get("windows", {}))
 	var source_record_message := _dict(source_record_windows.get("B_WIN_MSG", {}))
 	var source_record_printer := _dict(source_record_message.get("text_printer", {}))
-	_assert(String(source_record_printer.get("event_stream_source", "")) == "source_text", "expected renderer record source-text event stream")
+	var source_record_byte_summary := _dict(source_record_printer.get("source_byte_control_summary", {}))
+	_assert(String(source_record_printer.get("event_stream_source", "")) == "source_bytes", "expected renderer record source-byte event stream")
 	_assert(String(source_record_printer.get("source_text_label", "")) == "fixture_source_record", "expected renderer record source-text label")
 	_assert(int(source_record_printer.get("source_text_control_metadata_count", 0)) == 1, "expected renderer record text-control metadata count")
-	_assert(String(source_record_message.get("visible_text", "")) == "A\n\n", "expected renderer source record page break before B")
-	_assert(String(source_record_printer.get("wait_state", "")) == "wait_with_down_arrow", "expected renderer source record page wait")
+	_assert(String(source_record_message.get("visible_text", "")) == "A", "expected renderer source record prompt clear before B")
+	_assert(String(source_record_printer.get("wait_state", "")) == "wait_clear", "expected renderer source record prompt-clear wait")
+	_assert(int(source_record_printer.get("prompt_clear_count", 0)) == 1, "expected renderer source record prompt-clear count")
+	_assert(int(source_record_byte_summary.get("prompt_clear_count", 0)) == 1, "expected renderer source record byte prompt-clear summary")
 
 	renderer.show_move_windows(["Water Gun", "Tackle", "-", "-"], "PP", "25/25", "TYPE/Water")
 	var move_snapshot := _dict(renderer.get_renderer_snapshot())

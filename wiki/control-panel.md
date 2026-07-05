@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Map and Overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 4 tileset/metatile asset import.
+- Battle parity TODO, currently executing `wiki/battle-parity-execution-plan.md` B8.2 source window layer rendering.
 
 Reason:
 
-- The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 4 is moving from tileset header/tile-entry/attribute decode into `METATILE_*` label and reverse-lookup export.
-- Battle parity work remains durable backlog context, but it is not the active lane for the current goal.
+- The user asked to execute the battle recreation TODO list step by step until complete and report quantified progress after each answer.
+- B8.2 is moving from source-text battle window printing into generated encoding-byte/control-code metadata for `RenderText` parity.
+- Exact source glyph rendering, full byte-to-glyph layout, exact prompt scroll/clear pixels, full link/recorded context, and screenshot comparison remain before B8.2 can be marked complete.
 
 ## Module Tracks
 

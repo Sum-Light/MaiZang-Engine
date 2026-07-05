@@ -878,13 +878,20 @@ func _source_battle_text_printer_options(label: String, replacements: Dictionary
 		source_text = source_text.replace(String(raw_value), String(replacements[raw_value]))
 	if not source_text_suffix.is_empty():
 		source_text += source_text_suffix
-	return {
+	var options := {
 		"source_text": source_text,
 		"source_text_label": label,
 		"text_controls": record.get("text_controls", []),
 		"audio_cues": record.get("audio_cues", []),
 		"metadata_only": record.get("metadata_only", []),
 	}
+	if replacements.is_empty() and source_text_suffix.is_empty():
+		var encoding := _dict_or_empty(record.get("encoding", {}))
+		if not encoding.is_empty():
+			options["source_encoding"] = encoding
+			options["source_bytes"] = encoding.get("bytes", [])
+			options["source_encoding_hex"] = String(encoding.get("hex", ""))
+	return options
 
 
 func _type_display_name(type_symbol: String) -> String:
