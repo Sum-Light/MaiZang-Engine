@@ -7,7 +7,7 @@ import re
 import sys
 from pathlib import Path
 
-from export_map import read_u16le_file, write_json, write_manifest
+from export_map import MAPGRID_METATILE_ID_MASK, read_u16le_file, write_json, write_manifest
 from export_overworld_metatile_behavior_trace import parse_metatile_constants, parse_tile_bit_attributes
 from source_probe import load_config, path_status, symbol_to_tileset_dir, to_project_path
 
@@ -1877,6 +1877,403 @@ def build_metatile_label_pair_lookup(source_root, records, label_rules):
     }
 
 
+def metatile_map_absent_record_encoding():
+    return {
+        "version": "compact_metatile_map_absent_v1",
+        "detail": (
+            "Each absent metatile row stores [metatile_id, source_kind_code, "
+            "local_metatile_id, count, reason, samples]. Each sample stores "
+            "[source_entry_index, x, y, raw_map_grid_value, metatile_id]."
+        ),
+        "absent_metatile_fields": [
+            "metatile_id",
+            "source_kind_code",
+            "local_metatile_id",
+            "count",
+            "reason",
+            "samples",
+        ],
+        "sample_fields": [
+            "source_entry_index",
+            "x",
+            "y",
+            "raw_map_grid_value",
+            "metatile_id",
+        ],
+        "source_kind_codes": TILE_SOURCE_KIND_CODES,
+        "reason_codes": [
+            "primary_header_missing",
+            "primary_metatile_absent",
+            "secondary_header_missing",
+            "secondary_metatile_absent",
+        ],
+    }
+
+
+def metatile_count_for_header(header):
+    if not header:
+        return 0
+    return int(header.get("metatile_binary_decode", {}).get("metatile_count", 0))
+
+
+def metatile_pair_ranges(profile, primary_header, secondary_header):
+    primary_count = metatile_count_for_header(primary_header)
+    secondary_count = metatile_count_for_header(secondary_header)
+    secondary_start = profile["primary_metatile_count"]
+    return {
+        "primary_global_start": 0,
+        "primary_global_end": primary_count - 1 if primary_count else None,
+        "primary_profile_capacity": profile["primary_metatile_count"],
+        "primary_metatile_count": primary_count,
+        "secondary_global_start": secondary_start,
+        "secondary_global_end": secondary_start + secondary_count - 1 if secondary_count else None,
+        "secondary_profile_capacity": profile["total_metatile_count"] - secondary_start,
+        "secondary_metatile_count": secondary_count,
+    }
+
+
+def classify_metatile_reference(metatile_id, profile, primary_header, secondary_header):
+    if metatile_id < profile["primary_metatile_count"]:
+        source_kind = "primary"
+        local_metatile_id = metatile_id
+        header = primary_header
+    else:
+        source_kind = "secondary"
+        local_metatile_id = metatile_id - profile["primary_metatile_count"]
+        header = secondary_header
+
+    if header is None:
+        return {
+            "status": "absent",
+            "source_kind": source_kind,
+            "source_kind_code": TILE_SOURCE_KIND_CODES[source_kind],
+            "local_metatile_id": local_metatile_id,
+            "reason": "{}_header_missing".format(source_kind),
+        }
+
+    metatile_count = metatile_count_for_header(header)
+    if local_metatile_id >= metatile_count:
+        return {
+            "status": "absent",
+            "source_kind": source_kind,
+            "source_kind_code": TILE_SOURCE_KIND_CODES[source_kind],
+            "local_metatile_id": local_metatile_id,
+            "reason": "{}_metatile_absent".format(source_kind),
+        }
+
+    return {
+        "status": "present",
+        "source_kind": source_kind,
+        "source_kind_code": TILE_SOURCE_KIND_CODES[source_kind],
+        "local_metatile_id": local_metatile_id,
+        "reason": None,
+    }
+
+
+def bump_counter(counter, key, count=1):
+    counter[key] = counter.get(key, 0) + count
+
+
+def add_absent_metatile(absent_by_key, metatile_id, classification, sample):
+    key = (
+        metatile_id,
+        classification["source_kind_code"],
+        classification["local_metatile_id"],
+        classification["reason"],
+    )
+    row = absent_by_key.setdefault(key, {
+        "metatile_id": metatile_id,
+        "source_kind_code": classification["source_kind_code"],
+        "local_metatile_id": classification["local_metatile_id"],
+        "count": 0,
+        "reason": classification["reason"],
+        "samples": [],
+    })
+    row["count"] += 1
+    if len(row["samples"]) < 5:
+        row["samples"].append(sample)
+
+
+def compact_absent_metatile_rows(absent_by_key):
+    return [
+        [
+            row["metatile_id"],
+            row["source_kind_code"],
+            row["local_metatile_id"],
+            row["count"],
+            row["reason"],
+            row["samples"],
+        ]
+        for row in sorted(
+            absent_by_key.values(),
+            key=lambda item: (
+                item["reason"],
+                item["source_kind_code"],
+                item["metatile_id"],
+                item["local_metatile_id"],
+            ),
+        )
+    ]
+
+
+def source_layout_rows(source_root):
+    path = source_root / LAYOUTS_JSON
+    if not path.exists():
+        return []
+    return json.loads(read_text(path)).get("layouts", [])
+
+
+def build_metatile_map_reference_report(source_root, records):
+    source_root = Path(source_root)
+    source_status = path_status(source_root, LAYOUTS_JSON)
+    if not source_status.get("exists"):
+        return {
+            "status": "missing_source_file",
+            "source": source_status,
+            "source_layout_count": 0,
+            "checked_layout_count": 0,
+            "pair_count": 0,
+            "checked_cell_count": 0,
+            "declared_cell_count": 0,
+            "unique_metatile_id_count": 0,
+            "absent_metatile_cell_count": 0,
+            "absent_unique_reference_count": 0,
+            "absent_global_metatile_id_count": 0,
+            "layout_with_absent_metatile_count": 0,
+            "pair_with_absent_metatile_count": 0,
+            "missing_blockdata_layout_count": 0,
+            "invalid_blockdata_layout_count": 0,
+            "size_mismatch_layout_count": 0,
+            "absent_reason_counts": {},
+            "compact_absent_metatile_encoding": metatile_map_absent_record_encoding(),
+            "layouts": [],
+            "pairs": [],
+        }
+
+    rows_by_symbol = {
+        row["symbol"]: row
+        for row in records
+    }
+    layouts = source_layout_rows(source_root)
+    layout_rows = []
+    pair_rows = {}
+    checked_layout_count = 0
+    checked_cell_count = 0
+    declared_cell_count = 0
+    missing_blockdata_layout_count = 0
+    invalid_blockdata_layout_count = 0
+    size_mismatch_layout_count = 0
+    absent_reason_counts = {}
+    unique_metatile_ids = set()
+    absent_global_metatile_ids = set()
+    absent_unique_references = set()
+
+    for layout in layouts:
+        primary_symbol = layout.get("primary_tileset")
+        secondary_symbol = layout.get("secondary_tileset")
+        pair_key = "{}+{}".format(primary_symbol, secondary_symbol)
+        primary_header = rows_by_symbol.get(primary_symbol)
+        secondary_header = rows_by_symbol.get(secondary_symbol)
+        profile_name = (
+            metatile_source_profile_for_branch(primary_header.get("branch"))
+            if primary_header
+            else "emerald"
+        )
+        profile = metatile_source_profile(profile_name)
+        ranges = metatile_pair_ranges(profile, primary_header, secondary_header)
+        width = int(layout.get("width", 0) or 0)
+        height = int(layout.get("height", 0) or 0)
+        declared_count = width * height
+        blockdata_path_text = layout.get("blockdata_filepath")
+        blockdata_path = source_root / blockdata_path_text if blockdata_path_text else None
+
+        pair_row = pair_rows.setdefault(pair_key, {
+            "pair_key": pair_key,
+            "primary_tileset": primary_symbol,
+            "secondary_tileset": secondary_symbol,
+            "source_rules_profile": profile_name,
+            "primary_header_found": primary_header is not None,
+            "secondary_header_found": secondary_header is not None,
+            "primary_metatile_count": ranges["primary_metatile_count"],
+            "secondary_metatile_count": ranges["secondary_metatile_count"],
+            "primary_profile_capacity": ranges["primary_profile_capacity"],
+            "secondary_profile_capacity": ranges["secondary_profile_capacity"],
+            "layout_count": 0,
+            "checked_layout_count": 0,
+            "checked_cell_count": 0,
+            "declared_cell_count": 0,
+            "layout_ids": [],
+            "affected_layout_ids": [],
+            "layout_versions": {},
+            "unique_metatile_ids": set(),
+            "absent_by_key": {},
+            "absent_reason_counts": {},
+            "absent_cell_count": 0,
+        })
+        pair_row["layout_count"] += 1
+        pair_row["layout_ids"].append(layout.get("id"))
+        pair_row["declared_cell_count"] += declared_count
+        version = str(layout.get("layout_version"))
+        bump_counter(pair_row["layout_versions"], version)
+
+        layout_status = "checked"
+        values = []
+        errors = []
+        if not blockdata_path or not blockdata_path.exists():
+            layout_status = "missing_blockdata"
+            missing_blockdata_layout_count += 1
+            errors.append("missing_blockdata")
+        else:
+            try:
+                values = read_u16le_file(blockdata_path)
+            except ValueError as error:
+                layout_status = "invalid_blockdata"
+                invalid_blockdata_layout_count += 1
+                errors.append(str(error))
+
+        source_entry_count = len(values)
+        declared_cell_count += declared_count
+        if layout_status == "checked":
+            checked_layout_count += 1
+            checked_cell_count += source_entry_count
+            pair_row["checked_layout_count"] += 1
+            pair_row["checked_cell_count"] += source_entry_count
+            if source_entry_count != declared_count:
+                size_mismatch_layout_count += 1
+                errors.append("source_entry_count_mismatch")
+
+        if source_entry_count != declared_count:
+            layout_status = (
+                "checked_size_mismatch"
+                if layout_status == "checked"
+                else layout_status
+            )
+
+        layout_absent = {}
+        layout_reason_counts = {}
+        layout_unique_ids = set()
+        for index, raw_value in enumerate(values):
+            metatile_id = raw_value & MAPGRID_METATILE_ID_MASK
+            unique_metatile_ids.add(metatile_id)
+            layout_unique_ids.add(metatile_id)
+            pair_row["unique_metatile_ids"].add(metatile_id)
+            classification = classify_metatile_reference(
+                metatile_id,
+                profile,
+                primary_header,
+                secondary_header,
+            )
+            if classification["status"] != "absent":
+                continue
+            sample = [
+                index,
+                index % width if width else None,
+                index // width if width else None,
+                raw_value,
+                metatile_id,
+            ]
+            add_absent_metatile(layout_absent, metatile_id, classification, sample)
+            add_absent_metatile(pair_row["absent_by_key"], metatile_id, classification, sample)
+            bump_counter(layout_reason_counts, classification["reason"])
+            bump_counter(pair_row["absent_reason_counts"], classification["reason"])
+            bump_counter(absent_reason_counts, classification["reason"])
+            pair_row["absent_cell_count"] += 1
+            absent_global_metatile_ids.add(metatile_id)
+            absent_unique_references.add((pair_key, metatile_id, classification["reason"]))
+
+        absent_rows = compact_absent_metatile_rows(layout_absent)
+        if absent_rows:
+            pair_row["affected_layout_ids"].append(layout.get("id"))
+
+        layout_rows.append({
+            "status": layout_status,
+            "layout_id": layout.get("id"),
+            "name": layout.get("name"),
+            "source": {
+                "path": blockdata_path_text,
+                "exists": bool(blockdata_path and blockdata_path.exists()),
+            },
+            "width": width,
+            "height": height,
+            "layout_version": layout.get("layout_version"),
+            "primary_tileset": primary_symbol,
+            "secondary_tileset": secondary_symbol,
+            "pair_key": pair_key,
+            "source_rules_profile": profile_name,
+            "primary_header_found": primary_header is not None,
+            "secondary_header_found": secondary_header is not None,
+            "primary_metatile_count": ranges["primary_metatile_count"],
+            "secondary_metatile_count": ranges["secondary_metatile_count"],
+            "primary_profile_capacity": ranges["primary_profile_capacity"],
+            "secondary_profile_capacity": ranges["secondary_profile_capacity"],
+            "declared_cell_count": declared_count,
+            "source_entry_count": source_entry_count,
+            "unique_metatile_id_count": len(layout_unique_ids),
+            "absent_metatile_cell_count": sum(row[3] for row in absent_rows),
+            "absent_unique_reference_count": len(absent_rows),
+            "absent_reason_counts": dict(sorted(layout_reason_counts.items())),
+            "absent_metatile_ids": absent_rows,
+            "warnings": errors,
+        })
+
+    pair_output_rows = []
+    for pair_key in sorted(pair_rows):
+        row = pair_rows[pair_key]
+        absent_rows = compact_absent_metatile_rows(row["absent_by_key"])
+        pair_output_rows.append({
+            "pair_key": row["pair_key"],
+            "primary_tileset": row["primary_tileset"],
+            "secondary_tileset": row["secondary_tileset"],
+            "source_rules_profile": row["source_rules_profile"],
+            "primary_header_found": row["primary_header_found"],
+            "secondary_header_found": row["secondary_header_found"],
+            "primary_metatile_count": row["primary_metatile_count"],
+            "secondary_metatile_count": row["secondary_metatile_count"],
+            "primary_profile_capacity": row["primary_profile_capacity"],
+            "secondary_profile_capacity": row["secondary_profile_capacity"],
+            "layout_count": row["layout_count"],
+            "checked_layout_count": row["checked_layout_count"],
+            "checked_cell_count": row["checked_cell_count"],
+            "declared_cell_count": row["declared_cell_count"],
+            "layout_ids": row["layout_ids"],
+            "affected_layout_ids": row["affected_layout_ids"],
+            "layout_versions": dict(sorted(row["layout_versions"].items())),
+            "unique_metatile_id_count": len(row["unique_metatile_ids"]),
+            "absent_metatile_cell_count": row["absent_cell_count"],
+            "absent_unique_reference_count": len(absent_rows),
+            "absent_reason_counts": dict(sorted(row["absent_reason_counts"].items())),
+            "absent_metatile_ids": absent_rows,
+        })
+
+    return {
+        "status": "decoded_import_metadata",
+        "runtime_binary_metatile_required": False,
+        "source": source_status,
+        "source_layout_count": len(layouts),
+        "checked_layout_count": checked_layout_count,
+        "pair_count": len(pair_output_rows),
+        "checked_cell_count": checked_cell_count,
+        "declared_cell_count": declared_cell_count,
+        "unique_metatile_id_count": len(unique_metatile_ids),
+        "absent_metatile_cell_count": sum(row["absent_metatile_cell_count"] for row in layout_rows),
+        "absent_unique_reference_count": len(absent_unique_references),
+        "absent_global_metatile_id_count": len(absent_global_metatile_ids),
+        "layout_with_absent_metatile_count": sum(
+            1 for row in layout_rows if row["absent_metatile_cell_count"] > 0
+        ),
+        "pair_with_absent_metatile_count": sum(
+            1 for row in pair_output_rows if row["absent_metatile_cell_count"] > 0
+        ),
+        "missing_blockdata_layout_count": missing_blockdata_layout_count,
+        "invalid_blockdata_layout_count": invalid_blockdata_layout_count,
+        "size_mismatch_layout_count": size_mismatch_layout_count,
+        "absent_reason_counts": dict(sorted(absent_reason_counts.items())),
+        "compact_absent_metatile_encoding": metatile_map_absent_record_encoding(),
+        "layouts": layout_rows,
+        "pairs": pair_output_rows,
+    }
+
+
 def parse_tileset_headers(
     source_root,
     animation_frames=None,
@@ -2082,11 +2479,13 @@ def build_stats(
     init_functions=None,
     metatile_label_rules=None,
     metatile_label_pair_lookup=None,
+    metatile_map_reference_report=None,
 ):
     animation_frames = animation_frames or []
     init_functions = init_functions or []
     metatile_label_rules = metatile_label_rules or {}
     metatile_label_pair_lookup = metatile_label_pair_lookup or {}
+    metatile_map_reference_report = metatile_map_reference_report or {}
     active = [row for row in records if row["active_in_emerald"]]
     callbacks = [row["callback"]["symbol"] for row in records if row["callback"]["has_callback"]]
     active_callbacks = [row["callback"]["symbol"] for row in active if row["callback"]["has_callback"]]
@@ -2547,6 +2946,52 @@ def build_stats(
         ),
         "metatile_label_pair_missing_header_count": len(pair_missing_headers),
         "metatile_label_pair_missing_headers": pair_missing_headers,
+        "metatile_map_reference_layout_count": int(
+            metatile_map_reference_report.get("source_layout_count", 0)
+        ),
+        "metatile_map_reference_checked_layout_count": int(
+            metatile_map_reference_report.get("checked_layout_count", 0)
+        ),
+        "metatile_map_reference_pair_count": int(
+            metatile_map_reference_report.get("pair_count", 0)
+        ),
+        "metatile_map_reference_checked_cell_count": int(
+            metatile_map_reference_report.get("checked_cell_count", 0)
+        ),
+        "metatile_map_reference_declared_cell_count": int(
+            metatile_map_reference_report.get("declared_cell_count", 0)
+        ),
+        "metatile_map_reference_unique_metatile_id_count": int(
+            metatile_map_reference_report.get("unique_metatile_id_count", 0)
+        ),
+        "metatile_map_reference_absent_cell_count": int(
+            metatile_map_reference_report.get("absent_metatile_cell_count", 0)
+        ),
+        "metatile_map_reference_absent_unique_reference_count": int(
+            metatile_map_reference_report.get("absent_unique_reference_count", 0)
+        ),
+        "metatile_map_reference_absent_global_metatile_id_count": int(
+            metatile_map_reference_report.get("absent_global_metatile_id_count", 0)
+        ),
+        "metatile_map_reference_layout_with_absent_count": int(
+            metatile_map_reference_report.get("layout_with_absent_metatile_count", 0)
+        ),
+        "metatile_map_reference_pair_with_absent_count": int(
+            metatile_map_reference_report.get("pair_with_absent_metatile_count", 0)
+        ),
+        "metatile_map_reference_missing_blockdata_layout_count": int(
+            metatile_map_reference_report.get("missing_blockdata_layout_count", 0)
+        ),
+        "metatile_map_reference_invalid_blockdata_layout_count": int(
+            metatile_map_reference_report.get("invalid_blockdata_layout_count", 0)
+        ),
+        "metatile_map_reference_size_mismatch_layout_count": int(
+            metatile_map_reference_report.get("size_mismatch_layout_count", 0)
+        ),
+        "metatile_map_reference_absent_reason_counts": metatile_map_reference_report.get(
+            "absent_reason_counts",
+            {},
+        ),
         "init_function_count": len(init_functions),
         "animation_frame_declaration_count": len(animation_frames),
         "animation_source_bin_count": sum(frame["source_bin_count"] for frame in animation_frames),
@@ -2611,6 +3056,15 @@ def manifest_entry_for(exported, output_path):
         "metatile_label_pair_lookup_count": stats["metatile_label_pair_lookup_count"],
         "metatile_label_pair_label_record_count": stats["metatile_label_pair_label_record_count"],
         "metatile_label_pair_out_of_range_count": stats["metatile_label_pair_out_of_range_count"],
+        "metatile_map_reference_checked_layout_count": stats["metatile_map_reference_checked_layout_count"],
+        "metatile_map_reference_checked_cell_count": stats["metatile_map_reference_checked_cell_count"],
+        "metatile_map_reference_absent_cell_count": stats["metatile_map_reference_absent_cell_count"],
+        "metatile_map_reference_layout_with_absent_count": stats[
+            "metatile_map_reference_layout_with_absent_count"
+        ],
+        "metatile_map_reference_pair_with_absent_count": stats[
+            "metatile_map_reference_pair_with_absent_count"
+        ],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
         "missing_callback_source_count": stats["missing_callback_source_count"],
@@ -2641,6 +3095,10 @@ def build_export(source_root):
         records,
         metatile_label_rules,
     )
+    metatile_map_reference_report = build_metatile_map_reference_report(
+        source_root,
+        records,
+    )
     stats = build_stats(
         source_files,
         records,
@@ -2648,6 +3106,7 @@ def build_export(source_root):
         init_functions,
         metatile_label_rules,
         metatile_label_pair_lookup,
+        metatile_map_reference_report,
     )
     return {
         "schema_version": 1,
@@ -2659,6 +3118,7 @@ def build_export(source_root):
         "metatile_attribute_rules": metatile_attribute_rules,
         "metatile_label_rules": metatile_label_rules,
         "metatile_label_pair_lookup": metatile_label_pair_lookup,
+        "metatile_map_reference_report": metatile_map_reference_report,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_init_functions": init_functions,

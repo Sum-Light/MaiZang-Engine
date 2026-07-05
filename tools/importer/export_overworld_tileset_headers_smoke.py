@@ -23,6 +23,7 @@ def main(argv):
     attribute_rules = exported["metatile_attribute_rules"]
     label_rules = exported["metatile_label_rules"]
     pair_lookup = exported["metatile_label_pair_lookup"]
+    map_reference_report = exported["metatile_map_reference_report"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
 
     _assert(exported["schema_version"] == 1, "unexpected schema version")
@@ -202,6 +203,61 @@ def main(argv):
         stats["metatile_label_pair_missing_headers"][0]["pair_key"] == "gTileset_General+0",
         "unexpected missing-header pair",
     )
+    _assert(stats["metatile_map_reference_layout_count"] == 785, "unexpected map reference layout count")
+    _assert(
+        stats["metatile_map_reference_checked_layout_count"] == 785,
+        "unexpected checked map reference layout count",
+    )
+    _assert(stats["metatile_map_reference_pair_count"] == 137, "unexpected map reference pair count")
+    _assert(
+        stats["metatile_map_reference_checked_cell_count"] == 564213,
+        "unexpected checked map reference cell count",
+    )
+    _assert(
+        stats["metatile_map_reference_declared_cell_count"] == 564193,
+        "unexpected declared map reference cell count",
+    )
+    _assert(
+        stats["metatile_map_reference_unique_metatile_id_count"] == 1021,
+        "unexpected map reference unique metatile count",
+    )
+    _assert(
+        stats["metatile_map_reference_absent_cell_count"] == 1607,
+        "unexpected absent map reference cell count",
+    )
+    _assert(
+        stats["metatile_map_reference_absent_unique_reference_count"] == 129,
+        "unexpected absent map reference unique count",
+    )
+    _assert(
+        stats["metatile_map_reference_absent_global_metatile_id_count"] == 129,
+        "unexpected absent map reference global id count",
+    )
+    _assert(
+        stats["metatile_map_reference_layout_with_absent_count"] == 5,
+        "unexpected layout-with-absent count",
+    )
+    _assert(
+        stats["metatile_map_reference_pair_with_absent_count"] == 3,
+        "unexpected pair-with-absent count",
+    )
+    _assert(
+        stats["metatile_map_reference_missing_blockdata_layout_count"] == 0,
+        "unexpected missing blockdata layout count",
+    )
+    _assert(
+        stats["metatile_map_reference_invalid_blockdata_layout_count"] == 0,
+        "unexpected invalid blockdata layout count",
+    )
+    _assert(
+        stats["metatile_map_reference_size_mismatch_layout_count"] == 20,
+        "unexpected map reference size mismatch count",
+    )
+    _assert(
+        stats["metatile_map_reference_absent_reason_counts"]
+        == {"secondary_header_missing": 1508, "secondary_metatile_absent": 99},
+        "unexpected map reference absent reason counts",
+    )
     _assert(stats["init_function_count"] == 31, "unexpected init function count")
     _assert(stats["animation_frame_declaration_count"] == 174, "unexpected animation frame declaration count")
     _assert(stats["animation_source_bin_count"] == 182, "unexpected animation source binary count")
@@ -311,6 +367,44 @@ def main(argv):
     _assert(pair_lookup["status"] == "decoded_import_metadata", "pair lookup status mismatch")
     _assert(pair_lookup["source_layout_count"] == 785, "pair lookup source layout count mismatch")
     _assert(pair_lookup["pair_count"] == 137, "pair lookup count mismatch")
+    _assert(map_reference_report["status"] == "decoded_import_metadata", "map reference status mismatch")
+    _assert(
+        map_reference_report["runtime_binary_metatile_required"] is False,
+        "map reference report should stay import metadata",
+    )
+    _assert(
+        map_reference_report["absent_reason_counts"]
+        == {"secondary_header_missing": 1508, "secondary_metatile_absent": 99},
+        "map reference report reason counts mismatch",
+    )
+
+    general_zero_ref = _map_reference_pair(exported, "gTileset_General+0")
+    _assert(general_zero_ref["absent_metatile_cell_count"] == 1508, "General/0 absent count mismatch")
+    _assert(general_zero_ref["absent_unique_reference_count"] == 85, "General/0 absent unique mismatch")
+    _assert(general_zero_ref["secondary_header_found"] is False, "General/0 secondary header should be missing")
+    cinnabar_ref = _map_reference_pair(exported, "gTileset_General_Frlg+gTileset_CinnabarIsland")
+    _assert(cinnabar_ref["source_rules_profile"] == "frlg", "Cinnabar pair profile mismatch")
+    _assert(cinnabar_ref["absent_metatile_cell_count"] == 86, "Cinnabar pair absent count mismatch")
+    _assert(cinnabar_ref["absent_unique_reference_count"] == 37, "Cinnabar pair absent unique mismatch")
+    mart_ref = _map_reference_pair(exported, "gTileset_BuildingFrlg+gTileset_Mart")
+    _assert(mart_ref["absent_metatile_cell_count"] == 13, "Mart pair absent count mismatch")
+    _assert(mart_ref["absent_unique_reference_count"] == 7, "Mart pair absent unique mismatch")
+    general_petalburg_ref = _map_reference_pair(exported, "gTileset_General+gTileset_Petalburg")
+    _assert(general_petalburg_ref["absent_metatile_cell_count"] == 0, "Petalburg pair should be in range")
+
+    unused_layout_ref = _map_reference_layout(exported, "LAYOUT_UNUSED_OUTDOOR_AREA")
+    _assert(unused_layout_ref["absent_metatile_cell_count"] == 1508, "unused layout absent count mismatch")
+    unused_515 = _map_absent_metatile(exported, unused_layout_ref, 515)
+    _assert(unused_515["source_kind"] == "secondary", "unused layout 515 source kind mismatch")
+    _assert(unused_515["local_metatile_id"] == 3, "unused layout 515 local id mismatch")
+    _assert(unused_515["count"] == 717, "unused layout 515 count mismatch")
+    _assert(unused_515["reason"] == "secondary_header_missing", "unused layout 515 reason mismatch")
+    _assert(unused_515["samples"][0] == [0, 0, 0, 12803, 515], "unused layout 515 sample mismatch")
+    safari_entrance_ref = _map_reference_layout(exported, "LAYOUT_RS_SAFARI_ZONE_ENTRANCE")
+    safari_707 = _map_absent_metatile(exported, safari_entrance_ref, 707)
+    _assert(safari_707["local_metatile_id"] == 67, "Safari entrance 707 local id mismatch")
+    _assert(safari_707["count"] == 2, "Safari entrance 707 count mismatch")
+    _assert(safari_707["reason"] == "secondary_metatile_absent", "Safari entrance 707 reason mismatch")
 
     general = rows["gTileset_General"]
     _assert(general["active_in_emerald"], "General should be active")
@@ -749,6 +843,35 @@ def _pair_reverse_record(pair, label_name):
     raise AssertionError("missing pair reverse label {}".format(label_name))
 
 
+def _map_reference_pair(exported, pair_key):
+    for pair in exported["metatile_map_reference_report"].get("pairs", []):
+        if pair.get("pair_key") == pair_key:
+            return pair
+    raise AssertionError("missing map reference pair {}".format(pair_key))
+
+
+def _map_reference_layout(exported, layout_id):
+    for layout in exported["metatile_map_reference_report"].get("layouts", []):
+        if layout.get("layout_id") == layout_id:
+            return layout
+    raise AssertionError("missing map reference layout {}".format(layout_id))
+
+
+def _map_absent_metatile(exported, row, metatile_id):
+    for record in row.get("absent_metatile_ids", []):
+        if record[0] != metatile_id:
+            continue
+        return {
+            "metatile_id": record[0],
+            "source_kind": _map_reference_source_kind_name(exported, record[1]),
+            "local_metatile_id": record[2],
+            "count": record[3],
+            "reason": record[4],
+            "samples": record[5],
+        }
+    raise AssertionError("missing absent metatile {}".format(metatile_id))
+
+
 def _label_group_count(label_rules, group_name):
     for group in label_rules.get("groups", []):
         if group.get("name") == group_name:
@@ -767,6 +890,15 @@ def _resolution_name(exported, code):
 
 def _source_kind_name(exported, code):
     codes = exported["metatile_label_pair_lookup"]["compact_pair_label_encoding"]["source_kind_codes"]
+    by_code = {
+        int(value): key
+        for key, value in codes.items()
+    }
+    return by_code[int(code)]
+
+
+def _map_reference_source_kind_name(exported, code):
+    codes = exported["metatile_map_reference_report"]["compact_absent_metatile_encoding"]["source_kind_codes"]
     by_code = {
         int(value): key
         for key, value in codes.items()

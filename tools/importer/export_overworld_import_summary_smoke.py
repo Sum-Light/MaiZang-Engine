@@ -30,6 +30,9 @@ def main(argv):
     _assert(source["map_count"] == 939, "unexpected source map count")
     _assert(source["map_script_file_count"] == 887, "unexpected source map script count")
     _assert(source["layout_count"] == 785, "unexpected source layout count")
+    _assert(source["layout_blockdata_entry_count"] == 564213, "unexpected source layout blockdata count")
+    _assert(source["layout_blockdata_missing_file_count"] == 0, "unexpected missing source layout blockdata count")
+    _assert(source["layout_blockdata_invalid_file_count"] == 0, "unexpected invalid source layout blockdata count")
     _assert(source["primary_tileset_image_count"] == 5, "unexpected source primary tileset count")
     _assert(source["secondary_tileset_image_count"] == 127, "unexpected source secondary tileset count")
     _assert(source["tileset_header_count"] == 139, "unexpected source tileset header count")
@@ -216,6 +219,62 @@ def main(argv):
         generated["tileset_header_metatile_label_pair_out_of_range_count"] == 1620,
         "unexpected generated pair out-of-range label count",
     )
+    _assert(
+        generated["tileset_header_metatile_map_reference_layout_count"] == 785,
+        "unexpected generated map reference layout count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_checked_layout_count"] == 785,
+        "unexpected generated checked map reference layout count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_pair_count"] == 137,
+        "unexpected generated map reference pair count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_checked_cell_count"] == 564213,
+        "unexpected generated checked map reference cell count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_declared_cell_count"] == 564193,
+        "unexpected generated declared map reference cell count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_unique_metatile_id_count"] == 1021,
+        "unexpected generated map reference unique metatile count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_absent_cell_count"] == 1607,
+        "unexpected generated absent map reference cell count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_absent_unique_reference_count"] == 129,
+        "unexpected generated absent map reference unique count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_absent_global_metatile_id_count"] == 129,
+        "unexpected generated absent map reference global id count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_layout_with_absent_count"] == 5,
+        "unexpected generated map reference layout-with-absent count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_pair_with_absent_count"] == 3,
+        "unexpected generated map reference pair-with-absent count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_missing_blockdata_layout_count"] == 0,
+        "unexpected generated missing map reference blockdata count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_invalid_blockdata_layout_count"] == 0,
+        "unexpected generated invalid map reference blockdata count",
+    )
+    _assert(
+        generated["tileset_header_metatile_map_reference_size_mismatch_layout_count"] == 20,
+        "unexpected generated map reference size mismatch count",
+    )
     _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
     _assert(generated["shared_script_bundle_count"] == 84, "unexpected generated shared script bundle count")
@@ -289,6 +348,30 @@ def main(argv):
     _assert(coverage["tileset_metatile_label_pairs"]["generated"] == 137, "unexpected pair coverage count")
     _assert(coverage["tileset_metatile_label_pairs"]["source"] == 137, "unexpected pair coverage source count")
     _assert(coverage["tileset_metatile_label_pairs"]["percent"] == 100.0, "unexpected pair coverage percent")
+    _assert(
+        coverage["tileset_metatile_map_reference_layouts"]["generated"] == 785,
+        "unexpected map reference layout coverage count",
+    )
+    _assert(
+        coverage["tileset_metatile_map_reference_layouts"]["source"] == 785,
+        "unexpected map reference layout coverage source",
+    )
+    _assert(
+        coverage["tileset_metatile_map_reference_layouts"]["percent"] == 100.0,
+        "unexpected map reference layout coverage percent",
+    )
+    _assert(
+        coverage["tileset_metatile_map_reference_cells"]["generated"] == 564213,
+        "unexpected map reference cell coverage count",
+    )
+    _assert(
+        coverage["tileset_metatile_map_reference_cells"]["source"] == 564213,
+        "unexpected map reference cell coverage source",
+    )
+    _assert(
+        coverage["tileset_metatile_map_reference_cells"]["percent"] == 100.0,
+        "unexpected map reference cell coverage percent",
+    )
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing tileset animation unsupported code")
