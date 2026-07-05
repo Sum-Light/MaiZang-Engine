@@ -4,6 +4,7 @@ const TRANSITION_SEQUENCE_PLAYER := preload("res://scripts/overworld/transition_
 const BATTLE_SCENE := preload("res://scenes/battle/battle_scene.tscn")
 const BATTLE_DEBUG_LAUNCHER := preload("res://scripts/debug/battle_debug_launcher.gd")
 const LAYER_AWARE_MAP_RENDERER := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
+const DEBUG_LAYER_VIEW_MODES := ["all", "bottom", "middle", "top"]
 
 @onready var world = $World
 @onready var debug_map: Node = $World/DebugMap
@@ -23,6 +24,7 @@ var _debug_trainer_selector: PanelContainer
 var _debug_trainer_input: LineEdit
 var _debug_trainer_status: Label
 var _debug_grid_visible := false
+var _debug_layer_view := "all"
 
 
 func _ready() -> void:
@@ -124,6 +126,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventKey and event.pressed and not event.echo and _debug_key_pressed(event, "debug_trainer_battle_selector", KEY_F7):
 		_open_debug_trainer_selector()
+		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and event.pressed and not event.echo and _debug_key_pressed(event, "debug_layer_view_cycle", KEY_F8):
+		_cycle_debug_layer_view()
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_G:
@@ -522,6 +528,7 @@ func _update_status() -> void:
 		"%d,%d" % [GameState.player_grid_position.x, GameState.player_grid_position.y],
 		"obj %d" % MapRuntime.get_object_events().size(),
 		"grid %s" % ("on" if _debug_grid_visible else "off"),
+		"layers %s" % _debug_layer_view,
 	])
 	if not _movement_note.is_empty():
 		parts.append(_movement_note)
@@ -532,6 +539,18 @@ func _set_debug_grid_visible(value: bool) -> void:
 	_debug_grid_visible = value
 	if debug_map != null and debug_map.has_method("set_grid_visible"):
 		debug_map.set_grid_visible(value)
+
+
+func _cycle_debug_layer_view() -> void:
+	if debug_map != null and debug_map.has_method("cycle_layer_debug_view"):
+		_debug_layer_view = String(debug_map.cycle_layer_debug_view())
+	elif debug_map != null and debug_map.has_method("set_layer_debug_view"):
+		var index := DEBUG_LAYER_VIEW_MODES.find(_debug_layer_view)
+		if index < 0:
+			index = 0
+		_debug_layer_view = String(DEBUG_LAYER_VIEW_MODES[(index + 1) % DEBUG_LAYER_VIEW_MODES.size()])
+		debug_map.set_layer_debug_view(_debug_layer_view)
+	_update_status()
 
 
 func _on_debug_trainer_text_submitted(text: String) -> void:
@@ -553,6 +572,7 @@ func _trainer_selector_status(snapshot: Dictionary) -> String:
 func _ensure_debug_input_actions() -> void:
 	_ensure_debug_key_action("debug_quick_wild_battle", KEY_F6)
 	_ensure_debug_key_action("debug_trainer_battle_selector", KEY_F7)
+	_ensure_debug_key_action("debug_layer_view_cycle", KEY_F8)
 
 
 func _ensure_debug_key_action(action_name: String, keycode: Key) -> void:

@@ -98,6 +98,9 @@ func _run() -> void:
 	_assert(String(overlay_status.get("status", "")) == "active", "expected active top layer overlay")
 	_assert(int(overlay_status.get("godot_z_index", 0)) == int(runtime_z_bands.get("top", 0)), "expected overlay z to match top layer band")
 	_assert(bool(overlay_status.get("drawn_after_sprite_interleave", false)), "expected top overlay after default sprite interleave")
+	_assert(bool(overlay_status.get("role_visible", false)), "expected top overlay visible in all-layer mode")
+
+	_assert_layer_debug_view(renderer, map_data, tileset_data)
 
 	var layer_roles = contract.get("layer_roles", [])
 	_assert(_has_id_record(layer_roles, "bottom"), "expected bottom layer role")
@@ -216,6 +219,37 @@ func _assert_layer_draw_records(
 			_rect_dict(record.get("source_rect", {})) == _generated_render_layer_rect(tileset_data, metatile_id, role),
 			"expected %s draw rect to match generated render_layers atlas rect" % role
 		)
+
+
+func _assert_layer_debug_view(renderer: Node, map_data: Dictionary, tileset_data: Dictionary) -> void:
+	var source_block_ids = map_data.get("block_ids", []).duplicate(true)
+	var source_tileset_entries = tileset_data.get("metatile_entries", []).duplicate(true)
+	var debug_status: Dictionary = renderer.get_layer_debug_view_status()
+	_assert(String(debug_status.get("mode", "")) == "all", "expected all-layer debug view by default")
+	_assert(debug_status.get("available_modes", []) == ["all", "bottom", "middle", "top"], "expected layer debug modes")
+	_assert(debug_status.get("visible_roles", []) == ["bottom", "middle", "top"], "expected all visible roles")
+	_assert(bool(debug_status.get("mutates_gameplay_data", true)) == false, "expected debug view to avoid gameplay mutation")
+	_assert(bool(debug_status.get("mutates_map_data", true)) == false, "expected debug view to avoid map mutation")
+	_assert(bool(debug_status.get("mutates_collision_or_elevation", true)) == false, "expected debug view to avoid collision/elevation mutation")
+
+	renderer.set_layer_debug_view("bottom")
+	debug_status = renderer.get_layer_debug_view_status()
+	_assert(String(debug_status.get("mode", "")) == "bottom", "expected bottom-only debug mode")
+	_assert(debug_status.get("visible_roles", []) == ["bottom"], "expected bottom-only visible role")
+	_assert(debug_status.get("hidden_roles", []) == ["middle", "top"], "expected middle/top hidden in bottom mode")
+	var top_overlay_status: Dictionary = renderer.get_runtime_layer_status().get("top_layer_overlay", {})
+	_assert(not bool(top_overlay_status.get("role_visible", true)), "expected top overlay hidden in bottom mode")
+
+	_assert(String(renderer.cycle_layer_debug_view()) == "middle", "expected bottom -> middle cycle")
+	_assert(String(renderer.cycle_layer_debug_view()) == "top", "expected middle -> top cycle")
+	top_overlay_status = renderer.get_runtime_layer_status().get("top_layer_overlay", {})
+	_assert(bool(top_overlay_status.get("role_visible", false)), "expected top overlay visible in top mode")
+	_assert(String(renderer.cycle_layer_debug_view()) == "all", "expected top -> all cycle")
+	renderer.set_layer_debug_view("invalid")
+	_assert(String(renderer.get_layer_debug_view_status().get("mode", "")) == "all", "expected invalid mode to normalize to all")
+
+	_assert(map_data.get("block_ids", []) == source_block_ids, "expected debug view not to mutate map block ids")
+	_assert(tileset_data.get("metatile_entries", []) == source_tileset_entries, "expected debug view not to mutate tileset entries")
 
 
 func _metatile_atlas_rect(tileset_data: Dictionary, role: String, metatile_id: int) -> Rect2i:

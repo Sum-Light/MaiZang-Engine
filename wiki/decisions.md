@@ -443,3 +443,9 @@ Reason: This moves Section 5 from a flattened map preview toward source layer in
 Decision: Use `overworld_depth.gd` to compute source `SetObjectSubpriorityByElevation` records from sprite pixel y, center-to-corner y, camera offset, elevation subpriority, and source subpriority arg, then invert that source OAM subpriority into a Godot z-index inside the existing layer band.
 
 Reason: The source uses y-based object subpriority rather than plain map-row order, and lower screen sprites must draw over upper screen sprites while still respecting BG1/BG2/BG3 priority bands. Keeping the formula in one helper lets player and object nodes share the rule without exposing GBA OAM as a runtime API. Bridge subsprites, shadows/reflections, fixed-priority objects, and movement-task priority side effects remain separate object-runtime work.
+
+## 2026-07-05 - Keep layer inspection presentation-only
+
+Decision: Add the `LayerAwareMapRenderer` layer debug view as a renderer-local presentation filter with `all`, `bottom`, `middle`, and `top` modes, cycled by Main's F8 debug action, without mutating `MapRuntime`, generated map data, collision, elevation, or tileset records.
+
+Reason: Section 5 needs visual inspection for layer parity, but gameplay data must remain source-authored and reproducible. Debugging map layers should not become an input to source collision, elevation, script, or map-grid state.

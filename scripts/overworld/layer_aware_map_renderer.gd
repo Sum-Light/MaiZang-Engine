@@ -26,6 +26,8 @@ const IMPLEMENTED_LAYER_TYPE_NAMES := [
 const LAYER_ROLE_IDS := ["bottom", "middle", "top"]
 const BASE_LAYER_ROLE_IDS := ["bottom", "middle"]
 const TOP_LAYER_ROLE_ID := "top"
+const LAYER_DEBUG_VIEW_ALL := "all"
+const LAYER_DEBUG_VIEW_MODES := ["all", "bottom", "middle", "top"]
 
 const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending"
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
@@ -51,6 +53,7 @@ var _flattened_atlas_tile_size := DEFAULT_TILE_SIZE
 var _flattened_atlas_columns := 0
 var _flattened_atlas_total_metatiles := 0
 var _top_layer_overlay: Node2D = null
+var _layer_debug_view := LAYER_DEBUG_VIEW_ALL
 
 
 func _ready() -> void:
@@ -100,6 +103,34 @@ func is_grid_visible() -> bool:
 	if _debug_fallback != null and _debug_fallback.has_method("is_grid_visible"):
 		return bool(_debug_fallback.is_grid_visible())
 	return _grid_visible
+
+
+func set_layer_debug_view(mode: String) -> void:
+	_layer_debug_view = _normalize_layer_debug_view(mode)
+	_queue_renderer_redraw()
+
+
+func cycle_layer_debug_view() -> String:
+	var index := LAYER_DEBUG_VIEW_MODES.find(_layer_debug_view)
+	if index < 0:
+		index = 0
+	_layer_debug_view = String(LAYER_DEBUG_VIEW_MODES[(index + 1) % LAYER_DEBUG_VIEW_MODES.size()])
+	_queue_renderer_redraw()
+	return _layer_debug_view
+
+
+func get_layer_debug_view_status() -> Dictionary:
+	return {
+		"status": "active",
+		"mode": _layer_debug_view,
+		"available_modes": LAYER_DEBUG_VIEW_MODES.duplicate(),
+		"visible_roles": _visible_layer_roles(),
+		"hidden_roles": _hidden_layer_roles(),
+		"mutates_gameplay_data": false,
+		"mutates_map_data": false,
+		"mutates_collision_or_elevation": false,
+		"source": "Godot-only layer presentation debug filter",
+	}
 
 
 func set_door_animation_frame(position: Vector2i, animation: Dictionary, frame_index: int) -> bool:
@@ -196,6 +227,7 @@ func get_renderer_contract() -> Dictionary:
 		"object_depth_interleave": get_object_depth_interleave_status(),
 		"implemented_layer_types": IMPLEMENTED_LAYER_TYPE_NAMES.duplicate(),
 		"top_layer_overlay": _top_layer_overlay_status(),
+		"layer_debug_view": get_layer_debug_view_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"debug_fallback_script": _debug_fallback_script_path(),
 		"compatible_methods": [
@@ -214,6 +246,9 @@ func get_renderer_contract() -> Dictionary:
 			"get_object_depth_interleave_status",
 			"get_sprite_depth_record",
 			"get_sprite_depth_record_for_event",
+			"set_layer_debug_view",
+			"cycle_layer_debug_view",
+			"get_layer_debug_view_status",
 		],
 		"source_trace": [
 			"include/global.fieldmap.h:METATILE_LAYER_TYPE_*",
@@ -262,6 +297,7 @@ func get_runtime_layer_status() -> Dictionary:
 		"metatile_layer_rendering": _metatile_layer_rendering_status(),
 		"object_depth_interleave": get_object_depth_interleave_status(),
 		"top_layer_overlay": _top_layer_overlay_status(),
+		"layer_debug_view": get_layer_debug_view_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"source_equivalent_for_runtime_layering": false,
 		"unsupported": get_unsupported(),
@@ -393,7 +429,7 @@ func _draw() -> void:
 			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
 			var block_id := _local_block_id(Vector2i(x, y))
 			if has_layer_rendering and _is_implemented_layer_block(block_id):
-				if _draw_layered_metatile_roles(block_id, rect, BASE_LAYER_ROLE_IDS):
+				if _draw_layered_metatile_roles(block_id, rect, _visible_base_layer_roles()):
 					continue
 			if should_draw_flattened_fallback:
 				if not _draw_flattened_tile(block_id, rect):
@@ -414,7 +450,7 @@ func _draw_top_layer_overlay(draw_target: CanvasItem) -> void:
 		for x in range(map_size.x):
 			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
 			var block_id := _local_block_id(Vector2i(x, y))
-			if _is_implemented_layer_block(block_id):
+			if _is_implemented_layer_block(block_id) and _is_layer_role_visible(TOP_LAYER_ROLE_ID):
 				_draw_layer_atlas_tile(TOP_LAYER_ROLE_ID, block_id, rect, draw_target)
 			if _grid_visible:
 				draw_target.draw_rect(rect, Color(0.22, 0.31, 0.24, 0.55), false, 1.0)
@@ -439,6 +475,7 @@ func _top_layer_overlay_status() -> Dictionary:
 		"source_bg_equivalent": "BG1",
 		"godot_z_index": OVERWORLD_DEPTH.TOP_LAYER_Z_INDEX,
 		"drawn_role": TOP_LAYER_ROLE_ID,
+		"role_visible": _is_layer_role_visible(TOP_LAYER_ROLE_ID),
 		"drawn_after_sprite_interleave": OVERWORLD_DEPTH.TOP_LAYER_Z_INDEX > OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX,
 	}
 
@@ -538,6 +575,7 @@ func _metatile_layer_rendering_status() -> Dictionary:
 		"source_layer_types": IMPLEMENTED_LAYER_TYPE_NAMES.duplicate(),
 		"source_layer_type_values": IMPLEMENTED_LAYER_TYPES.duplicate(),
 		"drawn_roles": _loaded_layer_roles(),
+		"visible_roles": _visible_layer_roles(),
 		"required_roles": LAYER_ROLE_IDS.duplicate(),
 		"normal_metatile_count": _normal_layer_metatile_count,
 		"covered_metatile_count": _covered_layer_metatile_count,
@@ -551,6 +589,7 @@ func _metatile_layer_rendering_status() -> Dictionary:
 		"covered_runtime_path_active": _runtime_layer_rendering_available(),
 		"split_runtime_path_active": _runtime_layer_rendering_available(),
 		"object_depth_interleave": "implemented_first_pass",
+		"layer_debug_view": get_layer_debug_view_status(),
 	}
 
 
@@ -573,6 +612,40 @@ func _loaded_layer_roles() -> Array:
 		if _layer_textures.has(role):
 			roles.append(role)
 	return roles
+
+
+func _visible_layer_roles() -> Array:
+	if _layer_debug_view == LAYER_DEBUG_VIEW_ALL:
+		return LAYER_ROLE_IDS.duplicate()
+	return [_layer_debug_view]
+
+
+func _hidden_layer_roles() -> Array:
+	var hidden := []
+	var visible := _visible_layer_roles()
+	for role in LAYER_ROLE_IDS:
+		if not visible.has(role):
+			hidden.append(role)
+	return hidden
+
+
+func _visible_base_layer_roles() -> Array:
+	var roles := []
+	for role in BASE_LAYER_ROLE_IDS:
+		if _is_layer_role_visible(role):
+			roles.append(role)
+	return roles
+
+
+func _is_layer_role_visible(role: String) -> bool:
+	return _layer_debug_view == LAYER_DEBUG_VIEW_ALL or _layer_debug_view == role
+
+
+func _normalize_layer_debug_view(mode: String) -> String:
+	var normalized := mode.to_lower().strip_edges()
+	if LAYER_DEBUG_VIEW_MODES.has(normalized):
+		return normalized
+	return LAYER_DEBUG_VIEW_ALL
 
 
 func _is_implemented_layer_block(block_id: int) -> bool:

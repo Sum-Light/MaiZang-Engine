@@ -23,6 +23,7 @@ func _run() -> void:
 
 	_assert(InputMap.has_action("debug_quick_wild_battle"), "expected F6 debug wild battle action")
 	_assert(InputMap.has_action("debug_trainer_battle_selector"), "expected F7 debug trainer selector action")
+	_assert(InputMap.has_action("debug_layer_view_cycle"), "expected F8 layer debug action")
 	_assert(main.get_node_or_null("Hud/DebugTrainerSelector") != null, "expected debug trainer selector UI")
 
 	game_state.clear_player_party()
