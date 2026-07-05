@@ -6,6 +6,9 @@ const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
 const CHAR_PROMPT_SCROLL := 0xFA
 const CHAR_PROMPT_CLEAR := 0xFB
+const CHAR_DYNAMIC := 0xF7
+const CHAR_KEYPAD_ICON := 0xF8
+const CHAR_EXTRA_SYMBOL := 0xF9
 const EXT_CTRL_CODE_BEGIN := 0xFC
 const PLACEHOLDER_BEGIN := 0xFD
 const CHAR_NEWLINE := 0xFE
@@ -120,6 +123,7 @@ var _source_text_label := ""
 var _source_bytes: Array = []
 var _source_encoding_hex := ""
 var _source_byte_control_summary := {}
+var _source_byte_event_count := 0
 var _source_text_control_metadata_count := 0
 var _source_audio_cue_metadata_count := 0
 var _source_metadata_only_count := 0
@@ -167,7 +171,10 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
 	if _event_stream_source == "source_bytes":
 		event_text = _strip_source_text_terminator(_source_text) if not _source_text.is_empty() else _full_text
-	_events = _parse_text_events(event_text, _event_stream_source)
+		_events = _parse_source_byte_events(_source_bytes, event_text)
+	else:
+		_events = _parse_text_events(event_text, _event_stream_source)
+	_source_byte_event_count = _count_source_byte_events(_events)
 	_event_index = 0
 	_event_log = []
 	_control_event_count = 0
@@ -267,6 +274,7 @@ func snapshot() -> Dictionary:
 		"source_byte_count": _source_bytes.size(),
 		"source_encoding_hex": _source_encoding_hex,
 		"source_byte_control_summary": _source_byte_control_summary.duplicate(true),
+		"source_byte_event_count": _source_byte_event_count,
 		"source_text_control_metadata_count": _source_text_control_metadata_count,
 		"source_audio_cue_metadata_count": _source_audio_cue_metadata_count,
 		"source_metadata_only_count": _source_metadata_only_count,
@@ -385,34 +393,34 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 				_down_arrow_visible = not _auto_scroll
 				_page_wait_count += 1
 				_prompt_scroll_count += 1
-				_event_log.append({"kind": "page_break", "source": "CHAR_PROMPT_SCROLL", "auto_scroll": _auto_scroll})
+				_event_log.append(_event_log_entry(event, {"kind": "page_break", "source": "CHAR_PROMPT_SCROLL", "auto_scroll": _auto_scroll}))
 				return
 			"page_clear":
 				_wait_state = "wait_clear"
 				_down_arrow_visible = not _auto_scroll
 				_page_wait_count += 1
 				_prompt_clear_count += 1
-				_event_log.append({"kind": "page_clear", "source": "CHAR_PROMPT_CLEAR", "auto_scroll": _auto_scroll})
+				_event_log.append(_event_log_entry(event, {"kind": "page_clear", "source": "CHAR_PROMPT_CLEAR", "auto_scroll": _auto_scroll}))
 				return
 			"pause":
 				_wait_state = "pause"
 				_pause_counter = max(0, int(event.get("frames", 0)))
 				_pause_event_count += 1
 				_control_event_count += 1
-				_event_log.append({"kind": "pause", "frames": _pause_counter, "source": "EXT_CTRL_CODE_PAUSE"})
+				_event_log.append(_event_log_entry(event, {"kind": "pause", "frames": _pause_counter, "source": "EXT_CTRL_CODE_PAUSE"}))
 				return
 			"wait_input":
 				_wait_state = "wait"
 				_wait_input_count += 1
 				_control_event_count += 1
-				_event_log.append({"kind": "wait", "source": "EXT_CTRL_CODE_PAUSE_UNTIL_PRESS", "auto_scroll": _auto_scroll})
+				_event_log.append(_event_log_entry(event, {"kind": "wait", "source": "EXT_CTRL_CODE_PAUSE_UNTIL_PRESS", "auto_scroll": _auto_scroll}))
 				return
 			"wait_se":
 				_wait_state = "wait_se"
 				_wait_se_count += 1
 				_control_event_count += 1
 				_audio_cue_count += 1
-				_event_log.append({"kind": "wait_se", "status": "metadata_only", "source": "EXT_CTRL_CODE_WAIT_SE"})
+				_event_log.append(_event_log_entry(event, {"kind": "wait_se", "status": "metadata_only", "source": "EXT_CTRL_CODE_WAIT_SE"}))
 				if not bool(input.get("audio_playing", false)):
 					_wait_state = ""
 					_down_arrow_visible = false
@@ -420,20 +428,27 @@ func _render_events_until_visible_or_blocked(input: Dictionary = {}) -> void:
 			"audio":
 				_audio_cue_count += 1
 				_control_event_count += 1
-				_event_log.append({
+				_event_log.append(_event_log_entry(event, {
 					"kind": "audio",
 					"command": String(event.get("command", "")),
 					"args": event.get("args", []),
 					"status": "metadata_only",
-				})
+				}))
 			"style":
 				_style_event_count += 1
 				_control_event_count += 1
-				_event_log.append({
+				_event_log.append(_event_log_entry(event, {
 					"kind": "style",
 					"command": String(event.get("command", "")),
 					"args": event.get("args", []),
-				})
+				}))
+			"placeholder":
+				_control_event_count += 1
+				_event_log.append(_event_log_entry(event, {
+					"kind": "placeholder",
+					"placeholder_id": int(event.get("placeholder_id", -1)),
+					"status": "metadata_only",
+				}))
 			_:
 				_visible_text += String(event.get("text", ""))
 				_visible_char_count = _visible_text.length()
@@ -570,6 +585,137 @@ func _control_event_from_token(token_content: String) -> Dictionary:
 	return {}
 
 
+func _parse_source_byte_events(bytes: Array, visible_fallback_text: String) -> Array:
+	var events := []
+	var visible_chars := _visible_fallback_chars_for_source_bytes(visible_fallback_text)
+	var visible_index := 0
+	var index := 0
+	while index < bytes.size():
+		var byte := int(bytes[index]) & 0xFF
+		match byte:
+			EOS:
+				break
+			CHAR_NEWLINE:
+				events.append({
+					"kind": "newline",
+					"source": "CHAR_NEWLINE",
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+				})
+				index += 1
+			CHAR_PROMPT_SCROLL:
+				events.append({
+					"kind": "page_break",
+					"text": "\n",
+					"source": "CHAR_PROMPT_SCROLL",
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+				})
+				index += 1
+			CHAR_PROMPT_CLEAR:
+				events.append({
+					"kind": "page_clear",
+					"source": "CHAR_PROMPT_CLEAR",
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+				})
+				index += 1
+			PLACEHOLDER_BEGIN:
+				var placeholder_id := int(bytes[index + 1]) & 0xFF if index + 1 < bytes.size() else -1
+				events.append({
+					"kind": "placeholder",
+					"source": "PLACEHOLDER_BEGIN",
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+					"placeholder_id": placeholder_id,
+				})
+				index += 2
+			CHAR_DYNAMIC:
+				var dynamic_id := int(bytes[index + 1]) & 0xFF if index + 1 < bytes.size() else -1
+				events.append({
+					"kind": "placeholder",
+					"source": "CHAR_DYNAMIC",
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+					"placeholder_id": dynamic_id,
+				})
+				index += 2
+			CHAR_KEYPAD_ICON, CHAR_EXTRA_SYMBOL:
+				var visible_text := _next_source_byte_visible_text(visible_chars, visible_index, byte)
+				visible_index += 1
+				events.append({
+					"kind": "visible",
+					"text": visible_text,
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+					"source_sub_code": int(bytes[index + 1]) & 0xFF if index + 1 < bytes.size() else -1,
+				})
+				index += 2
+			EXT_CTRL_CODE_BEGIN:
+				var control_code := int(bytes[index + 1]) & 0xFF if index + 1 < bytes.size() else -1
+				var arg_count := _ext_control_arg_count(control_code)
+				var args := []
+				for arg_index in range(arg_count):
+					var byte_index := index + 2 + arg_index
+					if byte_index >= bytes.size():
+						break
+					args.append(int(bytes[byte_index]) & 0xFF)
+				var event := _source_byte_ext_control_event(control_code, args, index)
+				if String(event.get("kind", "")) == "visible":
+					var visible_text := _next_source_byte_visible_text(visible_chars, visible_index, byte)
+					visible_index += 1
+					event["text"] = visible_text
+				if not event.is_empty():
+					events.append(event)
+				index += 2 + arg_count
+			_:
+				var visible_text := _next_source_byte_visible_text(visible_chars, visible_index, byte)
+				visible_index += 1
+				events.append({
+					"kind": "visible",
+					"text": visible_text,
+					"source_event_source": "source_bytes",
+					"source_offset": index,
+					"source_byte": byte,
+				})
+				index += 1
+	return events
+
+
+func _source_byte_ext_control_event(control_code: int, args: Array, source_offset: int) -> Dictionary:
+	var control_name := _ext_control_name(control_code)
+	var event := {
+		"command": control_name,
+		"args": args.duplicate(true),
+		"source": control_name,
+		"source_event_source": "source_bytes",
+		"source_offset": source_offset,
+		"source_byte": EXT_CTRL_CODE_BEGIN,
+		"source_control_code": control_code,
+	}
+	match control_code:
+		EXT_CTRL_CODE_PAUSE:
+			event["kind"] = "pause"
+			event["frames"] = int(args[0]) if not args.is_empty() else 0
+		EXT_CTRL_CODE_PAUSE_UNTIL_PRESS:
+			event["kind"] = "wait_input"
+		EXT_CTRL_CODE_WAIT_SE:
+			event["kind"] = "wait_se"
+		EXT_CTRL_CODE_PLAY_BGM, EXT_CTRL_CODE_PLAY_SE:
+			event["kind"] = "audio"
+		EXT_CTRL_CODE_ESCAPE:
+			event["kind"] = "visible"
+		_:
+			event["kind"] = "style"
+	return event
+
+
 func _visible_text_from_events() -> String:
 	var text := ""
 	for event_value in _events:
@@ -584,6 +730,74 @@ func _visible_text_from_events() -> String:
 			"page_clear":
 				text = ""
 	return text
+
+
+func _visible_fallback_chars_for_source_bytes(text: String) -> Array:
+	var chars := []
+	var source := _strip_source_text_terminator(text)
+	var index := 0
+	while index < source.length():
+		var character := source.substr(index, 1)
+		if character == "\\":
+			if index + 1 >= source.length():
+				chars.append("\\")
+				index += 1
+				continue
+			var escaped := source.substr(index + 1, 1)
+			match escaped:
+				"n", "l", "p":
+					pass
+				"r":
+					chars.append("\r")
+				"t":
+					chars.append("    ")
+				"\\":
+					chars.append("\\")
+				"\"":
+					chars.append("\"")
+				_:
+					chars.append("\\%s" % escaped)
+			index += 2
+			continue
+		if character == "{":
+			var close_index := source.find("}", index + 1)
+			if close_index > index:
+				index = close_index + 1
+				continue
+		if character == "\n":
+			index += 1
+			continue
+		chars.append(_display_text(character))
+		index += 1
+	return chars
+
+
+func _next_source_byte_visible_text(visible_chars: Array, visible_index: int, source_byte: int) -> String:
+	if visible_index < visible_chars.size():
+		return String(visible_chars[visible_index])
+	return "[%02X]" % (source_byte & 0xFF)
+
+
+func _count_source_byte_events(events: Array) -> int:
+	var count := 0
+	for event_value in events:
+		var event := _dictionary_value(event_value)
+		if String(event.get("source_event_source", "")) == "source_bytes":
+			count += 1
+	return count
+
+
+func _event_log_entry(event: Dictionary, base: Dictionary) -> Dictionary:
+	var entry := base.duplicate(true)
+	if event.has("source_event_source"):
+		entry["source_event_source"] = event.get("source_event_source")
+	if event.has("source_offset"):
+		entry["source_offset"] = event.get("source_offset")
+	if event.has("source_byte"):
+		entry["source_byte"] = event.get("source_byte")
+	if event.has("source_control_code"):
+		entry["source_control_code"] = event.get("source_control_code")
+	return entry
 
 
 func _resolve_auto_scroll(options: Dictionary) -> bool:

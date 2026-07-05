@@ -100,6 +100,7 @@ func _run() -> void:
 	_assert(String(source_record_message.get("visible_text", "")) == "A", "expected renderer source record prompt clear before B")
 	_assert(String(source_record_printer.get("wait_state", "")) == "wait_clear", "expected renderer source record prompt-clear wait")
 	_assert(int(source_record_printer.get("prompt_clear_count", 0)) == 1, "expected renderer source record prompt-clear count")
+	_assert(int(source_record_printer.get("source_byte_event_count", 0)) == 3, "expected renderer record source byte event count")
 	_assert(int(source_record_byte_summary.get("prompt_clear_count", 0)) == 1, "expected renderer source record byte prompt-clear summary")
 
 	renderer.show_move_windows(["Water Gun", "Tackle", "-", "-"], "PP", "25/25", "TYPE/Water")

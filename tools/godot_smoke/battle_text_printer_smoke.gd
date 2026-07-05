@@ -136,9 +136,19 @@ func _run() -> void:
 	source_newline_printer.skip_to_end()
 	_assert(String(source_newline_printer.get_visible_text()) == "A\nB", "expected source \\l and trailing terminator handling")
 
+	var byte_newline_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	byte_newline_printer.start("B_WIN_MSG", "A\nB", message_info, text_printer_metadata, {
+		"source_text": "AB",
+		"source_bytes": [0x41, 0xFE, 0x42],
+	})
+	byte_newline_printer.skip_to_end()
+	var byte_newline := _dict(byte_newline_printer.snapshot())
+	_assert(String(byte_newline_printer.get_visible_text()) == "A\nB", "expected source byte CHAR_NEWLINE event independent of source text escapes")
+	_assert(int(byte_newline.get("source_byte_event_count", 0)) == 3, "expected three source byte events for A newline B")
+
 	var byte_clear_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	byte_clear_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
-		"source_text": "A\\pB",
+		"source_text": "AB",
 		"source_bytes": [0x41, 0xFB, 0x42],
 		"source_encoding_hex": "41 FB 42",
 	})
@@ -146,12 +156,16 @@ func _run() -> void:
 	byte_clear_printer.advance_frames(1)
 	var byte_clear_wait := _dict(byte_clear_printer.snapshot())
 	var byte_clear_summary := _dict(byte_clear_wait.get("source_byte_control_summary", {}))
+	var byte_clear_log := _array(byte_clear_wait.get("event_log", []))
+	var byte_clear_event := _dict(byte_clear_log[0]) if not byte_clear_log.is_empty() else {}
 	_assert(String(byte_clear_wait.get("event_stream_source", "")) == "source_bytes", "expected source-byte event stream")
 	_assert(String(byte_clear_wait.get("event_stream_status", "")) == "first_pass_source_byte_control_events", "expected source-byte event stream status")
 	_assert(String(byte_clear_wait.get("wait_state", "")) == "wait_clear", "expected source byte CHAR_PROMPT_CLEAR wait")
 	_assert(String(byte_clear_printer.get_visible_text()) == "A", "expected source byte clear wait to keep current page visible")
 	_assert(int(byte_clear_wait.get("prompt_clear_count", 0)) == 1, "expected one source byte prompt-clear event")
 	_assert(int(byte_clear_summary.get("prompt_clear_count", 0)) == 1, "expected one source byte prompt-clear summary")
+	_assert(String(byte_clear_event.get("source_event_source", "")) == "source_bytes", "expected prompt-clear event to come from source bytes")
+	_assert(int(byte_clear_event.get("source_offset", -1)) == 1, "expected prompt-clear byte source offset")
 	byte_clear_printer.advance_frames(1, {"a_pressed": true})
 	_assert(String(byte_clear_printer.get_visible_text()) == "", "expected source byte prompt clear to clear visible text after input")
 	byte_clear_printer.advance_frames(1)
@@ -159,7 +173,7 @@ func _run() -> void:
 
 	var byte_scroll_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	byte_scroll_printer.start("B_WIN_MSG", "A\nB", message_info, text_printer_metadata, {
-		"source_text": "A\\lB",
+		"source_text": "AB",
 		"source_bytes": [0x41, 0xFA, 0x42],
 	})
 	byte_scroll_printer.advance_frames(1)
@@ -172,7 +186,7 @@ func _run() -> void:
 
 	var byte_pause_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	byte_pause_printer.start("B_WIN_MSG", "A", message_info, text_printer_metadata, {
-		"source_text": "{PAUSE 2}A",
+		"source_text": "A",
 		"source_bytes": [0xFC, 0x08, 0x02, 0x41],
 	})
 	byte_pause_printer.advance_frames(1)
@@ -214,6 +228,7 @@ func _run() -> void:
 		"control_events": int(audio_snapshot.get("control_event_count", 0)) + int(pause_after.get("control_event_count", 0)),
 		"page_waits": int(page_wait.get("page_wait_count", 0)),
 		"source_page_waits": int(source_page_wait.get("page_wait_count", 0)),
+		"byte_events": int(byte_newline.get("source_byte_event_count", 0)),
 		"byte_prompt_clears": int(byte_clear_wait.get("prompt_clear_count", 0)),
 		"byte_prompt_scrolls": int(byte_scroll_wait.get("prompt_scroll_count", 0)),
 		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
