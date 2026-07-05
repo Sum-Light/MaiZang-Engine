@@ -4,6 +4,7 @@ const TILE_SIZE := 8
 const VIEWPORT_SIZE := Vector2i(240, 160)
 const BG0_Y_ACTION_CHOOSE := 160
 const BG0_Y_MOVE_CHOOSE := 320
+const BATTLE_TEXT_PRINTER_SCRIPT := preload("res://scripts/battle/battle_text_printer.gd")
 
 const SOURCE_TRACE := [
 	"src/battle_bg.c:LoadBattleTextboxAndBackground",
@@ -19,6 +20,7 @@ var _text_printer: Dictionary = {}
 var _texture_nodes: Dictionary = {}
 var _label_nodes: Dictionary = {}
 var _window_texts: Dictionary = {}
+var _active_text_printers: Dictionary = {}
 var _visible_windows: Array = []
 var _bg0_y := 0
 var _textbox_composite_path := ""
@@ -37,8 +39,8 @@ func configure_data_registry(data_registry: Node) -> void:
 	_load_interface_data()
 
 
-func show_message_window(text: String) -> void:
-	show_windows(["B_WIN_MSG"], 0, {"B_WIN_MSG": text})
+func show_message_window(text: String, reveal_immediately: bool = true) -> void:
+	show_windows(["B_WIN_MSG"], 0, {"B_WIN_MSG": text}, reveal_immediately)
 
 
 func show_action_windows(prompt_text: String, menu_text: String) -> void:
@@ -85,7 +87,7 @@ func clear_windows() -> void:
 			node.visible = false
 
 
-func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}) -> void:
+func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}, reveal_immediately: bool = true) -> void:
 	_load_interface_data()
 	_bg0_y = bg0_y
 	_visible_windows = []
@@ -97,19 +99,45 @@ func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}
 		_visible_windows.append(window_id)
 		_window_texts[window_id] = String(text_by_window.get(window_id, _window_texts.get(window_id, "")))
 		_ensure_window_nodes(window_id)
+		_ensure_text_printer(window_id, String(_window_texts.get(window_id, "")), reveal_immediately)
 		_apply_window_node_layout(window_id)
 	_set_node_visibility()
 
 
 func set_window_text(window_id: String, text: String) -> void:
 	_window_texts[window_id] = text
+	_ensure_text_printer(window_id, text, true)
 	var label: Label = _label_nodes.get(window_id, null) as Label
 	if label is Label:
-		label.text = _display_text(text)
+		label.text = _visible_text_for_window(window_id)
 
 
 func get_window_text(window_id: String) -> String:
 	return String(_window_texts.get(window_id, ""))
+
+
+func get_window_visible_text(window_id: String) -> String:
+	return _visible_text_for_window(window_id)
+
+
+func advance_text_printers(frames: int = 1, input: Dictionary = {}) -> Dictionary:
+	for window_id in _visible_windows:
+		var printer = _active_text_printers.get(window_id, null)
+		if printer != null and printer.has_method("advance_frames"):
+			printer.advance_frames(frames, input)
+		_update_window_label_text(window_id)
+	return _text_printers_snapshot()
+
+
+func skip_text_printers_to_end(window_ids: Array = []) -> Dictionary:
+	var target_ids := window_ids if not window_ids.is_empty() else _visible_windows
+	for window_id_value in target_ids:
+		var window_id := String(window_id_value)
+		var printer = _active_text_printers.get(window_id, null)
+		if printer != null and printer.has_method("skip_to_end"):
+			printer.skip_to_end()
+		_update_window_label_text(window_id)
+	return _text_printers_snapshot()
 
 
 func get_window_screen_rect(window_id: String, bg0_y: int = -1) -> Rect2i:
@@ -192,6 +220,8 @@ func get_renderer_snapshot() -> Dictionary:
 			"can_ab_speed_up_print": bool(text_info.get("can_ab_speed_up_print", false)),
 			"source_fit_width_px": text_info.get("source_fit_width_px", null),
 			"text": String(_window_texts.get(window_id, "")),
+			"visible_text": _visible_text_for_window(window_id),
+			"text_printer": _text_printer_window_snapshot(window_id),
 			"source": template.get("source", {}) if typeof(template.get("source", {})) == TYPE_DICTIONARY else {},
 		}
 	return {
@@ -205,10 +235,14 @@ func get_renderer_snapshot() -> Dictionary:
 		"source_composite_mapping_status": _source_composite_mapping_status(),
 		"source_text_info_status": _source_text_info_status(),
 		"text_printer": _text_printer_snapshot(),
+		"text_printers": _text_printers_snapshot(),
 		"runtime_color_policy": "rgba_textures_and_godot_materials",
 		"unsupported": [
 			"battle_text_glyph_renderer_pending",
-			"battle_text_printer_timing_pending",
+			"battle_text_source_byte_stream_pending",
+			"battle_text_control_codes_pending",
+			"battle_text_wait_page_down_arrow_pending",
+			"battle_text_ab_speedup_input_pending",
 		],
 	}
 
@@ -245,7 +279,7 @@ func _apply_window_node_layout(window_id: String) -> void:
 	var text_offset := Vector2(int(text_info.get("text_x", 0)), int(text_info.get("text_y", 0)))
 	label.position = Vector2(screen_rect.position) + text_offset
 	label.size = Vector2(screen_rect.size) - text_offset
-	label.text = _display_text(String(_window_texts.get(window_id, "")))
+	label.text = _visible_text_for_window(window_id)
 	label.add_theme_font_size_override("font_size", int(text_info.get("font_size", 8)))
 
 
@@ -306,12 +340,60 @@ func _text_printer_snapshot() -> Dictionary:
 	if _text_printer.is_empty():
 		return {}
 	return {
-		"status": String(_text_printer.get("status", "")),
+		"status": "first_pass_plain_text_cadence",
+		"metadata_status": String(_text_printer.get("status", "")),
 		"normal_window_text_info_count": int(_text_printer.get("normal_window_text_info_count", 0)),
 		"normal_windows_type": String(_text_printer.get("normal_windows_type", "")),
 		"message_effective_speed_source": String(_text_printer.get("message_effective_speed_source", "")),
-		"runtime_status": String(_text_printer.get("runtime_status", "")),
+		"runtime_status": "first_pass_plain_text_cadence",
+		"visible_window_printer_count": _visible_windows.size(),
 	}
+
+
+func _ensure_text_printer(window_id: String, text: String, reveal_immediately: bool) -> void:
+	var display_text := _display_text(text)
+	var printer = _active_text_printers.get(window_id, null)
+	var should_restart := true
+	if printer != null and printer.has_method("get_full_text"):
+		var same_text := String(printer.get_full_text()) == display_text
+		var complete := bool(printer.is_complete()) if printer.has_method("is_complete") else true
+		should_restart = not same_text or (not reveal_immediately and complete)
+	if should_restart:
+		printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+		printer.start(window_id, display_text, _source_text_info(window_id), _text_printer, {
+			"player_text_speed": "OPTIONS_TEXT_SPEED_FAST",
+		})
+		_active_text_printers[window_id] = printer
+	if reveal_immediately and printer != null and printer.has_method("skip_to_end"):
+		printer.skip_to_end()
+
+
+func _update_window_label_text(window_id: String) -> void:
+	var label: Label = _label_nodes.get(window_id, null) as Label
+	if label is Label:
+		label.text = _visible_text_for_window(window_id)
+
+
+func _visible_text_for_window(window_id: String) -> String:
+	var printer = _active_text_printers.get(window_id, null)
+	if printer != null and printer.has_method("get_visible_text"):
+		return String(printer.get_visible_text())
+	return _display_text(String(_window_texts.get(window_id, "")))
+
+
+func _text_printer_window_snapshot(window_id: String) -> Dictionary:
+	var printer = _active_text_printers.get(window_id, null)
+	if printer != null and printer.has_method("snapshot"):
+		var snapshot = printer.snapshot()
+		return snapshot if typeof(snapshot) == TYPE_DICTIONARY else {}
+	return {}
+
+
+func _text_printers_snapshot() -> Dictionary:
+	var snapshots := {}
+	for window_id in _visible_windows:
+		snapshots[String(window_id)] = _text_printer_window_snapshot(String(window_id))
+	return snapshots
 
 
 func _load_interface_data() -> void:
