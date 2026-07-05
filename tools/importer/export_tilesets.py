@@ -49,6 +49,50 @@ DOOR_SOUND_EFFECTS = {
     "DOOR_SOUND_ARENA": "SE_REPEL",
 }
 FLATTENED_ATLAS_UNSUPPORTED_CODE = "flattened_debug_atlas_not_source_equivalent"
+LAYER_RENDERER_UNSUPPORTED_CODE = "source_equivalent_layer_renderer_pending"
+LAYER_ROLES = ["bottom", "middle", "top"]
+LAYER_SOURCE_BG = {
+    "bottom": "BG3",
+    "middle": "BG2",
+    "top": "BG1",
+}
+LAYER_TYPE_NAMES = {
+    0: "METATILE_LAYER_TYPE_NORMAL",
+    1: "METATILE_LAYER_TYPE_COVERED",
+    2: "METATILE_LAYER_TYPE_SPLIT",
+}
+LAYER_TYPE_RULES = {
+    0: {
+        "bottom": {"operation": "source_fill_tile", "source_tile_indexes": [], "fill_tile_raw": 0x3014},
+        "middle": {"operation": "draw_tiles", "source_tile_indexes": [0, 1, 2, 3]},
+        "top": {"operation": "draw_tiles", "source_tile_indexes": [4, 5, 6, 7]},
+    },
+    1: {
+        "bottom": {"operation": "draw_tiles", "source_tile_indexes": [0, 1, 2, 3]},
+        "middle": {"operation": "draw_tiles", "source_tile_indexes": [4, 5, 6, 7]},
+        "top": {"operation": "clear", "source_tile_indexes": []},
+    },
+    2: {
+        "bottom": {"operation": "draw_tiles", "source_tile_indexes": [0, 1, 2, 3]},
+        "middle": {"operation": "clear", "source_tile_indexes": []},
+        "top": {"operation": "draw_tiles", "source_tile_indexes": [4, 5, 6, 7]},
+    },
+}
+LAYER_TILE_POSITIONS = [
+    (0, 0),
+    (TILE_SIZE, 0),
+    (0, TILE_SIZE),
+    (TILE_SIZE, TILE_SIZE),
+    (0, 0),
+    (TILE_SIZE, 0),
+    (0, TILE_SIZE),
+    (TILE_SIZE, TILE_SIZE),
+]
+NORMAL_BOTTOM_FILL_NOTE = (
+    "DrawMetatile writes source fill tile 0x3014 to BG3 for normal metatiles. "
+    "The RGBA layer atlas keeps this role transparent until the runtime layer renderer "
+    "has a source-equivalent policy for that fill."
+)
 
 FLIP_LEFT_RIGHT = Image.Transpose.FLIP_LEFT_RIGHT if hasattr(Image, "Transpose") else Image.FLIP_LEFT_RIGHT
 FLIP_TOP_BOTTOM = Image.Transpose.FLIP_TOP_BOTTOM if hasattr(Image, "Transpose") else Image.FLIP_TOP_BOTTOM
@@ -170,6 +214,59 @@ def flattened_atlas_runtime_layering_policy():
             "player/object depth interleaving, per-layer setmetatile redraws, or source door forced-covered drawing."
         ),
         "replacement_track": "wiki/overworld-parity-todo.md section 5 layer-aware map rendering",
+    }
+
+
+def layer_rendering_policy():
+    return {
+        "artifact_kind": "layer_metatile_rgba_atlas",
+        "render_data_status": "source_traced_layer_data_exported",
+        "runtime_layering_status": "layer_render_data_exported_renderer_pending",
+        "source_equivalent_for_runtime_layering": False,
+        "runtime_renderer_unsupported_code": LAYER_RENDERER_UNSUPPORTED_CODE,
+        "intended_use": "LayerAwareMapRenderer bottom/middle/top renderer input",
+        "source_trace": [
+            "include/global.fieldmap.h:METATILE_LAYER_TYPE_*",
+            "src/field_camera.c:DrawMetatile",
+            "src/field_camera.c:DrawDoorMetatileAt",
+        ],
+        "unsupported": [
+            {
+                "code": LAYER_RENDERER_UNSUPPORTED_CODE,
+                "status": "pending",
+                "detail": "Generated bottom/middle/top RGBA layer atlases exist, but the runtime renderer does not consume them yet.",
+            }
+        ],
+    }
+
+
+def layer_type_name(layer_type):
+    return LAYER_TYPE_NAMES.get(layer_type, "METATILE_LAYER_TYPE_UNKNOWN_{}".format(layer_type))
+
+
+def layer_type_rules_metadata():
+    return {
+        "normal": {
+            "source_layer_type": "METATILE_LAYER_TYPE_NORMAL",
+            "value": 0,
+            "bottom": "source fill tile 0x3014 on BG3",
+            "middle": "source tile slots 0..3 on BG2",
+            "top": "source tile slots 4..7 on BG1",
+        },
+        "covered": {
+            "source_layer_type": "METATILE_LAYER_TYPE_COVERED",
+            "value": 1,
+            "bottom": "source tile slots 0..3 on BG3",
+            "middle": "source tile slots 4..7 on BG2",
+            "top": "clear BG1",
+        },
+        "split": {
+            "source_layer_type": "METATILE_LAYER_TYPE_SPLIT",
+            "value": 2,
+            "bottom": "source tile slots 0..3 on BG3",
+            "middle": "clear BG2",
+            "top": "source tile slots 4..7 on BG1",
+        },
     }
 
 
@@ -423,25 +520,17 @@ def render_metatile(
     coverage_notes,
 ):
     output = Image.new("RGBA", (METATILE_SIZE, METATILE_SIZE), (0, 0, 0, 0))
-    positions = [
-        (0, 0),
-        (TILE_SIZE, 0),
-        (0, TILE_SIZE),
-        (TILE_SIZE, TILE_SIZE),
-        (0, 0),
-        (TILE_SIZE, 0),
-        (0, TILE_SIZE),
-        (TILE_SIZE, TILE_SIZE),
-    ]
     tile_entries = [unpack_tile_entry(raw) for raw in raw_entries]
     tile_issues = []
-    for tile_index, (tile_entry, position) in enumerate(zip(tile_entries, positions)):
+    rendered_tiles = []
+    for tile_index, (tile_entry, position) in enumerate(zip(tile_entries, LAYER_TILE_POSITIONS)):
         rendered_tile, issue = render_tile(
             tile_entry,
             primary_image,
             secondary_image,
             global_palettes,
         )
+        rendered_tiles.append(rendered_tile)
         if issue is not None:
             issue.update({
                 "metatile_id": metatile_id,
@@ -469,7 +558,107 @@ def render_metatile(
             coverage_notes.append(note)
         else:
             warnings.append(issue)
-    return output, tile_entries
+    return output, tile_entries, rendered_tiles
+
+
+def source_tile_slot_record(tile_index):
+    position = LAYER_TILE_POSITIONS[tile_index]
+    return {
+        "source_tile_index": tile_index,
+        "source_metatile_half": "bottom" if tile_index < 4 else "top",
+        "position": {
+            "x": position[0],
+            "y": position[1],
+        },
+    }
+
+
+def build_metatile_render_layers(layer_type, rendered_tiles):
+    rules = LAYER_TYPE_RULES.get(layer_type)
+    if rules is None:
+        rules = {
+            role: {"operation": "clear", "source_tile_indexes": []}
+            for role in LAYER_ROLES
+        }
+
+    layer_images = {}
+    layer_records = {}
+    for role in LAYER_ROLES:
+        spec = rules.get(role, {"operation": "clear", "source_tile_indexes": []})
+        operation = spec.get("operation", "clear")
+        source_tile_indexes = list(spec.get("source_tile_indexes", []))
+        image = Image.new("RGBA", (METATILE_SIZE, METATILE_SIZE), (0, 0, 0, 0))
+        tile_slots = []
+        if operation == "draw_tiles":
+            for source_tile_index in source_tile_indexes:
+                if source_tile_index < 0 or source_tile_index >= len(rendered_tiles):
+                    continue
+                position = LAYER_TILE_POSITIONS[source_tile_index]
+                image.alpha_composite(rendered_tiles[source_tile_index], position)
+                tile_slots.append(source_tile_slot_record(source_tile_index))
+
+        record = {
+            "role": role,
+            "source_bg_equivalent": LAYER_SOURCE_BG[role],
+            "operation": operation,
+            "source_tile_indexes": source_tile_indexes,
+            "tile_slots": tile_slots,
+        }
+        if operation == "source_fill_tile":
+            record["fill_tile_raw"] = spec.get("fill_tile_raw", 0)
+            record["fill_note"] = NORMAL_BOTTOM_FILL_NOTE
+        layer_images[role] = image
+        layer_records[role] = record
+
+    return {
+        "source_layer_type": layer_type,
+        "source_layer_type_name": layer_type_name(layer_type),
+        "source_tile_slot_groups": {
+            "bottom": [0, 1, 2, 3],
+            "top": [4, 5, 6, 7],
+        },
+        "layers": layer_records,
+    }, layer_images
+
+
+def layer_render_summary(metatile_entries):
+    summary = {
+        "metatile_count": len(metatile_entries),
+        "layer_role_count": len(LAYER_ROLES),
+        "atlas_count": len(LAYER_ROLES),
+        "layer_type_counts": {},
+        "draw_tile_slot_counts": {role: 0 for role in LAYER_ROLES},
+        "clear_layer_count": 0,
+        "source_fill_layer_count": 0,
+        "missing_render_layer_record_count": 0,
+    }
+    for entry in metatile_entries:
+        render_layers = entry.get("render_layers", {})
+        if not isinstance(render_layers, dict):
+            summary["missing_render_layer_record_count"] += 1
+            continue
+        layer_type_name_text = render_layers.get("source_layer_type_name", "")
+        summary["layer_type_counts"][layer_type_name_text] = (
+            summary["layer_type_counts"].get(layer_type_name_text, 0) + 1
+        )
+        layers = render_layers.get("layers", {})
+        if not isinstance(layers, dict):
+            summary["missing_render_layer_record_count"] += 1
+            continue
+        for role in LAYER_ROLES:
+            record = layers.get(role, {})
+            if not isinstance(record, dict):
+                summary["missing_render_layer_record_count"] += 1
+                continue
+            operation = record.get("operation", "")
+            if operation == "draw_tiles":
+                summary["draw_tile_slot_counts"][role] += len(record.get("source_tile_indexes", []))
+            elif operation == "clear":
+                summary["clear_layer_count"] += 1
+            elif operation == "source_fill_tile":
+                summary["source_fill_layer_count"] += 1
+    summary["layer_type_counts"] = dict(sorted(summary["layer_type_counts"].items()))
+    return summary
 
 
 def metatile_attribute(attributes, local_id):
@@ -681,6 +870,10 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
     columns = 32
     rows = int(math.ceil(total_metatiles / float(columns)))
     atlas = Image.new("RGBA", (columns * METATILE_SIZE, rows * METATILE_SIZE), (0, 0, 0, 0))
+    layer_atlases = {
+        role: Image.new("RGBA", (columns * METATILE_SIZE, rows * METATILE_SIZE), (0, 0, 0, 0))
+        for role in LAYER_ROLES
+    }
     metatile_entries = []
     warnings = []
     coverage_notes = []
@@ -697,7 +890,7 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
             raw_entries = secondary_metatiles[local_id]
             attribute = metatile_attribute(secondary_attributes, local_id)
 
-        rendered, tile_entries = render_metatile(
+        rendered, tile_entries, rendered_tiles = render_metatile(
             metatile_id,
             source_kind,
             local_id,
@@ -711,6 +904,18 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
         atlas_x = (metatile_id % columns) * METATILE_SIZE
         atlas_y = (metatile_id // columns) * METATILE_SIZE
         atlas.alpha_composite(rendered, (atlas_x, atlas_y))
+        render_layers, layer_images = build_metatile_render_layers(
+            int(attribute.get("layer_type", 0)),
+            rendered_tiles,
+        )
+        for role in LAYER_ROLES:
+            layer_atlases[role].alpha_composite(layer_images[role], (atlas_x, atlas_y))
+            render_layers["layers"][role]["atlas"] = {
+                "x": atlas_x,
+                "y": atlas_y,
+                "w": METATILE_SIZE,
+                "h": METATILE_SIZE,
+            }
         metatile_entries.append({
             "id": metatile_id,
             "source_kind": source_kind,
@@ -723,15 +928,34 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
             },
             "attribute": attribute,
             "tile_entries": tile_entries,
+            "render_layers": render_layers,
         })
 
     map_slug = camel_to_snake(map_data.get("name") or map_folder)
     atlas_path = output_asset_root / "tilesets" / "{}_metatiles.png".format(map_slug)
     atlas_path.parent.mkdir(parents=True, exist_ok=True)
     atlas.save(atlas_path)
+    layer_atlas_records = {}
+    for role in LAYER_ROLES:
+        layer_atlas_path = output_asset_root / "tilesets" / "{}_layer_{}.png".format(map_slug, role)
+        layer_atlas_path.parent.mkdir(parents=True, exist_ok=True)
+        layer_atlases[role].save(layer_atlas_path)
+        layer_atlas_records[role] = {
+            "image": "res://{}".format(to_project_path(layer_atlas_path)),
+            "image_project_path": to_project_path(layer_atlas_path),
+            "tile_size": METATILE_SIZE,
+            "columns": columns,
+            "rows": rows,
+            "total_metatiles": total_metatiles,
+            "artifact_kind": "layer_metatile_rgba_atlas",
+            "role": role,
+            "source_bg_equivalent": LAYER_SOURCE_BG[role],
+        }
 
     data_path = output_data_root / "tilesets" / "{}.json".format(map_slug)
     flattened_atlas_policy = flattened_atlas_runtime_layering_policy()
+    layer_policy = layer_rendering_policy()
+    layer_summary = layer_render_summary(metatile_entries)
     data = {
         "schema_version": 1,
         "generated_by": "tools/importer/export_tilesets.py",
@@ -787,6 +1011,25 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
             "not_source_equivalent_reason": flattened_atlas_policy["not_source_equivalent_reason"],
         },
         "runtime_layering_policy": flattened_atlas_policy,
+        "layer_rendering": {
+            "schema_version": 1,
+            "policy": layer_policy,
+            "source_trace": layer_policy["source_trace"],
+            "layer_roles": [
+                {
+                    "id": role,
+                    "source_bg_equivalent": LAYER_SOURCE_BG[role],
+                }
+                for role in LAYER_ROLES
+            ],
+            "source_tile_slot_groups": {
+                "bottom": [0, 1, 2, 3],
+                "top": [4, 5, 6, 7],
+            },
+            "layer_type_rules": layer_type_rules_metadata(),
+            "layer_atlases": layer_atlas_records,
+            "summary": layer_summary,
+        },
         "used_metatile_ids": used_metatile_ids,
         "door_animations": door_animations,
         "metatile_entries": metatile_entries,
@@ -809,6 +1052,18 @@ def export_tilesets(root, map_folder, output_data_root, output_asset_root):
         ],
         "atlas_runtime_layering_status": flattened_atlas_policy["runtime_layering_status"],
         "atlas_unsupported_code": flattened_atlas_policy["unsupported_code"],
+        "layer_rendering_status": layer_policy["runtime_layering_status"],
+        "layer_rendering_artifact_kind": layer_policy["artifact_kind"],
+        "layer_rendering_source_equivalent_for_runtime_layering": layer_policy[
+            "source_equivalent_for_runtime_layering"
+        ],
+        "layer_rendering_metatile_count": layer_summary["metatile_count"],
+        "layer_rendering_role_count": layer_summary["layer_role_count"],
+        "layer_rendering_atlas_count": layer_summary["atlas_count"],
+        "layer_atlas_images": {
+            role: layer_atlas_records[role]["image_project_path"]
+            for role in LAYER_ROLES
+        },
     }
     write_manifest(
         output_data_root / "import_manifest.json",

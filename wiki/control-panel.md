@@ -25,8 +25,8 @@ Reason:
 
 - The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
 - Section 4 is complete: generated tileset metadata now marks all four flattened first-slice atlases as temporary debug-only artifacts, with 4/4 non-equivalent for source runtime layering and 0 source-equivalent atlas records.
-- Section 5 has started: `LayerAwareMapRenderer` defines the owner contract that wraps `DebugMapPlane` while real bottom/middle/top rendering remains pending.
-- Next executable task: export or build separate render data for bottom, middle, and top layer tiles.
+- Section 5 is 2/12 complete: `LayerAwareMapRenderer` defines the owner contract, and first-slice tilesets now export bottom/middle/top layer render data with 4/4 tilesets, 12/12 layer atlases, and 2728/2728 metatile layer records.
+- Next executable task: implement `METATILE_LAYER_TYPE_NORMAL` in the runtime layer-aware renderer using the exported layer render data.
 
 ## Module Tracks
 
@@ -176,15 +176,15 @@ Main-agent responsibilities:
 
 Near-term:
 
-- Continue `wiki/overworld-parity-todo.md` section 5: export or build separate render data for bottom, middle, and top layer tiles.
+- Continue `wiki/overworld-parity-todo.md` section 5: implement `METATILE_LAYER_TYPE_NORMAL` in the runtime layer-aware renderer.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
 - Current B7.1-B7.7 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, battle transition textures/tilemap composites, battle asset image-quality smoke checks, Pokemon battle asset coverage, and trainer battle asset coverage are generated as Godot-friendly PNG assets plus source metadata. The B7 checklist is now 7/7 complete. Current asset reports still expose runtime and asset gaps: 2664 pending distinct Pokemon color-variant RGBA images, 2 trainer-party `SPECIES_CASTFORM` alias gaps, trainer slide/mugshot/Magma/Aqua playback pending, double battle runtime pending, text/reward flow pending, shader/material color effects pending, affine effects pending, transition/background playback pending, and audio metadata-only.
-- Current B8.2 status: battle text encoding now preserves generated glyph spans, the runtime groups source-byte visible events by those spans, and smokes verify `PP` has 2 generated glyph/source-byte events while `gText_MoveInterfaceType` starts with a multi-byte source glyph span.
+- Current B8.2 status: battle interface export now preserves 14 source font metric records from `src/text.c:sFontInfos` plus 12 Latin width tables from `src/fonts.c`; battle text encoding preserves 752 generated glyph spans, including 580 multi-byte spans; runtime `BattleTextPrinter` groups source-byte visible events by those spans and now exposes first-pass `source_glyph_layout` records using source width/line metrics. Smoke coverage verifies a grouped two-byte source glyph as one glyph layout with 12 px source width.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
-- Next executable task: export/build the bottom, middle, and top map render data consumed by the layer-aware renderer owner.
-- Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
+- Next executable battle task: continue B8.2 into the exact source glyph bitmap renderer and screenshot comparison for action/message/move windows.
+- Next executable overworld task: consume exported bottom/middle/top layer render data for `METATILE_LAYER_TYPE_NORMAL`.
 
 Mid-term:
 

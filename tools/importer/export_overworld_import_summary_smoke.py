@@ -94,6 +94,21 @@ def main(argv):
         generated["tileset_runtime_layering_metadata_missing_count"] == 0,
         "missing generated atlas runtime-layering metadata",
     )
+    _assert(generated["tileset_layer_rendering_tileset_count"] == 4, "unexpected layer-rendering tileset count")
+    _assert(generated["tileset_layer_rendering_missing_count"] == 0, "missing layer-rendering metadata")
+    _assert(generated["tileset_layer_rendering_atlas_count"] == 12, "unexpected layer-rendering atlas count")
+    _assert(
+        generated["tileset_layer_rendering_missing_atlas_image_count"] == 0,
+        "missing layer-rendering atlas images",
+    )
+    _assert(
+        generated["tileset_layer_rendering_metatile_count"] == generated["metatile_record_count"],
+        "layer-rendering metatile count should match generated metatile records",
+    )
+    _assert(
+        generated["tileset_layer_rendering_missing_metatile_record_count"] == 0,
+        "missing generated metatile render layer records",
+    )
     _assert(generated["tileset_header_report_count"] == 1, "missing tileset header report")
     _assert(generated["tileset_header_record_count"] == 139, "unexpected generated tileset header count")
     _assert(
@@ -376,7 +391,7 @@ def main(argv):
     _assert(generated["warning_count"] == 20, "unexpected generated warning count")
     _assert(generated["parity_matrix_unsupported_entry_count"] == 15, "unexpected parity unsupported entry count")
     _assert(generated["object_event_sprite_unsupported_note_count"] == 15, "unexpected object sprite unsupported note count")
-    _assert(generated["explicit_summary_unsupported_count"] == 5, "unexpected explicit unsupported summary count")
+    _assert(generated["explicit_summary_unsupported_count"] == 6, "unexpected explicit unsupported summary count")
 
     _assert(coverage["maps"]["percent"] == 100.0, "unexpected map coverage percent")
     _assert(coverage["layouts"]["percent"] == 100.0, "unexpected layout coverage percent")
@@ -520,6 +535,23 @@ def main(argv):
         _assert(
             tileset["atlas_unsupported_code"] == "flattened_debug_atlas_not_source_equivalent",
             "expected flattened atlas unsupported code",
+        )
+        _assert(
+            tileset["layer_rendering_status"] == "layer_render_data_exported_renderer_pending",
+            "expected generated layer render data with renderer pending",
+        )
+        _assert(tileset["layer_rendering_atlas_count"] == 3, "expected bottom/middle/top layer atlases")
+        _assert(
+            tileset["layer_rendering_missing_atlas_image_count"] == 0,
+            "expected layer atlas images to exist",
+        )
+        _assert(
+            tileset["layer_rendering_metatile_count"] == tileset["total_metatiles"],
+            "expected every metatile to have render layer data",
+        )
+        _assert(
+            tileset["layer_rendering_missing_metatile_record_count"] == 0,
+            "expected no missing metatile render layer records",
         )
 
     print("export_overworld_import_summary_smoke: ok")

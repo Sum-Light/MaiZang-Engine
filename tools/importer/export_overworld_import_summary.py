@@ -569,6 +569,12 @@ def count_generated_tilesets(project_root, tileset_entries):
         "runtime_layering_source_equivalent_atlas_count": 0,
         "runtime_layering_non_equivalent_atlas_count": 0,
         "runtime_layering_metadata_missing_count": 0,
+        "layer_rendering_tileset_count": 0,
+        "layer_rendering_missing_count": 0,
+        "layer_rendering_atlas_count": 0,
+        "layer_rendering_missing_atlas_image_count": 0,
+        "layer_rendering_metatile_count": 0,
+        "layer_rendering_missing_metatile_record_count": 0,
     }
     primary = set()
     secondary = set()
@@ -613,6 +619,46 @@ def count_generated_tilesets(project_root, tileset_entries):
             totals["runtime_layering_non_equivalent_atlas_count"] += 1
         else:
             totals["runtime_layering_metadata_missing_count"] += 1
+        layer_rendering = data.get("layer_rendering", {})
+        if not isinstance(layer_rendering, dict) or not layer_rendering:
+            totals["layer_rendering_missing_count"] += 1
+            layer_rendering_status = ""
+            layer_rendering_atlas_count = 0
+            layer_rendering_metatile_count = 0
+            layer_rendering_missing_records = 0
+            missing_layer_atlas_images = 0
+        else:
+            totals["layer_rendering_tileset_count"] += 1
+            policy = layer_rendering.get("policy", {})
+            if not isinstance(policy, dict):
+                policy = {}
+            layer_rendering_status = str(policy.get(
+                "runtime_layering_status",
+                entry.get("layer_rendering_status", ""),
+            ))
+            layer_atlases = layer_rendering.get("layer_atlases", {})
+            if not isinstance(layer_atlases, dict):
+                layer_atlases = {}
+            layer_rendering_atlas_count = len(layer_atlases)
+            missing_layer_atlas_images = 0
+            for atlas_record in layer_atlases.values():
+                if not isinstance(atlas_record, dict):
+                    missing_layer_atlas_images += 1
+                    continue
+                image_path = atlas_record.get("image_project_path", "")
+                if not image_path or not resolve_project_path(project_root, image_path).exists():
+                    missing_layer_atlas_images += 1
+            layer_summary = layer_rendering.get("summary", {})
+            if not isinstance(layer_summary, dict):
+                layer_summary = {}
+            layer_rendering_metatile_count = int(layer_summary.get("metatile_count", 0))
+            layer_rendering_missing_records = int(
+                layer_summary.get("missing_render_layer_record_count", 0)
+            )
+            totals["layer_rendering_atlas_count"] += layer_rendering_atlas_count
+            totals["layer_rendering_missing_atlas_image_count"] += missing_layer_atlas_images
+            totals["layer_rendering_metatile_count"] += layer_rendering_metatile_count
+            totals["layer_rendering_missing_metatile_record_count"] += layer_rendering_missing_records
         summary = {
             "map": entry.get("map"),
             "path": entry.get("path"),
@@ -624,6 +670,11 @@ def count_generated_tilesets(project_root, tileset_entries):
             "atlas_source_equivalent_for_runtime_layering": source_equivalent,
             "atlas_runtime_layering_status": runtime_layering_status,
             "atlas_unsupported_code": atlas_unsupported_code,
+            "layer_rendering_status": layer_rendering_status,
+            "layer_rendering_atlas_count": layer_rendering_atlas_count,
+            "layer_rendering_missing_atlas_image_count": missing_layer_atlas_images,
+            "layer_rendering_metatile_count": layer_rendering_metatile_count,
+            "layer_rendering_missing_metatile_record_count": layer_rendering_missing_records,
             "door_animation_count": len(animations),
             "door_animation_frame_count": frame_count,
             "warning_array_count": warning_count,
@@ -953,6 +1004,7 @@ def build_export(source_root, output_root):
         {
             "tileset_record_count": tileset_totals["tileset_record_count"],
             "tileset_flattened_debug_atlas_count": tileset_totals["flattened_debug_atlas_count"],
+            "tileset_layer_rendering_tileset_count": tileset_totals["layer_rendering_tileset_count"],
             "door_animation_count": tileset_totals["door_animation_count"],
             "tileset_animation_count": tileset_totals["tileset_animation_count"],
             "object_event_graphic_count": object_sprite_count,
@@ -1144,6 +1196,16 @@ def build_export(source_root, output_root):
         "tileset_runtime_layering_metadata_missing_count": (
             tileset_totals["runtime_layering_metadata_missing_count"]
         ),
+        "tileset_layer_rendering_tileset_count": tileset_totals["layer_rendering_tileset_count"],
+        "tileset_layer_rendering_missing_count": tileset_totals["layer_rendering_missing_count"],
+        "tileset_layer_rendering_atlas_count": tileset_totals["layer_rendering_atlas_count"],
+        "tileset_layer_rendering_missing_atlas_image_count": (
+            tileset_totals["layer_rendering_missing_atlas_image_count"]
+        ),
+        "tileset_layer_rendering_metatile_count": tileset_totals["layer_rendering_metatile_count"],
+        "tileset_layer_rendering_missing_metatile_record_count": (
+            tileset_totals["layer_rendering_missing_metatile_record_count"]
+        ),
         "script_bundle_count": script_totals["script_bundle_count"],
         "map_script_bundle_count": map_script_bundle_count,
         "shared_script_bundle_count": shared_script_bundle_count,
@@ -1319,6 +1381,13 @@ def build_explicit_unsupported(source_counts, generated_counts):
             "detail": "Generated metatile atlases are temporary debug-only flattened RGBA previews and are not source-equivalent for runtime BG layer ordering.",
         },
         {
+            "code": "source_equivalent_layer_renderer_pending",
+            "status": "first_pass",
+            "source_count": generated_counts["tileset_record_count"],
+            "generated_count": generated_counts["tileset_layer_rendering_tileset_count"],
+            "detail": "Generated bottom/middle/top RGBA layer render data exists for first-slice tilesets, but the runtime layer renderer does not consume it yet.",
+        },
+        {
             "code": "object_event_sprite_coverage_pending",
             "status": "first_pass",
             "source_count": source_counts["object_event_graphics_info_count"],
@@ -1420,6 +1489,21 @@ def manifest_entry_for(exported, output_path):
         ),
         "generated_tileset_runtime_layering_metadata_missing_count": (
             generated["tileset_runtime_layering_metadata_missing_count"]
+        ),
+        "generated_tileset_layer_rendering_tileset_count": (
+            generated["tileset_layer_rendering_tileset_count"]
+        ),
+        "generated_tileset_layer_rendering_atlas_count": (
+            generated["tileset_layer_rendering_atlas_count"]
+        ),
+        "generated_tileset_layer_rendering_missing_count": (
+            generated["tileset_layer_rendering_missing_count"]
+        ),
+        "generated_tileset_layer_rendering_missing_atlas_image_count": (
+            generated["tileset_layer_rendering_missing_atlas_image_count"]
+        ),
+        "generated_tileset_layer_rendering_missing_metatile_record_count": (
+            generated["tileset_layer_rendering_missing_metatile_record_count"]
         ),
         "tileset_missing_palette_source_candidate_count": generated["tileset_missing_palette_source_candidate_count"],
         "tileset_header_missing_callback_source_count": generated["tileset_header_missing_callback_source_count"],
