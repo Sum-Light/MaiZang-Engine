@@ -135,6 +135,37 @@ def count_source_tileset_metatile_binaries(source_root):
     }
 
 
+def count_source_tileset_metatile_attribute_binaries(source_root):
+    paths = sorted(source_root.glob("data/tilesets/*/*/metatile_attributes.bin"))
+    attribute_count = 0
+    invalid_paths = []
+    profile_counts = {
+        "emerald_u16": 0,
+        "frlg_u32": 0,
+    }
+    for path in paths:
+        byte_count = path.stat().st_size
+        record_byte_count = metatile_attribute_record_byte_count_for_path(path)
+        profile_key = "frlg_u32" if record_byte_count == 4 else "emerald_u16"
+        profile_counts[profile_key] += 1
+        if byte_count % record_byte_count != 0:
+            invalid_paths.append(to_project_path(path.relative_to(source_root)))
+            continue
+        attribute_count += byte_count // record_byte_count
+    return {
+        "tileset_metatile_attribute_binary_count": len(paths),
+        "tileset_metatile_attribute_record_count": attribute_count,
+        "tileset_metatile_attribute_binary_count_by_source_profile": profile_counts,
+        "tileset_invalid_metatile_attribute_binary_count": len(invalid_paths),
+        "tileset_invalid_metatile_attribute_binary_paths": invalid_paths,
+    }
+
+
+def metatile_attribute_record_byte_count_for_path(path):
+    tileset_dir = path.parent.name
+    return 4 if tileset_dir.endswith("_frlg") else 2
+
+
 def parse_active_emerald_door_table(source_root):
     path = source_root / "src/field_door.c"
     if not path.exists():
@@ -484,6 +515,7 @@ def build_source_counts(source_root):
     counts.update(tileset_anim_info)
     counts.update(tileset_palette_info)
     counts.update(count_source_tileset_metatile_binaries(source_root))
+    counts.update(count_source_tileset_metatile_attribute_binaries(source_root))
     counts.update(door_info)
     return counts
 
@@ -597,6 +629,33 @@ def build_export(source_root, output_root):
     tileset_header_metatile_out_of_range_tile_entry_count = int(
         tileset_header_stats.get("metatile_out_of_range_tile_entry_count", 0)
     )
+    tileset_header_metatile_attribute_decode_count = int(
+        tileset_header_stats.get("metatile_attribute_decode_header_count", 0)
+    )
+    tileset_header_active_metatile_attribute_decode_count = int(
+        tileset_header_stats.get("active_metatile_attribute_decode_header_count", 0)
+    )
+    tileset_header_metatile_attribute_record_count = int(
+        tileset_header_stats.get("metatile_attribute_record_count", 0)
+    )
+    tileset_header_active_metatile_attribute_record_count = int(
+        tileset_header_stats.get("active_metatile_attribute_record_count", 0)
+    )
+    tileset_header_unique_metatile_attribute_source_binary_count = int(
+        tileset_header_stats.get("unique_metatile_attribute_source_binary_count", 0)
+    )
+    tileset_header_unique_metatile_attribute_record_count = int(
+        tileset_header_stats.get("unique_metatile_attribute_record_count", 0)
+    )
+    tileset_header_metatile_attribute_encounter_affordance_count = int(
+        tileset_header_stats.get("metatile_attribute_encounter_affordance_count", 0)
+    )
+    tileset_header_active_metatile_attribute_encounter_affordance_count = int(
+        tileset_header_stats.get("active_metatile_attribute_encounter_affordance_count", 0)
+    )
+    tileset_header_metatile_attribute_missing_behavior_name_count = int(
+        tileset_header_stats.get("metatile_attribute_missing_behavior_name_count", 0)
+    )
 
     parity_matrix = load_generated_json(project_root, "data/generated/overworld/parity_matrix.json") or {}
     parity_stats = parity_matrix.get("stats", {})
@@ -655,6 +714,29 @@ def build_export(source_root, output_root):
         "tileset_header_unique_metatile_record_count": tileset_header_unique_metatile_record_count,
         "tileset_header_unique_metatile_tile_entry_count": tileset_header_unique_metatile_tile_entry_count,
         "tileset_header_metatile_out_of_range_tile_entry_count": tileset_header_metatile_out_of_range_tile_entry_count,
+        "tileset_header_metatile_attribute_decode_count": tileset_header_metatile_attribute_decode_count,
+        "active_emerald_tileset_header_metatile_attribute_decode_count": (
+            tileset_header_active_metatile_attribute_decode_count
+        ),
+        "tileset_header_metatile_attribute_record_count": tileset_header_metatile_attribute_record_count,
+        "active_emerald_tileset_header_metatile_attribute_record_count": (
+            tileset_header_active_metatile_attribute_record_count
+        ),
+        "tileset_header_unique_metatile_attribute_source_binary_count": (
+            tileset_header_unique_metatile_attribute_source_binary_count
+        ),
+        "tileset_header_unique_metatile_attribute_record_count": (
+            tileset_header_unique_metatile_attribute_record_count
+        ),
+        "tileset_header_metatile_attribute_encounter_affordance_count": (
+            tileset_header_metatile_attribute_encounter_affordance_count
+        ),
+        "active_emerald_tileset_header_metatile_attribute_encounter_affordance_count": (
+            tileset_header_active_metatile_attribute_encounter_affordance_count
+        ),
+        "tileset_header_metatile_attribute_missing_behavior_name_count": (
+            tileset_header_metatile_attribute_missing_behavior_name_count
+        ),
         "metatile_record_count": tileset_totals["metatile_record_count"],
         "script_bundle_count": script_totals["script_bundle_count"],
         "map_script_bundle_count": map_script_bundle_count,
@@ -730,6 +812,14 @@ def build_export(source_root, output_root):
         "tileset_metatile_tile_entries": ratio(
             generated_counts["tileset_header_unique_metatile_tile_entry_count"],
             source_counts["tileset_metatile_tile_entry_count"],
+        ),
+        "tileset_metatile_attribute_binaries": ratio(
+            generated_counts["tileset_header_unique_metatile_attribute_source_binary_count"],
+            source_counts["tileset_metatile_attribute_binary_count"],
+        ),
+        "tileset_metatile_attribute_records": ratio(
+            generated_counts["tileset_header_unique_metatile_attribute_record_count"],
+            source_counts["tileset_metatile_attribute_record_count"],
         ),
         "object_event_graphics": ratio(
             generated_counts["object_event_graphic_count"],
@@ -841,6 +931,10 @@ def manifest_entry_for(exported, output_path):
         "generated_tileset_animation_source_image_count": generated["tileset_animation_source_image_count"],
         "generated_tileset_palette_slot_mapping_count": generated["tileset_palette_slot_mapping_count"],
         "generated_tileset_palette_source_candidate_count": generated["tileset_existing_palette_source_candidate_count"],
+        "generated_tileset_metatile_attribute_record_count": generated["tileset_header_metatile_attribute_record_count"],
+        "generated_unique_tileset_metatile_attribute_record_count": (
+            generated["tileset_header_unique_metatile_attribute_record_count"]
+        ),
         "tileset_missing_palette_source_candidate_count": generated["tileset_missing_palette_source_candidate_count"],
         "tileset_header_missing_callback_source_count": generated["tileset_header_missing_callback_source_count"],
         "generated_script_count": generated["script_count"],

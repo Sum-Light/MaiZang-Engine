@@ -20,6 +20,7 @@ def main(argv):
     exported = build_export(source_root)
     stats = exported["stats"]
     rules = exported["palette_slot_rules"]
+    attribute_rules = exported["metatile_attribute_rules"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
 
     _assert(exported["schema_version"] == 1, "unexpected schema version")
@@ -92,6 +93,78 @@ def main(argv):
     _assert(stats["metatile_source_layer_slot_counts"]["top"] == 116852, "unexpected top layer slot count")
     _assert(stats["metatile_record_count_by_source_profile"]["emerald"] == 18318, "unexpected Emerald metatile count")
     _assert(stats["metatile_record_count_by_source_profile"]["frlg"] == 10895, "unexpected FRLG metatile count")
+    _assert(stats["metatile_attribute_decode_header_count"] == 139, "unexpected attribute decode header count")
+    _assert(
+        stats["active_metatile_attribute_decode_header_count"] == 75,
+        "unexpected active attribute decode header count",
+    )
+    _assert(stats["missing_metatile_attribute_decode_header_count"] == 0, "missing attribute decodes")
+    _assert(stats["metatile_attribute_record_count"] == 29213, "unexpected header-expanded attribute count")
+    _assert(
+        stats["active_metatile_attribute_record_count"] == 18318,
+        "unexpected active header-expanded attribute count",
+    )
+    _assert(
+        stats["unique_metatile_attribute_source_binary_count"] == 134,
+        "unexpected unique attribute binary count",
+    )
+    _assert(
+        stats["active_unique_metatile_attribute_source_binary_count"] == 70,
+        "unexpected active unique attribute binary count",
+    )
+    _assert(
+        stats["unique_metatile_attribute_record_count"] == 27593,
+        "unexpected unique attribute record count",
+    )
+    _assert(
+        stats["active_unique_metatile_attribute_record_count"] == 16698,
+        "unexpected active unique attribute record count",
+    )
+    _assert(
+        stats["metatile_attribute_record_count_by_source_profile"]["emerald"] == 18318,
+        "unexpected Emerald attribute count",
+    )
+    _assert(
+        stats["metatile_attribute_record_count_by_source_profile"]["frlg"] == 10895,
+        "unexpected FRLG attribute count",
+    )
+    _assert(
+        stats["metatile_attribute_layer_type_counts"]["METATILE_LAYER_TYPE_NORMAL"] == 14623,
+        "unexpected normal layer type count",
+    )
+    _assert(
+        stats["metatile_attribute_layer_type_counts"]["METATILE_LAYER_TYPE_COVERED"] == 14556,
+        "unexpected covered layer type count",
+    )
+    _assert(
+        stats["metatile_attribute_layer_type_counts"]["METATILE_LAYER_TYPE_SPLIT"] == 34,
+        "unexpected split layer type count",
+    )
+    _assert(
+        stats["metatile_attribute_terrain_decoded_record_count"] == 10895,
+        "unexpected terrain decoded record count",
+    )
+    _assert(
+        stats["metatile_attribute_terrain_not_encoded_record_count"] == 18318,
+        "unexpected Emerald terrain not-encoded count",
+    )
+    _assert(
+        stats["metatile_attribute_encounter_type_decoded_record_count"] == 10895,
+        "unexpected encounter-type decoded record count",
+    )
+    _assert(
+        stats["metatile_attribute_encounter_affordance_count"] == 2023,
+        "unexpected encounter affordance count",
+    )
+    _assert(
+        stats["active_metatile_attribute_encounter_affordance_count"] == 1009,
+        "unexpected active encounter affordance count",
+    )
+    _assert(stats["metatile_attribute_surfable_affordance_count"] == 1013, "unexpected surfable count")
+    _assert(stats["active_metatile_attribute_surfable_affordance_count"] == 590, "unexpected active surfable count")
+    _assert(stats["metatile_attribute_land_encounter_affordance_count"] == 1181, "unexpected land encounter count")
+    _assert(stats["metatile_attribute_water_encounter_affordance_count"] == 842, "unexpected water encounter count")
+    _assert(stats["metatile_attribute_missing_behavior_name_count"] == 0, "unexpected missing behavior names")
     _assert(stats["init_function_count"] == 31, "unexpected init function count")
     _assert(stats["animation_frame_declaration_count"] == 174, "unexpected animation frame declaration count")
     _assert(stats["animation_source_bin_count"] == 182, "unexpected animation source binary count")
@@ -163,6 +236,24 @@ def main(argv):
     )
     _assert(_source_function_found(metatile_rules, "DrawMetatile"), "DrawMetatile trace missing")
 
+    _assert(attribute_rules["status"] == "decoded_import_metadata", "attribute rules status mismatch")
+    _assert(
+        attribute_rules["runtime_binary_metatile_attributes_required"] is False,
+        "runtime binary attributes should stay disabled",
+    )
+    _assert(attribute_rules["profiles"]["emerald"]["record_byte_count"] == 2, "Emerald attribute size mismatch")
+    _assert(attribute_rules["profiles"]["frlg"]["record_byte_count"] == 4, "FRLG attribute size mismatch")
+    _assert(
+        attribute_rules["profiles"]["emerald"]["fields"]["terrain_type"]["status"]
+        == "not_encoded_in_emerald_attributes",
+        "Emerald terrain status mismatch",
+    )
+    _assert(attribute_rules["map_grid_block_fields"]["collision"]["status"] == "map_grid_block_field", "collision source mismatch")
+    _assert(attribute_rules["map_grid_block_fields"]["elevation"]["shift"] == 12, "elevation shift mismatch")
+    _assert(attribute_rules["behavior_affordance_source"]["encounter_behavior_count"] == 15, "encounter behavior count mismatch")
+    _assert(attribute_rules["behavior_affordance_source"]["surfable_behavior_count"] == 18, "surfable behavior count mismatch")
+    _assert(_source_function_found(attribute_rules, "ExtractMetatileAttribute"), "ExtractMetatileAttribute trace missing")
+
     general = rows["gTileset_General"]
     _assert(general["active_in_emerald"], "General should be active")
     _assert(general["kind"] == "primary", "General should be primary")
@@ -201,6 +292,26 @@ def main(argv):
     _assert(general["metatile_binary_decode"]["tile_source_kind_counts"] == {"primary": 4096}, "General tile source count mismatch")
     _assert(general["metatile_binary_decode"]["source_layer_slot_counts"] == {"bottom": 2048, "top": 2048}, "General layer count mismatch")
     _assert(general["metatile_binary_decode"]["out_of_range_tile_entry_count"] == 0, "General out-of-range tile ref")
+    _assert(general["metatile_attribute_decode"]["status"] == "decoded", "General attribute decode missing")
+    _assert(general["metatile_attribute_decode"]["source_rules_profile"] == "emerald", "General attribute profile mismatch")
+    _assert(
+        general["metatile_attribute_decode"]["source_binary"]["path"]
+        == "data/tilesets/primary/general/metatile_attributes.bin",
+        "General attribute source mismatch",
+    )
+    _assert(general["metatile_attribute_decode"]["record_byte_count"] == 2, "General attribute byte size mismatch")
+    _assert(general["metatile_attribute_decode"]["metatile_attribute_count"] == 512, "General attribute count mismatch")
+    _assert(general["metatile_attribute_decode"]["encounter_affordance_count"] == 75, "General encounter count mismatch")
+    _assert(general["metatile_attribute_decode"]["terrain_type_status"] == "not_encoded_in_emerald_attributes", "General terrain status mismatch")
+    _assert(general["metatile_attribute_decode"]["collision"]["status"] == "map_grid_block_field", "General collision source mismatch")
+    general_first_attr = _metatile_attribute_record(exported, general, 0)
+    _assert(general_first_attr["raw"] == 0, "General first attribute raw mismatch")
+    _assert(general_first_attr["behavior_id"] == 0, "General first behavior id mismatch")
+    _assert(general_first_attr["behavior_name"] == "MB_NORMAL", "General first behavior name mismatch")
+    _assert(general_first_attr["layer_type_name"] == "METATILE_LAYER_TYPE_NORMAL", "General first layer mismatch")
+    _assert(general_first_attr["terrain_type"] is None, "General terrain should not be decoded")
+    _assert(general_first_attr["has_encounters"] is False, "General first encounter flag mismatch")
+    _assert(general_first_attr["unused_traversable_hint"] is True, "General first unused hint mismatch")
     general_first_tile = _metatile_tile_entry(general, 0, 0)
     _assert(general_first_tile["raw"] == 0, "General first tile raw mismatch")
     _assert(general_first_tile["tile_id"] == 0, "General first tile id mismatch")
@@ -246,6 +357,16 @@ def main(argv):
         "Petalburg tile source counts mismatch",
     )
     _assert(_metatile_record(petalburg, 0)["global_metatile_id"] == 512, "Petalburg global metatile offset mismatch")
+    _assert(petalburg["metatile_attribute_decode"]["metatile_attribute_count"] == 144, "Petalburg attribute count mismatch")
+    _assert(
+        petalburg["metatile_attribute_decode"]["layer_type_counts"]
+        == {"METATILE_LAYER_TYPE_COVERED": 25, "METATILE_LAYER_TYPE_NORMAL": 119},
+        "Petalburg attribute layer counts mismatch",
+    )
+    petalburg_second_attr = _metatile_attribute_record(exported, petalburg, 1)
+    _assert(petalburg_second_attr["global_metatile_id"] == 513, "Petalburg attribute global offset mismatch")
+    _assert(petalburg_second_attr["raw"] == 4096, "Petalburg second attribute raw mismatch")
+    _assert(petalburg_second_attr["layer_type_name"] == "METATILE_LAYER_TYPE_COVERED", "Petalburg layer decode mismatch")
     _assert(_metatile_tile_entry(petalburg, 0, 0)["source_tileset_kind"] == "primary", "Petalburg primary tile ref missing")
     _assert(
         _metatile_tile_entry(petalburg, 0, 0)["source_tileset_kind_matches_metatile"] is False,
@@ -303,6 +424,25 @@ def main(argv):
     _assert(frlg_general["metatile_binary_decode"]["metatile_count"] == 640, "FRLG General metatile count mismatch")
     _assert(frlg_general["metatile_binary_decode"]["tile_entry_count"] == 5120, "FRLG General tile entry count mismatch")
     _assert(_metatile_record(frlg_general, -1)["global_metatile_id"] == 639, "FRLG General global metatile end mismatch")
+    _assert(frlg_general["metatile_attribute_decode"]["source_rules_profile"] == "frlg", "FRLG attribute profile mismatch")
+    _assert(frlg_general["metatile_attribute_decode"]["record_byte_count"] == 4, "FRLG attribute byte size mismatch")
+    _assert(frlg_general["metatile_attribute_decode"]["metatile_attribute_count"] == 640, "FRLG attribute count mismatch")
+    _assert(frlg_general["metatile_attribute_decode"]["terrain_type_status"] == "decoded", "FRLG terrain status mismatch")
+    _assert(frlg_general["metatile_attribute_decode"]["encounter_type_status"] == "decoded", "FRLG encounter type status mismatch")
+    _assert(
+        frlg_general["metatile_attribute_decode"]["terrain_type_counts"]["TILE_TERRAIN_WATER"] == 122,
+        "FRLG water terrain count mismatch",
+    )
+    _assert(
+        frlg_general["metatile_attribute_decode"]["encounter_type_counts"]["TILE_ENCOUNTER_WATER"] == 125,
+        "FRLG water encounter type count mismatch",
+    )
+    frlg_third_attr = _metatile_attribute_record(exported, frlg_general, 2)
+    _assert(frlg_third_attr["raw"] == 536870941, "FRLG third attribute raw mismatch")
+    _assert(frlg_third_attr["behavior_id"] == 29, "FRLG third behavior id mismatch")
+    _assert(frlg_third_attr["layer_type_name"] == "METATILE_LAYER_TYPE_COVERED", "FRLG third layer mismatch")
+    _assert(frlg_third_attr["terrain_type_name"] == "TILE_TERRAIN_NORMAL", "FRLG third terrain mismatch")
+    _assert(frlg_third_attr["encounter_type_name"] == "TILE_ENCOUNTER_NONE", "FRLG third encounter type mismatch")
     _assert(
         frlg_general["animation_image_provenance"]["frame_declaration_count"] == 21,
         "FRLG General anim count mismatch",
@@ -326,7 +466,7 @@ def main(argv):
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing animation pending code")
-    _assert("metatile_attribute_detail_pending" in unsupported_codes, "missing metatile attribute pending code")
+    _assert("metatile_attribute_detail_pending" not in unsupported_codes, "metatile attributes should be decoded now")
     _assert("source_equivalent_layer_renderer_pending" in unsupported_codes, "missing layer renderer pending code")
     _assert("audio_playback_pending" in unsupported_codes, "missing audio pending code")
 
@@ -392,6 +532,44 @@ def _metatile_tile_entry(header, local_metatile_id, tile_entry_index):
         "source_layer_slot": layer_slots[tile_entry_index],
         "source_layer_position": positions[tile_entry_index],
         "source_tileset_kind_matches_metatile": source_kind == header["metatile_binary_decode"]["source_kind"],
+    }
+
+
+def _metatile_attribute_record(exported, header, local_metatile_id):
+    record = header["metatile_attribute_decode"]["attributes"][local_metatile_id]
+    if isinstance(record, dict):
+        return record
+    rules = exported["metatile_attribute_rules"]
+    encoding = header["metatile_attribute_decode"].get("attribute_record_encoding", {})
+    flag_codes = encoding.get("affordance_flag_codes", {})
+    flags = int(record[7])
+    layer_names = _enum_lookup(rules, "layer_type_names")
+    terrain_names = _enum_lookup(rules, "tile_terrain_type_names")
+    encounter_names = _enum_lookup(rules, "tile_encounter_type_names")
+    return {
+        "local_metatile_id": record[0],
+        "global_metatile_id": record[1],
+        "raw": record[2],
+        "behavior_id": record[3],
+        "behavior_name": rules["behavior_names_by_id"].get(str(record[3])),
+        "layer_type": record[4],
+        "layer_type_name": layer_names.get(record[4]),
+        "terrain_type": record[5],
+        "terrain_type_name": None if record[5] is None else terrain_names.get(record[5]),
+        "encounter_type": record[6],
+        "encounter_type_name": None if record[6] is None else encounter_names.get(record[6]),
+        "has_encounters": bool(flags & flag_codes["has_encounters"]),
+        "surfable": bool(flags & flag_codes["surfable"]),
+        "land_encounter_affordance": bool(flags & flag_codes["land_encounter_affordance"]),
+        "water_encounter_affordance": bool(flags & flag_codes["water_encounter_affordance"]),
+        "unused_traversable_hint": bool(flags & flag_codes["unused_traversable_hint"]),
+    }
+
+
+def _enum_lookup(rules, enum_key):
+    return {
+        row["value"]: row["name"]
+        for row in rules["attribute_enums"][enum_key]
     }
 
 

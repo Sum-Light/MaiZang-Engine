@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from export_map import read_u16le_file, write_json, write_manifest
+from export_overworld_metatile_behavior_trace import parse_metatile_constants, parse_tile_bit_attributes
 from source_probe import load_config, path_status, symbol_to_tileset_dir, to_project_path
 
 
@@ -65,6 +66,16 @@ METATILE_RULE_FUNCTIONS = [
     "DrawMetatile",
 ]
 
+METATILE_ATTRIBUTE_RULE_FUNCTIONS = [
+    "ExtractMetatileAttribute",
+    "GetAttributeByMetatileIdAndMapLayout",
+    "MapGridGetMetatileAttributeAt",
+    "MapGridGetMetatileBehaviorAt",
+    "MapGridGetMetatileLayerTypeAt",
+    "MapGridGetCollisionAt",
+    "MapGridGetElevationAt",
+]
+
 NUM_TILES_IN_PRIMARY = 512
 NUM_TILES_IN_PRIMARY_FRLG = 640
 NUM_METATILES_IN_PRIMARY = 512
@@ -79,6 +90,41 @@ TILE_ENTRY_PALETTE_SHIFT = 12
 TILE_SOURCE_KIND_CODES = {
     "primary": 0,
     "secondary": 1,
+}
+METATILE_ATTR_BEHAVIOR_MASK = 0x00FF
+METATILE_ATTR_LAYER_MASK = 0xF000
+METATILE_ATTR_BEHAVIOR_SHIFT = 0
+METATILE_ATTR_LAYER_SHIFT = 12
+METATILE_ATTR_BEHAVIOR_MASK_FRLG = 0x000001FF
+METATILE_ATTR_BEHAVIOR_SHIFT_FRLG = 0
+METATILE_ATTR_TERRAIN_MASK_FRLG = 0x00003E00
+METATILE_ATTR_TERRAIN_SHIFT_FRLG = 9
+METATILE_ATTR_ENCOUNTER_TYPE_MASK_FRLG = 0x07000000
+METATILE_ATTR_ENCOUNTER_TYPE_SHIFT_FRLG = 24
+METATILE_ATTR_LAYER_MASK_FRLG = 0x60000000
+METATILE_ATTR_LAYER_SHIFT_FRLG = 29
+METATILE_LAYER_TYPE_NAMES = {
+    0: "METATILE_LAYER_TYPE_NORMAL",
+    1: "METATILE_LAYER_TYPE_COVERED",
+    2: "METATILE_LAYER_TYPE_SPLIT",
+}
+TILE_ENCOUNTER_TYPE_NAMES = {
+    0: "TILE_ENCOUNTER_NONE",
+    1: "TILE_ENCOUNTER_LAND",
+    2: "TILE_ENCOUNTER_WATER",
+}
+TILE_TERRAIN_TYPE_NAMES = {
+    0: "TILE_TERRAIN_NORMAL",
+    1: "TILE_TERRAIN_GRASS",
+    2: "TILE_TERRAIN_WATER",
+    3: "TILE_TERRAIN_WATERFALL",
+}
+METATILE_AFFORDANCE_FLAG_CODES = {
+    "has_encounters": 1,
+    "surfable": 2,
+    "land_encounter_affordance": 4,
+    "water_encounter_affordance": 8,
+    "unused_traversable_hint": 16,
 }
 
 METATILE_ENTRY_POSITIONS = [
@@ -593,6 +639,143 @@ def parse_metatile_decode_rules(source_root):
     }
 
 
+def parse_metatile_attribute_rules(source_root):
+    global_fieldmap_path = source_root / "include/global.fieldmap.h"
+    fieldmap_path = source_root / "src/fieldmap.c"
+    global_fieldmap = read_text(global_fieldmap_path) if global_fieldmap_path.exists() else ""
+    fieldmap_c = read_text(fieldmap_path) if fieldmap_path.exists() else ""
+    behavior_context = metatile_behavior_context(source_root)
+
+    return {
+        "status": "decoded_import_metadata",
+        "runtime_binary_metatile_attributes_required": False,
+        "source_files": [
+            path_status(source_root, Path("include/global.fieldmap.h")),
+            path_status(source_root, Path("src/fieldmap.c")),
+            path_status(source_root, Path("include/constants/metatile_behaviors.h")),
+            path_status(source_root, Path("src/metatile_behavior.c")),
+        ],
+        "profiles": {
+            "emerald": metatile_attribute_source_profile("emerald"),
+            "frlg": metatile_attribute_source_profile("frlg"),
+        },
+        "behavior_names_by_id": behavior_context["behavior_names_by_id"],
+        "behavior_affordances_by_name": behavior_context["behavior_affordances_by_name"],
+        "behavior_affordance_source": behavior_context["summary"],
+        "compact_metatile_attribute_encoding": metatile_attribute_compact_record_encoding(),
+        "map_grid_block_fields": {
+            "metatile_id": {
+                "status": "map_grid_block_field",
+                "raw_type": "u16 little-endian",
+                "mask": "0x03FF",
+                "shift": 0,
+                "bits": "0-9",
+                "source": source_define_ref(global_fieldmap, "include/global.fieldmap.h", "MAPGRID_METATILE_ID_MASK"),
+            },
+            "collision": {
+                "status": "map_grid_block_field",
+                "raw_type": "u16 little-endian",
+                "mask": "0x0C00",
+                "shift": 10,
+                "bits": "10-11",
+                "source": source_define_ref(global_fieldmap, "include/global.fieldmap.h", "MAPGRID_COLLISION_MASK"),
+                "detail": "Collision is stored per layout map-grid block in data/layouts/*/map.bin, not per metatile attribute record.",
+            },
+            "elevation": {
+                "status": "map_grid_block_field",
+                "raw_type": "u16 little-endian",
+                "mask": "0xF000",
+                "shift": 12,
+                "bits": "12-15",
+                "source": source_define_ref(global_fieldmap, "include/global.fieldmap.h", "MAPGRID_ELEVATION_MASK"),
+                "detail": "Elevation is stored per layout map-grid block in data/layouts/*/map.bin, not per metatile attribute record.",
+            },
+        },
+        "attribute_enums": {
+            "layer_type_names": enum_name_rows(METATILE_LAYER_TYPE_NAMES),
+            "tile_encounter_type_names": enum_name_rows(TILE_ENCOUNTER_TYPE_NAMES),
+            "tile_terrain_type_names": enum_name_rows(TILE_TERRAIN_TYPE_NAMES),
+        },
+        "source_functions": source_function_refs(
+            fieldmap_c,
+            "src/fieldmap.c",
+            METATILE_ATTRIBUTE_RULE_FUNCTIONS,
+        ),
+        "runtime_policy": {
+            "status": "decoded_import_metadata",
+            "detail": (
+                "Source metatile attribute records are decoded at import time. "
+                "Godot runtime should consume behavior, layer type, encounter affordance, "
+                "and map-grid collision/elevation metadata instead of raw GBA attribute binaries."
+            ),
+        },
+    }
+
+
+def metatile_behavior_context(source_root):
+    constants_path = source_root / "include/constants/metatile_behaviors.h"
+    behavior_path = source_root / "src/metatile_behavior.c"
+    constants_text = read_text(constants_path) if constants_path.exists() else ""
+    behavior_text = read_text(behavior_path) if behavior_path.exists() else ""
+    constants = parse_metatile_constants(constants_text)
+    bit_attrs = parse_tile_bit_attributes(behavior_text, constants["constant_by_name"])
+    behavior_names_by_id = {
+        str(row["id"]): row["name"]
+        for row in constants.get("constants", [])
+    }
+    row_by_behavior = {
+        row["behavior"]: row
+        for row in bit_attrs.get("rows", [])
+    }
+    behavior_affordances_by_name = {
+        name: {
+            "flags": row.get("flags", []),
+            "has_encounters": bool(row.get("has_encounters")),
+            "surfable": bool(row.get("surfable")),
+            "unused_traversable_hint": bool(row.get("unused_traversable_hint")),
+        }
+        for name, row in row_by_behavior.items()
+    }
+    return {
+        "behavior_names_by_id": behavior_names_by_id,
+        "behavior_rows_by_name": row_by_behavior,
+        "behavior_affordances_by_name": behavior_affordances_by_name,
+        "summary": {
+            "constants_source": "include/constants/metatile_behaviors.h",
+            "tile_bit_attributes_source": bit_attrs.get("source"),
+            "constant_count": len(constants.get("constants", [])),
+            "explicit_tile_bit_attribute_count": len(bit_attrs.get("explicit_rows", [])),
+            "encounter_behavior_count": len(bit_attrs.get("encounter_behaviors", [])),
+            "surfable_behavior_count": len(bit_attrs.get("surfable_behaviors", [])),
+            "affordance_flag_codes": METATILE_AFFORDANCE_FLAG_CODES,
+            "encounter_affordance_detail": (
+                "Rows with TILE_FLAG_HAS_ENCOUNTERS are exported as encounter affordances; "
+                "rows with both TILE_FLAG_HAS_ENCOUNTERS and TILE_FLAG_SURFABLE are water encounter affordances."
+            ),
+        },
+    }
+
+
+def source_define_ref(text, source_file, symbol):
+    match = re.search(r"#define\s+%s\b" % re.escape(symbol), text)
+    return {
+        "path": source_file,
+        "symbol": symbol,
+        "line": line_number(text, match.start()) if match else None,
+        "found": match is not None,
+    }
+
+
+def enum_name_rows(names_by_value):
+    return [
+        {
+            "value": value,
+            "name": name,
+        }
+        for value, name in sorted(names_by_value.items())
+    ]
+
+
 def metatile_source_profile_for_branch(branch):
     return "frlg" if branch == "frlg_metadata" else "emerald"
 
@@ -612,6 +795,134 @@ def metatile_source_profile(profile_name):
         "primary_metatile_count": NUM_METATILES_IN_PRIMARY,
         "total_tile_count": NUM_TILES_TOTAL,
         "total_metatile_count": NUM_METATILES_TOTAL,
+    }
+
+
+def metatile_attribute_source_profile(profile_name):
+    if profile_name == "frlg":
+        return dict(
+            metatile_source_profile("frlg"),
+            **{
+                "record_raw_type": "u32 little-endian",
+                "record_byte_count": 4,
+                "source_runtime_pointer": "const u32 * cast from Tileset.metatileAttributes",
+                "fields": {
+                    "behavior": attribute_field(
+                        "METATILE_ATTRIBUTE_BEHAVIOR",
+                        METATILE_ATTR_BEHAVIOR_MASK_FRLG,
+                        METATILE_ATTR_BEHAVIOR_SHIFT_FRLG,
+                        "decoded",
+                        "0-8",
+                    ),
+                    "terrain_type": attribute_field(
+                        "METATILE_ATTRIBUTE_TERRAIN",
+                        METATILE_ATTR_TERRAIN_MASK_FRLG,
+                        METATILE_ATTR_TERRAIN_SHIFT_FRLG,
+                        "decoded",
+                        "9-13",
+                    ),
+                    "encounter_type": attribute_field(
+                        "METATILE_ATTRIBUTE_ENCOUNTER_TYPE",
+                        METATILE_ATTR_ENCOUNTER_TYPE_MASK_FRLG,
+                        METATILE_ATTR_ENCOUNTER_TYPE_SHIFT_FRLG,
+                        "decoded",
+                        "24-26",
+                    ),
+                    "layer_type": attribute_field(
+                        "METATILE_ATTRIBUTE_LAYER_TYPE",
+                        METATILE_ATTR_LAYER_MASK_FRLG,
+                        METATILE_ATTR_LAYER_SHIFT_FRLG,
+                        "decoded",
+                        "29-30",
+                    ),
+                },
+            },
+        )
+    return dict(
+        metatile_source_profile("emerald"),
+        **{
+            "record_raw_type": "u16 little-endian",
+            "record_byte_count": 2,
+            "source_runtime_pointer": "const u16 * Tileset.metatileAttributes",
+            "fields": {
+                "behavior": attribute_field(
+                    "METATILE_ATTRIBUTE_BEHAVIOR",
+                    METATILE_ATTR_BEHAVIOR_MASK,
+                    METATILE_ATTR_BEHAVIOR_SHIFT,
+                    "decoded",
+                    "0-7",
+                ),
+                "terrain_type": attribute_field(
+                    "METATILE_ATTRIBUTE_TERRAIN",
+                    None,
+                    None,
+                    "not_encoded_in_emerald_attributes",
+                    None,
+                    "Emerald masks METATILE_ATTRIBUTE_TERRAIN with 0xFFFFFFFF, so no standalone terrain bitfield is encoded.",
+                ),
+                "encounter_type": attribute_field(
+                    "METATILE_ATTRIBUTE_ENCOUNTER_TYPE",
+                    None,
+                    None,
+                    "not_encoded_in_emerald_attributes",
+                    None,
+                    "Emerald masks METATILE_ATTRIBUTE_ENCOUNTER_TYPE with 0xFFFFFFFF, so encounter affordance is derived from behavior flags.",
+                ),
+                "layer_type": attribute_field(
+                    "METATILE_ATTRIBUTE_LAYER_TYPE",
+                    METATILE_ATTR_LAYER_MASK,
+                    METATILE_ATTR_LAYER_SHIFT,
+                    "decoded",
+                    "12-15",
+                ),
+            },
+        },
+    )
+
+
+def attribute_field(attribute_name, mask, shift, status, bits, detail=None):
+    row = {
+        "attribute": attribute_name,
+        "status": status,
+        "mask": None if mask is None else "0x{:08X}".format(mask),
+        "shift": shift,
+        "bits": bits,
+    }
+    if detail:
+        row["detail"] = detail
+    return row
+
+
+def metatile_attribute_compact_record_encoding():
+    return {
+        "version": "compact_attribute_record_v1",
+        "detail": (
+            "Each attribute row stores [local_metatile_id, global_metatile_id, raw, behavior_id, "
+            "layer_type, terrain_type, encounter_type, affordance_flags]. "
+            "Behavior names and enum names are resolved through metatile_attribute_rules lookups."
+        ),
+        "attribute_record_fields": [
+            "local_metatile_id",
+            "global_metatile_id",
+            "raw",
+            "behavior_id",
+            "layer_type",
+            "terrain_type",
+            "encounter_type",
+            "affordance_flags",
+        ],
+        "affordance_flag_codes": METATILE_AFFORDANCE_FLAG_CODES,
+        "derived_fields": {
+            "behavior_name": "lookup behavior_id in metatile_attribute_rules.behavior_names_by_id",
+            "layer_type_name": "lookup layer_type in metatile_attribute_rules.attribute_enums.layer_type_names",
+            "terrain_type_name": "lookup terrain_type in metatile_attribute_rules.attribute_enums.tile_terrain_type_names when decoded",
+            "encounter_type_name": "lookup encounter_type in metatile_attribute_rules.attribute_enums.tile_encounter_type_names when decoded",
+            "has_encounters": "bool(affordance_flags & 1)",
+            "surfable": "bool(affordance_flags & 2)",
+            "land_encounter_affordance": "bool(affordance_flags & 4)",
+            "water_encounter_affordance": "bool(affordance_flags & 8)",
+            "unused_traversable_hint": "bool(affordance_flags & 16)",
+        },
     }
 
 
@@ -755,6 +1066,209 @@ def metatile_binary_decode_for_header(source_root, kind, branch, metatile_group,
     }
 
 
+def metatile_attribute_decode_for_header(source_root, kind, branch, attribute_group, attribute_rules):
+    profile_name = metatile_source_profile_for_branch(branch)
+    profile = metatile_attribute_source_profile(profile_name)
+    source_row = first_matching_status(
+        attribute_group.get("editable_source_candidates", []) + attribute_group.get("incbin_paths", []),
+        lambda path: path.endswith("/metatile_attributes.bin"),
+    )
+
+    base_row = {
+        "runtime_binary_metatile_attributes_required": False,
+        "source_rules_profile": profile_name,
+        "source_kind": kind,
+        "source_metatile_attributes_symbol": attribute_group.get("symbol"),
+        "source_metatile_attributes_declaration_found": attribute_group.get("declaration_found", False),
+        "source_metatile_attributes_declaration": attribute_group.get("declaration_source"),
+        "source_profile": profile,
+        "behavior_name_by_id_ref": "metatile_attribute_rules.behavior_names_by_id",
+        "attribute_record_encoding_ref": "metatile_attribute_rules.compact_metatile_attribute_encoding",
+        "attribute_record_encoding": metatile_attribute_compact_record_encoding(),
+        "collision": {
+            "status": "map_grid_block_field",
+            "source_ref": "metatile_attribute_rules.map_grid_block_fields.collision",
+            "detail": "Collision is decoded from layout map-grid blocks, not metatile_attributes.bin.",
+        },
+        "elevation": {
+            "status": "map_grid_block_field",
+            "source_ref": "metatile_attribute_rules.map_grid_block_fields.elevation",
+            "detail": "Elevation is decoded from layout map-grid blocks, not metatile_attributes.bin.",
+        },
+        "terrain_type_status": profile["fields"]["terrain_type"]["status"],
+        "encounter_type_status": profile["fields"]["encounter_type"]["status"],
+    }
+
+    if source_row is None:
+        return dict(
+            base_row,
+            **{
+                "status": "missing_source_binary",
+                "source_binary": None,
+                "metatile_attribute_count": 0,
+                "record_byte_count": profile["record_byte_count"],
+                "behavior_counts": {},
+                "layer_type_counts": {},
+                "terrain_type_counts": {},
+                "encounter_type_counts": {},
+                "encounter_affordance_count": 0,
+                "surfable_affordance_count": 0,
+                "land_encounter_affordance_count": 0,
+                "water_encounter_affordance_count": 0,
+                "unused_traversable_hint_count": 0,
+                "missing_behavior_name_count": 0,
+                "attributes": [],
+            },
+        )
+
+    raw_values = read_little_endian_values(source_root / source_row["path"], profile["record_byte_count"])
+    behavior_names_by_id = attribute_rules.get("behavior_names_by_id", {})
+    behavior_affordances_by_name = attribute_rules.get("behavior_affordances_by_name", {})
+    source_global_offset = 0 if kind == "primary" else profile["primary_metatile_count"]
+    records = []
+    behavior_counts = {}
+    layer_counts = {}
+    terrain_counts = {}
+    encounter_type_counts = {}
+    affordance_counts = {
+        "encounter_affordance_count": 0,
+        "surfable_affordance_count": 0,
+        "land_encounter_affordance_count": 0,
+        "water_encounter_affordance_count": 0,
+        "unused_traversable_hint_count": 0,
+    }
+    missing_behavior_name_count = 0
+
+    for local_metatile_id, raw_value in enumerate(raw_values):
+        record = decode_metatile_attribute_record(
+            raw_value,
+            local_metatile_id,
+            source_global_offset + local_metatile_id,
+            profile_name,
+            behavior_names_by_id,
+            behavior_affordances_by_name,
+        )
+        behavior_counts[record["behavior_name"]] = behavior_counts.get(record["behavior_name"], 0) + 1
+        layer_counts[record["layer_type_name"]] = layer_counts.get(record["layer_type_name"], 0) + 1
+        if record["terrain_type_name"] is not None:
+            terrain_counts[record["terrain_type_name"]] = terrain_counts.get(record["terrain_type_name"], 0) + 1
+        if record["encounter_type_name"] is not None:
+            encounter_type_counts[record["encounter_type_name"]] = encounter_type_counts.get(record["encounter_type_name"], 0) + 1
+        for stat_key, record_key in [
+            ("encounter_affordance_count", "has_encounters"),
+            ("surfable_affordance_count", "surfable"),
+            ("land_encounter_affordance_count", "land_encounter_affordance"),
+            ("water_encounter_affordance_count", "water_encounter_affordance"),
+            ("unused_traversable_hint_count", "unused_traversable_hint"),
+        ]:
+            if record[record_key]:
+                affordance_counts[stat_key] += 1
+        if record["behavior_name"].startswith("MB_UNKNOWN_"):
+            missing_behavior_name_count += 1
+        records.append(compact_metatile_attribute_record(record))
+
+    return dict(
+        base_row,
+        **{
+            "status": "decoded",
+            "source_binary": source_row,
+            "metatile_attribute_count": len(records),
+            "record_byte_count": profile["record_byte_count"],
+            "behavior_counts": dict(sorted(behavior_counts.items())),
+            "layer_type_counts": dict(sorted(layer_counts.items())),
+            "terrain_type_counts": dict(sorted(terrain_counts.items())),
+            "encounter_type_counts": dict(sorted(encounter_type_counts.items())),
+            "missing_behavior_name_count": missing_behavior_name_count,
+            "attributes": records,
+            **affordance_counts,
+        },
+    )
+
+
+def read_little_endian_values(path, byte_count):
+    data = path.read_bytes()
+    if len(data) % byte_count != 0:
+        raise ValueError("{} has {} bytes, not divisible by {}".format(path, len(data), byte_count))
+    return [
+        int.from_bytes(data[index:index + byte_count], "little")
+        for index in range(0, len(data), byte_count)
+    ]
+
+
+def decode_metatile_attribute_record(
+    raw,
+    local_metatile_id,
+    global_metatile_id,
+    profile_name,
+    behavior_names_by_id,
+    behavior_affordances_by_name,
+):
+    profile = metatile_attribute_source_profile(profile_name)
+    fields = profile["fields"]
+    behavior_id = extract_attribute_field(raw, fields["behavior"])
+    layer_type = extract_attribute_field(raw, fields["layer_type"])
+    terrain_type = extract_attribute_field(raw, fields["terrain_type"])
+    encounter_type = extract_attribute_field(raw, fields["encounter_type"])
+    behavior_name = behavior_names_by_id.get(str(behavior_id), "MB_UNKNOWN_{:03d}".format(behavior_id))
+    behavior_affordance = behavior_affordances_by_name.get(behavior_name, {})
+    has_encounters = bool(behavior_affordance.get("has_encounters"))
+    surfable = bool(behavior_affordance.get("surfable"))
+    land_encounter = has_encounters and not surfable
+    water_encounter = has_encounters and surfable
+    unused_hint = bool(behavior_affordance.get("unused_traversable_hint"))
+    return {
+        "local_metatile_id": local_metatile_id,
+        "global_metatile_id": global_metatile_id,
+        "raw": raw,
+        "behavior_id": behavior_id,
+        "behavior_name": behavior_name,
+        "layer_type": layer_type,
+        "layer_type_name": METATILE_LAYER_TYPE_NAMES.get(
+            layer_type,
+            "METATILE_LAYER_TYPE_UNKNOWN_{}".format(layer_type),
+        ),
+        "terrain_type": terrain_type,
+        "terrain_type_name": None if terrain_type is None else TILE_TERRAIN_TYPE_NAMES.get(
+            terrain_type,
+            "TILE_TERRAIN_UNKNOWN_{}".format(terrain_type),
+        ),
+        "encounter_type": encounter_type,
+        "encounter_type_name": None if encounter_type is None else TILE_ENCOUNTER_TYPE_NAMES.get(
+            encounter_type,
+            "TILE_ENCOUNTER_UNKNOWN_{}".format(encounter_type),
+        ),
+        "has_encounters": has_encounters,
+        "surfable": surfable,
+        "land_encounter_affordance": land_encounter,
+        "water_encounter_affordance": water_encounter,
+        "unused_traversable_hint": unused_hint,
+    }
+
+
+def extract_attribute_field(raw, field):
+    if field["status"] != "decoded":
+        return None
+    mask = int(field["mask"], 16)
+    return (raw & mask) >> int(field["shift"])
+
+
+def compact_metatile_attribute_record(record):
+    flags = 0
+    for name, code in METATILE_AFFORDANCE_FLAG_CODES.items():
+        if record[name]:
+            flags |= code
+    return [
+        record["local_metatile_id"],
+        record["global_metatile_id"],
+        record["raw"],
+        record["behavior_id"],
+        record["layer_type"],
+        record["terrain_type"],
+        record["encounter_type"],
+        flags,
+    ]
+
+
 def compact_metatile_tile_entry(entry):
     flip_flags = 0
     if entry["hflip"]:
@@ -818,6 +1332,7 @@ def parse_tileset_headers(
     init_functions=None,
     palette_rules=None,
     metatile_rules=None,
+    metatile_attribute_rules=None,
 ):
     headers_path = source_root / "src/data/tilesets/headers.h"
     text = read_text(headers_path)
@@ -825,6 +1340,7 @@ def parse_tileset_headers(
     animation_frames = animation_frames or []
     palette_rules = palette_rules or parse_palette_slot_rules(source_root)
     metatile_rules = metatile_rules or parse_metatile_decode_rules(source_root)
+    metatile_attribute_rules = metatile_attribute_rules or parse_metatile_attribute_rules(source_root)
     init_function_symbols = {
         row["function"]: row
         for row in (init_functions or [])
@@ -870,6 +1386,13 @@ def parse_tileset_headers(
                 branch,
                 assets["metatiles"],
                 metatile_rules,
+            )
+            metatile_attribute_decode = metatile_attribute_decode_for_header(
+                source_root,
+                kind,
+                branch,
+                assets["metatile_attributes"],
+                metatile_attribute_rules,
             )
 
             rows.append({
@@ -934,6 +1457,7 @@ def parse_tileset_headers(
                 "asset_provenance": assets,
                 "palette_slot_mapping": palette_slot_mapping,
                 "metatile_binary_decode": metatile_binary_decode,
+                "metatile_attribute_decode": metatile_attribute_decode,
                 "asset_source_directories": asset_source_directories(assets),
                 "animation_image_provenance": {
                     "frame_declaration_count": len(animation_frame_rows),
@@ -1088,8 +1612,20 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         row.get("metatile_binary_decode", {})
         for row in active
     ]
+    metatile_attribute_decodes = [
+        row.get("metatile_attribute_decode", {})
+        for row in records
+    ]
+    active_metatile_attribute_decodes = [
+        row.get("metatile_attribute_decode", {})
+        for row in active
+    ]
     unique_metatile_decodes = unique_metatile_decodes_by_source_binary(metatile_decodes)
     active_unique_metatile_decodes = unique_metatile_decodes_by_source_binary(active_metatile_decodes)
+    unique_metatile_attribute_decodes = unique_metatile_decodes_by_source_binary(metatile_attribute_decodes)
+    active_unique_metatile_attribute_decodes = unique_metatile_decodes_by_source_binary(
+        active_metatile_attribute_decodes
+    )
     missing_metatile_decodes = [
         {
             "tileset": row["symbol"],
@@ -1098,6 +1634,17 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         }
         for row in records
         if row.get("metatile_binary_decode", {}).get("status") != "decoded"
+    ]
+    missing_metatile_attribute_decodes = [
+        {
+            "tileset": row["symbol"],
+            "metatile_attributes_symbol": row.get("metatile_attribute_decode", {}).get(
+                "source_metatile_attributes_symbol"
+            ),
+            "status": row.get("metatile_attribute_decode", {}).get("status"),
+        }
+        for row in records
+        if row.get("metatile_attribute_decode", {}).get("status") != "decoded"
     ]
     out_of_range_tile_entries = [
         dict({"tileset": row["symbol"]}, **entry)
@@ -1233,6 +1780,102 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
             }
             for decode in metatile_decodes
         ),
+        "metatile_attribute_decode_header_count": sum(
+            1 for decode in metatile_attribute_decodes if decode.get("status") == "decoded"
+        ),
+        "active_metatile_attribute_decode_header_count": sum(
+            1 for decode in active_metatile_attribute_decodes if decode.get("status") == "decoded"
+        ),
+        "missing_metatile_attribute_decode_header_count": len(missing_metatile_attribute_decodes),
+        "missing_metatile_attribute_decodes": missing_metatile_attribute_decodes,
+        "metatile_attribute_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in metatile_attribute_decodes
+        ),
+        "active_metatile_attribute_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in active_metatile_attribute_decodes
+        ),
+        "unique_metatile_attribute_source_binary_count": len(unique_metatile_attribute_decodes),
+        "active_unique_metatile_attribute_source_binary_count": len(active_unique_metatile_attribute_decodes),
+        "unique_metatile_attribute_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in unique_metatile_attribute_decodes
+        ),
+        "active_unique_metatile_attribute_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in active_unique_metatile_attribute_decodes
+        ),
+        "metatile_attribute_record_count_by_source_profile": merge_count_dicts(
+            {
+                decode.get("source_rules_profile"): int(decode.get("metatile_attribute_count", 0))
+            }
+            for decode in metatile_attribute_decodes
+        ),
+        "metatile_attribute_layer_type_counts": merge_count_dicts(
+            decode.get("layer_type_counts", {})
+            for decode in metatile_attribute_decodes
+        ),
+        "active_metatile_attribute_layer_type_counts": merge_count_dicts(
+            decode.get("layer_type_counts", {})
+            for decode in active_metatile_attribute_decodes
+        ),
+        "metatile_attribute_terrain_type_counts": merge_count_dicts(
+            decode.get("terrain_type_counts", {})
+            for decode in metatile_attribute_decodes
+        ),
+        "metatile_attribute_encounter_type_counts": merge_count_dicts(
+            decode.get("encounter_type_counts", {})
+            for decode in metatile_attribute_decodes
+        ),
+        "metatile_attribute_terrain_decoded_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in metatile_attribute_decodes
+            if decode.get("terrain_type_status") == "decoded"
+        ),
+        "metatile_attribute_terrain_not_encoded_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in metatile_attribute_decodes
+            if decode.get("terrain_type_status") == "not_encoded_in_emerald_attributes"
+        ),
+        "metatile_attribute_encounter_type_decoded_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in metatile_attribute_decodes
+            if decode.get("encounter_type_status") == "decoded"
+        ),
+        "metatile_attribute_encounter_type_not_encoded_record_count": sum(
+            int(decode.get("metatile_attribute_count", 0))
+            for decode in metatile_attribute_decodes
+            if decode.get("encounter_type_status") == "not_encoded_in_emerald_attributes"
+        ),
+        "metatile_attribute_encounter_affordance_count": sum(
+            int(decode.get("encounter_affordance_count", 0))
+            for decode in metatile_attribute_decodes
+        ),
+        "active_metatile_attribute_encounter_affordance_count": sum(
+            int(decode.get("encounter_affordance_count", 0))
+            for decode in active_metatile_attribute_decodes
+        ),
+        "metatile_attribute_surfable_affordance_count": sum(
+            int(decode.get("surfable_affordance_count", 0))
+            for decode in metatile_attribute_decodes
+        ),
+        "active_metatile_attribute_surfable_affordance_count": sum(
+            int(decode.get("surfable_affordance_count", 0))
+            for decode in active_metatile_attribute_decodes
+        ),
+        "metatile_attribute_land_encounter_affordance_count": sum(
+            int(decode.get("land_encounter_affordance_count", 0))
+            for decode in metatile_attribute_decodes
+        ),
+        "metatile_attribute_water_encounter_affordance_count": sum(
+            int(decode.get("water_encounter_affordance_count", 0))
+            for decode in metatile_attribute_decodes
+        ),
+        "metatile_attribute_missing_behavior_name_count": sum(
+            int(decode.get("missing_behavior_name_count", 0))
+            for decode in metatile_attribute_decodes
+        ),
         "init_function_count": len(init_functions),
         "animation_frame_declaration_count": len(animation_frames),
         "animation_source_bin_count": sum(frame["source_bin_count"] for frame in animation_frames),
@@ -1287,6 +1930,11 @@ def manifest_entry_for(exported, output_path):
         "unique_metatile_record_count": stats["unique_metatile_record_count"],
         "unique_metatile_tile_entry_count": stats["unique_metatile_tile_entry_count"],
         "metatile_out_of_range_tile_entry_count": stats["metatile_out_of_range_tile_entry_count"],
+        "metatile_attribute_record_count": stats["metatile_attribute_record_count"],
+        "unique_metatile_attribute_source_binary_count": stats["unique_metatile_attribute_source_binary_count"],
+        "unique_metatile_attribute_record_count": stats["unique_metatile_attribute_record_count"],
+        "metatile_attribute_encounter_affordance_count": stats["metatile_attribute_encounter_affordance_count"],
+        "metatile_attribute_missing_behavior_name_count": stats["metatile_attribute_missing_behavior_name_count"],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
         "missing_callback_source_count": stats["missing_callback_source_count"],
@@ -1301,7 +1949,15 @@ def build_export(source_root):
     init_functions = parse_init_function_symbols(source_root)
     palette_rules = parse_palette_slot_rules(source_root)
     metatile_rules = parse_metatile_decode_rules(source_root)
-    records = parse_tileset_headers(source_root, animation_frames, init_functions, palette_rules, metatile_rules)
+    metatile_attribute_rules = parse_metatile_attribute_rules(source_root)
+    records = parse_tileset_headers(
+        source_root,
+        animation_frames,
+        init_functions,
+        palette_rules,
+        metatile_rules,
+        metatile_attribute_rules,
+    )
     stats = build_stats(source_files, records, animation_frames, init_functions)
     return {
         "schema_version": 1,
@@ -1310,6 +1966,7 @@ def build_export(source_root):
         "source_files": source_files,
         "palette_slot_rules": palette_rules,
         "metatile_decode_rules": metatile_rules,
+        "metatile_attribute_rules": metatile_attribute_rules,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_init_functions": init_functions,
@@ -1327,11 +1984,6 @@ def build_export(source_root):
                 "code": "tileset_animation_runtime_pending",
                 "status": "unsupported",
                 "detail": "Header callback symbols, callback source bindings, and animation frame image provenance are exported, but no source-equivalent Godot tileset animation scheduler is implemented yet.",
-            },
-            {
-                "code": "metatile_attribute_detail_pending",
-                "status": "unsupported",
-                "detail": "Per-8x8 metatile tile entries are decoded, but the next Section 4 task still needs richer attribute/terrain/encounter metadata beyond the existing behavior/layer provenance.",
             },
             {
                 "code": "source_equivalent_layer_renderer_pending",
