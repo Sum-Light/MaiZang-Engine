@@ -22,9 +22,14 @@ TILE_SIZE = 8
 BATTLE_INTERFACE_DIR = Path("graphics/battle_interface")
 GRAPHICS_SOURCE = Path("src/graphics.c")
 BATTLE_BG_SOURCE = Path("src/battle_bg.c")
+BATTLE_MESSAGE_SOURCE = Path("src/battle_message.c")
+TEXT_SOURCE = Path("src/text.c")
 BATTLE_INTERFACE_SOURCE = Path("src/battle_interface.c")
 BATTLE_SCRIPT_COMMANDS_SOURCE = Path("src/battle_script_commands.c")
 GIMMICKS_SOURCE = Path("src/data/graphics/gimmicks.h")
+BATTLE_CONFIG_SOURCE = Path("include/config/battle.h")
+TEXT_CONFIG_SOURCE = Path("include/config/text.h")
+GLOBAL_CONSTANTS_SOURCE = Path("include/constants/global.h")
 
 BINARY_ASSET_EXTENSIONS = [
     (".4bpp.smol", ".png"),
@@ -164,10 +169,92 @@ def _parse_int_expr(value):
     value = str(value).strip()
     if not value:
         return None
+    if value == "TRUE":
+        return 1
+    if value == "FALSE":
+        return 0
     try:
         return int(value, 0)
     except ValueError:
         return None
+
+
+def _extract_initializer_block(text, start):
+    brace_start = text.find("{", start)
+    if brace_start < 0:
+        return "", start, start
+    depth = 0
+    for index in range(brace_start, len(text)):
+        char = text[index]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return text[brace_start + 1:index], brace_start + 1, index
+    return "", brace_start + 1, brace_start + 1
+
+
+def _parse_define_values_from_files(source_root, source_files):
+    values = {}
+    for relative_path in source_files:
+        source_path = source_root / relative_path
+        if not source_path.exists():
+            continue
+        for line_no, line in enumerate(source_path.read_text(encoding="utf-8", errors="replace").splitlines(), start=1):
+            match = re.match(r"\s*#define\s+(\w+)\s+(.+)$", line)
+            if match is None:
+                continue
+            name, raw = match.groups()
+            raw = _strip_comment(raw)
+            parsed = _parse_int_expr(raw)
+            if parsed is None and raw in values:
+                parsed = values[raw].get("value")
+            values[name] = {
+                "value": parsed if parsed is not None else raw,
+                "raw": raw,
+                "source": {"file": to_project_path(relative_path), "line": line_no},
+            }
+    return values
+
+
+def _resolve_int_expr(value, defines):
+    raw = str(value).strip()
+    parsed = _parse_int_expr(raw)
+    if parsed is not None:
+        return parsed
+    if raw in defines and isinstance(defines[raw].get("value"), int):
+        return int(defines[raw]["value"])
+    ternary_match = re.match(r"(.+?)\?\s*(.+?)\s*:\s*(.+)$", raw)
+    if ternary_match is not None:
+        condition, truthy, falsey = [part.strip() for part in ternary_match.groups()]
+        condition_value = _resolve_condition(condition, defines)
+        if condition_value is not None:
+            return _resolve_int_expr(truthy if condition_value else falsey, defines)
+    return None
+
+
+def _resolve_condition(condition, defines):
+    match = re.match(r"(.+?)\s*(!=|==)\s*(.+)$", condition)
+    if match is None:
+        return None
+    left, op, right = [part.strip() for part in match.groups()]
+    left_value = _resolve_int_expr(left, defines)
+    right_value = _resolve_int_expr(right, defines)
+    if left_value is None or right_value is None:
+        return None
+    if op == "!=":
+        return left_value != right_value
+    if op == "==":
+        return left_value == right_value
+    return None
+
+
+def _parse_pixel_fill(expr):
+    match = re.match(r"PIXEL_FILL\((.+)\)", str(expr).strip())
+    if match is None:
+        return None
+    return _parse_int_expr(match.group(1))
 
 
 def _source_asset_path(binary_path):
@@ -396,6 +483,185 @@ def _attach_textbox_composite_window_rects(window_templates, tilemaps):
     composite["window_rect_status"] = TEXTBOX_COMPOSITE_WINDOW_STATUS
     composite["window_rect_count"] = count
     return count
+
+
+def _parse_battle_window_text_info(source_root):
+    source_path = source_root / BATTLE_MESSAGE_SOURCE
+    if not source_path.exists():
+        return {}, {}
+    text = source_path.read_text(encoding="utf-8", errors="replace")
+    start = text.find("static const struct BattleWindowText sTextOnWindowsInfo_Normal[]")
+    if start < 0:
+        return {}, {}
+    block, block_start, _block_end = _extract_initializer_block(text, start)
+    defines = _parse_define_values_from_files(source_root, [
+        BATTLE_CONFIG_SOURCE,
+        TEXT_CONFIG_SOURCE,
+        GLOBAL_CONSTANTS_SOURCE,
+    ])
+    records = {}
+    for match in re.finditer(r"\[(B_WIN_[A-Z0-9_]+|ARENA_WIN_[A-Z0-9_]+)\]\s*=\s*\{(?P<body>.*?)\n\s*\}", block, re.S):
+        symbol = match.group(1)
+        body = match.group("body")
+        fields = {}
+        raw_fields = {}
+        for field_match in re.finditer(r"\.(fillValue|fontId|x|y|speed|letterSpacing|lineSpacing)\s*=\s*([^,\n]+)", body):
+            field_name = field_match.group(1)
+            raw_value = _strip_comment(field_match.group(2))
+            raw_fields[field_name] = raw_value
+            if field_name == "fillValue":
+                parsed = _parse_pixel_fill(raw_value)
+            elif field_name == "fontId":
+                parsed = raw_value
+            else:
+                parsed = _resolve_int_expr(raw_value, defines)
+            fields[field_name] = parsed if parsed is not None else raw_value
+
+        color_indices = {}
+        color_raw = {}
+        for color_match in re.finditer(r"\.color\.(foreground|background|accent|shadow)\s*=\s*([^,\n]+)", body):
+            color_name = color_match.group(1)
+            raw_value = _strip_comment(color_match.group(2))
+            color_raw[color_name] = raw_value
+            parsed = _resolve_int_expr(raw_value, defines)
+            color_indices[color_name] = parsed if parsed is not None else raw_value
+
+        fill_index = fields.get("fillValue", 0)
+        font_id = str(fields.get("fontId", "FONT_NORMAL"))
+        table_speed = int(fields.get("speed", 0) or 0)
+        record = {
+            "symbol": symbol,
+            "status": "generated_from_sTextOnWindowsInfo_Normal",
+            "fill_value_index": int(fill_index) if isinstance(fill_index, int) else fill_index,
+            "fill_style": _text_fill_style(fill_index),
+            "panel_style": _text_fill_style(fill_index),
+            "font_id": font_id,
+            "font_size": _font_size_for_source_font(font_id),
+            "text_x": int(fields.get("x", 0) or 0),
+            "text_y": int(fields.get("y", 0) or 0),
+            "letter_spacing": int(fields.get("letterSpacing", 0) or 0),
+            "line_spacing": int(fields.get("lineSpacing", 0) or 0),
+            "table_speed": table_speed,
+            "source_speed": table_speed,
+            "effective_speed_source": "table_speed",
+            "can_ab_speed_up_print": False,
+            "text_material_id": _text_material_id(symbol, fill_index, color_indices),
+            "text_color_indices": color_indices,
+            "raw_fields": raw_fields,
+            "raw_color_fields": color_raw,
+            "source": {
+                "file": to_project_path(BATTLE_MESSAGE_SOURCE),
+                "line": text[: block_start + match.start()].count("\n") + 1,
+            },
+        }
+        if symbol in ["B_WIN_MSG", "ARENA_WIN_JUDGMENT_TEXT", "B_WIN_OAK_OLD_MAN"]:
+            record["source_speed"] = "player_text_speed_delay"
+            record["effective_speed_source"] = "BattlePutTextOnWindow:GetPlayerTextSpeedDelay_or_recorded_speed"
+            record["can_ab_speed_up_print"] = True
+        if re.match(r"B_WIN_MOVE_NAME_[1-4]$", symbol):
+            record["source_fit_width_px"] = 64
+            record["source_fit_width_rule"] = "BattlePutTextOnWindow:GetFontIdToFit"
+            if symbol == "B_WIN_MOVE_NAME_1":
+                record["zmove_source_fit_width_px"] = 128
+        records[symbol] = record
+
+    printer = {
+        "status": "metadata_only",
+        "normal_window_text_info_count": len(records),
+        "source_trace": [
+            "src/battle_message.c:sTextOnWindowsInfo_Normal",
+            "src/battle_message.c:sBattleTextOnWindowsInfo",
+            "src/battle_message.c:BattlePutTextOnWindow",
+            "src/text.c:GetPlayerTextSpeedDelay",
+            "src/text.c:AddTextPrinter",
+        ],
+        "normal_windows_type": "B_WIN_TYPE_NORMAL",
+        "message_speed_windows": ["B_WIN_MSG", "ARENA_WIN_JUDGMENT_TEXT", "B_WIN_OAK_OLD_MAN"],
+        "message_effective_speed_source": "GetPlayerTextSpeedDelay unless link/recorded battle overrides apply",
+        "recorded_battle_text_speeds": _parse_recorded_battle_text_speeds(text),
+        "player_text_speed": _parse_player_text_speed_metadata(source_root),
+        "copy_to_vram_rule": "B_WIN_COPYTOVRAM skips FillWindowPixelBuffer and final PutWindowTilemap/CopyWindowToVram; normal calls fill then copy full window",
+        "runtime_status": "metadata_only",
+        "unsupported": ["battle_text_printer_timing_pending", "battle_text_glyph_renderer_pending"],
+    }
+    return records, printer
+
+
+def _attach_battle_window_text_info(window_templates, text_info_records):
+    count = 0
+    for symbol, record in window_templates.items():
+        if symbol not in text_info_records:
+            continue
+        record["text_info"] = text_info_records[symbol]
+        count += 1
+    return count
+
+
+def _text_fill_style(fill_index):
+    if fill_index == 15:
+        return "message_panel"
+    if fill_index == 14:
+        return "menu_panel"
+    if fill_index == 0:
+        return "transparent_or_banner"
+    return "source_fill_%s" % str(fill_index)
+
+
+def _font_size_for_source_font(font_id):
+    return 8
+
+
+def _text_material_id(symbol, fill_index, color_indices):
+    if symbol == "B_WIN_PP_REMAINING" or (
+        color_indices.get("foreground") == 12 and color_indices.get("shadow") == 11
+    ):
+        return "battle_pp_numeric"
+    if fill_index == 15:
+        return "battle_text_primary"
+    return "battle_text_menu"
+
+
+def _parse_recorded_battle_text_speeds(text):
+    match = re.search(r"static const u8 sRecordedBattleTextSpeeds\[\]\s*=\s*\{(?P<body>[^}]+)\}", text, re.S)
+    if match is None:
+        return []
+    result = []
+    for value in match.group("body").split(","):
+        parsed = _parse_int_expr(value.strip())
+        if parsed is not None:
+            result.append(parsed)
+    return result
+
+
+def _parse_player_text_speed_metadata(source_root):
+    source_path = source_root / TEXT_SOURCE
+    if not source_path.exists():
+        return {}
+    text = source_path.read_text(encoding="utf-8", errors="replace")
+    defines = _parse_define_values_from_files(source_root, [
+        TEXT_CONFIG_SOURCE,
+        GLOBAL_CONSTANTS_SOURCE,
+    ])
+    return {
+        "frame_delays": _parse_indexed_u8_array(text, "sTextSpeedFrameDelays", defines),
+        "modifiers": _parse_indexed_u8_array(text, "sTextSpeedModifiers", defines),
+        "scroll_speeds": _parse_indexed_u8_array(text, "sTextScrollSpeeds", defines),
+        "source": {"file": to_project_path(TEXT_SOURCE)},
+    }
+
+
+def _parse_indexed_u8_array(text, name, defines):
+    start = text.find("static const u8 %s[]" % name)
+    if start < 0:
+        return {}
+    block, _block_start, _block_end = _extract_initializer_block(text, start)
+    result = {}
+    for match in re.finditer(r"\[(OPTIONS_TEXT_SPEED_[A-Z_]+)\]\s*=\s*([^,\n]+)", block):
+        key = match.group(1)
+        parsed = _resolve_int_expr(match.group(2).strip(), defines)
+        if parsed is not None:
+            result[key] = parsed
+    return result
 
 
 def _window_style_id(style_slot):
@@ -734,6 +1000,8 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
     tilemaps, tilemap_order, tilemap_warnings = _build_tilemaps(source_root, output_asset_root)
     window_templates = _parse_window_templates(source_root)
     window_template_composite_rect_count = _attach_textbox_composite_window_rects(window_templates, tilemaps)
+    window_text_info, text_printer = _parse_battle_window_text_info(source_root)
+    battle_window_text_info_count = _attach_battle_window_text_info(window_templates, window_text_info)
     sections = _build_interface_sections(source_root, textures)
 
     stats = {
@@ -747,6 +1015,7 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         ),
         "window_template_count": len(window_templates),
         "window_template_composite_rect_count": window_template_composite_rect_count,
+        "battle_window_text_info_count": battle_window_text_info_count,
         "healthbox_coord_group_count": len(sections["healthbox"].get("coords", {})),
         "healthbox_frame_texture_count": len(sections["healthbox"].get("frame_textures", [])),
         "healthbox_element_texture_count": len(sections["healthbox"].get("element_textures", [])),
@@ -766,9 +1035,14 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
             to_project_path(BATTLE_INTERFACE_DIR),
             to_project_path(GRAPHICS_SOURCE),
             to_project_path(BATTLE_BG_SOURCE),
+            to_project_path(BATTLE_MESSAGE_SOURCE),
+            to_project_path(TEXT_SOURCE),
             to_project_path(BATTLE_INTERFACE_SOURCE),
             to_project_path(BATTLE_SCRIPT_COMMANDS_SOURCE),
             to_project_path(GIMMICKS_SOURCE),
+            to_project_path(BATTLE_CONFIG_SOURCE),
+            to_project_path(TEXT_CONFIG_SOURCE),
+            to_project_path(GLOBAL_CONSTANTS_SOURCE),
         ],
         "runtime_color_policy": {
             "status": "no_runtime_palette",
@@ -793,6 +1067,9 @@ def export_battle_interface(source_root, output_data_root, output_asset_root):
         "tilemaps": tilemaps,
         "window_template_order": sorted(window_templates.keys()),
         "window_templates": window_templates,
+        "window_text_info_order": sorted(window_text_info.keys()),
+        "window_text_info": window_text_info,
+        "text_printer": text_printer,
         "sections": sections,
         "unsupported": [
             {

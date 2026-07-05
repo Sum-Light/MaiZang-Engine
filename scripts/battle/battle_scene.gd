@@ -95,15 +95,6 @@ const SOURCE_UI_ASSETS := {
 	"render_style_policy": "godot_theme_material_shader",
 }
 
-const SOURCE_WINDOW_TEXT_INFO := {
-	"B_WIN_MSG": {"fill_style": "message_panel", "font": "FONT_NORMAL", "text_material_id": "battle_text_primary", "speed": 0},
-	"B_WIN_ACTION_PROMPT": {"fill_style": "message_panel", "font": "FONT_NORMAL", "text_material_id": "battle_text_primary", "speed": 0},
-	"B_WIN_ACTION_MENU": {"fill_style": "menu_panel", "font": "FONT_NORMAL", "text_material_id": "battle_text_menu", "speed": 0},
-	"B_WIN_MOVE_NAME_1": {"fill_style": "menu_panel", "font": "FONT_NARROW", "text_material_id": "battle_text_menu", "speed": 0},
-	"B_WIN_PP_REMAINING": {"fill_style": "menu_panel", "font": "FONT_NORMAL", "text_material_id": "battle_pp_numeric", "speed": 0},
-	"B_WIN_MOVE_TYPE": {"fill_style": "menu_panel", "font": "FONT_NARROW", "text_material_id": "battle_text_menu", "speed": 0},
-}
-
 var _sequence: Dictionary = {}
 var _battle_state: Dictionary = {}
 var _battle_engine: Node = null
@@ -262,7 +253,7 @@ func get_ui_snapshot() -> Dictionary:
 		"source_text_symbols": _source_text_snapshot(),
 		"source_healthbox_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
 		"source_ui_assets": SOURCE_UI_ASSETS.duplicate(true),
-		"source_window_text_info": SOURCE_WINDOW_TEXT_INFO.duplicate(true),
+		"source_window_text_info": _source_window_text_info_snapshot(),
 		"source_type_display_status": _source_type_display_status(),
 		"source_hp_bar_pixels": HP_BAR_PIXELS,
 		"source_window_renderer_status": _source_window_renderer_status(),
@@ -961,15 +952,16 @@ func _move_button_rect(index: int) -> Rect2:
 
 func _window_text_rect(window_id: String, bg0_y: int) -> Rect2:
 	var rect := _window_screen_rect(window_id, bg0_y)
-	var window = SOURCE_BATTLE_WINDOWS.get(window_id, {})
+	var window := _source_window_record(window_id)
+	var text_info := _dict_or_empty(window.get("text_info", {}))
 	return Rect2(
-		rect.position + Vector2(int(window.get("text_x", 0)), int(window.get("text_y", 0))),
+		rect.position + Vector2(int(text_info.get("text_x", window.get("text_x", 0))), int(text_info.get("text_y", window.get("text_y", 0)))),
 		rect.size
 	)
 
 
 func _window_screen_rect(window_id: String, bg0_y: int) -> Rect2:
-	var window = SOURCE_BATTLE_WINDOWS.get(window_id, {})
+	var window := _source_window_record(window_id)
 	return Rect2(
 		Vector2(
 			int(window.get("tilemap_left", 0)) * TILE_SIZE,
@@ -987,7 +979,7 @@ func _source_window_snapshot() -> Dictionary:
 	var generated_windows := _generated_window_templates()
 	var source_windows := generated_windows if not generated_windows.is_empty() else SOURCE_BATTLE_WINDOWS
 	for window_id in source_windows.keys():
-		var source: Dictionary = source_windows[window_id].duplicate(true)
+		var source: Dictionary = _sanitized_source_window_record(_dict_or_empty(source_windows[window_id]))
 		var bg0_y := 0
 		if window_id == "B_WIN_ACTION_PROMPT" or window_id == "B_WIN_ACTION_MENU":
 			bg0_y = BG0_Y_ACTION_CHOOSE
@@ -1004,6 +996,57 @@ func _source_window_snapshot() -> Dictionary:
 	return result
 
 
+func _source_window_text_info_snapshot() -> Dictionary:
+	var result := {}
+	var windows := _generated_window_templates()
+	if windows.is_empty():
+		windows = SOURCE_BATTLE_WINDOWS
+	for window_id in SOURCE_WINDOW_IDS.keys():
+		var window := _dict_or_empty(windows.get(window_id, {}))
+		var text_info := _dict_or_empty(window.get("text_info", {}))
+		if text_info.is_empty():
+			continue
+		result[window_id] = _sanitized_text_info_record(text_info)
+	return result
+
+
+func _source_window_record(window_id: String) -> Dictionary:
+	var generated_windows := _generated_window_templates()
+	if generated_windows.has(window_id):
+		var generated := _dict_or_empty(generated_windows.get(window_id, {}))
+		if not generated.is_empty():
+			return generated
+	var fallback: Variant = SOURCE_BATTLE_WINDOWS.get(window_id, {})
+	return fallback if typeof(fallback) == TYPE_DICTIONARY else {}
+
+
+func _sanitized_source_window_record(source: Dictionary) -> Dictionary:
+	var result := {}
+	for key in ["symbol", "bg", "tilemap_left", "tilemap_top", "width", "height", "style_id", "base_block", "source", "runtime_status", "tilemap_composite_rect"]:
+		if source.has(key):
+			result[key] = source[key]
+	var text_info := _dict_or_empty(source.get("text_info", {}))
+	if not text_info.is_empty():
+		result["text_info"] = _sanitized_text_info_record(text_info)
+	return result
+
+
+func _sanitized_text_info_record(text_info: Dictionary) -> Dictionary:
+	return {
+		"fill_style": String(text_info.get("fill_style", text_info.get("panel_style", ""))),
+		"panel_style": String(text_info.get("panel_style", text_info.get("fill_style", ""))),
+		"font": String(text_info.get("font_id", "")),
+		"font_id": String(text_info.get("font_id", "")),
+		"text_material_id": String(text_info.get("text_material_id", "")),
+		"speed": text_info.get("source_speed", text_info.get("table_speed", 0)),
+		"table_speed": text_info.get("table_speed", 0),
+		"effective_speed_source": String(text_info.get("effective_speed_source", "")),
+		"can_ab_speed_up_print": bool(text_info.get("can_ab_speed_up_print", false)),
+		"source_fit_width_px": text_info.get("source_fit_width_px", null),
+		"source_status": String(text_info.get("status", "")),
+	}
+
+
 func _generated_window_templates() -> Dictionary:
 	_ensure_data_registry()
 	if _data_registry == null or not _data_registry.has_method("get_battle_interface_data"):
@@ -1013,6 +1056,10 @@ func _generated_window_templates() -> Dictionary:
 		return {}
 	var templates = interface_data.get("window_templates", {})
 	return templates if typeof(templates) == TYPE_DICTIONARY else {}
+
+
+func _dict_or_empty(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
 
 
 func _window_text_or_label(window_id: String, label: Label) -> String:

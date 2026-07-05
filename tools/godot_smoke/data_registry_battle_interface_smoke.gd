@@ -19,6 +19,7 @@ func _init() -> void:
 	_assert(int(stats.get("tilemap_composite_count", 0)) == 1, "unexpected battle interface composite count")
 	_assert(int(stats.get("window_template_count", 0)) == 25, "unexpected battle window template count")
 	_assert(int(stats.get("window_template_composite_rect_count", 0)) == 10, "unexpected battle window composite rect count")
+	_assert(int(stats.get("battle_window_text_info_count", 0)) == 25, "unexpected battle window text info count")
 	_assert(int(stats.get("healthbox_coord_group_count", 0)) == 2, "unexpected healthbox coord group count")
 	_assert(int(stats.get("healthbox_frame_texture_count", 0)) == 5, "unexpected healthbox frame texture count")
 	_assert(int(stats.get("healthbox_element_texture_count", 0)) == 13, "unexpected healthbox element texture count")
@@ -60,6 +61,29 @@ func _init() -> void:
 	var action_menu_composite_rect := _dict(action_menu.get("tilemap_composite_rect", {}))
 	_assert(_rect_record_is(action_menu_composite_rect, 136, 216, 96, 32), "expected action menu composite rect")
 	_assert(String(action_menu_composite_rect.get("status", "")) == "first_pass_generated_textbox_map_preview_rows", "expected generated action menu composite status")
+	var action_text := _dict(action_menu.get("text_info", {}))
+	_assert(String(action_text.get("status", "")) == "generated_from_sTextOnWindowsInfo_Normal", "expected generated action menu text info")
+	_assert(String(action_text.get("font_id", "")) == "FONT_NORMAL", "expected action menu text font")
+	_assert(int(action_text.get("text_x", -1)) == 0 and int(action_text.get("text_y", -1)) == 1, "expected action menu text offset")
+	_assert(String(action_text.get("text_material_id", "")) == "battle_text_menu", "expected action menu semantic material")
+
+	var message_window := registry.get_battle_window_template_record("B_WIN_MSG")
+	var message_text := _dict(message_window.get("text_info", {}))
+	_assert(int(message_text.get("table_speed", -1)) == 1, "expected source message table speed")
+	_assert(String(message_text.get("source_speed", "")) == "player_text_speed_delay", "expected message effective speed source")
+	_assert(bool(message_text.get("can_ab_speed_up_print", false)), "expected message A/B speed-up metadata")
+
+	var move_name := registry.get_battle_window_template_record("B_WIN_MOVE_NAME_1")
+	var move_text := _dict(move_name.get("text_info", {}))
+	_assert(String(move_text.get("font_id", "")) == "FONT_NARROW", "expected move name source font")
+	_assert(int(move_text.get("source_fit_width_px", 0)) == 64, "expected source move-name fit width")
+	_assert(int(move_text.get("zmove_source_fit_width_px", 0)) == 128, "expected source Z-move fit width")
+
+	var pp_window := registry.get_battle_window_template_record("B_WIN_PP")
+	var pp_text := _dict(pp_window.get("text_info", {}))
+	var pp_indices := _dict(pp_text.get("text_color_indices", {}))
+	_assert(int(pp_indices.get("foreground", 0)) == 13, "expected B_SHOW_EFFECTIVENESS-resolved PP foreground")
+	_assert(String(_dict(pp_text.get("raw_color_fields", {})).get("foreground", "")).contains("B_SHOW_EFFECTIVENESS"), "expected PP source color expression metadata")
 
 	var move_desc := registry.get_battle_window_template_record("B_WIN_MOVE_DESCRIPTION")
 	_assert(String(move_desc.get("symbol", "")) == "B_WIN_MOVE_DESCRIPTION", "expected move description template")
@@ -85,6 +109,17 @@ func _init() -> void:
 	_assert(String(composite.get("window_rect_status", "")) == "first_pass_generated_textbox_map_preview_rows", "expected textbox composite window rect status")
 	_assert(_asset_exists(composite), "expected textbox tilemap composite PNG")
 	_assert(_size_is(_dict(composite.get("size", {})), 512, 256), "expected textbox composite size")
+
+	var text_printer := _dict(data.get("text_printer", {}))
+	_assert(String(text_printer.get("status", "")) == "metadata_only", "expected text printer metadata-only status")
+	_assert(int(text_printer.get("normal_window_text_info_count", 0)) == 25, "expected normal window text info count")
+	var recorded_speeds := _array(text_printer.get("recorded_battle_text_speeds", []))
+	_assert(recorded_speeds.size() == 4, "expected recorded battle text speed count")
+	_assert(int(recorded_speeds[0]) == 8 and int(recorded_speeds[1]) == 4 and int(recorded_speeds[2]) == 1 and int(recorded_speeds[3]) == 0, "expected recorded battle text speeds")
+	var player_text_speed := _dict(text_printer.get("player_text_speed", {}))
+	_assert(int(_dict(player_text_speed.get("frame_delays", {})).get("OPTIONS_TEXT_SPEED_SLOW", 0)) == 8, "expected slow text frame delay")
+	_assert(int(_dict(player_text_speed.get("modifiers", {})).get("OPTIONS_TEXT_SPEED_INSTANT", 0)) == 12, "expected instant text modifier")
+	_assert(int(_dict(player_text_speed.get("scroll_speeds", {})).get("OPTIONS_TEXT_SPEED_FAST", 0)) == 4, "expected fast text scroll speed")
 
 	var ability_popup := _dict(sections.get("ability_popup", {}))
 	var motion := _dict(ability_popup.get("motion", {}))
@@ -137,6 +172,10 @@ func _rect_record_is(rect: Dictionary, x: int, y: int, w: int, h: int) -> bool:
 
 func _dict(value) -> Dictionary:
 	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
 
 
 func _assert(condition: bool, message: String) -> void:

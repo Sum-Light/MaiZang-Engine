@@ -5,19 +5,6 @@ const VIEWPORT_SIZE := Vector2i(240, 160)
 const BG0_Y_ACTION_CHOOSE := 160
 const BG0_Y_MOVE_CHOOSE := 320
 
-const SOURCE_TEXT_INFO := {
-	"B_WIN_MSG": {"text_x": 0, "text_y": 1, "font_id": "FONT_NORMAL", "font_size": 8, "source_speed": "player_text_speed", "panel_style": "message_panel", "text_material_id": "battle_text_primary"},
-	"B_WIN_ACTION_PROMPT": {"text_x": 1, "text_y": 1, "font_id": "FONT_NORMAL", "font_size": 8, "source_speed": 0, "panel_style": "message_panel", "text_material_id": "battle_text_primary"},
-	"B_WIN_ACTION_MENU": {"text_x": 0, "text_y": 1, "font_id": "FONT_NORMAL", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu"},
-	"B_WIN_MOVE_NAME_1": {"text_x": 0, "text_y": 1, "font_id": "FONT_NARROW", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu", "source_fit_width_px": 64},
-	"B_WIN_MOVE_NAME_2": {"text_x": 0, "text_y": 1, "font_id": "FONT_NARROW", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu", "source_fit_width_px": 64},
-	"B_WIN_MOVE_NAME_3": {"text_x": 0, "text_y": 1, "font_id": "FONT_NARROW", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu", "source_fit_width_px": 64},
-	"B_WIN_MOVE_NAME_4": {"text_x": 0, "text_y": 1, "font_id": "FONT_NARROW", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu", "source_fit_width_px": 64},
-	"B_WIN_PP": {"text_x": 0, "text_y": 1, "font_id": "FONT_NARROW", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu"},
-	"B_WIN_PP_REMAINING": {"text_x": 2, "text_y": 1, "font_id": "FONT_NORMAL", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_pp_numeric"},
-	"B_WIN_MOVE_TYPE": {"text_x": 0, "text_y": 1, "font_id": "FONT_NARROW", "font_size": 8, "source_speed": 0, "panel_style": "menu_panel", "text_material_id": "battle_text_menu"},
-}
-
 const SOURCE_TRACE := [
 	"src/battle_bg.c:LoadBattleTextboxAndBackground",
 	"src/battle_bg.c:sStandardBattleWindowTemplates",
@@ -28,6 +15,7 @@ const SOURCE_TRACE := [
 var _data_registry: Node = null
 var _interface_data: Dictionary = {}
 var _window_templates: Dictionary = {}
+var _text_printer: Dictionary = {}
 var _texture_nodes: Dictionary = {}
 var _label_nodes: Dictionary = {}
 var _window_texts: Dictionary = {}
@@ -197,7 +185,12 @@ func get_renderer_snapshot() -> Dictionary:
 			"panel_style": String(text_info.get("panel_style", "")),
 			"font_id": String(text_info.get("font_id", "")),
 			"text_material_id": String(text_info.get("text_material_id", "")),
+			"text_info_status": String(text_info.get("status", "missing_generated_text_info")),
+			"table_speed": text_info.get("table_speed", null),
 			"source_speed": text_info.get("source_speed", 0),
+			"effective_speed_source": String(text_info.get("effective_speed_source", "")),
+			"can_ab_speed_up_print": bool(text_info.get("can_ab_speed_up_print", false)),
+			"source_fit_width_px": text_info.get("source_fit_width_px", null),
 			"text": String(_window_texts.get(window_id, "")),
 			"source": template.get("source", {}) if typeof(template.get("source", {})) == TYPE_DICTIONARY else {},
 		}
@@ -210,6 +203,8 @@ func get_renderer_snapshot() -> Dictionary:
 		"windows": windows,
 		"source_trace": SOURCE_TRACE.duplicate(true),
 		"source_composite_mapping_status": _source_composite_mapping_status(),
+		"source_text_info_status": _source_text_info_status(),
+		"text_printer": _text_printer_snapshot(),
 		"runtime_color_policy": "rgba_textures_and_godot_materials",
 		"unsupported": [
 			"battle_text_glyph_renderer_pending",
@@ -293,8 +288,30 @@ func _source_composite_mapping_status() -> String:
 
 
 func _source_text_info(window_id: String) -> Dictionary:
-	var record: Variant = SOURCE_TEXT_INFO.get(window_id, {})
+	var template := _window_template(window_id)
+	var record: Variant = template.get("text_info", {})
 	return record if typeof(record) == TYPE_DICTIONARY else {}
+
+
+func _source_text_info_status() -> String:
+	if _visible_windows.is_empty():
+		return "no_visible_windows"
+	for window_id in _visible_windows:
+		if _source_text_info(window_id).is_empty():
+			return "missing_generated_text_info"
+	return "generated_from_sTextOnWindowsInfo_Normal"
+
+
+func _text_printer_snapshot() -> Dictionary:
+	if _text_printer.is_empty():
+		return {}
+	return {
+		"status": String(_text_printer.get("status", "")),
+		"normal_window_text_info_count": int(_text_printer.get("normal_window_text_info_count", 0)),
+		"normal_windows_type": String(_text_printer.get("normal_windows_type", "")),
+		"message_effective_speed_source": String(_text_printer.get("message_effective_speed_source", "")),
+		"runtime_status": String(_text_printer.get("runtime_status", "")),
+	}
 
 
 func _load_interface_data() -> void:
@@ -310,6 +327,9 @@ func _load_interface_data() -> void:
 	var templates: Variant = _interface_data.get("window_templates", {})
 	if typeof(templates) == TYPE_DICTIONARY:
 		_window_templates = templates
+	var text_printer: Variant = _interface_data.get("text_printer", {})
+	if typeof(text_printer) == TYPE_DICTIONARY:
+		_text_printer = text_printer
 	var tilemaps: Variant = _interface_data.get("tilemaps", {})
 	var textbox_map: Variant = tilemaps.get("textbox_map", {}) if typeof(tilemaps) == TYPE_DICTIONARY else {}
 	var composite: Variant = textbox_map.get("tilemap_composite", {}) if typeof(textbox_map) == TYPE_DICTIONARY else {}

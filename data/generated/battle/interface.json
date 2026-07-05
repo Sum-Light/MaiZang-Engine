@@ -5,9 +5,14 @@
     "graphics/battle_interface",
     "src/graphics.c",
     "src/battle_bg.c",
+    "src/battle_message.c",
+    "src/text.c",
     "src/battle_interface.c",
     "src/battle_script_commands.c",
-    "src/data/graphics/gimmicks.h"
+    "src/data/graphics/gimmicks.h",
+    "include/config/battle.h",
+    "include/config/text.h",
+    "include/constants/global.h"
   ],
   "runtime_color_policy": {
     "status": "no_runtime_palette",
@@ -3565,6 +3570,47 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_MSG",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 15,
+        "fill_style": "message_panel",
+        "panel_style": "message_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 1,
+        "source_speed": "player_text_speed_delay",
+        "effective_speed_source": "BattlePutTextOnWindow:GetPlayerTextSpeedDelay_or_recorded_speed",
+        "can_ab_speed_up_print": true,
+        "text_material_id": "battle_text_primary",
+        "text_color_indices": {
+          "foreground": 1,
+          "background": 15,
+          "accent": 15,
+          "shadow": 6
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xF)",
+          "fontId": "FONT_NORMAL",
+          "x": "0",
+          "y": "1",
+          "speed": "1"
+        },
+        "raw_color_fields": {
+          "foreground": "1",
+          "background": "15",
+          "accent": "15",
+          "shadow": "6"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1520
+        }
       }
     },
     "B_WIN_ACTION_PROMPT": {
@@ -3595,6 +3641,47 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_ACTION_PROMPT",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 15,
+        "fill_style": "message_panel",
+        "panel_style": "message_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_primary",
+        "text_color_indices": {
+          "foreground": 1,
+          "background": 15,
+          "accent": 15,
+          "shadow": 6
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xF)",
+          "fontId": "FONT_NORMAL",
+          "x": "1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "1",
+          "background": "15",
+          "accent": "15",
+          "shadow": "6"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1531
+        }
       }
     },
     "B_WIN_ACTION_MENU": {
@@ -3625,6 +3712,47 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_ACTION_MENU",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1542
+        }
       }
     },
     "B_WIN_MOVE_NAME_1": {
@@ -3655,6 +3783,50 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_MOVE_NAME_1",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1553
+        },
+        "source_fit_width_px": 64,
+        "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit",
+        "zmove_source_fit_width_px": 128
       }
     },
     "B_WIN_MOVE_NAME_2": {
@@ -3685,6 +3857,49 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_MOVE_NAME_2",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1564
+        },
+        "source_fit_width_px": 64,
+        "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit"
       }
     },
     "B_WIN_MOVE_NAME_3": {
@@ -3715,6 +3930,49 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_MOVE_NAME_3",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1575
+        },
+        "source_fit_width_px": 64,
+        "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit"
       }
     },
     "B_WIN_MOVE_NAME_4": {
@@ -3745,6 +4003,49 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_MOVE_NAME_4",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1586
+        },
+        "source_fit_width_px": 64,
+        "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit"
       }
     },
     "B_WIN_PP": {
@@ -3775,6 +4076,47 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_PP",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "B_SHOW_EFFECTIVENESS != SHOW_EFFECTIVENESS_NEVER ? 13 : 12",
+          "background": "14",
+          "accent": "14",
+          "shadow": "B_SHOW_EFFECTIVENESS != SHOW_EFFECTIVENESS_NEVER ? 15 : 11"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1597
+        }
       }
     },
     "B_WIN_DUMMY": {
@@ -3790,7 +4132,48 @@
         "file": "src/battle_bg.c",
         "line": 228
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_DUMMY",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1608
+        }
+      }
     },
     "B_WIN_PP_REMAINING": {
       "symbol": "B_WIN_PP_REMAINING",
@@ -3820,6 +4203,47 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_PP_REMAINING",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 2,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_pp_numeric",
+        "text_color_indices": {
+          "foreground": 12,
+          "background": 14,
+          "accent": 14,
+          "shadow": 11
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "2",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "12",
+          "background": "14",
+          "accent": "14",
+          "shadow": "11"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1619
+        }
       }
     },
     "B_WIN_MOVE_TYPE": {
@@ -3850,6 +4274,47 @@
           "src/battle_bg.c:LoadBattleTextboxAndBackground",
           "src/battle_bg.c:sStandardBattleWindowTemplates"
         ]
+      },
+      "text_info": {
+        "symbol": "B_WIN_MOVE_TYPE",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1630
+        }
       }
     },
     "B_WIN_SWITCH_PROMPT": {
@@ -3865,7 +4330,48 @@
         "file": "src/battle_bg.c",
         "line": 255
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_SWITCH_PROMPT",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1641
+        }
+      }
     },
     "B_WIN_YESNO": {
       "symbol": "B_WIN_YESNO",
@@ -3880,7 +4386,48 @@
         "file": "src/battle_bg.c",
         "line": 264
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_YESNO",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1652
+        }
+      }
     },
     "B_WIN_LEVEL_UP_BOX": {
       "symbol": "B_WIN_LEVEL_UP_BOX",
@@ -3895,7 +4442,48 @@
         "file": "src/battle_bg.c",
         "line": 273
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_LEVEL_UP_BOX",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "0",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1663
+        }
+      }
     },
     "B_WIN_LEVEL_UP_BANNER": {
       "symbol": "B_WIN_LEVEL_UP_BANNER",
@@ -3910,7 +4498,44 @@
         "file": "src/battle_bg.c",
         "line": 282
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_LEVEL_UP_BANNER",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 0,
+        "fill_style": "transparent_or_banner",
+        "panel_style": "transparent_or_banner",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": 32,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 1,
+          "shadow": 2
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0)",
+          "fontId": "FONT_NORMAL",
+          "x": "32",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "1",
+          "shadow": "2"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1674
+        }
+      }
     },
     "B_WIN_VS_PLAYER": {
       "symbol": "B_WIN_VS_PLAYER",
@@ -3925,7 +4550,48 @@
         "file": "src/battle_bg.c",
         "line": 291
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_PLAYER",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1683
+        }
+      }
     },
     "B_WIN_VS_OPPONENT": {
       "symbol": "B_WIN_VS_OPPONENT",
@@ -3940,7 +4606,48 @@
         "file": "src/battle_bg.c",
         "line": 300
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_OPPONENT",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1694
+        }
+      }
     },
     "B_WIN_VS_MULTI_PLAYER_1": {
       "symbol": "B_WIN_VS_MULTI_PLAYER_1",
@@ -3955,7 +4662,48 @@
         "file": "src/battle_bg.c",
         "line": 309
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_MULTI_PLAYER_1",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1705
+        }
+      }
     },
     "B_WIN_VS_MULTI_PLAYER_2": {
       "symbol": "B_WIN_VS_MULTI_PLAYER_2",
@@ -3970,7 +4718,48 @@
         "file": "src/battle_bg.c",
         "line": 318
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_MULTI_PLAYER_2",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1716
+        }
+      }
     },
     "B_WIN_VS_MULTI_PLAYER_3": {
       "symbol": "B_WIN_VS_MULTI_PLAYER_3",
@@ -3985,7 +4774,48 @@
         "file": "src/battle_bg.c",
         "line": 327
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_MULTI_PLAYER_3",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1727
+        }
+      }
     },
     "B_WIN_VS_MULTI_PLAYER_4": {
       "symbol": "B_WIN_VS_MULTI_PLAYER_4",
@@ -4000,7 +4830,48 @@
         "file": "src/battle_bg.c",
         "line": 336
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_MULTI_PLAYER_4",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 13,
+          "background": 14,
+          "accent": 14,
+          "shadow": 15
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "13",
+          "background": "14",
+          "accent": "14",
+          "shadow": "15"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1738
+        }
+      }
     },
     "B_WIN_VS_OUTCOME_DRAW": {
       "symbol": "B_WIN_VS_OUTCOME_DRAW",
@@ -4015,7 +4886,44 @@
         "file": "src/battle_bg.c",
         "line": 345
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_OUTCOME_DRAW",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 0,
+        "fill_style": "transparent_or_banner",
+        "panel_style": "transparent_or_banner",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 1,
+          "shadow": 6
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "1",
+          "shadow": "6"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1749
+        }
+      }
     },
     "B_WIN_VS_OUTCOME_LEFT": {
       "symbol": "B_WIN_VS_OUTCOME_LEFT",
@@ -4030,7 +4938,44 @@
         "file": "src/battle_bg.c",
         "line": 354
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_OUTCOME_LEFT",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 0,
+        "fill_style": "transparent_or_banner",
+        "panel_style": "transparent_or_banner",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 1,
+          "shadow": 6
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "1",
+          "shadow": "6"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1758
+        }
+      }
     },
     "B_WIN_VS_OUTCOME_RIGHT": {
       "symbol": "B_WIN_VS_OUTCOME_RIGHT",
@@ -4045,7 +4990,44 @@
         "file": "src/battle_bg.c",
         "line": 363
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_VS_OUTCOME_RIGHT",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 0,
+        "fill_style": "transparent_or_banner",
+        "panel_style": "transparent_or_banner",
+        "font_id": "FONT_NORMAL",
+        "font_size": 8,
+        "text_x": -1,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": 1,
+          "shadow": 6
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0x0)",
+          "fontId": "FONT_NORMAL",
+          "x": "-1",
+          "y": "1",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "1",
+          "shadow": "6"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1767
+        }
+      }
     },
     "B_WIN_MOVE_DESCRIPTION": {
       "symbol": "B_WIN_MOVE_DESCRIPTION",
@@ -4060,8 +5042,1153 @@
         "file": "src/battle_bg.c",
         "line": 372
       },
-      "runtime_status": "metadata_only"
+      "runtime_status": "metadata_only",
+      "text_info": {
+        "symbol": "B_WIN_MOVE_DESCRIPTION",
+        "status": "generated_from_sTextOnWindowsInfo_Normal",
+        "fill_value_index": 14,
+        "fill_style": "menu_panel",
+        "panel_style": "menu_panel",
+        "font_id": "FONT_NARROW",
+        "font_size": 8,
+        "text_x": 0,
+        "text_y": 1,
+        "letter_spacing": 0,
+        "line_spacing": 0,
+        "table_speed": 0,
+        "source_speed": 0,
+        "effective_speed_source": "table_speed",
+        "can_ab_speed_up_print": false,
+        "text_material_id": "battle_text_menu",
+        "text_color_indices": {
+          "foreground": "TEXT_DYNAMIC_COLOR_4",
+          "background": "TEXT_DYNAMIC_COLOR_5",
+          "accent": "TEXT_DYNAMIC_COLOR_5",
+          "shadow": "TEXT_DYNAMIC_COLOR_6"
+        },
+        "raw_fields": {
+          "fillValue": "PIXEL_FILL(0xE)",
+          "fontId": "FONT_NARROW",
+          "x": "0",
+          "y": "1",
+          "letterSpacing": "0",
+          "lineSpacing": "0",
+          "speed": "0"
+        },
+        "raw_color_fields": {
+          "foreground": "TEXT_DYNAMIC_COLOR_4",
+          "background": "TEXT_DYNAMIC_COLOR_5",
+          "accent": "TEXT_DYNAMIC_COLOR_5",
+          "shadow": "TEXT_DYNAMIC_COLOR_6"
+        },
+        "source": {
+          "file": "src/battle_message.c",
+          "line": 1776
+        }
+      }
     }
+  },
+  "window_text_info_order": [
+    "B_WIN_ACTION_MENU",
+    "B_WIN_ACTION_PROMPT",
+    "B_WIN_DUMMY",
+    "B_WIN_LEVEL_UP_BANNER",
+    "B_WIN_LEVEL_UP_BOX",
+    "B_WIN_MOVE_DESCRIPTION",
+    "B_WIN_MOVE_NAME_1",
+    "B_WIN_MOVE_NAME_2",
+    "B_WIN_MOVE_NAME_3",
+    "B_WIN_MOVE_NAME_4",
+    "B_WIN_MOVE_TYPE",
+    "B_WIN_MSG",
+    "B_WIN_PP",
+    "B_WIN_PP_REMAINING",
+    "B_WIN_SWITCH_PROMPT",
+    "B_WIN_VS_MULTI_PLAYER_1",
+    "B_WIN_VS_MULTI_PLAYER_2",
+    "B_WIN_VS_MULTI_PLAYER_3",
+    "B_WIN_VS_MULTI_PLAYER_4",
+    "B_WIN_VS_OPPONENT",
+    "B_WIN_VS_OUTCOME_DRAW",
+    "B_WIN_VS_OUTCOME_LEFT",
+    "B_WIN_VS_OUTCOME_RIGHT",
+    "B_WIN_VS_PLAYER",
+    "B_WIN_YESNO"
+  ],
+  "window_text_info": {
+    "B_WIN_MSG": {
+      "symbol": "B_WIN_MSG",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 15,
+      "fill_style": "message_panel",
+      "panel_style": "message_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 1,
+      "source_speed": "player_text_speed_delay",
+      "effective_speed_source": "BattlePutTextOnWindow:GetPlayerTextSpeedDelay_or_recorded_speed",
+      "can_ab_speed_up_print": true,
+      "text_material_id": "battle_text_primary",
+      "text_color_indices": {
+        "foreground": 1,
+        "background": 15,
+        "accent": 15,
+        "shadow": 6
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xF)",
+        "fontId": "FONT_NORMAL",
+        "x": "0",
+        "y": "1",
+        "speed": "1"
+      },
+      "raw_color_fields": {
+        "foreground": "1",
+        "background": "15",
+        "accent": "15",
+        "shadow": "6"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1520
+      }
+    },
+    "B_WIN_ACTION_PROMPT": {
+      "symbol": "B_WIN_ACTION_PROMPT",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 15,
+      "fill_style": "message_panel",
+      "panel_style": "message_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_primary",
+      "text_color_indices": {
+        "foreground": 1,
+        "background": 15,
+        "accent": 15,
+        "shadow": 6
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xF)",
+        "fontId": "FONT_NORMAL",
+        "x": "1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "1",
+        "background": "15",
+        "accent": "15",
+        "shadow": "6"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1531
+      }
+    },
+    "B_WIN_ACTION_MENU": {
+      "symbol": "B_WIN_ACTION_MENU",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1542
+      }
+    },
+    "B_WIN_MOVE_NAME_1": {
+      "symbol": "B_WIN_MOVE_NAME_1",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1553
+      },
+      "source_fit_width_px": 64,
+      "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit",
+      "zmove_source_fit_width_px": 128
+    },
+    "B_WIN_MOVE_NAME_2": {
+      "symbol": "B_WIN_MOVE_NAME_2",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1564
+      },
+      "source_fit_width_px": 64,
+      "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit"
+    },
+    "B_WIN_MOVE_NAME_3": {
+      "symbol": "B_WIN_MOVE_NAME_3",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1575
+      },
+      "source_fit_width_px": 64,
+      "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit"
+    },
+    "B_WIN_MOVE_NAME_4": {
+      "symbol": "B_WIN_MOVE_NAME_4",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1586
+      },
+      "source_fit_width_px": 64,
+      "source_fit_width_rule": "BattlePutTextOnWindow:GetFontIdToFit"
+    },
+    "B_WIN_PP": {
+      "symbol": "B_WIN_PP",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "B_SHOW_EFFECTIVENESS != SHOW_EFFECTIVENESS_NEVER ? 13 : 12",
+        "background": "14",
+        "accent": "14",
+        "shadow": "B_SHOW_EFFECTIVENESS != SHOW_EFFECTIVENESS_NEVER ? 15 : 11"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1597
+      }
+    },
+    "B_WIN_DUMMY": {
+      "symbol": "B_WIN_DUMMY",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1608
+      }
+    },
+    "B_WIN_PP_REMAINING": {
+      "symbol": "B_WIN_PP_REMAINING",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 2,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_pp_numeric",
+      "text_color_indices": {
+        "foreground": 12,
+        "background": 14,
+        "accent": 14,
+        "shadow": 11
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "2",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "12",
+        "background": "14",
+        "accent": "14",
+        "shadow": "11"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1619
+      }
+    },
+    "B_WIN_MOVE_TYPE": {
+      "symbol": "B_WIN_MOVE_TYPE",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1630
+      }
+    },
+    "B_WIN_SWITCH_PROMPT": {
+      "symbol": "B_WIN_SWITCH_PROMPT",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1641
+      }
+    },
+    "B_WIN_YESNO": {
+      "symbol": "B_WIN_YESNO",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1652
+      }
+    },
+    "B_WIN_LEVEL_UP_BOX": {
+      "symbol": "B_WIN_LEVEL_UP_BOX",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "0",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1663
+      }
+    },
+    "B_WIN_LEVEL_UP_BANNER": {
+      "symbol": "B_WIN_LEVEL_UP_BANNER",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 0,
+      "fill_style": "transparent_or_banner",
+      "panel_style": "transparent_or_banner",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": 32,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 1,
+        "shadow": 2
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0)",
+        "fontId": "FONT_NORMAL",
+        "x": "32",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "1",
+        "shadow": "2"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1674
+      }
+    },
+    "B_WIN_VS_PLAYER": {
+      "symbol": "B_WIN_VS_PLAYER",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1683
+      }
+    },
+    "B_WIN_VS_OPPONENT": {
+      "symbol": "B_WIN_VS_OPPONENT",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1694
+      }
+    },
+    "B_WIN_VS_MULTI_PLAYER_1": {
+      "symbol": "B_WIN_VS_MULTI_PLAYER_1",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1705
+      }
+    },
+    "B_WIN_VS_MULTI_PLAYER_2": {
+      "symbol": "B_WIN_VS_MULTI_PLAYER_2",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1716
+      }
+    },
+    "B_WIN_VS_MULTI_PLAYER_3": {
+      "symbol": "B_WIN_VS_MULTI_PLAYER_3",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1727
+      }
+    },
+    "B_WIN_VS_MULTI_PLAYER_4": {
+      "symbol": "B_WIN_VS_MULTI_PLAYER_4",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 13,
+        "background": 14,
+        "accent": 14,
+        "shadow": 15
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "13",
+        "background": "14",
+        "accent": "14",
+        "shadow": "15"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1738
+      }
+    },
+    "B_WIN_VS_OUTCOME_DRAW": {
+      "symbol": "B_WIN_VS_OUTCOME_DRAW",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 0,
+      "fill_style": "transparent_or_banner",
+      "panel_style": "transparent_or_banner",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 1,
+        "shadow": 6
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "1",
+        "shadow": "6"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1749
+      }
+    },
+    "B_WIN_VS_OUTCOME_LEFT": {
+      "symbol": "B_WIN_VS_OUTCOME_LEFT",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 0,
+      "fill_style": "transparent_or_banner",
+      "panel_style": "transparent_or_banner",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 1,
+        "shadow": 6
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "1",
+        "shadow": "6"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1758
+      }
+    },
+    "B_WIN_VS_OUTCOME_RIGHT": {
+      "symbol": "B_WIN_VS_OUTCOME_RIGHT",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 0,
+      "fill_style": "transparent_or_banner",
+      "panel_style": "transparent_or_banner",
+      "font_id": "FONT_NORMAL",
+      "font_size": 8,
+      "text_x": -1,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": 1,
+        "shadow": 6
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0x0)",
+        "fontId": "FONT_NORMAL",
+        "x": "-1",
+        "y": "1",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "1",
+        "shadow": "6"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1767
+      }
+    },
+    "B_WIN_MOVE_DESCRIPTION": {
+      "symbol": "B_WIN_MOVE_DESCRIPTION",
+      "status": "generated_from_sTextOnWindowsInfo_Normal",
+      "fill_value_index": 14,
+      "fill_style": "menu_panel",
+      "panel_style": "menu_panel",
+      "font_id": "FONT_NARROW",
+      "font_size": 8,
+      "text_x": 0,
+      "text_y": 1,
+      "letter_spacing": 0,
+      "line_spacing": 0,
+      "table_speed": 0,
+      "source_speed": 0,
+      "effective_speed_source": "table_speed",
+      "can_ab_speed_up_print": false,
+      "text_material_id": "battle_text_menu",
+      "text_color_indices": {
+        "foreground": "TEXT_DYNAMIC_COLOR_4",
+        "background": "TEXT_DYNAMIC_COLOR_5",
+        "accent": "TEXT_DYNAMIC_COLOR_5",
+        "shadow": "TEXT_DYNAMIC_COLOR_6"
+      },
+      "raw_fields": {
+        "fillValue": "PIXEL_FILL(0xE)",
+        "fontId": "FONT_NARROW",
+        "x": "0",
+        "y": "1",
+        "letterSpacing": "0",
+        "lineSpacing": "0",
+        "speed": "0"
+      },
+      "raw_color_fields": {
+        "foreground": "TEXT_DYNAMIC_COLOR_4",
+        "background": "TEXT_DYNAMIC_COLOR_5",
+        "accent": "TEXT_DYNAMIC_COLOR_5",
+        "shadow": "TEXT_DYNAMIC_COLOR_6"
+      },
+      "source": {
+        "file": "src/battle_message.c",
+        "line": 1776
+      }
+    }
+  },
+  "text_printer": {
+    "status": "metadata_only",
+    "normal_window_text_info_count": 25,
+    "source_trace": [
+      "src/battle_message.c:sTextOnWindowsInfo_Normal",
+      "src/battle_message.c:sBattleTextOnWindowsInfo",
+      "src/battle_message.c:BattlePutTextOnWindow",
+      "src/text.c:GetPlayerTextSpeedDelay",
+      "src/text.c:AddTextPrinter"
+    ],
+    "normal_windows_type": "B_WIN_TYPE_NORMAL",
+    "message_speed_windows": [
+      "B_WIN_MSG",
+      "ARENA_WIN_JUDGMENT_TEXT",
+      "B_WIN_OAK_OLD_MAN"
+    ],
+    "message_effective_speed_source": "GetPlayerTextSpeedDelay unless link/recorded battle overrides apply",
+    "recorded_battle_text_speeds": [
+      8,
+      4,
+      1,
+      0
+    ],
+    "player_text_speed": {
+      "frame_delays": {
+        "OPTIONS_TEXT_SPEED_SLOW": 8,
+        "OPTIONS_TEXT_SPEED_MID": 4,
+        "OPTIONS_TEXT_SPEED_FAST": 1,
+        "OPTIONS_TEXT_SPEED_INSTANT": 1
+      },
+      "modifiers": {
+        "OPTIONS_TEXT_SPEED_SLOW": 1,
+        "OPTIONS_TEXT_SPEED_MID": 1,
+        "OPTIONS_TEXT_SPEED_FAST": 1,
+        "OPTIONS_TEXT_SPEED_INSTANT": 12
+      },
+      "scroll_speeds": {
+        "OPTIONS_TEXT_SPEED_SLOW": 1,
+        "OPTIONS_TEXT_SPEED_MID": 2,
+        "OPTIONS_TEXT_SPEED_FAST": 4,
+        "OPTIONS_TEXT_SPEED_INSTANT": 6
+      },
+      "source": {
+        "file": "src/text.c"
+      }
+    },
+    "copy_to_vram_rule": "B_WIN_COPYTOVRAM skips FillWindowPixelBuffer and final PutWindowTilemap/CopyWindowToVram; normal calls fill then copy full window",
+    "runtime_status": "metadata_only",
+    "unsupported": [
+      "battle_text_printer_timing_pending",
+      "battle_text_glyph_renderer_pending"
+    ]
   },
   "sections": {
     "textbox": {
@@ -4348,6 +6475,7 @@
     "tilemap_composite_count": 1,
     "window_template_count": 25,
     "window_template_composite_rect_count": 10,
+    "battle_window_text_info_count": 25,
     "healthbox_coord_group_count": 2,
     "healthbox_frame_texture_count": 5,
     "healthbox_element_texture_count": 13,
