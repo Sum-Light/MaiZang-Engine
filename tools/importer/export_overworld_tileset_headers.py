@@ -7,7 +7,7 @@ import re
 import sys
 from pathlib import Path
 
-from export_map import MAPGRID_METATILE_ID_MASK, read_u16le_file, write_json, write_manifest
+from export_map import MAPGRID_METATILE_ID_MASK, load_map_group_index, read_u16le_file, write_json, write_manifest
 from export_overworld_metatile_behavior_trace import parse_metatile_constants, parse_tile_bit_attributes
 from source_probe import load_config, path_status, symbol_to_tileset_dir, to_project_path
 
@@ -1772,6 +1772,412 @@ def source_layout_tileset_pairs(source_root):
     }
 
 
+def source_map_refs_by_layout(source_root):
+    groups_path = Path("data/maps/map_groups.json")
+    if not (source_root / groups_path).exists():
+        return {
+            "status": "missing_source_file",
+            "source": path_status(source_root, groups_path),
+            "map_count": 0,
+            "layout_with_map_count": 0,
+            "maps": [],
+            "maps_by_layout": {},
+        }
+
+    index = load_map_group_index(source_root)
+    maps_root = source_root / "data/maps"
+    map_paths = sorted(maps_root.glob("*/map.json"), key=lambda path: path.parent.name)
+    maps = []
+    maps_by_layout = {}
+    for map_path in map_paths:
+        map_folder = map_path.parent.name
+        metadata = index.get("by_folder", {}).get(map_folder, {})
+        map_data = json.loads(read_text(map_path))
+        layout_id = map_data.get("layout")
+        row = {
+            "map_id": map_data.get("id"),
+            "map_name": map_data.get("name"),
+            "map_folder": map_folder,
+            "layout_id": layout_id,
+            "region_map_section": map_data.get("region_map_section"),
+            "map_group_symbol": metadata.get("map_group_symbol"),
+            "map_group_index": metadata.get("map_group_index"),
+            "map_num": metadata.get("map_num"),
+            "map_constant_value": metadata.get("map_constant_value"),
+            "source_grouped": map_folder in index.get("by_folder", {}),
+        }
+        maps.append(row)
+        if layout_id:
+            maps_by_layout.setdefault(layout_id, []).append(row)
+
+    sort_key = lambda row: (
+        row.get("map_group_index") if row.get("map_group_index") is not None else 9999,
+        row.get("map_num") if row.get("map_num") is not None else 9999,
+        row.get("map_folder") or "",
+        row.get("map_id") or "",
+    )
+    for layout_id in maps_by_layout:
+        maps_by_layout[layout_id] = sorted(maps_by_layout[layout_id], key=sort_key)
+    return {
+        "status": "decoded_import_metadata",
+        "source": path_status(source_root, groups_path),
+        "map_count": len(maps),
+        "grouped_map_count": sum(1 for row in maps if row.get("source_grouped")),
+        "ungrouped_map_count": sum(1 for row in maps if not row.get("source_grouped")),
+        "ungrouped_map_folders": sorted(
+            row["map_folder"]
+            for row in maps
+            if not row.get("source_grouped")
+        ),
+        "layout_with_map_count": len(maps_by_layout),
+        "maps": sorted(maps, key=sort_key),
+        "maps_by_layout": maps_by_layout,
+    }
+
+
+def tileset_callback_descriptor(header):
+    if not header:
+        return {
+            "header_found": False,
+            "kind": "missing",
+            "active_in_emerald": False,
+            "callback_symbol": None,
+            "has_callback": False,
+            "callback_status": "missing_header",
+            "callback_source": None,
+            "callback_source_found": False,
+        }
+    callback = header.get("callback", {})
+    return {
+        "header_found": True,
+        "kind": header.get("kind"),
+        "active_in_emerald": header.get("active_in_emerald"),
+        "callback_symbol": callback.get("symbol") if callback.get("has_callback") else None,
+        "has_callback": bool(callback.get("has_callback")),
+        "callback_status": callback.get("status"),
+        "callback_source": callback.get("source"),
+        "callback_source_found": bool(callback.get("source_found")),
+    }
+
+
+def role_usage_template():
+    return {
+        "primary": 0,
+        "secondary": 0,
+    }
+
+
+def sorted_set(values):
+    return sorted(value for value in values if value is not None)
+
+
+def build_tileset_callback_map_report(source_root, records):
+    layouts = source_layout_rows(source_root)
+    map_refs = source_map_refs_by_layout(source_root)
+    maps_by_layout = map_refs.get("maps_by_layout", {})
+    rows_by_symbol = {
+        row["symbol"]: row
+        for row in records
+    }
+    tilesets = {}
+    callbacks = {}
+    pairs = {}
+    layout_rows = []
+    role_count = 0
+    primary_role_count = 0
+    secondary_role_count = 0
+
+    def ensure_tileset_row(symbol, header):
+        descriptor = tileset_callback_descriptor(header)
+        row = tilesets.setdefault(symbol, {
+            "tileset": symbol,
+            "header_found": descriptor["header_found"],
+            "kind": descriptor["kind"],
+            "active_in_emerald": descriptor["active_in_emerald"],
+            "callback_symbol": descriptor["callback_symbol"],
+            "has_callback": descriptor["has_callback"],
+            "callback_status": descriptor["callback_status"],
+            "callback_source": descriptor["callback_source"],
+            "callback_source_found": descriptor["callback_source_found"],
+            "role_usage_counts": role_usage_template(),
+            "layout_ids": set(),
+            "map_ids": set(),
+            "layout_pair_keys": set(),
+            "standalone_layout_ids": set(),
+        })
+        return row
+
+    def ensure_callback_row(symbol, callback_source, callback_source_found):
+        return callbacks.setdefault(symbol, {
+            "callback_symbol": symbol,
+            "source": callback_source,
+            "source_found": callback_source_found,
+            "role_usage_counts": role_usage_template(),
+            "tilesets": {},
+            "layout_ids": set(),
+            "map_ids": set(),
+            "layout_pair_keys": set(),
+            "standalone_layout_ids": set(),
+        })
+
+    for layout in layouts:
+        layout_id = layout.get("id")
+        primary_symbol = layout.get("primary_tileset")
+        secondary_symbol = layout.get("secondary_tileset")
+        if not layout_id or not primary_symbol or not secondary_symbol:
+            continue
+        pair_key = "{}+{}".format(primary_symbol, secondary_symbol)
+        layout_maps = maps_by_layout.get(layout_id, [])
+        map_ids = sorted_set(row.get("map_id") for row in layout_maps)
+        primary_header = rows_by_symbol.get(primary_symbol)
+        secondary_header = rows_by_symbol.get(secondary_symbol)
+        primary_descriptor = tileset_callback_descriptor(primary_header)
+        secondary_descriptor = tileset_callback_descriptor(secondary_header)
+        layout_rows.append({
+            "layout_id": layout_id,
+            "layout_name": layout.get("name"),
+            "layout_version": layout.get("layout_version"),
+            "primary_tileset": primary_symbol,
+            "secondary_tileset": secondary_symbol,
+            "primary_callback_symbol": primary_descriptor["callback_symbol"],
+            "secondary_callback_symbol": secondary_descriptor["callback_symbol"],
+            "primary_has_callback": primary_descriptor["has_callback"],
+            "secondary_has_callback": secondary_descriptor["has_callback"],
+            "map_count": len(map_ids),
+            "map_ids": map_ids,
+        })
+
+        pair = pairs.setdefault(pair_key, {
+            "pair_key": pair_key,
+            "primary_tileset": primary_symbol,
+            "secondary_tileset": secondary_symbol,
+            "primary_callback_symbol": primary_descriptor["callback_symbol"],
+            "secondary_callback_symbol": secondary_descriptor["callback_symbol"],
+            "primary_has_callback": primary_descriptor["has_callback"],
+            "secondary_has_callback": secondary_descriptor["has_callback"],
+            "primary_header_found": primary_descriptor["header_found"],
+            "secondary_header_found": secondary_descriptor["header_found"],
+            "layout_ids": set(),
+            "layout_versions": {},
+            "map_ids": set(),
+            "standalone_layout_ids": set(),
+        })
+        pair["layout_ids"].add(layout_id)
+        if map_ids:
+            pair["map_ids"].update(map_ids)
+        else:
+            pair["standalone_layout_ids"].add(layout_id)
+        version = str(layout.get("layout_version"))
+        pair["layout_versions"][version] = pair["layout_versions"].get(version, 0) + 1
+
+        for role, symbol, header in [
+            ("primary", primary_symbol, primary_header),
+            ("secondary", secondary_symbol, secondary_header),
+        ]:
+            role_count += 1
+            if role == "primary":
+                primary_role_count += 1
+            else:
+                secondary_role_count += 1
+            tileset_row = ensure_tileset_row(symbol, header)
+            tileset_row["role_usage_counts"][role] += 1
+            tileset_row["layout_ids"].add(layout_id)
+            tileset_row["layout_pair_keys"].add(pair_key)
+            if map_ids:
+                tileset_row["map_ids"].update(map_ids)
+            else:
+                tileset_row["standalone_layout_ids"].add(layout_id)
+
+            descriptor = tileset_callback_descriptor(header)
+            if not descriptor["has_callback"]:
+                continue
+            callback_row = ensure_callback_row(
+                descriptor["callback_symbol"],
+                descriptor["callback_source"],
+                descriptor["callback_source_found"],
+            )
+            callback_row["role_usage_counts"][role] += 1
+            callback_row["layout_ids"].add(layout_id)
+            callback_row["layout_pair_keys"].add(pair_key)
+            if map_ids:
+                callback_row["map_ids"].update(map_ids)
+            else:
+                callback_row["standalone_layout_ids"].add(layout_id)
+            callback_tileset = callback_row["tilesets"].setdefault(symbol, {
+                "tileset": symbol,
+                "kind": descriptor["kind"],
+                "active_in_emerald": descriptor["active_in_emerald"],
+                "role_usage_counts": role_usage_template(),
+                "layout_ids": set(),
+                "map_ids": set(),
+            })
+            callback_tileset["role_usage_counts"][role] += 1
+            callback_tileset["layout_ids"].add(layout_id)
+            callback_tileset["map_ids"].update(map_ids)
+
+    tileset_rows = []
+    for symbol in sorted(tilesets):
+        row = tilesets[symbol]
+        layout_ids = sorted_set(row["layout_ids"])
+        map_ids = sorted_set(row["map_ids"])
+        standalone_layout_ids = sorted_set(row["standalone_layout_ids"])
+        tileset_rows.append({
+            "tileset": row["tileset"],
+            "header_found": row["header_found"],
+            "kind": row["kind"],
+            "active_in_emerald": row["active_in_emerald"],
+            "callback_symbol": row["callback_symbol"],
+            "has_callback": row["has_callback"],
+            "callback_status": row["callback_status"],
+            "callback_source": row["callback_source"],
+            "callback_source_found": row["callback_source_found"],
+            "role_usage_counts": dict(row["role_usage_counts"]),
+            "layout_count": len(layout_ids),
+            "map_count": len(map_ids),
+            "standalone_layout_count": len(standalone_layout_ids),
+            "layout_ids": layout_ids,
+            "map_ids": map_ids,
+            "standalone_layout_ids": standalone_layout_ids,
+            "layout_pair_keys": sorted_set(row["layout_pair_keys"]),
+        })
+
+    callback_rows = []
+    for symbol in sorted(callbacks):
+        row = callbacks[symbol]
+        layout_ids = sorted_set(row["layout_ids"])
+        map_ids = sorted_set(row["map_ids"])
+        standalone_layout_ids = sorted_set(row["standalone_layout_ids"])
+        callback_tilesets = []
+        for tileset_symbol in sorted(row["tilesets"]):
+            tileset_row = row["tilesets"][tileset_symbol]
+            tileset_layout_ids = sorted_set(tileset_row["layout_ids"])
+            tileset_map_ids = sorted_set(tileset_row["map_ids"])
+            callback_tilesets.append({
+                "tileset": tileset_symbol,
+                "kind": tileset_row["kind"],
+                "active_in_emerald": tileset_row["active_in_emerald"],
+                "role_usage_counts": dict(tileset_row["role_usage_counts"]),
+                "layout_count": len(tileset_layout_ids),
+                "map_count": len(tileset_map_ids),
+                "layout_ids": tileset_layout_ids,
+                "map_ids": tileset_map_ids,
+            })
+        callback_rows.append({
+            "callback_symbol": symbol,
+            "source": row["source"],
+            "source_found": row["source_found"],
+            "role_usage_counts": dict(row["role_usage_counts"]),
+            "tileset_count": len(callback_tilesets),
+            "tilesets": callback_tilesets,
+            "layout_count": len(layout_ids),
+            "map_count": len(map_ids),
+            "standalone_layout_count": len(standalone_layout_ids),
+            "layout_ids": layout_ids,
+            "map_ids": map_ids,
+            "standalone_layout_ids": standalone_layout_ids,
+            "layout_pair_keys": sorted_set(row["layout_pair_keys"]),
+        })
+
+    pair_rows = []
+    for pair_key in sorted(pairs):
+        row = pairs[pair_key]
+        layout_ids = sorted_set(row["layout_ids"])
+        map_ids = sorted_set(row["map_ids"])
+        standalone_layout_ids = sorted_set(row["standalone_layout_ids"])
+        pair_rows.append({
+            "pair_key": row["pair_key"],
+            "primary_tileset": row["primary_tileset"],
+            "secondary_tileset": row["secondary_tileset"],
+            "primary_callback_symbol": row["primary_callback_symbol"],
+            "secondary_callback_symbol": row["secondary_callback_symbol"],
+            "primary_has_callback": row["primary_has_callback"],
+            "secondary_has_callback": row["secondary_has_callback"],
+            "primary_header_found": row["primary_header_found"],
+            "secondary_header_found": row["secondary_header_found"],
+            "layout_count": len(layout_ids),
+            "map_count": len(map_ids),
+            "standalone_layout_count": len(standalone_layout_ids),
+            "layout_ids": layout_ids,
+            "map_ids": map_ids,
+            "standalone_layout_ids": standalone_layout_ids,
+            "layout_versions": dict(sorted(row["layout_versions"].items())),
+        })
+
+    layout_with_map_count = len({
+        row["layout_id"]
+        for row in layout_rows
+        if row.get("map_count", 0) > 0
+    })
+    missing_header_tilesets = [
+        row["tileset"]
+        for row in tileset_rows
+        if not row["header_found"]
+    ]
+    return {
+        "status": "decoded_import_metadata" if layouts else "no_source_layouts",
+        "runtime_tileset_animation_required": False,
+        "source": {
+            "headers": path_status(source_root, Path("src/data/tilesets/headers.h")),
+            "layouts": path_status(source_root, LAYOUTS_JSON),
+            "maps": map_refs.get("source"),
+            "tileset_animation_callbacks": path_status(source_root, Path("src/tileset_anims.c")),
+        },
+        "source_trace": [
+            {
+                "path": "src/data/tilesets/headers.h",
+                "symbols": ["struct Tileset.callback", "struct Tileset.isSecondary"],
+            },
+            {
+                "path": "data/layouts/layouts.json",
+                "fields": ["primary_tileset", "secondary_tileset"],
+            },
+            {
+                "path": "data/maps/map_groups.json",
+                "fields": ["map group order", "map folder order"],
+            },
+            {
+                "path": "data/maps/*/map.json",
+                "fields": ["id", "name", "layout", "region_map_section"],
+            },
+        ],
+        "layout_count": len(layout_rows),
+        "map_count": map_refs.get("map_count", 0),
+        "grouped_map_count": map_refs.get("grouped_map_count", 0),
+        "ungrouped_map_count": map_refs.get("ungrouped_map_count", 0),
+        "ungrouped_map_folders": map_refs.get("ungrouped_map_folders", []),
+        "layout_with_map_count": layout_with_map_count,
+        "standalone_layout_count": len(layout_rows) - layout_with_map_count,
+        "pair_count": len(pair_rows),
+        "layout_role_count": role_count,
+        "primary_layout_role_count": primary_role_count,
+        "secondary_layout_role_count": secondary_role_count,
+        "tileset_usage_count": len(tileset_rows),
+        "primary_tileset_usage_count": len({
+            row["primary_tileset"]
+            for row in layout_rows
+        }),
+        "secondary_tileset_usage_count": len({
+            row["secondary_tileset"]
+            for row in layout_rows
+        }),
+        "tileset_with_callback_count": sum(1 for row in tileset_rows if row["has_callback"]),
+        "null_callback_tileset_count": sum(
+            1
+            for row in tileset_rows
+            if row["header_found"] and not row["has_callback"]
+        ),
+        "missing_header_tileset_count": len(missing_header_tilesets),
+        "missing_header_tilesets": missing_header_tilesets,
+        "callback_symbol_count": len(callback_rows),
+        "callback_with_map_count": sum(1 for row in callback_rows if row["map_count"] > 0),
+        "maps": map_refs.get("maps", []),
+        "layouts": sorted(layout_rows, key=lambda row: row["layout_id"]),
+        "layout_pairs": pair_rows,
+        "tilesets": tileset_rows,
+        "callbacks": callback_rows,
+    }
+
+
 def build_metatile_label_pair_lookup(source_root, records, label_rules):
     source_pairs = source_layout_tileset_pairs(source_root)
     rows_by_symbol = {
@@ -2828,6 +3234,7 @@ def build_stats(
     metatile_label_pair_lookup=None,
     metatile_map_reference_report=None,
     metatile_tile_image_reference_report=None,
+    tileset_callback_map_report=None,
 ):
     animation_frames = animation_frames or []
     init_functions = init_functions or []
@@ -2835,6 +3242,7 @@ def build_stats(
     metatile_label_pair_lookup = metatile_label_pair_lookup or {}
     metatile_map_reference_report = metatile_map_reference_report or {}
     metatile_tile_image_reference_report = metatile_tile_image_reference_report or {}
+    tileset_callback_map_report = tileset_callback_map_report or {}
     active = [row for row in records if row["active_in_emerald"]]
     callbacks = [row["callback"]["symbol"] for row in records if row["callback"]["has_callback"]]
     active_callbacks = [row["callback"]["symbol"] for row in active if row["callback"]["has_callback"]]
@@ -3033,6 +3441,38 @@ def build_stats(
         "null_callback_count": sum(1 for row in records if not row["callback"]["has_callback"]),
         "active_callback_symbol_count": len(set(active_callbacks)),
         "active_callback_binding_count": len(active_callbacks),
+        "callback_map_layout_count": int(tileset_callback_map_report.get("layout_count", 0)),
+        "callback_map_map_count": int(tileset_callback_map_report.get("map_count", 0)),
+        "callback_map_grouped_map_count": int(tileset_callback_map_report.get("grouped_map_count", 0)),
+        "callback_map_ungrouped_map_count": int(tileset_callback_map_report.get("ungrouped_map_count", 0)),
+        "callback_map_layout_with_map_count": int(tileset_callback_map_report.get("layout_with_map_count", 0)),
+        "callback_map_standalone_layout_count": int(tileset_callback_map_report.get("standalone_layout_count", 0)),
+        "callback_map_pair_count": int(tileset_callback_map_report.get("pair_count", 0)),
+        "callback_map_layout_role_count": int(tileset_callback_map_report.get("layout_role_count", 0)),
+        "callback_map_primary_layout_role_count": int(
+            tileset_callback_map_report.get("primary_layout_role_count", 0)
+        ),
+        "callback_map_secondary_layout_role_count": int(
+            tileset_callback_map_report.get("secondary_layout_role_count", 0)
+        ),
+        "callback_map_tileset_usage_count": int(tileset_callback_map_report.get("tileset_usage_count", 0)),
+        "callback_map_primary_tileset_usage_count": int(
+            tileset_callback_map_report.get("primary_tileset_usage_count", 0)
+        ),
+        "callback_map_secondary_tileset_usage_count": int(
+            tileset_callback_map_report.get("secondary_tileset_usage_count", 0)
+        ),
+        "callback_map_tileset_with_callback_count": int(
+            tileset_callback_map_report.get("tileset_with_callback_count", 0)
+        ),
+        "callback_map_null_callback_tileset_count": int(
+            tileset_callback_map_report.get("null_callback_tileset_count", 0)
+        ),
+        "callback_map_missing_header_tileset_count": int(
+            tileset_callback_map_report.get("missing_header_tileset_count", 0)
+        ),
+        "callback_map_callback_symbol_count": int(tileset_callback_map_report.get("callback_symbol_count", 0)),
+        "callback_map_callback_with_map_count": int(tileset_callback_map_report.get("callback_with_map_count", 0)),
         "asset_field_count": len(asset_groups),
         "missing_asset_declaration_count": len(missing_declarations),
         "missing_asset_declarations": missing_declarations,
@@ -3440,6 +3880,11 @@ def manifest_entry_for(exported, output_path):
         "primary_header_count": stats["primary_header_count"],
         "secondary_header_count": stats["secondary_header_count"],
         "callback_symbol_count": stats["callback_symbol_count"],
+        "callback_map_layout_count": stats["callback_map_layout_count"],
+        "callback_map_map_count": stats["callback_map_map_count"],
+        "callback_map_pair_count": stats["callback_map_pair_count"],
+        "callback_map_callback_symbol_count": stats["callback_map_callback_symbol_count"],
+        "callback_map_tileset_usage_count": stats["callback_map_tileset_usage_count"],
         "palette_slot_mapping_count": stats["palette_slot_mapping_count"],
         "palette_existing_editable_source_candidate_count": stats["palette_existing_editable_source_candidate_count"],
         "palette_missing_editable_source_candidate_count": stats["palette_missing_editable_source_candidate_count"],
@@ -3518,6 +3963,10 @@ def build_export(source_root):
         source_root,
         records,
     )
+    tileset_callback_map_report = build_tileset_callback_map_report(
+        source_root,
+        records,
+    )
     stats = build_stats(
         source_files,
         records,
@@ -3527,6 +3976,7 @@ def build_export(source_root):
         metatile_label_pair_lookup,
         metatile_map_reference_report,
         metatile_tile_image_reference_report,
+        tileset_callback_map_report,
     )
     return {
         "schema_version": 1,
@@ -3538,6 +3988,7 @@ def build_export(source_root):
         "metatile_attribute_rules": metatile_attribute_rules,
         "metatile_label_rules": metatile_label_rules,
         "metatile_label_pair_lookup": metatile_label_pair_lookup,
+        "tileset_callback_map_report": tileset_callback_map_report,
         "metatile_map_reference_report": metatile_map_reference_report,
         "metatile_tile_image_reference_report": metatile_tile_image_reference_report,
         "tileset_headers": records,

@@ -808,6 +808,42 @@ def build_export(source_root, output_root):
     tileset_header_missing_callback_source_count = int(
         tileset_header_stats.get("missing_callback_source_count", 0)
     )
+    tileset_callback_map_layout_count = int(
+        tileset_header_stats.get("callback_map_layout_count", 0)
+    )
+    tileset_callback_map_map_count = int(
+        tileset_header_stats.get("callback_map_map_count", 0)
+    )
+    tileset_callback_map_grouped_map_count = int(
+        tileset_header_stats.get("callback_map_grouped_map_count", 0)
+    )
+    tileset_callback_map_ungrouped_map_count = int(
+        tileset_header_stats.get("callback_map_ungrouped_map_count", 0)
+    )
+    tileset_callback_map_layout_with_map_count = int(
+        tileset_header_stats.get("callback_map_layout_with_map_count", 0)
+    )
+    tileset_callback_map_standalone_layout_count = int(
+        tileset_header_stats.get("callback_map_standalone_layout_count", 0)
+    )
+    tileset_callback_map_pair_count = int(
+        tileset_header_stats.get("callback_map_pair_count", 0)
+    )
+    tileset_callback_map_tileset_usage_count = int(
+        tileset_header_stats.get("callback_map_tileset_usage_count", 0)
+    )
+    tileset_callback_map_tileset_with_callback_count = int(
+        tileset_header_stats.get("callback_map_tileset_with_callback_count", 0)
+    )
+    tileset_callback_map_callback_symbol_count = int(
+        tileset_header_stats.get("callback_map_callback_symbol_count", 0)
+    )
+    tileset_callback_map_callback_with_map_count = int(
+        tileset_header_stats.get("callback_map_callback_with_map_count", 0)
+    )
+    tileset_callback_map_missing_header_tileset_count = int(
+        tileset_header_stats.get("callback_map_missing_header_tileset_count", 0)
+    )
     tileset_header_metatile_decode_count = int(
         tileset_header_stats.get("metatile_decode_header_count", 0)
     )
@@ -1036,6 +1072,18 @@ def build_export(source_root, output_root):
         "tileset_existing_palette_source_candidate_count": tileset_existing_palette_source_candidate_count,
         "tileset_missing_palette_source_candidate_count": tileset_missing_palette_source_candidate_count,
         "tileset_header_missing_callback_source_count": tileset_header_missing_callback_source_count,
+        "tileset_callback_map_layout_count": tileset_callback_map_layout_count,
+        "tileset_callback_map_map_count": tileset_callback_map_map_count,
+        "tileset_callback_map_grouped_map_count": tileset_callback_map_grouped_map_count,
+        "tileset_callback_map_ungrouped_map_count": tileset_callback_map_ungrouped_map_count,
+        "tileset_callback_map_layout_with_map_count": tileset_callback_map_layout_with_map_count,
+        "tileset_callback_map_standalone_layout_count": tileset_callback_map_standalone_layout_count,
+        "tileset_callback_map_pair_count": tileset_callback_map_pair_count,
+        "tileset_callback_map_tileset_usage_count": tileset_callback_map_tileset_usage_count,
+        "tileset_callback_map_tileset_with_callback_count": tileset_callback_map_tileset_with_callback_count,
+        "tileset_callback_map_callback_symbol_count": tileset_callback_map_callback_symbol_count,
+        "tileset_callback_map_callback_with_map_count": tileset_callback_map_callback_with_map_count,
+        "tileset_callback_map_missing_header_tileset_count": tileset_callback_map_missing_header_tileset_count,
         "tileset_header_metatile_decode_count": tileset_header_metatile_decode_count,
         "active_emerald_tileset_header_metatile_decode_count": tileset_header_active_metatile_decode_count,
         "tileset_header_metatile_record_count": tileset_header_metatile_record_count,
@@ -1265,6 +1313,22 @@ def build_export(source_root, output_root):
             generated_counts["tileset_animation_source_image_count"],
             source_counts["tileset_anim_source_frame_count"],
         ),
+        "tileset_callback_maps": ratio(
+            generated_counts["tileset_callback_map_map_count"],
+            source_counts["map_count"],
+        ),
+        "tileset_callback_layouts": ratio(
+            generated_counts["tileset_callback_map_layout_count"],
+            source_counts["layout_count"],
+        ),
+        "tileset_callback_layout_pairs": ratio(
+            generated_counts["tileset_callback_map_pair_count"],
+            source_counts["layout_tileset_pair_count"],
+        ),
+        "tileset_callback_symbols": ratio(
+            generated_counts["tileset_callback_map_callback_symbol_count"],
+            source_counts["tileset_callback_count"],
+        ),
         "tileset_palette_sources": ratio(
             generated_counts["tileset_existing_palette_source_candidate_count"],
             source_counts["tileset_palette_reference_count"],
@@ -1444,6 +1508,12 @@ def manifest_entry_for(exported, output_path):
         "generated_tileset_record_count": generated["tileset_record_count"],
         "generated_tileset_header_record_count": generated["tileset_header_record_count"],
         "generated_tileset_animation_source_image_count": generated["tileset_animation_source_image_count"],
+        "generated_tileset_callback_map_layout_count": generated["tileset_callback_map_layout_count"],
+        "generated_tileset_callback_map_map_count": generated["tileset_callback_map_map_count"],
+        "generated_tileset_callback_map_pair_count": generated["tileset_callback_map_pair_count"],
+        "generated_tileset_callback_map_callback_symbol_count": generated[
+            "tileset_callback_map_callback_symbol_count"
+        ],
         "generated_tileset_palette_slot_mapping_count": generated["tileset_palette_slot_mapping_count"],
         "generated_tileset_palette_source_candidate_count": generated["tileset_existing_palette_source_candidate_count"],
         "generated_tileset_metatile_attribute_record_count": generated["tileset_header_metatile_attribute_record_count"],

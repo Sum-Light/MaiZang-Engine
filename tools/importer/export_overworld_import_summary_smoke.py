@@ -146,6 +146,39 @@ def main(argv):
         generated["tileset_header_missing_callback_source_count"] == 0,
         "unexpected missing tileset callback source count",
     )
+    _assert(generated["tileset_callback_map_layout_count"] == 785, "unexpected callback-map layout count")
+    _assert(generated["tileset_callback_map_map_count"] == 939, "unexpected callback-map source record count")
+    _assert(generated["tileset_callback_map_grouped_map_count"] == 935, "unexpected callback-map grouped count")
+    _assert(generated["tileset_callback_map_ungrouped_map_count"] == 4, "unexpected callback-map ungrouped count")
+    _assert(
+        generated["tileset_callback_map_layout_with_map_count"] == 711,
+        "unexpected callback-map referenced layout count",
+    )
+    _assert(
+        generated["tileset_callback_map_standalone_layout_count"] == 74,
+        "unexpected callback-map standalone layout count",
+    )
+    _assert(generated["tileset_callback_map_pair_count"] == 137, "unexpected callback-map pair count")
+    _assert(
+        generated["tileset_callback_map_tileset_usage_count"] == 136,
+        "unexpected callback-map tileset usage count",
+    )
+    _assert(
+        generated["tileset_callback_map_tileset_with_callback_count"] == 31,
+        "unexpected callback-map tileset-with-callback count",
+    )
+    _assert(
+        generated["tileset_callback_map_callback_symbol_count"] == 31,
+        "unexpected callback-map symbol count",
+    )
+    _assert(
+        generated["tileset_callback_map_callback_with_map_count"] == 31,
+        "unexpected callback-map symbol-with-map count",
+    )
+    _assert(
+        generated["tileset_callback_map_missing_header_tileset_count"] == 1,
+        "unexpected callback-map missing-header tileset count",
+    )
     _assert(generated["tileset_header_metatile_decode_count"] == 139, "unexpected header metatile decode count")
     _assert(
         generated["active_emerald_tileset_header_metatile_decode_count"] == 75,
@@ -400,6 +433,16 @@ def main(argv):
     _assert(
         coverage["tileset_animation_source_images"]["percent"] == 100.0,
         "unexpected tileset animation source image coverage percent",
+    )
+    _assert(coverage["tileset_callback_maps"]["percent"] == 100.0, "unexpected callback-map map coverage")
+    _assert(coverage["tileset_callback_layouts"]["percent"] == 100.0, "unexpected callback-map layout coverage")
+    _assert(
+        coverage["tileset_callback_layout_pairs"]["percent"] == 100.0,
+        "unexpected callback-map pair coverage",
+    )
+    _assert(
+        coverage["tileset_callback_symbols"]["percent"] == 100.0,
+        "unexpected callback-map symbol coverage",
     )
     _assert(coverage["tileset_palette_sources"]["generated"] == 2224, "unexpected palette coverage generated count")
     _assert(coverage["tileset_palette_sources"]["source"] == 2224, "unexpected palette coverage source count")

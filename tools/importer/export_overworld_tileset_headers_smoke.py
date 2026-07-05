@@ -23,6 +23,7 @@ def main(argv):
     attribute_rules = exported["metatile_attribute_rules"]
     label_rules = exported["metatile_label_rules"]
     pair_lookup = exported["metatile_label_pair_lookup"]
+    callback_map_report = exported["tileset_callback_map_report"]
     map_reference_report = exported["metatile_map_reference_report"]
     tile_image_reference_report = exported["metatile_tile_image_reference_report"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
@@ -51,6 +52,55 @@ def main(argv):
     _assert(stats["null_callback_count"] == 108, "unexpected null callback count")
     _assert(stats["active_callback_symbol_count"] == 25, "unexpected active callback symbol count")
     _assert(stats["active_callback_binding_count"] == 25, "unexpected active callback binding count")
+    _assert(stats["callback_map_layout_count"] == 785, "unexpected callback map layout count")
+    _assert(stats["callback_map_map_count"] == 939, "unexpected callback map source record count")
+    _assert(stats["callback_map_grouped_map_count"] == 935, "unexpected grouped callback map count")
+    _assert(stats["callback_map_ungrouped_map_count"] == 4, "unexpected ungrouped callback map count")
+    _assert(stats["callback_map_layout_with_map_count"] == 711, "unexpected callback layout-with-map count")
+    _assert(stats["callback_map_standalone_layout_count"] == 74, "unexpected callback standalone layout count")
+    _assert(stats["callback_map_pair_count"] == 137, "unexpected callback map pair count")
+    _assert(stats["callback_map_layout_role_count"] == 1570, "unexpected callback layout role count")
+    _assert(stats["callback_map_primary_layout_role_count"] == 785, "unexpected primary role count")
+    _assert(stats["callback_map_secondary_layout_role_count"] == 785, "unexpected secondary role count")
+    _assert(stats["callback_map_primary_tileset_usage_count"] == 5, "unexpected primary tileset usage count")
+    _assert(stats["callback_map_secondary_tileset_usage_count"] == 131, "unexpected secondary tileset usage count")
+    _assert(stats["callback_map_tileset_usage_count"] == 136, "unexpected tileset usage count")
+    _assert(stats["callback_map_tileset_with_callback_count"] == 31, "unexpected callback tileset usage count")
+    _assert(stats["callback_map_null_callback_tileset_count"] == 104, "unexpected null callback tileset count")
+    _assert(stats["callback_map_missing_header_tileset_count"] == 1, "unexpected missing header tileset count")
+    _assert(stats["callback_map_callback_symbol_count"] == 31, "unexpected callback map symbol count")
+    _assert(stats["callback_map_callback_with_map_count"] == 31, "unexpected callback-with-map count")
+    _assert(callback_map_report["status"] == "decoded_import_metadata", "callback map report not decoded")
+    _assert(callback_map_report["runtime_tileset_animation_required"] is False, "callback map report should be metadata")
+    _assert(callback_map_report["map_count"] == 939, "callback map report map count mismatch")
+    _assert(callback_map_report["grouped_map_count"] == 935, "callback map grouped count mismatch")
+    _assert(callback_map_report["ungrouped_map_count"] == 4, "callback map ungrouped count mismatch")
+    _assert(
+        callback_map_report["ungrouped_map_folders"] == [
+            "Route19_UnusedHouse_Frlg",
+            "Route23_UnusedHouse",
+            "Route6_UnusedHouse_Frlg",
+            "SevenIsland_UnusedHouse",
+        ],
+        "unexpected callback map ungrouped folders",
+    )
+    _assert(len(callback_map_report["layout_pairs"]) == 137, "unexpected callback layout pair rows")
+    _assert(len(callback_map_report["callbacks"]) == 31, "unexpected callback rows")
+    _assert(len(callback_map_report["tilesets"]) == 136, "unexpected callback tileset rows")
+    callback_rows = {row["callback_symbol"]: row for row in callback_map_report["callbacks"]}
+    general_callback = callback_rows["InitTilesetAnim_General"]
+    _assert(general_callback["layout_count"] == 238, "General callback layout count mismatch")
+    _assert(general_callback["map_count"] == 227, "General callback map count mismatch")
+    _assert(general_callback["role_usage_counts"]["primary"] == 238, "General primary usage mismatch")
+    _assert("MAP_LITTLEROOT_TOWN" in general_callback["map_ids"], "General callback missing LittlerootTown")
+    petalburg_callback = callback_rows["InitTilesetAnim_Petalburg"]
+    _assert(petalburg_callback["layout_count"] == 6, "Petalburg callback layout count mismatch")
+    _assert(petalburg_callback["map_count"] == 6, "Petalburg callback map count mismatch")
+    _assert(petalburg_callback["role_usage_counts"]["secondary"] == 6, "Petalburg secondary usage mismatch")
+    _assert("MAP_LITTLEROOT_TOWN" in petalburg_callback["map_ids"], "Petalburg callback missing LittlerootTown")
+    frlg_general_callback = callback_rows["InitTilesetAnim_General_Frlg"]
+    _assert(frlg_general_callback["layout_count"] == 178, "FRLG General callback layout count mismatch")
+    _assert(frlg_general_callback["map_count"] == 187, "FRLG General callback map count mismatch")
     _assert(stats["asset_field_count"] == 556, "unexpected asset field count")
     _assert(stats["missing_asset_declaration_count"] == 0, "missing asset declarations")
     _assert(stats["palette_slot_mapping_count"] == 2224, "unexpected palette slot mapping count")
