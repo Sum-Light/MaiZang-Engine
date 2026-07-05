@@ -361,7 +361,10 @@ B2 completion metrics: `scripts.json` currently has 1393 battle script labels, 6
 - [ ] B8.3 Implement healthbox runtime.
   - Target: `scripts/battle/battle_healthbox.gd`.
   - Covers: creation, slide-in/out, HP bar 48-pixel source width, drain/restore timing, EXP bar, status icon, level/name/gender, party status, bounce, indicators.
-  - Validate: HP drain event consumes VM HP delta and reaches exact final pixel width.
+  - Current first pass: `BattleHealthbox` now owns the generated singles healthbox frame texture plus the source-shaped HP bar runtime used by `BattleScene`. It traces `CreateBattlerHealthboxSprites`, `SpriteCB_HealthBar`, `sBattlerHealthboxCoords`, `UpdateHealthboxAttribute`, `MoveBattleBar`, `GetScaledHPFraction`, and `GetHPBarLevel`; uses the measured 48x2 screenshot-layout HP rects; applies source `GetScaledHPFraction` behavior (`1 HP` remains `1 px`, fainted HP reaches `0 px`); and applies Gen5+ raw-HP `GetHPBarLevel` thresholds (`>50%` green, `>20%` yellow, `>0` red, full as full/green rows). Runtime snapshots expose `source_healthbox_runtime_first_pass`, source coord metadata (`player_left [158,88]`, `opponent_left [44,30]`), current/max HP, filled pixels, HP level, and a VM HP delta event contract.
+  - Current B8.3 progress: 4/10 first-pass subareas covered: frame creation, 48-pixel HP fill, HP level/row selection, and VM HP delta-to-final-pixel event. Remaining: slide-in/out playback, per-frame drain/restore timing beyond the event contract, EXP bar, status icon, level/name/gender exact text, party status balls, bounce, indicators, right-side sprite composition, and exact number glyphs.
+  - Current validation: `tools/godot_smoke/battle_healthbox_smoke.gd` verifies full/half/floor/min-1/faint width behavior, HP level thresholds, generated frame loading, and a 100 -> 1 -> 0 drain path; `tools/godot_smoke/battle_scene_smoke.gd` verifies the real one-turn BattleScene path drains the opponent runtime HP event to `0 px` while consuming the VM HP delta.
+  - Validate next: add source-timed healthbox slide-in/out and per-frame HP drain/restore playback, then extend the smoke from event-contract final pixels to frame-by-frame width timing.
 
 - [ ] B8.4 Implement action menu controller.
   - Source: `src/battle_controller_player.c:HandleInputChooseAction`.

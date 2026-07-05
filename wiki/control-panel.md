@@ -19,13 +19,14 @@ Current focus:
 
 Next active module:
 
-- Map and overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 6 dynamic metatile and tileset animations.
+- Battle parity TODO, currently executing `wiki/battle-parity-execution-plan.md` B8.3 healthbox runtime after the B8.2 source-window capture/import gate.
 
 Reason:
 
-- The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 5 is now 12/12 complete: layer-aware normal/covered/split rendering, top overlay drawing, source subpriority depth ordering, presentation-only layer debug views, first-pass `setmetatile` layer redraw cache updates, first-pass border/connection layer rendering, source map-grid query independence, and layer pixel smoke coverage are implemented for the first-slice maps.
-- Next executable task: add tests for animated water, flowers, currents, lava, falls, sand/water edges, and first-slice General/Petalburg animations.
+- The user asked to execute the battle recreation TODO list step by step until complete and report quantified progress after each answer.
+- B8.3 healthbox runtime now has a first-pass `BattleHealthbox` slice covering 4/10 subareas: generated frame creation, source 48-pixel HP fill, source HP level/row selection, and VM HP delta-to-final-pixel event snapshots.
+- B8.3 still has 6/10 major subareas pending: slide-in/out playback, per-frame HP drain/restore timing, EXP/status/level/name/gender details, party status balls, bounce/indicators/right-side sprite composition, and exact number glyphs.
+- Next executable battle task: extend `BattleHealthbox` from final-pixel event snapshots into source-timed healthbox slide-in/out or per-frame HP drain/restore playback, then smoke-test frame-by-frame width timing.
 
 ## Module Tracks
 

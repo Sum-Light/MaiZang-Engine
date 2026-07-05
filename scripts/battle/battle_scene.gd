@@ -4,23 +4,18 @@ signal battle_finished(result: Dictionary)
 
 const VIEWPORT_SIZE := Vector2(240, 160)
 const BATTLE_WINDOW_RENDERER_SCRIPT := preload("res://scripts/battle/battle_window_renderer.gd")
+const BATTLE_HEALTHBOX_SCRIPT := preload("res://scripts/battle/battle_healthbox.gd")
 const TILE_SIZE := 8
 const DISPLAY_HEIGHT := 160
 const FONT_SIZE := 8
 const HP_BAR_PIXELS := 48
 const HP_BAR_HEIGHT := 2
-const HP_GREEN_TOP := Color8(90, 214, 132, 255)
-const HP_GREEN_BOTTOM := Color8(115, 255, 173, 255)
-const HP_YELLOW_TOP := Color8(205, 172, 8, 255)
-const HP_YELLOW_BOTTOM := Color8(255, 230, 57, 255)
-const HP_RED_TOP := Color8(172, 65, 74, 255)
-const HP_RED_BOTTOM := Color8(255, 90, 57, 255)
-const HP_BAR_OUTLINE := Color8(82, 107, 90, 255)
 const PRESENTATION_STATUS := "first_slice_not_source_equivalent"
 const PRESENTATION_ASSET_LAYOUT_STATUS := "exported_asset_layout_first_pass"
 const SOURCE_FLOW_STATUS := "source_action_move_window_flow_first_pass"
 const SOURCE_BATTLE_TEXT_CONTROLLER_CONTEXT_STATUS := "source_battle_text_controller_context_first_pass"
 const BATTLE_INPUT_STATUS := "keyboard_input_first_pass"
+const SOURCE_HEALTHBOX_RUNTIME_STATUS := "source_healthbox_runtime_first_pass"
 const BG0_Y_ACTION_CHOOSE := DISPLAY_HEIGHT
 const BG0_Y_MOVE_CHOOSE := DISPLAY_HEIGHT * 2
 const ACTION_FIGHT := "fight"
@@ -110,8 +105,8 @@ const BATTLE_PRESENTATION_ASSET_RULES := {
 	"environment_policy": "use_generated_battle_environment_texture_with_zero_rgb_discard_material_first_pass",
 	"pokemon_sprite_policy": "use_generated_battle_sprite_pngs_first_frame_static",
 	"front_sprite_frame_policy": "front_png_first_64x64_frame_until_source_animation_runtime",
-	"healthbox_policy": "use_generated_healthbox_frame_pngs_at_screenshot_aligned_rects",
-	"hp_bar_policy": "source_capture_two_row_color_fill_over_generated_healthbox_first_pass",
+	"healthbox_policy": "source_healthbox_runtime_first_pass_over_generated_frame_pngs",
+	"hp_bar_policy": "source_scaled_hp_fraction_48px_runtime_first_pass",
 	"audio_policy": "metadata_only",
 	"source_equivalence": "not_claimed",
 }
@@ -226,14 +221,12 @@ var _environment_entry: TextureRect
 var _opponent_shadow: TextureRect
 var _opponent_sprite: TextureRect
 var _player_sprite: TextureRect
-var _opponent_healthbox_texture: TextureRect
-var _player_healthbox_texture: TextureRect
+var _opponent_healthbox = null
+var _player_healthbox = null
 var _opponent_name_label: Label
 var _opponent_hp_label: Label
-var _opponent_hp_fill: Control
 var _player_name_label: Label
 var _player_hp_label: Label
-var _player_hp_fill: Control
 var _message_label: Label
 var _action_prompt_label: Label
 var _pp_label: Label
@@ -426,6 +419,8 @@ func get_ui_snapshot() -> Dictionary:
 		"source_battle_text_controller_context": _source_battle_text_controller_context_snapshot(),
 		"source_type_display_status": _source_type_display_status(),
 		"source_hp_bar_pixels": HP_BAR_PIXELS,
+		"source_healthbox_runtime_status": SOURCE_HEALTHBOX_RUNTIME_STATUS,
+		"source_healthbox_runtime": _source_healthbox_runtime_snapshot(),
 		"battle_presentation_assets": _battle_presentation_assets_snapshot(),
 		"battle_input": _battle_input_snapshot(),
 		"source_window_renderer_status": _source_window_renderer_status(),
@@ -459,8 +454,8 @@ func _ensure_ui() -> void:
 	_opponent_shadow = _add_texture_rect("OpponentShadow", _rect_from_array(SCREEN_ASSET_RECTS["opponent_shadow"]))
 	_opponent_sprite = _add_texture_rect("OpponentSprite", _rect_from_array(SCREEN_ASSET_RECTS["opponent_sprite"]))
 	_player_sprite = _add_texture_rect("PlayerSprite", _rect_from_array(SCREEN_ASSET_RECTS["player_sprite"]))
-	_opponent_healthbox_texture = _add_texture_rect("OpponentHealthbox", _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"]))
-	_player_healthbox_texture = _add_texture_rect("PlayerHealthbox", _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"]))
+	_opponent_healthbox = _add_healthbox("OpponentHealthbox")
+	_player_healthbox = _add_healthbox("PlayerHealthbox")
 
 	_window_renderer = BATTLE_WINDOW_RENDERER_SCRIPT.new()
 	_window_renderer.name = "BattleWindowRenderer"
@@ -472,10 +467,8 @@ func _ensure_ui() -> void:
 
 	_opponent_name_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["opponent_name"]), "")
 	_opponent_hp_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_label"]), "HP")
-	_opponent_hp_fill = _add_hp_bar(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_bar"]))
 	_player_name_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["player_name"]), "")
 	_player_hp_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_label"]), "")
-	_player_hp_fill = _add_hp_bar(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_bar"]))
 	_message_label = _add_label(_window_text_rect("B_WIN_MSG", 0), "")
 	_message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
@@ -681,10 +674,8 @@ func _refresh() -> void:
 	_refresh_presentation_assets(player_mon, opponent_mon)
 	_player_name_label.text = _mon_title(player_mon)
 	_player_hp_label.text = _hp_text(player_mon)
-	_set_hp_fill(_player_hp_fill, player_mon)
 	_opponent_name_label.text = _mon_title(opponent_mon)
 	_opponent_hp_label.text = "HP"
-	_set_hp_fill(_opponent_hp_fill, opponent_mon)
 	_message_label.text = "\n".join(_message_lines.slice(max(0, _message_lines.size() - 4), _message_lines.size()))
 	_refresh_bottom_windows(player_mon)
 	_refresh_input_cursors()
@@ -804,11 +795,11 @@ func _refresh_presentation_assets(player_mon: Dictionary, opponent_mon: Dictiona
 		_rect_from_array(SCREEN_ASSET_RECTS["opponent_sprite"]),
 		Rect2(0, 0, 64, 64)
 	)
-	_apply_texture_asset(_opponent_healthbox_texture, opponent_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"]))
-	_apply_texture_asset(_player_healthbox_texture, player_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"]))
+	_configure_healthbox_nodes(player_healthbox_asset, opponent_healthbox_asset, player_mon, opponent_mon)
 
 	_presentation_assets_snapshot = {
 		"status": PRESENTATION_ASSET_LAYOUT_STATUS,
+		"source_healthbox_runtime_status": SOURCE_HEALTHBOX_RUNTIME_STATUS,
 		"asset_rules": BATTLE_PRESENTATION_ASSET_RULES.duplicate(true),
 		"layout_basis": "2011_zh_capture_aligned_first_pass_plus_source_metadata",
 		"loaded_asset_count": _loaded_presentation_asset_count(),
@@ -828,17 +819,21 @@ func _refresh_presentation_assets(player_mon: Dictionary, opponent_mon: Dictiona
 			"opponent": _presentation_battler_snapshot(opponent_mon, opponent_sprite_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_sprite"]), "front"),
 		},
 		"healthboxes": {
-			"player": _presentation_asset_rect_snapshot(player_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"])),
-			"opponent": _presentation_asset_rect_snapshot(opponent_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"])),
+			"player": _healthbox_presentation_snapshot(player_healthbox_asset, _player_healthbox, _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"])),
+			"opponent": _healthbox_presentation_snapshot(opponent_healthbox_asset, _opponent_healthbox, _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"])),
 			"source_sprite_origin_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
-			"screen_rect_policy": "screenshot_aligned_until_subsprite_healthbox_runtime",
+			"runtime_status": SOURCE_HEALTHBOX_RUNTIME_STATUS,
+			"screen_rect_policy": "screenshot_aligned_frame_with_source_hp_runtime_first_pass",
 		},
 		"hp_bars": {
 			"player": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_bar"])),
 			"opponent": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_bar"])),
 			"width_px": HP_BAR_PIXELS,
 			"height_px": HP_BAR_HEIGHT,
-			"fill_style": "source_capture_two_row_color_first_pass",
+			"fill_style": "source_scaled_hp_fraction_48px_runtime_first_pass",
+			"runtime_status": SOURCE_HEALTHBOX_RUNTIME_STATUS,
+			"player_runtime": _healthbox_runtime_snapshot(_player_healthbox),
+			"opponent_runtime": _healthbox_runtime_snapshot(_opponent_healthbox),
 			"hp_fill_rgba_rows": {
 				"green": [[90, 214, 132, 255], [115, 255, 173, 255]],
 				"yellow": [[205, 172, 8, 255], [255, 230, 57, 255]],
@@ -883,6 +878,38 @@ func _battle_interface_texture_record(asset_id: String) -> Dictionary:
 		if typeof(record) == TYPE_DICTIONARY:
 			return record
 	return {}
+
+
+func _configure_healthbox_nodes(player_asset: Dictionary, opponent_asset: Dictionary, player_mon: Dictionary, opponent_mon: Dictionary) -> void:
+	var singles_coords := _dict_or_empty(SOURCE_HEALTHBOX_COORDS.get("singles", {}))
+	if _player_healthbox != null and _player_healthbox.has_method("configure_healthbox"):
+		_player_healthbox.configure_healthbox(
+			"player",
+			player_asset,
+			_rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"]),
+			_rect_from_array(SCREEN_ASSET_RECTS["player_hp_bar"]),
+			_vector_from_array(singles_coords.get("player_left", [])),
+			SOURCE_SCENE_LAYOUT_PROFILE,
+			{
+				"side": "player",
+				"battler_position": "B_POSITION_PLAYER_LEFT",
+			}
+		)
+		_player_healthbox.set_battle_mon(player_mon)
+	if _opponent_healthbox != null and _opponent_healthbox.has_method("configure_healthbox"):
+		_opponent_healthbox.configure_healthbox(
+			"opponent",
+			opponent_asset,
+			_rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"]),
+			_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_bar"]),
+			_vector_from_array(singles_coords.get("opponent_left", [])),
+			SOURCE_SCENE_LAYOUT_PROFILE,
+			{
+				"side": "opponent",
+				"battler_position": "B_POSITION_OPPONENT_LEFT",
+			}
+		)
+		_opponent_healthbox.set_battle_mon(opponent_mon)
 
 
 func _mon_species_symbol(mon: Dictionary) -> String:
@@ -963,6 +990,13 @@ func _presentation_asset_rect_snapshot(asset: Dictionary, rect: Rect2) -> Dictio
 	}
 
 
+func _healthbox_presentation_snapshot(asset: Dictionary, healthbox, rect: Rect2) -> Dictionary:
+	var result := _presentation_asset_rect_snapshot(asset, rect)
+	result["runtime_status"] = SOURCE_HEALTHBOX_RUNTIME_STATUS
+	result["runtime"] = _healthbox_runtime_snapshot(healthbox)
+	return result
+
+
 func _loaded_presentation_asset_count() -> int:
 	var count := 0
 	for texture_rect in [
@@ -971,16 +1005,34 @@ func _loaded_presentation_asset_count() -> int:
 		_opponent_shadow,
 		_opponent_sprite,
 		_player_sprite,
-		_opponent_healthbox_texture,
-		_player_healthbox_texture,
 	]:
 		if texture_rect != null and texture_rect.texture != null:
+			count += 1
+	for healthbox in [_opponent_healthbox, _player_healthbox]:
+		if healthbox != null and healthbox.has_method("has_frame_texture") and healthbox.has_frame_texture():
 			count += 1
 	return count
 
 
 func _battle_presentation_assets_snapshot() -> Dictionary:
 	return _presentation_assets_snapshot.duplicate(true)
+
+
+func _source_healthbox_runtime_snapshot() -> Dictionary:
+	return {
+		"status": SOURCE_HEALTHBOX_RUNTIME_STATUS,
+		"player": _healthbox_runtime_snapshot(_player_healthbox),
+		"opponent": _healthbox_runtime_snapshot(_opponent_healthbox),
+	}
+
+
+func _healthbox_runtime_snapshot(healthbox) -> Dictionary:
+	if healthbox != null and healthbox.has_method("get_runtime_snapshot"):
+		return healthbox.get_runtime_snapshot()
+	return {
+		"status": "unavailable",
+		"expected_status": SOURCE_HEALTHBOX_RUNTIME_STATUS,
+	}
 
 
 func _battle_input_snapshot() -> Dictionary:
@@ -1086,7 +1138,7 @@ func _battle_scene_unsupported() -> Array:
 	}, {
 		"code": "battle_ui_windows_not_source_equivalent",
 		"source": "src/battle_interface.c; src/battle_controller_player.c; src/battle_message.c",
-		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, HP bar width, and static exported healthbox frame PNGs, but exact text pixels, cursor sprites, healthbox subtasks, and full controller flow remain pending.",
+		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, HP bar width, and a source-shaped healthbox HP runtime over exported frame PNGs, but exact text pixels, cursor sprites, healthbox subtasks, and full controller flow remain pending.",
 	}, {
 		"code": "battle_presentation_asset_layout_first_pass",
 		"source": "src/battle_bg.c; src/battle_interface.c; src/data/graphics/pokemon.h",
@@ -1096,9 +1148,9 @@ func _battle_scene_unsupported() -> Array:
 		"source": "src/battle_controller_player.c:PlayerHandleChooseAction; src/battle_controller_player.c:HandleInputChooseAction",
 		"detail": "The source Fight/Pokémon/Bag/Run action menu is visible, but only Fight is interactive in this slice.",
 	}, {
-		"code": "battle_healthbox_sprites_static_first_pass",
+		"code": "battle_healthbox_runtime_first_pass",
 		"source": "src/battle_interface.c:CreateBattlerHealthboxSprites",
-		"detail": "Generated healthbox frame PNGs are displayed statically. Source healthbox subtasks, right-side sprite composition, slide-in, status icons, and exact number glyphs remain future work.",
+		"detail": "Generated healthbox frame PNGs are displayed through BattleHealthbox, and HP fill width/level now follows first-pass source rules. Slide-in, right-side sprite composition, status icons, EXP, party status, and exact number glyphs remain future work.",
 	}, {
 		"code": "battle_keyboard_input_first_pass",
 		"source": "src/battle_controller_player.c:PlayerHandleChooseAction",
@@ -1565,33 +1617,6 @@ func _hp_text(mon: Dictionary) -> String:
 	return "HP %d/%d" % [int(mon.get("hp", 0)), int(mon.get("max_hp", 1))]
 
 
-func _set_hp_fill(fill: Control, mon: Dictionary) -> void:
-	if fill == null:
-		return
-	var max_hp: int = max(1, int(mon.get("max_hp", 1)))
-	var hp: int = clampi(int(mon.get("hp", 0)), 0, max_hp)
-	var ratio: float = float(hp) / float(max_hp)
-	fill.size.x = roundi(float(HP_BAR_PIXELS) * ratio)
-	var colors := _hp_bar_colors(ratio)
-	var top := fill.get_node_or_null("Top") as ColorRect
-	var bottom := fill.get_node_or_null("Bottom") as ColorRect
-	if top != null:
-		top.color = colors[0]
-		top.size = Vector2(fill.size.x, 1)
-	if bottom != null:
-		bottom.color = colors[1]
-		bottom.position = Vector2(0, 1)
-		bottom.size = Vector2(fill.size.x, 1)
-
-
-func _hp_bar_colors(ratio: float) -> Array:
-	if ratio <= 0.2:
-		return [HP_RED_TOP, HP_RED_BOTTOM]
-	if ratio <= 0.5:
-		return [HP_YELLOW_TOP, HP_YELLOW_BOTTOM]
-	return [HP_GREEN_TOP, HP_GREEN_BOTTOM]
-
-
 func _message_texts(messages) -> Array:
 	var result: Array = []
 	if typeof(messages) != TYPE_ARRAY:
@@ -1628,6 +1653,16 @@ func _add_texture_rect(node_name: String, rect: Rect2) -> TextureRect:
 	return texture_rect
 
 
+func _add_healthbox(node_name: String):
+	var healthbox = BATTLE_HEALTHBOX_SCRIPT.new()
+	healthbox.name = node_name
+	healthbox.position = Vector2.ZERO
+	healthbox.size = VIEWPORT_SIZE
+	healthbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(healthbox)
+	return healthbox
+
+
 func _add_action_button(action_id: String, text: String, position: Vector2) -> void:
 	var button := Button.new()
 	button.position = position
@@ -1639,39 +1674,6 @@ func _add_action_button(action_id: String, text: String, position: Vector2) -> v
 	button.pressed.connect(select_action.bind(action_id))
 	add_child(button)
 	_action_buttons[action_id] = button
-
-
-func _add_rect(rect: Rect2, color: Color) -> ColorRect:
-	var color_rect := ColorRect.new()
-	color_rect.position = rect.position
-	color_rect.size = rect.size
-	color_rect.color = color
-	add_child(color_rect)
-	return color_rect
-
-
-func _add_hp_bar(rect: Rect2) -> Control:
-	_add_rect(Rect2(rect.position - Vector2(1, 1), rect.size + Vector2(2, 2)), HP_BAR_OUTLINE)
-	var container := Control.new()
-	container.position = rect.position
-	container.size = Vector2(rect.size.x, max(HP_BAR_HEIGHT, int(rect.size.y)))
-	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var top := ColorRect.new()
-	top.name = "Top"
-	top.position = Vector2.ZERO
-	top.size = Vector2(rect.size.x, 1)
-	top.color = HP_GREEN_TOP
-	top.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	container.add_child(top)
-	var bottom := ColorRect.new()
-	bottom.name = "Bottom"
-	bottom.position = Vector2(0, 1)
-	bottom.size = Vector2(rect.size.x, 1)
-	bottom.color = HP_GREEN_BOTTOM
-	bottom.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	container.add_child(bottom)
-	add_child(container)
-	return container
 
 
 func _rect_from_array(values) -> Rect2:
