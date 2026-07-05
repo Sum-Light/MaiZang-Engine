@@ -26,6 +26,7 @@ def main(argv):
     pair_lookup = exported["metatile_label_pair_lookup"]
     callback_map_report = exported["tileset_callback_map_report"]
     frame_strip_report = exported["tileset_animation_frame_strips"]
+    schedule_trace = exported["tileset_animation_schedule_trace"]
     map_reference_report = exported["metatile_map_reference_report"]
     tile_image_reference_report = exported["metatile_tile_image_reference_report"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
@@ -428,6 +429,32 @@ def main(argv):
         stats["orphan_animation_tileset_base_paths"] == ["data/tilesets/secondary/silph_co_frlg"],
         "unexpected orphan animation base path",
     )
+    _assert(stats["animation_schedule_init_function_count"] == 31, "unexpected schedule init count")
+    _assert(stats["animation_schedule_active_init_function_count"] == 25, "unexpected active schedule init count")
+    _assert(stats["animation_schedule_callback_count"] == 27, "unexpected schedule callback count")
+    _assert(stats["animation_schedule_event_count"] == 59, "unexpected schedule event count")
+    _assert(stats["animation_schedule_tile_copy_event_count"] == 57, "unexpected tile-copy event count")
+    _assert(stats["animation_schedule_palette_event_count"] == 2, "unexpected palette event count")
+    _assert(stats["animation_schedule_queue_function_count"] == 38, "unexpected queue function count")
+    _assert(stats["animation_schedule_tile_copy_queue_function_count"] == 36, "unexpected tile-copy queue count")
+    _assert(stats["animation_schedule_palette_queue_function_count"] == 2, "unexpected palette queue count")
+    _assert(stats["animation_schedule_tile_copy_append_count"] == 41, "unexpected tile-copy append count")
+    _assert(stats["animation_schedule_direct_tile_offset_append_count"] == 35, "unexpected direct append count")
+    _assert(stats["animation_schedule_vdest_array_append_count"] == 6, "unexpected vdest append count")
+    _assert(
+        stats["animation_schedule_append_with_affected_metatile_count"] == 41,
+        "unexpected append affected-metatile count",
+    )
+    _assert(
+        stats["animation_schedule_affected_metatile_reference_count"] == 58376,
+        "unexpected affected metatile reference count",
+    )
+    _assert(
+        stats["animation_schedule_affected_unique_metatile_count_max_per_append"] == 3715,
+        "unexpected affected unique metatile max count",
+    )
+    _assert(stats["animation_schedule_pointer_array_count"] == 44, "unexpected pointer array count")
+    _assert(stats["animation_schedule_vdest_array_count"] == 4, "unexpected vdest array count")
     _assert(len(exported["tileset_animation_frames"]) == 174, "unexpected top-level animation frame count")
     _assert(frame_strip_report["status"] == "exported_rgba_frame_strips", "unexpected frame strip report status")
     _assert(frame_strip_report["runtime_tileset_animation_required"] is False, "frame strip report should be metadata")
@@ -459,6 +486,61 @@ def main(argv):
         "Sootopolis stormy generated PNG dimensions mismatch",
     )
     _assert(len(exported["tileset_animation_init_functions"]) == 31, "unexpected top-level init function count")
+    _assert(schedule_trace["status"] == "decoded_source_schedule_metadata", "unexpected schedule status")
+    _assert(schedule_trace["runtime_tileset_animation_required"] is False, "schedule trace should be metadata")
+    _assert(schedule_trace["source_color_runtime_required"] is False, "source colors must stay metadata")
+    _assert(schedule_trace["source_palette_runtime_required"] is False, "source palettes must stay metadata")
+    _assert(schedule_trace["scheduler_source"]["buffer_capacity"] == 20, "unexpected DMA buffer capacity")
+    _assert(schedule_trace["scheduler_source"]["tile_size_4bpp_bytes"] == 32, "unexpected tile size")
+    _assert(len(schedule_trace["init_functions"]) == 31, "unexpected schedule init rows")
+    _assert(len(schedule_trace["events"]) == 59, "unexpected schedule event rows")
+    _assert(len(schedule_trace["tile_copy_appends"]) == 41, "unexpected tile-copy append rows")
+    schedule_inits = {row["function"]: row for row in schedule_trace["init_functions"]}
+    general_init = schedule_inits["InitTilesetAnim_General"]
+    _assert(general_init["counter_kind"] == "primary", "General init counter kind mismatch")
+    _assert(general_init["counter_max_value"] == 256, "General init counter max mismatch")
+    _assert(general_init["callback_symbol"] == "TilesetAnim_General", "General callback symbol mismatch")
+    petalburg_init = schedule_inits["InitTilesetAnim_Petalburg"]
+    _assert(petalburg_init["counter_kind"] == "secondary", "Petalburg init counter kind mismatch")
+    _assert(
+        petalburg_init["counter_max_source"] == "inherits_primary_counter_max",
+        "Petalburg counter max inheritance mismatch",
+    )
+    mauville_init = schedule_inits["InitTilesetAnim_Mauville"]
+    _assert(
+        mauville_init["counter_initial_expr"] == "sPrimaryTilesetAnimCounter",
+        "Mauville counter initial sync mismatch",
+    )
+    schedule_events = schedule_trace["events"]
+    general_events = [row for row in schedule_events if row["callback"] == "TilesetAnim_General"]
+    _assert(len(general_events) == 5, "General schedule event count mismatch")
+    _assert([row["trigger_phase"] for row in general_events] == [0, 1, 2, 3, 4], "General phases mismatch")
+    _assert(all(row["duration_frames"] == 16 for row in general_events), "General duration mismatch")
+    mauville_events = [row for row in schedule_events if row["callback"] == "TilesetAnim_Mauville"]
+    _assert(len(mauville_events) == 8, "Mauville schedule event count mismatch")
+    _assert(all(row["duration_frames"] == 8 for row in mauville_events), "Mauville duration mismatch")
+    battle_dome_events = [row for row in schedule_events if row["callback"] == "TilesetAnim_BattleDome"]
+    _assert(battle_dome_events[0]["kind"] == "palette_blend", "Battle Dome palette event missing")
+    tile_copy_appends = schedule_trace["tile_copy_appends"]
+    flower_append = _schedule_append(tile_copy_appends, "QueueAnimTiles_General_Flower", 0)
+    _assert(flower_append["tile_offsets"][0]["tile_offset"] == 508, "General flower target mismatch")
+    _assert(flower_append["tile_count"] == 4, "General flower tile count mismatch")
+    _assert(flower_append["affected_metatiles"]["affected_unique_metatile_count"] == 33, "flower affected count mismatch")
+    _assert(flower_append["affected_metatiles"]["affected_tile_ids"] == [508, 509, 510, 511], "flower tile ids mismatch")
+    water_append = _schedule_append(tile_copy_appends, "QueueAnimTiles_General_Water", 0)
+    _assert(water_append["tile_offsets"][0]["tile_offset"] == 432, "General water target mismatch")
+    _assert(water_append["tile_count"] == 30, "General water tile count mismatch")
+    _assert(
+        water_append["affected_metatiles"]["affected_unique_metatile_count"] == 1300,
+        "water affected count mismatch",
+    )
+    mauville_flower_append = _schedule_append(tile_copy_appends, "QueueAnimTiles_Mauville_Flowers", 0)
+    _assert(mauville_flower_append["dest_kind"] == "vdest_array", "Mauville flower should use VDest array")
+    _assert(mauville_flower_append["tile_offsets"][0]["tile_offset"] == 608, "Mauville flower first VDest mismatch")
+    _assert(
+        schedule_trace["unsupported_or_metadata_only"][0]["code"] == "battle_dome_palette_blend_metadata_only",
+        "Battle Dome metadata-only policy missing",
+    )
     _assert(rules["status"] == "import_metadata_only", "palette rules should be import metadata")
     _assert(rules["runtime_palette_required"] is False, "palette rules must not require runtime palettes")
     _assert(rules["constants"]["NUM_PALS_IN_PRIMARY"]["value"] == 6, "unexpected Emerald primary palette count")
@@ -616,6 +698,13 @@ def main(argv):
     _assert(general["callback"]["symbol"] == "InitTilesetAnim_General", "General callback mismatch")
     _assert(general["callback"]["source_found"], "General callback source missing")
     _assert(general["callback"]["source"]["path"] == "src/tileset_anims.c", "General callback source path mismatch")
+    _assert(
+        general["callback"]["schedule_event_callback_symbol"] == "TilesetAnim_General",
+        "General schedule callback symbol mismatch",
+    )
+    _assert(general["callback"]["schedule_event_count"] == 5, "General schedule event count mismatch")
+    _assert(general["callback"]["tile_copy_event_count"] == 5, "General tile-copy event count mismatch")
+    _assert(general["callback"]["palette_event_count"] == 0, "General palette event count mismatch")
     _assert(general["asset_provenance"]["tiles"]["declaration_found"], "General tile declaration missing")
     _assert(
         _has_existing_candidate(general["asset_provenance"]["tiles"], "data/tilesets/primary/general/tiles.png"),
@@ -697,6 +786,15 @@ def main(argv):
     _assert(petalburg["kind"] == "secondary", "Petalburg should be secondary")
     _assert(petalburg["callback"]["symbol"] == "InitTilesetAnim_Petalburg", "Petalburg callback mismatch")
     _assert(petalburg["callback"]["source_found"], "Petalburg callback source missing")
+    _assert(
+        petalburg["callback"]["schedule_event_callback_symbol"] == "NULL",
+        "Petalburg schedule callback should be NULL",
+    )
+    _assert(petalburg["callback"]["schedule_event_count"] == 0, "Petalburg schedule event count mismatch")
+    _assert(
+        petalburg["callback"]["schedule_trace"]["counter_max_source"] == "inherits_primary_counter_max",
+        "Petalburg schedule counter max mismatch",
+    )
     _assert(petalburg["animation_image_provenance"]["frame_declaration_count"] == 0, "Petalburg should have no frame images")
     _assert(petalburg["palette_slot_mapping"]["source_rules_profile"] == "emerald", "Petalburg palette profile mismatch")
     _assert(petalburg["palette_slot_mapping"]["declared_palette_slot_count"] == 16, "Petalburg palette slot count mismatch")
@@ -1104,6 +1202,13 @@ def _tile_image_absent_ref(exported, row, target_tileset_symbol, local_tile_id):
             "samples": record[7],
         }
     raise AssertionError("missing absent tile {}:{}".format(target_tileset_symbol, local_tile_id))
+
+
+def _schedule_append(tile_copy_appends, queue_function, append_index):
+    for row in tile_copy_appends:
+        if row.get("queue_function") == queue_function and row.get("append_index") == append_index:
+            return row
+    raise AssertionError("missing schedule append {}[{}]".format(queue_function, append_index))
 
 
 def _label_group_count(label_rules, group_name):

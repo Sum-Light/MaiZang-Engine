@@ -158,7 +158,7 @@ Layer pixel verification update: `tools/godot_smoke/layer_aware_map_pixel_smoke.
 - [x] Trace remaining primary tileset callbacks.
 - [x] Trace remaining secondary tileset callbacks.
 - [x] Export animation image sources and generated RGBA frame strips.
-- [ ] Export source frame durations, frame counters, wrap behavior, DMA/copy target tile ranges, and affected metatile/tile ids.
+- [x] Export source frame durations, frame counters, wrap behavior, DMA/copy target tile ranges, and affected metatile/tile ids.
 - [ ] Implement a runtime `TilesetAnimationPlayer` that initializes on map load.
 - [ ] Support independent primary and secondary animation counters.
 - [ ] Support pausing/resetting animations across map transitions according to source callbacks.
@@ -167,6 +167,8 @@ Layer pixel verification update: `tools/godot_smoke/layer_aware_map_pixel_smoke.
 - [ ] Add unsupported metadata for callbacks not yet rendered even if their source tilesets import successfully.
 
 RGBA frame-strip update: `tileset_header_report.json` now includes `tileset_animation_frame_strips`, converting all 174 animation frame declarations and all 182 editable source PNG frame refs into normal RGBA8 PNG strips under `assets/generated/tileset_anims/`. Single-source frames export as one frame image, while multi-source frames such as Sootopolis stormy water preserve each source image as a horizontal strip segment with `source_rect` and `strip_rect` metadata. Representative generated assets include `gTilesetAnims_General_Flower_Frame0` as 16x16 RGBA and `gTilesetAnims_Sootopolis_StormyWater_Frame0` as a 128x48 two-source RGBA strip. Missing and invalid source image counts are both 0. Section 6 progress is now 7/14 complete; total overworld checklist progress is 70/296.
+
+Schedule/copy-target metadata update: `tileset_header_report.json` now includes `tileset_animation_schedule_trace`, decoded from `src/tileset_anims.c` without introducing a runtime GBA palette system. The trace exports 31 init functions, 25 active init functions, 27 callback functions, 59 scheduled source events, 57 tile-copy events, 2 Battle Dome source-color/palette blend events marked `metadata_only`, 38 queue functions, 41 tile-copy append records, 35 direct tile-offset copies, 6 VDest-array copies, and source counter/wrap metadata such as `InitTilesetAnim_General` primary counter max 256 and secondary callbacks that inherit the primary max. Each tile-copy append records source frame symbols, duration cadence, byte/tile count, destination tile ranges, affected tile ids, affected metatile ids, and samples from active Emerald headers; all 41 tile-copy appends resolve affected metatiles, totaling 58,376 affected metatile references with a maximum of 3,715 unique metatiles for one append. Representative rows include General flower copying 4 tiles to tile ids 508-511 and General water copying 30 tiles to tile ids 432-461. `gTileset_General` now carries 5 schedule events through `TilesetAnim_General`, `gTileset_Petalburg` is correctly init-only with a NULL tile-animation callback, and `gTileset_Mauville` carries 8 flower events. `data/generated/overworld/import_summary.json` and `data/generated/import_manifest.json` expose the schedule counts. Runtime `TilesetAnimationPlayer` playback is still pending. Section 6 progress is now 8/14 complete; total overworld checklist progress is 71/296.
 
 ### 7. Door Animation And Door State
 

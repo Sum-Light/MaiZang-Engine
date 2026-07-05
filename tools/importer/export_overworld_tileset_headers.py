@@ -55,6 +55,24 @@ ANIM_FRAME_DECL_RE = re.compile(
     re.S,
 )
 INIT_FUNCTION_RE = re.compile(r"\bvoid\s+(InitTilesetAnim_[A-Za-z0-9_]+)\s*\(")
+FUNCTION_DEF_RE = re.compile(
+    r"(?P<prefix>(?:static\s+)?void)\s+"
+    r"(?P<name>(?:InitTilesetAnim|TilesetAnim|QueueAnimTiles|BlendAnimPalette)_[A-Za-z0-9_]+)"
+    r"\s*\((?P<params>[^)]*)\)\s*\{",
+    re.S,
+)
+ANIM_POINTER_ARRAY_RE = re.compile(
+    r"(?:static\s+)?(?:const\s+)?u16\s*\*const\s+"
+    r"(?P<symbol>(?:g|s)TilesetAnims_[A-Za-z0-9_]+)"
+    r"\[\]\s*=\s*\{(?P<body>.*?)\};",
+    re.S,
+)
+ANIM_VDEST_ARRAY_RE = re.compile(
+    r"u16\s*\*const\s+"
+    r"(?P<symbol>gTilesetAnims_[A-Za-z0-9_]+_VDests)"
+    r"\[\]\s*=\s*\{(?P<body>.*?)\};",
+    re.S,
+)
 PALETTE_DEFINE_RE = re.compile(
     r"#define\s+"
     r"(?P<name>NUM_PALS_IN_PRIMARY_FRLG|NUM_PALS_IN_PRIMARY|NUM_PALS_TOTAL)"
@@ -98,6 +116,7 @@ NUM_METATILES_IN_PRIMARY_FRLG = 640
 NUM_METATILES_TOTAL = 1024
 NUM_TILES_TOTAL = 1024
 NUM_TILES_PER_METATILE = 8
+TILE_SIZE_4BPP_BYTES = 32
 TILE_SIZE_PIXELS = 8
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 TILE_ENTRY_INDEX_MASK = 0x03FF
@@ -410,6 +429,572 @@ def parse_init_function_symbols(source_root):
         }
         for match in INIT_FUNCTION_RE.finditer(text)
     ]
+
+
+def find_matching_brace(text, open_index):
+    depth = 0
+    for index in range(open_index, len(text)):
+        char = text[index]
+        if char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return index
+    return -1
+
+
+def parse_tileset_anim_functions(text):
+    functions = {}
+    for match in FUNCTION_DEF_RE.finditer(text):
+        open_index = text.find("{", match.end() - 1)
+        close_index = find_matching_brace(text, open_index)
+        if open_index < 0 or close_index < 0:
+            continue
+        functions[match.group("name")] = {
+            "name": match.group("name"),
+            "params": normalize_ws(match.group("params")),
+            "body": text[open_index + 1:close_index],
+            "source": {
+                "path": "src/tileset_anims.c",
+                "line": line_number(text, match.start()),
+            },
+        }
+    return functions
+
+
+def parse_anim_pointer_arrays(text):
+    arrays = {}
+    for match in ANIM_POINTER_ARRAY_RE.finditer(text):
+        body = match.group("body")
+        symbols = [
+            value.strip()
+            for value in re.split(r",", body)
+            if value.strip()
+        ]
+        arrays[match.group("symbol")] = {
+            "symbol": match.group("symbol"),
+            "frame_symbols": symbols,
+            "frame_count": len(symbols),
+            "unique_frame_count": len(set(symbols)),
+            "source": {
+                "path": "src/tileset_anims.c",
+                "line": line_number(text, match.start()),
+            },
+        }
+    return arrays
+
+
+def parse_tileset_anim_vdest_arrays(text):
+    arrays = {}
+    for match in ANIM_VDEST_ARRAY_RE.finditer(text):
+        body = match.group("body")
+        tile_offsets = [
+            {
+                "tile_offset_expr": offset.get("expr"),
+                "tile_offset": offset.get("value"),
+                "tile_source_kind": source_kind_for_tile_offset(offset.get("value")),
+                "tile_local_id": local_tile_id_for_tile_offset(offset.get("value")),
+            }
+            for expr in re.findall(r"TILE_OFFSET_4BPP\((.*?)\)", body, flags=re.S)
+            for offset in [parse_tile_offset_expr(expr)]
+        ]
+        arrays[match.group("symbol")] = {
+            "symbol": match.group("symbol"),
+            "tile_offsets": tile_offsets,
+            "count": len(tile_offsets),
+            "source": {
+                "path": "src/tileset_anims.c",
+                "line": line_number(text, match.start()),
+            },
+        }
+    return arrays
+
+
+def eval_tileset_anim_expr(expr):
+    expr = normalize_ws(expr)
+    expr = re.sub(r"\bNUM_TILES_IN_PRIMARY\b", str(NUM_TILES_IN_PRIMARY), expr)
+    expr = re.sub(r"\bTILE_SIZE_4BPP\b", str(TILE_SIZE_4BPP_BYTES), expr)
+    expr = re.sub(r"\bPLTT_SIZE_4BPP\b", "32", expr)
+    if not re.fullmatch(r"[0-9xXa-fA-F+\-*/() ]+", expr):
+        return None
+    try:
+        return int(eval(expr, {"__builtins__": {}}, {}))
+    except (ArithmeticError, SyntaxError, ValueError):
+        return None
+
+
+def parse_tile_offset_expr(expr):
+    value = eval_tileset_anim_expr(expr)
+    return {
+        "expr": normalize_ws(expr),
+        "value": value,
+    }
+
+
+def parse_size_expr(expr):
+    value = eval_tileset_anim_expr(expr)
+    tile_count = None
+    if value is not None and value % TILE_SIZE_4BPP_BYTES == 0:
+        tile_count = value // TILE_SIZE_4BPP_BYTES
+    return {
+        "expr": normalize_ws(expr),
+        "bytes": value,
+        "tile_count": tile_count,
+    }
+
+
+def source_kind_for_tile_offset(tile_offset):
+    if tile_offset is None:
+        return None
+    return "primary" if int(tile_offset) < NUM_TILES_IN_PRIMARY else "secondary"
+
+
+def local_tile_id_for_tile_offset(tile_offset):
+    if tile_offset is None:
+        return None
+    return int(tile_offset) if int(tile_offset) < NUM_TILES_IN_PRIMARY else int(tile_offset) - NUM_TILES_IN_PRIMARY
+
+
+def compact_source_ref(source):
+    return {
+        "path": source.get("path"),
+        "line": source.get("line"),
+    }
+
+
+def parse_init_function_details(functions):
+    rows = []
+    for name in sorted(functions):
+        if not name.startswith("InitTilesetAnim_"):
+            continue
+        function = functions[name]
+        body = function["body"]
+        counter_kind = "primary" if "sPrimaryTilesetAnimCallback" in body else "secondary"
+        counter_symbol = "sPrimaryTilesetAnimCounter" if counter_kind == "primary" else "sSecondaryTilesetAnimCounter"
+        max_symbol = "{}Max".format(counter_symbol)
+        callback_symbol = "sPrimaryTilesetAnimCallback" if counter_kind == "primary" else "sSecondaryTilesetAnimCallback"
+        counter_match = re.search(r"%s\s*=\s*([^;]+);" % re.escape(counter_symbol), body)
+        max_match = re.search(r"%s\s*=\s*([^;]+);" % re.escape(max_symbol), body)
+        callback_match = re.search(r"%s\s*=\s*([^;]+);" % re.escape(callback_symbol), body)
+        counter_expr = normalize_ws(counter_match.group(1)) if counter_match else None
+        max_expr = normalize_ws(max_match.group(1)) if max_match else None
+        callback_expr = normalize_ws(callback_match.group(1)) if callback_match else None
+        rows.append({
+            "function": name,
+            "counter_kind": counter_kind,
+            "counter_symbol": counter_symbol,
+            "counter_initial_expr": counter_expr,
+            "counter_initial_value": eval_tileset_anim_expr(counter_expr) if counter_expr else None,
+            "counter_max_symbol": max_symbol,
+            "counter_max_expr": max_expr,
+            "counter_max_value": eval_tileset_anim_expr(max_expr) if max_expr else None,
+            "counter_max_source": "inherits_primary_counter_max" if max_expr == "sPrimaryTilesetAnimCounterMax" else "literal_or_expression",
+            "callback_symbol": callback_expr,
+            "has_tile_animation_callback": callback_expr not in (None, "NULL"),
+            "wrap_behavior": "if (++{counter} >= {max}) {counter} = 0".format(
+                counter=counter_symbol,
+                max=max_symbol,
+            ),
+            "source": compact_source_ref(function["source"]),
+        })
+    return rows
+
+
+def parse_tileset_anim_callback_events(functions):
+    rows = []
+    for name in sorted(functions):
+        if not name.startswith("TilesetAnim_"):
+            continue
+        body = functions[name]["body"]
+        pattern = re.compile(
+            r"if\s*\(\s*timer\s*%\s*(?P<mod>\d+)\s*==\s*(?P<phase>\d+)\s*\)\s*"
+            r"(?P<block>\{.*?\}|[^{};]+;)",
+            re.S,
+        )
+        events = []
+        for match in pattern.finditer(body):
+            block = match.group("block")
+            for call in re.finditer(
+                r"(?P<queue>(?:QueueAnimTiles|BlendAnimPalette)_[A-Za-z0-9_]+)\s*"
+                r"\((?P<args>[^)]*)\)\s*;",
+                block,
+            ):
+                args = [normalize_ws(arg) for arg in call.group("args").split(",") if arg.strip()]
+                events.append({
+                    "queue_function": call.group("queue"),
+                    "trigger_modulo": int(match.group("mod")),
+                    "trigger_phase": int(match.group("phase")),
+                    "duration_frames": int(match.group("mod")),
+                    "timer_argument_expr": args[0] if args else None,
+                    "extra_argument_exprs": args[1:],
+                    "source_kind": "palette_blend" if call.group("queue").startswith("BlendAnimPalette_") else "tile_copy",
+                })
+        rows.append({
+            "callback": name,
+            "source": compact_source_ref(functions[name]["source"]),
+            "event_count": len(events),
+            "events": events,
+        })
+    return rows
+
+
+def parse_source_array_from_expr(expr):
+    expr = normalize_ws(expr)
+    match = re.match(r"(?P<array>(?:g|s)TilesetAnims_[A-Za-z0-9_]+)\s*\[", expr)
+    return match.group("array") if match else None
+
+
+def parse_vdest_array_from_expr(expr):
+    expr = normalize_ws(expr)
+    match = re.match(r"(?P<array>gTilesetAnims_[A-Za-z0-9_]+_VDests)\s*\[", expr)
+    return match.group("array") if match else None
+
+
+def parse_append_arguments(argument_text):
+    args = []
+    current = []
+    depth = 0
+    for char in argument_text:
+        if char == "," and depth == 0:
+            args.append(normalize_ws("".join(current)))
+            current = []
+            continue
+        current.append(char)
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            depth -= 1
+    if current:
+        args.append(normalize_ws("".join(current)))
+    return args
+
+
+def queue_append_records(function, pointer_arrays, vdest_arrays):
+    rows = []
+    for match in re.finditer(r"AppendTilesetAnimToBuffer\s*\((?P<args>.*?)\)\s*;", function["body"], re.S):
+        args = parse_append_arguments(match.group("args"))
+        if len(args) != 3:
+            continue
+        source_expr, dest_expr, size_expr = args
+        source_array = parse_source_array_from_expr(source_expr)
+        vdest_array = parse_vdest_array_from_expr(dest_expr)
+        direct_offsets = re.findall(r"TILE_OFFSET_4BPP\((.*?)\)", dest_expr, flags=re.S)
+        direct_offset = parse_tile_offset_expr(direct_offsets[0]) if direct_offsets else {"expr": None, "value": None}
+        size = parse_size_expr(size_expr)
+        tile_offsets = []
+        if vdest_array and vdest_array in vdest_arrays:
+            tile_offsets = vdest_arrays[vdest_array]["tile_offsets"]
+        elif direct_offset.get("value") is not None:
+            tile_offsets = [{
+                "tile_offset_expr": direct_offset.get("expr"),
+                "tile_offset": direct_offset.get("value"),
+                "tile_source_kind": source_kind_for_tile_offset(direct_offset.get("value")),
+                "tile_local_id": local_tile_id_for_tile_offset(direct_offset.get("value")),
+            }]
+        rows.append({
+            "source_expr": source_expr,
+            "source_array": source_array,
+            "source_array_frame_count": pointer_arrays.get(source_array, {}).get("frame_count"),
+            "dest_expr": dest_expr,
+            "dest_kind": "vdest_array" if vdest_array else "direct_tile_offset",
+            "vdest_array": vdest_array,
+            "tile_offsets": tile_offsets,
+            "size_expr": size["expr"],
+            "byte_count": size["bytes"],
+            "tile_count": size["tile_count"],
+        })
+    return rows
+
+
+def queue_palette_records(function):
+    rows = []
+    if "CpuCopy16" not in function["body"] and "BlendPalette" not in function["body"]:
+        return rows
+    rows.append({
+        "status": "source_color_animation_metadata_only",
+        "uses_cpu_copy16": "CpuCopy16" in function["body"],
+        "uses_blend_palette": "BlendPalette" in function["body"],
+        "runtime_policy": "Use Godot-native Shader/Material/Animation parameters for visible color changes; do not expose GBA palette runtime.",
+    })
+    return rows
+
+
+def affected_metatile_summary_for_targets(records, tile_offsets, tile_count):
+    if not tile_offsets or tile_count is None:
+        return {
+            "status": "unresolved_target_or_size",
+            "affected_tile_range_count": 0,
+            "affected_metatile_reference_count": 0,
+            "affected_unique_metatile_count": 0,
+            "samples": [],
+        }
+    ranges = []
+    for target in tile_offsets:
+        start = target.get("tile_offset")
+        if start is None:
+            continue
+        ranges.append((int(start), int(start) + int(tile_count) - 1))
+    if not ranges:
+        return {
+            "status": "unresolved_target_or_size",
+            "affected_tile_range_count": 0,
+            "affected_metatile_reference_count": 0,
+            "affected_unique_metatile_count": 0,
+            "samples": [],
+        }
+
+    count = 0
+    unique = {}
+    samples = []
+    for header in records:
+        if not header.get("active_in_emerald"):
+            continue
+        for entry in iter_metatile_tile_entries(header):
+            tile_id = int(entry["tile_id"])
+            if not any(start <= tile_id <= end for start, end in ranges):
+                continue
+            count += 1
+            key = (
+                entry["owner_tileset_symbol"],
+                entry["global_metatile_id"],
+                entry["local_metatile_id"],
+            )
+            unique[key] = [
+                entry["owner_tileset_symbol"],
+                entry["global_metatile_id"],
+                entry["local_metatile_id"],
+            ]
+            if len(samples) < 8:
+                samples.append({
+                    "tileset": entry["owner_tileset_symbol"],
+                    "global_metatile_id": entry["global_metatile_id"],
+                    "local_metatile_id": entry["local_metatile_id"],
+                    "tile_entry_index": entry["tile_entry_index"],
+                    "tile_id": tile_id,
+                })
+    return {
+        "status": "decoded",
+        "affected_tile_range_count": len(ranges),
+        "affected_tile_ranges": [
+            {
+                "start_tile_id": start,
+                "end_tile_id": end,
+                "tile_count": end - start + 1,
+            }
+            for start, end in ranges
+        ],
+        "affected_tile_ids": sorted({
+            tile_id
+            for start, end in ranges
+            for tile_id in range(start, end + 1)
+        }),
+        "affected_metatile_reference_count": count,
+        "affected_unique_metatile_count": len(unique),
+        "affected_metatile_ids": [
+            unique[key]
+            for key in sorted(unique)
+        ],
+        "compact_metatile_id_fields": [
+            "tileset_symbol",
+            "global_metatile_id",
+            "local_metatile_id",
+        ],
+        "samples": samples,
+    }
+
+
+def build_tileset_animation_schedule_trace(source_root, records, animation_frames):
+    path = Path(source_root) / "src/tileset_anims.c"
+    if not path.exists():
+        return {
+            "status": "missing_source_file",
+            "source": path_status(Path(source_root), Path("src/tileset_anims.c")),
+            "init_function_count": 0,
+            "callback_count": 0,
+            "queue_function_count": 0,
+            "tile_copy_queue_function_count": 0,
+            "tile_copy_append_count": 0,
+        }
+    text = read_text(path)
+    functions = parse_tileset_anim_functions(text)
+    pointer_arrays = parse_anim_pointer_arrays(text)
+    vdest_arrays = parse_tileset_anim_vdest_arrays(text)
+    init_rows = parse_init_function_details(functions)
+    callback_rows = parse_tileset_anim_callback_events(functions)
+    frame_symbols = {frame["symbol"] for frame in animation_frames}
+
+    queue_rows = []
+    append_rows = []
+    for name in sorted(functions):
+        if not (name.startswith("QueueAnimTiles_") or name.startswith("BlendAnimPalette_")):
+            continue
+        function = functions[name]
+        appends = queue_append_records(function, pointer_arrays, vdest_arrays)
+        palettes = queue_palette_records(function)
+        queue_rows.append({
+            "function": name,
+            "source": compact_source_ref(function["source"]),
+            "kind": "palette_blend" if name.startswith("BlendAnimPalette_") else "tile_copy",
+            "append_count": len(appends),
+            "palette_record_count": len(palettes),
+            "appends": appends,
+            "palette_records": palettes,
+        })
+        for append_index, append in enumerate(appends):
+            affected = affected_metatile_summary_for_targets(
+                records,
+                append.get("tile_offsets", []),
+                append.get("tile_count"),
+            )
+            append_rows.append(dict(
+                append,
+                **{
+                    "queue_function": name,
+                    "append_index": append_index,
+                    "source_frame_symbol_count": len(pointer_arrays.get(append.get("source_array"), {}).get("frame_symbols", [])),
+                    "source_frame_symbols": [
+                        symbol
+                        for symbol in pointer_arrays.get(append.get("source_array"), {}).get("frame_symbols", [])
+                        if symbol in frame_symbols
+                    ],
+                    "affected_metatiles": affected,
+                },
+            ))
+
+    queue_by_name = {row["function"]: row for row in queue_rows}
+    event_rows = []
+    for callback in callback_rows:
+        for event_index, event in enumerate(callback["events"]):
+            queue = queue_by_name.get(event["queue_function"], {})
+            event_rows.append({
+                "callback": callback["callback"],
+                "event_index": event_index,
+                "queue_function": event["queue_function"],
+                "kind": event["source_kind"],
+                "trigger_modulo": event["trigger_modulo"],
+                "trigger_phase": event["trigger_phase"],
+                "duration_frames": event["duration_frames"],
+                "timer_argument_expr": event["timer_argument_expr"],
+                "extra_argument_exprs": event["extra_argument_exprs"],
+                "append_count": queue.get("append_count", 0),
+            })
+
+    active_callback_symbols = sorted({
+        row.get("callback", {}).get("symbol")
+        for row in records
+        if row.get("active_in_emerald") and row.get("callback", {}).get("has_callback")
+    })
+    active_init_rows = [
+        row for row in init_rows
+        if row["function"] in active_callback_symbols
+    ]
+    tile_copy_event_count = sum(1 for row in event_rows if row["kind"] == "tile_copy")
+    palette_event_count = sum(1 for row in event_rows if row["kind"] == "palette_blend")
+    return {
+        "status": "decoded_source_schedule_metadata",
+        "runtime_tileset_animation_required": False,
+        "source_color_runtime_required": False,
+        "source_palette_runtime_required": False,
+        "source": path_status(Path(source_root), Path("src/tileset_anims.c")),
+        "scheduler_source": {
+            "update_order": [
+                "ResetTilesetAnimBuffer",
+                "++sPrimaryTilesetAnimCounter with wrap at sPrimaryTilesetAnimCounterMax",
+                "++sSecondaryTilesetAnimCounter with wrap at sSecondaryTilesetAnimCounterMax",
+                "sPrimaryTilesetAnimCallback(counter)",
+                "sSecondaryTilesetAnimCallback(counter)",
+                "TransferTilesetAnimsBuffer DmaCopy16 queued copies",
+            ],
+            "buffer_capacity": 20,
+            "tile_size_4bpp_bytes": TILE_SIZE_4BPP_BYTES,
+        },
+        "init_function_count": len(init_rows),
+        "active_init_function_count": len(active_init_rows),
+        "callback_count": len(callback_rows),
+        "event_count": len(event_rows),
+        "tile_copy_event_count": tile_copy_event_count,
+        "palette_event_count": palette_event_count,
+        "queue_function_count": len(queue_rows),
+        "tile_copy_queue_function_count": sum(1 for row in queue_rows if row["kind"] == "tile_copy"),
+        "palette_queue_function_count": sum(1 for row in queue_rows if row["kind"] == "palette_blend"),
+        "tile_copy_append_count": len(append_rows),
+        "direct_tile_offset_append_count": sum(1 for row in append_rows if row["dest_kind"] == "direct_tile_offset"),
+        "vdest_array_append_count": sum(1 for row in append_rows if row["dest_kind"] == "vdest_array"),
+        "append_with_affected_metatile_count": sum(
+            1
+            for row in append_rows
+            if row.get("affected_metatiles", {}).get("affected_unique_metatile_count", 0) > 0
+        ),
+        "affected_metatile_reference_count": sum(
+            int(row.get("affected_metatiles", {}).get("affected_metatile_reference_count", 0))
+            for row in append_rows
+        ),
+        "affected_unique_metatile_count_max_per_append": max(
+            [int(row.get("affected_metatiles", {}).get("affected_unique_metatile_count", 0)) for row in append_rows] or [0]
+        ),
+        "pointer_array_count": len(pointer_arrays),
+        "vdest_array_count": len(vdest_arrays),
+        "init_functions": init_rows,
+        "callbacks": callback_rows,
+        "events": event_rows,
+        "queue_functions": queue_rows,
+        "tile_copy_appends": append_rows,
+        "unsupported_or_metadata_only": [
+            {
+                "code": "battle_dome_palette_blend_metadata_only",
+                "status": "metadata_only",
+                "detail": "Battle Dome floor lights copy palette data and blend source colors; Godot runtime must use native Shader/Material/Animation color parameters instead of exposing GBA palette buffers.",
+            }
+        ] if palette_event_count else [],
+    }
+
+
+def tileset_callback_schedule_metadata(callback_symbol, schedule_init_by_function, schedule_events_by_callback):
+    if callback_symbol == "NULL":
+        return {}
+    if not schedule_init_by_function and not schedule_events_by_callback:
+        return {}
+    schedule_trace = schedule_init_by_function.get(callback_symbol)
+    event_callback_symbol = (
+        schedule_trace.get("callback_symbol")
+        if schedule_trace
+        else callback_symbol
+    )
+    callback_schedule_events = []
+    if event_callback_symbol != "NULL":
+        callback_schedule_events = schedule_events_by_callback.get(event_callback_symbol, [])
+    return {
+        "schedule_trace": schedule_trace,
+        "schedule_event_callback_symbol": event_callback_symbol,
+        "schedule_event_count": len(callback_schedule_events),
+        "tile_copy_event_count": sum(
+            1 for event in callback_schedule_events if event.get("kind") == "tile_copy"
+        ),
+        "palette_event_count": sum(
+            1 for event in callback_schedule_events if event.get("kind") == "palette_blend"
+        ),
+        "schedule_events": callback_schedule_events,
+    }
+
+
+def attach_tileset_animation_schedule_trace(records, animation_schedule_trace):
+    schedule_init_by_function = {
+        row["function"]: row
+        for row in animation_schedule_trace.get("init_functions", [])
+    }
+    schedule_events_by_callback = {}
+    for event in animation_schedule_trace.get("events", []):
+        schedule_events_by_callback.setdefault(event.get("callback"), []).append(event)
+
+    for row in records:
+        callback = row.get("callback", {})
+        callback_symbol = callback.get("symbol")
+        callback.update(tileset_callback_schedule_metadata(
+            callback_symbol,
+            schedule_init_by_function,
+            schedule_events_by_callback,
+        ))
 
 
 def parse_palette_slot_rules(source_root):
@@ -3188,6 +3773,7 @@ def parse_tileset_headers(
     source_root,
     animation_frames=None,
     init_functions=None,
+    animation_schedule_trace=None,
     palette_rules=None,
     metatile_rules=None,
     metatile_attribute_rules=None,
@@ -3197,6 +3783,7 @@ def parse_tileset_headers(
     text = read_text(headers_path)
     declarations = parse_asset_declarations(source_root)
     animation_frames = animation_frames or []
+    animation_schedule_trace = animation_schedule_trace or {}
     palette_rules = palette_rules or parse_palette_slot_rules(source_root)
     metatile_rules = metatile_rules or parse_metatile_decode_rules(source_root)
     metatile_attribute_rules = metatile_attribute_rules or parse_metatile_attribute_rules(source_root)
@@ -3205,6 +3792,13 @@ def parse_tileset_headers(
         row["function"]: row
         for row in (init_functions or [])
     }
+    schedule_init_by_function = {
+        row["function"]: row
+        for row in animation_schedule_trace.get("init_functions", [])
+    }
+    schedule_events_by_callback = {}
+    for event in animation_schedule_trace.get("events", []):
+        schedule_events_by_callback.setdefault(event.get("callback"), []).append(event)
     rows = []
 
     for branch, active_in_emerald, section in split_header_sections(text):
@@ -3215,6 +3809,11 @@ def parse_tileset_headers(
             is_secondary_expr = field_expr(body, "isSecondary")
             is_compressed_expr = field_expr(body, "isCompressed")
             callback_symbol = field_expr(body, "callback") or "NULL"
+            callback_schedule = tileset_callback_schedule_metadata(
+                callback_symbol,
+                schedule_init_by_function,
+                schedule_events_by_callback,
+            )
             field_symbols = {
                 "tiles": field_expr(body, "tiles"),
                 "palettes": field_expr(body, "palettes"),
@@ -3289,6 +3888,7 @@ def parse_tileset_headers(
                     "status": "metadata_only" if callback_symbol != "NULL" else "none",
                     "source": callback_source["source"] if callback_source else None,
                     "source_found": callback_source is not None if callback_symbol != "NULL" else True,
+                    **callback_schedule,
                 },
                 "expected_source_directory": {
                     "kind": kind,
@@ -3387,6 +3987,7 @@ def build_stats(
     records,
     animation_frames=None,
     animation_frame_strip_export=None,
+    animation_schedule_trace=None,
     init_functions=None,
     metatile_label_rules=None,
     metatile_label_pair_lookup=None,
@@ -3396,6 +3997,7 @@ def build_stats(
 ):
     animation_frames = animation_frames or []
     animation_frame_strip_export = animation_frame_strip_export or {}
+    animation_schedule_trace = animation_schedule_trace or {}
     init_functions = init_functions or []
     metatile_label_rules = metatile_label_rules or {}
     metatile_label_pair_lookup = metatile_label_pair_lookup or {}
@@ -4035,6 +4637,57 @@ def build_stats(
         "animation_rgba_frame_strip_total_height_pixels": int(
             animation_frame_strip_export.get("total_strip_height_pixels", 0)
         ),
+        "animation_schedule_init_function_count": int(
+            animation_schedule_trace.get("init_function_count", 0)
+        ),
+        "animation_schedule_active_init_function_count": int(
+            animation_schedule_trace.get("active_init_function_count", 0)
+        ),
+        "animation_schedule_callback_count": int(
+            animation_schedule_trace.get("callback_count", 0)
+        ),
+        "animation_schedule_event_count": int(
+            animation_schedule_trace.get("event_count", 0)
+        ),
+        "animation_schedule_tile_copy_event_count": int(
+            animation_schedule_trace.get("tile_copy_event_count", 0)
+        ),
+        "animation_schedule_palette_event_count": int(
+            animation_schedule_trace.get("palette_event_count", 0)
+        ),
+        "animation_schedule_queue_function_count": int(
+            animation_schedule_trace.get("queue_function_count", 0)
+        ),
+        "animation_schedule_tile_copy_queue_function_count": int(
+            animation_schedule_trace.get("tile_copy_queue_function_count", 0)
+        ),
+        "animation_schedule_palette_queue_function_count": int(
+            animation_schedule_trace.get("palette_queue_function_count", 0)
+        ),
+        "animation_schedule_tile_copy_append_count": int(
+            animation_schedule_trace.get("tile_copy_append_count", 0)
+        ),
+        "animation_schedule_direct_tile_offset_append_count": int(
+            animation_schedule_trace.get("direct_tile_offset_append_count", 0)
+        ),
+        "animation_schedule_vdest_array_append_count": int(
+            animation_schedule_trace.get("vdest_array_append_count", 0)
+        ),
+        "animation_schedule_append_with_affected_metatile_count": int(
+            animation_schedule_trace.get("append_with_affected_metatile_count", 0)
+        ),
+        "animation_schedule_affected_metatile_reference_count": int(
+            animation_schedule_trace.get("affected_metatile_reference_count", 0)
+        ),
+        "animation_schedule_affected_unique_metatile_count_max_per_append": int(
+            animation_schedule_trace.get("affected_unique_metatile_count_max_per_append", 0)
+        ),
+        "animation_schedule_pointer_array_count": int(
+            animation_schedule_trace.get("pointer_array_count", 0)
+        ),
+        "animation_schedule_vdest_array_count": int(
+            animation_schedule_trace.get("vdest_array_count", 0)
+        ),
         "animation_tileset_base_count": len(animation_base_paths),
         "animation_tileset_base_paths": animation_base_paths,
         "orphan_animation_tileset_base_count": len(orphan_animation_base_paths),
@@ -4118,6 +4771,17 @@ def manifest_entry_for(exported, output_path):
         "animation_rgba_frame_strip_invalid_source_image_count": stats[
             "animation_rgba_frame_strip_invalid_source_image_count"
         ],
+        "animation_schedule_event_count": stats["animation_schedule_event_count"],
+        "animation_schedule_tile_copy_event_count": stats["animation_schedule_tile_copy_event_count"],
+        "animation_schedule_palette_event_count": stats["animation_schedule_palette_event_count"],
+        "animation_schedule_tile_copy_append_count": stats["animation_schedule_tile_copy_append_count"],
+        "animation_schedule_vdest_array_append_count": stats["animation_schedule_vdest_array_append_count"],
+        "animation_schedule_append_with_affected_metatile_count": stats[
+            "animation_schedule_append_with_affected_metatile_count"
+        ],
+        "animation_schedule_affected_metatile_reference_count": stats[
+            "animation_schedule_affected_metatile_reference_count"
+        ],
         "missing_callback_source_count": stats["missing_callback_source_count"],
         "missing_asset_declaration_count": stats["missing_asset_declaration_count"],
     }
@@ -4140,13 +4804,19 @@ def build_export(source_root, output_asset_root=None, write_assets=False):
     metatile_label_rules = parse_metatile_label_rules(source_root)
     records = parse_tileset_headers(
         source_root,
-        animation_frames,
-        init_functions,
-        palette_rules,
-        metatile_rules,
-        metatile_attribute_rules,
-        metatile_label_rules,
+        animation_frames=animation_frames,
+        init_functions=init_functions,
+        palette_rules=palette_rules,
+        metatile_rules=metatile_rules,
+        metatile_attribute_rules=metatile_attribute_rules,
+        metatile_label_rules=metatile_label_rules,
     )
+    animation_schedule_trace = build_tileset_animation_schedule_trace(
+        source_root,
+        records,
+        animation_frames,
+    )
+    attach_tileset_animation_schedule_trace(records, animation_schedule_trace)
     metatile_label_pair_lookup = build_metatile_label_pair_lookup(
         source_root,
         records,
@@ -4169,6 +4839,7 @@ def build_export(source_root, output_asset_root=None, write_assets=False):
         records,
         animation_frames,
         animation_frame_strip_export,
+        animation_schedule_trace,
         init_functions,
         metatile_label_rules,
         metatile_label_pair_lookup,
@@ -4192,6 +4863,7 @@ def build_export(source_root, output_asset_root=None, write_assets=False):
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_frame_strips": animation_frame_strip_export,
+        "tileset_animation_schedule_trace": animation_schedule_trace,
         "tileset_animation_init_functions": init_functions,
         "runtime_policy": {
             "runtime_palette_required": False,
@@ -4206,7 +4878,7 @@ def build_export(source_root, output_asset_root=None, write_assets=False):
             {
                 "code": "tileset_animation_runtime_pending",
                 "status": "unsupported",
-                "detail": "Header callback symbols, callback source bindings, animation frame image provenance, and generated RGBA frame strips are exported, but no source-equivalent Godot tileset animation scheduler is implemented yet.",
+                "detail": "Header callback symbols, callback source bindings, animation frame image provenance, generated RGBA frame strips, and source schedule/copy-target metadata are exported, but no source-equivalent Godot tileset animation scheduler is implemented yet.",
             },
             {
                 "code": "source_equivalent_layer_renderer_pending",

@@ -100,6 +100,18 @@
     "tileset_animation_rgba_frame_strip_existing_source_image_count": 182,
     "tileset_animation_rgba_frame_strip_missing_source_image_count": 0,
     "tileset_animation_rgba_frame_strip_invalid_source_image_count": 0,
+    "tileset_animation_schedule_init_function_count": 31,
+    "tileset_animation_schedule_active_init_function_count": 25,
+    "tileset_animation_schedule_callback_count": 27,
+    "tileset_animation_schedule_event_count": 59,
+    "tileset_animation_schedule_tile_copy_event_count": 57,
+    "tileset_animation_schedule_palette_event_count": 2,
+    "tileset_animation_schedule_queue_function_count": 38,
+    "tileset_animation_schedule_tile_copy_append_count": 41,
+    "tileset_animation_schedule_vdest_array_append_count": 6,
+    "tileset_animation_schedule_append_with_affected_metatile_count": 41,
+    "tileset_animation_schedule_affected_metatile_reference_count": 58376,
+    "tileset_animation_schedule_affected_unique_metatile_count_max_per_append": 3715,
     "tileset_palette_slot_mapping_count": 2224,
     "active_emerald_tileset_palette_slot_mapping_count": 1200,
     "tileset_loaded_palette_slot_mapping_count": 908,
@@ -385,7 +397,7 @@
       "status": "unsupported",
       "source_count": 31,
       "generated_count": 0,
-      "detail": "Source tileset animation callbacks and RGBA frame strips exist, but no source-equivalent Godot scheduler/runtime records are exported yet."
+      "detail": "Source tileset animation callbacks, RGBA frame strips, and schedule/copy-target metadata are exported, but no source-equivalent Godot scheduler/runtime playback is implemented yet."
     },
     {
       "code": "door_overlay_not_source_equivalent",

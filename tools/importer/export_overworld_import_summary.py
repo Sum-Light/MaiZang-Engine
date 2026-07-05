@@ -799,6 +799,42 @@ def build_export(source_root, output_root):
     tileset_animation_rgba_frame_strip_invalid_source_image_count = int(
         tileset_header_stats.get("animation_rgba_frame_strip_invalid_source_image_count", 0)
     )
+    tileset_animation_schedule_init_function_count = int(
+        tileset_header_stats.get("animation_schedule_init_function_count", 0)
+    )
+    tileset_animation_schedule_active_init_function_count = int(
+        tileset_header_stats.get("animation_schedule_active_init_function_count", 0)
+    )
+    tileset_animation_schedule_callback_count = int(
+        tileset_header_stats.get("animation_schedule_callback_count", 0)
+    )
+    tileset_animation_schedule_event_count = int(
+        tileset_header_stats.get("animation_schedule_event_count", 0)
+    )
+    tileset_animation_schedule_tile_copy_event_count = int(
+        tileset_header_stats.get("animation_schedule_tile_copy_event_count", 0)
+    )
+    tileset_animation_schedule_palette_event_count = int(
+        tileset_header_stats.get("animation_schedule_palette_event_count", 0)
+    )
+    tileset_animation_schedule_queue_function_count = int(
+        tileset_header_stats.get("animation_schedule_queue_function_count", 0)
+    )
+    tileset_animation_schedule_tile_copy_append_count = int(
+        tileset_header_stats.get("animation_schedule_tile_copy_append_count", 0)
+    )
+    tileset_animation_schedule_vdest_array_append_count = int(
+        tileset_header_stats.get("animation_schedule_vdest_array_append_count", 0)
+    )
+    tileset_animation_schedule_append_with_affected_metatile_count = int(
+        tileset_header_stats.get("animation_schedule_append_with_affected_metatile_count", 0)
+    )
+    tileset_animation_schedule_affected_metatile_reference_count = int(
+        tileset_header_stats.get("animation_schedule_affected_metatile_reference_count", 0)
+    )
+    tileset_animation_schedule_affected_unique_metatile_count_max_per_append = int(
+        tileset_header_stats.get("animation_schedule_affected_unique_metatile_count_max_per_append", 0)
+    )
     tileset_palette_slot_mapping_count = int(
         tileset_header_stats.get("palette_slot_mapping_count", 0)
     )
@@ -1089,10 +1125,42 @@ def build_export(source_root, output_root):
         "tileset_animation_rgba_frame_strip_missing_source_image_count": (
             tileset_animation_rgba_frame_strip_missing_source_image_count
         ),
-        "tileset_animation_rgba_frame_strip_invalid_source_image_count": (
-            tileset_animation_rgba_frame_strip_invalid_source_image_count
-        ),
-        "tileset_palette_slot_mapping_count": tileset_palette_slot_mapping_count,
+            "tileset_animation_rgba_frame_strip_invalid_source_image_count": (
+                tileset_animation_rgba_frame_strip_invalid_source_image_count
+            ),
+            "tileset_animation_schedule_init_function_count": (
+                tileset_animation_schedule_init_function_count
+            ),
+            "tileset_animation_schedule_active_init_function_count": (
+                tileset_animation_schedule_active_init_function_count
+            ),
+            "tileset_animation_schedule_callback_count": tileset_animation_schedule_callback_count,
+            "tileset_animation_schedule_event_count": tileset_animation_schedule_event_count,
+            "tileset_animation_schedule_tile_copy_event_count": (
+                tileset_animation_schedule_tile_copy_event_count
+            ),
+            "tileset_animation_schedule_palette_event_count": (
+                tileset_animation_schedule_palette_event_count
+            ),
+            "tileset_animation_schedule_queue_function_count": (
+                tileset_animation_schedule_queue_function_count
+            ),
+            "tileset_animation_schedule_tile_copy_append_count": (
+                tileset_animation_schedule_tile_copy_append_count
+            ),
+            "tileset_animation_schedule_vdest_array_append_count": (
+                tileset_animation_schedule_vdest_array_append_count
+            ),
+            "tileset_animation_schedule_append_with_affected_metatile_count": (
+                tileset_animation_schedule_append_with_affected_metatile_count
+            ),
+            "tileset_animation_schedule_affected_metatile_reference_count": (
+                tileset_animation_schedule_affected_metatile_reference_count
+            ),
+            "tileset_animation_schedule_affected_unique_metatile_count_max_per_append": (
+                tileset_animation_schedule_affected_unique_metatile_count_max_per_append
+            ),
+            "tileset_palette_slot_mapping_count": tileset_palette_slot_mapping_count,
         "active_emerald_tileset_palette_slot_mapping_count": active_tileset_palette_slot_mapping_count,
         "tileset_loaded_palette_slot_mapping_count": tileset_loaded_palette_slot_mapping_count,
         "active_emerald_tileset_loaded_palette_slot_mapping_count": active_tileset_loaded_palette_slot_mapping_count,
@@ -1464,7 +1532,7 @@ def build_explicit_unsupported(source_counts, generated_counts):
             "status": "unsupported",
             "source_count": source_counts["tileset_callback_count"],
             "generated_count": generated_counts["tileset_animation_count"],
-            "detail": "Source tileset animation callbacks and RGBA frame strips exist, but no source-equivalent Godot scheduler/runtime records are exported yet.",
+            "detail": "Source tileset animation callbacks, RGBA frame strips, and schedule/copy-target metadata are exported, but no source-equivalent Godot scheduler/runtime playback is implemented yet.",
         },
         {
             "code": "door_overlay_not_source_equivalent",
@@ -1555,6 +1623,21 @@ def manifest_entry_for(exported, output_path):
         ],
         "tileset_animation_rgba_frame_strip_invalid_source_image_count": generated[
             "tileset_animation_rgba_frame_strip_invalid_source_image_count"
+        ],
+        "generated_tileset_animation_schedule_event_count": generated[
+            "tileset_animation_schedule_event_count"
+        ],
+        "generated_tileset_animation_schedule_tile_copy_event_count": generated[
+            "tileset_animation_schedule_tile_copy_event_count"
+        ],
+        "generated_tileset_animation_schedule_tile_copy_append_count": generated[
+            "tileset_animation_schedule_tile_copy_append_count"
+        ],
+        "generated_tileset_animation_schedule_append_with_affected_metatile_count": generated[
+            "tileset_animation_schedule_append_with_affected_metatile_count"
+        ],
+        "generated_tileset_animation_schedule_affected_metatile_reference_count": generated[
+            "tileset_animation_schedule_affected_metatile_reference_count"
         ],
         "generated_tileset_callback_map_layout_count": generated["tileset_callback_map_layout_count"],
         "generated_tileset_callback_map_map_count": generated["tileset_callback_map_map_count"],

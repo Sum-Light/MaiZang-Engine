@@ -140,6 +140,54 @@ def main(argv):
         generated["tileset_animation_rgba_frame_strip_invalid_source_image_count"] == 0,
         "unexpected invalid animation RGBA frame strip source image count",
     )
+    _assert(
+        generated["tileset_animation_schedule_init_function_count"] == 31,
+        "unexpected animation schedule init count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_active_init_function_count"] == 25,
+        "unexpected active animation schedule init count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_callback_count"] == 27,
+        "unexpected animation schedule callback count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_event_count"] == 59,
+        "unexpected animation schedule event count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_tile_copy_event_count"] == 57,
+        "unexpected animation schedule tile-copy event count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_palette_event_count"] == 2,
+        "unexpected animation schedule palette event count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_queue_function_count"] == 38,
+        "unexpected animation schedule queue count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_tile_copy_append_count"] == 41,
+        "unexpected animation schedule append count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_vdest_array_append_count"] == 6,
+        "unexpected animation schedule VDest append count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_append_with_affected_metatile_count"] == 41,
+        "unexpected animation schedule affected append count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_affected_metatile_reference_count"] == 58376,
+        "unexpected animation schedule affected reference count",
+    )
+    _assert(
+        generated["tileset_animation_schedule_affected_unique_metatile_count_max_per_append"] == 3715,
+        "unexpected animation schedule max affected unique count",
+    )
     _assert(generated["tileset_palette_slot_mapping_count"] == 2224, "unexpected palette slot mapping count")
     _assert(
         generated["active_emerald_tileset_palette_slot_mapping_count"] == 1200,
