@@ -259,6 +259,91 @@ func _run() -> void:
 	_assert(int(byte_color_first_indices.get("foreground", 0)) == 1, "expected initial message foreground before color control")
 	_assert(int(byte_color_second_indices.get("foreground", 0)) == 4, "expected red foreground after EXT_CTRL_CODE_COLOR")
 
+	var byte_layout_control_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	byte_layout_control_printer.start("B_WIN_MSG", "FPFFPFPF", message_info, text_printer_metadata, {
+		"source_text": "FPFFPFPF",
+		"source_bytes": [
+			0xC0,
+			0xFC, 0x0D, 20,
+			0xCA,
+			0xFC, 0x0E, 8,
+			0xC0,
+			0xFC, 0x14, 12,
+			0xC0,
+			0xCA,
+			0xFC, 0x12, 4,
+			0xC0,
+			0xFC, 0x1B, 2,
+			0xFC, 0x11, 4,
+			0xCA,
+			0xFC, 0x13, 50,
+			0xC0,
+			0xFF,
+		],
+		"source_glyphs": [
+			{"byte_offset": 0, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 4, "bytes": [0xCA], "text": "P", "hex": "CA"},
+			{"byte_offset": 8, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 12, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 13, "bytes": [0xCA], "text": "P", "hex": "CA"},
+			{"byte_offset": 17, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 24, "bytes": [0xCA], "text": "P", "hex": "CA"},
+			{"byte_offset": 28, "bytes": [0xC0], "text": "F", "hex": "C0"},
+		],
+	})
+	byte_layout_control_printer.skip_to_end()
+	var byte_layout_control := _dict(byte_layout_control_printer.snapshot())
+	var byte_layout_summary := _dict(byte_layout_control.get("render_text_control_summary", {}))
+	var byte_layout_pixel_summary := _dict(byte_layout_control.get("source_window_pixel_effect_summary", {}))
+	var byte_layout_source_summary := _dict(byte_layout_control.get("source_byte_control_summary", {}))
+	var byte_layout := _dict(byte_layout_control.get("source_glyph_layout", {}))
+	var byte_layout_origin := _array(byte_layout.get("origin", []))
+	var byte_layout_glyphs := _array(byte_layout.get("glyphs", []))
+	var byte_layout_origin_x := int(byte_layout_origin[0]) if byte_layout_origin.size() > 0 else 0
+	var byte_layout_origin_y := int(byte_layout_origin[1]) if byte_layout_origin.size() > 1 else 0
+	var shift_right_glyph := _glyph_by_source_offset(byte_layout_glyphs, 4)
+	var shift_down_glyph := _glyph_by_source_offset(byte_layout_glyphs, 8)
+	var skip_glyph := _glyph_by_source_offset(byte_layout_glyphs, 17)
+	var clear_to_glyph := _glyph_by_source_offset(byte_layout_glyphs, 28)
+	_assert(String(byte_layout_control.get("render_text_control_status", "")) == "source_render_text_control_side_effects_first_pass", "expected RenderText control summary status")
+	_assert(int(byte_layout_source_summary.get("ext_control_count", 0)) == 7, "expected seven source byte EXT controls")
+	_assert(int(byte_layout_summary.get("shift_right_count", 0)) == 1, "expected one shift-right control")
+	_assert(int(byte_layout_summary.get("shift_down_count", 0)) == 1, "expected one shift-down control")
+	_assert(int(byte_layout_summary.get("skip_count", 0)) == 1, "expected one skip control")
+	_assert(int(byte_layout_summary.get("clear_span_count", 0)) == 1, "expected one clear-span control")
+	_assert(int(byte_layout_summary.get("clear_to_count", 0)) == 1, "expected one clear-to control")
+	_assert(int(byte_layout_summary.get("min_letter_spacing_count", 0)) == 1, "expected one min-letter-spacing control")
+	_assert(int(byte_layout_pixel_summary.get("clear_text_span_count", 0)) == 2, "expected CLEAR and CLEAR_TO pixel spans")
+	_assert(int(byte_layout_pixel_summary.get("clear_text_span_filled_count", 0)) == 2, "expected CLEAR and CLEAR_TO to use filled background material")
+	_assert(int(shift_right_glyph.get("x", -1)) == byte_layout_origin_x + 20, "expected SHIFT_RIGHT to set currentX from source origin")
+	_assert(int(shift_down_glyph.get("y", -1)) == byte_layout_origin_y + 8, "expected SHIFT_DOWN to set currentY from source origin")
+	_assert(int(skip_glyph.get("advance", 0)) == max(int(skip_glyph.get("width", 0)), 12), "expected MIN_LETTER_SPACING to clamp later glyph advance")
+	_assert(int(skip_glyph.get("x", -1)) == byte_layout_origin_x + 4, "expected SKIP to set currentX from source origin")
+	_assert(int(clear_to_glyph.get("x", -1)) == byte_layout_origin_x + 50, "expected CLEAR_TO to advance to source target x")
+
+	var byte_fill_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	byte_fill_printer.start("B_WIN_MSG", "FP", message_info, text_printer_metadata, {
+		"source_text": "FP",
+		"source_bytes": [0xC0, 0xFC, 0x1B, 2, 0xFC, 0x0F, 0xCA, 0xFF],
+		"source_glyphs": [
+			{"byte_offset": 0, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 6, "bytes": [0xCA], "text": "P", "hex": "CA"},
+		],
+	})
+	byte_fill_printer.skip_to_end()
+	var byte_fill := _dict(byte_fill_printer.snapshot())
+	var byte_fill_summary := _dict(byte_fill.get("render_text_control_summary", {}))
+	var byte_fill_pixel_summary := _dict(byte_fill.get("source_window_pixel_effect_summary", {}))
+	var byte_fill_layout := _dict(byte_fill.get("source_glyph_layout", {}))
+	var byte_fill_glyphs := _array(byte_fill_layout.get("glyphs", []))
+	var byte_fill_first_glyph := _dict(byte_fill_glyphs[0]) if not byte_fill_glyphs.is_empty() else {}
+	_assert(String(byte_fill_printer.get_visible_text()) == "P", "expected FILL_WINDOW to clear prior visible text")
+	_assert(int(byte_fill_summary.get("fill_window_count", 0)) == 1, "expected one fill-window control")
+	_assert(int(byte_fill_summary.get("clear_visible_text_count", 0)) == 1, "expected fill-window to clear visible layout")
+	_assert(int(byte_fill_pixel_summary.get("fill_window_count", 0)) == 1, "expected fill-window pixel effect")
+	_assert(int(byte_fill_layout.get("glyph_count", 0)) == 1, "expected one glyph after fill-window reset")
+	_assert(String(byte_fill_first_glyph.get("text", "")) == "P", "expected post-fill glyph to remain")
+
 	var audio_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	audio_printer.start("B_WIN_MSG", "A{PLAY_SE SE_SELECT}{WAIT_SE}B", message_info, text_printer_metadata)
 	audio_printer.advance_frames(1)
@@ -367,6 +452,11 @@ func _run() -> void:
 		"recorded_delays": recorded_delays,
 		"recorded_link_delay": int(recorded_link_snapshot.get("resolved_frame_delay", 0)),
 		"auto_scroll_release_frames": 50,
+		"render_text_control_ext_controls": int(byte_layout_source_summary.get("ext_control_count", 0)),
+		"render_text_control_clear_spans": int(byte_layout_pixel_summary.get("clear_text_span_count", 0)),
+		"render_text_control_filled_spans": int(byte_layout_pixel_summary.get("clear_text_span_filled_count", 0)),
+		"render_text_control_fill_windows": int(byte_fill_pixel_summary.get("fill_window_count", 0)),
+		"render_text_control_min_spacing": int(byte_layout_summary.get("min_letter_spacing_count", 0)),
 	}))
 	registry.free()
 	quit(0)
@@ -386,3 +476,11 @@ func _dict(value) -> Dictionary:
 
 func _array(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _glyph_by_source_offset(glyphs: Array, source_offset: int) -> Dictionary:
+	for glyph_value in glyphs:
+		var glyph := _dict(glyph_value)
+		if int(glyph.get("source_offset", -1)) == source_offset:
+			return glyph
+	return {}

@@ -3,6 +3,7 @@ extends RefCounted
 const STATUS := "first_pass_source_glyph_layout"
 const FONT_ATLAS_PREVIEW_STATUS := "source_font_atlas_preview"
 const RENDER_TEXT_COLOR_STATUS := "source_render_text_color_controls"
+const RENDER_TEXT_CONTROL_STATUS := "source_render_text_control_side_effects_first_pass"
 const SOURCE_WINDOW_PIXEL_EFFECT_STATUS := "source_window_pixel_effects_first_pass"
 const BATTLE_TEXT_CONTEXT_STATUS := "source_battle_text_context_first_pass"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
@@ -392,6 +393,8 @@ func snapshot() -> Dictionary:
 		"render_text_initial_color_indices": _render_text_initial_color_indices.duplicate(true),
 		"render_text_current_color_indices": _render_text_color_indices.duplicate(true),
 		"render_text_color_control_count": _render_text_color_control_count,
+		"render_text_control_status": RENDER_TEXT_CONTROL_STATUS,
+		"render_text_control_summary": _render_text_control_summary(),
 		"source_window_pixel_effect_status": SOURCE_WINDOW_PIXEL_EFFECT_STATUS,
 		"source_window_pixel_effects": _source_window_pixel_effects.duplicate(true),
 		"source_window_pixel_effect_summary": _source_window_pixel_effect_summary(),
@@ -413,6 +416,7 @@ func snapshot() -> Dictionary:
 			"font_metrics_status": String(_font_metrics.get("status", "")),
 			"glyphs": _layout_glyphs.duplicate(true),
 			"control_events": _layout_control_events.duplicate(true),
+			"control_summary": _render_text_control_summary(),
 		},
 		"event_count": _events.size(),
 		"event_index": _event_index,
@@ -1291,6 +1295,64 @@ func _source_window_pixel_effect_summary() -> Dictionary:
 	return summary
 
 
+func _render_text_control_summary() -> Dictionary:
+	var summary := {
+		"status": RENDER_TEXT_CONTROL_STATUS,
+		"control_event_count": _layout_control_events.size(),
+		"render_text_color_count": _render_text_color_control_count,
+		"font_count": 0,
+		"font_reset_noop_count": 0,
+		"shift_right_count": 0,
+		"shift_down_count": 0,
+		"skip_count": 0,
+		"clear_span_count": 0,
+		"clear_to_count": 0,
+		"fill_window_count": 0,
+		"clear_visible_text_count": 0,
+		"min_letter_spacing_count": 0,
+		"japanese_mode_count": 0,
+		"material_bank_skip_count": 0,
+		"placeholder_count": 0,
+		"wait_count": 0,
+		"audio_metadata_count": 0,
+		"source_rule": "src/text.c:RenderText EXT_CTRL_CODE_* cursor, clear, fill, material, font, language, wait, and audio side effects",
+	}
+	for control_value in _layout_control_events:
+		var control := _dictionary_value(control_value)
+		match String(control.get("kind", "")):
+			"font":
+				summary["font_count"] = int(summary["font_count"]) + 1
+			"font_reset_noop":
+				summary["font_reset_noop_count"] = int(summary["font_reset_noop_count"]) + 1
+			"shift_right":
+				summary["shift_right_count"] = int(summary["shift_right_count"]) + 1
+			"shift_down":
+				summary["shift_down_count"] = int(summary["shift_down_count"]) + 1
+			"skip":
+				summary["skip_count"] = int(summary["skip_count"]) + 1
+			"clear_span":
+				summary["clear_span_count"] = int(summary["clear_span_count"]) + 1
+			"clear_to":
+				summary["clear_to_count"] = int(summary["clear_to_count"]) + 1
+			"fill_window":
+				summary["fill_window_count"] = int(summary["fill_window_count"]) + 1
+			"clear_visible_text":
+				summary["clear_visible_text_count"] = int(summary["clear_visible_text_count"]) + 1
+			"min_letter_spacing":
+				summary["min_letter_spacing_count"] = int(summary["min_letter_spacing_count"]) + 1
+			"japanese_mode":
+				summary["japanese_mode_count"] = int(summary["japanese_mode_count"]) + 1
+			"render_text_material_bank_argument_skipped":
+				summary["material_bank_skip_count"] = int(summary["material_bank_skip_count"]) + 1
+			"placeholder":
+				summary["placeholder_count"] = int(summary["placeholder_count"]) + 1
+			"wait", "pause", "wait_se":
+				summary["wait_count"] = int(summary["wait_count"]) + 1
+			"audio":
+				summary["audio_metadata_count"] = int(summary["audio_metadata_count"]) + 1
+	return summary
+
+
 func _text_span_rect(width: int) -> Rect2i:
 	return Rect2i(
 		_layout_cursor.x,
@@ -1570,6 +1632,12 @@ func _apply_layout_style_event(event: Dictionary) -> void:
 		"FONT_MALE", "FONT_FEMALE":
 			_layout_font_id = "FONT_NORMAL"
 			_record_layout_control_event(event, {"kind": "font", "font_id": _layout_font_id, "alias": command})
+		"EXT_CTRL_CODE_RESET_FONT", "RESET_FONT":
+			_record_layout_control_event(event, {
+				"kind": "font_reset_noop",
+				"font_id": _layout_font_id,
+				"source_rule": "src/text.c:RenderText EXT_CTRL_CODE_RESET_FONT returns RENDER_REPEAT without changing fontId",
+			})
 		"EXT_CTRL_CODE_SHIFT_RIGHT", "SHIFT_RIGHT":
 			var offset := int(args[0]) if not args.is_empty() else 0
 			_layout_cursor.x = _layout_origin.x + offset
