@@ -117,7 +117,7 @@ Flattened atlas debug-artifact update: `tools/importer/export_tilesets.py` now w
 - [x] Design a Godot map-rendering owner to replace or wrap `DebugMapPlane` for source layer parity.
 - [x] Export or build separate render data for bottom, middle, and top layer tiles.
 - [x] Implement `METATILE_LAYER_TYPE_NORMAL`: source bottom/middle/top placement according to `global.fieldmap.h` comments and source tile slots.
-- [ ] Implement `METATILE_LAYER_TYPE_COVERED`.
+- [x] Implement `METATILE_LAYER_TYPE_COVERED`.
 - [ ] Implement `METATILE_LAYER_TYPE_SPLIT`.
 - [ ] Render player and object sprites at the correct visual depth between map layers.
 - [ ] Implement y-sort or source subpriority rules so objects behind/under top tiles draw correctly.
@@ -132,6 +132,8 @@ Layer-aware renderer owner design update: `scripts/overworld/layer_aware_map_ren
 Layer render data export update: `tools/importer/export_tilesets.py` now writes `layer_rendering` metadata and bottom/middle/top RGBA layer atlases for all four first-slice generated tilesets. `metatile_entries[].render_layers` maps normal/covered/split source tile slots to BG3/BG2/BG1 roles, keeps the normal-layer BG3 fill tile `0x3014` explicit, and leaves runtime consumption pending. `data/generated/overworld/import_summary.json` now reports 4/4 layer-rendering tilesets, 12/12 layer atlases, 2728/2728 generated metatile layer records, 0 missing layer images, and 0 missing layer records. `tools/importer/export_tilesets_layer_rendering_smoke.py` verifies layer-role records, layer-rule slot assignment, atlas image dimensions, and absence of runtime palette/source-color keys in the `layer_rendering` contract.
 
 Normal layer runtime update: `LayerAwareMapRenderer` now loads exported bottom/middle/top layer atlas textures and uses them for `METATILE_LAYER_TYPE_NORMAL` cells. Runtime status is `normal_layer_rendering_first_pass`; `get_layer_draw_records_for_cell` exposes the same normal-layer draw records used by `_draw()`, with BG3/BG2/BG1 roles and atlas source rects matching generated `metatile_entries[].render_layers`. Covered and split layer types still use flattened fallback or pending paths, and object-depth interleave remains explicitly unsupported. `tools/godot_smoke/layer_aware_map_renderer_smoke.gd` now verifies the normal runtime path, 369 Littleroot normal metatiles, loaded bottom/middle/top roles, generated rect parity, fallback delegation, and absence of runtime palette/source-color keys.
+
+Covered layer runtime update: `LayerAwareMapRenderer` now also consumes the exported layer atlases for `METATILE_LAYER_TYPE_COVERED` cells. Runtime status is `normal_covered_layer_rendering_first_pass`; covered draw records map source bottom slots to BG3/bottom, source top slots to BG2/middle, and BG1/top to the generated clear layer, matching `src/field_camera.c:DrawMetatile`. `tools/godot_smoke/layer_aware_map_renderer_smoke.gd` verifies 277 Littleroot covered metatiles, 646 total normal+covered implemented metatiles, generated rect parity for both layer types, and the existing fallback/delegation/no-runtime-palette checks. Split rendering, object-depth interleave, door forced-covered redraws, and per-cell redraw caches remain pending.
 
 ### 6. Dynamic Metatile And Tileset Animations
 

@@ -39,23 +39,30 @@ func _run() -> void:
 	_assert(String(contract.get("owner", "")) == "LayerAwareMapRenderer", "expected layer-aware owner name")
 	_assert(String(contract.get("replaces_or_wraps", "")) == "DebugMapPlane", "expected DebugMapPlane wrapper contract")
 	_assert(
-		String(contract.get("runtime_status", "")) == "normal_layer_rendering_first_pass",
-		"expected normal layer runtime status"
+		String(contract.get("runtime_status", "")) == "normal_covered_layer_rendering_first_pass",
+		"expected normal+covered layer runtime status"
 	)
 	_assert(not bool(contract.get("source_equivalent_for_runtime_layering", true)), "expected layer rendering to stay non-equivalent")
 	_assert(bool(contract.get("debug_fallback_active", false)), "expected debug fallback to be active")
-	_assert(String(status.get("status", "")) == "normal_layer_rendering_first_pass", "expected runtime normal layer status")
+	_assert(
+		String(status.get("status", "")) == "normal_covered_layer_rendering_first_pass",
+		"expected runtime normal+covered layer status"
+	)
 	_assert(not bool(status.get("source_equivalent_for_runtime_layering", true)), "expected runtime status to stay non-equivalent")
 	_assert(bool(status.get("debug_fallback_active", false)), "expected runtime status to expose active fallback")
 	_assert(_array_has_string(contract.get("implemented_layer_types", []), "METATILE_LAYER_TYPE_NORMAL"), "expected normal layer implementation marker")
+	_assert(_array_has_string(contract.get("implemented_layer_types", []), "METATILE_LAYER_TYPE_COVERED"), "expected covered layer implementation marker")
 
-	var normal_status: Dictionary = renderer.get_normal_layer_rendering_status()
-	_assert(String(normal_status.get("status", "")) == "implemented_first_pass", "expected normal layer status")
-	_assert(bool(normal_status.get("normal_runtime_path_active", false)), "expected active normal layer path")
-	_assert(int(normal_status.get("normal_metatile_count", 0)) == 369, "expected Littleroot normal metatile count")
-	_assert(_array_has_string(normal_status.get("drawn_roles", []), "bottom"), "expected bottom role loaded")
-	_assert(_array_has_string(normal_status.get("drawn_roles", []), "middle"), "expected middle role loaded")
-	_assert(_array_has_string(normal_status.get("drawn_roles", []), "top"), "expected top role loaded")
+	var layer_status: Dictionary = renderer.get_metatile_layer_rendering_status()
+	_assert(String(layer_status.get("status", "")) == "implemented_first_pass", "expected metatile layer status")
+	_assert(bool(layer_status.get("normal_runtime_path_active", false)), "expected active normal layer path")
+	_assert(bool(layer_status.get("covered_runtime_path_active", false)), "expected active covered layer path")
+	_assert(int(layer_status.get("normal_metatile_count", 0)) == 369, "expected Littleroot normal metatile count")
+	_assert(int(layer_status.get("covered_metatile_count", 0)) == 277, "expected Littleroot covered metatile count")
+	_assert(int(layer_status.get("implemented_metatile_count", 0)) == 646, "expected implemented metatile count")
+	_assert(_array_has_string(layer_status.get("drawn_roles", []), "bottom"), "expected bottom role loaded")
+	_assert(_array_has_string(layer_status.get("drawn_roles", []), "middle"), "expected middle role loaded")
+	_assert(_array_has_string(layer_status.get("drawn_roles", []), "top"), "expected top role loaded")
 
 	var layer_roles = contract.get("layer_roles", [])
 	_assert(_has_id_record(layer_roles, "bottom"), "expected bottom layer role")
@@ -80,6 +87,10 @@ func _run() -> void:
 		"expected normal rule to be implemented"
 	)
 	_assert(String(layer_contract.get("covered", {}).get("top_source_slot_to_runtime_layer", "")) == "middle", "expected covered middle layer rule")
+	_assert(
+		String(layer_contract.get("covered", {}).get("implementation_status", "")) == "implemented_first_pass_runtime_rendering",
+		"expected covered rule to be implemented"
+	)
 	_assert(String(layer_contract.get("split", {}).get("bottom_source_slot_to_runtime_layer", "")) == "bottom", "expected split bottom layer rule")
 
 	var unsupported_codes := _unsupported_codes(contract.get("unsupported", []))
@@ -100,7 +111,8 @@ func _run() -> void:
 		renderer.get_render_block_id(probe_cell) == debug_renderer.get_render_block_id(probe_cell),
 		"expected owner block query to delegate to fallback"
 	)
-	_assert_normal_layer_draw_records(renderer, tileset_data)
+	_assert_layer_draw_records(renderer, tileset_data, 0, "METATILE_LAYER_TYPE_NORMAL", "normal_layer_atlases")
+	_assert_layer_draw_records(renderer, tileset_data, 1, "METATILE_LAYER_TYPE_COVERED", "covered_layer_atlases")
 
 	var animation := _first_door_animation(tileset_data)
 	_assert(not animation.is_empty(), "expected generated door animation")
@@ -125,23 +137,29 @@ func _run() -> void:
 	quit(1 if _failed else 0)
 
 
-func _assert_normal_layer_draw_records(renderer: Node, tileset_data: Dictionary) -> void:
-	var normal_metatile_id := _first_metatile_id_for_layer_type(tileset_data, 0)
-	_assert(normal_metatile_id >= 0, "expected a normal metatile id")
+func _assert_layer_draw_records(
+	renderer: Node,
+	tileset_data: Dictionary,
+	layer_type: int,
+	expected_layer_type_name: String,
+	expected_runtime_path: String
+) -> void:
+	var metatile_id := _first_metatile_id_for_layer_type(tileset_data, layer_type)
+	_assert(metatile_id >= 0, "expected a %s metatile id" % expected_layer_type_name)
 	var map_data := {
 		"layout": {
 			"width": 1,
 			"height": 1,
 		},
 		"block_ids": [
-			[normal_metatile_id],
+			[metatile_id],
 		],
 	}
 	renderer.configure_from_map_data(map_data, tileset_data)
 	var draw_plan: Dictionary = renderer.get_layer_draw_records_for_cell(Vector2i.ZERO)
-	_assert(String(draw_plan.get("runtime_layer_path", "")) == "normal_layer_atlases", "expected normal layer draw path")
-	_assert(int(draw_plan.get("block_id", -1)) == normal_metatile_id, "expected draw-plan metatile id")
-	_assert(String(draw_plan.get("source_layer_type", "")) == "METATILE_LAYER_TYPE_NORMAL", "expected normal source layer type")
+	_assert(String(draw_plan.get("runtime_layer_path", "")) == expected_runtime_path, "expected %s draw path" % expected_layer_type_name)
+	_assert(int(draw_plan.get("block_id", -1)) == metatile_id, "expected draw-plan metatile id")
+	_assert(String(draw_plan.get("source_layer_type", "")) == expected_layer_type_name, "expected source layer type")
 	var records = draw_plan.get("records", [])
 	_assert(typeof(records) == TYPE_ARRAY and records.size() == 3, "expected bottom/middle/top draw records")
 	for role in ["bottom", "middle", "top"]:
@@ -153,7 +171,7 @@ func _assert_normal_layer_draw_records(renderer: Node, tileset_data: Dictionary)
 			"expected %s source BG equivalent" % role
 		)
 		_assert(
-			_rect_dict(record.get("source_rect", {})) == _generated_render_layer_rect(tileset_data, normal_metatile_id, role),
+			_rect_dict(record.get("source_rect", {})) == _generated_render_layer_rect(tileset_data, metatile_id, role),
 			"expected %s draw rect to match generated render_layers atlas rect" % role
 		)
 
