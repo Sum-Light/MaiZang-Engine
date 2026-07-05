@@ -21,6 +21,8 @@ def main(argv):
     stats = exported["stats"]
     rules = exported["palette_slot_rules"]
     attribute_rules = exported["metatile_attribute_rules"]
+    label_rules = exported["metatile_label_rules"]
+    pair_lookup = exported["metatile_label_pair_lookup"]
     rows = {row["symbol"]: row for row in exported["tileset_headers"]}
 
     _assert(exported["schema_version"] == 1, "unexpected schema version")
@@ -28,7 +30,7 @@ def main(argv):
     _assert(exported["runtime_policy"]["runtime_palette_required"] is False, "runtime palette must stay disabled")
     _assert(exported["runtime_policy"]["audio"]["status"] == "metadata_only", "audio policy changed")
 
-    _assert(stats["source_file_count"] == 9, "unexpected source file count")
+    _assert(stats["source_file_count"] == 10, "unexpected source file count")
     _assert(stats["missing_source_file_count"] == 0, "missing source files")
     _assert(stats["total_header_count"] == 139, "unexpected total tileset header count")
     _assert(stats["active_emerald_header_count"] == 75, "unexpected active Emerald header count")
@@ -165,6 +167,41 @@ def main(argv):
     _assert(stats["metatile_attribute_land_encounter_affordance_count"] == 1181, "unexpected land encounter count")
     _assert(stats["metatile_attribute_water_encounter_affordance_count"] == 842, "unexpected water encounter count")
     _assert(stats["metatile_attribute_missing_behavior_name_count"] == 0, "unexpected missing behavior names")
+    _assert(stats["metatile_label_source_label_count"] == 924, "unexpected source metatile label count")
+    _assert(stats["metatile_label_source_group_count"] == 77, "unexpected source label group count")
+    _assert(stats["metatile_label_source_tileset_group_count"] == 76, "unexpected source tileset group count")
+    _assert(stats["metatile_label_non_tileset_group_count"] == 1, "unexpected non-tileset label group count")
+    _assert(stats["metatile_label_source_group_with_header_count"] == 76, "unexpected label group header count")
+    _assert(stats["metatile_label_unmatched_source_group_count"] == 0, "unexpected unmatched label groups")
+    _assert(stats["metatile_label_header_decode_count"] == 77, "unexpected label header decode count")
+    _assert(
+        stats["active_metatile_label_header_decode_count"] == 46,
+        "unexpected active label header decode count",
+    )
+    _assert(stats["metatile_label_record_count"] == 924, "unexpected header label record count")
+    _assert(stats["active_metatile_label_record_count"] == 698, "unexpected active label record count")
+    _assert(
+        stats["metatile_label_reverse_lookup_metatile_id_count"] == 922,
+        "unexpected label reverse id count",
+    )
+    _assert(stats["metatile_label_out_of_range_count"] == 270, "unexpected out-of-range label count")
+    _assert(stats["metatile_label_pair_lookup_count"] == 137, "unexpected pair lookup count")
+    _assert(stats["metatile_label_pair_lookup_layout_count"] == 785, "unexpected pair lookup layout count")
+    _assert(stats["metatile_label_pair_with_labels_count"] == 137, "unexpected pair with labels count")
+    _assert(
+        stats["metatile_label_pair_label_record_count"] == 3960,
+        "unexpected pair label record count",
+    )
+    _assert(
+        stats["metatile_label_pair_reverse_lookup_metatile_id_count"] == 3958,
+        "unexpected pair reverse id count",
+    )
+    _assert(stats["metatile_label_pair_out_of_range_count"] == 1620, "unexpected pair out-of-range count")
+    _assert(stats["metatile_label_pair_missing_header_count"] == 1, "unexpected pair missing header count")
+    _assert(
+        stats["metatile_label_pair_missing_headers"][0]["pair_key"] == "gTileset_General+0",
+        "unexpected missing-header pair",
+    )
     _assert(stats["init_function_count"] == 31, "unexpected init function count")
     _assert(stats["animation_frame_declaration_count"] == 174, "unexpected animation frame declaration count")
     _assert(stats["animation_source_bin_count"] == 182, "unexpected animation source binary count")
@@ -254,6 +291,27 @@ def main(argv):
     _assert(attribute_rules["behavior_affordance_source"]["surfable_behavior_count"] == 18, "surfable behavior count mismatch")
     _assert(_source_function_found(attribute_rules, "ExtractMetatileAttribute"), "ExtractMetatileAttribute trace missing")
 
+    _assert(label_rules["status"] == "decoded_import_metadata", "label rules status mismatch")
+    _assert(
+        label_rules["runtime_binary_metatile_labels_required"] is False,
+        "runtime binary labels should stay disabled",
+    )
+    _assert(label_rules["label_count"] == 924, "label rule count mismatch")
+    _assert(label_rules["source_group_count"] == 77, "label group count mismatch")
+    _assert(_label_group_count(label_rules, "Other") == 20, "Other label group count mismatch")
+    _assert(
+        label_rules["labels_by_name"]["METATILE_GeneralFrlg_Plain_Mowed"]["source_group"] == "Other",
+        "FRLG General label should stay in Other source group",
+    )
+    _assert(
+        label_rules["labels_by_name"]["METATILE_GeneralFrlg_Plain_Mowed"]["header_symbol_candidates"][1]["symbol"]
+        == "gTileset_General_Frlg",
+        "FRLG General alias candidate missing",
+    )
+    _assert(pair_lookup["status"] == "decoded_import_metadata", "pair lookup status mismatch")
+    _assert(pair_lookup["source_layout_count"] == 785, "pair lookup source layout count mismatch")
+    _assert(pair_lookup["pair_count"] == 137, "pair lookup count mismatch")
+
     general = rows["gTileset_General"]
     _assert(general["active_in_emerald"], "General should be active")
     _assert(general["kind"] == "primary", "General should be primary")
@@ -312,6 +370,12 @@ def main(argv):
     _assert(general_first_attr["terrain_type"] is None, "General terrain should not be decoded")
     _assert(general_first_attr["has_encounters"] is False, "General first encounter flag mismatch")
     _assert(general_first_attr["unused_traversable_hint"] is True, "General first unused hint mismatch")
+    _assert(general["metatile_label_lookup"]["label_count"] == 38, "General label count mismatch")
+    general_grass = _metatile_label_record(exported, general, "METATILE_General_Grass")
+    _assert(general_grass["metatile_id"] == 1, "General grass id mismatch")
+    _assert(general_grass["local_metatile_id"] == 1, "General grass local id mismatch")
+    _assert(general_grass["resolution"] == "source_group", "General grass resolution mismatch")
+    _assert(general_grass["in_range"], "General grass should be in range")
     general_first_tile = _metatile_tile_entry(general, 0, 0)
     _assert(general_first_tile["raw"] == 0, "General first tile raw mismatch")
     _assert(general_first_tile["tile_id"] == 0, "General first tile id mismatch")
@@ -376,6 +440,26 @@ def main(argv):
         _has_existing_candidate(petalburg["asset_provenance"]["tiles"], "data/tilesets/secondary/petalburg/tiles.png"),
         "Petalburg tiles.png candidate missing",
     )
+    _assert(petalburg["metatile_label_lookup"]["label_count"] == 3, "Petalburg label count mismatch")
+    petalburg_door = _metatile_label_record(exported, petalburg, "METATILE_Petalburg_Door_Littleroot")
+    _assert(petalburg_door["metatile_id"] == 584, "Petalburg door id mismatch")
+    _assert(petalburg_door["local_metatile_id"] == 72, "Petalburg door local id mismatch")
+    _assert(petalburg_door["resolution"] == "source_group", "Petalburg door resolution mismatch")
+
+    general_petalburg_pair = _pair_lookup(exported, "gTileset_General+gTileset_Petalburg")
+    _assert(general_petalburg_pair["layout_count"] == 6, "General/Petalburg layout count mismatch")
+    _assert(general_petalburg_pair["label_count"] == 41, "General/Petalburg pair label count mismatch")
+    _assert(general_petalburg_pair["out_of_pair_label_count"] == 0, "General/Petalburg out-of-range labels")
+    general_pair_grass = _pair_label_record(exported, general_petalburg_pair, "METATILE_General_Grass")
+    _assert(general_pair_grass["source_kind"] == "primary", "General grass pair source kind mismatch")
+    _assert(general_pair_grass["local_metatile_id"] == 1, "General grass pair local id mismatch")
+    petalburg_pair_door = _pair_label_record(
+        exported,
+        general_petalburg_pair,
+        "METATILE_Petalburg_Door_Littleroot",
+    )
+    _assert(petalburg_pair_door["source_kind"] == "secondary", "Petalburg door pair source kind mismatch")
+    _assert(petalburg_pair_door["local_metatile_id"] == 72, "Petalburg door pair local mismatch")
 
     rustboro = rows["gTileset_Rustboro"]
     _assert(rustboro["callback"]["symbol"] == "InitTilesetAnim_Rustboro", "Rustboro callback mismatch")
@@ -410,6 +494,7 @@ def main(argv):
     _assert(secret_base["kind"] == "primary", "SecretBase should be primary")
     _assert(secret_base["is_compressed"] is False, "SecretBase should be uncompressed")
     _assert(secret_base["callback"]["has_callback"] is False, "SecretBase callback should be null")
+    _assert(secret_base["metatile_label_lookup"]["out_of_range_label_count"] == 270, "SecretBase label range count")
 
     frlg_general = rows["gTileset_General_Frlg"]
     _assert(frlg_general["branch"] == "frlg_metadata", "FRLG General branch mismatch")
@@ -451,6 +536,52 @@ def main(argv):
         _has_existing_animation_candidate(frlg_general, "data/tilesets/primary/general_frlg/anim/flower/0.png"),
         "FRLG General flower animation image missing",
     )
+    _assert(frlg_general["metatile_label_lookup"]["label_count"] == 12, "FRLG General label count mismatch")
+    frlg_plain = _metatile_label_record(exported, frlg_general, "METATILE_GeneralFrlg_Plain_Mowed")
+    _assert(frlg_plain["metatile_id"] == 1, "FRLG General plain id mismatch")
+    _assert(frlg_plain["resolution"] == "frlg_suffix_alias", "FRLG General alias resolution mismatch")
+
+    building = rows["gTileset_Building"]
+    brendans_mays_house = rows["gTileset_BrendansMaysHouse"]
+    _assert(building["metatile_label_lookup"]["label_count"] == 4, "Building label count mismatch")
+    _assert(brendans_mays_house["metatile_label_lookup"]["label_count"] == 7, "Brendan/May label count mismatch")
+    building_pc = _metatile_label_record(exported, building, "METATILE_Building_PC_Off")
+    _assert(building_pc["local_metatile_id"] == 4, "Building PC local id mismatch")
+    moving_box = _metatile_label_record(
+        exported,
+        brendans_mays_house,
+        "METATILE_BrendansMaysHouse_MovingBox_Closed",
+    )
+    _assert(moving_box["local_metatile_id"] == 104, "Moving box local id mismatch")
+    building_pair = _pair_lookup(exported, "gTileset_Building+gTileset_BrendansMaysHouse")
+    _assert(building_pair["layout_count"] == 4, "Building/house pair layout count mismatch")
+    _assert(building_pair["label_count"] == 11, "Building/house pair label count mismatch")
+    _assert(
+        _pair_label_record(exported, building_pair, "METATILE_Building_PC_Off")["source_kind"] == "primary",
+        "Building PC pair source mismatch",
+    )
+    _assert(
+        _pair_label_record(
+            exported,
+            building_pair,
+            "METATILE_BrendansMaysHouse_MovingBox_Closed",
+        )["source_kind"] == "secondary",
+        "Moving box pair source mismatch",
+    )
+
+    cave = rows["gTileset_Cave"]
+    _assert(cave["metatile_label_lookup"]["label_count"] == 20, "Cave label count mismatch")
+    rs_cave = _metatile_label_record(exported, cave, "METATILE_RSCave_CrackedFloor")
+    _assert(rs_cave["resolution"] == "rs_prefix_alias", "RSCave alias resolution mismatch")
+    cave_pair = _pair_lookup(exported, "gTileset_General+gTileset_Cave")
+    cave_reverse = _pair_reverse_record(cave_pair, "METATILE_RSCave_CrackedFloor")
+    _assert("METATILE_Cave_CrackedFloor" in cave_reverse["label_names"], "Cave reverse alias labels missing")
+    _assert(cave_reverse["source_kind"] == "secondary", "Cave reverse source kind mismatch")
+
+    mossdeep_gym = rows["gTileset_MossdeepGym"]
+    _assert(mossdeep_gym["metatile_label_lookup"]["label_count"] == 7, "Mossdeep Gym label count mismatch")
+    rs_mossdeep = _metatile_label_record(exported, mossdeep_gym, "METATILE_RSMossdeepGym_RedArrow_Right")
+    _assert(rs_mossdeep["resolution"] == "rs_prefix_alias", "RSMossdeepGym alias resolution mismatch")
 
     unused_1 = rows["gTileset_Unused1"]
     _assert(
@@ -564,6 +695,83 @@ def _metatile_attribute_record(exported, header, local_metatile_id):
         "water_encounter_affordance": bool(flags & flag_codes["water_encounter_affordance"]),
         "unused_traversable_hint": bool(flags & flag_codes["unused_traversable_hint"]),
     }
+
+
+def _metatile_label_record(exported, header, label_name):
+    for record in header["metatile_label_lookup"].get("labels", []):
+        if record[0] != label_name:
+            continue
+        return {
+            "name": record[0],
+            "metatile_id": record[1],
+            "local_metatile_id": record[2],
+            "source_line": record[3],
+            "resolution": _resolution_name(exported, record[4]),
+            "in_range": bool(record[5]),
+        }
+    raise AssertionError("missing metatile label {}".format(label_name))
+
+
+def _pair_lookup(exported, pair_key):
+    for pair in exported["metatile_label_pair_lookup"].get("pairs", []):
+        if pair.get("pair_key") == pair_key:
+            return pair
+    raise AssertionError("missing pair lookup {}".format(pair_key))
+
+
+def _pair_label_record(exported, pair, label_name):
+    for record in pair.get("labels", []):
+        if record[0] != label_name:
+            continue
+        return {
+            "name": record[0],
+            "metatile_id": record[1],
+            "source_kind": _source_kind_name(exported, record[2]),
+            "local_metatile_id": record[3],
+            "source_line": record[4],
+            "resolution": _resolution_name(exported, record[5]),
+            "in_pair_range": bool(record[6]),
+        }
+    raise AssertionError("missing pair label {}".format(label_name))
+
+
+def _pair_reverse_record(pair, label_name):
+    for record in pair.get("reverse_lookup", []):
+        if label_name not in record[3]:
+            continue
+        return {
+            "metatile_id": record[0],
+            "source_kind": "primary" if record[1] == 0 else "secondary",
+            "local_metatile_id": record[2],
+            "label_names": record[3],
+            "in_pair_range": bool(record[4]),
+        }
+    raise AssertionError("missing pair reverse label {}".format(label_name))
+
+
+def _label_group_count(label_rules, group_name):
+    for group in label_rules.get("groups", []):
+        if group.get("name") == group_name:
+            return int(group.get("label_count", 0))
+    return 0
+
+
+def _resolution_name(exported, code):
+    codes = exported["metatile_label_rules"]["compact_label_encoding"]["resolution_codes"]
+    by_code = {
+        int(value): key
+        for key, value in codes.items()
+    }
+    return by_code[int(code)]
+
+
+def _source_kind_name(exported, code):
+    codes = exported["metatile_label_pair_lookup"]["compact_pair_label_encoding"]["source_kind_codes"]
+    by_code = {
+        int(value): key
+        for key, value in codes.items()
+    }
+    return by_code[int(code)]
 
 
 def _enum_lookup(rules, enum_key):

@@ -54,6 +54,13 @@ def main(argv):
         source["tileset_invalid_metatile_attribute_binary_count"] == 0,
         "unexpected invalid attribute binary count",
     )
+    _assert(source["tileset_metatile_label_count"] == 924, "unexpected source metatile label count")
+    _assert(
+        source["tileset_metatile_label_source_group_count"] == 77,
+        "unexpected source metatile label group count",
+    )
+    _assert(source["layout_tileset_pair_count"] == 137, "unexpected source layout tileset pair count")
+    _assert(source["layout_tileset_pair_layout_count"] == 785, "unexpected source pair layout count")
     _assert(source["door_animation_table_entry_count"] == 53, "unexpected active Emerald door table count")
     _assert(source["object_event_graphics_info_count"] == 393, "unexpected source object-event graphics count")
 
@@ -169,6 +176,46 @@ def main(argv):
         generated["tileset_header_metatile_attribute_missing_behavior_name_count"] == 0,
         "unexpected generated missing behavior name count",
     )
+    _assert(
+        generated["tileset_header_metatile_label_source_label_count"] == 924,
+        "unexpected generated metatile label source count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_source_group_count"] == 77,
+        "unexpected generated metatile label group count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_decode_count"] == 77,
+        "unexpected generated metatile label header count",
+    )
+    _assert(
+        generated["active_emerald_tileset_header_metatile_label_decode_count"] == 46,
+        "unexpected active generated metatile label header count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_record_count"] == 924,
+        "unexpected generated metatile label record count",
+    )
+    _assert(
+        generated["active_emerald_tileset_header_metatile_label_record_count"] == 698,
+        "unexpected active generated metatile label record count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_pair_lookup_count"] == 137,
+        "unexpected generated metatile label pair count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_pair_lookup_layout_count"] == 785,
+        "unexpected generated metatile label pair layout count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_pair_label_record_count"] == 3960,
+        "unexpected generated pair label record count",
+    )
+    _assert(
+        generated["tileset_header_metatile_label_pair_out_of_range_count"] == 1620,
+        "unexpected generated pair out-of-range label count",
+    )
     _assert(generated["script_bundle_count"] == 971, "unexpected generated script bundle count")
     _assert(generated["map_script_bundle_count"] == 887, "unexpected generated map script bundle count")
     _assert(generated["shared_script_bundle_count"] == 84, "unexpected generated shared script bundle count")
@@ -236,6 +283,12 @@ def main(argv):
         coverage["tileset_metatile_attribute_records"]["percent"] == 100.0,
         "unexpected attribute record coverage percent",
     )
+    _assert(coverage["tileset_metatile_labels"]["generated"] == 924, "unexpected label coverage count")
+    _assert(coverage["tileset_metatile_labels"]["source"] == 924, "unexpected label coverage source count")
+    _assert(coverage["tileset_metatile_labels"]["percent"] == 100.0, "unexpected label coverage percent")
+    _assert(coverage["tileset_metatile_label_pairs"]["generated"] == 137, "unexpected pair coverage count")
+    _assert(coverage["tileset_metatile_label_pairs"]["source"] == 137, "unexpected pair coverage source count")
+    _assert(coverage["tileset_metatile_label_pairs"]["percent"] == 100.0, "unexpected pair coverage percent")
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     _assert("tileset_animation_runtime_pending" in unsupported_codes, "missing tileset animation unsupported code")

@@ -25,7 +25,10 @@ SOURCE_FILES = [
     "src/tileset_anims.c",
     "include/fieldmap.h",
     "include/global.fieldmap.h",
+    "include/constants/metatile_labels.h",
 ]
+METATILE_LABEL_HEADER = Path("include/constants/metatile_labels.h")
+LAYOUTS_JSON = Path("data/layouts/layouts.json")
 
 HEADER_RE = re.compile(
     r"const\s+struct\s+Tileset\s+(gTileset_[A-Za-z0-9_]+)\s*=\s*\{(.*?)\};",
@@ -51,6 +54,12 @@ PALETTE_DEFINE_RE = re.compile(
     r"(?P<name>NUM_PALS_IN_PRIMARY_FRLG|NUM_PALS_IN_PRIMARY|NUM_PALS_TOTAL)"
     r"\s+(?P<value>\d+)"
 )
+METATILE_LABEL_DEFINE_RE = re.compile(
+    r"^\s*#define\s+"
+    r"(?P<name>METATILE_[A-Za-z0-9_]+)"
+    r"\s+(?P<value>0x[0-9A-Fa-f]+|\d+)\b"
+)
+METATILE_LABEL_COMMENT_RE = re.compile(r"^\s*//\s*(?P<group>.*?)\s*$")
 
 PALETTE_RULE_FUNCTIONS = [
     "GetNumPalsInPrimary",
@@ -90,6 +99,12 @@ TILE_ENTRY_PALETTE_SHIFT = 12
 TILE_SOURCE_KIND_CODES = {
     "primary": 0,
     "secondary": 1,
+}
+METATILE_LABEL_RESOLUTION_CODES = {
+    "source_group": 0,
+    "label_prefix": 1,
+    "frlg_suffix_alias": 2,
+    "rs_prefix_alias": 3,
 }
 METATILE_ATTR_BEHAVIOR_MASK = 0x00FF
 METATILE_ATTR_LAYER_MASK = 0xF000
@@ -880,6 +895,267 @@ def metatile_attribute_source_profile(profile_name):
     )
 
 
+def parse_metatile_label_rules(source_root):
+    path = source_root / METATILE_LABEL_HEADER
+    if not path.exists():
+        return {
+            "status": "missing_source_file",
+            "source": path_status(source_root, METATILE_LABEL_HEADER),
+            "label_count": 0,
+            "source_group_count": 0,
+            "source_tileset_group_count": 0,
+            "non_tileset_group_count": 0,
+            "groups": [],
+            "labels": [],
+            "labels_by_name": {},
+            "compact_label_encoding": metatile_label_compact_record_encoding(),
+            "compact_reverse_lookup_encoding": metatile_label_reverse_lookup_encoding(),
+            "alias_policy": metatile_label_alias_policy(),
+        }
+
+    text = read_text(path)
+    groups = []
+    group_by_name = {}
+    labels = []
+    current_group = None
+    current_group_line = None
+
+    for line_index, raw_line in enumerate(text.splitlines(), 1):
+        comment_match = METATILE_LABEL_COMMENT_RE.match(raw_line)
+        if comment_match:
+            comment = comment_match.group("group").strip()
+            if comment:
+                current_group = comment
+                current_group_line = line_index
+                if current_group not in group_by_name:
+                    row = {
+                        "name": current_group,
+                        "source": {
+                            "path": to_project_path(METATILE_LABEL_HEADER),
+                            "line": current_group_line,
+                        },
+                        "source_tileset_symbol": (
+                            current_group
+                            if current_group.startswith("gTileset_")
+                            else None
+                        ),
+                        "label_count": 0,
+                        "label_names": [],
+                    }
+                    group_by_name[current_group] = row
+                    groups.append(row)
+            continue
+
+        define_match = METATILE_LABEL_DEFINE_RE.match(raw_line)
+        if not define_match:
+            continue
+
+        name = define_match.group("name")
+        value_text = define_match.group("value")
+        metatile_id = int(value_text, 0)
+        if current_group is None:
+            current_group = "Ungrouped"
+            current_group_line = line_index
+            if current_group not in group_by_name:
+                row = {
+                    "name": current_group,
+                    "source": {
+                        "path": to_project_path(METATILE_LABEL_HEADER),
+                        "line": current_group_line,
+                    },
+                    "source_tileset_symbol": None,
+                    "label_count": 0,
+                    "label_names": [],
+                }
+                group_by_name[current_group] = row
+                groups.append(row)
+
+        group = group_by_name[current_group]
+        label_prefix = metatile_label_prefix(name)
+        candidates = metatile_label_header_symbol_candidates(label_prefix)
+        source_tileset_symbol = group.get("source_tileset_symbol")
+        if source_tileset_symbol:
+            candidates = [
+                {
+                    "symbol": source_tileset_symbol,
+                    "resolution": "source_group",
+                }
+            ] + [
+                candidate
+                for candidate in candidates
+                if candidate["symbol"] != source_tileset_symbol
+            ]
+
+        label = {
+            "name": name,
+            "metatile_id": metatile_id,
+            "value_text": value_text,
+            "source": {
+                "path": to_project_path(METATILE_LABEL_HEADER),
+                "line": line_index,
+            },
+            "source_group": current_group,
+            "source_group_line": current_group_line,
+            "source_tileset_symbol": source_tileset_symbol,
+            "label_prefix": label_prefix,
+            "header_symbol_candidates": candidates,
+        }
+        labels.append(label)
+        group["label_count"] += 1
+        group["label_names"].append(name)
+
+    labels_by_name = {
+        label["name"]: {
+            "metatile_id": label["metatile_id"],
+            "source": label["source"],
+            "source_group": label["source_group"],
+            "source_tileset_symbol": label["source_tileset_symbol"],
+            "label_prefix": label["label_prefix"],
+            "header_symbol_candidates": label["header_symbol_candidates"],
+        }
+        for label in labels
+    }
+
+    return {
+        "status": "decoded_import_metadata",
+        "runtime_binary_metatile_labels_required": False,
+        "source": path_status(source_root, METATILE_LABEL_HEADER),
+        "label_count": len(labels),
+        "source_group_count": sum(1 for group in groups if group["label_count"] > 0),
+        "source_tileset_group_count": sum(
+            1
+            for group in groups
+            if group["label_count"] > 0 and group.get("source_tileset_symbol")
+        ),
+        "non_tileset_group_count": sum(
+            1
+            for group in groups
+            if group["label_count"] > 0 and not group.get("source_tileset_symbol")
+        ),
+        "groups": [
+            group
+            for group in groups
+            if group["label_count"] > 0
+        ],
+        "labels": labels,
+        "labels_by_name": labels_by_name,
+        "compact_label_encoding": metatile_label_compact_record_encoding(),
+        "compact_reverse_lookup_encoding": metatile_label_reverse_lookup_encoding(),
+        "alias_policy": metatile_label_alias_policy(),
+    }
+
+
+def metatile_label_prefix(label_name):
+    if not label_name.startswith("METATILE_"):
+        return ""
+    body = label_name[len("METATILE_"):]
+    return body.split("_", 1)[0]
+
+
+def metatile_label_header_symbol_candidates(label_prefix):
+    if not label_prefix:
+        return []
+    candidates = [
+        {
+            "symbol": "gTileset_{}".format(label_prefix),
+            "resolution": "label_prefix",
+        }
+    ]
+    if label_prefix.endswith("Frlg"):
+        candidates.append({
+            "symbol": "gTileset_{}_Frlg".format(label_prefix[:-len("Frlg")]),
+            "resolution": "frlg_suffix_alias",
+        })
+    if label_prefix.startswith("RS") and len(label_prefix) > 2:
+        candidates.append({
+            "symbol": "gTileset_{}".format(label_prefix[2:]),
+            "resolution": "rs_prefix_alias",
+        })
+    return dedupe_symbol_candidates(candidates)
+
+
+def dedupe_symbol_candidates(candidates):
+    result = []
+    seen = set()
+    for candidate in candidates:
+        symbol = candidate["symbol"]
+        if symbol in seen:
+            continue
+        seen.add(symbol)
+        result.append(candidate)
+    return result
+
+
+def metatile_label_alias_policy():
+    return {
+        "source_group": (
+            "A // gTileset_* comment in include/constants/metatile_labels.h is treated "
+            "as the primary source tileset binding for following labels."
+        ),
+        "label_prefix": (
+            "For labels outside a tileset comment, the METATILE_<Prefix>_* prefix maps "
+            "to gTileset_<Prefix> when that header exists."
+        ),
+        "frlg_suffix_alias": (
+            "A label prefix ending in Frlg may map to a header ending in _Frlg, "
+            "for example METATILE_GeneralFrlg_* -> gTileset_General_Frlg."
+        ),
+        "rs_prefix_alias": (
+            "Legacy RS compatibility prefixes drop the leading RS when matching "
+            "existing Emerald headers, for example RSCave -> gTileset_Cave."
+        ),
+        "other_group": (
+            "The // Other group remains recorded as a non-tileset source group; "
+            "only explicit prefix aliases attach its labels to headers or pairs."
+        ),
+    }
+
+
+def metatile_label_compact_record_encoding():
+    return {
+        "version": "compact_metatile_label_v1",
+        "detail": (
+            "Each label row stores [name, metatile_id, local_metatile_id, source_line, "
+            "resolution_code, in_range]. source_group and source_kind are carried by the "
+            "containing header or pair row."
+        ),
+        "label_fields": [
+            "name",
+            "metatile_id",
+            "local_metatile_id",
+            "source_line",
+            "resolution_code",
+            "in_range",
+        ],
+        "resolution_codes": METATILE_LABEL_RESOLUTION_CODES,
+    }
+
+
+def metatile_label_reverse_lookup_encoding():
+    return {
+        "version": "compact_metatile_label_reverse_v1",
+        "detail": (
+            "Header reverse rows store [metatile_id, local_metatile_id, label_names, in_range]. "
+            "Pair reverse rows store [metatile_id, source_kind_code, local_metatile_id, "
+            "label_names, in_pair_range]."
+        ),
+        "header_reverse_fields": [
+            "metatile_id",
+            "local_metatile_id",
+            "label_names",
+            "in_range",
+        ],
+        "pair_reverse_fields": [
+            "metatile_id",
+            "source_kind_code",
+            "local_metatile_id",
+            "label_names",
+            "in_pair_range",
+        ],
+        "source_kind_codes": TILE_SOURCE_KIND_CODES,
+    }
+
+
 def attribute_field(attribute_name, mask, shift, status, bits, detail=None):
     row = {
         "attribute": attribute_name,
@@ -1326,6 +1602,281 @@ def frames_for_tileset_base(animation_frames, base_path):
     ]
 
 
+def metatile_label_resolution_for_header(label, header_symbol):
+    for candidate in label.get("header_symbol_candidates", []):
+        if candidate.get("symbol") == header_symbol:
+            return candidate.get("resolution", "label_prefix")
+    return None
+
+
+def metatile_label_records_for_header(label_rules, header_symbol):
+    labels = label_rules.get("labels", [])
+    return [
+        (label, resolution)
+        for label in labels
+        for resolution in [metatile_label_resolution_for_header(label, header_symbol)]
+        if resolution is not None
+    ]
+
+
+def local_metatile_id_for_kind(metatile_id, kind, profile):
+    if kind == "primary":
+        return metatile_id
+    return metatile_id - profile["primary_metatile_count"]
+
+
+def compact_metatile_label_record(label, local_metatile_id, resolution, in_range):
+    return [
+        label["name"],
+        label["metatile_id"],
+        local_metatile_id,
+        label["source"]["line"],
+        METATILE_LABEL_RESOLUTION_CODES[resolution],
+        1 if in_range else 0,
+    ]
+
+
+def compact_pair_metatile_label_record(label, source_kind, local_metatile_id, resolution, in_range):
+    return [
+        label["name"],
+        label["metatile_id"],
+        TILE_SOURCE_KIND_CODES[source_kind],
+        local_metatile_id,
+        label["source"]["line"],
+        METATILE_LABEL_RESOLUTION_CODES[resolution],
+        1 if in_range else 0,
+    ]
+
+
+def metatile_label_pair_record_encoding():
+    return {
+        "version": "compact_metatile_pair_label_v1",
+        "detail": (
+            "Each pair label row stores [name, metatile_id, source_kind_code, local_metatile_id, "
+            "source_line, resolution_code, in_pair_range]."
+        ),
+        "label_fields": [
+            "name",
+            "metatile_id",
+            "source_kind_code",
+            "local_metatile_id",
+            "source_line",
+            "resolution_code",
+            "in_pair_range",
+        ],
+        "source_kind_codes": TILE_SOURCE_KIND_CODES,
+        "resolution_codes": METATILE_LABEL_RESOLUTION_CODES,
+    }
+
+
+def metatile_label_lookup_for_header(kind, branch, symbol, metatile_binary_decode, label_rules):
+    profile_name = metatile_source_profile_for_branch(branch)
+    profile = metatile_source_profile(profile_name)
+    metatile_count = int(metatile_binary_decode.get("metatile_count", 0))
+    source_labels = metatile_label_records_for_header(label_rules, symbol)
+    compact_labels = []
+    reverse_by_id = {}
+    resolution_counts = {}
+    source_groups = sorted({
+        label["source_group"]
+        for label, _ in source_labels
+    })
+
+    for label, resolution in sorted(source_labels, key=lambda item: (item[0]["metatile_id"], item[0]["name"])):
+        local_metatile_id = local_metatile_id_for_kind(label["metatile_id"], kind, profile)
+        in_range = 0 <= local_metatile_id < metatile_count
+        compact_labels.append(compact_metatile_label_record(
+            label,
+            local_metatile_id,
+            resolution,
+            in_range,
+        ))
+        reverse_by_id.setdefault(label["metatile_id"], []).append(label["name"])
+        resolution_counts[resolution] = resolution_counts.get(resolution, 0) + 1
+
+    reverse_lookup = []
+    for metatile_id in sorted(reverse_by_id):
+        local_metatile_id = local_metatile_id_for_kind(metatile_id, kind, profile)
+        in_range = 0 <= local_metatile_id < metatile_count
+        reverse_lookup.append([
+            metatile_id,
+            local_metatile_id,
+            sorted(reverse_by_id[metatile_id]),
+            1 if in_range else 0,
+        ])
+
+    out_of_range = [
+        row
+        for row in compact_labels
+        if not row[5]
+    ]
+    return {
+        "status": "decoded" if compact_labels else "no_source_labels",
+        "runtime_binary_metatile_labels_required": False,
+        "source": to_project_path(METATILE_LABEL_HEADER),
+        "source_rules_profile": profile_name,
+        "source_kind": kind,
+        "source_tileset_symbol": symbol,
+        "source_groups": source_groups,
+        "label_count": len(compact_labels),
+        "reverse_lookup_metatile_id_count": len(reverse_lookup),
+        "out_of_range_label_count": len(out_of_range),
+        "out_of_range_labels": out_of_range,
+        "resolution_counts": dict(sorted(resolution_counts.items())),
+        "label_record_encoding_ref": "metatile_label_rules.compact_label_encoding",
+        "reverse_lookup_encoding_ref": "metatile_label_rules.compact_reverse_lookup_encoding",
+        "labels": compact_labels,
+        "reverse_lookup": reverse_lookup,
+    }
+
+
+def source_layout_tileset_pairs(source_root):
+    path = source_root / LAYOUTS_JSON
+    if not path.exists():
+        return {
+            "source": path_status(source_root, LAYOUTS_JSON),
+            "layout_count": 0,
+            "pairs": [],
+        }
+
+    data = json.loads(read_text(path))
+    pairs = {}
+    for layout in data.get("layouts", []):
+        primary = layout.get("primary_tileset")
+        secondary = layout.get("secondary_tileset")
+        if not primary or not secondary:
+            continue
+        key = "{}+{}".format(primary, secondary)
+        row = pairs.setdefault(key, {
+            "pair_key": key,
+            "primary_tileset": primary,
+            "secondary_tileset": secondary,
+            "layout_count": 0,
+            "layout_ids": [],
+            "layout_versions": {},
+        })
+        row["layout_count"] += 1
+        row["layout_ids"].append(layout.get("id"))
+        version = str(layout.get("layout_version"))
+        row["layout_versions"][version] = row["layout_versions"].get(version, 0) + 1
+
+    return {
+        "source": path_status(source_root, LAYOUTS_JSON),
+        "layout_count": len(data.get("layouts", [])),
+        "pairs": [
+            pairs[key]
+            for key in sorted(pairs)
+        ],
+    }
+
+
+def build_metatile_label_pair_lookup(source_root, records, label_rules):
+    source_pairs = source_layout_tileset_pairs(source_root)
+    rows_by_symbol = {
+        row["symbol"]: row
+        for row in records
+    }
+    pair_rows = []
+
+    for source_pair in source_pairs["pairs"]:
+        primary_symbol = source_pair["primary_tileset"]
+        secondary_symbol = source_pair["secondary_tileset"]
+        primary_header = rows_by_symbol.get(primary_symbol)
+        secondary_header = rows_by_symbol.get(secondary_symbol)
+        profile_name = (
+            metatile_source_profile_for_branch(primary_header.get("branch"))
+            if primary_header
+            else "emerald"
+        )
+        profile = metatile_source_profile(profile_name)
+        labels = []
+        reverse_by_key = {}
+        out_of_range = []
+
+        for source_kind, symbol, header in [
+            ("primary", primary_symbol, primary_header),
+            ("secondary", secondary_symbol, secondary_header),
+        ]:
+            if not header:
+                continue
+            metatile_count = int(
+                header.get("metatile_binary_decode", {}).get("metatile_count", 0)
+            )
+            for label, resolution in metatile_label_records_for_header(label_rules, symbol):
+                local_metatile_id = local_metatile_id_for_kind(
+                    label["metatile_id"],
+                    source_kind,
+                    profile,
+                )
+                in_range = 0 <= local_metatile_id < metatile_count
+                row = compact_pair_metatile_label_record(
+                    label,
+                    source_kind,
+                    local_metatile_id,
+                    resolution,
+                    in_range,
+                )
+                labels.append(row)
+                if not in_range:
+                    out_of_range.append(row)
+                reverse_key = (
+                    label["metatile_id"],
+                    TILE_SOURCE_KIND_CODES[source_kind],
+                    local_metatile_id,
+                    1 if in_range else 0,
+                )
+                reverse_by_key.setdefault(reverse_key, []).append(label["name"])
+
+        labels.sort(key=lambda row: (row[1], row[2], row[0]))
+        reverse_lookup = [
+            [
+                metatile_id,
+                source_kind_code,
+                local_metatile_id,
+                sorted(label_names),
+                in_range,
+            ]
+            for (metatile_id, source_kind_code, local_metatile_id, in_range), label_names
+            in sorted(reverse_by_key.items())
+        ]
+
+        primary_label_count = sum(1 for row in labels if row[2] == TILE_SOURCE_KIND_CODES["primary"])
+        secondary_label_count = sum(1 for row in labels if row[2] == TILE_SOURCE_KIND_CODES["secondary"])
+        pair_rows.append({
+            "status": "decoded" if labels else "no_source_labels",
+            "pair_key": source_pair["pair_key"],
+            "primary_tileset": primary_symbol,
+            "secondary_tileset": secondary_symbol,
+            "source_rules_profile": profile_name,
+            "primary_header_found": primary_header is not None,
+            "secondary_header_found": secondary_header is not None,
+            "layout_count": source_pair["layout_count"],
+            "layout_ids": source_pair["layout_ids"],
+            "layout_versions": dict(sorted(source_pair["layout_versions"].items())),
+            "primary_label_count": primary_label_count,
+            "secondary_label_count": secondary_label_count,
+            "label_count": len(labels),
+            "reverse_lookup_metatile_id_count": len(reverse_lookup),
+            "out_of_pair_label_count": len(out_of_range),
+            "out_of_pair_labels": out_of_range,
+            "label_record_encoding_ref": "metatile_label_pair_lookup.compact_pair_label_encoding",
+            "reverse_lookup_encoding_ref": "metatile_label_pair_lookup.compact_reverse_lookup_encoding",
+            "labels": labels,
+            "reverse_lookup": reverse_lookup,
+        })
+
+    return {
+        "status": "decoded_import_metadata" if source_pairs["source"].get("exists") else "missing_source_file",
+        "runtime_binary_metatile_labels_required": False,
+        "source": source_pairs["source"],
+        "source_layout_count": source_pairs["layout_count"],
+        "pair_count": len(pair_rows),
+        "compact_pair_label_encoding": metatile_label_pair_record_encoding(),
+        "compact_reverse_lookup_encoding": metatile_label_reverse_lookup_encoding(),
+        "pairs": pair_rows,
+    }
+
+
 def parse_tileset_headers(
     source_root,
     animation_frames=None,
@@ -1333,6 +1884,7 @@ def parse_tileset_headers(
     palette_rules=None,
     metatile_rules=None,
     metatile_attribute_rules=None,
+    metatile_label_rules=None,
 ):
     headers_path = source_root / "src/data/tilesets/headers.h"
     text = read_text(headers_path)
@@ -1341,6 +1893,7 @@ def parse_tileset_headers(
     palette_rules = palette_rules or parse_palette_slot_rules(source_root)
     metatile_rules = metatile_rules or parse_metatile_decode_rules(source_root)
     metatile_attribute_rules = metatile_attribute_rules or parse_metatile_attribute_rules(source_root)
+    metatile_label_rules = metatile_label_rules or parse_metatile_label_rules(source_root)
     init_function_symbols = {
         row["function"]: row
         for row in (init_functions or [])
@@ -1393,6 +1946,13 @@ def parse_tileset_headers(
                 branch,
                 assets["metatile_attributes"],
                 metatile_attribute_rules,
+            )
+            metatile_label_lookup = metatile_label_lookup_for_header(
+                kind,
+                branch,
+                symbol,
+                metatile_binary_decode,
+                metatile_label_rules,
             )
 
             rows.append({
@@ -1458,6 +2018,7 @@ def parse_tileset_headers(
                 "palette_slot_mapping": palette_slot_mapping,
                 "metatile_binary_decode": metatile_binary_decode,
                 "metatile_attribute_decode": metatile_attribute_decode,
+                "metatile_label_lookup": metatile_label_lookup,
                 "asset_source_directories": asset_source_directories(assets),
                 "animation_image_provenance": {
                     "frame_declaration_count": len(animation_frame_rows),
@@ -1514,9 +2075,18 @@ def unique_metatile_decodes_by_source_binary(decodes):
     ]
 
 
-def build_stats(source_files, records, animation_frames=None, init_functions=None):
+def build_stats(
+    source_files,
+    records,
+    animation_frames=None,
+    init_functions=None,
+    metatile_label_rules=None,
+    metatile_label_pair_lookup=None,
+):
     animation_frames = animation_frames or []
     init_functions = init_functions or []
+    metatile_label_rules = metatile_label_rules or {}
+    metatile_label_pair_lookup = metatile_label_pair_lookup or {}
     active = [row for row in records if row["active_in_emerald"]]
     callbacks = [row["callback"]["symbol"] for row in records if row["callback"]["has_callback"]]
     active_callbacks = [row["callback"]["symbol"] for row in active if row["callback"]["has_callback"]]
@@ -1620,6 +2190,14 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         row.get("metatile_attribute_decode", {})
         for row in active
     ]
+    metatile_label_lookups = [
+        row.get("metatile_label_lookup", {})
+        for row in records
+    ]
+    active_metatile_label_lookups = [
+        row.get("metatile_label_lookup", {})
+        for row in active
+    ]
     unique_metatile_decodes = unique_metatile_decodes_by_source_binary(metatile_decodes)
     active_unique_metatile_decodes = unique_metatile_decodes_by_source_binary(active_metatile_decodes)
     unique_metatile_attribute_decodes = unique_metatile_decodes_by_source_binary(metatile_attribute_decodes)
@@ -1650,6 +2228,39 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
         dict({"tileset": row["symbol"]}, **entry)
         for row in records
         for entry in row.get("metatile_binary_decode", {}).get("out_of_range_tile_entries", [])
+    ]
+    out_of_range_metatile_labels = [
+        {
+            "tileset": row["symbol"],
+            "label": label[0],
+            "metatile_id": label[1],
+            "local_metatile_id": label[2],
+            "source_line": label[3],
+            "resolution_code": label[4],
+        }
+        for row in records
+        for label in row.get("metatile_label_lookup", {}).get("out_of_range_labels", [])
+    ]
+    header_symbols = {row["symbol"] for row in records}
+    label_source_groups = [
+        group
+        for group in metatile_label_rules.get("groups", [])
+        if group.get("source_tileset_symbol")
+    ]
+    unmatched_label_source_groups = [
+        group["source_tileset_symbol"]
+        for group in label_source_groups
+        if group["source_tileset_symbol"] not in header_symbols
+    ]
+    pair_rows = metatile_label_pair_lookup.get("pairs", [])
+    pair_missing_headers = [
+        {
+            "pair_key": row["pair_key"],
+            "primary_header_found": row.get("primary_header_found"),
+            "secondary_header_found": row.get("secondary_header_found"),
+        }
+        for row in pair_rows
+        if not row.get("primary_header_found") or not row.get("secondary_header_found")
     ]
     return {
         "source_file_count": len(source_files),
@@ -1876,6 +2487,66 @@ def build_stats(source_files, records, animation_frames=None, init_functions=Non
             int(decode.get("missing_behavior_name_count", 0))
             for decode in metatile_attribute_decodes
         ),
+        "metatile_label_source_label_count": int(metatile_label_rules.get("label_count", 0)),
+        "metatile_label_source_group_count": int(metatile_label_rules.get("source_group_count", 0)),
+        "metatile_label_source_tileset_group_count": int(
+            metatile_label_rules.get("source_tileset_group_count", 0)
+        ),
+        "metatile_label_non_tileset_group_count": int(
+            metatile_label_rules.get("non_tileset_group_count", 0)
+        ),
+        "metatile_label_source_group_with_header_count": sum(
+            1
+            for group in label_source_groups
+            if group["source_tileset_symbol"] in header_symbols
+        ),
+        "metatile_label_unmatched_source_group_count": len(unmatched_label_source_groups),
+        "metatile_label_unmatched_source_groups": unmatched_label_source_groups,
+        "metatile_label_header_decode_count": sum(
+            1 for lookup in metatile_label_lookups if lookup.get("label_count", 0) > 0
+        ),
+        "active_metatile_label_header_decode_count": sum(
+            1 for lookup in active_metatile_label_lookups if lookup.get("label_count", 0) > 0
+        ),
+        "metatile_label_record_count": sum(
+            int(lookup.get("label_count", 0))
+            for lookup in metatile_label_lookups
+        ),
+        "active_metatile_label_record_count": sum(
+            int(lookup.get("label_count", 0))
+            for lookup in active_metatile_label_lookups
+        ),
+        "metatile_label_reverse_lookup_metatile_id_count": sum(
+            int(lookup.get("reverse_lookup_metatile_id_count", 0))
+            for lookup in metatile_label_lookups
+        ),
+        "active_metatile_label_reverse_lookup_metatile_id_count": sum(
+            int(lookup.get("reverse_lookup_metatile_id_count", 0))
+            for lookup in active_metatile_label_lookups
+        ),
+        "metatile_label_out_of_range_count": len(out_of_range_metatile_labels),
+        "metatile_label_out_of_range_labels": out_of_range_metatile_labels,
+        "metatile_label_pair_lookup_count": int(metatile_label_pair_lookup.get("pair_count", 0)),
+        "metatile_label_pair_lookup_layout_count": int(
+            metatile_label_pair_lookup.get("source_layout_count", 0)
+        ),
+        "metatile_label_pair_with_labels_count": sum(
+            1 for row in pair_rows if int(row.get("label_count", 0)) > 0
+        ),
+        "metatile_label_pair_label_record_count": sum(
+            int(row.get("label_count", 0))
+            for row in pair_rows
+        ),
+        "metatile_label_pair_reverse_lookup_metatile_id_count": sum(
+            int(row.get("reverse_lookup_metatile_id_count", 0))
+            for row in pair_rows
+        ),
+        "metatile_label_pair_out_of_range_count": sum(
+            int(row.get("out_of_pair_label_count", 0))
+            for row in pair_rows
+        ),
+        "metatile_label_pair_missing_header_count": len(pair_missing_headers),
+        "metatile_label_pair_missing_headers": pair_missing_headers,
         "init_function_count": len(init_functions),
         "animation_frame_declaration_count": len(animation_frames),
         "animation_source_bin_count": sum(frame["source_bin_count"] for frame in animation_frames),
@@ -1935,6 +2606,11 @@ def manifest_entry_for(exported, output_path):
         "unique_metatile_attribute_record_count": stats["unique_metatile_attribute_record_count"],
         "metatile_attribute_encounter_affordance_count": stats["metatile_attribute_encounter_affordance_count"],
         "metatile_attribute_missing_behavior_name_count": stats["metatile_attribute_missing_behavior_name_count"],
+        "metatile_label_source_label_count": stats["metatile_label_source_label_count"],
+        "metatile_label_record_count": stats["metatile_label_record_count"],
+        "metatile_label_pair_lookup_count": stats["metatile_label_pair_lookup_count"],
+        "metatile_label_pair_label_record_count": stats["metatile_label_pair_label_record_count"],
+        "metatile_label_pair_out_of_range_count": stats["metatile_label_pair_out_of_range_count"],
         "animation_frame_declaration_count": stats["animation_frame_declaration_count"],
         "animation_existing_editable_source_candidate_count": stats["animation_existing_editable_source_candidate_count"],
         "missing_callback_source_count": stats["missing_callback_source_count"],
@@ -1950,6 +2626,7 @@ def build_export(source_root):
     palette_rules = parse_palette_slot_rules(source_root)
     metatile_rules = parse_metatile_decode_rules(source_root)
     metatile_attribute_rules = parse_metatile_attribute_rules(source_root)
+    metatile_label_rules = parse_metatile_label_rules(source_root)
     records = parse_tileset_headers(
         source_root,
         animation_frames,
@@ -1957,8 +2634,21 @@ def build_export(source_root):
         palette_rules,
         metatile_rules,
         metatile_attribute_rules,
+        metatile_label_rules,
     )
-    stats = build_stats(source_files, records, animation_frames, init_functions)
+    metatile_label_pair_lookup = build_metatile_label_pair_lookup(
+        source_root,
+        records,
+        metatile_label_rules,
+    )
+    stats = build_stats(
+        source_files,
+        records,
+        animation_frames,
+        init_functions,
+        metatile_label_rules,
+        metatile_label_pair_lookup,
+    )
     return {
         "schema_version": 1,
         "generated_by": GENERATED_BY,
@@ -1967,6 +2657,8 @@ def build_export(source_root):
         "palette_slot_rules": palette_rules,
         "metatile_decode_rules": metatile_rules,
         "metatile_attribute_rules": metatile_attribute_rules,
+        "metatile_label_rules": metatile_label_rules,
+        "metatile_label_pair_lookup": metatile_label_pair_lookup,
         "tileset_headers": records,
         "tileset_animation_frames": animation_frames,
         "tileset_animation_init_functions": init_functions,

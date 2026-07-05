@@ -13,6 +13,9 @@ from source_probe import load_config, to_project_path
 
 GENERATED_BY = "tools/importer/export_overworld_import_summary.py"
 SUMMARY_PATH = Path("overworld/import_summary.json")
+METATILE_LABEL_RE = re.compile(
+    r"^\s*#define\s+(METATILE_[A-Za-z0-9_]+)\s+(0x[0-9A-Fa-f]+|\d+)\b"
+)
 
 
 def read_json(path):
@@ -36,6 +39,25 @@ def count_source_layouts(source_root):
     if not path.exists():
         return 0
     return len(read_json(path).get("layouts", []))
+
+
+def count_source_layout_tileset_pairs(source_root):
+    path = source_root / "data/layouts/layouts.json"
+    if not path.exists():
+        return {
+            "layout_tileset_pair_count": 0,
+            "layout_tileset_pair_layout_count": 0,
+        }
+    layouts = read_json(path).get("layouts", [])
+    pairs = {
+        (layout.get("primary_tileset"), layout.get("secondary_tileset"))
+        for layout in layouts
+        if layout.get("primary_tileset") and layout.get("secondary_tileset")
+    }
+    return {
+        "layout_tileset_pair_count": len(pairs),
+        "layout_tileset_pair_layout_count": len(layouts),
+    }
 
 
 def parse_tileset_headers(source_root):
@@ -164,6 +186,44 @@ def count_source_tileset_metatile_attribute_binaries(source_root):
 def metatile_attribute_record_byte_count_for_path(path):
     tileset_dir = path.parent.name
     return 4 if tileset_dir.endswith("_frlg") else 2
+
+
+def count_source_metatile_labels(source_root):
+    path = source_root / "include/constants/metatile_labels.h"
+    if not path.exists():
+        return {
+            "tileset_metatile_label_count": 0,
+            "tileset_metatile_label_source_group_count": 0,
+        }
+    groups = {}
+    current_group = None
+    for line_index, raw_line in enumerate(read_text(path).splitlines(), 1):
+        comment_match = re.match(r"^\s*//\s*(.*?)\s*$", raw_line)
+        if comment_match:
+            current_group = comment_match.group(1).strip() or None
+            if current_group:
+                groups.setdefault(current_group, {
+                    "line": line_index,
+                    "label_count": 0,
+                })
+            continue
+        if not METATILE_LABEL_RE.match(raw_line):
+            continue
+        if current_group is None:
+            current_group = "Ungrouped"
+            groups.setdefault(current_group, {
+                "line": line_index,
+                "label_count": 0,
+            })
+        groups[current_group]["label_count"] += 1
+    return {
+        "tileset_metatile_label_count": sum(group["label_count"] for group in groups.values()),
+        "tileset_metatile_label_source_group_count": sum(
+            1
+            for group in groups.values()
+            if group["label_count"] > 0
+        ),
+    }
 
 
 def parse_active_emerald_door_table(source_root):
@@ -514,8 +574,10 @@ def build_source_counts(source_root):
     counts.update(tileset_header_info)
     counts.update(tileset_anim_info)
     counts.update(tileset_palette_info)
+    counts.update(count_source_layout_tileset_pairs(source_root))
     counts.update(count_source_tileset_metatile_binaries(source_root))
     counts.update(count_source_tileset_metatile_attribute_binaries(source_root))
+    counts.update(count_source_metatile_labels(source_root))
     counts.update(door_info)
     return counts
 
@@ -656,6 +718,36 @@ def build_export(source_root, output_root):
     tileset_header_metatile_attribute_missing_behavior_name_count = int(
         tileset_header_stats.get("metatile_attribute_missing_behavior_name_count", 0)
     )
+    tileset_header_metatile_label_source_label_count = int(
+        tileset_header_stats.get("metatile_label_source_label_count", 0)
+    )
+    tileset_header_metatile_label_source_group_count = int(
+        tileset_header_stats.get("metatile_label_source_group_count", 0)
+    )
+    tileset_header_metatile_label_decode_count = int(
+        tileset_header_stats.get("metatile_label_header_decode_count", 0)
+    )
+    tileset_header_active_metatile_label_decode_count = int(
+        tileset_header_stats.get("active_metatile_label_header_decode_count", 0)
+    )
+    tileset_header_metatile_label_record_count = int(
+        tileset_header_stats.get("metatile_label_record_count", 0)
+    )
+    tileset_header_active_metatile_label_record_count = int(
+        tileset_header_stats.get("active_metatile_label_record_count", 0)
+    )
+    tileset_header_metatile_label_pair_lookup_count = int(
+        tileset_header_stats.get("metatile_label_pair_lookup_count", 0)
+    )
+    tileset_header_metatile_label_pair_lookup_layout_count = int(
+        tileset_header_stats.get("metatile_label_pair_lookup_layout_count", 0)
+    )
+    tileset_header_metatile_label_pair_label_record_count = int(
+        tileset_header_stats.get("metatile_label_pair_label_record_count", 0)
+    )
+    tileset_header_metatile_label_pair_out_of_range_count = int(
+        tileset_header_stats.get("metatile_label_pair_out_of_range_count", 0)
+    )
 
     parity_matrix = load_generated_json(project_root, "data/generated/overworld/parity_matrix.json") or {}
     parity_stats = parity_matrix.get("stats", {})
@@ -736,6 +828,32 @@ def build_export(source_root, output_root):
         ),
         "tileset_header_metatile_attribute_missing_behavior_name_count": (
             tileset_header_metatile_attribute_missing_behavior_name_count
+        ),
+        "tileset_header_metatile_label_source_label_count": (
+            tileset_header_metatile_label_source_label_count
+        ),
+        "tileset_header_metatile_label_source_group_count": (
+            tileset_header_metatile_label_source_group_count
+        ),
+        "tileset_header_metatile_label_decode_count": tileset_header_metatile_label_decode_count,
+        "active_emerald_tileset_header_metatile_label_decode_count": (
+            tileset_header_active_metatile_label_decode_count
+        ),
+        "tileset_header_metatile_label_record_count": tileset_header_metatile_label_record_count,
+        "active_emerald_tileset_header_metatile_label_record_count": (
+            tileset_header_active_metatile_label_record_count
+        ),
+        "tileset_header_metatile_label_pair_lookup_count": (
+            tileset_header_metatile_label_pair_lookup_count
+        ),
+        "tileset_header_metatile_label_pair_lookup_layout_count": (
+            tileset_header_metatile_label_pair_lookup_layout_count
+        ),
+        "tileset_header_metatile_label_pair_label_record_count": (
+            tileset_header_metatile_label_pair_label_record_count
+        ),
+        "tileset_header_metatile_label_pair_out_of_range_count": (
+            tileset_header_metatile_label_pair_out_of_range_count
         ),
         "metatile_record_count": tileset_totals["metatile_record_count"],
         "script_bundle_count": script_totals["script_bundle_count"],
@@ -821,6 +939,14 @@ def build_export(source_root, output_root):
             generated_counts["tileset_header_unique_metatile_attribute_record_count"],
             source_counts["tileset_metatile_attribute_record_count"],
         ),
+        "tileset_metatile_labels": ratio(
+            generated_counts["tileset_header_metatile_label_source_label_count"],
+            source_counts["tileset_metatile_label_count"],
+        ),
+        "tileset_metatile_label_pairs": ratio(
+            generated_counts["tileset_header_metatile_label_pair_lookup_count"],
+            source_counts["layout_tileset_pair_count"],
+        ),
         "object_event_graphics": ratio(
             generated_counts["object_event_graphic_count"],
             source_counts["object_event_graphics_info_count"],
@@ -896,6 +1022,7 @@ def build_inputs(source_root, project_root, manifest_path, manifest):
         source_root / "src/data/tilesets/headers.h",
         source_root / "src/tileset_anims.c",
         source_root / "src/field_door.c",
+        source_root / "include/constants/metatile_labels.h",
         source_root / "src/data/object_events/object_event_graphics_info.h",
         manifest_path,
     ]
@@ -934,6 +1061,12 @@ def manifest_entry_for(exported, output_path):
         "generated_tileset_metatile_attribute_record_count": generated["tileset_header_metatile_attribute_record_count"],
         "generated_unique_tileset_metatile_attribute_record_count": (
             generated["tileset_header_unique_metatile_attribute_record_count"]
+        ),
+        "generated_tileset_metatile_label_source_label_count": (
+            generated["tileset_header_metatile_label_source_label_count"]
+        ),
+        "generated_tileset_metatile_label_pair_lookup_count": (
+            generated["tileset_header_metatile_label_pair_lookup_count"]
         ),
         "tileset_missing_palette_source_candidate_count": generated["tileset_missing_palette_source_candidate_count"],
         "tileset_header_missing_callback_source_count": generated["tileset_header_missing_callback_source_count"],

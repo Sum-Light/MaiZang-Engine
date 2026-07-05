@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Battle parity TODO, currently executing `wiki/battle-parity-execution-plan.md` B8.2 source window layer rendering.
+- Map and Overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 4 tileset/metatile asset import.
 
 Reason:
 
-- The user asked to execute the battle recreation TODO list step by step until complete and report quantified progress after each answer.
-- B8.2 is moving from generated encoding-byte/control-code metadata into first-pass source-byte-driven `RenderText` event playback.
-- Exact source glyph rendering, full charmap byte-to-glyph layout, exact prompt scroll/clear pixels, full link/recorded context, and screenshot comparison remain before B8.2 can be marked complete.
+- The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
+- Section 4 has completed source `METATILE_*` label export and per-layout tileset-pair reverse lookup coverage.
+- Next executable task: detect and report metatile ids referenced by maps but absent from the current layout's tileset pair.
 
 ## Module Tracks
 
@@ -175,19 +175,19 @@ Main-agent responsibilities:
 
 Near-term:
 
-- Continue `wiki/battle-parity-execution-plan.md` B8.2: after adding source-text parsing and first-pass source-byte-driven control events for generated battle text records, proceed toward exact source glyph rendering, full charmap byte-to-glyph layout, full control-code pixel effects, prompt scroll/clear-window pixels, and screenshot comparison.
+- Continue `wiki/overworld-parity-todo.md` section 4: detect and report metatile ids referenced by maps but absent from the current layout's tileset pair, using generated layout/map grids and the new tileset-pair label lookup as source-backed context.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
 - Current B7.1-B7.7 status: Pokemon battle sprites, trainer battle sprites, battle environment/background metadata, battle transition textures/tilemap composites, battle asset image-quality smoke checks, Pokemon battle asset coverage, and trainer battle asset coverage are generated as Godot-friendly PNG assets plus source metadata. The B7 checklist is now 7/7 complete. Current asset reports still expose runtime and asset gaps: 2664 pending distinct Pokemon color-variant RGBA images, 2 trainer-party `SPECIES_CASTFORM` alias gaps, trainer slide/mugshot/Magma/Aqua playback pending, double battle runtime pending, text/reward flow pending, shader/material color effects pending, affine effects pending, transition/background playback pending, and audio metadata-only.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` now reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
-- Next executable task: continue B8.2 source battle window layer rendering after the first-pass source-byte `BattleTextPrinter` control-event slice; exact source glyph rendering, full charmap byte-to-glyph/control-code `RenderText` pixel/layout behavior, exact prompt scroll/clear-window pixels, full link/recorded battle context, and screenshot comparison remain before B8.2 can be marked complete. First-pass pause/page/down-arrow metadata, source-text `\n`/`\l`/`\p` handling, generated text-record propagation, source-byte newline/prompt-clear/prompt-scroll/pause events, A/B delay clearing, metadata-only audio controls, and link/recorded speed override metadata are now covered by smoke tests. B3 battle script VM and B13.4/B13.5 selector polish remain follow-up lanes.
+- Next executable task: continue overworld Section 4 with a map-grid metatile range/reference report, then move to tile-id versus source tileset image bounds.
 - Import the remaining source-backed battle HUD/interface assets needed by the Sawyer/Route101 single-battle fixture.
 - Replace the current placeholder `BattleScene` layout with source-backed static battle composition before broad move animation work.
 
 Mid-term:
 
-- Continue overworld 1:1 parity after the battle workbench and first battle visual slice are measurable.
+- Continue overworld 1:1 parity through the active Section 4 import checks before moving into layer-aware rendering.
 - Bag runtime and `giveitem` script support after the current overworld slice is stabilized.
 - Broader item script commands such as `takeitem`, `checkitem`, and item-space checks after source tracing.
 - Overworld sprite import expansion and movement animation queues.
