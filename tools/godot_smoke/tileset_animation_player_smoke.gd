@@ -2,6 +2,7 @@ extends SceneTree
 
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
+const LAYER_RENDERER_SCRIPT := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
 const TILESET_ANIMATION_PLAYER_SCRIPT := preload("res://scripts/overworld/tileset_animation_player.gd")
 const START_MAP := "MAP_LITTLEROOT_TOWN"
 const MAUVILLE_MAP := "MAP_MAUVILLE_CITY"
@@ -24,8 +25,13 @@ func _init() -> void:
 	var runtime = MAP_RUNTIME_SCRIPT.new()
 	runtime.configure_data_registry(registry)
 
+	var renderer = LAYER_RENDERER_SCRIPT.new()
+	get_root().add_child(renderer)
+	renderer.configure_data_registry(registry)
+	renderer.configure_from_map_data(map_data, tileset_data)
+
 	var player = TILESET_ANIMATION_PLAYER_SCRIPT.new()
-	player.configure(registry, runtime)
+	player.configure(registry, runtime, renderer)
 	runtime.configure_from_data(map_data, tileset_data, _map_size_from_data(map_data))
 
 	var snapshot: Dictionary = player.get_initialization_status()
@@ -34,11 +40,12 @@ func _init() -> void:
 		String(snapshot.get("status", "")) == "initialized_from_source_schedule_metadata",
 		"expected source schedule initialization status"
 	)
-	_assert(String(snapshot.get("runtime_playback_status", "")) == "counter_playback_metadata_only_no_renderer_updates", "expected metadata-only counter playback")
+	_assert(String(snapshot.get("runtime_playback_status", "")) == "counter_playback_with_renderer_tile_updates", "expected renderer-backed counter playback")
 	_assert(String(snapshot.get("counter_status", "")) == "source_order_independent_counters", "expected independent counter status")
 	_assert(bool(snapshot.get("initialized_on_map_load", false)), "expected map-load initialization")
 	_assert(not bool(snapshot.get("source_equivalent_for_runtime_playback", true)), "expected playback to remain non-equivalent")
 	_assert(bool(snapshot.get("source_equivalent_for_runtime_counter_order", false)), "expected source counter order equivalence")
+	_assert(bool(snapshot.get("source_equivalent_for_renderer_updates", false)), "expected renderer update source equivalence when renderer is configured")
 	_assert(not bool(snapshot.get("mutates_renderer", true)), "expected initializer not to mutate renderer")
 	_assert(not bool(snapshot.get("mutates_map_data", true)), "expected initializer not to mutate map data")
 	_assert(String(snapshot.get("map_id", "")) == START_MAP, "expected LittlerootTown map id")
@@ -119,7 +126,9 @@ func _init() -> void:
 	_assert(int(first_frame.get("event_count", -1)) == 1, "expected one first-frame General event")
 	_assert(int(first_frame.get("tile_copy_request_count", -1)) == 1, "expected one first-frame tile copy request")
 	_assert(String(first_frame.get("source_update_order", "")) == "reset_buffer_increment_primary_increment_secondary_call_primary_call_secondary", "expected source update order")
-	_assert(not bool(first_frame.get("mutates_renderer", true)), "expected first frame not to mutate renderer")
+	_assert(bool(first_frame.get("mutates_renderer", false)), "expected first frame to mutate renderer atlas textures")
+	_assert(String(first_frame.get("renderer_update_status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected renderer atlas update status")
+	_assert(bool(first_frame.get("source_equivalent_for_renderer_updates", false)), "expected source-backed renderer update")
 	var first_events: Array = first_frame.get("events", [])
 	_assert(_event_queue(first_events, 0) == "QueueAnimTiles_General_Water", "expected first frame to trigger General water")
 	_assert(int(first_events[0].get("runtime_counter_value", -1)) == 1, "expected General first callback timer 1")
@@ -130,7 +139,17 @@ func _init() -> void:
 
 	var first_water_request: Dictionary = _first_tile_copy_request(first_events, 0)
 	_assert(int(first_water_request.get("selected_source_frame_index", -1)) == 0, "expected first water source frame")
-	_assert(bool(first_water_request.get("metadata_only_no_renderer_mutation", false)), "expected metadata-only tile copy")
+	_assert(String(first_water_request.get("selected_source_frame_symbol", "")) == "gTilesetAnims_General_Water_Frame0", "expected first water source frame symbol")
+	_assert(String(first_water_request.get("selected_source_frame_image", "")).ends_with("gtilesetanims_general_water_frame0.png"), "expected first water RGBA frame image")
+	_assert(not bool(first_water_request.get("metadata_only_no_renderer_mutation", true)), "expected renderer-backed tile copy")
+	var renderer_update: Dictionary = first_frame.get("renderer_update", {})
+	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected renderer update not to rebuild full map")
+	_assert(not bool(renderer_update.get("mutates_generated_files", true)), "expected renderer update not to mutate generated files")
+	_assert(int(renderer_update.get("tile_copy_request_count", 0)) == 1, "expected one renderer tile-copy request")
+	_assert(int(renderer_update.get("patched_slot_count", 0)) > 0, "expected renderer to patch atlas slots")
+	_assert(int(renderer_update.get("updated_metatile_count", 0)) > 0, "expected renderer to update metatile atlas records")
+	var renderer_status: Dictionary = renderer.get_tileset_animation_update_status()
+	_assert(String(renderer_status.get("status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected renderer status accessor to expose atlas updates")
 
 	var to_sixteen := player.advance_frames(15)
 	_assert(int(to_sixteen.get("runtime_frames_elapsed", 0)) == 16, "expected runtime frame 16")
@@ -152,7 +171,7 @@ func _init() -> void:
 	_assert(not _has_unsupported_code(unsupported, "tileset_animation_playback_pending"), "did not expect playback pending marker")
 	_assert(not _has_unsupported_code(unsupported, "tileset_animation_independent_counters_pending"), "did not expect counter pending marker")
 	_assert(not _has_unsupported_code(unsupported, "tileset_animation_transition_pause_reset_pending"), "did not expect transition reset pending marker")
-	_assert(_has_unsupported_code(unsupported, "tileset_animation_renderer_tile_update_pending"), "expected renderer update pending marker")
+	_assert(not _has_unsupported_code(unsupported, "tileset_animation_renderer_tile_update_pending"), "did not expect renderer update pending marker")
 
 	var transition_sequence := {
 		"id": 901,
@@ -176,7 +195,7 @@ func _init() -> void:
 	_assert(int(paused_many.get("frames_advanced", -1)) == 0, "expected paused bulk advance to report zero advanced frames")
 	_assert(_counter_value(player.get_counter_status(), "primary") == paused_counter_before, "expected paused bulk counter unchanged")
 
-	var mauville := _configure_map(player, registry, runtime, MAUVILLE_MAP)
+	var mauville := _configure_map(player, registry, runtime, MAUVILLE_MAP, renderer)
 	_assert(String(mauville.get("map_id", "")) == MAUVILLE_MAP, "expected Mauville map id")
 	_assert(bool(player.is_transition_paused()), "expected map load reset to keep transition pause active until resume")
 	_assert(_counter_value(player.get_counter_status(), "primary") == 0, "expected transition map load to reset primary counter")
@@ -211,7 +230,7 @@ func _init() -> void:
 	_assert(_counter_value(player.get_counter_status(), "primary") == same_map_counter_before, "expected same-map map_changed to preserve counters")
 	_assert(String(player.get_initialization_status().get("last_map_changed_status", "")) == "same_map_update_preserved_tileset_animation_counters", "expected same-map preservation status")
 
-	var underwater := _configure_map(player, registry, runtime, UNDERWATER_MAP)
+	var underwater := _configure_map(player, registry, runtime, UNDERWATER_MAP, renderer)
 	_assert(String(underwater.get("map_id", "")) == UNDERWATER_MAP, "expected Underwater map id")
 	var underwater_secondary := player.get_tileset_state("gTileset_Underwater")
 	_assert(String(underwater_secondary.get("counter_resolved_from", "")) == "literal_or_expression", "expected Underwater literal counter max")
@@ -225,9 +244,17 @@ func _init() -> void:
 	_assert(_has_event_queue(underwater_last_events, "QueueAnimTiles_Underwater_Seaweed"), "expected Underwater seaweed event")
 
 	if _failed:
+		player.free()
+		renderer.free()
+		runtime.free()
+		registry.free()
 		quit(1)
 	else:
 		print("Tileset animation player smoke passed")
+		player.free()
+		renderer.free()
+		runtime.free()
+		registry.free()
 		quit(0)
 
 
@@ -238,12 +265,14 @@ func _map_size_from_data(map_data: Dictionary) -> Vector2i:
 	return Vector2i(int(layout.get("width", 0)), int(layout.get("height", 0)))
 
 
-func _configure_map(player: Node, registry: Node, runtime: Node, map_id: String) -> Dictionary:
+func _configure_map(player: Node, registry: Node, runtime: Node, map_id: String, renderer: Node = null) -> Dictionary:
 	var map_data: Dictionary = registry.get_map_data(map_id, {
 		"include_debug_overlays": true,
 	})
 	var tileset_data: Dictionary = registry.get_tileset_data_for_map(map_id)
 	_assert(not map_data.is_empty(), "expected map data for %s" % map_id)
+	if renderer != null and renderer.has_method("configure_from_map_data"):
+		renderer.configure_from_map_data(map_data, tileset_data)
 	runtime.configure_from_data(map_data, tileset_data, _map_size_from_data(map_data))
 	var snapshot: Dictionary = player.get_initialization_status()
 	snapshot["map_data"] = map_data

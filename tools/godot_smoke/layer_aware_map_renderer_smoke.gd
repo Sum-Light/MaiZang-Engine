@@ -4,6 +4,7 @@ const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const DEBUG_MAP_PLANE_SCRIPT := preload("res://scripts/overworld/debug_map_plane.gd")
 const LAYER_RENDERER_SCRIPT := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
 const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
+const TILESET_ANIMATION_PLAYER_SCRIPT := preload("res://scripts/overworld/tileset_animation_player.gd")
 
 const START_MAP := "MAP_LITTLEROOT_TOWN"
 const TILE_SIZE := 16
@@ -133,6 +134,8 @@ func _run() -> void:
 	_assert(required_inputs.has("metatile_entries.render_layers"), "expected metatile render-layer input requirement")
 	_assert(required_inputs.has("metatile_entries.attribute.layer_type"), "expected layer-type input requirement")
 	_assert(required_inputs.has("door_animations"), "expected door animation input requirement")
+	_assert(required_inputs.has("tileset_animation_frame_strips"), "expected tileset animation frame-strip input requirement")
+	_assert(required_inputs.has("tileset_animation_schedule_trace.tile_copy_appends"), "expected tileset animation schedule input requirement")
 
 	var layer_contract: Dictionary = contract.get("layer_rule_contract", {})
 	_assert(String(layer_contract.get("normal", {}).get("top_source_slot_to_runtime_layer", "")) == "top", "expected normal top layer rule")
@@ -160,7 +163,8 @@ func _run() -> void:
 	_assert(unsupported_codes.has("door_forced_covered_layer_pending"), "expected door layer gap")
 	_assert(not unsupported_codes.has("per_layer_redraw_cache_pending"), "expected setmetatile redraw cache pending gap to be retired")
 	_assert(not unsupported_codes.has("border_connection_animation_redraw_cache_pending"), "expected border/connection redraw cache gap to be retired")
-	_assert(unsupported_codes.has("door_tileset_animation_redraw_cache_pending"), "expected door/tileset animation redraw cache gap")
+	_assert(not unsupported_codes.has("door_tileset_animation_redraw_cache_pending"), "expected combined door/tileset animation redraw gap to be retired")
+	_assert(unsupported_codes.has("door_layer_redraw_cache_pending"), "expected door redraw cache gap")
 
 	_assert_no_disallowed_runtime_keys(contract)
 	_assert_no_disallowed_runtime_keys(status)
@@ -175,6 +179,7 @@ func _run() -> void:
 		"expected owner block query to delegate to fallback"
 	)
 	_assert_setmetatile_layer_redraw_cache(renderer, debug_renderer, map_data, tileset_data)
+	_assert_tileset_animation_layer_atlas_update(renderer, registry, map_data, tileset_data)
 	_assert_layer_draw_records(renderer, tileset_data, 0, "METATILE_LAYER_TYPE_NORMAL", "normal_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 1, "METATILE_LAYER_TYPE_COVERED", "covered_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 2, "METATILE_LAYER_TYPE_SPLIT", "split_layer_atlases")
@@ -194,6 +199,7 @@ func _run() -> void:
 		"layer_aware_map_renderer_smoke": "ok",
 		"owner": contract.get("owner", ""),
 		"runtime_status": status.get("status", ""),
+		"tileset_animation_status": renderer.get_tileset_animation_update_status().get("status", ""),
 		"unsupported_count": unsupported_codes.size(),
 	}))
 
@@ -311,6 +317,36 @@ func _assert_setmetatile_layer_redraw_cache(
 	_assert(renderer.get_render_block_id(target_cell) == metatile_id, "expected renderer block id to update")
 	_assert(debug_renderer.get_render_block_id(target_cell) == metatile_id, "expected fallback block id to update")
 	runtime.free()
+
+
+func _assert_tileset_animation_layer_atlas_update(
+	renderer: Node,
+	registry: Node,
+	map_data: Dictionary,
+	tileset_data: Dictionary
+) -> void:
+	renderer.configure_from_map_data(map_data, tileset_data)
+	var player = TILESET_ANIMATION_PLAYER_SCRIPT.new()
+	player.configure(registry, null, renderer)
+	player.initialize_for_map(map_data, tileset_data, _map_size_from_data(map_data))
+	var frame_update: Dictionary = player.advance_frame()
+	_assert(bool(frame_update.get("mutates_renderer", false)), "expected tileset animation player to mutate renderer")
+	_assert(String(frame_update.get("renderer_update_status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected tileset animation renderer update status")
+	_assert(bool(frame_update.get("source_equivalent_for_renderer_updates", false)), "expected renderer update to be source-backed")
+	var renderer_update: Dictionary = renderer.get_tileset_animation_update_status()
+	_assert(String(renderer_update.get("status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected renderer atlas update status")
+	_assert(int(renderer_update.get("tile_copy_request_count", 0)) == 1, "expected one first-frame tile-copy request")
+	_assert(int(renderer_update.get("updated_metatile_count", 0)) > 0, "expected renderer to update affected metatile atlas regions")
+	_assert(int(renderer_update.get("patched_slot_count", 0)) > 0, "expected renderer to patch atlas slots")
+	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected atlas patch path not to rebuild full map")
+	_assert(not bool(renderer_update.get("mutates_generated_files", true)), "expected atlas patch path not to mutate generated files")
+	var sample_ids: Array = renderer_update.get("updated_metatile_ids_sample", [])
+	_assert(not sample_ids.is_empty(), "expected updated metatile id sample")
+	var redraw_record: Dictionary = renderer.get_tileset_animation_redraw_record_for_metatile(int(sample_ids[0]))
+	_assert(not redraw_record.is_empty(), "expected renderer animation redraw record")
+	_assert(int(redraw_record.get("patch_count", 0)) > 0, "expected redraw record patches")
+	_assert_no_disallowed_runtime_keys(renderer_update)
+	player.free()
 
 
 func _assert_border_connection_layer_draw_records(

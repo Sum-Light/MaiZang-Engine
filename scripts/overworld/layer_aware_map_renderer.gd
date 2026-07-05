@@ -31,12 +31,23 @@ const BASE_LAYER_ROLE_IDS := ["bottom", "middle"]
 const TOP_LAYER_ROLE_ID := "top"
 const LAYER_DEBUG_VIEW_ALL := "all"
 const LAYER_DEBUG_VIEW_MODES := ["all", "bottom", "middle", "top"]
+const TILESET_ANIMATION_STATUS_IDLE := "tileset_animation_layer_atlas_updates_idle"
+const TILESET_ANIMATION_STATUS_APPLIED := "tileset_animation_layer_atlas_updates_applied"
+const TILESET_ANIMATION_STATUS_MISSING_RENDERER_DATA := "missing_tileset_animation_renderer_data"
+const TILESET_ANIMATION_STATUS_NO_EVENTS := "tileset_animation_no_events"
+const TILESET_ANIMATION_SOURCE_TRACE := [
+	"src/tileset_anims.c:AppendTilesetAnimToBuffer queues source tile ranges",
+	"src/tileset_anims.c:TransferTilesetAnimsBuffer copies queued ranges into BG tile memory",
+	"src/field_camera.c:DrawMetatile composes metatile tile slots into BG layers",
+	"tools/importer/export_overworld_tileset_headers.py exports RGBA tileset animation frame strips",
+	"tools/importer/export_tilesets.py exports layer_rendering.layer_atlases",
+]
 
 const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending"
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
 const UNSUPPORTED_OBJECT_DEPTH_LIMITS := "bridge_shadow_reflection_priority_pending"
 const UNSUPPORTED_DOOR_LAYER := "door_forced_covered_layer_pending"
-const UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES := "door_tileset_animation_redraw_cache_pending"
+const UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES := "door_layer_redraw_cache_pending"
 
 var map_size := Vector2i.ZERO
 var tile_size := DEFAULT_TILE_SIZE
@@ -48,8 +59,11 @@ var _grid_visible := false
 var _border_grid: Dictionary = {}
 var _connections: Array = []
 var _layer_textures: Dictionary = {}
+var _layer_images: Dictionary = {}
 var _layer_atlas_info: Dictionary = {}
 var _metatile_layer_types: Dictionary = {}
+var _metatile_entries_by_id: Dictionary = {}
+var _tile_to_metatile_slots: Dictionary = {}
 var _normal_layer_metatile_count := 0
 var _covered_layer_metatile_count := 0
 var _split_layer_metatile_count := 0
@@ -62,6 +76,10 @@ var _layer_debug_view := LAYER_DEBUG_VIEW_ALL
 var _layer_redraw_cache: Dictionary = {}
 var _layer_redraw_serial := 0
 var _last_layer_update_status: Dictionary = {}
+var _tileset_animation_frame_images: Dictionary = {}
+var _tileset_animation_update_serial := 0
+var _tileset_animation_update_records: Dictionary = {}
+var _last_tileset_animation_update_status: Dictionary = {}
 
 
 func _ready() -> void:
@@ -262,6 +280,111 @@ func get_layer_redraw_record_for_cell(cell: Vector2i) -> Dictionary:
 	return {}
 
 
+func apply_tileset_animation_frame_update(frame_update: Dictionary) -> Dictionary:
+	if not _runtime_layer_rendering_available() or _metatile_entries_by_id.is_empty():
+		_last_tileset_animation_update_status = _empty_tileset_animation_update_status(
+			TILESET_ANIMATION_STATUS_MISSING_RENDERER_DATA
+		)
+		return get_tileset_animation_update_status()
+
+	var events = frame_update.get("events", [])
+	if typeof(events) != TYPE_ARRAY or events.is_empty():
+		_last_tileset_animation_update_status = _empty_tileset_animation_update_status(
+			TILESET_ANIMATION_STATUS_NO_EVENTS
+		)
+		return get_tileset_animation_update_status()
+
+	_tileset_animation_update_serial += 1
+	_tileset_animation_update_records = {}
+	var event_count = 0
+	var request_count = 0
+	var tile_copy_count = 0
+	var patched_slot_count = 0
+	var patched_metatile_ids = {}
+	var patched_tile_ids = {}
+	var role_update_counts = {}
+	var request_summaries = []
+	var failed_requests = []
+	for event in events:
+		if typeof(event) != TYPE_DICTIONARY:
+			continue
+		event_count += 1
+		var requests = event.get("tile_copy_requests", [])
+		if typeof(requests) != TYPE_ARRAY:
+			continue
+		for request in requests:
+			if typeof(request) != TYPE_DICTIONARY:
+				continue
+			request_count += 1
+			var request_result = _apply_tileset_animation_tile_copy_request(request, event)
+			request_summaries.append(request_result)
+			tile_copy_count += int(request_result.get("tile_count", 0))
+			patched_slot_count += int(request_result.get("patched_slot_count", 0))
+			var request_roles = request_result.get("role_update_counts", {})
+			if typeof(request_roles) == TYPE_DICTIONARY:
+				for role in request_roles.keys():
+					role_update_counts[role] = int(role_update_counts.get(role, 0)) + int(request_roles[role])
+			var request_metatile_ids = request_result.get("updated_metatile_ids", [])
+			if typeof(request_metatile_ids) == TYPE_ARRAY:
+				for metatile_id in request_metatile_ids:
+					patched_metatile_ids[int(metatile_id)] = true
+			var request_tile_ids = request_result.get("updated_tile_ids", [])
+			if typeof(request_tile_ids) == TYPE_ARRAY:
+				for tile_id in request_tile_ids:
+					patched_tile_ids[int(tile_id)] = true
+			if not bool(request_result.get("applied", false)):
+				failed_requests.append(request_result)
+
+	_update_changed_layer_textures(role_update_counts.keys())
+	if patched_slot_count > 0:
+		_queue_renderer_redraw()
+
+	var updated_metatile_ids = patched_metatile_ids.keys()
+	updated_metatile_ids.sort()
+	var updated_tile_ids = patched_tile_ids.keys()
+	updated_tile_ids.sort()
+	_last_tileset_animation_update_status = {
+		"status": TILESET_ANIMATION_STATUS_APPLIED if patched_slot_count > 0 else TILESET_ANIMATION_STATUS_IDLE,
+		"source": "TilesetAnimationPlayer.apply_tileset_animation_frame_update",
+		"serial": _tileset_animation_update_serial,
+		"event_count": event_count,
+		"tile_copy_request_count": request_count,
+		"tile_count": tile_copy_count,
+		"updated_tile_id_count": updated_tile_ids.size(),
+		"updated_tile_ids_sample": _array_sample(updated_tile_ids, 16),
+		"updated_metatile_count": updated_metatile_ids.size(),
+		"updated_metatile_ids_sample": _array_sample(updated_metatile_ids, 16),
+		"patched_slot_count": patched_slot_count,
+		"role_update_counts": role_update_counts,
+		"failed_request_count": failed_requests.size(),
+		"failed_requests": _array_sample(failed_requests, 4),
+		"request_summaries": _array_sample(request_summaries, 8),
+		"mutates_renderer": patched_slot_count > 0,
+		"mutates_layer_atlas_textures": patched_slot_count > 0,
+		"mutates_map_data": false,
+		"mutates_gameplay_data": false,
+		"mutates_collision_or_elevation": false,
+		"mutates_generated_files": false,
+		"rebuilds_full_map": false,
+		"source_equivalent_for_tileset_animation_renderer_updates": failed_requests.is_empty() and patched_slot_count > 0,
+		"source_trace": TILESET_ANIMATION_SOURCE_TRACE,
+	}
+	return get_tileset_animation_update_status()
+
+
+func get_tileset_animation_update_status() -> Dictionary:
+	if _last_tileset_animation_update_status.is_empty():
+		return _empty_tileset_animation_update_status(TILESET_ANIMATION_STATUS_IDLE)
+	return _last_tileset_animation_update_status.duplicate(true)
+
+
+func get_tileset_animation_redraw_record_for_metatile(metatile_id: int) -> Dictionary:
+	var record = _tileset_animation_update_records.get(metatile_id, {})
+	if typeof(record) == TYPE_DICTIONARY:
+		return record.duplicate(true)
+	return {}
+
+
 func get_border_connection_layer_status() -> Dictionary:
 	var draw_rect := _source_backup_draw_rect()
 	return {
@@ -308,6 +431,7 @@ func get_renderer_contract() -> Dictionary:
 		"top_layer_overlay": _top_layer_overlay_status(),
 		"layer_debug_view": get_layer_debug_view_status(),
 		"layer_redraw_cache": get_layer_redraw_cache_status(),
+		"tileset_animation_layer_updates": get_tileset_animation_update_status(),
 		"border_connection_layer_rendering": get_border_connection_layer_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"debug_fallback_script": _debug_fallback_script_path(),
@@ -326,6 +450,9 @@ func get_renderer_contract() -> Dictionary:
 			"get_layer_draw_records_for_cell",
 			"get_layer_redraw_cache_status",
 			"get_layer_redraw_record_for_cell",
+			"apply_tileset_animation_frame_update",
+			"get_tileset_animation_update_status",
+			"get_tileset_animation_redraw_record_for_metatile",
 			"get_border_connection_layer_status",
 			"get_object_depth_interleave_status",
 			"get_sprite_depth_record",
@@ -355,6 +482,7 @@ func get_renderer_contract() -> Dictionary:
 			"Preserve the current DebugMapPlane-compatible API while the scene migrates.",
 			"Route source-traced door frames into layer updates in a later implementation slice.",
 			"Consume source-traced setmetatile layer updates into renderer-local redraw caches.",
+			"Apply source tileset animation tile-copy requests into mutable layer atlas textures.",
 			"Report non-equivalent runtime layering until bottom/middle/top drawing and sprite interleave are implemented.",
 		],
 		"non_responsibilities": [
@@ -387,6 +515,7 @@ func get_runtime_layer_status() -> Dictionary:
 		"top_layer_overlay": _top_layer_overlay_status(),
 		"layer_debug_view": get_layer_debug_view_status(),
 		"layer_redraw_cache": get_layer_redraw_cache_status(),
+		"tileset_animation_layer_updates": get_tileset_animation_update_status(),
 		"border_connection_layer_rendering": get_border_connection_layer_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"source_equivalent_for_runtime_layering": false,
@@ -407,6 +536,8 @@ func get_required_import_inputs() -> Array:
 		"metatile_entries.attribute.behavior_name",
 		"object_events",
 		"door_animations",
+		"tileset_animation_frame_strips",
+		"tileset_animation_schedule_trace.tile_copy_appends",
 	]
 
 
@@ -443,7 +574,7 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_SOURCE_EQUIVALENT,
 			"status": "partially_implemented",
 			"source": "src/field_camera.c:DrawMetatile",
-			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data for in-bounds, border, and connection cells. Player/object nodes use source elevation priority plus SetObjectSubpriorityByElevation-style y-sort. Full source equivalence still needs bridge/shadow/reflection priority side effects, door forced-covered updates, and dynamic redraw caches.",
+			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data for in-bounds, border, and connection cells. Player/object nodes use source elevation priority plus SetObjectSubpriorityByElevation-style y-sort. Tileset animation tile-copy events patch mutable layer atlases. Full source equivalence still needs bridge/shadow/reflection priority side effects and door forced-covered updates.",
 		},
 		{
 			"code": UNSUPPORTED_FLATTENED_ATLAS,
@@ -467,7 +598,7 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES,
 			"status": "pending",
 			"source": "src/field_camera.c:CurrentMapDrawMetatileAt",
-			"detail": "Setmetatile single-cell layer redraw cache and first-pass border/connection layer presentation are implemented; door and tileset animation redraw caches remain pending.",
+			"detail": "Setmetatile single-cell layer redraw cache, first-pass border/connection layer presentation, and tileset-animation layer atlas updates are implemented; door forced-covered redraws remain pending.",
 		},
 	]
 
@@ -597,8 +728,14 @@ func _tile_size_from_tileset(source_tileset_data: Dictionary) -> int:
 
 func _configure_layer_rendering(source_tileset_data: Dictionary) -> void:
 	_layer_textures.clear()
+	_layer_images.clear()
 	_layer_atlas_info.clear()
 	_metatile_layer_types.clear()
+	_metatile_entries_by_id.clear()
+	_tile_to_metatile_slots.clear()
+	_tileset_animation_frame_images.clear()
+	_tileset_animation_update_records.clear()
+	_last_tileset_animation_update_status = {}
 	_normal_layer_metatile_count = 0
 	_covered_layer_metatile_count = 0
 	_split_layer_metatile_count = 0
@@ -614,10 +751,11 @@ func _configure_layer_rendering(source_tileset_data: Dictionary) -> void:
 		var atlas_record = layer_atlases.get(role, {})
 		if typeof(atlas_record) != TYPE_DICTIONARY:
 			continue
-		var texture := _texture_from_image_record(atlas_record)
-		if texture == null:
+		var image := _image_from_image_record(atlas_record)
+		if image == null:
 			continue
-		_layer_textures[role] = texture
+		_layer_images[role] = image
+		_layer_textures[role] = ImageTexture.create_from_image(image)
 		_layer_atlas_info[role] = {
 			"tile_size": max(1, int(atlas_record.get("tile_size", tile_size))),
 			"columns": int(atlas_record.get("columns", 0)),
@@ -633,6 +771,8 @@ func _configure_layer_rendering(source_tileset_data: Dictionary) -> void:
 		var metatile_id := int(entry.get("id", -1))
 		if metatile_id < 0:
 			continue
+		_metatile_entries_by_id[metatile_id] = entry
+		_index_metatile_tile_slots(metatile_id, entry)
 		var attribute = entry.get("attribute", {})
 		if typeof(attribute) != TYPE_DICTIONARY:
 			continue
@@ -725,6 +865,7 @@ func _metatile_layer_rendering_status() -> Dictionary:
 		"object_depth_interleave": "implemented_first_pass",
 		"layer_debug_view": get_layer_debug_view_status(),
 		"layer_redraw_cache": get_layer_redraw_cache_status(),
+		"tileset_animation_layer_updates": get_tileset_animation_update_status(),
 	}
 
 
@@ -787,6 +928,289 @@ func _is_implemented_layer_block(block_id: int) -> bool:
 	if block_id < 0 or not _metatile_layer_types.has(block_id):
 		return false
 	return IMPLEMENTED_LAYER_TYPES.has(int(_metatile_layer_types[block_id]))
+
+
+func _apply_tileset_animation_tile_copy_request(request: Dictionary, event: Dictionary) -> Dictionary:
+	var frame_image = _frame_image_for_request(request)
+	if frame_image == null:
+		return _tileset_animation_request_failure(request, event, "missing_selected_source_frame_image")
+
+	var source_tile_rects = _source_tile_rects_for_request(request, frame_image)
+	if source_tile_rects.is_empty():
+		return _tileset_animation_request_failure(request, event, "missing_source_tile_rects")
+
+	var affected_ranges = _effective_affected_tile_ranges(request)
+	if affected_ranges.is_empty():
+		return _tileset_animation_request_failure(request, event, "missing_affected_tile_ranges")
+
+	var patched_slot_count = 0
+	var updated_metatile_ids = {}
+	var updated_tile_ids = {}
+	var role_update_counts = {}
+	var placement_samples = []
+	for range_record in affected_ranges:
+		if typeof(range_record) != TYPE_DICTIONARY:
+			continue
+		var start_tile_id = int(range_record.get("start_tile_id", -1))
+		var end_tile_id = int(range_record.get("end_tile_id", -1))
+		if start_tile_id < 0 or end_tile_id < start_tile_id:
+			continue
+		for tile_id in range(start_tile_id, end_tile_id + 1):
+			var source_rect = source_tile_rects.get(tile_id, Rect2i())
+			if source_rect.size == Vector2i.ZERO:
+				continue
+			var slots = _tile_to_metatile_slots.get(tile_id, [])
+			if typeof(slots) != TYPE_ARRAY:
+				continue
+			for slot_record in slots:
+				if typeof(slot_record) != TYPE_DICTIONARY:
+					continue
+				var role = String(slot_record.get("role", ""))
+				var metatile_id = int(slot_record.get("metatile_id", -1))
+				if role.is_empty() or metatile_id < 0:
+					continue
+				if not _layer_images.has(role):
+					continue
+				var target_image: Image = _layer_images[role]
+				var target_position: Vector2i = slot_record.get("atlas_position", Vector2i.ZERO)
+				var source_tile_image = frame_image.get_region(source_rect)
+				if bool(slot_record.get("hflip", false)):
+					source_tile_image.flip_x()
+				if bool(slot_record.get("vflip", false)):
+					source_tile_image.flip_y()
+				target_image.blit_rect(source_tile_image, Rect2i(Vector2i.ZERO, source_rect.size), target_position)
+				patched_slot_count += 1
+				updated_metatile_ids[metatile_id] = true
+				updated_tile_ids[tile_id] = true
+				role_update_counts[role] = int(role_update_counts.get(role, 0)) + 1
+				_record_tileset_animation_slot_patch(metatile_id, role, slot_record, request, event, tile_id)
+				if placement_samples.size() < 8:
+					placement_samples.append({
+						"metatile_id": metatile_id,
+						"tile_id": tile_id,
+						"tile_entry_index": int(slot_record.get("tile_entry_index", -1)),
+						"role": role,
+						"atlas_position": [target_position.x, target_position.y],
+						"source_rect": _rect2i_to_dict(source_rect),
+					})
+
+	var updated_metatile_id_list = updated_metatile_ids.keys()
+	updated_metatile_id_list.sort()
+	var updated_tile_id_list = updated_tile_ids.keys()
+	updated_tile_id_list.sort()
+	return {
+		"applied": patched_slot_count > 0,
+		"status": "applied" if patched_slot_count > 0 else "no_matching_metatile_slots",
+		"queue_function": String(request.get("queue_function", event.get("queue_function", ""))),
+		"role": String(event.get("role", "")),
+		"tileset_symbol": String(event.get("tileset_symbol", "")),
+		"selected_source_frame_symbol": String(request.get("selected_source_frame_symbol", "")),
+		"selected_source_frame_image": String(request.get("selected_source_frame_image", "")),
+		"tile_count": int(request.get("tile_count", 0)),
+		"updated_tile_ids": updated_tile_id_list,
+		"updated_metatile_ids": updated_metatile_id_list,
+		"patched_slot_count": patched_slot_count,
+		"role_update_counts": role_update_counts,
+		"placement_samples": placement_samples,
+	}
+
+
+func _source_tile_rects_for_request(request: Dictionary, frame_image: Image) -> Dictionary:
+	var rects = {}
+	var source_ranges = _effective_affected_tile_ranges(request)
+	if source_ranges.is_empty():
+		source_ranges = request.get("source_tile_ranges", [])
+	if typeof(source_ranges) != TYPE_ARRAY:
+		return rects
+	var tile_span_count = 0
+	for range_record in source_ranges:
+		if typeof(range_record) != TYPE_DICTIONARY:
+			continue
+		tile_span_count += max(0, int(range_record.get("tile_count", 0)))
+	if tile_span_count <= 0:
+		tile_span_count = max(1, int(request.get("tile_count", 0)))
+	var frame_columns = max(1, int(frame_image.get_width() / 8))
+	var frame_rows = max(1, int(frame_image.get_height() / 8))
+	var frame_tile_capacity = frame_columns * frame_rows
+	var source_tile_index = 0
+	for range_record in source_ranges:
+		if typeof(range_record) != TYPE_DICTIONARY:
+			continue
+		var start_tile_id = int(range_record.get("start_tile_id", -1))
+		var end_tile_id = int(range_record.get("end_tile_id", -1))
+		if start_tile_id < 0 or end_tile_id < start_tile_id:
+			continue
+		for tile_id in range(start_tile_id, end_tile_id + 1):
+			if source_tile_index >= frame_tile_capacity:
+				return rects
+			rects[tile_id] = Rect2i(
+				Vector2i((source_tile_index % frame_columns) * 8, int(source_tile_index / frame_columns) * 8),
+				Vector2i(8, 8)
+			)
+			source_tile_index += 1
+	return rects
+
+
+func _effective_affected_tile_ranges(request: Dictionary) -> Array:
+	var explicit_ranges = request.get("effective_tile_ranges", [])
+	if typeof(explicit_ranges) == TYPE_ARRAY and not explicit_ranges.is_empty():
+		return explicit_ranges
+	var affected_ranges = request.get("affected_tile_ranges", [])
+	if typeof(affected_ranges) == TYPE_ARRAY:
+		return affected_ranges
+	return []
+
+
+func _frame_image_for_request(request: Dictionary) -> Image:
+	var image_path = String(request.get("selected_source_frame_image", ""))
+	if image_path.is_empty():
+		return null
+	if _tileset_animation_frame_images.has(image_path):
+		return _tileset_animation_frame_images[image_path]
+	var image = _image_from_path(image_path)
+	if image == null:
+		return null
+	_tileset_animation_frame_images[image_path] = image
+	return image
+
+
+func _record_tileset_animation_slot_patch(
+	metatile_id: int,
+	role: String,
+	slot_record: Dictionary,
+	request: Dictionary,
+	event: Dictionary,
+	tile_id: int
+) -> void:
+	var record = _tileset_animation_update_records.get(metatile_id, {})
+	if typeof(record) != TYPE_DICTIONARY or record.is_empty():
+		record = {
+			"status": TILESET_ANIMATION_STATUS_APPLIED,
+			"serial": _tileset_animation_update_serial,
+			"metatile_id": metatile_id,
+			"patches": [],
+			"source_trace": TILESET_ANIMATION_SOURCE_TRACE,
+		}
+	var patches = record.get("patches", [])
+	if typeof(patches) != TYPE_ARRAY:
+		patches = []
+	patches.append({
+		"role": role,
+		"tile_id": tile_id,
+		"tile_entry_index": int(slot_record.get("tile_entry_index", -1)),
+		"queue_function": String(request.get("queue_function", event.get("queue_function", ""))),
+		"selected_source_frame_symbol": String(request.get("selected_source_frame_symbol", "")),
+		"selected_source_frame_image": String(request.get("selected_source_frame_image", "")),
+		"atlas_position": [
+			int(slot_record.get("atlas_position", Vector2i.ZERO).x),
+			int(slot_record.get("atlas_position", Vector2i.ZERO).y),
+		],
+		"hflip": bool(slot_record.get("hflip", false)),
+		"vflip": bool(slot_record.get("vflip", false)),
+	})
+	record["patches"] = patches
+	record["patch_count"] = patches.size()
+	_tileset_animation_update_records[metatile_id] = record
+
+
+func _update_changed_layer_textures(changed_roles: Array) -> void:
+	for role in changed_roles:
+		if not _layer_images.has(role):
+			continue
+		var image: Image = _layer_images[role]
+		var texture = _layer_textures.get(role, null)
+		if texture is ImageTexture:
+			texture.update(image)
+		else:
+			_layer_textures[role] = ImageTexture.create_from_image(image)
+
+
+func _index_metatile_tile_slots(metatile_id: int, entry: Dictionary) -> void:
+	var tile_entries = entry.get("tile_entries", [])
+	if typeof(tile_entries) != TYPE_ARRAY:
+		return
+	var render_layers = entry.get("render_layers", {})
+	if typeof(render_layers) != TYPE_DICTIONARY:
+		return
+	var layers = render_layers.get("layers", {})
+	if typeof(layers) != TYPE_DICTIONARY:
+		return
+	for role in LAYER_ROLE_IDS:
+		var layer_record = layers.get(role, {})
+		if typeof(layer_record) != TYPE_DICTIONARY:
+			continue
+		var tile_slots = layer_record.get("tile_slots", [])
+		if typeof(tile_slots) != TYPE_ARRAY:
+			continue
+		var atlas_rect = _rect2i_from_dict(layer_record.get("atlas", {}))
+		for tile_slot in tile_slots:
+			if typeof(tile_slot) != TYPE_DICTIONARY:
+				continue
+			var tile_entry_index = int(tile_slot.get("source_tile_index", -1))
+			if tile_entry_index < 0 or tile_entry_index >= tile_entries.size():
+				continue
+			var tile_entry = tile_entries[tile_entry_index]
+			if typeof(tile_entry) != TYPE_DICTIONARY:
+				continue
+			var tile_id = int(tile_entry.get("tile_id", -1))
+			if tile_id < 0:
+				continue
+			var position_record = tile_slot.get("position", {})
+			if typeof(position_record) != TYPE_DICTIONARY:
+				continue
+			if not _tile_to_metatile_slots.has(tile_id):
+				_tile_to_metatile_slots[tile_id] = []
+			_tile_to_metatile_slots[tile_id].append({
+				"metatile_id": metatile_id,
+				"role": role,
+				"tile_entry_index": tile_entry_index,
+				"tile_id": tile_id,
+				"atlas_position": Vector2i(
+					atlas_rect.position.x + int(position_record.get("x", 0)),
+					atlas_rect.position.y + int(position_record.get("y", 0))
+				),
+				"hflip": bool(tile_entry.get("hflip", false)),
+				"vflip": bool(tile_entry.get("vflip", false)),
+			})
+
+
+func _tileset_animation_request_failure(request: Dictionary, event: Dictionary, reason: String) -> Dictionary:
+	return {
+		"applied": false,
+		"status": reason,
+		"queue_function": String(request.get("queue_function", event.get("queue_function", ""))),
+		"role": String(event.get("role", "")),
+		"tileset_symbol": String(event.get("tileset_symbol", "")),
+		"selected_source_frame_symbol": String(request.get("selected_source_frame_symbol", "")),
+		"selected_source_frame_image": String(request.get("selected_source_frame_image", "")),
+		"tile_count": int(request.get("tile_count", 0)),
+		"updated_tile_ids": [],
+		"updated_metatile_ids": [],
+		"patched_slot_count": 0,
+		"role_update_counts": {},
+	}
+
+
+func _empty_tileset_animation_update_status(status: String) -> Dictionary:
+	return {
+		"status": status,
+		"source": "TilesetAnimationPlayer.apply_tileset_animation_frame_update",
+		"serial": _tileset_animation_update_serial,
+		"event_count": 0,
+		"tile_copy_request_count": 0,
+		"updated_metatile_count": 0,
+		"patched_slot_count": 0,
+		"role_update_counts": {},
+		"mutates_renderer": false,
+		"mutates_layer_atlas_textures": false,
+		"mutates_map_data": false,
+		"mutates_gameplay_data": false,
+		"mutates_collision_or_elevation": false,
+		"mutates_generated_files": false,
+		"rebuilds_full_map": false,
+		"source_equivalent_for_tileset_animation_renderer_updates": false,
+		"source_trace": TILESET_ANIMATION_SOURCE_TRACE,
+	}
 
 
 func _draw_layered_metatile_roles(block_id: int, rect: Rect2, roles: Array) -> bool:
@@ -897,6 +1321,31 @@ func _layer_source_rect(role: String, block_id: int) -> Rect2:
 	)
 
 
+func _rect2i_from_dict(value) -> Rect2i:
+	if typeof(value) != TYPE_DICTIONARY:
+		return Rect2i()
+	return Rect2i(
+		Vector2i(int(value.get("x", 0)), int(value.get("y", 0))),
+		Vector2i(int(value.get("w", 0)), int(value.get("h", 0)))
+	)
+
+
+func _rect2i_to_dict(value: Rect2i) -> Dictionary:
+	return {
+		"x": value.position.x,
+		"y": value.position.y,
+		"w": value.size.x,
+		"h": value.size.y,
+	}
+
+
+func _array_sample(values: Array, limit: int) -> Array:
+	var sample := []
+	for index in range(min(limit, values.size())):
+		sample.append(values[index])
+	return sample
+
+
 func _source_bg_equivalent(role: String) -> String:
 	match role:
 		"bottom":
@@ -926,13 +1375,20 @@ func _source_layer_type_slug(source_layer_type_name: String) -> String:
 
 
 func _texture_from_image_record(record: Dictionary) -> Texture2D:
+	var image := _image_from_image_record(record)
+	if image != null:
+		return ImageTexture.create_from_image(image)
+	return null
+
+
+func _image_from_image_record(record: Dictionary) -> Image:
 	var image_path := String(record.get("image", ""))
 	if image_path.is_empty():
 		return null
-	var loaded_resource := load(image_path)
-	if loaded_resource is Texture2D:
-		return loaded_resource
+	return _image_from_path(image_path)
 
+
+func _image_from_path(image_path: String) -> Image:
 	var load_path := image_path
 	if load_path.begins_with("res://") or load_path.begins_with("user://"):
 		load_path = ProjectSettings.globalize_path(load_path)
@@ -940,7 +1396,7 @@ func _texture_from_image_record(record: Dictionary) -> Texture2D:
 	if image.load(load_path) != OK:
 		push_warning("Could not load layer-aware map texture: %s" % image_path)
 		return null
-	return ImageTexture.create_from_image(image)
+	return image
 
 
 func _draw_cell_rect() -> Rect2i:

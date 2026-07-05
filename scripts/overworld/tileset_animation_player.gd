@@ -5,8 +5,11 @@ const HEADER_REPORT_PATH := "res://data/generated/overworld/tileset_header_repor
 const INITIALIZED_STATUS := "initialized_from_source_schedule_metadata"
 const MISSING_REPORT_STATUS := "missing_tileset_header_report"
 const MISSING_MAP_STATUS := "missing_map_data"
-const RUNTIME_PLAYBACK_STATUS := "counter_playback_metadata_only_no_renderer_updates"
-const RENDERER_UPDATE_STATUS := "renderer_tile_updates_pending"
+const RUNTIME_PLAYBACK_STATUS := "counter_playback_with_renderer_tile_updates"
+const RENDERER_UPDATE_READY_STATUS := "renderer_tile_updates_ready"
+const RENDERER_UPDATE_APPLIED_STATUS := "renderer_tile_updates_applied"
+const RENDERER_UPDATE_PENDING_STATUS := "renderer_tile_updates_pending"
+const RENDERER_NOT_CONFIGURED_STATUS := "renderer_not_configured_metadata_only"
 const TRANSITION_READY_STATUS := "source_callback_transition_pause_reset_ready"
 const TRANSITION_PAUSED_STATUS := "paused_for_source_load_map_callback"
 const TRANSITION_RESUMED_STATUS := "resumed_after_source_load_map_callback"
@@ -28,6 +31,7 @@ const COUNTER_STATUS := "source_order_independent_counters"
 
 var _data_registry: Node = null
 var _map_runtime: Node = null
+var _map_renderer: Node = null
 var _tileset_header_report: Dictionary = {}
 var _headers_by_symbol: Dictionary = {}
 var _tile_copy_appends_by_queue: Dictionary = {}
@@ -49,10 +53,12 @@ func _process(_delta: float) -> void:
 		advance_frame()
 
 
-func configure(data_registry: Node, map_runtime: Node = null) -> void:
+func configure(data_registry: Node, map_runtime: Node = null, map_renderer: Node = null) -> void:
 	configure_data_registry(data_registry)
 	if map_runtime != null:
 		configure_map_runtime(map_runtime)
+	if map_renderer != null:
+		configure_renderer(map_renderer)
 
 
 func configure_data_registry(data_registry: Node) -> void:
@@ -67,6 +73,15 @@ func configure_map_runtime(map_runtime: Node) -> void:
 	var callback := Callable(self, "_on_map_changed")
 	if not _map_runtime.map_changed.is_connected(callback):
 		_map_runtime.map_changed.connect(callback)
+
+
+func configure_renderer(map_renderer: Node) -> void:
+	_map_renderer = map_renderer
+	if not _last_initialization.is_empty():
+		_last_initialization["renderer_update_status"] = _renderer_update_status_for_scope()
+		_last_initialization["unsupported"] = _unsupported_for_current_scope(
+			int(_last_initialization.get("active_tileset_state_count", 0))
+		)
 
 
 func initialize_for_map(
@@ -155,6 +170,7 @@ func initialize_for_map(
 		"source_equivalent_for_runtime_playback": false,
 		"source_equivalent_for_runtime_counter_order": true,
 		"source_equivalent_for_transition_pause_reset": true,
+		"source_equivalent_for_renderer_updates": _renderer_updates_available(),
 		"mutates_renderer": false,
 		"mutates_map_data": false,
 		"map_key": _current_map_key,
@@ -171,6 +187,7 @@ func initialize_for_map(
 		"schedule_event_count": schedule_event_count,
 		"tile_copy_event_count": tile_copy_event_count,
 		"tile_copy_append_count": tile_copy_append_count,
+		"renderer_update_status": _renderer_update_status_for_scope(),
 		"affected_tile_id_count": affected_tile_id_count,
 		"affected_metatile_reference_count": affected_metatile_reference_count,
 		"affected_unique_metatile_count": affected_unique_metatile_count,
@@ -488,7 +505,7 @@ func _build_role_state(role: String, tileset_symbol: String) -> Dictionary:
 		"active_runtime_callback": has_tile_animation_callback,
 		"has_tile_animation_callback": has_tile_animation_callback,
 		"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
-		"renderer_update_status": RENDERER_UPDATE_STATUS,
+		"renderer_update_status": _renderer_update_status_for_scope(),
 		"init_function": String(callback.get("symbol", "")),
 		"event_callback_symbol": event_callback,
 		"counter_kind": String(schedule_trace.get("counter_kind", "")),
@@ -659,10 +676,11 @@ func _advance_one_frame() -> Dictionary:
 			"owner": OWNER_NAME,
 			"status": TRANSITION_PAUSED_STATUS,
 			"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
-			"renderer_update_status": RENDERER_UPDATE_STATUS,
+			"renderer_update_status": _renderer_update_status_for_scope(),
 			"runtime_frames_elapsed": _runtime_frames_elapsed,
 			"transition_pause_active": true,
 			"source_equivalent_for_transition_pause_reset": true,
+			"source_equivalent_for_renderer_updates": _renderer_updates_available(),
 			"mutates_renderer": false,
 			"mutates_map_data": false,
 			"event_count": 0,
@@ -718,30 +736,33 @@ func _advance_one_frame() -> Dictionary:
 				frame_events.append(event_update)
 				tile_copy_request_count += int(event_update.get("tile_copy_request_count", 0))
 
+	var renderer_update = _apply_renderer_tile_updates(frame_events)
 	_last_frame_update = {
 		"schema_version": 1,
 		"owner": OWNER_NAME,
 		"status": "advanced_frame",
 		"runtime_playback_status": RUNTIME_PLAYBACK_STATUS,
-		"renderer_update_status": RENDERER_UPDATE_STATUS,
+		"renderer_update_status": String(renderer_update.get("status", _renderer_update_status_for_scope())),
 		"transition_pause_active": false,
 		"runtime_frames_elapsed": _runtime_frames_elapsed,
 		"source_update_order": "reset_buffer_increment_primary_increment_secondary_call_primary_call_secondary",
 		"source_equivalent_for_runtime_counter_order": true,
 		"source_equivalent_for_transition_pause_reset": true,
-		"source_equivalent_for_renderer_updates": false,
-		"mutates_renderer": false,
+		"source_equivalent_for_renderer_updates": bool(renderer_update.get("source_equivalent_for_tileset_animation_renderer_updates", false)),
+		"mutates_renderer": bool(renderer_update.get("mutates_renderer", false)),
 		"mutates_map_data": false,
 		"event_count": frame_events.size(),
 		"tile_copy_request_count": tile_copy_request_count,
 		"role_counter_updates": role_counter_updates,
 		"events": frame_events,
+		"renderer_update": renderer_update,
 		"counter_status": _build_counter_status_from_roles(roles),
 		"source_trace": SOURCE_TRACE,
 	}
 	_last_initialization["runtime_frames_elapsed"] = _runtime_frames_elapsed
 	_last_initialization["runtime_counters"] = _last_frame_update["counter_status"].duplicate(true)
 	_last_initialization["last_frame_update"] = _last_frame_update.duplicate(true)
+	_last_initialization["renderer_update_status"] = String(_last_frame_update.get("renderer_update_status", ""))
 	_apply_transition_snapshot()
 	return get_last_frame_update()
 
@@ -765,32 +786,47 @@ func _triggered_events_for_role(role_state: Dictionary, counter_value: int) -> A
 
 
 func _build_runtime_event_update(role_state: Dictionary, event_state: Dictionary, counter_value: int) -> Dictionary:
-	var timer_argument := _source_timer_argument(counter_value, event_state)
+	var timer_argument = _source_timer_argument(counter_value, event_state)
+	var destination_tile_range_index = _destination_tile_range_index(event_state)
 	var append_targets = event_state.get("append_targets", [])
 	if typeof(append_targets) != TYPE_ARRAY:
 		append_targets = []
-	var tile_copy_requests := []
+	var tile_copy_requests = []
 	for append_target in append_targets:
 		if typeof(append_target) != TYPE_DICTIONARY:
 			continue
+		var selected_source_frame_symbol = _selected_source_frame_symbol(timer_argument, append_target)
+		var selected_frame_strip = _frame_strip_for_symbol(selected_source_frame_symbol)
+		var affected_ranges: Array = append_target.get("affected_tile_ranges", [])
+		if typeof(affected_ranges) != TYPE_ARRAY:
+			affected_ranges = []
+		var source_ranges = _source_tile_ranges_for_append_target(append_target)
+		var effective_ranges = _effective_tile_ranges_for_append_target(append_target, destination_tile_range_index)
 		tile_copy_requests.append({
 			"queue_function": String(append_target.get("queue_function", "")),
 			"append_index": int(append_target.get("append_index", 0)),
 			"source_array": String(append_target.get("source_array", "")),
 			"source_expr": String(append_target.get("source_expr", "")),
 			"timer_argument": timer_argument,
+			"destination_tile_range_index": destination_tile_range_index,
 			"selected_source_frame_index": _selected_source_frame_index(timer_argument, append_target),
+			"selected_source_frame_symbol": selected_source_frame_symbol,
+			"selected_source_frame_image": String(selected_frame_strip.get("image", "")),
+			"selected_source_frame_strip_size": selected_frame_strip.get("strip_size", {}),
 			"source_frame_symbol_count": int(append_target.get("source_frame_symbol_count", 0)),
 			"resolved_frame_strip_count": int(append_target.get("resolved_frame_strip_count", 0)),
 			"dest_expr": String(append_target.get("dest_expr", "")),
 			"dest_kind": String(append_target.get("dest_kind", "")),
+			"vdest_array": append_target.get("vdest_array", null),
 			"tile_offsets": append_target.get("tile_offsets", []),
 			"tile_count": int(append_target.get("tile_count", 0)),
 			"byte_count": int(append_target.get("byte_count", 0)),
-			"affected_tile_ranges": append_target.get("affected_tile_ranges", []),
+			"source_tile_ranges": source_ranges,
+			"affected_tile_ranges": affected_ranges,
+			"effective_tile_ranges": effective_ranges,
 			"affected_unique_metatile_count": int(append_target.get("affected_unique_metatile_count", 0)),
-			"renderer_update_status": RENDERER_UPDATE_STATUS,
-			"metadata_only_no_renderer_mutation": true,
+			"renderer_update_status": RENDERER_UPDATE_READY_STATUS,
+			"metadata_only_no_renderer_mutation": not _renderer_updates_available(),
 		})
 
 	return {
@@ -806,10 +842,11 @@ func _build_runtime_event_update(role_state: Dictionary, event_state: Dictionary
 		"trigger_phase": int(event_state.get("trigger_phase", 0)),
 		"timer_argument": timer_argument,
 		"timer_argument_expr": String(event_state.get("timer_argument_expr", "")),
+		"destination_tile_range_index": destination_tile_range_index,
 		"duration_frames": int(event_state.get("duration_frames", 0)),
 		"tile_copy_request_count": tile_copy_requests.size(),
 		"tile_copy_requests": tile_copy_requests,
-		"metadata_only_no_renderer_mutation": true,
+		"metadata_only_no_renderer_mutation": not _renderer_updates_available(),
 	}
 
 
@@ -842,6 +879,111 @@ func _selected_source_frame_index(timer_argument: int, append_target: Dictionary
 	if source_frame_count <= 0:
 		return 0
 	return timer_argument % source_frame_count
+
+
+func _selected_source_frame_symbol(timer_argument: int, append_target: Dictionary) -> String:
+	var source_frame_symbols = append_target.get("source_frame_symbols", [])
+	if typeof(source_frame_symbols) != TYPE_ARRAY or source_frame_symbols.is_empty():
+		return ""
+	var selected_index = _selected_source_frame_index(timer_argument, append_target)
+	if selected_index < 0 or selected_index >= source_frame_symbols.size():
+		return ""
+	return String(source_frame_symbols[selected_index])
+
+
+func _frame_strip_for_symbol(frame_symbol: String) -> Dictionary:
+	var strip = _frame_strips_by_symbol.get(frame_symbol, {})
+	if typeof(strip) == TYPE_DICTIONARY:
+		return strip.duplicate(true)
+	return {}
+
+
+func _destination_tile_range_index(event_state: Dictionary) -> int:
+	var extra_argument_exprs = event_state.get("extra_argument_exprs", [])
+	if typeof(extra_argument_exprs) != TYPE_ARRAY or extra_argument_exprs.is_empty():
+		return -1
+	var first = String(extra_argument_exprs[0])
+	if first.is_valid_int():
+		return int(first)
+	return -1
+
+
+func _source_tile_ranges_for_append_target(append_target: Dictionary) -> Array:
+	var tile_offsets = append_target.get("tile_offsets", [])
+	if typeof(tile_offsets) == TYPE_ARRAY and not tile_offsets.is_empty():
+		var range_index = 0
+		var tile_count = int(append_target.get("tile_count", 0))
+		var ranges = []
+		for tile_offset in tile_offsets:
+			if typeof(tile_offset) != TYPE_DICTIONARY:
+				continue
+			var start_tile_id = int(tile_offset.get("tile_offset", -1))
+			if start_tile_id < 0:
+				continue
+			ranges.append({
+				"range_index": range_index,
+				"start_tile_id": start_tile_id,
+				"end_tile_id": start_tile_id + max(0, tile_count) - 1,
+				"tile_count": tile_count,
+			})
+			range_index += 1
+		return ranges
+	var affected_ranges = append_target.get("affected_tile_ranges", [])
+	if typeof(affected_ranges) == TYPE_ARRAY:
+		return affected_ranges.duplicate(true)
+	return []
+
+
+func _effective_tile_ranges_for_append_target(append_target: Dictionary, destination_tile_range_index: int) -> Array:
+	var source_ranges = _source_tile_ranges_for_append_target(append_target)
+	if source_ranges.is_empty():
+		return []
+	if destination_tile_range_index < 0:
+		return source_ranges
+	for range_record in source_ranges:
+		if typeof(range_record) == TYPE_DICTIONARY and int(range_record.get("range_index", -1)) == destination_tile_range_index:
+			return [range_record]
+	return []
+
+
+func _apply_renderer_tile_updates(frame_events: Array) -> Dictionary:
+	if frame_events.is_empty():
+		return {
+			"status": "tileset_animation_no_events",
+			"mutates_renderer": false,
+			"source_equivalent_for_tileset_animation_renderer_updates": _renderer_updates_available(),
+			"rebuilds_full_map": false,
+		}
+	if not _renderer_updates_available():
+		return {
+			"status": RENDERER_NOT_CONFIGURED_STATUS,
+			"mutates_renderer": false,
+			"source_equivalent_for_tileset_animation_renderer_updates": false,
+			"rebuilds_full_map": false,
+			"unsupported": _unsupported_for_current_scope(_active_tileset_states.size()),
+			"source_trace": SOURCE_TRACE,
+		}
+	var renderer_update = _map_renderer.apply_tileset_animation_frame_update({
+		"events": frame_events,
+		"runtime_frames_elapsed": _runtime_frames_elapsed,
+		"source_update_order": "after_source_tile_copy_queue_before_next_frame",
+	})
+	if typeof(renderer_update) != TYPE_DICTIONARY:
+		return {
+			"status": RENDERER_UPDATE_PENDING_STATUS,
+			"mutates_renderer": false,
+			"source_equivalent_for_tileset_animation_renderer_updates": false,
+			"rebuilds_full_map": false,
+		}
+	return renderer_update
+
+
+func _renderer_updates_available() -> bool:
+	return _map_renderer != null and _map_renderer.has_method("apply_tileset_animation_frame_update")
+
+
+func _renderer_update_status_for_scope() -> String:
+	return RENDERER_UPDATE_READY_STATUS if _renderer_updates_available() else RENDERER_UPDATE_PENDING_STATUS
 
 
 func _build_counter_status_from_roles(roles: Array) -> Dictionary:
@@ -887,14 +1029,14 @@ func _array_sample(values: Array, limit: int) -> Array:
 
 
 func _unsupported_for_current_scope(active_count: int) -> Array:
-	var unsupported := [
-		{
+	var unsupported := []
+	if not _renderer_updates_available():
+		unsupported.append({
 			"code": "tileset_animation_renderer_tile_update_pending",
 			"status": "pending",
-			"detail": "Counter playback emits metadata-only tile-copy requests and does not mutate atlases, TileMaps, or map data.",
+			"detail": "Counter playback can emit source tile-copy requests, but no renderer with apply_tileset_animation_frame_update is configured.",
 			"active_callback_count": active_count,
-		},
-	]
+		})
 	return unsupported
 
 

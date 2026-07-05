@@ -660,7 +660,7 @@ func _install_tileset_animation_player() -> void:
 	_tileset_animation_player = TILESET_ANIMATION_PLAYER.new()
 	_tileset_animation_player.name = "TilesetAnimationPlayer"
 	add_child(_tileset_animation_player)
-	_tileset_animation_player.configure(DataRegistry, MapRuntime)
+	_tileset_animation_player.configure(DataRegistry, MapRuntime, debug_map)
 	_connect_tileset_animation_transition_signals()
 
 
