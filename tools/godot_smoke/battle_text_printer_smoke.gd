@@ -344,6 +344,59 @@ func _run() -> void:
 	_assert(int(byte_fill_layout.get("glyph_count", 0)) == 1, "expected one glyph after fill-window reset")
 	_assert(String(byte_fill_first_glyph.get("text", "")) == "P", "expected post-fill glyph to remain")
 
+	var byte_font_material_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	byte_font_material_printer.start("B_WIN_MSG", "FFPFP", message_info, text_printer_metadata, {
+		"source_text": "FFPFP",
+		"source_bytes": [
+			0xC0,
+			0xFC, 0x06, 0x07,
+			0xC0,
+			0xFC, 0x07,
+			0xCA,
+			0xFC, 0x15,
+			0xC0,
+			0xFC, 0x16,
+			0xFC, 0x05, 0x03,
+			0xFC, 0x04, 0x04, 0x02, 0x06,
+			0xFC, 0x02, 0x05,
+			0xFC, 0x1C, 0x08, 0x09, 0x0A,
+			0xCA,
+			0xFF,
+		],
+		"source_glyphs": [
+			{"byte_offset": 0, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 4, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 7, "bytes": [0xCA], "text": "P", "hex": "CA"},
+			{"byte_offset": 10, "bytes": [0xC0], "text": "F", "hex": "C0"},
+			{"byte_offset": 29, "bytes": [0xCA], "text": "P", "hex": "CA"},
+		],
+	})
+	byte_font_material_printer.skip_to_end()
+	var byte_font_material := _dict(byte_font_material_printer.snapshot())
+	var byte_font_material_summary := _dict(byte_font_material.get("render_text_control_summary", {}))
+	var byte_font_material_source_summary := _dict(byte_font_material.get("source_byte_control_summary", {}))
+	var byte_font_material_layout := _dict(byte_font_material.get("source_glyph_layout", {}))
+	var byte_font_material_glyphs := _array(byte_font_material_layout.get("glyphs", []))
+	var normal_font_glyph := _glyph_by_source_offset(byte_font_material_glyphs, 0)
+	var narrow_font_glyph := _glyph_by_source_offset(byte_font_material_glyphs, 4)
+	var reset_noop_glyph := _glyph_by_source_offset(byte_font_material_glyphs, 7)
+	var final_color_glyph := _glyph_by_source_offset(byte_font_material_glyphs, 29)
+	var final_color_indices := _dict(final_color_glyph.get("render_text_color_indices", {}))
+	_assert(int(byte_font_material_source_summary.get("ext_control_count", 0)) == 8, "expected eight font/material source byte EXT controls")
+	_assert(int(byte_font_material_summary.get("font_count", 0)) == 1, "expected one font control")
+	_assert(int(byte_font_material_summary.get("font_reset_noop_count", 0)) == 1, "expected one reset-font no-op control")
+	_assert(int(byte_font_material_summary.get("japanese_mode_count", 0)) == 2, "expected JPN and ENG controls")
+	_assert(int(byte_font_material_summary.get("material_bank_skip_count", 0)) == 1, "expected one palette/material-bank skip")
+	_assert(int(byte_font_material_summary.get("render_text_color_count", 0)) == 3, "expected three color-family controls")
+	_assert(String(normal_font_glyph.get("font_id", "")) == "FONT_NORMAL", "expected initial normal font glyph")
+	_assert(String(narrow_font_glyph.get("font_id", "")) == "FONT_NARROW", "expected FONT control to select narrow font")
+	_assert(String(reset_noop_glyph.get("font_id", "")) == "FONT_NARROW", "expected RESET_FONT source no-op to preserve font id")
+	_assert(not bool(byte_font_material_layout.get("japanese_mode", true)), "expected ENG control to leave final Japanese mode false")
+	_assert(int(final_color_indices.get("foreground", -1)) == 8, "expected TEXT_COLORS foreground")
+	_assert(int(final_color_indices.get("shadow", -1)) == 9, "expected TEXT_COLORS shadow")
+	_assert(int(final_color_indices.get("accent", -1)) == 10, "expected TEXT_COLORS accent")
+	_assert(int(final_color_indices.get("background", -1)) == 5, "expected HIGHLIGHT background to persist through TEXT_COLORS")
+
 	var audio_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	audio_printer.start("B_WIN_MSG", "A{PLAY_SE SE_SELECT}{WAIT_SE}B", message_info, text_printer_metadata)
 	audio_printer.advance_frames(1)
@@ -457,6 +510,12 @@ func _run() -> void:
 		"render_text_control_filled_spans": int(byte_layout_pixel_summary.get("clear_text_span_filled_count", 0)),
 		"render_text_control_fill_windows": int(byte_fill_pixel_summary.get("fill_window_count", 0)),
 		"render_text_control_min_spacing": int(byte_layout_summary.get("min_letter_spacing_count", 0)),
+		"render_text_font_material_ext_controls": int(byte_font_material_source_summary.get("ext_control_count", 0)),
+		"render_text_font_controls": int(byte_font_material_summary.get("font_count", 0)),
+		"render_text_font_reset_noops": int(byte_font_material_summary.get("font_reset_noop_count", 0)),
+		"render_text_material_bank_skips": int(byte_font_material_summary.get("material_bank_skip_count", 0)),
+		"render_text_color_family_controls": int(byte_font_material_summary.get("render_text_color_count", 0)),
+		"render_text_jpn_eng_controls": int(byte_font_material_summary.get("japanese_mode_count", 0)),
 	}))
 	registry.free()
 	quit(0)
