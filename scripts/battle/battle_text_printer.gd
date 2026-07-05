@@ -4,6 +4,7 @@ const STATUS := "first_pass_source_glyph_layout"
 const FONT_ATLAS_PREVIEW_STATUS := "source_font_atlas_preview"
 const RENDER_TEXT_COLOR_STATUS := "source_render_text_color_controls"
 const SOURCE_WINDOW_PIXEL_EFFECT_STATUS := "source_window_pixel_effects_first_pass"
+const BATTLE_TEXT_CONTEXT_STATUS := "source_battle_text_context_first_pass"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
 const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
@@ -58,7 +59,7 @@ const SOURCE_TRACE := [
 ]
 const FIRST_PASS_UNSUPPORTED := [
 	"battle_text_full_control_code_renderer_pending",
-	"battle_text_link_recorded_speed_overrides_pending",
+	"battle_text_full_link_recorded_controller_context_pending",
 	"battle_text_screenshot_comparison_pending",
 ]
 const AUDIO_CONTROL_COMMANDS := {
@@ -158,6 +159,12 @@ var _has_print_been_sped_up := false
 var _ab_speedup_count := 0
 var _auto_scroll := false
 var _auto_scroll_delay := 0
+var _auto_scroll_source := ""
+var _auto_scroll_reasons: Array = []
+var _battle_text_context: Dictionary = {}
+var _recorded_battle_text_speeds: Array = []
+var _recorded_text_speed_index := -1
+var _recorded_text_speed_value := -1
 var _wait_state := ""
 var _pause_counter := 0
 var _down_arrow_visible := false
@@ -223,6 +230,12 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_synchronous_render = false
 	_has_print_been_sped_up = false
 	_ab_speedup_count = 0
+	_auto_scroll_source = ""
+	_auto_scroll_reasons = []
+	_battle_text_context = {}
+	_recorded_battle_text_speeds = []
+	_recorded_text_speed_index = -1
+	_recorded_text_speed_value = -1
 	_auto_scroll = _resolve_auto_scroll(options)
 	_auto_scroll_delay = 0
 	_wait_state = ""
@@ -274,6 +287,7 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_unsupported = FIRST_PASS_UNSUPPORTED.duplicate(true)
 	_resolve_player_text_speed(text_printer_metadata, options)
 	_resolve_frame_delay(text_info, text_printer_metadata, options)
+	_battle_text_context = _build_battle_text_context(options, text_printer_metadata)
 	_note_text_limitations()
 
 	if _full_text.is_empty() or _resolved_frame_delay == 0:
@@ -349,6 +363,12 @@ func snapshot() -> Dictionary:
 		"ab_speedup_count": _ab_speedup_count,
 		"auto_scroll": _auto_scroll,
 		"auto_scroll_delay": _auto_scroll_delay,
+		"auto_scroll_source": _auto_scroll_source,
+		"auto_scroll_reasons": _auto_scroll_reasons.duplicate(true),
+		"battle_text_context_status": BATTLE_TEXT_CONTEXT_STATUS,
+		"battle_text_context": _battle_text_context.duplicate(true),
+		"recorded_text_speed_index": _recorded_text_speed_index,
+		"recorded_text_speed_value": _recorded_text_speed_value,
 		"wait_state": _wait_state,
 		"pause_counter": _pause_counter,
 		"down_arrow_visible": _down_arrow_visible,
@@ -515,19 +535,20 @@ func _resolve_player_text_speed(text_printer_metadata: Dictionary, options: Dict
 
 
 func _resolve_frame_delay(text_info: Dictionary, text_printer_metadata: Dictionary, options: Dictionary) -> void:
+	_recorded_battle_text_speeds = _array_value(text_printer_metadata.get("recorded_battle_text_speeds", []))
 	if options.has("battle_text_speed_override"):
 		_resolved_frame_delay = max(0, int(options.get("battle_text_speed_override", 0)))
 		_effective_speed_source = "option_battle_text_speed_override"
 		return
-	var battle_text_mode := String(options.get("battle_text_mode", "")).to_lower()
-	if _is_message_speed_window() and (battle_text_mode == "link" or bool(options.get("battle_type_link", false))):
+	if _is_message_speed_window() and (_is_link_battle_text_context(options) or _is_recorded_link_battle_text_context(options)):
 		_resolved_frame_delay = 1
-		_effective_speed_source = "BattlePutTextOnWindow:link_battle_speed"
+		_effective_speed_source = "BattlePutTextOnWindow:recorded_link_battle_speed" if _is_recorded_link_battle_text_context(options) and not _is_link_battle_text_context(options) else "BattlePutTextOnWindow:link_battle_speed"
 		return
-	if _is_message_speed_window() and (battle_text_mode == "recorded" or bool(options.get("battle_type_recorded", false))):
-		var recorded_speeds: Array = _array_value(text_printer_metadata.get("recorded_battle_text_speeds", []))
-		var speed_index := clampi(int(options.get("recorded_text_speed_index", 0)), 0, max(0, recorded_speeds.size() - 1))
-		_resolved_frame_delay = max(0, int(recorded_speeds[speed_index])) if not recorded_speeds.is_empty() else 1
+	if _is_message_speed_window() and _is_recorded_battle_text_context(options):
+		var speed_index := clampi(int(options.get("recorded_text_speed_index", 0)), 0, max(0, _recorded_battle_text_speeds.size() - 1))
+		_recorded_text_speed_index = speed_index
+		_recorded_text_speed_value = max(0, int(_recorded_battle_text_speeds[speed_index])) if not _recorded_battle_text_speeds.is_empty() else 1
+		_resolved_frame_delay = _recorded_text_speed_value
 		_effective_speed_source = "BattlePutTextOnWindow:recorded_battle_speed[%d]" % speed_index
 		return
 	if typeof(_source_speed) == TYPE_STRING and String(_source_speed) == SOURCE_SPEED_PLAYER_TEXT_DELAY:
@@ -538,6 +559,34 @@ func _resolve_frame_delay(text_info: Dictionary, text_printer_metadata: Dictiona
 		return
 	_resolved_frame_delay = max(0, int(text_info.get("source_speed", text_info.get("table_speed", 0))))
 	_effective_speed_source = "sTextOnWindowsInfo_Normal.speed"
+
+
+func _build_battle_text_context(options: Dictionary, text_printer_metadata: Dictionary) -> Dictionary:
+	var recorded_speeds: Array = _array_value(text_printer_metadata.get("recorded_battle_text_speeds", []))
+	var pokedude_excluded := _is_pokedude_battle_text_context(options) and _window_id == "B_WIN_OAK_OLD_MAN"
+	return {
+		"status": BATTLE_TEXT_CONTEXT_STATUS,
+		"source": "src/battle_message.c:BattlePutTextOnWindow",
+		"wait_source": "src/text.c:TextPrinterWaitWithDownArrow",
+		"battle_text_mode": _battle_text_mode(options),
+		"window_id": _window_id,
+		"is_message_speed_window": _is_message_speed_window(),
+		"battle_type_link": _is_link_battle_text_context(options),
+		"battle_type_recorded": _is_recorded_battle_text_context(options),
+		"battle_type_recorded_link": _is_recorded_link_battle_text_context(options),
+		"battle_type_pokedude": _is_pokedude_battle_text_context(options),
+		"pokedude_oak_old_man_window_excluded": pokedude_excluded,
+		"test_runner_enabled": bool(options.get("test_runner_enabled", false)),
+		"auto_scroll": _auto_scroll,
+		"auto_scroll_source": _auto_scroll_source,
+		"auto_scroll_reasons": _auto_scroll_reasons.duplicate(true),
+		"message_speed_source": _effective_speed_source,
+		"resolved_frame_delay": _resolved_frame_delay,
+		"recorded_battle_text_speeds": recorded_speeds.duplicate(true),
+		"recorded_text_speed_index": _recorded_text_speed_index,
+		"recorded_text_speed_value": _recorded_text_speed_value,
+		"can_ab_speed_up_print": _can_ab_speed_up_print,
+	}
 
 
 func _note_text_limitations() -> void:
@@ -1097,13 +1146,48 @@ func _event_log_entry(event: Dictionary, base: Dictionary) -> Dictionary:
 
 
 func _resolve_auto_scroll(options: Dictionary) -> bool:
-	var battle_text_mode := String(options.get("battle_text_mode", "")).to_lower()
-	return bool(options.get("auto_scroll", false)) \
-		or battle_text_mode == "link" \
-		or battle_text_mode == "recorded" \
-		or bool(options.get("battle_type_link", false)) \
-		or bool(options.get("battle_type_recorded", false)) \
-		or bool(options.get("test_runner_enabled", false))
+	_auto_scroll_reasons = []
+	if bool(options.get("auto_scroll", false)):
+		_auto_scroll_reasons.append("option_auto_scroll")
+	if _is_link_battle_text_context(options):
+		_auto_scroll_reasons.append("BATTLE_TYPE_LINK")
+	if _is_recorded_battle_text_context(options):
+		_auto_scroll_reasons.append("BATTLE_TYPE_RECORDED")
+	if bool(options.get("test_runner_enabled", false)):
+		_auto_scroll_reasons.append("gTestRunnerEnabled")
+	if _is_pokedude_battle_text_context(options) and _window_id != "B_WIN_OAK_OLD_MAN":
+		_auto_scroll_reasons.append("BATTLE_TYPE_POKEDUDE")
+	var result := not _auto_scroll_reasons.is_empty()
+	_auto_scroll_source = "BattlePutTextOnWindow:gTextFlags.autoScroll=TRUE:%s" % _join_string_array(_auto_scroll_reasons, ",") if result else "BattlePutTextOnWindow:gTextFlags.autoScroll=FALSE"
+	return result
+
+
+func _battle_text_mode(options: Dictionary) -> String:
+	return String(options.get("battle_text_mode", "")).to_lower()
+
+
+func _is_link_battle_text_context(options: Dictionary) -> bool:
+	return _battle_text_mode(options) == "link" or bool(options.get("battle_type_link", false))
+
+
+func _is_recorded_battle_text_context(options: Dictionary) -> bool:
+	var mode := _battle_text_mode(options)
+	return mode == "recorded" or mode == "recorded_link" or bool(options.get("battle_type_recorded", false))
+
+
+func _is_recorded_link_battle_text_context(options: Dictionary) -> bool:
+	return _battle_text_mode(options) == "recorded_link" or bool(options.get("battle_type_recorded_link", false))
+
+
+func _is_pokedude_battle_text_context(options: Dictionary) -> bool:
+	return _battle_text_mode(options) == "pokedude" or bool(options.get("battle_type_pokedude", false))
+
+
+func _join_string_array(values: Array, separator: String) -> String:
+	var strings := PackedStringArray()
+	for value in values:
+		strings.append(String(value))
+	return separator.join(strings)
 
 
 func _is_message_speed_window() -> bool:

@@ -278,6 +278,74 @@ func _run() -> void:
 	var link_snapshot := _dict(link_printer.snapshot())
 	_assert(int(link_snapshot.get("resolved_frame_delay", 0)) == 1, "expected link battle text speed override")
 	_assert(bool(link_snapshot.get("auto_scroll", false)), "expected link battle auto-scroll metadata")
+	_assert(String(link_snapshot.get("battle_text_context_status", "")) == "source_battle_text_context_first_pass", "expected battle text context status")
+	_assert(String(link_snapshot.get("auto_scroll_source", "")).contains("BATTLE_TYPE_LINK"), "expected link auto-scroll source")
+	var link_context := _dict(link_snapshot.get("battle_text_context", {}))
+	_assert(bool(link_context.get("battle_type_link", false)), "expected link context flag")
+
+	var expected_recorded_delays := [8, 4, 1, 0]
+	var recorded_delays := []
+	for speed_index in range(expected_recorded_delays.size()):
+		var recorded_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+		recorded_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
+			"battle_text_mode": "recorded",
+			"recorded_text_speed_index": speed_index,
+			"player_text_speed": "OPTIONS_TEXT_SPEED_SLOW",
+		})
+		var recorded_snapshot := _dict(recorded_printer.snapshot())
+		var recorded_context := _dict(recorded_snapshot.get("battle_text_context", {}))
+		recorded_delays.append(int(recorded_snapshot.get("resolved_frame_delay", -1)))
+		_assert(bool(recorded_snapshot.get("auto_scroll", false)), "expected recorded battle auto-scroll metadata")
+		_assert(_array(recorded_snapshot.get("auto_scroll_reasons", [])).has("BATTLE_TYPE_RECORDED"), "expected recorded auto-scroll reason")
+		_assert(bool(recorded_context.get("battle_type_recorded", false)), "expected recorded context flag")
+		_assert(int(recorded_snapshot.get("recorded_text_speed_index", -1)) == speed_index, "expected recorded speed index metadata")
+		_assert(int(recorded_snapshot.get("recorded_text_speed_value", -1)) == int(expected_recorded_delays[speed_index]), "expected recorded speed value metadata")
+		_assert(String(recorded_snapshot.get("effective_speed_source", "")).contains("recorded_battle_speed[%d]" % speed_index), "expected recorded speed source metadata")
+	_assert(recorded_delays == expected_recorded_delays, "expected recorded speed delay table")
+
+	var recorded_link_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	recorded_link_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
+		"battle_text_mode": "recorded_link",
+		"player_text_speed": "OPTIONS_TEXT_SPEED_SLOW",
+	})
+	var recorded_link_snapshot := _dict(recorded_link_printer.snapshot())
+	var recorded_link_context := _dict(recorded_link_snapshot.get("battle_text_context", {}))
+	_assert(int(recorded_link_snapshot.get("resolved_frame_delay", 0)) == 1, "expected recorded-link battle speed override")
+	_assert(String(recorded_link_snapshot.get("effective_speed_source", "")).contains("recorded_link_battle_speed"), "expected recorded-link speed source")
+	_assert(bool(recorded_link_snapshot.get("auto_scroll", false)), "expected recorded-link mode to carry recorded auto-scroll context")
+	_assert(bool(recorded_link_context.get("battle_type_recorded_link", false)), "expected recorded-link context flag")
+	_assert(bool(recorded_link_context.get("battle_type_recorded", false)), "expected recorded-link mode to include recorded flag context")
+
+	var recorded_link_flag_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	recorded_link_flag_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
+		"battle_type_recorded_link": true,
+	})
+	var recorded_link_flag_snapshot := _dict(recorded_link_flag_printer.snapshot())
+	_assert(int(recorded_link_flag_snapshot.get("resolved_frame_delay", 0)) == 1, "expected recorded-link flag speed override")
+	_assert(not bool(recorded_link_flag_snapshot.get("auto_scroll", true)), "expected recorded-link flag alone not to set source auto-scroll")
+	_assert(String(recorded_link_flag_snapshot.get("auto_scroll_source", "")).contains("FALSE"), "expected recorded-link flag-only auto-scroll false source")
+
+	var test_runner_page_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	test_runner_page_printer.start("B_WIN_MSG", "A\n\nB", message_info, text_printer_metadata, {
+		"test_runner_enabled": true,
+	})
+	test_runner_page_printer.advance_frames(1)
+	test_runner_page_printer.advance_frames(1)
+	var test_runner_wait := _dict(test_runner_page_printer.snapshot())
+	_assert(bool(test_runner_wait.get("auto_scroll", false)), "expected test runner auto-scroll metadata")
+	_assert(_array(test_runner_wait.get("auto_scroll_reasons", [])).has("gTestRunnerEnabled"), "expected test runner auto-scroll reason")
+	_assert(String(test_runner_wait.get("wait_state", "")) == "wait_with_down_arrow", "expected test runner prompt-scroll wait")
+	_assert(not bool(test_runner_wait.get("down_arrow_visible", true)), "expected auto-scroll to suppress down arrow")
+	test_runner_page_printer.advance_frames(49)
+	var test_runner_before_release := _dict(test_runner_page_printer.snapshot())
+	_assert(int(test_runner_before_release.get("auto_scroll_delay", -1)) == 49, "expected source auto-scroll delay before release")
+	_assert(String(test_runner_before_release.get("wait_state", "")) == "wait_with_down_arrow", "expected auto-scroll wait before release frame")
+	test_runner_page_printer.advance_frames(1)
+	var test_runner_released := _dict(test_runner_page_printer.snapshot())
+	_assert(String(test_runner_released.get("wait_state", "unexpected")) == "", "expected auto-scroll release after 50 wait frames")
+	_assert(int(test_runner_released.get("auto_scroll_delay", -1)) == 0, "expected auto-scroll delay reset")
+	test_runner_page_printer.advance_frames(1)
+	_assert(String(test_runner_page_printer.get_visible_text()) == "A\n\nB", "expected auto-scroll release to resume text")
 
 	if _failed:
 		return
@@ -295,6 +363,10 @@ func _run() -> void:
 		"render_text_color_controls": int(byte_color.get("render_text_color_control_count", 0)),
 		"source_glyph_width": int(byte_glyph_layout_first.get("width", 0)),
 		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
+		"recorded_speed_cases": recorded_delays.size(),
+		"recorded_delays": recorded_delays,
+		"recorded_link_delay": int(recorded_link_snapshot.get("resolved_frame_delay", 0)),
+		"auto_scroll_release_frames": 50,
 	}))
 	registry.free()
 	quit(0)
