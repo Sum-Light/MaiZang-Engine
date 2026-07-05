@@ -1,5 +1,7 @@
 extends Node2D
 
+const OVERWORLD_DEPTH := preload("res://scripts/overworld/overworld_depth.gd")
+
 @export var tile_size := 16
 
 var event_data: Dictionary = {}
@@ -12,6 +14,7 @@ var _sprite_source_rect := Rect2()
 var _sprite_flip_h := false
 var _resolved_graphics_id := ""
 var _graphics_resolution: Dictionary = {}
+var _depth_record: Dictionary = {}
 
 const BODY_COLORS := [
 	Color(0.86, 0.42, 0.38, 1.0),
@@ -33,7 +36,7 @@ func configure(new_event_data: Dictionary, new_tile_size: int) -> void:
 		int(event_data.get("y", 0))
 	))
 	position = _grid_to_world(grid_position)
-	z_index = grid_position.y
+	_apply_depth_z_index()
 	_body_color = _color_from_graphics_id(String(event_data.get("graphics_id", "")))
 	_configure_static_sprite()
 	queue_redraw()
@@ -87,11 +90,19 @@ func get_sprite_snapshot() -> Dictionary:
 			int(_sprite_dest_rect().size.y),
 		],
 		"world_position": [int(position.x), int(position.y)],
+		"depth": _depth_record.duplicate(true),
+		"z_index": z_index,
 		"resolved_graphics_id": _resolved_graphics_id,
 		"graphics_resolution": _graphics_resolution.duplicate(true),
 		"source_trace": _sprite_record.get("source_trace", []),
 		"unsupported": _sprite_record.get("unsupported", []),
 	}
+
+
+func _apply_depth_z_index() -> void:
+	_depth_record = OVERWORLD_DEPTH.sprite_depth_record_for_event(event_data, grid_position)
+	z_index = int(_depth_record.get("godot_z_index", OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX))
+	z_as_relative = true
 
 
 func _configure_static_sprite() -> void:

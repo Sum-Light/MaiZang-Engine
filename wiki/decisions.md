@@ -431,3 +431,9 @@ Reason: Source battle text is shared by battle scripts, controller messages, HUD
 Decision: Store generated battle script and move-effect routing data under `data/generated/import_manifest.json` section `battle`, with categories `scripts` and `move_effects`, while battle strings remain a `texts/battle_strings` dataset.
 
 Reason: Battle scripts, opcodes, macro metadata, fallthrough labels, and `gBattleMoveEffects` routes are battle VM inputs rather than text datasets or Pokemon records. A dedicated manifest section lets `DataRegistry` expose battle-specific accessors without overloading the Pokemon data path, and keeps the B2 importer as source-data/link metadata only; actual script execution remains `pending_vm`, and audio cues remain `metadata_only` until audio scope opens.
+
+## 2026-07-05 - Layer-aware overworld sprite depth bands
+
+Decision: Let `LayerAwareMapRenderer` own map-layer presentation while player/object presentation nodes own their sprites. `Main` installs the renderer at runtime over the legacy `DebugMapPlane` node, keeping that fallback API hidden. The renderer draws bottom/middle roles in its parent pass and BG1/top in `TopLayerOverlay`; `overworld_depth.gd` centralizes source BG priority plus `sElevationToPriority`/`sElevationToSubpriority` tables so player/object nodes choose Godot z bands without recreating GBA OAM.
+
+Reason: This moves Section 5 from a flattened map preview toward source layer interleave while keeping Godot-native rendering boundaries. It is a first-pass depth-band contract, not source-equivalent OAM sorting; exact camera-offset subpriority, bridge subsprites, shadows/reflections, movement-task priority updates, door forced-covered redraws, and redraw caches remain future work.

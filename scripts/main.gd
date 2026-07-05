@@ -3,9 +3,10 @@ extends Node2D
 const TRANSITION_SEQUENCE_PLAYER := preload("res://scripts/overworld/transition_sequence_player.gd")
 const BATTLE_SCENE := preload("res://scenes/battle/battle_scene.tscn")
 const BATTLE_DEBUG_LAUNCHER := preload("res://scripts/debug/battle_debug_launcher.gd")
+const LAYER_AWARE_MAP_RENDERER := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
 
 @onready var world = $World
-@onready var debug_map = $World/DebugMap
+@onready var debug_map: Node = $World/DebugMap
 @onready var object_events = $World/ObjectEvents
 @onready var player = $World/Player
 @onready var status_label: Label = $Hud/StatusLabel
@@ -26,6 +27,7 @@ var _debug_grid_visible := false
 
 func _ready() -> void:
 	_ensure_debug_input_actions()
+	_install_layer_aware_map_renderer()
 	if MapRuntime.has_method("configure_data_registry"):
 		MapRuntime.configure_data_registry(DataRegistry)
 	if EventManager.has_method("configure_data_registry"):
@@ -574,3 +576,24 @@ func _is_transition_playing() -> bool:
 		and _transition_sequence_player.has_method("is_playing")
 		and bool(_transition_sequence_player.is_playing())
 	)
+
+
+func _install_layer_aware_map_renderer() -> void:
+	if debug_map == null or world == null:
+		return
+	var script_resource = debug_map.get_script()
+	if script_resource != null and String(script_resource.resource_path) == "res://scripts/overworld/layer_aware_map_renderer.gd":
+		return
+
+	var legacy_renderer := debug_map
+	var insertion_index := legacy_renderer.get_index()
+	legacy_renderer.name = "DebugMapFallback"
+	legacy_renderer.visible = false
+
+	var layer_renderer = LAYER_AWARE_MAP_RENDERER.new()
+	layer_renderer.name = "DebugMap"
+	world.add_child(layer_renderer)
+	world.move_child(layer_renderer, insertion_index)
+	if layer_renderer.has_method("configure_debug_fallback"):
+		layer_renderer.configure_debug_fallback(legacy_renderer)
+	debug_map = layer_renderer

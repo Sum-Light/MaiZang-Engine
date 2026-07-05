@@ -1,8 +1,18 @@
 extends Node2D
 
+class TopLayerOverlay:
+	extends Node2D
+
+	var renderer: Node = null
+
+	func _draw() -> void:
+		if renderer != null and renderer.has_method("_draw_top_layer_overlay"):
+			renderer._draw_top_layer_overlay(self)
+
+const OVERWORLD_DEPTH := preload("res://scripts/overworld/overworld_depth.gd")
 const OWNER_NAME := "LayerAwareMapRenderer"
 const LEGACY_RENDERER_NAME := "DebugMapPlane"
-const RUNTIME_STATUS := "normal_covered_split_layer_rendering_first_pass"
+const RUNTIME_STATUS := "normal_covered_split_object_depth_first_pass"
 const DEFAULT_TILE_SIZE := 16
 const NORMAL_LAYER_TYPE := 0
 const COVERED_LAYER_TYPE := 1
@@ -14,10 +24,12 @@ const IMPLEMENTED_LAYER_TYPE_NAMES := [
 	"METATILE_LAYER_TYPE_SPLIT",
 ]
 const LAYER_ROLE_IDS := ["bottom", "middle", "top"]
+const BASE_LAYER_ROLE_IDS := ["bottom", "middle"]
+const TOP_LAYER_ROLE_ID := "top"
 
 const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending"
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
-const UNSUPPORTED_OBJECT_DEPTH := "object_depth_interleaving_pending"
+const UNSUPPORTED_OBJECT_DEPTH_LIMITS := "exact_oam_subpriority_pixel_sort_pending"
 const UNSUPPORTED_DOOR_LAYER := "door_forced_covered_layer_pending"
 const UNSUPPORTED_LAYER_UPDATES := "per_layer_redraw_cache_pending"
 
@@ -38,6 +50,11 @@ var _flattened_atlas_texture: Texture2D = null
 var _flattened_atlas_tile_size := DEFAULT_TILE_SIZE
 var _flattened_atlas_columns := 0
 var _flattened_atlas_total_metatiles := 0
+var _top_layer_overlay: Node2D = null
+
+
+func _ready() -> void:
+	_ensure_top_layer_overlay()
 
 
 func configure_data_registry(data_registry: Node) -> void:
@@ -63,19 +80,20 @@ func configure_from_map_data(new_map_data: Dictionary, new_tileset_data: Diction
 	_tileset_data = new_tileset_data.duplicate(true)
 	tile_size = _tile_size_from_tileset(_tileset_data)
 	map_size = _map_size_from_map_data(_map_data)
+	_ensure_top_layer_overlay()
 	_configure_layer_rendering(_tileset_data)
 	_configure_flattened_atlas(_tileset_data)
 	clear_door_animations()
 	if _debug_fallback != null and _debug_fallback.has_method("configure_from_map_data"):
 		_debug_fallback.configure_from_map_data(_map_data, _tileset_data)
-	queue_redraw()
+	_queue_renderer_redraw()
 
 
 func set_grid_visible(value: bool) -> void:
 	_grid_visible = value
 	if _debug_fallback != null and _debug_fallback.has_method("set_grid_visible"):
 		_debug_fallback.set_grid_visible(value)
-	queue_redraw()
+	_queue_renderer_redraw()
 
 
 func is_grid_visible() -> bool:
@@ -118,6 +136,18 @@ func get_normal_layer_rendering_status() -> Dictionary:
 
 func get_metatile_layer_rendering_status() -> Dictionary:
 	return _metatile_layer_rendering_status()
+
+
+func get_object_depth_interleave_status() -> Dictionary:
+	return OVERWORLD_DEPTH.object_depth_contract()
+
+
+func get_sprite_depth_record(cell: Vector2i, elevation: int = OVERWORLD_DEPTH.DEFAULT_ELEVATION, local_order: int = 0) -> Dictionary:
+	return OVERWORLD_DEPTH.sprite_depth_record(cell, elevation, local_order)
+
+
+func get_sprite_depth_record_for_event(event_data: Dictionary) -> Dictionary:
+	return OVERWORLD_DEPTH.sprite_depth_record_for_event(event_data)
 
 
 func get_layer_draw_records_for_cell(cell: Vector2i) -> Dictionary:
@@ -163,7 +193,9 @@ func get_renderer_contract() -> Dictionary:
 		"source_equivalent_for_runtime_layering": false,
 		"normal_layer_rendering": _metatile_layer_rendering_status(),
 		"metatile_layer_rendering": _metatile_layer_rendering_status(),
+		"object_depth_interleave": get_object_depth_interleave_status(),
 		"implemented_layer_types": IMPLEMENTED_LAYER_TYPE_NAMES.duplicate(),
+		"top_layer_overlay": _top_layer_overlay_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"debug_fallback_script": _debug_fallback_script_path(),
 		"compatible_methods": [
@@ -179,6 +211,9 @@ func get_renderer_contract() -> Dictionary:
 			"get_normal_layer_rendering_status",
 			"get_metatile_layer_rendering_status",
 			"get_layer_draw_records_for_cell",
+			"get_object_depth_interleave_status",
+			"get_sprite_depth_record",
+			"get_sprite_depth_record_for_event",
 		],
 		"source_trace": [
 			"include/global.fieldmap.h:METATILE_LAYER_TYPE_*",
@@ -209,7 +244,7 @@ func get_renderer_contract() -> Dictionary:
 			"Wrap DebugMapPlane so Main and TransitionSequencePlayer keep their renderer API.",
 			"Build or export separate bottom, middle, and top render records.",
 			"Render normal, covered, and split metatile layer rules from generated entries.",
-			"Interleave player and object-event presentation at source visual depth.",
+			"Interleave player and object-event presentation between middle and top map layers using source elevation priority.",
 			"Move setmetatile, door, border, and connection redraws onto the same layer-aware path.",
 		],
 		"unsupported": get_unsupported(),
@@ -224,6 +259,8 @@ func get_runtime_layer_status() -> Dictionary:
 		"tile_size": tile_size,
 		"normal_layer_rendering": _metatile_layer_rendering_status(),
 		"metatile_layer_rendering": _metatile_layer_rendering_status(),
+		"object_depth_interleave": get_object_depth_interleave_status(),
+		"top_layer_overlay": _top_layer_overlay_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"source_equivalent_for_runtime_layering": false,
 		"unsupported": get_unsupported(),
@@ -261,12 +298,14 @@ func get_layer_roles() -> Array:
 		{
 			"id": "top",
 			"source_bg_equivalent": "BG1",
-			"draw_intent": "above object-event/player presentation for normal and split top halves",
+			"draw_intent": "above default object-event/player presentation for normal and split top halves",
+			"godot_z_index": OVERWORLD_DEPTH.TOP_LAYER_Z_INDEX,
 		},
 		{
 			"id": "object_depth",
 			"source_bg_equivalent": "object-event priority and subpriority",
-			"draw_intent": "player/object interleave against top map coverage",
+			"draw_intent": "player/object interleave between middle and top map layers using source elevation priority",
+			"godot_z_index": OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX,
 		},
 	]
 
@@ -277,7 +316,7 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_SOURCE_EQUIVALENT,
 			"status": "partially_implemented",
 			"source": "src/field_camera.c:DrawMetatile",
-			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data; source-equivalent object-depth interleave is still pending.",
+			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data, and player/object nodes use a first-pass source elevation priority z-band. Full source equivalence still needs exact OAM subpriority, door forced-covered updates, and redraw caches.",
 		},
 		{
 			"code": UNSUPPORTED_FLATTENED_ATLAS,
@@ -286,10 +325,10 @@ func get_unsupported() -> Array:
 			"detail": "No-layer-data fallback drawing still uses flattened debug atlas tiles when DebugMapPlane is not active.",
 		},
 		{
-			"code": UNSUPPORTED_OBJECT_DEPTH,
-			"status": "pending",
-			"source": "src/event_object_movement.c:sElevationToPriority",
-			"detail": "Player and object-event presentation is not yet interleaved with top map coverage.",
+			"code": UNSUPPORTED_OBJECT_DEPTH_LIMITS,
+			"status": "first_pass",
+			"source": "src/event_object_movement.c:SetObjectSubpriorityByElevation",
+			"detail": "Player and object-event z bands follow source elevation priority; exact per-pixel OAM subpriority, bridge subsprites, shadows, reflections, and movement-task priority updates remain pending.",
 		},
 		{
 			"code": UNSUPPORTED_DOOR_LAYER,
@@ -353,9 +392,7 @@ func _draw() -> void:
 			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
 			var block_id := _local_block_id(Vector2i(x, y))
 			if has_layer_rendering and _is_implemented_layer_block(block_id):
-				if _draw_layered_metatile(block_id, rect):
-					if _grid_visible:
-						draw_rect(rect, Color(0.22, 0.31, 0.24, 0.55), false, 1.0)
+				if _draw_layered_metatile_roles(block_id, rect, BASE_LAYER_ROLE_IDS):
 					continue
 			if should_draw_flattened_fallback:
 				if not _draw_flattened_tile(block_id, rect):
@@ -366,6 +403,49 @@ func _draw() -> void:
 	if should_draw_flattened_fallback:
 		var border := Rect2(Vector2.ZERO, Vector2(map_size.x * tile_size, map_size.y * tile_size))
 		draw_rect(border, Color(0.08, 0.12, 0.10, 0.95), false, 2.0)
+
+
+func _draw_top_layer_overlay(draw_target: CanvasItem) -> void:
+	if not _runtime_layer_rendering_available():
+		return
+
+	for y in range(map_size.y):
+		for x in range(map_size.x):
+			var rect := Rect2(x * tile_size, y * tile_size, tile_size, tile_size)
+			var block_id := _local_block_id(Vector2i(x, y))
+			if _is_implemented_layer_block(block_id):
+				_draw_layer_atlas_tile(TOP_LAYER_ROLE_ID, block_id, rect, draw_target)
+			if _grid_visible:
+				draw_target.draw_rect(rect, Color(0.22, 0.31, 0.24, 0.55), false, 1.0)
+
+
+func _ensure_top_layer_overlay() -> void:
+	if _top_layer_overlay != null and is_instance_valid(_top_layer_overlay):
+		return
+	_top_layer_overlay = TopLayerOverlay.new()
+	_top_layer_overlay.name = "TopLayerOverlay"
+	_top_layer_overlay.renderer = self
+	_top_layer_overlay.z_index = OVERWORLD_DEPTH.TOP_LAYER_Z_INDEX
+	_top_layer_overlay.z_as_relative = true
+	_top_layer_overlay.show_behind_parent = false
+	add_child(_top_layer_overlay)
+
+
+func _top_layer_overlay_status() -> Dictionary:
+	return {
+		"status": "active" if _top_layer_overlay != null and is_instance_valid(_top_layer_overlay) else "missing",
+		"node_name": _top_layer_overlay.name if _top_layer_overlay != null and is_instance_valid(_top_layer_overlay) else "",
+		"source_bg_equivalent": "BG1",
+		"godot_z_index": OVERWORLD_DEPTH.TOP_LAYER_Z_INDEX,
+		"drawn_role": TOP_LAYER_ROLE_ID,
+		"drawn_after_sprite_interleave": OVERWORLD_DEPTH.TOP_LAYER_Z_INDEX > OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX,
+	}
+
+
+func _queue_renderer_redraw() -> void:
+	queue_redraw()
+	if _top_layer_overlay != null and is_instance_valid(_top_layer_overlay):
+		_top_layer_overlay.queue_redraw()
 
 
 func _map_size_from_map_data(source_map_data: Dictionary) -> Vector2i:
@@ -469,7 +549,7 @@ func _metatile_layer_rendering_status() -> Dictionary:
 		"normal_runtime_path_active": _runtime_layer_rendering_available(),
 		"covered_runtime_path_active": _runtime_layer_rendering_available(),
 		"split_runtime_path_active": _runtime_layer_rendering_available(),
-		"object_depth_interleave": "pending",
+		"object_depth_interleave": "implemented_first_pass",
 	}
 
 
@@ -500,21 +580,22 @@ func _is_implemented_layer_block(block_id: int) -> bool:
 	return IMPLEMENTED_LAYER_TYPES.has(int(_metatile_layer_types[block_id]))
 
 
-func _draw_layered_metatile(block_id: int, rect: Rect2) -> bool:
-	for role in LAYER_ROLE_IDS:
+func _draw_layered_metatile_roles(block_id: int, rect: Rect2, roles: Array) -> bool:
+	for role in roles:
 		if not _draw_layer_atlas_tile(role, block_id, rect):
 			return false
 	return true
 
 
-func _draw_layer_atlas_tile(role: String, block_id: int, rect: Rect2) -> bool:
+func _draw_layer_atlas_tile(role: String, block_id: int, rect: Rect2, draw_target: CanvasItem = null) -> bool:
 	var texture = _layer_textures.get(role, null)
 	if not texture is Texture2D:
 		return false
 	var source_rect := _layer_source_rect(role, block_id)
 	if source_rect.size == Vector2.ZERO:
 		return false
-	draw_texture_rect_region(texture, rect, source_rect)
+	var target := draw_target if draw_target != null else self
+	target.draw_texture_rect_region(texture, rect, source_rect)
 	return true
 
 

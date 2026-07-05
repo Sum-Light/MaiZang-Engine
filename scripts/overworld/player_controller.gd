@@ -1,5 +1,7 @@
 extends "res://scripts/overworld/grid_mover.gd"
 
+const OVERWORLD_DEPTH := preload("res://scripts/overworld/overworld_depth.gd")
+
 signal movement_blocked(target_position: Vector2i, cell_info: Dictionary, facing_direction: Vector2i)
 signal interaction_requested(
 	origin_position: Vector2i,
@@ -33,13 +35,16 @@ var _sprite_animation_total_frames := 0
 var _sprite_animation_table_key := ""
 var _sprite_animation_phase_start_index := 0
 var _step_anim_cmd_index := 0
+var _depth_record: Dictionary = {}
 
 
 func _ready() -> void:
-	tile_size = DataRegistry.TILE_SIZE
+	tile_size = 16
 	_hide_legacy_placeholder_children()
 	_configure_player_sprite()
-	set_grid_position(GameState.player_grid_position)
+	var game_state := _game_state()
+	if game_state != null:
+		set_grid_position(game_state.player_grid_position)
 
 
 func _physics_process(_delta: float) -> void:
@@ -71,7 +76,8 @@ func _physics_process(_delta: float) -> void:
 			return
 		facing_direction = direction
 		var target_position := grid_position + direction
-		if MapRuntime.can_enter_cell(target_position):
+		var map_runtime := _map_runtime()
+		if map_runtime != null and map_runtime.can_enter_cell(target_position):
 			last_input_source_trace = [
 				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
 				"src/field_player_avatar.c:PlayerWalkNormal",
@@ -91,7 +97,8 @@ func _physics_process(_delta: float) -> void:
 				"src/field_player_avatar.c:CheckMovementInputNotOnBike",
 				"src/field_player_avatar.c:MOVING",
 			]
-			movement_blocked.emit(target_position, MapRuntime.get_cell_info(target_position), facing_direction)
+			var cell_info: Dictionary = map_runtime.get_cell_info(target_position) if map_runtime != null else {}
+			movement_blocked.emit(target_position, cell_info, facing_direction)
 
 
 func _process(delta: float) -> void:
@@ -150,8 +157,27 @@ func get_sprite_snapshot() -> Dictionary:
 			int(_sprite_dest_rect().size.y),
 		],
 		"world_position": [int(position.x), int(position.y)],
+		"depth": _depth_record.duplicate(true),
+		"z_index": z_index,
 		"unsupported": _sprite_unsupported.duplicate(true),
 	}
+
+
+func set_grid_position(value: Vector2i) -> void:
+	super.set_grid_position(value)
+	_apply_depth_z_index()
+
+
+func try_move(direction: Vector2i) -> bool:
+	var moved := super.try_move(direction)
+	if moved:
+		_apply_depth_z_index()
+	return moved
+
+
+func animate_grid_position(value: Vector2i, duration: float) -> void:
+	await super.animate_grid_position(value, duration)
+	_apply_depth_z_index()
 
 
 func _read_input_direction() -> Vector2i:
@@ -166,8 +192,46 @@ func _read_input_direction() -> Vector2i:
 	return Vector2i.ZERO
 
 
+func _apply_depth_z_index() -> void:
+	_depth_record = OVERWORLD_DEPTH.sprite_depth_record(
+		grid_position,
+		_current_player_elevation(),
+		0
+	)
+	z_index = int(_depth_record.get("godot_z_index", OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX))
+	z_as_relative = true
+
+
+func _current_player_elevation() -> int:
+	var map_runtime := _map_runtime()
+	if map_runtime != null and map_runtime.has_method("get_elevation_at"):
+		var elevation := int(map_runtime.get_elevation_at(grid_position))
+		if elevation >= 0:
+			return elevation
+	return OVERWORLD_DEPTH.DEFAULT_ELEVATION
+
+
+func _data_registry() -> Node:
+	if is_inside_tree():
+		return get_node_or_null("/root/DataRegistry")
+	return null
+
+
+func _game_state() -> Node:
+	if is_inside_tree():
+		return get_node_or_null("/root/GameState")
+	return null
+
+
+func _map_runtime() -> Node:
+	if is_inside_tree():
+		return get_node_or_null("/root/MapRuntime")
+	return null
+
+
 func _emit_interaction_request() -> void:
-	var interaction := MapRuntime.get_interaction_target(grid_position, facing_direction)
+	var map_runtime := _map_runtime()
+	var interaction: Dictionary = map_runtime.get_interaction_target(grid_position, facing_direction) if map_runtime != null else {}
 	interaction_requested.emit(
 		grid_position,
 		grid_position + facing_direction,
@@ -190,11 +254,12 @@ func _configure_player_sprite() -> void:
 	_sprite_unsupported = []
 	_graphics_id = _player_graphics_id()
 
-	if _graphics_id.is_empty() or not DataRegistry.has_method("get_object_event_sprite_record"):
+	var registry := _data_registry()
+	if _graphics_id.is_empty() or registry == null or not registry.has_method("get_object_event_sprite_record"):
 		queue_redraw()
 		return
 
-	var record = DataRegistry.get_object_event_sprite_record(_graphics_id)
+	var record = registry.get_object_event_sprite_record(_graphics_id)
 	if typeof(record) != TYPE_DICTIONARY or record.is_empty():
 		queue_redraw()
 		return
@@ -237,10 +302,11 @@ func _configure_player_sprite() -> void:
 
 func _player_graphics_id() -> String:
 	var gender := ""
-	if GameState != null and GameState.has_method("get_player_gender"):
-		gender = String(GameState.get_player_gender()).to_upper()
-	else:
-		gender = String(GameState.player_gender).to_upper()
+	var game_state := _game_state()
+	if game_state != null and game_state.has_method("get_player_gender"):
+		gender = String(game_state.get_player_gender()).to_upper()
+	elif game_state != null:
+		gender = String(game_state.player_gender).to_upper()
 	if gender == "FEMALE":
 		return "OBJ_EVENT_GFX_MAY_NORMAL"
 	return "OBJ_EVENT_GFX_BRENDAN_NORMAL"

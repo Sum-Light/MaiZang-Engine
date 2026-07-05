@@ -1,6 +1,9 @@
-extends Node
+extends SceneTree
 
 const OBJECT_EVENT_PLACEHOLDER := preload("res://scripts/overworld/object_event_placeholder.gd")
+const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
+const GAME_STATE_SCRIPT := preload("res://scripts/autoload/game_state.gd")
+const SCRIPT_VM_SCRIPT := preload("res://scripts/autoload/script_vm.gd")
 
 var _failed := false
 
@@ -10,7 +13,15 @@ func _init() -> void:
 
 
 func _run() -> void:
-	var sprite_data := DataRegistry.get_object_event_sprite_data()
+	var registry = _install_root_node("DataRegistry", DATA_REGISTRY_SCRIPT.new())
+	registry._ready()
+	var game_state = _install_root_node("GameState", GAME_STATE_SCRIPT.new())
+	var script_vm = _install_root_node("ScriptVM", SCRIPT_VM_SCRIPT.new())
+	script_vm.configure_data_registry(registry)
+	script_vm.configure_game_state(game_state)
+	script_vm.configure_from_script_data(registry.get_start_script_data())
+
+	var sprite_data = registry.get_object_event_sprite_data()
 	var stats := _dict_field(sprite_data, "stats")
 	_assert(int(stats.get("sprite_count", 0)) == 11, "expected eleven imported first-slice object event sprites")
 	var variable_graphics := _dict_field(sprite_data, "variable_graphics")
@@ -30,7 +41,7 @@ func _run() -> void:
 		"OBJ_EVENT_GFX_MOM": "mom.png",
 	}
 	for graphics_id in expected_standard_sprites.keys():
-		var standard_record: Dictionary = DataRegistry.get_object_event_sprite_record(graphics_id)
+		var standard_record: Dictionary = registry.get_object_event_sprite_record(graphics_id)
 		_assert(not standard_record.is_empty(), "expected %s object event sprite record" % graphics_id)
 		_assert(String(standard_record.get("image", "")).ends_with(String(expected_standard_sprites[graphics_id])), "expected %s generated sprite image" % graphics_id)
 		_assert(int(standard_record.get("columns", 0)) == 9, "expected %s nine source frames" % graphics_id)
@@ -57,7 +68,7 @@ func _run() -> void:
 	}
 	for graphics_id in expected_player_sprites.keys():
 		var player_expected: Dictionary = expected_player_sprites[graphics_id]
-		var player_record: Dictionary = DataRegistry.get_object_event_sprite_record(graphics_id)
+		var player_record: Dictionary = registry.get_object_event_sprite_record(graphics_id)
 		_assert(not player_record.is_empty(), "expected %s player object event sprite record" % graphics_id)
 		_assert(String(player_record.get("image", "")).ends_with(String(player_expected.get("asset", ""))), "expected %s generated player sprite image" % graphics_id)
 		_assert(String(player_record.get("source_symbol", "")) == String(player_expected.get("source_symbol", "")), "expected %s source pic symbol" % graphics_id)
@@ -87,7 +98,7 @@ func _run() -> void:
 	}
 	for graphics_id in expected_rival_sprites.keys():
 		var rival_expected: Dictionary = expected_rival_sprites[graphics_id]
-		var rival_record: Dictionary = DataRegistry.get_object_event_sprite_record(graphics_id)
+		var rival_record: Dictionary = registry.get_object_event_sprite_record(graphics_id)
 		_assert(not rival_record.is_empty(), "expected %s rival object event sprite record" % graphics_id)
 		_assert(String(rival_record.get("image", "")).ends_with(String(rival_expected.get("asset", ""))), "expected %s generated stitched sprite image" % graphics_id)
 		_assert(String(rival_record.get("source_symbol", "")) == String(rival_expected.get("source_symbol", "")), "expected %s source pic symbol" % graphics_id)
@@ -103,7 +114,7 @@ func _run() -> void:
 		_assert(_frames(_dict_field(rival_animation_table, "run").get("down", [])) == [12, 9, 13, 9], "expected %s source south run cycle" % graphics_id)
 		_assert(_frames(_dict_field(rival_animation_table, "spin").get("right", [])) == [2, 0, 2, 1], "expected %s source east spin cycle" % graphics_id)
 
-	var record: Dictionary = DataRegistry.get_object_event_sprite_record("OBJ_EVENT_GFX_BOY_1")
+	var record: Dictionary = registry.get_object_event_sprite_record("OBJ_EVENT_GFX_BOY_1")
 	_assert(not record.is_empty(), "expected Boy1 object event sprite record")
 	_assert(int(record.get("columns", 0)) == 9, "expected Boy1 nine source frames")
 	_assert(_frame_for_direction(record, "down") == 0, "expected source south frame 0")
@@ -122,7 +133,7 @@ func _run() -> void:
 	_assert(_frames(walk_table.get("right", [])) == [7, 2, 8, 2], "expected source east walk cycle")
 	_assert(_all_h_flipped(walk_table.get("right", [])), "expected source east walk cycle hFlip")
 
-	var truck_record: Dictionary = DataRegistry.get_object_event_sprite_record("OBJ_EVENT_GFX_TRUCK")
+	var truck_record: Dictionary = registry.get_object_event_sprite_record("OBJ_EVENT_GFX_TRUCK")
 	_assert(not truck_record.is_empty(), "expected Truck object event sprite record")
 	_assert(String(truck_record.get("image", "")).ends_with("truck.png"), "expected Truck generated sprite image")
 	_assert(int(truck_record.get("columns", 0)) == 1, "expected Truck one source frame")
@@ -135,43 +146,48 @@ func _run() -> void:
 	_assert(_frames(truck_animation_table.get("stay_still", [])) == [0, 0, 0, 0], "expected Truck stay-still frame loop")
 	_assert(_image_alpha_at(truck_record, Vector2i.ZERO) == 0, "expected Truck palette index 0 to be transparent")
 
-	GameState.set_player_gender("MALE")
-	var male_rival_result := ScriptVM.run_script("Common_EventScript_SetupRivalGfxId")
+	game_state.set_player_gender("MALE")
+	var male_rival_result = script_vm.run_script("Common_EventScript_SetupRivalGfxId")
 	_assert(String(male_rival_result.get("status", "")) == "ok", "expected male rival graphics setup script to execute")
-	_assert(GameState.get_var("VAR_OBJ_GFX_ID_0", 0) == 105, "expected male player source rival var to resolve to May")
-	var male_resolution := DataRegistry.resolve_object_event_graphics_id("OBJ_EVENT_GFX_VAR_0", GameState)
+	_assert(game_state.get_var("VAR_OBJ_GFX_ID_0", 0) == 105, "expected male player source rival var to resolve to May")
+	var male_resolution = registry.resolve_object_event_graphics_id("OBJ_EVENT_GFX_VAR_0", game_state)
 	_assert(bool(male_resolution.get("resolved", false)), "expected male player VAR_0 graphics to resolve")
 	_assert(String(male_resolution.get("graphics_id", "")) == "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL", "expected male player VAR_0 graphics to use May")
 
-	GameState.set_player_gender("FEMALE")
-	var female_rival_result := ScriptVM.run_script("Common_EventScript_SetupRivalGfxId")
+	game_state.set_player_gender("FEMALE")
+	var female_rival_result = script_vm.run_script("Common_EventScript_SetupRivalGfxId")
 	_assert(String(female_rival_result.get("status", "")) == "ok", "expected female rival graphics setup script to execute")
-	_assert(GameState.get_var("VAR_OBJ_GFX_ID_0", 0) == 100, "expected female player source rival var to resolve to Brendan")
-	var female_resolution := DataRegistry.resolve_object_event_graphics_id("OBJ_EVENT_GFX_VAR_0", GameState)
+	_assert(game_state.get_var("VAR_OBJ_GFX_ID_0", 0) == 100, "expected female player source rival var to resolve to Brendan")
+	var female_resolution = registry.resolve_object_event_graphics_id("OBJ_EVENT_GFX_VAR_0", game_state)
 	_assert(bool(female_resolution.get("resolved", false)), "expected female player VAR_0 graphics to resolve")
 	_assert(String(female_resolution.get("graphics_id", "")) == "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL", "expected female player VAR_0 graphics to use Brendan")
 
 	var placeholder = OBJECT_EVENT_PLACEHOLDER.new()
-	get_tree().root.add_child(placeholder)
+	get_root().add_child(placeholder)
 	placeholder.configure({
 		"graphics_id": "OBJ_EVENT_GFX_BOY_1",
 		"position": Vector2i.ZERO,
 		"facing_direction": "right",
 	}, 16)
-	await get_tree().process_frame
+	await process_frame
 	var right_snapshot: Dictionary = placeholder.get_sprite_snapshot()
 	_assert(bool(right_snapshot.get("using_sprite", false)), "expected placeholder to use generated Boy1 sprite")
 	_assert(_array_field(right_snapshot, "source_rect") == [32, 0, 16, 32], "expected east static source rect")
 	_assert(_array_field(right_snapshot, "dest_rect") == [-8, -24, 16, 32], "expected 16x32 object source sprite bottom-of-tile dest rect")
 	_assert(bool(right_snapshot.get("h_flip", false)), "expected east static frame hFlip")
 	_assert(_array_field(right_snapshot, "world_position") == [8, 8], "expected placeholder to anchor at tile center")
+	var right_depth := _dict_field(right_snapshot, "depth")
+	_assert(int(right_depth.get("source_oam_priority", -1)) == 2, "expected default object source OAM priority")
+	_assert(String(right_depth.get("runtime_layer_band", "")) == "between_middle_and_top", "expected object to render between middle and top layers")
+	_assert(int(right_snapshot.get("z_index", 0)) == int(right_depth.get("godot_z_index", -1)), "expected placeholder z-index to match depth contract")
+	_assert(int(right_depth.get("godot_z_index", 0)) < int(right_depth.get("top_layer_z_index", 0)), "expected placeholder below top layer")
 
 	placeholder.configure({
 		"graphics_id": "OBJ_EVENT_GFX_BOY_1",
 		"position": Vector2i.ZERO,
 		"facing_direction": "up",
 	}, 16)
-	await get_tree().process_frame
+	await process_frame
 	var up_snapshot: Dictionary = placeholder.get_sprite_snapshot()
 	_assert(_array_field(up_snapshot, "source_rect") == [16, 0, 16, 32], "expected north static source rect")
 	_assert(not bool(up_snapshot.get("h_flip", false)), "expected north static frame unflipped")
@@ -181,19 +197,21 @@ func _run() -> void:
 		"position": Vector2i.ZERO,
 		"facing_direction": "down",
 	}, 16)
-	await get_tree().process_frame
+	await process_frame
 	var truck_snapshot: Dictionary = placeholder.get_sprite_snapshot()
 	_assert(bool(truck_snapshot.get("using_sprite", false)), "expected placeholder to use generated Truck sprite")
 	_assert(_array_field(truck_snapshot, "source_rect") == [0, 0, 48, 48], "expected Truck source rect")
 	_assert(_array_field(truck_snapshot, "dest_rect") == [-24, -40, 48, 48], "expected Truck 48x48 point-drawn destination rect")
 	_assert(not bool(truck_snapshot.get("h_flip", false)), "expected Truck static frame unflipped")
+	var truck_depth := _dict_field(truck_snapshot, "depth")
+	_assert(String(truck_depth.get("runtime_layer_band", "")) == "between_middle_and_top", "expected Truck to share default object depth band")
 
 	placeholder.configure({
 		"graphics_id": "OBJ_EVENT_GFX_VAR_0",
 		"position": Vector2i.ZERO,
 		"facing_direction": "up",
 	}, 16)
-	await get_tree().process_frame
+	await process_frame
 	var rival_snapshot: Dictionary = placeholder.get_sprite_snapshot()
 	_assert(bool(rival_snapshot.get("using_sprite", false)), "expected placeholder to use resolved rival sprite")
 	_assert(String(rival_snapshot.get("resolved_graphics_id", "")) == "OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL", "expected resolved Brendan rival graphics")
@@ -209,10 +227,20 @@ func _run() -> void:
 		"right_source_rect": right_snapshot.get("source_rect", []),
 		"right_h_flip": right_snapshot.get("h_flip", false),
 		"right_world_position": right_snapshot.get("world_position", []),
+		"right_z_index": right_snapshot.get("z_index", 0),
 		"truck_source_rect": truck_snapshot.get("source_rect", []),
 		"rival_resolved_graphics_id": rival_snapshot.get("resolved_graphics_id", ""),
 	}))
-	get_tree().quit(0)
+	quit(0)
+
+
+func _install_root_node(node_name: String, node: Node):
+	var existing := get_root().get_node_or_null(node_name)
+	if existing != null:
+		return existing
+	node.name = node_name
+	get_root().add_child(node)
+	return node
 
 
 func _frame_for_direction(record: Dictionary, direction: String) -> int:
@@ -324,4 +352,4 @@ func _assert(condition: bool, message: String) -> void:
 		return
 	_failed = true
 	push_error(message)
-	get_tree().quit(1)
+	quit(1)
