@@ -7,12 +7,16 @@ const TILESET_ANIMATION_PLAYER_SCRIPT := preload("res://scripts/overworld/tilese
 const START_MAP := "MAP_LITTLEROOT_TOWN"
 const MAUVILLE_MAP := "MAP_MAUVILLE_CITY"
 const UNDERWATER_MAP := "MAP_UNDERWATER_ROUTE124"
+const PACIFIDLOG_MAP := "MAP_PACIFIDLOG_TOWN"
+const LAVARIDGE_MAP := "MAP_LAVARIDGE_TOWN"
 
 var _failed := false
 
 
 func _init() -> void:
 	var registry = DATA_REGISTRY_SCRIPT.new()
+	var metadata_runtime = null
+	var metadata_player = null
 	registry._ready()
 	var map_data: Dictionary = registry.get_map_data(START_MAP, {
 		"include_debug_overlays": true,
@@ -109,6 +113,9 @@ func _init() -> void:
 	var water_range: Dictionary = water_ranges[0]
 	_assert(int(water_range.get("start_tile_id", 0)) == 432, "expected water start tile")
 	_assert(int(water_range.get("end_tile_id", 0)) == 461, "expected water end tile")
+	_assert_append_target(events, 2, "QueueAnimTiles_General_SandWaterEdge", 10, 8, 464, 473)
+	_assert_append_target(events, 3, "QueueAnimTiles_General_Waterfall", 6, 4, 496, 501)
+	_assert_append_target(events, 4, "QueueAnimTiles_General_LandWaterEdge", 10, 4, 480, 489)
 
 	var secondary: Dictionary = player.get_tileset_state("gTileset_Petalburg")
 	_assert(String(secondary.get("role", "")) == "secondary", "expected secondary lookup by symbol")
@@ -133,6 +140,8 @@ func _init() -> void:
 	_assert(_event_queue(first_events, 0) == "QueueAnimTiles_General_Water", "expected first frame to trigger General water")
 	_assert(int(first_events[0].get("runtime_counter_value", -1)) == 1, "expected General first callback timer 1")
 	_assert(int(first_events[0].get("timer_argument", -1)) == 0, "expected General first water timer argument 0")
+	_assert_runtime_queue_request(first_frame, "QueueAnimTiles_General_Water", "primary", 30, 0, 432, 461, "direct_tile_offset")
+	_assert_renderer_patch_for_queue(first_frame, "QueueAnimTiles_General_Water")
 	var first_counters := player.get_counter_status()
 	_assert(_counter_value(first_counters, "primary") == 1, "expected primary counter at 1")
 	_assert(_counter_value(first_counters, "secondary") == 1, "expected secondary counter at 1")
@@ -151,10 +160,27 @@ func _init() -> void:
 	var renderer_status: Dictionary = renderer.get_tileset_animation_update_status()
 	_assert(String(renderer_status.get("status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected renderer status accessor to expose atlas updates")
 
-	var to_sixteen := player.advance_frames(15)
+	var second_frame: Dictionary = player.advance_frame()
+	_assert(int(second_frame.get("runtime_frames_elapsed", 0)) == 2, "expected runtime frame 2")
+	_assert_runtime_queue_request(second_frame, "QueueAnimTiles_General_SandWaterEdge", "primary", 10, 0, 464, 473, "direct_tile_offset")
+	_assert_renderer_patch_for_queue(second_frame, "QueueAnimTiles_General_SandWaterEdge")
+
+	var third_frame: Dictionary = player.advance_frame()
+	_assert(int(third_frame.get("runtime_frames_elapsed", 0)) == 3, "expected runtime frame 3")
+	_assert_runtime_queue_request(third_frame, "QueueAnimTiles_General_Waterfall", "primary", 6, 0, 496, 501, "direct_tile_offset")
+	_assert_renderer_patch_for_queue(third_frame, "QueueAnimTiles_General_Waterfall")
+
+	var fourth_frame: Dictionary = player.advance_frame()
+	_assert(int(fourth_frame.get("runtime_frames_elapsed", 0)) == 4, "expected runtime frame 4")
+	_assert_runtime_queue_request(fourth_frame, "QueueAnimTiles_General_LandWaterEdge", "primary", 10, 0, 480, 489, "direct_tile_offset")
+	_assert_renderer_idle_for_queue(fourth_frame, "QueueAnimTiles_General_LandWaterEdge")
+
+	var to_sixteen := player.advance_frames(12)
 	_assert(int(to_sixteen.get("runtime_frames_elapsed", 0)) == 16, "expected runtime frame 16")
 	var frame_16: Dictionary = to_sixteen.get("last_event_frame", {})
 	_assert(_event_queue(frame_16.get("events", []), 0) == "QueueAnimTiles_General_Flower", "expected frame 16 to trigger General flower")
+	_assert_runtime_queue_request(frame_16, "QueueAnimTiles_General_Flower", "primary", 4, 1, 508, 511, "direct_tile_offset")
+	_assert_renderer_patch_for_queue(frame_16, "QueueAnimTiles_General_Flower")
 	_assert(_counter_value(to_sixteen.get("counter_status", {}), "primary") == 16, "expected primary counter at 16")
 	_assert(_counter_value(to_sixteen.get("counter_status", {}), "secondary") == 16, "expected secondary counter at 16")
 
@@ -223,6 +249,7 @@ func _init() -> void:
 	_assert(_has_event_queue(mauville_events, "QueueAnimTiles_General_Flower"), "expected General flower event")
 	_assert(_has_event_queue(mauville_events, "QueueAnimTiles_Mauville_Flowers"), "expected Mauville flowers event")
 	_assert(_event_role_for_queue(mauville_events, "QueueAnimTiles_Mauville_Flowers") == "secondary", "expected Mauville event on secondary counter")
+	_assert_mauville_flower_requests(mauville_frame, 2, 0)
 
 	var same_map_update := player.advance_frame()
 	var same_map_counter_before := _counter_value(same_map_update.get("counter_status", {}), "primary")
@@ -242,8 +269,34 @@ func _init() -> void:
 	var underwater_last_events: Array = underwater_last.get("events", [])
 	_assert(_has_event_queue(underwater_last_events, "QueueAnimTiles_General_Flower"), "expected General flower event in Underwater run")
 	_assert(_has_event_queue(underwater_last_events, "QueueAnimTiles_Underwater_Seaweed"), "expected Underwater seaweed event")
+	_assert_runtime_queue_request(underwater_last, "QueueAnimTiles_Underwater_Seaweed", "secondary", 4, 0, 1008, 1011, "direct_tile_offset")
+
+	metadata_runtime = MAP_RUNTIME_SCRIPT.new()
+	metadata_runtime.configure_data_registry(registry)
+	metadata_player = TILESET_ANIMATION_PLAYER_SCRIPT.new()
+	metadata_player.configure(registry, metadata_runtime)
+
+	var pacifidlog: Dictionary = _configure_map(metadata_player, registry, metadata_runtime, PACIFIDLOG_MAP)
+	_assert(String(pacifidlog.get("map_id", "")) == PACIFIDLOG_MAP, "expected Pacifidlog map id")
+	var pacifidlog_secondary: Dictionary = metadata_player.get_tileset_state("gTileset_Pacifidlog")
+	_assert(String(pacifidlog_secondary.get("event_callback_symbol", "")) == "TilesetAnim_Pacifidlog", "expected Pacifidlog callback")
+	var pacifidlog_first: Dictionary = metadata_player.advance_frame()
+	_assert_runtime_queue_request(pacifidlog_first, "QueueAnimTiles_Pacifidlog_WaterCurrents", "secondary", 8, 0, 1008, 1015, "direct_tile_offset", true)
+	_assert_metadata_only_renderer_update(pacifidlog_first)
+
+	var lavaridge: Dictionary = _configure_map(metadata_player, registry, metadata_runtime, LAVARIDGE_MAP)
+	_assert(String(lavaridge.get("map_id", "")) == LAVARIDGE_MAP, "expected Lavaridge map id")
+	var lavaridge_secondary: Dictionary = metadata_player.get_tileset_state("gTileset_Lavaridge")
+	_assert(String(lavaridge_secondary.get("event_callback_symbol", "")) == "TilesetAnim_Lavaridge", "expected Lavaridge callback")
+	var lavaridge_first: Dictionary = metadata_player.advance_frame()
+	_assert_runtime_queue_request(lavaridge_first, "QueueAnimTiles_Lavaridge_Lava", "secondary", 4, 0, 672, 675, "direct_tile_offset", true)
+	_assert_metadata_only_renderer_update(lavaridge_first)
 
 	if _failed:
+		if metadata_player != null:
+			metadata_player.free()
+		if metadata_runtime != null:
+			metadata_runtime.free()
 		player.free()
 		renderer.free()
 		runtime.free()
@@ -251,6 +304,10 @@ func _init() -> void:
 		quit(1)
 	else:
 		print("Tileset animation player smoke passed")
+		if metadata_player != null:
+			metadata_player.free()
+		if metadata_runtime != null:
+			metadata_runtime.free()
 		player.free()
 		renderer.free()
 		runtime.free()
@@ -302,6 +359,173 @@ func _first_tile_copy_request(events: Array, index: int) -> Dictionary:
 	if typeof(requests) != TYPE_ARRAY or requests.is_empty() or typeof(requests[0]) != TYPE_DICTIONARY:
 		return {}
 	return requests[0]
+
+
+func _assert_append_target(
+	events: Array,
+	index: int,
+	queue_function: String,
+	expected_tile_count: int,
+	expected_frame_count: int,
+	expected_start_tile: int,
+	expected_end_tile: int
+) -> void:
+	_assert(_event_queue(events, index) == queue_function, "expected %s schedule queue" % queue_function)
+	var target := _first_append_target(events, index)
+	_assert(int(target.get("tile_count", 0)) == expected_tile_count, "expected %s target tile count" % queue_function)
+	_assert(int(target.get("source_frame_symbol_count", 0)) == expected_frame_count, "expected %s source frame count" % queue_function)
+	_assert(int(target.get("resolved_frame_strip_count", 0)) == expected_frame_count, "expected %s frame strips to resolve" % queue_function)
+	var ranges: Array = target.get("affected_tile_ranges", [])
+	_assert(not ranges.is_empty(), "expected %s affected tile range" % queue_function)
+	if ranges.is_empty() or typeof(ranges[0]) != TYPE_DICTIONARY:
+		return
+	var range_record: Dictionary = ranges[0]
+	_assert(int(range_record.get("start_tile_id", -1)) == expected_start_tile, "expected %s start tile" % queue_function)
+	_assert(int(range_record.get("end_tile_id", -1)) == expected_end_tile, "expected %s end tile" % queue_function)
+
+
+func _assert_runtime_queue_request(
+	frame_update: Dictionary,
+	queue_function: String,
+	expected_role: String,
+	expected_tile_count: int,
+	expected_source_frame_index: int,
+	expected_start_tile: int,
+	expected_end_tile: int,
+	expected_dest_kind: String,
+	expect_metadata_only: bool = false
+) -> void:
+	var events: Array = frame_update.get("events", [])
+	var event := _event_for_queue(events, queue_function)
+	_assert(not event.is_empty(), "expected runtime event for %s" % queue_function)
+	if event.is_empty():
+		return
+	_assert(String(event.get("role", "")) == expected_role, "expected %s role" % queue_function)
+	_assert(int(event.get("tile_copy_request_count", 0)) > 0, "expected %s tile copy request" % queue_function)
+	_assert(bool(event.get("metadata_only_no_renderer_mutation", false)) == expect_metadata_only, "expected %s metadata-only flag" % queue_function)
+	var request := _first_tile_copy_request_for_queue(events, queue_function)
+	_assert(not request.is_empty(), "expected request for %s" % queue_function)
+	if request.is_empty():
+		return
+	_assert(String(request.get("queue_function", "")) == queue_function, "expected request queue for %s" % queue_function)
+	_assert(String(request.get("dest_kind", "")) == expected_dest_kind, "expected %s dest kind" % queue_function)
+	_assert(int(request.get("tile_count", 0)) == expected_tile_count, "expected %s tile count" % queue_function)
+	_assert(int(request.get("selected_source_frame_index", -1)) == expected_source_frame_index, "expected %s source frame index" % queue_function)
+	_assert(String(request.get("selected_source_frame_symbol", "")) != "", "expected %s selected frame symbol" % queue_function)
+	_assert(String(request.get("selected_source_frame_image", "")).ends_with(".png"), "expected %s RGBA frame image" % queue_function)
+	_assert(int(request.get("resolved_frame_strip_count", 0)) > 0, "expected %s resolved frame strips" % queue_function)
+	_assert(bool(request.get("metadata_only_no_renderer_mutation", false)) == expect_metadata_only, "expected %s request metadata-only flag" % queue_function)
+	var effective_ranges: Array = request.get("effective_tile_ranges", [])
+	_assert(not effective_ranges.is_empty(), "expected %s effective tile range" % queue_function)
+	if effective_ranges.is_empty() or typeof(effective_ranges[0]) != TYPE_DICTIONARY:
+		return
+	var range_record: Dictionary = effective_ranges[0]
+	_assert(int(range_record.get("start_tile_id", -1)) == expected_start_tile, "expected %s effective start tile" % queue_function)
+	_assert(int(range_record.get("end_tile_id", -1)) == expected_end_tile, "expected %s effective end tile" % queue_function)
+	_assert(int(range_record.get("tile_count", 0)) == expected_tile_count, "expected %s effective tile count" % queue_function)
+
+
+func _assert_renderer_patch_for_queue(frame_update: Dictionary, queue_function: String) -> void:
+	_assert(bool(frame_update.get("mutates_renderer", false)), "expected %s to mutate renderer" % queue_function)
+	var renderer_update: Dictionary = frame_update.get("renderer_update", {})
+	_assert(String(renderer_update.get("status", "")) == "tileset_animation_layer_atlas_updates_applied", "expected %s renderer update status" % queue_function)
+	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected %s not to rebuild full map" % queue_function)
+	_assert(not bool(renderer_update.get("mutates_generated_files", true)), "expected %s not to mutate generated files" % queue_function)
+	_assert(not bool(renderer_update.get("mutates_map_data", true)), "expected %s not to mutate map data" % queue_function)
+	_assert(not bool(renderer_update.get("mutates_collision_or_elevation", true)), "expected %s not to mutate collision/elevation" % queue_function)
+	_assert(int(renderer_update.get("failed_request_count", 0)) == 0, "expected %s renderer requests to apply" % queue_function)
+	var summary := _renderer_summary_for_queue(renderer_update, queue_function)
+	_assert(not summary.is_empty(), "expected renderer summary for %s" % queue_function)
+	if summary.is_empty():
+		return
+	_assert(bool(summary.get("applied", false)), "expected renderer summary applied for %s" % queue_function)
+	_assert(int(summary.get("patched_slot_count", 0)) > 0, "expected patched atlas slots for %s" % queue_function)
+	var updated_metatiles: Array = summary.get("updated_metatile_ids", [])
+	_assert(not updated_metatiles.is_empty(), "expected updated metatiles for %s" % queue_function)
+
+
+func _assert_renderer_idle_for_queue(frame_update: Dictionary, queue_function: String) -> void:
+	_assert(not bool(frame_update.get("mutates_renderer", true)), "expected %s not to mutate renderer without visible slots" % queue_function)
+	var renderer_update: Dictionary = frame_update.get("renderer_update", {})
+	_assert(String(renderer_update.get("status", "")) == "tileset_animation_layer_atlas_updates_idle", "expected %s renderer idle status" % queue_function)
+	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected %s not to rebuild full map" % queue_function)
+	_assert(not bool(renderer_update.get("mutates_generated_files", true)), "expected %s not to mutate generated files" % queue_function)
+	_assert(not bool(renderer_update.get("mutates_map_data", true)), "expected %s not to mutate map data" % queue_function)
+	_assert(not bool(renderer_update.get("mutates_collision_or_elevation", true)), "expected %s not to mutate collision/elevation" % queue_function)
+	_assert(int(renderer_update.get("failed_request_count", 0)) == 1, "expected %s to report one unmatched renderer request" % queue_function)
+	var summary := _renderer_summary_for_queue(renderer_update, queue_function)
+	_assert(not summary.is_empty(), "expected idle renderer summary for %s" % queue_function)
+	if summary.is_empty():
+		return
+	_assert(not bool(summary.get("applied", true)), "expected renderer summary idle for %s" % queue_function)
+	_assert(String(summary.get("status", "")) == "no_matching_metatile_slots", "expected no visible metatile slots for %s" % queue_function)
+	_assert(int(summary.get("patched_slot_count", -1)) == 0, "expected no patched atlas slots for %s" % queue_function)
+
+
+func _assert_metadata_only_renderer_update(frame_update: Dictionary) -> void:
+	_assert(not bool(frame_update.get("mutates_renderer", true)), "expected metadata-only animation not to mutate renderer")
+	_assert(String(frame_update.get("renderer_update_status", "")) == "renderer_not_configured_metadata_only", "expected metadata-only renderer status")
+	var renderer_update: Dictionary = frame_update.get("renderer_update", {})
+	_assert(String(renderer_update.get("status", "")) == "renderer_not_configured_metadata_only", "expected metadata-only renderer update")
+	_assert(not bool(renderer_update.get("rebuilds_full_map", true)), "expected metadata-only update not to rebuild map")
+
+
+func _assert_mauville_flower_requests(frame_update: Dictionary, expected_source_frame_index: int, expected_range_index: int) -> void:
+	var events: Array = frame_update.get("events", [])
+	var event := _event_for_queue(events, "QueueAnimTiles_Mauville_Flowers")
+	_assert(not event.is_empty(), "expected Mauville flowers runtime event")
+	if event.is_empty():
+		return
+	_assert(int(event.get("tile_copy_request_count", 0)) == 4, "expected four Mauville flower tile-copy requests")
+	_assert(int(event.get("destination_tile_range_index", -1)) == expected_range_index, "expected Mauville VDest range index")
+	var requests: Array = event.get("tile_copy_requests", [])
+	_assert(requests.size() == 4, "expected four Mauville flower request records")
+	var expected_ranges := [
+		[608, 611],
+		[640, 643],
+		[608, 611],
+		[640, 643],
+	]
+	var expected_arrays := [
+		"gTilesetAnims_Mauville_Flower1",
+		"gTilesetAnims_Mauville_Flower2",
+		"gTilesetAnims_Mauville_Flower1_B",
+		"gTilesetAnims_Mauville_Flower2_B",
+	]
+	for index in range(requests.size()):
+		var request: Dictionary = requests[index]
+		_assert(String(request.get("dest_kind", "")) == "vdest_array", "expected Mauville flowers VDest request")
+		_assert(String(request.get("source_array", "")) == expected_arrays[index], "expected Mauville source array")
+		_assert(int(request.get("destination_tile_range_index", -1)) == expected_range_index, "expected Mauville request VDest range index")
+		_assert(int(request.get("tile_count", 0)) == 4, "expected Mauville flower tile count")
+		_assert(int(request.get("selected_source_frame_index", -1)) == expected_source_frame_index, "expected Mauville source frame index")
+		var effective_ranges: Array = request.get("effective_tile_ranges", [])
+		_assert(effective_ranges.size() == 1, "expected one selected Mauville VDest range")
+		if effective_ranges.is_empty() or typeof(effective_ranges[0]) != TYPE_DICTIONARY:
+			continue
+		var range_record: Dictionary = effective_ranges[0]
+		_assert(int(range_record.get("start_tile_id", -1)) == expected_ranges[index][0], "expected Mauville VDest start tile")
+		_assert(int(range_record.get("end_tile_id", -1)) == expected_ranges[index][1], "expected Mauville VDest end tile")
+
+
+func _first_tile_copy_request_for_queue(events: Array, queue_function: String) -> Dictionary:
+	var event := _event_for_queue(events, queue_function)
+	if event.is_empty():
+		return {}
+	var requests = event.get("tile_copy_requests", [])
+	if typeof(requests) != TYPE_ARRAY or requests.is_empty() or typeof(requests[0]) != TYPE_DICTIONARY:
+		return {}
+	return requests[0]
+
+
+func _renderer_summary_for_queue(renderer_update: Dictionary, queue_function: String) -> Dictionary:
+	var summaries = renderer_update.get("request_summaries", [])
+	if typeof(summaries) != TYPE_ARRAY:
+		return {}
+	for summary in summaries:
+		if typeof(summary) == TYPE_DICTIONARY and String(summary.get("queue_function", "")) == queue_function:
+			return summary
+	return {}
 
 
 func _counter_value(counter_status: Dictionary, role: String) -> int:
