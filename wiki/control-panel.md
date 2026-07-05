@@ -177,8 +177,8 @@ Main-agent responsibilities:
 Near-term:
 
 - Continue `wiki/battle-parity-execution-plan.md` B8.2: exact `RenderText` color/control-code pixels, exact scroll/clear window pixels, full link/recorded battle context, and screenshot comparison for action/message/move windows.
-- Continue `wiki/overworld-parity-todo.md` section 5: implement exact y-sort/source subpriority rules for objects behind or under top tiles.
-- Current overworld Section 5 status: 6/12 complete; default player/object sprites now interleave between middle and top map layers through source elevation priority z bands.
+- Continue `wiki/overworld-parity-todo.md` section 5: add a layer debug view that can show bottom/middle/top separately without mutating gameplay data.
+- Current overworld Section 5 status: 7/12 complete; player/object sprites now interleave through source elevation priority and `SetObjectSubpriorityByElevation`-style y-sort bands.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
@@ -186,7 +186,7 @@ Near-term:
 - Current B8.2 status: battle interface export now preserves 14 source font metric records from `src/text.c:sFontInfos`, 12 Latin width tables from `src/fonts.c`, 11 source font atlas RGBA images from `graphics/fonts/*.png`, and 12 font-to-atlas bindings; battle text encoding preserves 752 generated glyph spans, including 580 multi-byte spans; runtime `BattleTextPrinter` groups source-byte visible events by those spans, exposes first-pass `source_glyph_layout` records with source atlas crop rects, and `BattleWindowRenderer` composes `source_font_atlas_preview` bitmap text layers. Smoke coverage verifies a grouped two-byte source glyph as one glyph layout with 12 px source width, the `F` glyph crop rect, 12 atlas bindings, and `action_menu_text_pixels=2068`.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
 - Next executable battle task: continue B8.2 into exact `RenderText` color/control-code pixels and screenshot comparison for action/message/move windows.
-- Next executable overworld task: implement exact y-sort/source subpriority rules so objects behind or under top tiles draw correctly.
+- Next executable overworld task: add a layer debug view for bottom/middle/top layer inspection.
 
 Mid-term:
 

@@ -36,9 +36,9 @@ func configure(new_event_data: Dictionary, new_tile_size: int) -> void:
 		int(event_data.get("y", 0))
 	))
 	position = _grid_to_world(grid_position)
-	_apply_depth_z_index()
 	_body_color = _color_from_graphics_id(String(event_data.get("graphics_id", "")))
 	_configure_static_sprite()
+	_apply_depth_z_index()
 	queue_redraw()
 
 
@@ -100,9 +100,20 @@ func get_sprite_snapshot() -> Dictionary:
 
 
 func _apply_depth_z_index() -> void:
-	_depth_record = OVERWORLD_DEPTH.sprite_depth_record_for_event(event_data, grid_position)
+	_depth_record = OVERWORLD_DEPTH.sprite_depth_record_for_event(event_data, grid_position, {
+		"world_position": position,
+		"center_to_corner_vec_y": _source_center_to_corner_vec_y(),
+		"tile_size": tile_size,
+	})
 	z_index = int(_depth_record.get("godot_z_index", OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX))
 	z_as_relative = true
+
+
+func _source_center_to_corner_vec_y() -> int:
+	var frame_height := int(round(_sprite_source_rect.size.y))
+	if frame_height <= 0:
+		frame_height = tile_size * 2
+	return -int(frame_height / 2)
 
 
 func _configure_static_sprite() -> void:

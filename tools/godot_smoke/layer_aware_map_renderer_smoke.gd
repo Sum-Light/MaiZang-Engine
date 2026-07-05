@@ -39,14 +39,14 @@ func _run() -> void:
 	_assert(String(contract.get("owner", "")) == "LayerAwareMapRenderer", "expected layer-aware owner name")
 	_assert(String(contract.get("replaces_or_wraps", "")) == "DebugMapPlane", "expected DebugMapPlane wrapper contract")
 	_assert(
-		String(contract.get("runtime_status", "")) == "normal_covered_split_object_depth_first_pass",
-		"expected normal+covered+split+object-depth layer runtime status"
+		String(contract.get("runtime_status", "")) == "normal_covered_split_source_subpriority_first_pass",
+		"expected normal+covered+split+source-subpriority layer runtime status"
 	)
 	_assert(not bool(contract.get("source_equivalent_for_runtime_layering", true)), "expected layer rendering to stay non-equivalent")
 	_assert(bool(contract.get("debug_fallback_active", false)), "expected debug fallback to be active")
 	_assert(
-		String(status.get("status", "")) == "normal_covered_split_object_depth_first_pass",
-		"expected runtime normal+covered+split+object-depth layer status"
+		String(status.get("status", "")) == "normal_covered_split_source_subpriority_first_pass",
+		"expected runtime normal+covered+split+source-subpriority layer status"
 	)
 	_assert(not bool(status.get("source_equivalent_for_runtime_layering", true)), "expected runtime status to stay non-equivalent")
 	_assert(bool(status.get("debug_fallback_active", false)), "expected runtime status to expose active fallback")
@@ -76,11 +76,23 @@ func _run() -> void:
 	_assert(int(runtime_z_bands.get("above_top", 0)) > int(runtime_z_bands.get("top", 0)), "expected high-priority object band above top layer")
 	var default_depth: Dictionary = renderer.get_sprite_depth_record(Vector2i(10, 10), 3, 0)
 	_assert(int(default_depth.get("source_oam_priority", -1)) == 2, "expected source elevation 3 object priority")
+	_assert(String(default_depth.get("source_subpriority_model", "")) == "SetObjectSubpriorityByElevation_pixel_y_formula", "expected source y-sort subpriority model")
+	_assert(int(default_depth.get("source_oam_subpriority", -1)) >= 0, "expected source OAM subpriority value")
 	_assert(String(default_depth.get("runtime_layer_band", "")) == "between_middle_and_top", "expected default sprite interleave band")
 	_assert(
 		int(default_depth.get("godot_z_index", 0)) > int(runtime_z_bands.get("between_middle_and_top", 0))
 		and int(default_depth.get("godot_z_index", 0)) < int(runtime_z_bands.get("top", 0)),
 		"expected default sprite z-index between middle and top"
+	)
+	var upper_depth: Dictionary = renderer.get_sprite_depth_record(Vector2i(4, 2), 3, 0)
+	var lower_depth: Dictionary = renderer.get_sprite_depth_record(Vector2i(4, 5), 3, 0)
+	_assert(
+		int(lower_depth.get("source_oam_subpriority", 0)) < int(upper_depth.get("source_oam_subpriority", 0)),
+		"expected lower screen sprite to have lower source subpriority"
+	)
+	_assert(
+		int(lower_depth.get("godot_z_index", 0)) > int(upper_depth.get("godot_z_index", 0)),
+		"expected lower screen sprite to draw above upper sprite"
 	)
 	var overlay_status: Dictionary = contract.get("top_layer_overlay", {})
 	_assert(String(overlay_status.get("status", "")) == "active", "expected active top layer overlay")
@@ -124,7 +136,8 @@ func _run() -> void:
 	_assert(unsupported_codes.has("source_equivalent_layer_renderer_pending"), "expected source-equivalent renderer gap")
 	_assert(unsupported_codes.has("flattened_debug_atlas_not_source_equivalent"), "expected flattened atlas gap")
 	_assert(not unsupported_codes.has("object_depth_interleaving_pending"), "expected old object-depth pending gap to be retired")
-	_assert(unsupported_codes.has("exact_oam_subpriority_pixel_sort_pending"), "expected exact OAM subpriority limitation")
+	_assert(not unsupported_codes.has("exact_oam_subpriority_pixel_sort_pending"), "expected old exact-subpriority pending gap to be retired")
+	_assert(unsupported_codes.has("bridge_shadow_reflection_priority_pending"), "expected bridge/shadow/reflection priority gap")
 	_assert(unsupported_codes.has("door_forced_covered_layer_pending"), "expected door layer gap")
 
 	_assert_no_disallowed_runtime_keys(contract)

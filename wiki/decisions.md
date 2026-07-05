@@ -437,3 +437,9 @@ Reason: Battle scripts, opcodes, macro metadata, fallthrough labels, and `gBattl
 Decision: Let `LayerAwareMapRenderer` own map-layer presentation while player/object presentation nodes own their sprites. `Main` installs the renderer at runtime over the legacy `DebugMapPlane` node, keeping that fallback API hidden. The renderer draws bottom/middle roles in its parent pass and BG1/top in `TopLayerOverlay`; `overworld_depth.gd` centralizes source BG priority plus `sElevationToPriority`/`sElevationToSubpriority` tables so player/object nodes choose Godot z bands without recreating GBA OAM.
 
 Reason: This moves Section 5 from a flattened map preview toward source layer interleave while keeping Godot-native rendering boundaries. It is a first-pass depth-band contract, not source-equivalent OAM sorting; exact camera-offset subpriority, bridge subsprites, shadows/reflections, movement-task priority updates, door forced-covered redraws, and redraw caches remain future work.
+
+## 2026-07-05 - Project overworld OAM subpriority into Godot z order
+
+Decision: Use `overworld_depth.gd` to compute source `SetObjectSubpriorityByElevation` records from sprite pixel y, center-to-corner y, camera offset, elevation subpriority, and source subpriority arg, then invert that source OAM subpriority into a Godot z-index inside the existing layer band.
+
+Reason: The source uses y-based object subpriority rather than plain map-row order, and lower screen sprites must draw over upper screen sprites while still respecting BG1/BG2/BG3 priority bands. Keeping the formula in one helper lets player and object nodes share the rule without exposing GBA OAM as a runtime API. Bridge subsprites, shadows/reflections, fixed-priority objects, and movement-task priority side effects remain separate object-runtime work.

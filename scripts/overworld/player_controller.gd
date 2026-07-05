@@ -102,14 +102,16 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	if not _sprite_animation_active:
-		return
-	_sprite_animation_elapsed_seconds += delta
-	var elapsed_frames := int(floor(_sprite_animation_elapsed_seconds * SOURCE_FRAMES_PER_SECOND))
-	if _sprite_animation_state == "turning" and elapsed_frames >= _sprite_animation_total_frames:
-		_finish_active_sprite_animation()
-		return
-	_apply_active_sprite_animation_frame(mini(elapsed_frames, _sprite_animation_total_frames - 1))
+	if _sprite_animation_active:
+		_sprite_animation_elapsed_seconds += delta
+		var elapsed_frames := int(floor(_sprite_animation_elapsed_seconds * SOURCE_FRAMES_PER_SECOND))
+		if _sprite_animation_state == "turning" and elapsed_frames >= _sprite_animation_total_frames:
+			_finish_active_sprite_animation()
+		else:
+			_apply_active_sprite_animation_frame(mini(elapsed_frames, _sprite_animation_total_frames - 1))
+
+	if _is_moving:
+		_apply_depth_z_index()
 
 
 func _draw() -> void:
@@ -193,13 +195,25 @@ func _read_input_direction() -> Vector2i:
 
 
 func _apply_depth_z_index() -> void:
-	_depth_record = OVERWORLD_DEPTH.sprite_depth_record(
+	_depth_record = OVERWORLD_DEPTH.sprite_depth_record_with_options(
 		grid_position,
 		_current_player_elevation(),
-		0
+		0,
+		{
+			"world_position": position,
+			"center_to_corner_vec_y": _source_center_to_corner_vec_y(),
+			"tile_size": tile_size,
+		}
 	)
 	z_index = int(_depth_record.get("godot_z_index", OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX))
 	z_as_relative = true
+
+
+func _source_center_to_corner_vec_y() -> int:
+	var frame_height := int(round(_sprite_frame_size.y))
+	if frame_height <= 0:
+		frame_height = tile_size * 2
+	return -int(frame_height / 2)
 
 
 func _current_player_elevation() -> int:
@@ -512,4 +526,5 @@ func _active_animation_sequence() -> Array:
 
 func _on_move_finished() -> void:
 	_finish_normal_walk_animation()
+	_apply_depth_z_index()
 	super._on_move_finished()

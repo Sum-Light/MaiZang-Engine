@@ -12,7 +12,7 @@ class TopLayerOverlay:
 const OVERWORLD_DEPTH := preload("res://scripts/overworld/overworld_depth.gd")
 const OWNER_NAME := "LayerAwareMapRenderer"
 const LEGACY_RENDERER_NAME := "DebugMapPlane"
-const RUNTIME_STATUS := "normal_covered_split_object_depth_first_pass"
+const RUNTIME_STATUS := "normal_covered_split_source_subpriority_first_pass"
 const DEFAULT_TILE_SIZE := 16
 const NORMAL_LAYER_TYPE := 0
 const COVERED_LAYER_TYPE := 1
@@ -29,7 +29,7 @@ const TOP_LAYER_ROLE_ID := "top"
 
 const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending"
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
-const UNSUPPORTED_OBJECT_DEPTH_LIMITS := "exact_oam_subpriority_pixel_sort_pending"
+const UNSUPPORTED_OBJECT_DEPTH_LIMITS := "bridge_shadow_reflection_priority_pending"
 const UNSUPPORTED_DOOR_LAYER := "door_forced_covered_layer_pending"
 const UNSUPPORTED_LAYER_UPDATES := "per_layer_redraw_cache_pending"
 
@@ -222,6 +222,7 @@ func get_renderer_contract() -> Dictionary:
 			"src/fieldmap.c:MapGridSetMetatileIdAt",
 			"src/field_door.c:DrawDoorMetatileAt",
 			"src/event_object_movement.c:sElevationToPriority",
+			"src/event_object_movement.c:SetObjectSubpriorityByElevation",
 			"data/generated/overworld/layer_rules_trace.json",
 		],
 		"required_import_inputs": get_required_import_inputs(),
@@ -304,7 +305,7 @@ func get_layer_roles() -> Array:
 		{
 			"id": "object_depth",
 			"source_bg_equivalent": "object-event priority and subpriority",
-			"draw_intent": "player/object interleave between middle and top map layers using source elevation priority",
+			"draw_intent": "player/object interleave between middle and top map layers using source elevation and y-based subpriority",
 			"godot_z_index": OVERWORLD_DEPTH.SPRITE_INTERLEAVE_Z_INDEX,
 		},
 	]
@@ -316,7 +317,7 @@ func get_unsupported() -> Array:
 			"code": UNSUPPORTED_SOURCE_EQUIVALENT,
 			"status": "partially_implemented",
 			"source": "src/field_camera.c:DrawMetatile",
-			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data, and player/object nodes use a first-pass source elevation priority z-band. Full source equivalence still needs exact OAM subpriority, door forced-covered updates, and redraw caches.",
+			"detail": "Normal, covered, and split metatiles consume exported bottom/middle/top render data, and player/object nodes use source elevation priority plus SetObjectSubpriorityByElevation-style y-sort. Full source equivalence still needs bridge/shadow/reflection priority side effects, door forced-covered updates, and redraw caches.",
 		},
 		{
 			"code": UNSUPPORTED_FLATTENED_ATLAS,
@@ -326,9 +327,9 @@ func get_unsupported() -> Array:
 		},
 		{
 			"code": UNSUPPORTED_OBJECT_DEPTH_LIMITS,
-			"status": "first_pass",
-			"source": "src/event_object_movement.c:SetObjectSubpriorityByElevation",
-			"detail": "Player and object-event z bands follow source elevation priority; exact per-pixel OAM subpriority, bridge subsprites, shadows, reflections, and movement-task priority updates remain pending.",
+			"status": "pending",
+			"source": "src/event_object_movement.c:UpdateObjectEventElevationAndPriority",
+			"detail": "Source SetObjectSubpriorityByElevation y-sort is modeled for player/object z bands; bridge subsprites, shadows, reflections, fixed-priority object events, and movement-task priority side effects remain pending.",
 		},
 		{
 			"code": UNSUPPORTED_DOOR_LAYER,
