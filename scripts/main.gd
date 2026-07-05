@@ -128,7 +128,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_open_debug_trainer_selector()
 		get_viewport().set_input_as_handled()
 		return
-	if event is InputEventKey and event.pressed and not event.echo and _debug_key_pressed(event, "debug_layer_view_cycle", KEY_F8):
+	if event is InputEventKey and event.pressed and not event.echo and _debug_key_pressed(event, "debug_layer_view_cycle", KEY_L):
 		_cycle_debug_layer_view()
 		get_viewport().set_input_as_handled()
 		return
@@ -572,7 +572,16 @@ func _trainer_selector_status(snapshot: Dictionary) -> String:
 func _ensure_debug_input_actions() -> void:
 	_ensure_debug_key_action("debug_quick_wild_battle", KEY_F6)
 	_ensure_debug_key_action("debug_trainer_battle_selector", KEY_F7)
-	_ensure_debug_key_action("debug_layer_view_cycle", KEY_F8)
+	_remove_debug_key_action("debug_layer_view_cycle", KEY_F8)
+	_ensure_debug_key_action("debug_layer_view_cycle", KEY_L)
+
+
+func _remove_debug_key_action(action_name: String, keycode: Key) -> void:
+	if not InputMap.has_action(action_name):
+		return
+	for event in InputMap.action_get_events(action_name):
+		if event is InputEventKey and event.keycode == keycode:
+			InputMap.action_erase_event(action_name, event)
 
 
 func _ensure_debug_key_action(action_name: String, keycode: Key) -> void:

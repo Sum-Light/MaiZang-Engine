@@ -33,7 +33,7 @@ const UNSUPPORTED_SOURCE_EQUIVALENT := "source_equivalent_layer_renderer_pending
 const UNSUPPORTED_FLATTENED_ATLAS := "flattened_debug_atlas_not_source_equivalent"
 const UNSUPPORTED_OBJECT_DEPTH_LIMITS := "bridge_shadow_reflection_priority_pending"
 const UNSUPPORTED_DOOR_LAYER := "door_forced_covered_layer_pending"
-const UNSUPPORTED_LAYER_UPDATES := "per_layer_redraw_cache_pending"
+const UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES := "border_connection_animation_redraw_cache_pending"
 
 var map_size := Vector2i.ZERO
 var tile_size := DEFAULT_TILE_SIZE
@@ -54,6 +54,9 @@ var _flattened_atlas_columns := 0
 var _flattened_atlas_total_metatiles := 0
 var _top_layer_overlay: Node2D = null
 var _layer_debug_view := LAYER_DEBUG_VIEW_ALL
+var _layer_redraw_cache: Dictionary = {}
+var _layer_redraw_serial := 0
+var _last_layer_update_status: Dictionary = {}
 
 
 func _ready() -> void:
@@ -86,6 +89,7 @@ func configure_from_map_data(new_map_data: Dictionary, new_tileset_data: Diction
 	_ensure_top_layer_overlay()
 	_configure_layer_rendering(_tileset_data)
 	_configure_flattened_atlas(_tileset_data)
+	_consume_runtime_layer_updates(_map_data)
 	clear_door_animations()
 	if _debug_fallback != null and _debug_fallback.has_method("configure_from_map_data"):
 		_debug_fallback.configure_from_map_data(_map_data, _tileset_data)
@@ -215,6 +219,33 @@ func get_layer_draw_records_for_cell(cell: Vector2i) -> Dictionary:
 	}
 
 
+func get_layer_redraw_cache_status() -> Dictionary:
+	return {
+		"status": "setmetatile_layer_redraw_cache_first_pass" if _layer_redraw_cache.size() > 0 else "idle",
+		"source": "MapRuntime.runtime_layer_updates",
+		"serial": _layer_redraw_serial,
+		"cached_cell_count": _layer_redraw_cache.size(),
+		"affected_cells": _layer_redraw_cache.values(),
+		"last_update": _last_layer_update_status.duplicate(true),
+		"updates_from_setmetatile": bool(_last_layer_update_status.get("updates_from_setmetatile", false)),
+		"mutates_gameplay_data": false,
+		"mutates_map_data": false,
+		"mutates_collision_or_elevation": false,
+		"source_trace": [
+			"src/scrcmd.c:ScrCmd_setmetatile",
+			"src/fieldmap.c:MapGridSetMetatileIdAt",
+			"src/field_camera.c:CurrentMapDrawMetatileAt",
+		],
+	}
+
+
+func get_layer_redraw_record_for_cell(cell: Vector2i) -> Dictionary:
+	var record = _layer_redraw_cache.get(_cell_key(cell), {})
+	if typeof(record) == TYPE_DICTIONARY:
+		return record.duplicate(true)
+	return {}
+
+
 func get_renderer_contract() -> Dictionary:
 	return {
 		"schema_version": 1,
@@ -228,6 +259,7 @@ func get_renderer_contract() -> Dictionary:
 		"implemented_layer_types": IMPLEMENTED_LAYER_TYPE_NAMES.duplicate(),
 		"top_layer_overlay": _top_layer_overlay_status(),
 		"layer_debug_view": get_layer_debug_view_status(),
+		"layer_redraw_cache": get_layer_redraw_cache_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"debug_fallback_script": _debug_fallback_script_path(),
 		"compatible_methods": [
@@ -243,6 +275,8 @@ func get_renderer_contract() -> Dictionary:
 			"get_normal_layer_rendering_status",
 			"get_metatile_layer_rendering_status",
 			"get_layer_draw_records_for_cell",
+			"get_layer_redraw_cache_status",
+			"get_layer_redraw_record_for_cell",
 			"get_object_depth_interleave_status",
 			"get_sprite_depth_record",
 			"get_sprite_depth_record_for_event",
@@ -268,6 +302,7 @@ func get_renderer_contract() -> Dictionary:
 			"Consume generated map, border, connection, metatile entry, attribute, and door animation data.",
 			"Preserve the current DebugMapPlane-compatible API while the scene migrates.",
 			"Route source-traced door frames into layer updates in a later implementation slice.",
+			"Consume source-traced setmetatile layer updates into renderer-local redraw caches.",
 			"Report non-equivalent runtime layering until bottom/middle/top drawing and sprite interleave are implemented.",
 		],
 		"non_responsibilities": [
@@ -281,7 +316,7 @@ func get_renderer_contract() -> Dictionary:
 			"Build or export separate bottom, middle, and top render records.",
 			"Render normal, covered, and split metatile layer rules from generated entries.",
 			"Interleave player and object-event presentation between middle and top map layers using source elevation priority.",
-			"Move setmetatile, door, border, and connection redraws onto the same layer-aware path.",
+			"Move door, border, connection, and animation redraws onto the same layer-aware path.",
 		],
 		"unsupported": get_unsupported(),
 	}
@@ -298,6 +333,7 @@ func get_runtime_layer_status() -> Dictionary:
 		"object_depth_interleave": get_object_depth_interleave_status(),
 		"top_layer_overlay": _top_layer_overlay_status(),
 		"layer_debug_view": get_layer_debug_view_status(),
+		"layer_redraw_cache": get_layer_redraw_cache_status(),
 		"debug_fallback_active": _debug_fallback != null,
 		"source_equivalent_for_runtime_layering": false,
 		"unsupported": get_unsupported(),
@@ -374,10 +410,10 @@ func get_unsupported() -> Array:
 			"detail": "Door frames still delegate to fallback overlays instead of applying forced-covered layer updates.",
 		},
 		{
-			"code": UNSUPPORTED_LAYER_UPDATES,
+			"code": UNSUPPORTED_NON_SETMETATILE_LAYER_UPDATES,
 			"status": "pending",
 			"source": "src/field_camera.c:CurrentMapDrawMetatileAt",
-			"detail": "Single-cell layer redraws for setmetatile, borders, connections, and animation frames are not implemented yet.",
+			"detail": "Setmetatile single-cell layer redraw cache is implemented first-pass; border, connection, door, and tileset animation redraw caches remain pending.",
 		},
 	]
 
@@ -569,6 +605,39 @@ func _configure_flattened_atlas(source_tileset_data: Dictionary) -> void:
 	_flattened_atlas_texture = _texture_from_image_record(atlas_info)
 
 
+func _consume_runtime_layer_updates(source_map_data: Dictionary) -> void:
+	_layer_redraw_cache.clear()
+	_last_layer_update_status = {}
+	var metadata = source_map_data.get("runtime_layer_updates", {})
+	if typeof(metadata) != TYPE_DICTIONARY:
+		return
+	var affected_cells = metadata.get("affected_cells", [])
+	if typeof(affected_cells) != TYPE_ARRAY or affected_cells.is_empty():
+		return
+
+	_layer_redraw_serial = int(metadata.get("serial", _layer_redraw_serial + 1))
+	var updates_from_setmetatile := false
+	for update in affected_cells:
+		if typeof(update) != TYPE_DICTIONARY:
+			continue
+		var cell := _cell_from_update(update)
+		if cell == Vector2i(-1, -1):
+			continue
+		var redraw_record := _layer_redraw_record_from_update(cell, update)
+		_layer_redraw_cache[_cell_key(cell)] = redraw_record
+		if String(update.get("op", "")) == "setmetatile":
+			updates_from_setmetatile = true
+
+	_last_layer_update_status = {
+		"status": "setmetatile_layer_redraw_cache_first_pass" if updates_from_setmetatile else "runtime_layer_redraw_cache_first_pass",
+		"source": String(metadata.get("source", "MapRuntime.apply_script_field_effects")),
+		"serial": _layer_redraw_serial,
+		"affected_cell_count": _layer_redraw_cache.size(),
+		"updates_from_setmetatile": updates_from_setmetatile,
+		"mutates_generated_files": bool(metadata.get("mutates_generated_files", false)),
+	}
+
+
 func _metatile_layer_rendering_status() -> Dictionary:
 	return {
 		"status": "implemented_first_pass" if _runtime_layer_rendering_available() else "missing_generated_layer_data",
@@ -590,6 +659,7 @@ func _metatile_layer_rendering_status() -> Dictionary:
 		"split_runtime_path_active": _runtime_layer_rendering_available(),
 		"object_depth_interleave": "implemented_first_pass",
 		"layer_debug_view": get_layer_debug_view_status(),
+		"layer_redraw_cache": get_layer_redraw_cache_status(),
 	}
 
 
@@ -723,6 +793,26 @@ func _layer_draw_record_for_role(role: String, block_id: int) -> Dictionary:
 	}
 
 
+func _layer_redraw_record_from_update(cell: Vector2i, update: Dictionary) -> Dictionary:
+	var draw_plan := get_layer_draw_records_for_cell(cell)
+	var record := draw_plan.duplicate(true)
+	record["reason"] = String(update.get("redraw_reason", update.get("op", "runtime_update")))
+	record["op"] = String(update.get("op", ""))
+	record["line"] = int(update.get("line", 0))
+	record["serial"] = _layer_redraw_serial
+	record["previous_metatile_id"] = int(update.get("previous_metatile_id", -1))
+	record["metatile_id"] = int(update.get("metatile_id", record.get("block_id", -1)))
+	record["previous_collision"] = int(update.get("previous_collision", -1))
+	record["collision"] = int(update.get("collision", -1))
+	record["elevation"] = int(update.get("elevation", -1))
+	record["previous_layer_type"] = int(update.get("previous_layer_type", -1))
+	record["layer_type"] = int(update.get("layer_type", record.get("source_layer_type_value", -1)))
+	record["source_function"] = String(update.get("source_function", ""))
+	var source_trace = update.get("source_trace", [])
+	record["source_trace"] = source_trace.duplicate(true) if typeof(source_trace) == TYPE_ARRAY else []
+	return record
+
+
 func _layer_source_rect(role: String, block_id: int) -> Rect2:
 	var atlas_info = _layer_atlas_info.get(role, {})
 	if typeof(atlas_info) != TYPE_DICTIONARY:
@@ -800,6 +890,19 @@ func _local_block_id(cell: Vector2i) -> int:
 	if cell.x < 0 or cell.x >= row.size():
 		return -1
 	return int(row[cell.x])
+
+
+func _cell_from_update(update: Dictionary) -> Vector2i:
+	var cell = update.get("cell", [])
+	if typeof(cell) == TYPE_VECTOR2I:
+		return cell
+	if typeof(cell) == TYPE_ARRAY and cell.size() >= 2:
+		return Vector2i(int(cell[0]), int(cell[1]))
+	return Vector2i(-1, -1)
+
+
+func _cell_key(cell: Vector2i) -> String:
+	return "%d,%d" % [cell.x, cell.y]
 
 
 func _fallback_tile_color(block_id: int, x: int, y: int) -> Color:

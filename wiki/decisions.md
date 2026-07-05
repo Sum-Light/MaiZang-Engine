@@ -446,6 +446,12 @@ Reason: The source uses y-based object subpriority rather than plain map-row ord
 
 ## 2026-07-05 - Keep layer inspection presentation-only
 
-Decision: Add the `LayerAwareMapRenderer` layer debug view as a renderer-local presentation filter with `all`, `bottom`, `middle`, and `top` modes, cycled by Main's F8 debug action, without mutating `MapRuntime`, generated map data, collision, elevation, or tileset records.
+Decision: Add the `LayerAwareMapRenderer` layer debug view as a renderer-local presentation filter with `all`, `bottom`, `middle`, and `top` modes, cycled by Main's L debug action, without mutating `MapRuntime`, generated map data, collision, elevation, or tileset records. F8 is deliberately unbound because it can exit/stop the running preview in the current Godot environment.
 
 Reason: Section 5 needs visual inspection for layer parity, but gameplay data must remain source-authored and reproducible. Debugging map layers should not become an input to source collision, elevation, script, or map-grid state.
+
+## 2026-07-05 - Route setmetatile redraws through runtime layer metadata
+
+Decision: Keep `MapRuntime` as the owner of `setmetatile` current-map mutation and attach runtime-only `runtime_layer_updates` metadata to emitted map data. Let `LayerAwareMapRenderer` consume that metadata into a renderer-local per-cell redraw cache instead of mutating generated files or owning gameplay collision/elevation state.
+
+Reason: Source `ScrCmd_setmetatile`/`MapGridSetMetatileIdAt` updates the backup map grid while visible redraw is a presentation concern through `CurrentMapDrawMetatileAt`. Splitting mutation and redraw cache this way preserves source state boundaries while giving the Godot renderer enough affected-cell data to refresh bottom/middle/top layer records.

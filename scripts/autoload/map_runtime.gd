@@ -29,6 +29,11 @@ const CURRENT_MAP_DEBUG_SOURCE_TRACE := [
 	"src/fieldmap.c:InitMap",
 	"src/event_object_movement.c:TrySpawnObjectEvents",
 ]
+const SETMETATILE_LAYER_UPDATE_SOURCE_TRACE := [
+	"src/scrcmd.c:ScrCmd_setmetatile",
+	"src/fieldmap.c:MapGridSetMetatileIdAt",
+	"src/field_camera.c:CurrentMapDrawMetatileAt",
+]
 
 var _map_data: Dictionary = {}
 var _tileset_data: Dictionary = {}
@@ -51,6 +56,8 @@ var _warp_events: Array = []
 var _warp_events_by_position: Dictionary = {}
 var _coord_events: Array = []
 var _coord_events_by_position: Dictionary = {}
+var _runtime_layer_update_serial := 0
+var _runtime_layer_updates: Array = []
 
 
 func _ready() -> void:
@@ -95,6 +102,8 @@ func configure_from_data(
 	_warp_events_by_position = {}
 	_coord_events = []
 	_coord_events_by_position = {}
+	_runtime_layer_update_serial = 0
+	_runtime_layer_updates = []
 
 	if not _map_data.is_empty():
 		var layout_info = _map_data.get("layout", {})
@@ -177,6 +186,13 @@ func get_metatile_behavior_name_at(cell: Vector2i) -> String:
 
 func get_metatile_layer_type_at(cell: Vector2i) -> int:
 	return int(get_metatile_attribute(get_metatile_id_at(cell)).get("layer_type", -1))
+
+
+func get_runtime_layer_update_status() -> Dictionary:
+	var metadata = _map_data.get("runtime_layer_updates", {})
+	if typeof(metadata) == TYPE_DICTIONARY:
+		return metadata.duplicate(true)
+	return {}
 
 
 func get_door_animation_for_metatile(metatile_id: int) -> Dictionary:
@@ -667,6 +683,10 @@ func apply_script_field_effects(field_effects: Array) -> Dictionary:
 		"applied": [],
 		"skipped": [],
 		"map_changed": false,
+		"layer_updates": [],
+		"layer_update_cells": [],
+		"renderer_cache_invalidated": false,
+		"source_trace": SETMETATILE_LAYER_UPDATE_SOURCE_TRACE.duplicate(),
 	}
 
 	for field_effect in field_effects:
@@ -681,6 +701,7 @@ func apply_script_field_effects(field_effects: Array) -> Dictionary:
 		_apply_setmetatile_effect(summary, effect)
 
 	if bool(summary["map_changed"]):
+		_sync_runtime_layer_update_metadata(summary)
 		map_changed.emit(_map_data, _tileset_data, _map_size)
 
 	return summary
@@ -1153,11 +1174,13 @@ func _apply_setmetatile_effect(summary: Dictionary, field_effect: Dictionary) ->
 
 	var previous_metatile_id := get_metatile_id_at(position)
 	var previous_collision := get_collision_at(position)
+	var previous_layer_type := _layer_type_for_metatile_id(previous_metatile_id)
 	var elevation := get_elevation_at(position)
 	if elevation == ELEVATION_INVALID:
 		elevation = 0
 
 	var collision := int(field_effect.get("collision", COLLISION_NONE))
+	var layer_type := _layer_type_for_metatile_id(metatile_id)
 	_set_grid_value(_block_ids, position, metatile_id)
 	_set_grid_value(_collision_grid, position, collision)
 	_set_grid_value(_elevation_grid, position, elevation)
@@ -1171,7 +1194,21 @@ func _apply_setmetatile_effect(summary: Dictionary, field_effect: Dictionary) ->
 		"metatile_id": metatile_id,
 		"collision": collision,
 		"elevation": elevation,
+		"previous_layer_type": previous_layer_type,
+		"layer_type": layer_type,
 	})
+	_record_setmetatile_layer_update(
+		summary,
+		field_effect,
+		position,
+		previous_metatile_id,
+		previous_collision,
+		previous_layer_type,
+		metatile_id,
+		collision,
+		elevation,
+		layer_type
+	)
 
 
 func _movement_delta(movement: Dictionary) -> Vector2i:
@@ -1428,6 +1465,41 @@ func _record_applied_field_effect(
 	summary["applied"].append(entry)
 
 
+func _record_setmetatile_layer_update(
+	summary: Dictionary,
+	field_effect: Dictionary,
+	position: Vector2i,
+	previous_metatile_id: int,
+	previous_collision: int,
+	previous_layer_type: int,
+	metatile_id: int,
+	collision: int,
+	elevation: int,
+	layer_type: int
+) -> void:
+	var update := {
+		"op": "setmetatile",
+		"line": int(field_effect.get("line", 0)),
+		"cell": [position.x, position.y],
+		"previous_metatile_id": previous_metatile_id,
+		"metatile_id": metatile_id,
+		"previous_collision": previous_collision,
+		"collision": collision,
+		"elevation": elevation,
+		"previous_layer_type": previous_layer_type,
+		"layer_type": layer_type,
+		"source_function": String(field_effect.get("source_function", "ScrCmd_setmetatile")),
+		"redraw_reason": "setmetatile",
+		"source_trace": SETMETATILE_LAYER_UPDATE_SOURCE_TRACE.duplicate(),
+	}
+	var layer_updates = summary.get("layer_updates", [])
+	if typeof(layer_updates) == TYPE_ARRAY:
+		layer_updates.append(update)
+	var layer_update_cells = summary.get("layer_update_cells", [])
+	if typeof(layer_update_cells) == TYPE_ARRAY:
+		layer_update_cells.append([position.x, position.y])
+
+
 func _record_skipped_field_effect(
 	summary: Dictionary,
 	reason: String,
@@ -1462,6 +1534,29 @@ func _sync_map_grid_data(position: Vector2i, metatile_id: int, collision: int, e
 	_set_nested_grid_value(map_grid, "elevation", position, elevation)
 
 
+func _sync_runtime_layer_update_metadata(summary: Dictionary) -> void:
+	var updates = summary.get("layer_updates", [])
+	if typeof(updates) != TYPE_ARRAY or updates.is_empty():
+		return
+	_runtime_layer_update_serial += 1
+	_runtime_layer_updates = updates.duplicate(true)
+	var metadata := {
+		"schema_version": 1,
+		"status": "setmetatile_layer_updates_applied",
+		"serial": _runtime_layer_update_serial,
+		"source": "MapRuntime.apply_script_field_effects",
+		"affected_cell_count": _runtime_layer_updates.size(),
+		"affected_cells": _runtime_layer_updates.duplicate(true),
+		"updates_renderer_cache": true,
+		"mutates_generated_files": false,
+		"source_trace": SETMETATILE_LAYER_UPDATE_SOURCE_TRACE.duplicate(),
+	}
+	_map_data["runtime_layer_updates"] = metadata
+	summary["renderer_cache_invalidated"] = true
+	summary["layer_update_serial"] = _runtime_layer_update_serial
+	summary["runtime_layer_updates"] = metadata.duplicate(true)
+
+
 func _set_map_data_grid_value(key: String, position: Vector2i, value: int) -> void:
 	var grid = _map_data.get(key, [])
 	if typeof(grid) != TYPE_ARRAY:
@@ -1489,6 +1584,10 @@ func _set_grid_value(grid: Array, position: Vector2i, value: int) -> void:
 
 func _array_or_empty(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _layer_type_for_metatile_id(metatile_id: int) -> int:
+	return int(get_metatile_attribute(metatile_id).get("layer_type", -1))
 
 
 func _cell_key(cell: Vector2i) -> String:

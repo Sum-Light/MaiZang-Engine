@@ -356,6 +356,15 @@ func _init() -> void:
 	_assert(_summary_count(brendans_field_apply, "applied") == 2, "expected Brendan OnLoad field effects to apply")
 	_assert(_summary_count(brendans_field_apply, "skipped") == 0, "expected Brendan OnLoad field effects not to skip")
 	_assert(bool(brendans_field_apply.get("map_changed", false)), "expected Brendan metatile effects to mark map changed")
+	_assert(_summary_count(brendans_field_apply, "layer_updates") == 2, "expected Brendan metatile effects to record layer updates")
+	_assert(bool(brendans_field_apply.get("renderer_cache_invalidated", false)), "expected Brendan metatile effects to invalidate renderer cache")
+	var brendans_layer_update_status := brendans_runtime.get_runtime_layer_update_status()
+	_assert(
+		String(brendans_layer_update_status.get("status", "")) == "setmetatile_layer_updates_applied",
+		"expected runtime layer update metadata"
+	)
+	_assert(int(brendans_layer_update_status.get("affected_cell_count", 0)) == 2, "expected two affected layer cells")
+	_assert(not bool(brendans_layer_update_status.get("mutates_generated_files", true)), "expected generated files to stay untouched")
 	_assert(brendans_runtime.get_metatile_id_at(open_box_cell) == 624, "expected open moving-box metatile to apply")
 	_assert(brendans_runtime.get_collision_at(open_box_cell) == 3, "expected open moving-box collision to become impassable")
 	_assert(brendans_runtime.get_elevation_at(open_box_cell) == open_box_previous_elevation, "expected open moving-box elevation to be preserved")
@@ -611,6 +620,8 @@ func _field_apply_summary(summary: Dictionary) -> Dictionary:
 		"applied": _summary_count(summary, "applied"),
 		"skipped": _summary_count(summary, "skipped"),
 		"map_changed": bool(summary.get("map_changed", false)),
+		"layer_updates": _summary_count(summary, "layer_updates"),
+		"renderer_cache_invalidated": bool(summary.get("renderer_cache_invalidated", false)),
 	}
 
 

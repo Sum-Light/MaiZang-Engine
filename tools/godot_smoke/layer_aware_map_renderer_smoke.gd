@@ -3,6 +3,7 @@ extends SceneTree
 const DATA_REGISTRY_SCRIPT := preload("res://scripts/autoload/data_registry.gd")
 const DEBUG_MAP_PLANE_SCRIPT := preload("res://scripts/overworld/debug_map_plane.gd")
 const LAYER_RENDERER_SCRIPT := preload("res://scripts/overworld/layer_aware_map_renderer.gd")
+const MAP_RUNTIME_SCRIPT := preload("res://scripts/autoload/map_runtime.gd")
 
 const START_MAP := "MAP_LITTLEROOT_TOWN"
 const TILE_SIZE := 16
@@ -142,6 +143,8 @@ func _run() -> void:
 	_assert(not unsupported_codes.has("exact_oam_subpriority_pixel_sort_pending"), "expected old exact-subpriority pending gap to be retired")
 	_assert(unsupported_codes.has("bridge_shadow_reflection_priority_pending"), "expected bridge/shadow/reflection priority gap")
 	_assert(unsupported_codes.has("door_forced_covered_layer_pending"), "expected door layer gap")
+	_assert(not unsupported_codes.has("per_layer_redraw_cache_pending"), "expected setmetatile redraw cache pending gap to be retired")
+	_assert(unsupported_codes.has("border_connection_animation_redraw_cache_pending"), "expected non-setmetatile redraw cache gap")
 
 	_assert_no_disallowed_runtime_keys(contract)
 	_assert_no_disallowed_runtime_keys(status)
@@ -155,6 +158,7 @@ func _run() -> void:
 		renderer.get_render_block_id(probe_cell) == debug_renderer.get_render_block_id(probe_cell),
 		"expected owner block query to delegate to fallback"
 	)
+	_assert_setmetatile_layer_redraw_cache(renderer, debug_renderer, map_data, tileset_data)
 	_assert_layer_draw_records(renderer, tileset_data, 0, "METATILE_LAYER_TYPE_NORMAL", "normal_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 1, "METATILE_LAYER_TYPE_COVERED", "covered_layer_atlases")
 	_assert_layer_draw_records(renderer, tileset_data, 2, "METATILE_LAYER_TYPE_SPLIT", "split_layer_atlases")
@@ -219,6 +223,77 @@ func _assert_layer_draw_records(
 			_rect_dict(record.get("source_rect", {})) == _generated_render_layer_rect(tileset_data, metatile_id, role),
 			"expected %s draw rect to match generated render_layers atlas rect" % role
 		)
+
+
+func _assert_setmetatile_layer_redraw_cache(
+	renderer: Node,
+	debug_renderer: Node,
+	map_data: Dictionary,
+	tileset_data: Dictionary
+) -> void:
+	var runtime = MAP_RUNTIME_SCRIPT.new()
+	runtime.configure_from_data(map_data, tileset_data, _map_size_from_data(map_data))
+	var emitted := [{
+		"map_data": {},
+		"tileset_data": {},
+		"map_size": Vector2i.ZERO,
+	}]
+	runtime.map_changed.connect(func(changed_map_data: Dictionary, changed_tileset_data: Dictionary, changed_size: Vector2i) -> void:
+		emitted[0]["map_data"] = changed_map_data
+		emitted[0]["tileset_data"] = changed_tileset_data
+		emitted[0]["map_size"] = changed_size
+	)
+
+	var target_cell := Vector2i(10, 10)
+	var previous_metatile_id := runtime.get_metatile_id_at(target_cell)
+	var previous_layer_type := runtime.get_metatile_layer_type_at(target_cell)
+	var metatile_id := _first_metatile_id_for_layer_type_excluding(tileset_data, 1, previous_metatile_id)
+	_assert(metatile_id >= 0, "expected covered metatile id for setmetatile cache probe")
+	var expected_layer_type_name := _layer_type_name_for_metatile(tileset_data, metatile_id)
+	var summary := runtime.apply_script_field_effects([{
+		"op": "setmetatile",
+		"position": [target_cell.x, target_cell.y],
+		"metatile_id": metatile_id,
+		"collision": 3,
+		"line": 777,
+		"source_function": "ScrCmd_setmetatile",
+	}])
+
+	_assert(bool(summary.get("map_changed", false)), "expected setmetatile to emit map changed")
+	_assert(_summary_count(summary, "layer_updates") == 1, "expected one layer update from setmetatile")
+	_assert(bool(summary.get("renderer_cache_invalidated", false)), "expected setmetatile to invalidate renderer cache")
+	var runtime_status := runtime.get_runtime_layer_update_status()
+	_assert(
+		String(runtime_status.get("status", "")) == "setmetatile_layer_updates_applied",
+		"expected runtime setmetatile layer metadata"
+	)
+	_assert(int(runtime_status.get("affected_cell_count", 0)) == 1, "expected one affected layer cell")
+	_assert(not bool(runtime_status.get("mutates_generated_files", true)), "expected runtime metadata not to mutate generated files")
+	var emitted_map_data = emitted[0].get("map_data", {})
+	_assert(typeof(emitted_map_data) == TYPE_DICTIONARY and not emitted_map_data.is_empty(), "expected emitted map data")
+
+	renderer.configure_from_map_data(emitted_map_data, tileset_data)
+	var cache_status: Dictionary = renderer.get_layer_redraw_cache_status()
+	_assert(
+		String(cache_status.get("status", "")) == "setmetatile_layer_redraw_cache_first_pass",
+		"expected renderer setmetatile redraw cache status"
+	)
+	_assert(int(cache_status.get("cached_cell_count", 0)) == 1, "expected one cached redraw cell")
+	_assert(bool(cache_status.get("updates_from_setmetatile", false)), "expected cache to identify setmetatile source")
+	_assert(not bool(cache_status.get("mutates_map_data", true)), "expected renderer cache not to mutate map data")
+	_assert(not bool(cache_status.get("mutates_collision_or_elevation", true)), "expected renderer cache not to mutate collision/elevation")
+	var redraw_record: Dictionary = renderer.get_layer_redraw_record_for_cell(target_cell)
+	_assert(not redraw_record.is_empty(), "expected redraw record for setmetatile cell")
+	_assert(int(redraw_record.get("previous_metatile_id", -1)) == previous_metatile_id, "expected previous metatile id")
+	_assert(int(redraw_record.get("metatile_id", -1)) == metatile_id, "expected redraw metatile id")
+	_assert(int(redraw_record.get("block_id", -1)) == metatile_id, "expected redraw block id")
+	_assert(int(redraw_record.get("previous_layer_type", -1)) == previous_layer_type, "expected previous layer type")
+	_assert(String(redraw_record.get("source_layer_type", "")) == expected_layer_type_name, "expected redraw source layer type")
+	_assert(String(redraw_record.get("runtime_layer_path", "")) == _runtime_layer_path_for_layer_type_name(expected_layer_type_name), "expected redraw runtime layer path")
+	_assert(redraw_record.get("records", []).size() == 3, "expected redraw draw records")
+	_assert(renderer.get_render_block_id(target_cell) == metatile_id, "expected renderer block id to update")
+	_assert(debug_renderer.get_render_block_id(target_cell) == metatile_id, "expected fallback block id to update")
+	runtime.free()
 
 
 func _assert_layer_debug_view(renderer: Node, map_data: Dictionary, tileset_data: Dictionary) -> void:
@@ -305,6 +380,69 @@ func _first_metatile_id_for_layer_type(tileset_data: Dictionary, expected_layer_
 	return -1
 
 
+func _first_metatile_id_for_layer_type_excluding(
+	tileset_data: Dictionary,
+	expected_layer_type: int,
+	excluded_metatile_id: int
+) -> int:
+	var entries = tileset_data.get("metatile_entries", [])
+	if typeof(entries) != TYPE_ARRAY:
+		return -1
+	for entry in entries:
+		if typeof(entry) != TYPE_DICTIONARY:
+			continue
+		var metatile_id := int(entry.get("id", -1))
+		if metatile_id == excluded_metatile_id:
+			continue
+		var attribute = entry.get("attribute", {})
+		if typeof(attribute) != TYPE_DICTIONARY:
+			continue
+		if int(attribute.get("layer_type", -1)) == expected_layer_type:
+			return metatile_id
+	return -1
+
+
+func _layer_type_name_for_metatile(tileset_data: Dictionary, metatile_id: int) -> String:
+	var entries = tileset_data.get("metatile_entries", [])
+	if typeof(entries) != TYPE_ARRAY:
+		return "UNKNOWN"
+	for entry in entries:
+		if typeof(entry) != TYPE_DICTIONARY or int(entry.get("id", -1)) != metatile_id:
+			continue
+		var attribute = entry.get("attribute", {})
+		if typeof(attribute) != TYPE_DICTIONARY:
+			return "UNKNOWN"
+		match int(attribute.get("layer_type", -1)):
+			0:
+				return "METATILE_LAYER_TYPE_NORMAL"
+			1:
+				return "METATILE_LAYER_TYPE_COVERED"
+			2:
+				return "METATILE_LAYER_TYPE_SPLIT"
+	return "UNKNOWN"
+
+
+func _runtime_layer_path_for_layer_type_name(layer_type_name: String) -> String:
+	match layer_type_name:
+		"METATILE_LAYER_TYPE_NORMAL":
+			return "normal_layer_atlases"
+		"METATILE_LAYER_TYPE_COVERED":
+			return "covered_layer_atlases"
+		"METATILE_LAYER_TYPE_SPLIT":
+			return "split_layer_atlases"
+	return "flattened_fallback_or_pending"
+
+
+func _map_size_from_data(map_data: Dictionary) -> Vector2i:
+	var layout_info = map_data.get("layout", {})
+	if typeof(layout_info) != TYPE_DICTIONARY:
+		return Vector2i.ZERO
+	return Vector2i(
+		int(layout_info.get("width", 0)),
+		int(layout_info.get("height", 0))
+	)
+
+
 func _first_door_animation(tileset_data: Dictionary) -> Dictionary:
 	var door_animations = tileset_data.get("door_animations", {})
 	if typeof(door_animations) != TYPE_DICTIONARY:
@@ -375,6 +513,11 @@ func _unsupported_codes(records) -> Array:
 		if typeof(record) == TYPE_DICTIONARY:
 			result.append(String(record.get("code", "")))
 	return result
+
+
+func _summary_count(summary: Dictionary, key: String) -> int:
+	var entries = summary.get(key, [])
+	return entries.size() if typeof(entries) == TYPE_ARRAY else 0
 
 
 func _assert_no_disallowed_runtime_keys(value, path := "root") -> void:

@@ -23,7 +23,9 @@ func _run() -> void:
 
 	_assert(InputMap.has_action("debug_quick_wild_battle"), "expected F6 debug wild battle action")
 	_assert(InputMap.has_action("debug_trainer_battle_selector"), "expected F7 debug trainer selector action")
-	_assert(InputMap.has_action("debug_layer_view_cycle"), "expected F8 layer debug action")
+	_assert(InputMap.has_action("debug_layer_view_cycle"), "expected L layer debug action")
+	_assert(_action_has_key("debug_layer_view_cycle", KEY_L), "expected layer debug action to use L")
+	_assert(not _action_has_key("debug_layer_view_cycle", KEY_F8), "expected layer debug action not to use F8")
 	_assert(main.get_node_or_null("Hud/DebugTrainerSelector") != null, "expected debug trainer selector UI")
 
 	game_state.clear_player_party()
@@ -118,3 +120,12 @@ func _has_unsupported(record: Dictionary, code: String) -> bool:
 
 func _array_value(value) -> Array:
 	return value if typeof(value) == TYPE_ARRAY else []
+
+
+func _action_has_key(action_name: String, keycode: Key) -> bool:
+	if not InputMap.has_action(action_name):
+		return false
+	for event in InputMap.action_get_events(action_name):
+		if event is InputEventKey and event.keycode == keycode:
+			return true
+	return false
