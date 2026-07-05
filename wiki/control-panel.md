@@ -19,13 +19,13 @@ Current focus:
 
 Next active module:
 
-- Map and overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 5 layer-aware rendering.
+- Map and overworld parity TODO, currently executing `wiki/overworld-parity-todo.md` section 6 dynamic metatile and tileset animations.
 
 Reason:
 
 - The user asked to execute the map recreation TODO list step by step until complete and report quantified progress after each answer.
-- Section 5 is now 11/12 complete: layer-aware normal/covered/split rendering, top overlay drawing, source subpriority depth ordering, presentation-only layer debug views, first-pass `setmetatile` layer redraw cache updates, first-pass border/connection layer rendering, and source map-grid query independence from layer toggles are implemented for the first-slice maps.
-- Next executable task: add screenshot or pixel checks for roofs, signs, grass cover, bridge-like metatiles, and indoor objects drawn under the top layer.
+- Section 5 is now 12/12 complete: layer-aware normal/covered/split rendering, top overlay drawing, source subpriority depth ordering, presentation-only layer debug views, first-pass `setmetatile` layer redraw cache updates, first-pass border/connection layer rendering, source map-grid query independence, and layer pixel smoke coverage are implemented for the first-slice maps.
+- Next executable task: export callback-to-map metadata for primary and secondary tilesets.
 
 ## Module Tracks
 
@@ -176,8 +176,8 @@ Main-agent responsibilities:
 Near-term:
 
 - Continue `wiki/battle-parity-execution-plan.md` B8.2: full `RenderText` control-code pixel side effects, exact scroll/clear window pixels, full link/recorded battle context, and screenshot comparison for action/message/move windows.
-- Continue `wiki/overworld-parity-todo.md` section 5: add screenshot or pixel checks for roofs, signs, grass cover, bridge-like metatiles, and indoor objects drawn under the top layer.
-- Current overworld Section 5 status: 11/12 complete; `MapRuntime` now exposes a source-traced map-grid query contract proving metatile, collision, elevation, behavior, layer type, and passability queries remain independent from `LayerAwareMapRenderer`'s presentation-only bottom/middle/top debug modes. Border fallback collision is source-impassable and border fallback elevation now matches source `GetBorderBlockAt` semantics at 0. The legacy F8 binding is removed because it can conflict with the Godot/editor/window shortcut path and exit the running preview.
+- Continue `wiki/overworld-parity-todo.md` section 6: export callback-to-map metadata for primary and secondary tilesets.
+- Current overworld Section 5 status: 12/12 complete; `LayerAwareMapRenderer` now has headless layer pixel smoke coverage for roof/top, BG sign, Route101 tall grass, split/bridge-like, and indoor top-object representatives. The legacy F8 binding is removed because it can conflict with the Godot/editor/window shortcut path and exit the running preview; the presentation-only layer debug cycle is on L.
 - Keep the generated battle parity workbench current: `tools/report_battle_parity.py`, `data/generated/reports/battle_parity_report.json`, `data/generated/battle/source_index.json`, `data/generated/battle/event_log_schema.json`, and `tools/godot_smoke/battle_parity_report_smoke.gd`.
 - Current B13 status: F6 now launches a developer-only random species/random level wild battle fixture, and F7 opens a trainer id/symbol selector that launches through the trainer battle state contract.
 - Current B1/B2 status: battle strings, battle scripts, opcode/macro metadata, move effects, and move-to-script links are generated and available through `DataRegistry`; script/effect execution remains `pending_vm`.
@@ -185,11 +185,11 @@ Near-term:
 - Current B8.2 status: battle interface export now preserves 14 source font metric records from `src/text.c:sFontInfos`, 12 Latin width tables from `src/fonts.c`, 11 source font atlas RGBA images from `graphics/fonts/*.png`, 11 generated font role-mask PNGs under `assets/generated/battle_fonts/roles/`, 16 RenderText material color entries from `graphics/battle_interface/textbox.png`, 317 single-byte charmap entries, and 12 font-to-atlas/role-mask bindings; battle text encoding preserves 752 generated glyph spans, including 580 multi-byte spans. Runtime `BattleTextPrinter` groups source-byte visible events by generated spans, applies first-pass RenderText color controls, exposes source charmap glyph indices such as `F -> 0xC0`, and records per-glyph role color slots. `BattleWindowRenderer` composes `render_text_role_colored_preview` bitmap text layers from source role masks and material colors. Smoke coverage verifies one RenderText color control, the `F` glyph crop rect `[0,192,16,16]`, 12 role-mask bindings, and `action_menu_text_pixels=2250`.
 - Latest audit note: `scripts/` and `scenes/` still have 0 runtime `palette`/`source_color`/`source_palette` references. `BattleScene` reads its first-pass action prompt/menu/PP/type labels from generated B1 battle text records instead of hardcoded text, while generated asset JSON still has legacy import-only `palette` field names that should be normalized to source-color terminology in a future importer cleanup.
 - Next executable battle task: continue B8.2 into full `RenderText` control-code pixel side effects, exact scroll/clear pixels, full link/recorded battle context, and screenshot comparison for action/message/move windows.
-- Next executable overworld task: add screenshot or pixel checks for roofs, signs, grass cover, bridge-like metatiles, and indoor objects drawn under the top layer.
+- Next executable overworld task: export callback-to-map metadata for primary and secondary tilesets.
 
 Mid-term:
 
-- Continue overworld 1:1 parity through Section 5 layer-aware rendering for the first-slice maps.
+- Continue overworld 1:1 parity through Section 6 dynamic metatile and tileset animations for the first-slice maps.
 - Bag runtime and `giveitem` script support after the current overworld slice is stabilized.
 - Broader item script commands such as `takeitem`, `checkitem`, and item-space checks after source tracing.
 - Overworld sprite import expansion and movement animation queues.
