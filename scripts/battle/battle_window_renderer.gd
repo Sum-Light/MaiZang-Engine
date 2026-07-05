@@ -43,18 +43,30 @@ func show_message_window(text: String, reveal_immediately: bool = true, text_pri
 	show_windows(["B_WIN_MSG"], 0, {"B_WIN_MSG": text}, reveal_immediately, text_printer_options)
 
 
-func show_action_windows(prompt_text: String, menu_text: String) -> void:
+func show_message_record(record: Dictionary, reveal_immediately: bool = true, text_printer_options: Dictionary = {}) -> void:
+	var options := _text_printer_options_from_record(record, text_printer_options)
+	show_message_window(_display_text_from_record(record), reveal_immediately, options)
+
+
+func show_action_windows(prompt_text: String, menu_text: String, prompt_text_printer_options: Dictionary = {}, menu_text_printer_options: Dictionary = {}) -> void:
 	show_windows(
 		["B_WIN_ACTION_PROMPT", "B_WIN_ACTION_MENU"],
 		BG0_Y_ACTION_CHOOSE,
 		{
 			"B_WIN_ACTION_PROMPT": prompt_text,
 			"B_WIN_ACTION_MENU": menu_text,
+		},
+		true,
+		{
+			"windows": {
+				"B_WIN_ACTION_PROMPT": prompt_text_printer_options,
+				"B_WIN_ACTION_MENU": menu_text_printer_options,
+			},
 		}
 	)
 
 
-func show_move_windows(move_names: Array, pp_label: String, pp_remaining: String, move_type: String) -> void:
+func show_move_windows(move_names: Array, pp_label: String, pp_remaining: String, move_type: String, text_printer_options_by_window: Dictionary = {}) -> void:
 	var text_by_window := {
 		"B_WIN_PP": pp_label,
 		"B_WIN_PP_REMAINING": pp_remaining,
@@ -73,7 +85,9 @@ func show_move_windows(move_names: Array, pp_label: String, pp_remaining: String
 			"B_WIN_MOVE_TYPE",
 		],
 		BG0_Y_MOVE_CHOOSE,
-		text_by_window
+		text_by_window,
+		true,
+		{"windows": text_printer_options_by_window}
 	)
 
 
@@ -99,7 +113,7 @@ func show_windows(window_ids: Array, bg0_y: int, text_by_window: Dictionary = {}
 		_visible_windows.append(window_id)
 		_window_texts[window_id] = String(text_by_window.get(window_id, _window_texts.get(window_id, "")))
 		_ensure_window_nodes(window_id)
-		_ensure_text_printer(window_id, String(_window_texts.get(window_id, "")), reveal_immediately, text_printer_options)
+		_ensure_text_printer(window_id, String(_window_texts.get(window_id, "")), reveal_immediately, _text_printer_options_for_window(window_id, text_printer_options))
 		_apply_window_node_layout(window_id)
 	_set_node_visibility()
 
@@ -356,8 +370,13 @@ func _ensure_text_printer(window_id: String, text: String, reveal_immediately: b
 	var should_restart := true
 	if printer != null and printer.has_method("get_full_text"):
 		var same_text := String(printer.get_full_text()) == display_text
+		var same_source_text := true
+		if printer.has_method("snapshot"):
+			var printer_snapshot = printer.snapshot()
+			if typeof(printer_snapshot) == TYPE_DICTIONARY:
+				same_source_text = String(printer_snapshot.get("source_text", "")) == String(text_printer_options.get("source_text", ""))
 		var complete := bool(printer.is_complete()) if printer.has_method("is_complete") else true
-		should_restart = not same_text or (not reveal_immediately and complete)
+		should_restart = not same_text or not same_source_text or (not reveal_immediately and complete)
 	if should_restart:
 		printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 		var options := {
@@ -484,6 +503,60 @@ func _blit_wrapped(source: Image, target: Image, src_rect: Rect2i, dst_pos: Vect
 
 func _display_text(text: String) -> String:
 	return text.replace("\t", "    ")
+
+
+func _display_text_from_record(record: Dictionary) -> String:
+	if record.has("text"):
+		return String(record.get("text", ""))
+	if record.has("display_text"):
+		return String(record.get("display_text", ""))
+	var nested := _dictionary_value(record.get("record", {}))
+	if nested.has("display_text"):
+		return String(nested.get("display_text", ""))
+	if nested.has("source_text"):
+		return String(nested.get("source_text", ""))
+	return ""
+
+
+func _text_printer_options_from_record(record: Dictionary, overrides: Dictionary = {}) -> Dictionary:
+	var options := {}
+	var nested := _dictionary_value(record.get("record", {}))
+	var source_text := String(record.get("source_text", nested.get("source_text", "")))
+	var substitutions := _array_value(record.get("substitutions", []))
+	for substitution_value in substitutions:
+		var substitution := _dictionary_value(substitution_value)
+		var raw := String(substitution.get("raw", ""))
+		if raw.is_empty():
+			continue
+		source_text = source_text.replace(raw, String(substitution.get("value", "")))
+	if not source_text.is_empty():
+		options["source_text"] = source_text
+		options["source_text_label"] = String(record.get("label", nested.get("label", record.get("message", ""))))
+	options["text_controls"] = record.get("text_controls", nested.get("text_controls", []))
+	options["audio_cues"] = record.get("audio_cues", nested.get("audio_cues", []))
+	options["metadata_only"] = record.get("metadata_only", nested.get("metadata_only", []))
+	options.merge(overrides, true)
+	return options
+
+
+func _text_printer_options_for_window(window_id: String, text_printer_options: Dictionary) -> Dictionary:
+	var options := {}
+	for key in text_printer_options.keys():
+		if String(key) == "windows":
+			continue
+		options[key] = text_printer_options[key]
+	var window_options := _dictionary_value(text_printer_options.get("windows", {}))
+	var specific_options := _dictionary_value(window_options.get(window_id, {}))
+	options.merge(specific_options, true)
+	return options
+
+
+func _dictionary_value(value) -> Dictionary:
+	return value if typeof(value) == TYPE_DICTIONARY else {}
+
+
+func _array_value(value) -> Array:
+	return value if typeof(value) == TYPE_ARRAY else []
 
 
 func _rect_to_array(rect: Rect2i) -> Array:

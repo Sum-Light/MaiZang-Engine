@@ -77,6 +77,24 @@ func _run() -> void:
 	renderer.advance_text_printers(1)
 	_assert(String(renderer.get_window_visible_text("B_WIN_MSG")) == "A\n\nB", "expected renderer page wait release")
 
+	renderer.show_message_record({
+		"label": "fixture_source_record",
+		"display_text": "A\n\nB",
+		"source_text": "A\\pB",
+		"text_controls": [{"command": "PROMPT_SCROLL"}],
+	}, false)
+	renderer.advance_text_printers(1)
+	renderer.advance_text_printers(1)
+	var source_record_snapshot := _dict(renderer.get_renderer_snapshot())
+	var source_record_windows := _dict(source_record_snapshot.get("windows", {}))
+	var source_record_message := _dict(source_record_windows.get("B_WIN_MSG", {}))
+	var source_record_printer := _dict(source_record_message.get("text_printer", {}))
+	_assert(String(source_record_printer.get("event_stream_source", "")) == "source_text", "expected renderer record source-text event stream")
+	_assert(String(source_record_printer.get("source_text_label", "")) == "fixture_source_record", "expected renderer record source-text label")
+	_assert(int(source_record_printer.get("source_text_control_metadata_count", 0)) == 1, "expected renderer record text-control metadata count")
+	_assert(String(source_record_message.get("visible_text", "")) == "A\n\n", "expected renderer source record page break before B")
+	_assert(String(source_record_printer.get("wait_state", "")) == "wait_with_down_arrow", "expected renderer source record page wait")
+
 	renderer.show_move_windows(["Water Gun", "Tackle", "-", "-"], "PP", "25/25", "TYPE/Water")
 	var move_snapshot := _dict(renderer.get_renderer_snapshot())
 	_assert(String(move_snapshot.get("source_composite_mapping_status", "")) == "generated_window_template_rects", "expected generated move composite rect mapping")
@@ -108,6 +126,7 @@ func _run() -> void:
 		"move_name_opaque_pixels": move_opaque,
 		"move_type_opaque_pixels": type_opaque,
 		"message_page_waits": int(page_printer.get("page_wait_count", 0)),
+		"source_record_page_waits": int(source_record_printer.get("page_wait_count", 0)),
 	}))
 	renderer.queue_free()
 	registry.free()

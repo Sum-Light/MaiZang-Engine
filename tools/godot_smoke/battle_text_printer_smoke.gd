@@ -99,6 +99,42 @@ func _run() -> void:
 	page_printer.advance_frames(1, {"b_pressed": true})
 	page_printer.advance_frames(1)
 	_assert(String(page_printer.get_visible_text()) == "A\n\nB", "expected B press to release page wait")
+	_assert(String(page_wait.get("event_stream_source", "")) == "display_text", "expected display-text event stream without source text")
+
+	var source_page_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	source_page_printer.start("B_WIN_MSG", "A\n\nB", message_info, text_printer_metadata, {
+		"source_text": "A\\pB",
+		"source_text_label": "fixture_prompt_scroll",
+	})
+	source_page_printer.advance_frames(1)
+	source_page_printer.advance_frames(1)
+	var source_page_wait := _dict(source_page_printer.snapshot())
+	_assert(String(source_page_wait.get("event_stream_source", "")) == "source_text", "expected source-text event stream")
+	_assert(String(source_page_wait.get("event_stream_status", "")) == "first_pass_source_text_events", "expected source-text event stream status")
+	_assert(String(source_page_wait.get("source_text_label", "")) == "fixture_prompt_scroll", "expected source text label metadata")
+	_assert(String(source_page_printer.get_visible_text()) == "A\n\n", "expected source \\p to become prompt-scroll visible text")
+	_assert(String(source_page_wait.get("wait_state", "")) == "wait_with_down_arrow", "expected source \\p page wait state")
+	_assert(int(source_page_wait.get("page_wait_count", 0)) == 1, "expected source \\p page wait count")
+
+	var source_pause_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	source_pause_printer.start("B_WIN_MSG", "AB", message_info, text_printer_metadata, {
+		"source_text": "{PAUSE 2}AB",
+		"text_controls": [{"command": "PAUSE"}],
+	})
+	source_pause_printer.advance_frames(1)
+	var source_pause := _dict(source_pause_printer.snapshot())
+	_assert(String(source_pause.get("event_stream_source", "")) == "source_text", "expected source pause event stream")
+	_assert(String(source_pause.get("wait_state", "")) == "pause", "expected source pause wait state")
+	_assert(int(source_pause.get("source_text_control_metadata_count", 0)) == 1, "expected source text control metadata count")
+	source_pause_printer.advance_frames(4)
+	_assert(String(source_pause_printer.get_visible_text()) == "A", "expected source pause to reveal text after clearing")
+
+	var source_newline_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
+	source_newline_printer.start("B_WIN_MSG", "A\nB", message_info, text_printer_metadata, {
+		"source_text": "A\\lB$",
+	})
+	source_newline_printer.skip_to_end()
+	_assert(String(source_newline_printer.get_visible_text()) == "A\nB", "expected source \\l and trailing terminator handling")
 
 	var audio_printer = BATTLE_TEXT_PRINTER_SCRIPT.new()
 	audio_printer.start("B_WIN_MSG", "A{PLAY_SE SE_SELECT}{WAIT_SE}B", message_info, text_printer_metadata)
@@ -128,6 +164,7 @@ func _run() -> void:
 		"instant_modifier": int(instant_snapshot.get("player_text_speed_modifier", 0)),
 		"control_events": int(audio_snapshot.get("control_event_count", 0)) + int(pause_after.get("control_event_count", 0)),
 		"page_waits": int(page_wait.get("page_wait_count", 0)),
+		"source_page_waits": int(source_page_wait.get("page_wait_count", 0)),
 		"ab_speedups": int(speedup_pressed.get("ab_speedup_count", 0)),
 	}))
 	registry.free()

@@ -499,13 +499,23 @@ func _refresh_window_renderer(player_mon: Dictionary, message_visible: bool, act
 	if message_visible:
 		_window_renderer.show_message_window(_message_label.text)
 	elif action_visible:
-		_window_renderer.show_action_windows(_action_prompt_text(player_mon), _battle_menu_text_for_renderer())
+		var prompt_mon_name := _action_prompt_mon_name(player_mon)
+		_window_renderer.show_action_windows(
+			_action_prompt_text(player_mon),
+			_battle_menu_text_for_renderer(),
+			_source_battle_text_printer_options("gText_WhatWillPkmnDo", {"{B_BUFF1}": prompt_mon_name})
+		)
 	elif move_visible:
+		var move_type_suffix := _move_type_suffix_for_selected(player_mon)
 		_window_renderer.show_move_windows(
 			_move_labels_for_renderer(player_mon),
 			_source_battle_text("gText_MoveInterfacePP"),
 			_pp_remaining_text(player_mon),
-			_move_type_text_for_selected(player_mon)
+			_move_type_text_for_selected(player_mon),
+			{
+				"B_WIN_PP": _source_battle_text_printer_options("gText_MoveInterfacePP"),
+				"B_WIN_MOVE_TYPE": _source_battle_text_printer_options("gText_MoveInterfaceType", {}, move_type_suffix),
+			}
 		)
 	else:
 		_window_renderer.clear_windows()
@@ -819,13 +829,20 @@ func _source_text_snapshot() -> Dictionary:
 		result[label] = {
 			"display_text": _source_battle_text(label),
 			"status": "generated" if not record.is_empty() else "fallback",
+			"source_text": String(record.get("source_text", "")),
+			"text_control_count": _array_value(record.get("text_controls", [])).size(),
+			"audio_cue_count": _array_value(record.get("audio_cues", [])).size(),
 			"source": record.get("source", {}) if not record.is_empty() else {},
 		}
 	return result
 
 
+func _action_prompt_mon_name(player_mon: Dictionary) -> String:
+	return _short_text(String(player_mon.get("name", player_mon.get("species", "Pokemon"))), 12)
+
+
 func _action_prompt_text(player_mon: Dictionary) -> String:
-	var mon_name := _short_text(String(player_mon.get("name", player_mon.get("species", "Pokemon"))), 12)
+	var mon_name := _action_prompt_mon_name(player_mon)
 	return _source_battle_text("gText_WhatWillPkmnDo").replace("{B_BUFF1}", mon_name)
 
 
@@ -837,6 +854,37 @@ func _move_type_text(move: Dictionary) -> String:
 	if type_name.is_empty():
 		type_name = type_symbol
 	return "%s%s" % [_source_battle_text("gText_MoveInterfaceType"), type_name]
+
+
+func _move_type_suffix_for_selected(player_mon: Dictionary) -> String:
+	var move := _selected_move_for_metadata(player_mon)
+	if move.is_empty():
+		return "?"
+	var type_symbol := String(move.get("type", ""))
+	if type_symbol.is_empty():
+		return "?"
+	var type_name := _type_display_name(type_symbol)
+	return type_name if not type_name.is_empty() else type_symbol
+
+
+func _source_battle_text_printer_options(label: String, replacements: Dictionary = {}, source_text_suffix: String = "") -> Dictionary:
+	var record := _source_battle_text_record(label)
+	if record.is_empty():
+		return {}
+	var source_text := String(record.get("source_text", ""))
+	if source_text.is_empty():
+		return {}
+	for raw_value in replacements.keys():
+		source_text = source_text.replace(String(raw_value), String(replacements[raw_value]))
+	if not source_text_suffix.is_empty():
+		source_text += source_text_suffix
+	return {
+		"source_text": source_text,
+		"source_text_label": label,
+		"text_controls": record.get("text_controls", []),
+		"audio_cues": record.get("audio_cues", []),
+		"metadata_only": record.get("metadata_only", []),
+	}
 
 
 func _type_display_name(type_symbol: String) -> String:

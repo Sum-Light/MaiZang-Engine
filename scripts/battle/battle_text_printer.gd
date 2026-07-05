@@ -80,6 +80,12 @@ var _pause_counter := 0
 var _down_arrow_visible := false
 var _events: Array = []
 var _event_index := 0
+var _event_stream_source := "display_text"
+var _source_text := ""
+var _source_text_label := ""
+var _source_text_control_metadata_count := 0
+var _source_audio_cue_metadata_count := 0
+var _source_metadata_only_count := 0
 var _event_log: Array = []
 var _control_event_count := 0
 var _style_event_count := 0
@@ -109,7 +115,14 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_wait_state = ""
 	_pause_counter = 0
 	_down_arrow_visible = false
-	_events = _parse_text_events(_full_text)
+	_source_text = String(options.get("source_text", ""))
+	_source_text_label = String(options.get("source_text_label", options.get("text_label", "")))
+	_source_text_control_metadata_count = _array_value(options.get("text_controls", [])).size()
+	_source_audio_cue_metadata_count = _array_value(options.get("audio_cues", [])).size()
+	_source_metadata_only_count = _array_value(options.get("metadata_only", [])).size()
+	_event_stream_source = "source_text" if not _source_text.is_empty() else "display_text"
+	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
+	_events = _parse_text_events(event_text, _event_stream_source)
 	_event_index = 0
 	_event_log = []
 	_control_event_count = 0
@@ -199,7 +212,14 @@ func snapshot() -> Dictionary:
 		"pause_counter": _pause_counter,
 		"down_arrow_visible": _down_arrow_visible,
 		"synchronous_render": _synchronous_render,
-		"event_stream_status": "first_pass_display_text_events",
+		"event_stream_status": "first_pass_source_text_events" if _event_stream_source == "source_text" else "first_pass_display_text_events",
+		"event_stream_source": _event_stream_source,
+		"source_text": _source_text,
+		"source_text_label": _source_text_label,
+		"source_text_length": _source_text.length(),
+		"source_text_control_metadata_count": _source_text_control_metadata_count,
+		"source_audio_cue_metadata_count": _source_audio_cue_metadata_count,
+		"source_metadata_only_count": _source_metadata_only_count,
 		"event_count": _events.size(),
 		"event_index": _event_index,
 		"control_event_count": _control_event_count,
@@ -405,11 +425,35 @@ func _mark_complete_if_done() -> void:
 		_complete = true
 
 
-func _parse_text_events(text: String) -> Array:
+func _parse_text_events(text: String, event_source: String = "display_text") -> Array:
 	var events := []
 	var index := 0
 	while index < text.length():
 		var character := text.substr(index, 1)
+		if event_source == "source_text" and character == "\\":
+			if index + 1 >= text.length():
+				events.append({"kind": "visible", "text": "\\"})
+				index += 1
+				continue
+			var escaped := text.substr(index + 1, 1)
+			match escaped:
+				"n", "l":
+					events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\%s" % escaped})
+				"p":
+					events.append({"kind": "newline", "source": "CHAR_NEWLINE", "source_escape": "\\p"})
+					events.append({"kind": "page_break", "text": "\n", "source": "CHAR_PROMPT_SCROLL", "source_escape": "\\p"})
+				"r":
+					events.append({"kind": "visible", "text": "\r", "source_escape": "\\r"})
+				"t":
+					events.append({"kind": "visible", "text": "    ", "source_escape": "\\t"})
+				"\\":
+					events.append({"kind": "visible", "text": "\\", "source_escape": "\\\\"})
+				"\"":
+					events.append({"kind": "visible", "text": "\"", "source_escape": "\\\""})
+				_:
+					events.append({"kind": "visible", "text": "\\%s" % escaped, "source_escape": "\\%s" % escaped})
+			index += 2
+			continue
 		if character == "{":
 			var close_index := text.find("}", index + 1)
 			if close_index > index:
@@ -428,7 +472,7 @@ func _parse_text_events(text: String) -> Array:
 			events.append({"kind": "newline", "source": "CHAR_NEWLINE"})
 			index += 1
 			continue
-		events.append({"kind": "visible", "text": character})
+		events.append({"kind": "visible", "text": _display_text(character)})
 		index += 1
 	return events
 
@@ -504,6 +548,12 @@ func _add_unsupported(code: String) -> void:
 
 func _display_text(text: String) -> String:
 	return text.replace("\t", "    ")
+
+
+func _strip_source_text_terminator(text: String) -> String:
+	if text.ends_with("$"):
+		return text.substr(0, text.length() - 1)
+	return text
 
 
 func _dictionary_value(value) -> Dictionary:
