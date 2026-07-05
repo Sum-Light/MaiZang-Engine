@@ -12,20 +12,78 @@ const HP_GREEN := Color(0.26, 0.74, 0.30, 1.0)
 const HP_YELLOW := Color(0.88, 0.76, 0.24, 1.0)
 const HP_RED := Color(0.88, 0.25, 0.22, 1.0)
 const PRESENTATION_STATUS := "first_slice_not_source_equivalent"
+const PRESENTATION_ASSET_LAYOUT_STATUS := "exported_asset_layout_first_pass"
 const SOURCE_FLOW_STATUS := "source_action_move_window_flow_first_pass"
 const SOURCE_BATTLE_TEXT_CONTROLLER_CONTEXT_STATUS := "source_battle_text_controller_context_first_pass"
+const BATTLE_INPUT_STATUS := "keyboard_input_first_pass"
 const BG0_Y_ACTION_CHOOSE := DISPLAY_HEIGHT
 const BG0_Y_MOVE_CHOOSE := DISPLAY_HEIGHT * 2
 const ACTION_FIGHT := "fight"
 const ACTION_PARTY := "party"
 const ACTION_BAG := "bag"
 const ACTION_RUN := "run"
+const ACTION_ORDER := [ACTION_FIGHT, ACTION_BAG, ACTION_PARTY, ACTION_RUN]
 const PHASE_INTRO := "intro_message"
 const PHASE_ACTION_SELECT := "action_select"
 const PHASE_MOVE_SELECT := "move_select"
 const PHASE_TURN_MESSAGE := "turn_message"
 const PHASE_FINISHED := "finished"
 const STRINGID_INTROMSG := "STRINGID_INTROMSG"
+const DEFAULT_BATTLE_ENVIRONMENT := "BATTLE_ENVIRONMENT_GRASS"
+const BACKGROUND_ZERO_KEY_SHADER_CODE := """
+shader_type canvas_item;
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	if (tex.a > 0.99 && tex.r < 0.01 && tex.g < 0.01 && tex.b < 0.01) {
+		discard;
+	}
+	COLOR = tex * COLOR;
+}
+"""
+
+const SCREEN_ASSET_RECTS := {
+	"environment_background": [0, 0, 240, 112],
+	"environment_background_region": [0, 0, 240, 112],
+	"environment_entry": [0, 65, 240, 47],
+	"environment_entry_region": [0, 65, 240, 47],
+	"player_sprite": [32, 56, 64, 64],
+	"opponent_sprite": [144, 30, 64, 64],
+	"opponent_shadow": [160, 70, 32, 8],
+	"opponent_healthbox": [12, 14, 128, 32],
+	"player_healthbox": [128, 74, 128, 64],
+	"opponent_hp_bar": [52, 32, 48, 4],
+	"player_hp_bar": [176, 92, 48, 4],
+	"opponent_name": [17, 17, 88, 10],
+	"opponent_hp_label": [36, 29, 18, 10],
+	"player_name": [143, 78, 82, 10],
+	"player_hp_label": [174, 99, 60, 10],
+}
+
+const ACTION_CURSOR_POSITIONS := {
+	ACTION_FIGHT: [137, 122],
+	ACTION_BAG: [193, 122],
+	ACTION_PARTY: [137, 138],
+	ACTION_RUN: [193, 138],
+}
+
+const MOVE_CURSOR_POSITIONS := [
+	[17, 122],
+	[89, 122],
+	[17, 138],
+	[89, 138],
+]
+
+const BATTLE_PRESENTATION_ASSET_RULES := {
+	"asset_status": PRESENTATION_ASSET_LAYOUT_STATUS,
+	"runtime_image_policy": "exported_rgba_textures_only",
+	"environment_policy": "use_generated_battle_environment_texture_with_zero_rgb_discard_material_first_pass",
+	"pokemon_sprite_policy": "use_generated_battle_sprite_pngs_first_frame_static",
+	"front_sprite_frame_policy": "front_png_first_64x64_frame_until_source_animation_runtime",
+	"healthbox_policy": "use_generated_healthbox_frame_pngs_at_screenshot_aligned_rects",
+	"hp_bar_policy": "godot_rect_fill_over_generated_healthbox_first_pass",
+	"audio_policy": "metadata_only",
+	"source_equivalence": "not_claimed",
+}
 
 const SOURCE_WINDOW_IDS := {
 	"B_WIN_MSG": 0,
@@ -109,7 +167,17 @@ var _last_result: Dictionary = {}
 var _ui_mode := "action"
 var _ui_phase := PHASE_INTRO
 var _selected_move_slot := 0
+var _selected_action_id := ACTION_FIGHT
+var _battle_input_count := 0
 
+var _battle_backdrop: ColorRect
+var _environment_background: TextureRect
+var _environment_entry: TextureRect
+var _opponent_shadow: TextureRect
+var _opponent_sprite: TextureRect
+var _player_sprite: TextureRect
+var _opponent_healthbox_texture: TextureRect
+var _player_healthbox_texture: TextureRect
 var _opponent_name_label: Label
 var _opponent_hp_label: Label
 var _opponent_hp_fill: ColorRect
@@ -121,8 +189,12 @@ var _action_prompt_label: Label
 var _pp_label: Label
 var _pp_remaining_label: Label
 var _move_type_label: Label
+var _action_cursor_label: Label
+var _move_cursor_label: Label
 var _finish_button: Button
 var _window_renderer: Control = null
+var _presentation_assets_snapshot: Dictionary = {}
+var _background_zero_key_material: ShaderMaterial = null
 
 
 func _ready() -> void:
@@ -141,6 +213,7 @@ func configure(sequence: Dictionary, battle_engine: Node, game_state: Node = nul
 	_message_lines = [_battle_opening_message()]
 	_ui_mode = "action"
 	_ui_phase = PHASE_INTRO
+	_selected_action_id = ACTION_FIGHT
 	_selected_move_slot = max(0, _first_usable_move_slot(_active_mon("player")))
 	_finish_button.visible = false
 	_refresh()
@@ -179,6 +252,47 @@ func play_player_move(move_slot: int) -> Dictionary:
 	}
 
 
+func handle_battle_input(action_name: String) -> Dictionary:
+	_ensure_ui()
+	var action := String(action_name)
+	var before_phase := _ui_phase
+	var before_mode := _ui_mode
+	var result := {
+		"status": "ignored",
+		"input_status": BATTLE_INPUT_STATUS,
+		"action": action,
+		"ui_phase_before": before_phase,
+		"ui_mode_before": before_mode,
+	}
+	match action:
+		"ui_accept":
+			result = _activate_current_selection()
+		"ui_cancel":
+			result = _cancel_current_selection()
+		"ui_left":
+			result = _move_current_selection(Vector2i(-1, 0))
+		"ui_right":
+			result = _move_current_selection(Vector2i(1, 0))
+		"ui_up":
+			result = _move_current_selection(Vector2i(0, -1))
+		"ui_down":
+			result = _move_current_selection(Vector2i(0, 1))
+		_:
+			result["reason"] = "unsupported_battle_input_action"
+			return result
+	_battle_input_count += 1
+	result["input_status"] = BATTLE_INPUT_STATUS
+	result["action"] = action
+	result["ui_phase_before"] = before_phase
+	result["ui_mode_before"] = before_mode
+	result["ui_phase_after"] = _ui_phase
+	result["ui_mode_after"] = _ui_mode
+	result["selected_action"] = _selected_action_id
+	result["selected_move_slot"] = _selected_move_slot
+	_refresh_input_cursors()
+	return result
+
+
 func advance_intro() -> Dictionary:
 	if _ui_phase != PHASE_INTRO:
 		return {"status": "blocked", "ui_phase": _ui_phase}
@@ -190,6 +304,8 @@ func advance_intro() -> Dictionary:
 
 
 func select_action(action_id: String) -> Dictionary:
+	if ACTION_ORDER.has(action_id):
+		_selected_action_id = action_id
 	if not _last_result.is_empty():
 		return {"status": "blocked", "reason": "battle_result_ready"}
 	if _ui_phase == PHASE_INTRO:
@@ -258,6 +374,8 @@ func get_ui_snapshot() -> Dictionary:
 		"source_battle_text_controller_context": _source_battle_text_controller_context_snapshot(),
 		"source_type_display_status": _source_type_display_status(),
 		"source_hp_bar_pixels": HP_BAR_PIXELS,
+		"battle_presentation_assets": _battle_presentation_assets_snapshot(),
+		"battle_input": _battle_input_snapshot(),
 		"source_window_renderer_status": _source_window_renderer_status(),
 		"source_window_renderer": _source_window_renderer_snapshot(),
 		"source_bg0_y": {
@@ -276,16 +394,21 @@ func _ensure_ui() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	custom_minimum_size = VIEWPORT_SIZE
 
-	var background := ColorRect.new()
-	background.color = Color(0.55, 0.74, 0.61, 1.0)
-	background.set_anchors_preset(Control.PRESET_FULL_RECT)
-	add_child(background)
+	_battle_backdrop = ColorRect.new()
+	_battle_backdrop.color = Color8(197, 238, 189)
+	_battle_backdrop.position = Vector2.ZERO
+	_battle_backdrop.size = VIEWPORT_SIZE
+	add_child(_battle_backdrop)
 
-	_add_rect(Rect2(0, 112, 240, 48), Color(0.93, 0.91, 0.79, 1.0))
-	_add_rect(Rect2(44, 30, 88, 26), Color(0.98, 0.98, 0.91, 1.0))
-	_add_rect(Rect2(158, 88, 78, 30), Color(0.98, 0.98, 0.91, 1.0))
-	_add_rect(Rect2(12, 28, 48, 28), Color(0.35, 0.46, 0.40, 1.0))
-	_add_rect(Rect2(176, 66, 48, 28), Color(0.35, 0.46, 0.40, 1.0))
+	_environment_background = _add_texture_rect("EnvironmentBackground", _rect_from_array(SCREEN_ASSET_RECTS["environment_background"]))
+	_environment_background.material = _background_zero_key_shader_material()
+	_environment_entry = _add_texture_rect("EnvironmentEntry", _rect_from_array(SCREEN_ASSET_RECTS["environment_entry"]))
+	_environment_entry.visible = false
+	_opponent_shadow = _add_texture_rect("OpponentShadow", _rect_from_array(SCREEN_ASSET_RECTS["opponent_shadow"]))
+	_opponent_sprite = _add_texture_rect("OpponentSprite", _rect_from_array(SCREEN_ASSET_RECTS["opponent_sprite"]))
+	_player_sprite = _add_texture_rect("PlayerSprite", _rect_from_array(SCREEN_ASSET_RECTS["player_sprite"]))
+	_opponent_healthbox_texture = _add_texture_rect("OpponentHealthbox", _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"]))
+	_player_healthbox_texture = _add_texture_rect("PlayerHealthbox", _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"]))
 
 	_window_renderer = BATTLE_WINDOW_RENDERER_SCRIPT.new()
 	_window_renderer.name = "BattleWindowRenderer"
@@ -295,12 +418,12 @@ func _ensure_ui() -> void:
 	add_child(_window_renderer)
 	_configure_window_renderer()
 
-	_opponent_name_label = _add_label(Rect2(50, 32, 74, 10), "")
-	_opponent_hp_label = _add_label(Rect2(50, 44, 18, 10), "HP")
-	_opponent_hp_fill = _add_hp_bar(Rect2(78, 45, HP_BAR_PIXELS, 4))
-	_player_name_label = _add_label(Rect2(164, 90, 66, 10), "")
-	_player_hp_label = _add_label(Rect2(164, 106, 66, 10), "")
-	_player_hp_fill = _add_hp_bar(Rect2(184, 102, HP_BAR_PIXELS, 4))
+	_opponent_name_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["opponent_name"]), "")
+	_opponent_hp_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_label"]), "HP")
+	_opponent_hp_fill = _add_hp_bar(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_bar"]))
+	_player_name_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["player_name"]), "")
+	_player_hp_label = _add_label(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_label"]), "")
+	_player_hp_fill = _add_hp_bar(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_bar"]))
 	_message_label = _add_label(_window_text_rect("B_WIN_MSG", 0), "")
 	_message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
@@ -326,6 +449,8 @@ func _ensure_ui() -> void:
 	_pp_label = _add_label(_window_text_rect("B_WIN_PP", BG0_Y_MOVE_CHOOSE), _source_battle_text("gText_MoveInterfacePP"))
 	_pp_remaining_label = _add_label(_window_text_rect("B_WIN_PP_REMAINING", BG0_Y_MOVE_CHOOSE), "")
 	_move_type_label = _add_label(_window_text_rect("B_WIN_MOVE_TYPE", BG0_Y_MOVE_CHOOSE), "")
+	_action_cursor_label = _add_label(Rect2(Vector2.ZERO, Vector2(8, 10)), ">")
+	_move_cursor_label = _add_label(Rect2(Vector2.ZERO, Vector2(8, 10)), ">")
 
 	_finish_button = Button.new()
 	_finish_button.position = Vector2(128, 148)
@@ -335,6 +460,76 @@ func _ensure_ui() -> void:
 	_finish_button.add_theme_font_size_override("font_size", FONT_SIZE)
 	_finish_button.pressed.connect(_on_finish_pressed)
 	add_child(_finish_button)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event == null or not is_visible_in_tree():
+		return
+	for action in ["ui_accept", "ui_cancel", "ui_left", "ui_right", "ui_up", "ui_down"]:
+		if event.is_action_pressed(action):
+			var result := handle_battle_input(action)
+			if String(result.get("status", "")) != "ignored":
+				get_viewport().set_input_as_handled()
+			return
+
+
+func _activate_current_selection() -> Dictionary:
+	if _ui_phase == PHASE_INTRO:
+		return advance_intro()
+	if _ui_phase == PHASE_ACTION_SELECT:
+		return select_action(_selected_action_id)
+	if _ui_phase == PHASE_MOVE_SELECT:
+		return play_player_move(_selected_move_slot)
+	if _ui_phase == PHASE_FINISHED and _finish_button != null and _finish_button.visible:
+		_on_finish_pressed()
+		return {"status": "ok", "ui_phase": _ui_phase, "action": "finish"}
+	return {"status": "blocked", "reason": "no_active_battle_input_target", "ui_phase": _ui_phase}
+
+
+func _cancel_current_selection() -> Dictionary:
+	if _ui_phase == PHASE_MOVE_SELECT:
+		_ui_mode = "action"
+		_ui_phase = PHASE_ACTION_SELECT
+		_message_lines = []
+		_selected_action_id = ACTION_FIGHT
+		_refresh()
+		return {"status": "ok", "ui_phase": _ui_phase, "ui_mode": _ui_mode}
+	return {"status": "blocked", "reason": "battle_cancel_not_available", "ui_phase": _ui_phase}
+
+
+func _move_current_selection(delta: Vector2i) -> Dictionary:
+	if _ui_phase == PHASE_ACTION_SELECT:
+		_selected_action_id = _move_action_selection(delta)
+		_refresh_input_cursors()
+		return {"status": "ok", "ui_phase": _ui_phase, "selected_action": _selected_action_id}
+	if _ui_phase == PHASE_MOVE_SELECT:
+		_selected_move_slot = _move_slot_selection(delta)
+		_refresh_move_selection_metadata(_active_mon("player"))
+		_refresh_input_cursors()
+		_refresh_window_renderer(_active_mon("player"), false, false, true)
+		return {"status": "ok", "ui_phase": _ui_phase, "selected_move_slot": _selected_move_slot}
+	return {"status": "blocked", "reason": "battle_direction_not_available", "ui_phase": _ui_phase}
+
+
+func _move_action_selection(delta: Vector2i) -> String:
+	var index := ACTION_ORDER.find(_selected_action_id)
+	if index < 0:
+		index = 0
+	var col := clampi(index % 2 + delta.x, 0, 1)
+	var row := clampi(floori(float(index) / 2.0) + delta.y, 0, 1)
+	return String(ACTION_ORDER[row * 2 + col])
+
+
+func _move_slot_selection(delta: Vector2i) -> int:
+	var moves := _array_value(_active_mon("player").get("moves", []))
+	var usable_count = mini(4, max(1, moves.size()))
+	var index := clampi(_selected_move_slot, 0, usable_count - 1)
+	var col := index % 2
+	var row := floori(float(index) / 2.0)
+	var next := clampi((row + delta.y), 0, 1) * 2 + clampi(col + delta.x, 0, 1)
+	if next >= usable_count:
+		return index
+	return next
 
 
 func _on_move_pressed(move_slot: int) -> void:
@@ -431,6 +626,7 @@ func _on_finish_pressed() -> void:
 func _refresh() -> void:
 	var player_mon := _active_mon("player")
 	var opponent_mon := _active_mon("opponent")
+	_refresh_presentation_assets(player_mon, opponent_mon)
 	_player_name_label.text = _mon_title(player_mon)
 	_player_hp_label.text = _hp_text(player_mon)
 	_set_hp_fill(_player_hp_fill, player_mon)
@@ -439,6 +635,7 @@ func _refresh() -> void:
 	_set_hp_fill(_opponent_hp_fill, opponent_mon)
 	_message_label.text = "\n".join(_message_lines.slice(max(0, _message_lines.size() - 4), _message_lines.size()))
 	_refresh_bottom_windows(player_mon)
+	_refresh_input_cursors()
 
 
 func _refresh_bottom_windows(player_mon: Dictionary) -> void:
@@ -521,6 +718,234 @@ func _refresh_window_renderer(player_mon: Dictionary, message_visible: bool, act
 		_window_renderer.clear_windows()
 
 
+func _refresh_presentation_assets(player_mon: Dictionary, opponent_mon: Dictionary) -> void:
+	var environment_record := _battle_environment_record()
+	var background_asset := _dict_or_empty(environment_record.get("background", {}))
+	var entry_asset := _dict_or_empty(environment_record.get("entry", {}))
+	var player_sprite_record := _pokemon_sprite_record(player_mon)
+	var opponent_sprite_record := _pokemon_sprite_record(opponent_mon)
+	var player_sprite_asset := _dict_or_empty(player_sprite_record.get("back", {}))
+	var opponent_sprite_asset := _dict_or_empty(opponent_sprite_record.get("front", {}))
+	var player_healthbox_asset := _battle_interface_texture_record("healthbox_singles_player")
+	var opponent_healthbox_asset := _battle_interface_texture_record("healthbox_singles_opponent")
+	var shadow_asset := _battle_interface_texture_record("enemy_mon_shadow")
+
+	_apply_texture_asset(
+		_environment_background,
+		background_asset,
+		_rect_from_array(SCREEN_ASSET_RECTS["environment_background"]),
+		_rect_from_array(SCREEN_ASSET_RECTS["environment_background_region"])
+	)
+	var entry_visible := _should_show_environment_entry()
+	_apply_texture_asset(
+		_environment_entry,
+		entry_asset,
+		_rect_from_array(SCREEN_ASSET_RECTS["environment_entry"]),
+		_rect_from_array(SCREEN_ASSET_RECTS["environment_entry_region"])
+	)
+	_environment_entry.visible = entry_visible and _environment_entry.texture != null
+	_apply_texture_asset(_opponent_shadow, shadow_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_shadow"]))
+	_apply_texture_asset(_player_sprite, player_sprite_asset, _rect_from_array(SCREEN_ASSET_RECTS["player_sprite"]))
+	_apply_texture_asset(
+		_opponent_sprite,
+		opponent_sprite_asset,
+		_rect_from_array(SCREEN_ASSET_RECTS["opponent_sprite"]),
+		Rect2(0, 0, 64, 64)
+	)
+	_apply_texture_asset(_opponent_healthbox_texture, opponent_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"]))
+	_apply_texture_asset(_player_healthbox_texture, player_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"]))
+
+	_presentation_assets_snapshot = {
+		"status": PRESENTATION_ASSET_LAYOUT_STATUS,
+		"asset_rules": BATTLE_PRESENTATION_ASSET_RULES.duplicate(true),
+		"layout_basis": "2011_zh_capture_aligned_first_pass_plus_source_metadata",
+		"loaded_asset_count": _loaded_presentation_asset_count(),
+		"environment": {
+			"symbol": String(environment_record.get("symbol", DEFAULT_BATTLE_ENVIRONMENT)),
+			"background_path": _asset_project_path(background_asset),
+			"background_screen_rect": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["environment_background"])),
+			"background_region_rect": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["environment_background_region"])),
+			"background_material": "zero_rgb_discard_first_pass",
+			"entry_path": _asset_project_path(entry_asset),
+			"entry_visible": entry_visible,
+			"entry_screen_rect": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["environment_entry"])),
+			"entry_region_rect": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["environment_entry_region"])),
+		},
+		"battlers": {
+			"player": _presentation_battler_snapshot(player_mon, player_sprite_asset, _rect_from_array(SCREEN_ASSET_RECTS["player_sprite"]), "back"),
+			"opponent": _presentation_battler_snapshot(opponent_mon, opponent_sprite_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_sprite"]), "front"),
+		},
+		"healthboxes": {
+			"player": _presentation_asset_rect_snapshot(player_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["player_healthbox"])),
+			"opponent": _presentation_asset_rect_snapshot(opponent_healthbox_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_healthbox"])),
+			"source_sprite_origin_coords": SOURCE_HEALTHBOX_COORDS.duplicate(true),
+			"screen_rect_policy": "screenshot_aligned_until_subsprite_healthbox_runtime",
+		},
+		"hp_bars": {
+			"player": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["player_hp_bar"])),
+			"opponent": _rect_array(_rect_from_array(SCREEN_ASSET_RECTS["opponent_hp_bar"])),
+			"width_px": HP_BAR_PIXELS,
+		},
+		"shadow": _presentation_asset_rect_snapshot(shadow_asset, _rect_from_array(SCREEN_ASSET_RECTS["opponent_shadow"])),
+	}
+
+
+func _battle_environment_record() -> Dictionary:
+	_ensure_data_registry()
+	var environment_symbol := String(_battle_state.get("battle_environment", _sequence.get("battle_environment", "")))
+	if environment_symbol.is_empty():
+		environment_symbol = String(_battle_state.get("battle_environment_symbol", _sequence.get("battle_environment_symbol", "")))
+	if environment_symbol.is_empty():
+		environment_symbol = DEFAULT_BATTLE_ENVIRONMENT
+	if _data_registry != null and _data_registry.has_method("get_battle_environment_record"):
+		var record = _data_registry.get_battle_environment_record(environment_symbol)
+		if typeof(record) == TYPE_DICTIONARY and not record.is_empty():
+			return record
+	return {"symbol": environment_symbol}
+
+
+func _pokemon_sprite_record(mon: Dictionary) -> Dictionary:
+	var species_symbol := _mon_species_symbol(mon)
+	if species_symbol.is_empty():
+		return {}
+	_ensure_data_registry()
+	if _data_registry != null and _data_registry.has_method("get_pokemon_battle_sprite_record"):
+		var record = _data_registry.get_pokemon_battle_sprite_record(species_symbol)
+		if typeof(record) == TYPE_DICTIONARY:
+			return record
+	return {}
+
+
+func _battle_interface_texture_record(asset_id: String) -> Dictionary:
+	_ensure_data_registry()
+	if _data_registry != null and _data_registry.has_method("get_battle_interface_texture_record"):
+		var record = _data_registry.get_battle_interface_texture_record(asset_id)
+		if typeof(record) == TYPE_DICTIONARY:
+			return record
+	return {}
+
+
+func _mon_species_symbol(mon: Dictionary) -> String:
+	for key in ["species", "species_symbol", "symbol"]:
+		var value := String(mon.get(key, ""))
+		if value.is_empty():
+			continue
+		if value.begins_with("SPECIES_"):
+			return value
+		return "SPECIES_%s" % value.to_upper()
+	return ""
+
+
+func _should_show_environment_entry() -> bool:
+	return String(_sequence.get("battle_kind", _battle_state.get("battle_kind", ""))) == "wild" and _ui_phase == PHASE_INTRO
+
+
+func _apply_texture_asset(target: TextureRect, asset: Dictionary, rect: Rect2, region: Rect2 = Rect2()) -> void:
+	if target == null:
+		return
+	target.position = rect.position
+	target.size = rect.size
+	var texture := _load_texture_for_asset(asset)
+	if texture != null and region.size.x > 0 and region.size.y > 0:
+		var atlas := AtlasTexture.new()
+		atlas.atlas = texture
+		atlas.region = region
+		texture = atlas
+	target.texture = texture
+	target.visible = target.texture != null
+
+
+func _load_texture_for_asset(asset: Dictionary) -> Texture2D:
+	var path := _asset_resource_path(asset)
+	if path.is_empty():
+		return null
+	var texture = load(path)
+	return texture if texture is Texture2D else null
+
+
+func _asset_resource_path(asset: Dictionary) -> String:
+	var path := String(asset.get("image", ""))
+	if not path.is_empty():
+		return path
+	var project_path := String(asset.get("image_project_path", ""))
+	if project_path.is_empty():
+		return ""
+	return "res://%s" % project_path
+
+
+func _asset_project_path(asset: Dictionary) -> String:
+	var project_path := String(asset.get("image_project_path", ""))
+	if not project_path.is_empty():
+		return project_path
+	var path := String(asset.get("image", ""))
+	if path.begins_with("res://"):
+		return path.trim_prefix("res://")
+	return path
+
+
+func _presentation_battler_snapshot(mon: Dictionary, asset: Dictionary, rect: Rect2, sprite_side: String) -> Dictionary:
+	var result := _presentation_asset_rect_snapshot(asset, rect)
+	result["species"] = _mon_species_symbol(mon)
+	result["sprite_side"] = sprite_side
+	if sprite_side == "front":
+		result["frame_region_rect"] = [0, 0, 64, 64]
+		result["frame_policy"] = "first_frame_static"
+	return result
+
+
+func _presentation_asset_rect_snapshot(asset: Dictionary, rect: Rect2) -> Dictionary:
+	var size := _dict_or_empty(asset.get("size", asset.get("image_size", {})))
+	return {
+		"path": _asset_project_path(asset),
+		"screen_rect": _rect_array(rect),
+		"image_size": [int(size.get("w", 0)), int(size.get("h", 0))],
+		"asset_status": String(asset.get("status", asset.get("asset_status", ""))),
+	}
+
+
+func _loaded_presentation_asset_count() -> int:
+	var count := 0
+	for texture_rect in [
+		_environment_background,
+		_environment_entry,
+		_opponent_shadow,
+		_opponent_sprite,
+		_player_sprite,
+		_opponent_healthbox_texture,
+		_player_healthbox_texture,
+	]:
+		if texture_rect != null and texture_rect.texture != null:
+			count += 1
+	return count
+
+
+func _battle_presentation_assets_snapshot() -> Dictionary:
+	return _presentation_assets_snapshot.duplicate(true)
+
+
+func _battle_input_snapshot() -> Dictionary:
+	return {
+		"status": BATTLE_INPUT_STATUS,
+		"selected_action": _selected_action_id,
+		"selected_move_slot": _selected_move_slot,
+		"handled_input_count": _battle_input_count,
+		"supported_actions": ["ui_accept", "ui_cancel", "ui_left", "ui_right", "ui_up", "ui_down"],
+		"action_order": ACTION_ORDER.duplicate(),
+	}
+
+
+func _refresh_input_cursors() -> void:
+	if _action_cursor_label == null or _move_cursor_label == null:
+		return
+	_action_cursor_label.visible = _ui_phase == PHASE_ACTION_SELECT and _last_result.is_empty()
+	_move_cursor_label.visible = _ui_phase == PHASE_MOVE_SELECT and _last_result.is_empty()
+	if _action_cursor_label.visible:
+		_action_cursor_label.position = _vector_from_array(ACTION_CURSOR_POSITIONS.get(_selected_action_id, ACTION_CURSOR_POSITIONS[ACTION_FIGHT]))
+	if _move_cursor_label.visible:
+		var move_index := clampi(_selected_move_slot, 0, MOVE_CURSOR_POSITIONS.size() - 1)
+		_move_cursor_label.position = _vector_from_array(MOVE_CURSOR_POSITIONS[move_index])
+
+
 func _build_result_contract(outcome: String) -> Dictionary:
 	var result := {}
 	if _battle_engine != null and _battle_engine.has_method("build_battle_result"):
@@ -580,10 +1005,12 @@ func _battle_scene_source_trace() -> Array:
 		"src/battle_main.c:DoBattleIntro",
 		"src/battle_main.c:HandleTurnActionSelectionState",
 		"src/battle_bg.c:sStandardBattleWindowTemplates",
+		"src/data/graphics/battle_environment.h",
 		"src/battle_interface.c",
 		"src/battle_interface.c:sBattlerHealthboxCoords",
 		"src/battle_controller_player.c",
 		"src/battle_controller_player.c:MoveSelectionDisplayMoveType",
+		"src/data/graphics/pokemon.h",
 		"src/data/types_info.h:gTypesInfo",
 		"src/battle_message.c",
 		"src/battle_message.c:sTextOnWindowsInfo_Normal",
@@ -595,19 +1022,27 @@ func _battle_scene_unsupported() -> Array:
 	var unsupported := [{
 		"code": "battle_scene_not_source_equivalent",
 		"source": "src/battle_main.c:CB2_InitBattle",
-		"detail": "This scene is a debug vertical slice. It does not recreate the source battle tilemaps, battler sprites, healthbox sprites, window graphics, audio, or exact callback/task flow.",
+		"detail": "This scene is a debug vertical slice. It now places first-pass exported battle assets, but does not recreate the exact source battle tilemaps, sprite animation, healthbox subtasks, audio, or callback/task flow.",
 	}, {
 		"code": "battle_ui_windows_not_source_equivalent",
 		"source": "src/battle_interface.c; src/battle_controller_player.c; src/battle_message.c",
-		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, and HP bar width, but it still uses Godot controls instead of imported source window tilemaps, RGBA window textures, text printer glyphs, and healthbox sprites.",
+		"detail": "The first pass now follows source action/move window ids, BG0 scroll offsets, text symbols, HP bar width, and static exported healthbox frame PNGs, but exact text pixels, cursor sprites, healthbox subtasks, and full controller flow remain pending.",
+	}, {
+		"code": "battle_presentation_asset_layout_first_pass",
+		"source": "src/battle_bg.c; src/battle_interface.c; src/data/graphics/pokemon.h",
+		"detail": "Generated RGBA environment, Pokemon, shadow, and healthbox textures are placed in screenshot-aligned single-battle rects. Exact background scrolling, entry playback, Pokemon sprite offsets/elevation, and healthbox slide animation are still pending.",
 	}, {
 		"code": "battle_action_menu_partial",
 		"source": "src/battle_controller_player.c:PlayerHandleChooseAction; src/battle_controller_player.c:HandleInputChooseAction",
 		"detail": "The source Fight/Pokémon/Bag/Run action menu is visible, but only Fight is interactive in this slice.",
 	}, {
-		"code": "battle_healthbox_sprites_not_imported",
+		"code": "battle_healthbox_sprites_static_first_pass",
 		"source": "src/battle_interface.c:CreateBattlerHealthboxSprites",
-		"detail": "Healthbox anchors and 48-pixel HP bar scaling are source-backed, but the OBJ healthbox graphics and slide-in animation are not imported yet.",
+		"detail": "Generated healthbox frame PNGs are displayed statically. Source healthbox subtasks, right-side sprite composition, slide-in, status icons, and exact number glyphs remain future work.",
+	}, {
+		"code": "battle_keyboard_input_first_pass",
+		"source": "src/battle_controller_player.c:PlayerHandleChooseAction",
+		"detail": "Godot ui_accept/ui_cancel/directional actions now drive the debug BattleScene menus. Exact source cursor sprite playback, repeat timing, and button sound effects remain pending.",
 	}, {
 		"code": "battle_audio_unsupported",
 		"source": "src/battle_controller_player.c; src/battle_main.c",
@@ -1102,8 +1537,21 @@ func _add_label(rect: Rect2, text: String) -> Label:
 	label.text = text
 	label.clip_text = true
 	label.add_theme_font_size_override("font_size", FONT_SIZE)
+	label.add_theme_color_override("font_color", Color(0.10, 0.16, 0.14, 1.0))
 	add_child(label)
 	return label
+
+
+func _add_texture_rect(node_name: String, rect: Rect2) -> TextureRect:
+	var texture_rect := TextureRect.new()
+	texture_rect.name = node_name
+	texture_rect.position = rect.position
+	texture_rect.size = rect.size
+	texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
+	texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	add_child(texture_rect)
+	return texture_rect
 
 
 func _add_action_button(action_id: String, text: String, position: Vector2) -> void:
@@ -1131,6 +1579,34 @@ func _add_rect(rect: Rect2, color: Color) -> ColorRect:
 func _add_hp_bar(rect: Rect2) -> ColorRect:
 	_add_rect(Rect2(rect.position - Vector2(1, 1), rect.size + Vector2(2, 2)), Color(0.16, 0.16, 0.16, 1.0))
 	return _add_rect(rect, HP_GREEN)
+
+
+func _rect_from_array(values) -> Rect2:
+	var items := _array_value(values)
+	if items.size() < 4:
+		return Rect2()
+	return Rect2(Vector2(int(items[0]), int(items[1])), Vector2(int(items[2]), int(items[3])))
+
+
+func _vector_from_array(values) -> Vector2:
+	var items := _array_value(values)
+	if items.size() < 2:
+		return Vector2.ZERO
+	return Vector2(int(items[0]), int(items[1]))
+
+
+func _rect_array(rect: Rect2) -> Array:
+	return [int(rect.position.x), int(rect.position.y), int(rect.size.x), int(rect.size.y)]
+
+
+func _background_zero_key_shader_material() -> ShaderMaterial:
+	if _background_zero_key_material != null:
+		return _background_zero_key_material
+	var shader := Shader.new()
+	shader.code = BACKGROUND_ZERO_KEY_SHADER_CODE
+	_background_zero_key_material = ShaderMaterial.new()
+	_background_zero_key_material.shader = shader
+	return _background_zero_key_material
 
 
 func _move_button_rect(index: int) -> Rect2:

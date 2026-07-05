@@ -55,6 +55,40 @@ func _run() -> void:
 	_assert(String(source_assets.get("textbox_texture_source", "")) == "graphics/battle_interface/textbox.png", "expected source textbox asset metadata")
 	_assert(String(source_assets.get("render_style_policy", "")) == "godot_theme_material_shader", "expected Godot-native render style policy")
 	_assert(String(source_assets.get("healthbox_singles_player", "")) == "graphics/battle_interface/healthbox_singles_player.png", "expected source healthbox asset metadata")
+	var presentation := _dict_value(intro.get("battle_presentation_assets", {}))
+	_assert(String(presentation.get("status", "")) == "exported_asset_layout_first_pass", "expected exported battle asset layout status")
+	_assert(int(presentation.get("loaded_asset_count", 0)) >= 6, "expected exported presentation assets to load")
+	var asset_rules := _dict_value(presentation.get("asset_rules", {}))
+	_assert(String(asset_rules.get("runtime_image_policy", "")) == "exported_rgba_textures_only", "expected exported RGBA asset policy")
+	_assert(String(asset_rules.get("source_equivalence", "")) == "not_claimed", "expected presentation layout to avoid source-equivalence claim")
+	var environment_assets := _dict_value(presentation.get("environment", {}))
+	_assert(String(environment_assets.get("symbol", "")) == "BATTLE_ENVIRONMENT_GRASS", "expected default grass battle environment")
+	_assert(String(environment_assets.get("background_path", "")).ends_with("assets/generated/battle_environment/grass/background.png"), "expected grass background texture path")
+	_assert(_array_value(environment_assets.get("background_screen_rect", [])) == [0, 0, 240, 112], "expected grass background screen rect")
+	_assert(_array_value(environment_assets.get("background_region_rect", [])) == [0, 0, 240, 112], "expected grass background region rect")
+	var battler_assets := _dict_value(presentation.get("battlers", {}))
+	var player_asset := _dict_value(battler_assets.get("player", {}))
+	var opponent_asset := _dict_value(battler_assets.get("opponent", {}))
+	_assert(String(player_asset.get("species", "")) == "SPECIES_MUDKIP", "expected player sprite species")
+	_assert(String(player_asset.get("path", "")).ends_with("assets/generated/pokemon_battle/mudkip/back.png"), "expected player back sprite texture path")
+	_assert(_array_value(player_asset.get("screen_rect", [])) == [32, 56, 64, 64], "expected player sprite screenshot-aligned rect")
+	_assert(String(opponent_asset.get("path", "")).find("assets/generated/pokemon_battle/") >= 0, "expected opponent front sprite texture path")
+	_assert(_array_value(opponent_asset.get("screen_rect", [])) == [144, 30, 64, 64], "expected opponent sprite screenshot-aligned rect")
+	_assert(_array_value(opponent_asset.get("frame_region_rect", [])) == [0, 0, 64, 64], "expected opponent front sprite first-frame crop")
+	var healthbox_assets := _dict_value(presentation.get("healthboxes", {}))
+	var player_healthbox := _dict_value(healthbox_assets.get("player", {}))
+	var opponent_healthbox := _dict_value(healthbox_assets.get("opponent", {}))
+	_assert(String(player_healthbox.get("path", "")).ends_with("assets/generated/battle_interface/healthbox_singles_player.png"), "expected player healthbox texture path")
+	_assert(String(opponent_healthbox.get("path", "")).ends_with("assets/generated/battle_interface/healthbox_singles_opponent.png"), "expected opponent healthbox texture path")
+	_assert(_array_value(player_healthbox.get("screen_rect", [])) == [128, 74, 128, 64], "expected player healthbox screenshot-aligned rect")
+	_assert(_array_value(opponent_healthbox.get("screen_rect", [])) == [12, 14, 128, 32], "expected opponent healthbox screenshot-aligned rect")
+	var hp_bar_assets := _dict_value(presentation.get("hp_bars", {}))
+	_assert(_array_value(hp_bar_assets.get("player", [])) == [176, 92, 48, 4], "expected player HP bar rect")
+	_assert(_array_value(hp_bar_assets.get("opponent", [])) == [52, 32, 48, 4], "expected opponent HP bar rect")
+	var battle_input := _dict_value(intro.get("battle_input", {}))
+	_assert(String(battle_input.get("status", "")) == "keyboard_input_first_pass", "expected battle keyboard input metadata")
+	_assert(_array_value(battle_input.get("supported_actions", [])).has("ui_accept"), "expected ui_accept battle input support")
+	_assert(String(battle_input.get("selected_action", "")) == "fight", "expected default Fight selection")
 	var intro_renderer := _dict_value(intro.get("source_window_renderer", {}))
 	_assert(String(intro.get("source_window_renderer_status", "")) == "first_pass", "expected source window renderer status")
 	_assert(String(intro_renderer.get("runtime_color_policy", "")) == "rgba_textures_and_godot_materials", "expected renderer RGBA/material policy")
@@ -80,9 +114,13 @@ func _run() -> void:
 	var controller_metrics: Dictionary = await _run_battle_text_controller_scene_checks(registry, engine, battle_state)
 	if _failed:
 		return
+	var input_metrics: Dictionary = await _run_unhandled_input_scene_checks(registry, engine, battle_state)
+	if _failed:
+		return
 
-	var intro_advance: Dictionary = scene.advance_intro()
+	var intro_advance: Dictionary = scene.handle_battle_input("ui_accept")
 	_assert(String(intro_advance.get("status", "")) == "ok", "expected intro advance")
+	_assert(String(intro_advance.get("input_status", "")) == "keyboard_input_first_pass", "expected intro advance through keyboard input")
 	await create_timer(0.05).timeout
 	var action_select: Dictionary = scene.get_ui_snapshot()
 	_assert(String(action_select.get("ui_phase", "")) == "action_select", "expected action select phase")
@@ -110,8 +148,13 @@ func _run() -> void:
 	_assert(String(action_ids.get("run", "")) == "B_ACTION_RUN", "expected Run action id")
 	_assert(String(action_select.get("action_prompt", "")).contains("要做什么呢"), "expected source action prompt text")
 
-	var fight_result: Dictionary = scene.select_action("fight")
+	var action_right: Dictionary = scene.handle_battle_input("ui_right")
+	_assert(String(action_right.get("selected_action", "")) == "bag", "expected action cursor to move right to Bag")
+	var action_left: Dictionary = scene.handle_battle_input("ui_left")
+	_assert(String(action_left.get("selected_action", "")) == "fight", "expected action cursor to move left to Fight")
+	var fight_result: Dictionary = scene.handle_battle_input("ui_accept")
 	_assert(String(fight_result.get("status", "")) == "ok", "expected Fight action selection")
+	_assert(String(fight_result.get("input_status", "")) == "keyboard_input_first_pass", "expected Fight selection through keyboard input")
 	await create_timer(0.05).timeout
 	var move_select: Dictionary = scene.get_ui_snapshot()
 	_assert(not _contains_forbidden_runtime_color_key(move_select), "move-select snapshot must not expose palette/source-color keys")
@@ -148,6 +191,11 @@ func _run() -> void:
 	_assert(String(move_select.get("move_type", "")).contains("水"), "expected source TYPE_WATER display name")
 	_assert(not String(move_select.get("move_type", "")).contains("TYPE_WATER"), "expected move type label to use generated source type names")
 
+	var move_right: Dictionary = scene.handle_battle_input("ui_right")
+	_assert(int(move_right.get("selected_move_slot", -1)) == 1, "expected move cursor to move right to second move")
+	var move_left: Dictionary = scene.handle_battle_input("ui_left")
+	_assert(int(move_left.get("selected_move_slot", -1)) == 0, "expected move cursor to move back left to first move")
+
 	var turn_result: Dictionary = scene.play_player_move(0)
 	await create_timer(0.05).timeout
 	var after: Dictionary = scene.get_ui_snapshot()
@@ -158,6 +206,8 @@ func _run() -> void:
 	_assert(_has_unsupported(result_contract, "battle_scene_not_source_equivalent"), "expected battle scene source-equivalence unsupported note")
 	_assert(_has_unsupported(result_contract, "battle_turn_loop_first_slice"), "expected battle turn loop unsupported note")
 	_assert(_has_unsupported(result_contract, "battle_ui_windows_not_source_equivalent"), "expected source window unsupported note")
+	_assert(_has_unsupported(result_contract, "battle_presentation_asset_layout_first_pass"), "expected battle presentation asset layout unsupported note")
+	_assert(_has_unsupported(result_contract, "battle_keyboard_input_first_pass"), "expected battle keyboard input first-pass note")
 	_assert(_has_source_trace(result_contract, "src/battle_main.c:HandleTurnActionSelectionState"), "expected action selection source trace")
 	var turn_opponent_party := _array_value(_dict_value(turn_result.get("battle_state", {})).get("opponent_party", []))
 	var opponent_after_turn := _dict_value(turn_opponent_party[0]) if not turn_opponent_party.is_empty() else {}
@@ -178,6 +228,9 @@ func _run() -> void:
 		"battle_scene_smoke": "ok",
 		"outcome": String(result_contract.get("outcome", "")),
 		"opponent_hp": String(after.get("opponent_hp", "")),
+		"presentation_asset_count": int(_dict_value(after.get("battle_presentation_assets", {})).get("loaded_asset_count", 0)),
+		"battle_input_count": int(_dict_value(after.get("battle_input", {})).get("handled_input_count", 0)),
+		"unhandled_input_events": int(input_metrics.get("events", 0)),
 		"battle_text_controller_contexts": int(controller_metrics.get("contexts", 0)),
 		"recorded_intro_delay": int(controller_metrics.get("recorded_intro_delay", -1)),
 		"recorded_link_intro_delay": int(controller_metrics.get("recorded_link_intro_delay", -1)),
@@ -281,6 +334,65 @@ func _run_battle_text_controller_scene_checks(registry, engine, base_battle_stat
 
 	context_scene.queue_free()
 	return metrics
+
+
+func _run_unhandled_input_scene_checks(registry, engine, battle_state: Dictionary) -> Dictionary:
+	var metrics := {"events": 0}
+	var input_scene = BATTLE_SCENE.instantiate()
+	input_scene.configure_battle_engine(engine)
+	input_scene.configure_data_registry(registry)
+	get_root().add_child(input_scene)
+	await create_timer(0.05).timeout
+	input_scene.load_battle_state(battle_state)
+	await create_timer(0.05).timeout
+
+	_send_unhandled_action(input_scene, "ui_accept")
+	metrics["events"] = int(metrics.get("events", 0)) + 1
+	await create_timer(0.05).timeout
+	var action_select: Dictionary = input_scene.get_ui_snapshot()
+	_assert(String(action_select.get("ui_phase", "")) == "action_select", "expected _unhandled_input ui_accept to enter action select")
+	_assert(int(_dict_value(action_select.get("battle_input", {})).get("handled_input_count", 0)) == 1, "expected one handled unhandled-input event")
+
+	_send_unhandled_action(input_scene, "ui_right")
+	metrics["events"] = int(metrics.get("events", 0)) + 1
+	await create_timer(0.05).timeout
+	var action_right: Dictionary = input_scene.get_ui_snapshot()
+	_assert(String(_dict_value(action_right.get("battle_input", {})).get("selected_action", "")) == "bag", "expected _unhandled_input ui_right to select Bag")
+
+	_send_unhandled_action(input_scene, "ui_left")
+	metrics["events"] = int(metrics.get("events", 0)) + 1
+	await create_timer(0.05).timeout
+	var action_left: Dictionary = input_scene.get_ui_snapshot()
+	_assert(String(_dict_value(action_left.get("battle_input", {})).get("selected_action", "")) == "fight", "expected _unhandled_input ui_left to return to Fight")
+
+	_send_unhandled_action(input_scene, "ui_accept")
+	metrics["events"] = int(metrics.get("events", 0)) + 1
+	await create_timer(0.05).timeout
+	var move_select: Dictionary = input_scene.get_ui_snapshot()
+	_assert(String(move_select.get("ui_phase", "")) == "move_select", "expected _unhandled_input ui_accept to enter move select")
+
+	_send_unhandled_action(input_scene, "ui_right")
+	metrics["events"] = int(metrics.get("events", 0)) + 1
+	await create_timer(0.05).timeout
+	var move_right: Dictionary = input_scene.get_ui_snapshot()
+	_assert(int(_dict_value(move_right.get("battle_input", {})).get("selected_move_slot", -1)) == 1, "expected _unhandled_input ui_right to select second move")
+
+	_send_unhandled_action(input_scene, "ui_cancel")
+	metrics["events"] = int(metrics.get("events", 0)) + 1
+	await create_timer(0.05).timeout
+	var canceled: Dictionary = input_scene.get_ui_snapshot()
+	_assert(String(canceled.get("ui_phase", "")) == "action_select", "expected _unhandled_input ui_cancel to return to action select")
+	_assert(int(_dict_value(canceled.get("battle_input", {})).get("handled_input_count", 0)) == int(metrics.get("events", 0)), "expected all unhandled-input events counted")
+
+	input_scene.queue_free()
+	return metrics
+
+
+func _send_unhandled_action(scene, action_name: String) -> void:
+	var event := InputEventAction.new()
+	event.action = action_name
+	event.pressed = true
+	scene._unhandled_input(event)
 
 
 func _window_text_printer(snapshot: Dictionary, window_id: String) -> Dictionary:
