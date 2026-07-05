@@ -44,6 +44,15 @@ def main(argv):
     _assert(stats["active_emerald_sound_counts"].get("DOOR_SOUND_NORMAL") == 25, "unexpected normal sound count")
     _assert(stats["active_emerald_sound_counts"].get("DOOR_SOUND_SLIDING") == 27, "unexpected sliding sound count")
     _assert(stats["active_emerald_sound_counts"].get("DOOR_SOUND_ARENA") == 1, "unexpected arena sound count")
+    _assert(stats["door_graphics_resource_entry_count"] == 85, "unexpected door resource entry count")
+    _assert(stats["door_graphics_resource_complete_count"] == 85, "incomplete door resource rows")
+    _assert(stats["door_graphics_resource_missing_count"] == 0, "unexpected missing door resource rows")
+    _assert(stats["door_graphics_runtime_target_entry_count"] == 53, "unexpected runtime-target door rows")
+    _assert(stats["door_graphics_metadata_only_entry_count"] == 32, "unexpected metadata-only door rows")
+    _assert(stats["door_graphics_tile_resource_resolved_count"] == 85, "unresolved door tile resources")
+    _assert(stats["door_graphics_palette_selector_resolved_count"] == 85, "unresolved door palette selectors")
+    _assert(stats["door_graphics_metatile_id_resolved_count"] == 85, "unresolved door metatile ids")
+    _assert(stats["door_graphics_full_table_resource_parsed"], "full door table resources were not parsed")
     _assert(stats["tile_declaration_count"] == 85, "unexpected tile declaration count")
     _assert(stats["palette_declaration_count"] == 83, "unexpected palette declaration count")
 
@@ -58,8 +67,17 @@ def main(argv):
 
     emerald_rows = exported["door_graphics_table"]["emerald"]
     _assert(emerald_rows[0]["metatile"] == "METATILE_General_Door", "unexpected first Emerald row")
+    _assert(emerald_rows[0]["table_index"] == 0, "unexpected first Emerald table index")
+    _assert(emerald_rows[0]["resource_complete"], "first Emerald row should be resource-complete")
+    _assert(emerald_rows[0]["source_branch_status"] == "active_emerald", "bad first Emerald branch status")
+    _assert(emerald_rows[0]["runtime_target_branch"], "first Emerald row should be a runtime target")
+    _assert(emerald_rows[0]["tile_resource"]["source_png"] == "graphics/door_anims/general.png", "bad first Emerald tile source")
+    _assert(emerald_rows[0]["palette_selector"]["value_count"] == 8, "bad first Emerald palette selector")
     _assert(emerald_rows[0]["sound_effect"] == "SE_DOOR", "bad first Emerald sound")
-    _assert(any(row["metatile"] == "0x3B0" and not row["runtime_matchable"] for row in emerald_rows), "missing unused NULL door row")
+    _assert(
+        any(row["metatile"] == "0x3B0" and row["metatile_id"] == 0x3B0 and not row["runtime_matchable"] for row in emerald_rows),
+        "missing unused NULL door row",
+    )
     _assert(
         any(row["metatile"] == "METATILE_BattleFrontier_Door_MultiCorridor" and row["size"] == 2 for row in emerald_rows),
         "missing Multi Corridor size 2 door row",
@@ -68,6 +86,20 @@ def main(argv):
         any(row["sound_type"] == "DOOR_SOUND_ARENA" and row["sound_effect"] == "SE_REPEL" for row in emerald_rows),
         "missing arena sound mapping",
     )
+    littleroot_row = _find_row(emerald_rows, "METATILE_Petalburg_Door_Littleroot")
+    _assert(littleroot_row["metatile_id"] == 0x248, "bad Littleroot door metatile id")
+    _assert(littleroot_row["tile_resource"]["source_png"] == "graphics/door_anims/littleroot.png", "bad Littleroot source image")
+    _assert(littleroot_row["palette_selector"]["values"] == [10, 10, 6, 6, 6, 6, 6, 6], "bad Littleroot palette selector")
+
+    frlg_rows = exported["door_graphics_table"]["frlg"]
+    _assert(len(frlg_rows) == 32, "unexpected FRLG row count")
+    _assert(frlg_rows[0]["table_index"] == 53, "unexpected first FRLG table index")
+    _assert(frlg_rows[0]["metatile"] == "METATILE_GeneralFrlg_Door", "unexpected first FRLG row")
+    _assert(frlg_rows[0]["metatile_id"] == 0x03D, "bad first FRLG metatile id")
+    _assert(frlg_rows[0]["source_branch_status"] == "metadata_only_frlg", "bad first FRLG branch status")
+    _assert(not frlg_rows[0]["runtime_target_branch"], "FRLG row should be metadata-only")
+    _assert(frlg_rows[0]["resource_complete"], "first FRLG row should be resource-complete")
+    _assert(frlg_rows[0]["tile_resource"]["source_png"] == "graphics/door_anims/general_frlg.png", "bad first FRLG tile source")
 
     sound_map = exported["sound_effect_map"]
     _assert(sound_map["DOOR_SOUND_NORMAL"] == "SE_DOOR", "bad normal sound effect")
@@ -105,7 +137,7 @@ def main(argv):
 
     unsupported_codes = {entry["code"] for entry in exported["unsupported"]}
     for code in [
-        "full_door_graphics_table_import_pending",
+        "full_door_graphics_runtime_export_pending",
         "door_layer_redraw_runtime_pending",
         "door_animation_task_runtime_pending",
         "script_waitdooranim_async_pending",
@@ -152,6 +184,13 @@ def _has_occurrence(symbols, symbol, source_file):
         if occurrence.get("file") == source_file:
             return True
     return False
+
+
+def _find_row(rows, metatile):
+    for row in rows:
+        if row.get("metatile") == metatile:
+            return row
+    raise AssertionError("missing row %s" % metatile)
 
 
 def _assert(condition, message):

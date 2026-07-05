@@ -184,7 +184,7 @@ Unsupported callback metadata update: `TilesetAnimationPlayer` frame snapshots n
 
 ### 7. Door Animation And Door State
 
-- [ ] Expand door resource parsing to every entry in `sDoorAnimGraphicsTable`.
+- [x] Expand door resource parsing to every entry in `sDoorAnimGraphicsTable`.
 - [ ] Export small door, big door, FRLG door, sliding door, arena door, and any expansion-specific variants.
 - [ ] Export door size, metatile id, frame dimensions, palette ids, source graphics file, sound effect, open frame sequence, close frame sequence, and frame durations.
 - [ ] Support size 1 and size 2 door graphics.
@@ -200,6 +200,8 @@ Unsupported callback metadata update: `TilesetAnimationPlayer` frame snapshots n
 - [ ] Preserve source door sound symbols and add real audio playback later when audio runtime exists.
 - [ ] Handle non-animated doors, stairs, ladders, escalators, arrow warps, and multi-corridor door special cases separately from animated doors.
 - [ ] Add tests for Littleroot house door, Birch lab door, door-open script command, door-close script command, `waitdooranim`, and door warp entry/exit order.
+
+Door resource parsing update: `data/generated/overworld/field_door_trace.json` now expands every `sDoorAnimGraphicsTable` row into resource metadata with table index, source line, branch status, metatile id, tileset, sound type/effect, size, tile resource symbol/source PNG/source `.4bpp` path, palette selector symbol/values/source line, and `resource_complete`. Coverage is 85/85 complete table resources: 53 active Emerald runtime-target rows and 32 FRLG metadata-only rows, with 85/85 tile resources, 85/85 palette selectors, and 85/85 metatile ids resolved. The remaining first-pass gap is full runtime export/lookup for every parsed resource. Section 7 progress is now 1/16 complete; total overworld checklist progress is 78/296.
 
 ### 8. Map Grid, Connections, And Camera
 

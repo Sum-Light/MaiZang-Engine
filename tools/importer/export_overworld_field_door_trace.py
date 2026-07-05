@@ -14,6 +14,7 @@ from source_probe import load_config, to_project_path
 GENERATED_BY = "tools/importer/export_overworld_field_door_trace.py"
 REPORT_PATH = Path("overworld/field_door_trace.json")
 REPO_ROOT = Path(__file__).resolve().parents[2]
+METATILE_LABEL_HEADER = Path("include/constants/metatile_labels.h")
 
 SOURCE_FILES = [
     "include/field_door.h",
@@ -197,6 +198,7 @@ MULTI_CORRIDOR_RULES = [
 ]
 
 GODOT_CURRENT_RULES = [
+    "field_door_trace.json parses every sDoorAnimGraphicsTable row as source resource metadata, including Emerald active rows and FRLG metadata-only rows.",
     "export_tilesets.py parses src/field_door.c and bakes used size 1 door animation strips into RGBA atlases under assets/generated/door_anims.",
     "Generated tileset JSON stores door_animations metadata with frame_time 4, frame_count 4, open frame indices [-1, 0, 1, 2], close frame indices [2, 1, 0, -1], and source sound-effect symbols.",
     "MapRuntime indexes generated door animations by metatile id and exposes get_door_animation_at(cell).",
@@ -206,10 +208,10 @@ GODOT_CURRENT_RULES = [
 
 UNSUPPORTED = [
     {
-        "code": "full_door_graphics_table_import_pending",
+        "code": "full_door_graphics_runtime_export_pending",
         "status": "first_pass",
         "source": "src/field_door.c:sDoorAnimGraphicsTable",
-        "detail": "The importer can parse the source table and currently bakes only generated-map, used, size 1 door animations; full table export and runtime lookup for every map is pending.",
+        "detail": "The trace importer parses all source table resources; atlas baking and runtime lookup still only cover generated-map, used, size 1 door animations.",
     },
     {
         "code": "door_layer_redraw_runtime_pending",
@@ -388,27 +390,110 @@ def parse_frame_tables(field_door_text):
 
 
 def _strip_c_comments(text):
-    text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
-    text = re.sub(r"//.*", "", text)
+    def blank(match):
+        return "".join("\n" if char == "\n" else " " for char in match.group(0))
+
+    text = re.sub(r"/\*.*?\*/", blank, text, flags=re.S)
+    text = re.sub(r"//[^\n]*", blank, text)
     return text
 
 
-def _door_table_sections(field_door_text):
+def parse_metatile_labels(path):
+    labels = {}
+    pattern = re.compile(r"^\s*#define\s+(METATILE_[A-Za-z0-9_]+)\s+([0-9A-Fa-fx]+)\b")
+    for raw_line in read_text(path).splitlines():
+        match = pattern.match(raw_line)
+        if not match:
+            continue
+        try:
+            labels[match.group(1)] = int(match.group(2), 0)
+        except ValueError:
+            continue
+    return labels
+
+
+def _line_number_for_offset(text, offset):
+    return text.count("\n", 0, offset) + 1
+
+
+def _door_table_section_spans(field_door_text):
     body = _extract_initializer(field_door_text, "sDoorAnimGraphicsTable")
-    sections = {
+    spans = {
         "emerald": body,
         "frlg": "",
     }
     if "#if !IS_FRLG" in body and "#else" in body:
-        after_if = body.split("#if !IS_FRLG", 1)[1]
-        emerald, rest = after_if.split("#else", 1)
-        frlg = rest.split("#endif", 1)[0]
-        sections["emerald"] = emerald
-        sections["frlg"] = frlg
-    return sections
+        if_start = body.index("#if !IS_FRLG")
+        after_if_start = if_start + len("#if !IS_FRLG")
+        else_start = body.index("#else", after_if_start)
+        endif_start = body.index("#endif", else_start)
+        spans = {
+            "emerald": body[after_if_start:else_start],
+            "frlg": body[else_start + len("#else"):endif_start],
+        }
+    table_start = field_door_text.find(body)
+    return body, table_start, spans
 
 
-def parse_door_graphics_table(field_door_text):
+def _metatile_id(token, metatile_labels):
+    if token.startswith("METATILE_"):
+        return metatile_labels.get(token)
+    return int(token, 0)
+
+
+def _branch_status(branch):
+    if branch == "emerald":
+        return "active_emerald"
+    return "metadata_only_frlg"
+
+
+def enrich_door_graphics_table(graphics_table, assets, metatile_labels):
+    tile_declarations = {
+        entry["symbol"]: entry
+        for entry in assets["tile_declarations"]
+    }
+    palette_declarations = {
+        entry["symbol"]: entry
+        for entry in assets["palette_declarations"]
+    }
+    for branch, rows in graphics_table.items():
+        for row in rows:
+            tile_info = tile_declarations.get(row["tiles_symbol"])
+            palette_info = palette_declarations.get(row["palettes_symbol"])
+            metatile_token = row["metatile"]
+            row["metatile_id"] = _metatile_id(metatile_token, metatile_labels)
+            row["metatile_label_resolved"] = row["metatile_id"] is not None
+            row["source_branch_status"] = _branch_status(branch)
+            row["runtime_target_branch"] = branch == "emerald"
+            row["resource_status"] = (
+                "parsed_active_emerald"
+                if branch == "emerald"
+                else "parsed_metadata_only_frlg"
+            )
+            row["tile_resource"] = {
+                "symbol": row["tiles_symbol"],
+                "declared": tile_info is not None,
+                "source_png": tile_info.get("image_source", "") if tile_info else "",
+                "source_4bpp": tile_info.get("binary_source", "") if tile_info else "",
+                "source_line": tile_info.get("source_line") if tile_info else None,
+            }
+            row["palette_selector"] = {
+                "symbol": row["palettes_symbol"],
+                "declared": palette_info is not None,
+                "values": palette_info.get("values", []) if palette_info else [],
+                "value_count": palette_info.get("value_count", 0) if palette_info else 0,
+                "source_line": palette_info.get("source_line") if palette_info else None,
+            }
+            row["resource_complete"] = (
+                row["metatile_label_resolved"]
+                and row["tile_resource"]["declared"]
+                and row["palette_selector"]["declared"]
+                and row["palette_selector"]["value_count"] == 8
+            )
+    return graphics_table
+
+
+def parse_door_graphics_table(field_door_text, assets, metatile_labels):
     pattern = re.compile(
         r"\{\s*(METATILE_[A-Za-z0-9_]+|0x[0-9A-Fa-f]+|\d+)\s*,"
         r"\s*(?:&(gTileset_[A-Za-z0-9_]+)|NULL)\s*,"
@@ -417,13 +502,23 @@ def parse_door_graphics_table(field_door_text):
         r"\s*(sDoorAnimTiles_[A-Za-z0-9_]+)\s*,"
         r"\s*(sDoorAnimPalettes_[A-Za-z0-9_]+)\s*\},"
     )
+    table_body, table_start, sections = _door_table_section_spans(field_door_text)
+    if table_start < 0:
+        table_start = 0
     result = {}
-    for branch, section in _door_table_sections(field_door_text).items():
+    table_index = 0
+    for branch, section in sections.items():
         rows = []
+        section_body_start = table_body.find(section)
         for match in pattern.finditer(_strip_c_comments(section)):
             metatile_token = match.group(1)
             rows.append({
+                "table_index": table_index,
                 "branch": branch,
+                "source_line": _line_number_for_offset(
+                    field_door_text,
+                    table_start + section_body_start + match.start(),
+                ),
                 "metatile": metatile_token,
                 "metatile_numeric": int(metatile_token, 0) if not metatile_token.startswith("METATILE_") else None,
                 "tileset": match.group(2) or "",
@@ -434,18 +529,23 @@ def parse_door_graphics_table(field_door_text):
                 "tiles_symbol": match.group(5),
                 "palettes_symbol": match.group(6),
             })
+            table_index += 1
         result[branch] = rows
-    return result
+    return enrich_door_graphics_table(result, assets, metatile_labels)
 
 
 def parse_asset_declarations(field_door_text):
-    tile_decls = [
-        {"symbol": match.group(1), "image_source": "%s.png" % match.group(2)}
-        for match in re.finditer(
-            r'static const u8 (sDoorAnimTiles_[A-Za-z0-9_]+)\[\] = INCBIN_U8\("([^"]+)\.4bpp"\);',
-            field_door_text,
-        )
-    ]
+    tile_decls = []
+    for match in re.finditer(
+        r'static const u8 (sDoorAnimTiles_[A-Za-z0-9_]+)\[\] = INCBIN_U8\("([^"]+)\.4bpp"\);',
+        field_door_text,
+    ):
+        tile_decls.append({
+            "symbol": match.group(1),
+            "image_source": "%s.png" % match.group(2),
+            "binary_source": "%s.4bpp" % match.group(2),
+            "source_line": _line_number_for_offset(field_door_text, match.start()),
+        })
     palette_decls = []
     for match in re.finditer(
         r"static const u8 (sDoorAnimPalettes_[A-Za-z0-9_]+)\[\] = \{([^}]*)\};",
@@ -460,6 +560,7 @@ def parse_asset_declarations(field_door_text):
             "symbol": match.group(1),
             "values": values,
             "value_count": len(values),
+            "source_line": _line_number_for_offset(field_door_text, match.start()),
         })
     return {
         "tile_declarations": tile_decls,
@@ -487,6 +588,15 @@ def build_door_stats(frame_tables, graphics_table, assets):
         "active_emerald_runtime_matchable_entry_count": sum(1 for row in emerald_rows if row["runtime_matchable"]),
         "active_emerald_size_counts": size_counts,
         "active_emerald_sound_counts": sound_counts,
+        "door_graphics_resource_entry_count": len(all_rows),
+        "door_graphics_resource_complete_count": sum(1 for row in all_rows if row["resource_complete"]),
+        "door_graphics_resource_missing_count": sum(1 for row in all_rows if not row["resource_complete"]),
+        "door_graphics_runtime_target_entry_count": sum(1 for row in all_rows if row["runtime_target_branch"]),
+        "door_graphics_metadata_only_entry_count": sum(1 for row in all_rows if not row["runtime_target_branch"]),
+        "door_graphics_tile_resource_resolved_count": sum(1 for row in all_rows if row["tile_resource"]["declared"]),
+        "door_graphics_palette_selector_resolved_count": sum(1 for row in all_rows if row["palette_selector"]["declared"]),
+        "door_graphics_metatile_id_resolved_count": sum(1 for row in all_rows if row["metatile_label_resolved"]),
+        "door_graphics_full_table_resource_parsed": all(row["resource_complete"] for row in all_rows),
         "tile_declaration_count": assets["tile_declaration_count"],
         "palette_declaration_count": assets["palette_declaration_count"],
     }
@@ -699,8 +809,9 @@ def build_export(source_root):
         if not occurrences
     )
     frame_tables = parse_frame_tables(field_door_text)
-    graphics_table = parse_door_graphics_table(field_door_text)
     assets = parse_asset_declarations(field_door_text)
+    metatile_labels = parse_metatile_labels(source_root / METATILE_LABEL_HEADER)
+    graphics_table = parse_door_graphics_table(field_door_text, assets, metatile_labels)
     door_stats = build_door_stats(frame_tables, graphics_table, assets)
     flow_rows = source_flow_rows()
     status_counts = {}
