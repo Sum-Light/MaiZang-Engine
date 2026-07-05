@@ -445,6 +445,7 @@ func _compose_text_bitmap_for_window(window_id: String) -> Image:
 	var snapshot := _text_printer_window_snapshot(window_id)
 	var layout := _dictionary_value(snapshot.get("source_glyph_layout", {}))
 	var glyphs := _array_value(layout.get("glyphs", []))
+	var pixel_effect_summary := _dictionary_value(snapshot.get("source_window_pixel_effect_summary", {}))
 	var materials := _render_text_material_colors()
 	var rendered_count := 0
 	var role_colored_count := 0
@@ -516,6 +517,8 @@ func _compose_text_bitmap_for_window(window_id: String) -> Image:
 		"colored_pixel_count": colored_pixel_count,
 		"transparent_role_pixel_count": transparent_role_pixel_count,
 		"render_text_material_status": _render_text_material_status(),
+		"source_window_pixel_effect_status": String(snapshot.get("source_window_pixel_effect_status", "")),
+		"source_window_pixel_effect_summary": pixel_effect_summary.duplicate(true),
 		"window_size": [screen_rect.size.x, screen_rect.size.y],
 		"source": "BattleTextPrinter.source_glyph_layout",
 	}

@@ -3,6 +3,7 @@ extends RefCounted
 const STATUS := "first_pass_source_glyph_layout"
 const FONT_ATLAS_PREVIEW_STATUS := "source_font_atlas_preview"
 const RENDER_TEXT_COLOR_STATUS := "source_render_text_color_controls"
+const SOURCE_WINDOW_PIXEL_EFFECT_STATUS := "source_window_pixel_effects_first_pass"
 const DEFAULT_PLAYER_TEXT_SPEED := "OPTIONS_TEXT_SPEED_FAST"
 const SOURCE_SPEED_PLAYER_TEXT_DELAY := "player_text_speed_delay"
 const NUM_FRAMES_AUTO_SCROLL_DELAY := 49
@@ -150,6 +151,7 @@ var _source_speed = 0
 var _effective_speed_source := ""
 var _player_text_speed := DEFAULT_PLAYER_TEXT_SPEED
 var _player_text_speed_modifier := 1
+var _player_text_scroll_speed := 1
 var _player_text_speed_is_instant := false
 var _can_ab_speed_up_print := false
 var _has_print_been_sped_up := false
@@ -181,6 +183,10 @@ var _layout_initial_font_id := "FONT_NORMAL"
 var _render_text_initial_color_indices: Dictionary = {}
 var _render_text_color_indices: Dictionary = {}
 var _render_text_color_control_count := 0
+var _source_window_pixel_effects: Array = []
+var _pending_scroll_remaining_px := 0
+var _pending_scroll_total_px := 0
+var _pending_scroll_utility_counter := 0
 var _layout_origin := Vector2i.ZERO
 var _layout_cursor := Vector2i.ZERO
 var _layout_min_letter_spacing := 0
@@ -239,6 +245,10 @@ func start(window_id: String, text: String, text_info: Dictionary, text_printer_
 	_layout_initial_font_id = String(text_info.get("font_id", "FONT_NORMAL"))
 	_render_text_initial_color_indices = _render_text_color_indices_from_text_info(text_info)
 	_render_text_color_control_count = 0
+	_source_window_pixel_effects = []
+	_pending_scroll_remaining_px = 0
+	_pending_scroll_total_px = 0
+	_pending_scroll_utility_counter = 0
 	_reset_layout_state(_layout_initial_font_id)
 	_event_stream_source = "source_bytes" if not _source_bytes.is_empty() else ("source_text" if not _source_text.is_empty() else "display_text")
 	var event_text := _strip_source_text_terminator(_source_text) if _event_stream_source == "source_text" else _full_text
@@ -294,6 +304,9 @@ func advance_frames(frames: int = 1, input: Dictionary = {}) -> Dictionary:
 
 
 func skip_to_end() -> Dictionary:
+	if _complete and _event_index >= _events.size():
+		_synchronous_render = true
+		return snapshot()
 	_render_all_remaining()
 	_synchronous_render = true
 	return snapshot()
@@ -329,6 +342,7 @@ func snapshot() -> Dictionary:
 		"effective_speed_source": _effective_speed_source,
 		"player_text_speed": _player_text_speed,
 		"player_text_speed_modifier": _player_text_speed_modifier,
+		"player_text_scroll_speed": _player_text_scroll_speed,
 		"player_text_speed_is_instant": _player_text_speed_is_instant,
 		"can_ab_speed_up_print": _can_ab_speed_up_print,
 		"has_print_been_sped_up": _has_print_been_sped_up,
@@ -358,6 +372,11 @@ func snapshot() -> Dictionary:
 		"render_text_initial_color_indices": _render_text_initial_color_indices.duplicate(true),
 		"render_text_current_color_indices": _render_text_color_indices.duplicate(true),
 		"render_text_color_control_count": _render_text_color_control_count,
+		"source_window_pixel_effect_status": SOURCE_WINDOW_PIXEL_EFFECT_STATUS,
+		"source_window_pixel_effects": _source_window_pixel_effects.duplicate(true),
+		"source_window_pixel_effect_summary": _source_window_pixel_effect_summary(),
+		"scroll_distance_px_remaining": _pending_scroll_remaining_px,
+		"scroll_distance_px_total": _pending_scroll_total_px,
 		"source_glyph_layout_status": "source_metrics_layout" if _has_font_metrics() else "fallback_constant_width_layout",
 		"source_font_atlas_status": _source_font_atlas_status(),
 		"source_font_atlas_binding_count": _font_atlas_binding_count,
@@ -442,7 +461,7 @@ func _apply_final_event_to_text_and_layout(event: Dictionary) -> void:
 			_visible_text += String(event.get("text", "\n"))
 			_record_page_break_layout(event)
 		"page_clear":
-			_clear_visible_text()
+			_clear_visible_text("CHAR_PROMPT_CLEAR")
 		"style":
 			_apply_layout_style_event(event)
 		"pause":
@@ -488,6 +507,10 @@ func _resolve_player_text_speed(text_printer_metadata: Dictionary, options: Dict
 	_player_text_speed_modifier = int(modifiers.get(_player_text_speed, 1))
 	if _player_text_speed_modifier <= 0:
 		_player_text_speed_modifier = 1
+	var scroll_speeds: Dictionary = _dictionary_value(player_speed.get("scroll_speeds", {}))
+	_player_text_scroll_speed = int(scroll_speeds.get(_player_text_speed, 1))
+	if _player_text_scroll_speed <= 0:
+		_player_text_scroll_speed = 1
 	_player_text_speed_is_instant = _player_text_speed == "OPTIONS_TEXT_SPEED_INSTANT"
 
 
@@ -637,24 +660,95 @@ func _advance_wait_state(input: Dictionary) -> void:
 			if _auto_scroll:
 				if _auto_scroll_delay >= NUM_FRAMES_AUTO_SCROLL_DELAY:
 					_auto_scroll_delay = 0
-					if _wait_state == "wait_clear":
-						_clear_visible_text()
-					_wait_state = ""
-					_down_arrow_visible = false
+					_finish_prompt_wait()
 					return
 				_auto_scroll_delay += 1
 			if _is_advance_input_just_pressed(input):
-				if _wait_state == "wait_clear":
-					_clear_visible_text()
-				_wait_state = ""
-				_down_arrow_visible = false
-				_auto_scroll_delay = 0
+				_finish_prompt_wait()
+		"scroll":
+			_advance_source_window_scroll()
 		"wait_se":
 			if bool(input.get("audio_finished", false)) or not bool(input.get("audio_playing", false)):
 				_wait_state = ""
 		_:
 			_wait_state = ""
 	_mark_complete_if_done()
+
+
+func _finish_prompt_wait() -> void:
+	var previous_wait_state := _wait_state
+	_auto_scroll_delay = 0
+	_down_arrow_visible = false
+	match previous_wait_state:
+		"wait_clear":
+			_clear_visible_text("CHAR_PROMPT_CLEAR")
+			_wait_state = ""
+		"wait_with_down_arrow":
+			if _event_stream_source == "source_bytes":
+				_start_source_window_scroll("CHAR_PROMPT_SCROLL")
+			else:
+				_wait_state = ""
+		_:
+			_wait_state = ""
+
+
+func _start_source_window_scroll(source: String) -> void:
+	var distance: int = max(0, _font_line_advance(_layout_font_id))
+	_pending_scroll_total_px = distance
+	_pending_scroll_remaining_px = distance
+	_pending_scroll_utility_counter = 0
+	_record_source_window_pixel_effect({
+		"kind": "scroll_window_start",
+		"source": source,
+		"operation": "TextPrinterClearDownArrow_then_RENDER_STATE_SCROLL",
+		"scroll_distance_px": distance,
+		"scroll_speed_px": _player_text_scroll_speed,
+		"speed_modifier": _player_text_speed_modifier,
+		"source_rule": "src/text.c:RENDER_STATE_SCROLL_START sets scrollDistance to maxLetterHeight + lineSpacing",
+	})
+	if distance <= 0:
+		_wait_state = ""
+		return
+	_wait_state = "scroll"
+
+
+func _advance_source_window_scroll() -> void:
+	if _pending_scroll_remaining_px <= 0:
+		_finish_source_window_scroll()
+		return
+	if _pending_scroll_utility_counter > 0:
+		_pending_scroll_utility_counter -= 1
+		return
+	var step: int = min(_pending_scroll_remaining_px, max(1, _player_text_scroll_speed))
+	_pending_scroll_remaining_px -= step
+	_shift_layout_glyphs_y(-step)
+	_record_source_window_pixel_effect({
+		"kind": "scroll_window_step",
+		"source": "CHAR_PROMPT_SCROLL",
+		"operation": "ScrollWindow",
+		"direction": "up",
+		"dy_px": step,
+		"remaining_px": _pending_scroll_remaining_px,
+		"scroll_speed_px": _player_text_scroll_speed,
+		"source_rule": "src/text.c:RENDER_STATE_SCROLL calls ScrollWindow by GetPlayerTextScrollSpeed()",
+	})
+	if _pending_scroll_remaining_px <= 0:
+		_finish_source_window_scroll()
+		return
+	_pending_scroll_utility_counter = _player_text_speed_modifier if _player_text_speed_modifier > 1 else 0
+
+
+func _finish_source_window_scroll() -> void:
+	_record_source_window_pixel_effect({
+		"kind": "scroll_window_complete",
+		"source": "CHAR_PROMPT_SCROLL",
+		"operation": "RENDER_STATE_HANDLE_CHAR",
+		"scroll_distance_px": _pending_scroll_total_px,
+		"source_rule": "src/text.c:RENDER_STATE_SCROLL returns to HANDLE_CHAR when scrollDistance reaches zero",
+	})
+	_pending_scroll_remaining_px = 0
+	_pending_scroll_utility_counter = 0
+	_wait_state = ""
 
 
 func _mark_complete_if_done() -> void:
@@ -1044,7 +1138,8 @@ func _event_stream_status() -> String:
 	return "first_pass_display_text_events"
 
 
-func _clear_visible_text() -> void:
+func _clear_visible_text(source: String = "CHAR_PROMPT_CLEAR") -> void:
+	var background_material_index := int(_render_text_color_indices.get("background", 0))
 	_visible_text = ""
 	_visible_char_count = 0
 	_layout_cursor = _layout_origin
@@ -1054,12 +1149,138 @@ func _clear_visible_text() -> void:
 	_layout_line_count = 1
 	_layout_max_line_width_px = 0
 	_render_text_color_indices = _render_text_initial_color_indices.duplicate(true)
+	_record_source_window_pixel_effect({
+		"kind": "fill_window",
+		"source": source,
+		"operation": "FillWindowPixelBuffer",
+		"background_material_index": background_material_index,
+		"x": 0,
+		"y": 0,
+		"source_rule": "src/text.c:RENDER_STATE_CLEAR and EXT_CTRL_CODE_FILL_WINDOW fill the window with the current background material",
+	})
 	_layout_control_events.append({
 		"kind": "clear_visible_text",
 		"x": _layout_cursor.x,
 		"y": _layout_cursor.y,
-		"source": "CHAR_PROMPT_CLEAR",
+		"source": source,
 	})
+
+
+func _record_source_window_pixel_effect(effect: Dictionary) -> void:
+	var record := effect.duplicate(true)
+	record["index"] = _source_window_pixel_effects.size()
+	record["status"] = SOURCE_WINDOW_PIXEL_EFFECT_STATUS
+	_source_window_pixel_effects.append(record)
+
+
+func _source_window_pixel_effect_summary() -> Dictionary:
+	var summary := {
+		"status": SOURCE_WINDOW_PIXEL_EFFECT_STATUS,
+		"effect_count": _source_window_pixel_effects.size(),
+		"fill_window_count": 0,
+		"clear_text_span_count": 0,
+		"clear_text_span_filled_count": 0,
+		"scroll_start_count": 0,
+		"scroll_step_count": 0,
+		"scroll_complete_count": 0,
+		"scroll_total_px": 0,
+		"scroll_distance_px_remaining": _pending_scroll_remaining_px,
+		"scroll_distance_px_total": _pending_scroll_total_px,
+		"scroll_speed_px": _player_text_scroll_speed,
+	}
+	for effect_value in _source_window_pixel_effects:
+		var effect := _dictionary_value(effect_value)
+		match String(effect.get("kind", "")):
+			"fill_window":
+				summary["fill_window_count"] = int(summary["fill_window_count"]) + 1
+			"clear_text_span":
+				summary["clear_text_span_count"] = int(summary["clear_text_span_count"]) + 1
+				if String(effect.get("pixel_status", "")) == "filled":
+					summary["clear_text_span_filled_count"] = int(summary["clear_text_span_filled_count"]) + 1
+			"scroll_window_start":
+				summary["scroll_start_count"] = int(summary["scroll_start_count"]) + 1
+			"scroll_window_step":
+				summary["scroll_step_count"] = int(summary["scroll_step_count"]) + 1
+				summary["scroll_total_px"] = int(summary["scroll_total_px"]) + int(effect.get("dy_px", 0))
+			"scroll_window_complete":
+				summary["scroll_complete_count"] = int(summary["scroll_complete_count"]) + 1
+	return summary
+
+
+func _text_span_rect(width: int) -> Rect2i:
+	return Rect2i(
+		_layout_cursor.x,
+		_layout_cursor.y,
+		max(0, width),
+		max(0, _font_glyph_height(_layout_font_id))
+	)
+
+
+func _record_clear_text_span_effect(event: Dictionary, rect: Rect2i, width: int) -> void:
+	if width <= 0:
+		return
+	var background_material_index := int(_render_text_color_indices.get("background", 0))
+	var pixel_status := "filled" if background_material_index != 0 and width > 0 else "transparent_background_skipped"
+	if pixel_status == "filled":
+		_clear_layout_glyphs_in_rect(rect)
+	_record_source_window_pixel_effect({
+		"kind": "clear_text_span",
+		"source": String(event.get("source", event.get("command", "EXT_CTRL_CODE_CLEAR"))),
+		"operation": "ClearTextSpan",
+		"x": rect.position.x,
+		"y": rect.position.y,
+		"w": rect.size.x,
+		"h": rect.size.y,
+		"background_material_index": background_material_index,
+		"pixel_status": pixel_status,
+		"source_rule": "src/text.c:ClearTextSpan fills the current glyph-height span only when the background material is not transparent",
+	})
+
+
+func _clear_layout_glyphs_in_rect(rect: Rect2i) -> void:
+	if rect.size.x <= 0 or rect.size.y <= 0:
+		return
+	var kept := []
+	for glyph_value in _layout_glyphs:
+		var glyph := _dictionary_value(glyph_value)
+		var glyph_rect := Rect2i(
+			int(glyph.get("x", 0)),
+			int(glyph.get("y", 0)),
+			int(glyph.get("width", 0)),
+			int(glyph.get("height", 0))
+		)
+		if not _rects_intersect(glyph_rect, rect):
+			kept.append(glyph)
+	_layout_glyphs = kept
+	_layout_glyph_count = _layout_glyphs.size()
+	_recalculate_layout_widths()
+
+
+func _shift_layout_glyphs_y(delta_y: int) -> void:
+	if delta_y == 0:
+		return
+	for index in range(_layout_glyphs.size()):
+		var glyph := _dictionary_value(_layout_glyphs[index]).duplicate(true)
+		glyph["y"] = int(glyph.get("y", 0)) + delta_y
+		_layout_glyphs[index] = glyph
+
+
+func _recalculate_layout_widths() -> void:
+	_layout_total_advance_px = 0
+	_layout_max_line_width_px = 0
+	for index in range(_layout_glyphs.size()):
+		var glyph := _dictionary_value(_layout_glyphs[index]).duplicate(true)
+		glyph["index"] = index
+		_layout_glyphs[index] = glyph
+		_layout_total_advance_px += int(glyph.get("advance", 0))
+		_layout_max_line_width_px = max(_layout_max_line_width_px, int(glyph.get("x", 0)) - _layout_origin.x + int(glyph.get("advance", 0)))
+
+
+func _rects_intersect(a: Rect2i, b: Rect2i) -> bool:
+	return a.position.x < b.position.x + b.size.x \
+		and a.position.x + a.size.x > b.position.x \
+		and a.position.y < b.position.y + b.size.y \
+		and a.position.y + a.size.y > b.position.y
 
 
 func _display_text(text: String) -> String:
@@ -1275,6 +1496,7 @@ func _apply_layout_style_event(event: Dictionary) -> void:
 			_record_layout_control_event(event, {"kind": "shift_down", "y": _layout_cursor.y})
 		"EXT_CTRL_CODE_CLEAR", "CLEAR":
 			var width := int(args[0]) if not args.is_empty() else 0
+			_record_clear_text_span_effect(event, _text_span_rect(max(0, width)), width)
 			_layout_cursor.x += max(0, width)
 			_record_layout_control_event(event, {"kind": "clear_span", "width": width, "x": _layout_cursor.x})
 		"EXT_CTRL_CODE_SKIP", "SKIP":
@@ -1284,6 +1506,7 @@ func _apply_layout_style_event(event: Dictionary) -> void:
 		"EXT_CTRL_CODE_CLEAR_TO", "CLEAR_TO":
 			var target := _layout_origin.x + (int(args[0]) if not args.is_empty() else 0)
 			if target > _layout_cursor.x:
+				_record_clear_text_span_effect(event, _text_span_rect(target - _layout_cursor.x), target - _layout_cursor.x)
 				_layout_cursor.x = target
 			_record_layout_control_event(event, {"kind": "clear_to", "x": _layout_cursor.x})
 		"EXT_CTRL_CODE_MIN_LETTER_SPACING", "MIN_LETTER_SPACING":
@@ -1296,12 +1519,7 @@ func _apply_layout_style_event(event: Dictionary) -> void:
 			_layout_japanese = false
 			_record_layout_control_event(event, {"kind": "japanese_mode", "value": false})
 		"EXT_CTRL_CODE_FILL_WINDOW", "FILL_WINDOW":
-			_layout_cursor = _layout_origin
-			_layout_glyphs = []
-			_layout_glyph_count = 0
-			_layout_line_count = 1
-			_layout_max_line_width_px = 0
-			_layout_total_advance_px = 0
+			_clear_visible_text(command)
 			_record_layout_control_event(event, {"kind": "fill_window", "x": _layout_cursor.x, "y": _layout_cursor.y})
 		_:
 			_record_layout_control_event(event, {"kind": "style", "command": command})
@@ -1546,6 +1764,12 @@ func _font_line_advance(font_id: String) -> int:
 	if advance > 0:
 		return advance
 	return int(record.get("max_letter_height", 16)) + int(record.get("line_spacing", 0))
+
+
+func _font_glyph_height(font_id: String) -> int:
+	var record := _font_record(font_id)
+	var height := int(record.get("latin_glyph_height", record.get("max_letter_height", 0)))
+	return height if height > 0 else 8
 
 
 func _font_letter_spacing(font_id: String) -> int:

@@ -96,6 +96,7 @@ func _init() -> void:
 	_assert(String(textbox_interface.get("first_tilemap_composite", "")).ends_with("assets/generated/battle_interface/composites/textbox_map.png"), "expected textbox composite image path")
 	_assert(_array(textbox_interface.get("tests", [])).has("tools/godot_smoke/data_registry_battle_interface_smoke.gd"), "expected battle interface smoke reference")
 	_assert(_array(textbox_interface.get("tests", [])).has("tools/godot_smoke/battle_asset_image_quality_smoke.gd"), "expected interface asset image quality smoke reference")
+	_assert(_array(textbox_interface.get("tests", [])).has("tools/godot_smoke/battle_window_screenshot_smoke.gd"), "expected interface window screenshot smoke reference")
 	_assert(_array(textbox_interface.get("unsupported", [])).has("battle_interface_runtime_pending"), "expected textbox interface runtime pending")
 	var ability_popup := _find_row(battle_interface, "ability_pop_up")
 	_assert(not ability_popup.is_empty(), "expected ability popup interface coverage row")

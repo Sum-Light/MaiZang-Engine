@@ -606,6 +606,8 @@ def build_battle_interface_rows(interface_data):
         tests = ["tools/godot_smoke/data_registry_battle_interface_smoke.gd"]
         if str(record.get("asset_status", "")) == "first_pass" or str(record.get("status", "")) == "imported":
             tests.append("tools/godot_smoke/battle_asset_image_quality_smoke.gd")
+        if group in ("textbox", "window"):
+            tests.append("tools/godot_smoke/battle_window_screenshot_smoke.gd")
         unsupported = ["battle_interface_runtime_pending"] if group in ("textbox", "window") else ["battle_hud_runtime_pending"]
         if asset_id == "ability_pop_up":
             unsupported.append("battle_audio_playback_pending")
