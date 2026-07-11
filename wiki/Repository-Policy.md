@@ -30,6 +30,15 @@ D:\MaiZangEngine-backups\20260712-main-before-replacement.git
 Do not force-push or rewrite published history unless the repository owner
 explicitly requests it.
 
+## Branch Policy
+
+The public repository keeps one long-lived branch: `master`. Remove temporary
+`codex/*` or feature branches after their work is integrated or superseded.
+Do not delete `master`, tags, or the independent GitHub Wiki `master` branch.
+
+The pre-replacement bare mirror retains the historical branch references for
+recovery without keeping obsolete branches visible on GitHub.
+
 ## Wiki Source of Truth
 
 The main repository's `wiki/` directory is authoritative. GitHub Wiki is a

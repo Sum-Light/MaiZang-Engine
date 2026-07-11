@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Remove obsolete remote branches
+
+- Deleted 17 superseded codex branches and documented master as the only long-lived project branch.
+
+
 ## 2026-07-12 - Handle initialized GitHub Wiki remotes
 
 - Reset the disposable Wiki worktree to the initialized remote before publishing versioned pages.
