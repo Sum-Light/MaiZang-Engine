@@ -2,6 +2,7 @@
 - [Architecture](Architecture)
 - [Asset Pipeline](Asset-Pipeline)
 - [Runtime Streaming](Runtime-Streaming)
+- [Player Control](Player-Control)
 - [Validation](Validation)
 - [Development Workflow](Development-Workflow)
 - [Repository Policy](Repository-Policy)

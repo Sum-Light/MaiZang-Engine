@@ -11,13 +11,15 @@ complete game port.
 - Deduplicate external PNGs and material signatures without changing GLB mesh data.
 - Import shared Godot materials and lossless nearest-filtered textures.
 - Assemble 468 occupied terrain cells and 501 building instances.
-- Stream nearby chunks around a free camera with bounded asset retention.
+- Control Dawn with four-direction walking and `Z` running animations.
+- Stream nearby chunks around the player with bounded asset retention.
 
 ## Documentation
 
 - [Architecture](Architecture)
 - [Asset Pipeline](Asset-Pipeline)
 - [Runtime Streaming](Runtime-Streaming)
+- [Player Control](Player-Control)
 - [Validation](Validation)
 - [Development Workflow](Development-Workflow)
 - [Repository Policy](Repository-Policy)

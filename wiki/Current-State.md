@@ -5,17 +5,18 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `248c9fbb00509048c4eb9f68717622de6ade65d320c250815469259efc6a8d40`
-- Fingerprinted files: 44
-- Godot runtime scripts: 2
+- Source fingerprint: `78430b3229dd32e77050bb3c8c444d3dcdadbcb47c628b2b2c3045da30718c24`
+- Fingerprinted files: 48
+- Godot runtime scripts: 3
 - Godot test scripts: 2
-- PowerShell tools: 10
+- PowerShell tools: 11
 
 ## Runtime Baseline
 
 - Godot target: 4.7 stable, compatibility renderer.
 - Display: one fixed `256 x 192` NDS screen at 4:3.
-- Camera: front-facing yaw `0`, downward pitch `60`, wheel step `5`.
+- Player: four-direction movement, walk speed `3.0`, `Z` run speed `5.5`.
+- Camera: follows the player at distance `8`; yaw `0`, pitch `60`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -31,6 +32,7 @@
 - PNG textures found: 480
 - Shared materials found: 511
 - Building instances found: 501
+- Dawn sprite atlas: present locally (ignored by Git).
 
 ## Next Engineering Milestone
 

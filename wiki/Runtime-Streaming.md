@@ -16,7 +16,7 @@ can later use whole-matrix loading instead of this overworld strategy.
 
 ## Resource Lifecycle
 
-1. A focus-cell change computes active, prefetch, and retention regions.
+1. A player-cell change computes active, prefetch, and retention regions.
 2. Top-level `PackedScene` requests use `ResourceLoader.load_threaded_request`.
 3. Sub-threaded loading stays disabled because it leaked renderer resources in
    Godot 4.7 during repeated command-line test shutdowns.
@@ -32,11 +32,13 @@ shows draw-call pressure.
 
 ## Camera
 
-The current viewer uses a free camera:
+The camera follows `Player` directly, while the streamer independently uses
+the same player node as its focus:
 
-- Default orientation: front-facing yaw `0` with a `60` degree downward pitch.
-- `WASD`: horizontal movement.
-- `Q/E`: descend or ascend.
-- Right mouse drag: look.
-- Mouse wheel: adjust pitch in `5` degree steps.
-- `Shift`: sprint.
+- Fixed front orientation at yaw `0`.
+- Default downward pitch `60` degrees.
+- Follow distance `8` world units and target height `0.9`.
+- Mouse wheel pitch steps of `5` degrees, clamped from `35` to `80` degrees.
+- Pitch changes orbit vertically around the player and preserve follow distance.
+
+Player movement and animation rules are documented in [Player Control](Player-Control).

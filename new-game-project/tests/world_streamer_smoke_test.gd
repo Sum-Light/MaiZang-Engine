@@ -39,11 +39,35 @@ func _run() -> void:
 		_fail("Initial world chunks did not become ready within %d frames." % MAX_FRAMES)
 		return
 
-	var camera := main.get_node("Camera") as Camera3D
+	var player := main.get_node("Player") as PlatinumPlayerController
+	var camera := main.get_node("Camera") as PlatinumFollowCamera
+	if player == null or camera == null:
+		_fail("Player or follow camera was not created.")
+		return
+	if not player.is_using_local_sprite_sheet():
+		_fail("Dawn walk/run sprite atlas was not loaded.")
+		return
+	if camera.get_follow_target() != player:
+		_fail("Camera is not following the player.")
+		return
+	if PlatinumPlayerController.cardinalize(Vector2(1.0, -1.0)) != Vector2(0.0, -1.0):
+		_fail("Diagonal input was not reduced to one cardinal direction.")
+		return
+	var has_z_run_binding := false
+	for event: InputEvent in InputMap.action_get_events("player_run"):
+		if event is InputEventKey and (event as InputEventKey).physical_keycode == KEY_Z:
+			has_z_run_binding = true
+			break
+	if not has_z_run_binding:
+		_fail("The running action is not bound to the physical Z key.")
+		return
 	if not is_equal_approx(camera.rotation_degrees.x, -60.0) or not is_zero_approx(camera.rotation_degrees.y):
 		_fail("Unexpected default camera rotation: %s" % camera.rotation_degrees)
 		return
-	var initial_move_speed := float(camera.get("move_speed"))
+	var camera_focus := player.global_position + Vector3.UP * camera.target_height
+	if not is_equal_approx(camera.global_position.distance_to(camera_focus), camera.follow_distance):
+		_fail("Camera follow distance is incorrect.")
+		return
 	var wheel_up := InputEventMouseButton.new()
 	wheel_up.button_index = MOUSE_BUTTON_WHEEL_UP
 	wheel_up.pressed = true
@@ -58,13 +82,58 @@ func _run() -> void:
 	if not is_equal_approx(camera.rotation_degrees.x, -60.0):
 		_fail("Wheel down did not restore the default pitch: %s" % camera.rotation_degrees.x)
 		return
-	if not is_equal_approx(float(camera.get("move_speed")), initial_move_speed):
-		_fail("Mouse wheel unexpectedly changed movement speed.")
+	if not is_equal_approx(camera.global_position.distance_to(camera_focus), camera.follow_distance):
+		_fail("Mouse wheel changed the camera follow distance.")
 		return
 
-	camera.global_position = Vector3(
+	var movement_origin := player.global_position
+	var walk_delta := Vector3.ZERO
+	var direction_cases := [
+		{"action": "move_down", "direction": Vector3.BACK, "facing": PlatinumPlayerController.Facing.DOWN},
+		{"action": "move_up", "direction": Vector3.FORWARD, "facing": PlatinumPlayerController.Facing.UP},
+		{"action": "move_left", "direction": Vector3.LEFT, "facing": PlatinumPlayerController.Facing.LEFT},
+		{"action": "move_right", "direction": Vector3.RIGHT, "facing": PlatinumPlayerController.Facing.RIGHT},
+	]
+	for direction_case: Dictionary in direction_cases:
+		player.global_position = movement_origin
+		player.velocity = Vector3.ZERO
+		var action := StringName(direction_case.action)
+		var expected_direction := direction_case.direction as Vector3
+		Input.action_press(action)
+		for frame in 6:
+			await physics_frame
+		var movement_delta := player.global_position - movement_origin
+		Input.action_release(action)
+		var forward_distance := movement_delta.dot(expected_direction)
+		var off_axis_delta := movement_delta - expected_direction * forward_distance
+		if forward_distance <= 0.0 or off_axis_delta.length() > 0.001:
+			_fail("Movement was not constrained to %s: %s" % [action, movement_delta])
+			return
+		if player.get_current_facing() != int(direction_case.facing):
+			_fail("Movement did not select the expected facing for %s." % action)
+			return
+		if action == &"move_right":
+			walk_delta = movement_delta
+
+	player.global_position = movement_origin
+	player.velocity = Vector3.ZERO
+	Input.action_press("move_right")
+	Input.action_press("player_run")
+	for frame in 6:
+		await physics_frame
+	var run_delta := player.global_position - movement_origin
+	if not player.is_running() or player.get_current_sprite_frame() % 8 < 4:
+		_fail("Z running did not select the running animation frames.")
+		return
+	Input.action_release("player_run")
+	Input.action_release("move_right")
+	if run_delta.x <= walk_delta.x * 1.5 or not is_zero_approx(run_delta.z):
+		_fail("Running was not faster than walking: walk=%s run=%s" % [walk_delta, run_delta])
+		return
+
+	player.global_position = Vector3(
 		4.0 * PlatinumWorldStreamer.CHUNK_SIZE - 1.0,
-		52.0,
+		movement_origin.y,
 		28.0 * PlatinumWorldStreamer.CHUNK_SIZE - 1.0
 	)
 	for frame in 30:
@@ -73,7 +142,11 @@ func _run() -> void:
 		_fail("Focus moved before crossing the current chunk boundary: %s" % streamer.get_focus_cell())
 		return
 
-	camera.global_position = Vector3(9.0 * PlatinumWorldStreamer.CHUNK_SIZE, 52.0, 16.0 * PlatinumWorldStreamer.CHUNK_SIZE + 14.0)
+	player.global_position = Vector3(
+		9.0 * PlatinumWorldStreamer.CHUNK_SIZE,
+		movement_origin.y,
+		16.0 * PlatinumWorldStreamer.CHUNK_SIZE + 14.0
+	)
 	for frame in MAX_FRAMES:
 		await process_frame
 		var stats := streamer.get_stream_stats()

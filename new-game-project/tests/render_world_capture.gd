@@ -2,7 +2,7 @@ extends SceneTree
 
 const MAX_FRAMES := 1800
 const NDS_SCREEN_SIZE := Vector2i(256, 192)
-const DEFAULT_CAPTURE_PATH := "res://captures/world_start.png"
+const DEFAULT_CAPTURE_PATH := "res://captures/world_player.png"
 const DEFAULT_CAPTURE_CELL := Vector2i(3, 27)
 
 
@@ -27,11 +27,12 @@ func _run() -> void:
 		_fail("Main scene could not be loaded.")
 		return
 	var main := packed.instantiate()
-	var camera := main.get_node("Camera") as Camera3D
-	camera.position = Vector3(
+	var player := main.get_node("Player") as PlatinumPlayerController
+	var camera := main.get_node("Camera") as PlatinumFollowCamera
+	player.position = Vector3(
 		capture_cell.x * PlatinumWorldStreamer.CHUNK_SIZE,
-		52.0,
-		capture_cell.y * PlatinumWorldStreamer.CHUNK_SIZE + 14.0
+		player.position.y,
+		capture_cell.y * PlatinumWorldStreamer.CHUNK_SIZE
 	)
 	root.add_child(main)
 
@@ -72,6 +73,7 @@ func _run() -> void:
 	print("WORLD_CAPTURE_OK ", ProjectSettings.globalize_path(capture_path))
 	print("WORLD_CAPTURE_STATS ", JSON.stringify(stats))
 	print("WORLD_CAPTURE_CAMERA_FORWARD ", forward)
+	print("WORLD_CAPTURE_PLAYER_FRAME ", player.get_current_sprite_frame())
 	streamer.shutdown()
 	main.queue_free()
 	for cleanup_frame in 10:

@@ -3,7 +3,7 @@
 MaiZang Engine is a Godot 4.7 research project for reconstructing the Pokemon
 Platinum overworld from DSPRE exports. The current milestone renders matrix
 `0000`, places its static buildings, shares imported materials, and streams
-map chunks around a free camera.
+map chunks around a playable Dawn character.
 
 The repository contains the original tooling and Godot runtime written for
 this project. It intentionally does not contain Pokemon models, textures,
@@ -17,6 +17,8 @@ and are regenerated from a user-supplied DSPRE project.
 - 501 placed building instances.
 - 480 deduplicated textures and 511 shared Godot materials.
 - Native single-screen NDS viewport and window at `256 x 192`.
+- Cardinal-only walking plus `Z` running with separate Dawn animation frames.
+- A front-facing player camera with a 60-degree pitch and mouse-wheel pitch control.
 - `3 x 3` active chunks, `5 x 5` asset prefetch, and radius-3 retention.
 - Godot 4.7 OpenGL smoke tests with zero failed asset loads.
 
@@ -47,12 +49,14 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\sync_dspre_godot
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_godot_materials.ps1 `
   -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe"
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
+  -SourcePath "D:\path\to\Dawn.png"
 ```
 
 Open `new-game-project/project.godot` after the import completes. Use `WASD`
-to move, `Q/E` to descend or ascend, right mouse drag to look, the mouse wheel
-to adjust pitch in 5-degree steps, and `Shift` to sprint. The default camera
-faces forward with a 60-degree downward pitch.
+or the arrow keys for four-direction movement, hold `Z` to run, and use the
+mouse wheel to adjust the follow camera pitch in 5-degree steps.
 
 ## Development
 

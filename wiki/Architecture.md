@@ -16,12 +16,14 @@
 `new-game-project/scenes/main.tscn` owns:
 
 - `WorldEnvironment` and one directional light.
-- A free-fly `Camera3D` used as the streaming focus.
+- A `CharacterBody3D` player with a billboarded four-direction sprite.
+- A front-facing `Camera3D` that follows the player and owns pitch input.
 - `PlatinumWorldStreamer` and its `LoadedChunks` runtime container.
 
-`PlatinumWorldStreamer` reads the generated matrix manifest, requests terrain
-and building `PackedScene` resources asynchronously, instantiates ready cells,
-and releases distant cells and cache references.
+`PlatinumWorldStreamer` uses the player as its focus. It reads the generated
+matrix manifest, requests terrain and building `PackedScene` resources
+asynchronously, instantiates ready cells, and releases distant cells and cache
+references.
 
 ## Display Contract
 
@@ -59,7 +61,7 @@ implemented with `MeshInstance3D` surface overrides and never mutates a shared
 
 ## Non-Goals for the Current Milestone
 
-- Player collision and movement rules.
+- Terrain height snapping and player collision rules.
 - `a.dat` tile behavior and `h.bhc` height queries.
 - NPCs, scripts, warps, animations, and battle systems.
 - Full indoor, dungeon, or underground matrix coverage.

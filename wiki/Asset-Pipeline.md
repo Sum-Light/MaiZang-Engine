@@ -75,7 +75,23 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_
 This generates 511 external materials, configures all 398 scene imports to use
 them, and reimports all 480 textures with lossless compression and no mipmaps.
 
+### 5. Import the Local Player Sprite
+
+The public repository does not contain Pokemon character art. Build the local
+Dawn atlas from the supplied source sheet with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
+  -SourcePath "D:\path\to\Dawn.png"
+```
+
+The script extracts the 4-frame walk group at `(0, 0)` and the 4-frame run
+group at `(170, 0)`, removes both source background colors, and writes an
+`8 x 4` transparent atlas to the ignored path
+`new-game-project/assets/platinum/characters/dawn_overworld.png`.
+
 ## Rebuild Rule
 
-Do not hand-edit generated GLB, PNG, `.import`, material, or manifest output.
-Change the converter or import script, rebuild, then validate the complete set.
+Do not hand-edit generated GLB, PNG, `.import`, material, atlas, or manifest
+output. Change the converter or import script, rebuild, then validate the
+complete set.

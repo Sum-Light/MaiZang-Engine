@@ -5,7 +5,8 @@
 | Path | Owner and purpose |
 |---|---|
 | `new-game-project/scripts/platinum_world_streamer.gd` | Manifest loading, asynchronous asset cache, chunk lifecycle, placement |
-| `new-game-project/scripts/free_fly_camera.gd` | Viewer navigation only |
+| `new-game-project/scripts/player_controller.gd` | Cardinal movement, Dawn animation, walking and running state |
+| `new-game-project/scripts/follow_camera.gd` | Player following and mouse-wheel pitch control |
 | `new-game-project/scenes/main.tscn` | Minimal runnable world shell |
 | `new-game-project/tests/` | Streaming and render-capture integration tests |
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
@@ -14,12 +15,14 @@
 | `tools/sync_dspre_godot_assets.ps1` | Local generated output to ignored Godot asset tree |
 | `tools/configure_dspre_godot_materials.ps1` | External material mappings and scene reimport |
 | `tools/configure_dspre_godot_textures.ps1` | Lossless, no-mipmap texture import |
+| `tools/import_player_sprite.ps1` | Local Dawn walk/run atlas extraction and color-key transparency |
 | `wiki/` | Versioned GitHub Wiki source of truth |
 
 ## Runtime Constants
 
 - Single-screen viewport and window: `256 x 192`, fixed 4:3.
-- Default camera: yaw `0`, downward pitch `60`, wheel pitch step `5`.
+- Player: walk speed `3.0`, run speed `5.5`, cardinal input only, `Z` to run.
+- Follow camera: distance `8`, yaw `0`, downward pitch `60`, wheel step `5`.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`

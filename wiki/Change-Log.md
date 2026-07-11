@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Add playable Dawn character
+
+- Add cardinal walking, Z-key running animations, a player-follow camera, local sprite-atlas import tooling, and focused runtime validation.
+
+
 ## 2026-07-12 - Set front-facing 60-degree camera
 
 - Use a zero-yaw 60-degree downward default view and map mouse-wheel input to 5-degree pitch steps instead of movement speed.

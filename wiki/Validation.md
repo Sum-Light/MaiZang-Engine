@@ -50,8 +50,12 @@ The test verifies:
 
 - 468 manifest cells.
 - Initial `3 x 3` chunk load.
+- Dawn's ignored local walk/run atlas is loaded.
+- Diagonal input resolves to one cardinal axis.
+- `Z` running is faster than walking and selects columns 4-7.
+- The camera follows the player at distance `8`.
 - Default camera yaw `0`, downward pitch `60`, and wheel pitch steps of `5`.
-- Mouse-wheel pitch changes do not modify movement speed.
+- Mouse-wheel pitch changes preserve the follow distance.
 - Correct floor-based cell boundaries.
 - Long-distance load and origin unload.
 - Zero failed assets and zero runtime material replacements.
@@ -70,5 +74,5 @@ The test verifies:
 ```
 
 Inspect the image for nonblank output, terrain seams, incorrect axes, building
-placement, transparency, filtering, and overlapping geometry. The PNG must be
-exactly `256 x 192` pixels.
+placement, player visibility, sprite transparency, nearest filtering, and
+overlapping geometry. The PNG must be exactly `256 x 192` pixels.

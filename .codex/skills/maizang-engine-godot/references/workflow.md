@@ -14,6 +14,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\sync_dspre_godot
 & "D:\path\to\Godot_console.exe" --headless --path .\new-game-project --import
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_godot_materials.ps1 `
   -GodotPath "D:\path\to\Godot_console.exe"
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
+  -SourcePath "D:\path\to\Dawn.png"
 ```
 
 Never run `sync_dspre_godot_assets.ps1 -Force` until the destination resolves
@@ -42,6 +45,7 @@ Expected Godot baselines:
 - 511 unique external materials.
 - 9 active chunks at the initial and destination cells.
 - 0 failed assets and 0 runtime material replacements.
+- Four-direction walking, `Z` running frames, and distance-8 camera following.
 
 ## Documentation and Memory
 

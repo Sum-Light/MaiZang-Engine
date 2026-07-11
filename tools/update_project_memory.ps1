@@ -125,6 +125,13 @@ $godotScripts = @(Get-ChildItem -LiteralPath (Join-Path $godotRoot "scripts") -F
 $godotTests = @(Get-ChildItem -LiteralPath (Join-Path $godotRoot "tests") -Filter "*.gd" -File -ErrorAction SilentlyContinue).Count
 $powershellTools = @(Get-ChildItem -LiteralPath (Join-Path $ProjectRoot "tools") -Filter "*.ps1" -File).Count
 $assetStatus = if ($localAssetsPresent) { "present locally (ignored by Git)" } else { "not present; rebuild from a local DSPRE project" }
+$playerSpritePath = Join-Path $assetRoot "characters\dawn_overworld.png"
+$playerSpriteStatus = if (Test-Path -LiteralPath $playerSpritePath -PathType Leaf) {
+    "present locally (ignored by Git)"
+}
+else {
+    "not present; run tools/import_player_sprite.ps1"
+}
 
 $currentState = @"
 # Current State
@@ -144,7 +151,8 @@ $currentState = @"
 
 - Godot target: 4.7 stable, compatibility renderer.
 - Display: one fixed ``256 x 192`` NDS screen at 4:3.
-- Camera: front-facing yaw ``0``, downward pitch ``60``, wheel step ``5``.
+- Player: four-direction movement, walk speed ``3.0``, ``Z`` run speed ``5.5``.
+- Camera: follows the player at distance ``8``; yaw ``0``, pitch ``60``, wheel step ``5``.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -160,6 +168,7 @@ $currentState = @"
 - PNG textures found: $localTextures
 - Shared materials found: $localMaterials
 - Building instances found: $localBuildings
+- Dawn sprite atlas: $playerSpriteStatus.
 
 ## Next Engineering Milestone
 
@@ -177,12 +186,14 @@ MaiZang Engine and regenerate it in every functional commit.
 - Source fingerprint: ``$sourceFingerprint``
 - Runtime: Godot 4.7 compatibility renderer.
 - Display: one fixed ``256 x 192`` NDS screen at 4:3.
-- Camera: front-facing yaw ``0``, downward pitch ``60``, wheel step ``5``.
+- Player: four-direction movement, walk ``3.0``, ``Z`` run ``5.5``.
+- Camera: player follow distance ``8``, yaw ``0``, pitch ``60``, wheel step ``5``.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.
+- Dawn sprite atlas: $playerSpriteStatus.
 - Next milestone: ``a.dat`` behavior plus ``h.bhc`` height and collision.
 
 The public repository must not contain ROM-derived models, textures, maps, or

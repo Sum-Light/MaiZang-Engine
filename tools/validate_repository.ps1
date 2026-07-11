@@ -42,6 +42,7 @@ $requiredWikiPages = @(
     "Architecture.md",
     "Asset-Pipeline.md",
     "Runtime-Streaming.md",
+    "Player-Control.md",
     "Validation.md",
     "Development-Workflow.md",
     "Repository-Policy.md",
