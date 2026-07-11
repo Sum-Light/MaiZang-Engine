@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Add orthographic camera debug toggle
+
+- Start the player-follow camera in size-8 orthographic mode and let F1 toggle a transform-preserving FOV-75 perspective debug view.
+
+
 ## 2026-07-12 - Add playable Dawn character
 
 - Add cardinal walking, Z-key running animations, a player-follow camera, local sprite-atlas import tooling, and focused runtime validation.

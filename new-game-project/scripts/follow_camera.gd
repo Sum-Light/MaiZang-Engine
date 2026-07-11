@@ -2,6 +2,10 @@ class_name PlatinumFollowCamera
 extends Camera3D
 
 @export_node_path("Node3D") var target_path: NodePath
+@export_group("Projection")
+@export_range(1.0, 32.0, 0.25) var orthographic_size := 8.0
+@export_range(20.0, 120.0, 1.0) var perspective_fov := 75.0
+@export_group("Follow")
 @export_range(2.0, 30.0, 0.25) var follow_distance := 8.0
 @export_range(0.0, 4.0, 0.05) var target_height := 0.9
 @export_range(1.0, 15.0, 0.5) var wheel_pitch_step := 5.0
@@ -14,6 +18,7 @@ var _pitch := -60.0
 
 func _ready() -> void:
 	process_priority = 10
+	_set_projection(Camera3D.PROJECTION_ORTHOGONAL)
 	_pitch = clampf(rotation_degrees.x, -maximum_downward_pitch, -minimum_downward_pitch)
 	_target = get_node_or_null(target_path) as Node3D
 	if _target == null:
@@ -28,6 +33,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		var key_event := event as InputEventKey
+		var is_f1 := key_event.keycode == KEY_F1 or key_event.physical_keycode == KEY_F1
+		if key_event.pressed and not key_event.echo and is_f1:
+			toggle_projection()
+			get_viewport().set_input_as_handled()
+		return
 	if not event is InputEventMouseButton:
 		return
 	var mouse_button := event as InputEventMouseButton
@@ -56,6 +68,26 @@ func get_follow_target() -> Node3D:
 	return _target
 
 
+func toggle_projection() -> void:
+	if projection == Camera3D.PROJECTION_ORTHOGONAL:
+		_set_projection(Camera3D.PROJECTION_PERSPECTIVE)
+	else:
+		_set_projection(Camera3D.PROJECTION_ORTHOGONAL)
+	print("CAMERA_PROJECTION ", get_projection_name())
+
+
+func get_projection_name() -> String:
+	return "orthographic" if projection == Camera3D.PROJECTION_ORTHOGONAL else "perspective"
+
+
 func _set_pitch(value: float) -> void:
 	_pitch = clampf(value, -maximum_downward_pitch, -minimum_downward_pitch)
 	snap_to_target()
+
+
+func _set_projection(value: Camera3D.ProjectionType) -> void:
+	projection = value
+	if projection == Camera3D.PROJECTION_ORTHOGONAL:
+		size = orthographic_size
+	else:
+		fov = perspective_fov

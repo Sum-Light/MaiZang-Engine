@@ -12,6 +12,7 @@ complete game port.
 - Import shared Godot materials and lossless nearest-filtered textures.
 - Assemble 468 occupied terrain cells and 501 building instances.
 - Control Dawn with four-direction walking and `Z` running animations.
+- Use a native-size orthographic camera with an `F1` perspective debug mode.
 - Stream nearby chunks around the player with bounded asset retention.
 
 ## Documentation

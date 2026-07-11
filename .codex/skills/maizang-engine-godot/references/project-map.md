@@ -22,7 +22,8 @@
 
 - Single-screen viewport and window: `256 x 192`, fixed 4:3.
 - Player: walk speed `3.0`, run speed `5.5`, cardinal input only, `Z` to run.
-- Follow camera: distance `8`, yaw `0`, downward pitch `60`, wheel step `5`.
+- Follow camera: orthographic size `8`, debug perspective FOV `75`, distance
+  `8`, yaw `0`, downward pitch `60`, wheel step `5`, `F1` projection toggle.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`

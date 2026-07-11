@@ -17,7 +17,8 @@
 
 - `WorldEnvironment` and one directional light.
 - A `CharacterBody3D` player with a billboarded four-direction sprite.
-- A front-facing `Camera3D` that follows the player and owns pitch input.
+- A front-facing orthographic `Camera3D` that follows the player, owns pitch
+  input, and exposes an `F1` perspective debug mode.
 - `PlatinumWorldStreamer` and its `LoadedChunks` runtime container.
 
 `PlatinumWorldStreamer` uses the player as its focus. It reads the generated

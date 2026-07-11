@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://cbviilk3s3pj7"]
 
-[ext_resource type="Script" path="res://scripts/platinum_world_streamer.gd" id="1_streamer"]
-[ext_resource type="Script" path="res://scripts/follow_camera.gd" id="2_camera"]
-[ext_resource type="Script" path="res://scripts/player_controller.gd" id="3_player"]
+[ext_resource type="Script" uid="uid://lo1t84vmist3" path="res://scripts/platinum_world_streamer.gd" id="1_streamer"]
+[ext_resource type="Script" uid="uid://72icnjp56syw" path="res://scripts/follow_camera.gd" id="2_camera"]
+[ext_resource type="Script" uid="uid://cgsc71dn4w1g1" path="res://scripts/player_controller.gd" id="3_player"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 1
@@ -15,46 +15,46 @@ ambient_light_energy = 0.8
 radius = 0.3
 height = 1.4
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=1201451321]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1593952921]
 environment = SubResource("Environment_world")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-55, -35, 0)
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=716163401]
+transform = Transform3D(0.81915206, 0.46984634, -0.32898995, 0, 0.57357645, 0.81915206, 0.57357645, -0.6710101, 0.46984634, 0, 0, 0)
 light_color = Color(1, 0.94, 0.82, 1)
 light_energy = 1.2
 shadow_enabled = true
 directional_shadow_max_distance = 160.0
 
-[node name="Player" type="CharacterBody3D" parent="."]
-position = Vector3(96, 1, 864)
+[node name="Player" type="CharacterBody3D" parent="." unique_id=936375075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 1, 864)
 script = ExtResource("3_player")
 
-[node name="Sprite3D" type="Sprite3D" parent="Player"]
-position = Vector3(0, 0.9, 0)
+[node name="Sprite3D" type="Sprite3D" parent="Player" unique_id=2129827773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 pixel_size = 0.06
 billboard = 1
-shaded = false
 alpha_cut = 1
 texture_filter = 0
 hframes = 8
 vframes = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-position = Vector3(0, 0.7, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1282454859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape_player")
 
-[node name="Camera" type="Camera3D" parent="."]
-position = Vector3(96, 8.8282, 868)
-rotation_degrees = Vector3(-60, 0, 0)
+[node name="Camera" type="Camera3D" parent="." unique_id=1405494576]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 96, 8.8282, 868)
+projection = 1
 current = true
+size = 8.0
 far = 2500.0
 script = ExtResource("2_camera")
 target_path = NodePath("../Player")
 
-[node name="WorldStreamer" type="Node3D" parent="."]
+[node name="WorldStreamer" type="Node3D" parent="." unique_id=1398028523]
 script = ExtResource("1_streamer")
 focus_path = NodePath("../Player")
 
-[node name="LoadedChunks" type="Node3D" parent="WorldStreamer"]
+[node name="LoadedChunks" type="Node3D" parent="WorldStreamer" unique_id=1845466634]

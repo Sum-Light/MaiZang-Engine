@@ -5,7 +5,7 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `78430b3229dd32e77050bb3c8c444d3dcdadbcb47c628b2b2c3045da30718c24`
+- Source fingerprint: `2fd27c8d8fb5f160ccdccccbd3555cbe24d77509c1c65cc934a83ef5ea7424d0`
 - Fingerprinted files: 48
 - Godot runtime scripts: 3
 - Godot test scripts: 2
@@ -16,7 +16,8 @@
 - Godot target: 4.7 stable, compatibility renderer.
 - Display: one fixed `256 x 192` NDS screen at 4:3.
 - Player: four-direction movement, walk speed `3.0`, `Z` run speed `5.5`.
-- Camera: follows the player at distance `8`; yaw `0`, pitch `60`, wheel step `5`.
+- Camera: orthographic size `8` by default; `F1` toggles FOV-75 perspective.
+- Camera transform: player follow distance `8`, yaw `0`, pitch `60`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.

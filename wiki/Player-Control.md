@@ -19,6 +19,7 @@ queries.
 | `WASD` or arrow keys | Walk in one of four cardinal directions |
 | `Z` held | Run while moving |
 | Mouse wheel | Adjust follow-camera pitch by 5 degrees |
+| `F1` | Toggle orthographic and perspective debug projections |
 
 Diagonal input is reduced to one axis before velocity is applied. Equal
 horizontal and vertical strengths select the vertical axis, so the character

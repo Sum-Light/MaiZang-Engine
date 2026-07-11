@@ -37,8 +37,10 @@ the same player node as its focus:
 
 - Fixed front orientation at yaw `0`.
 - Default downward pitch `60` degrees.
+- Default orthographic projection with size `8`.
+- `F1` toggles a perspective debug projection at FOV `75`.
 - Follow distance `8` world units and target height `0.9`.
 - Mouse wheel pitch steps of `5` degrees, clamped from `35` to `80` degrees.
-- Pitch changes orbit vertically around the player and preserve follow distance.
+- Pitch and projection changes preserve the camera transform and follow distance.
 
 Player movement and animation rules are documented in [Player Control](Player-Control).

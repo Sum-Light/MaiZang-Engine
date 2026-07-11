@@ -18,7 +18,8 @@ and are regenerated from a user-supplied DSPRE project.
 - 480 deduplicated textures and 511 shared Godot materials.
 - Native single-screen NDS viewport and window at `256 x 192`.
 - Cardinal-only walking plus `Z` running with separate Dawn animation frames.
-- A front-facing player camera with a 60-degree pitch and mouse-wheel pitch control.
+- A size-8 orthographic follow camera with a 60-degree pitch, mouse-wheel
+  pitch control, and an `F1` perspective debug view.
 - `3 x 3` active chunks, `5 x 5` asset prefetch, and radius-3 retention.
 - Godot 4.7 OpenGL smoke tests with zero failed asset loads.
 
@@ -56,7 +57,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sp
 
 Open `new-game-project/project.godot` after the import completes. Use `WASD`
 or the arrow keys for four-direction movement, hold `Z` to run, and use the
-mouse wheel to adjust the follow camera pitch in 5-degree steps.
+mouse wheel to adjust the follow camera pitch in 5-degree steps. Press `F1`
+to toggle between the default orthographic view and the perspective debug view.
 
 ## Development
 

@@ -14,6 +14,7 @@ func _run() -> void:
 	root.size = NDS_SCREEN_SIZE
 	var capture_cell := DEFAULT_CAPTURE_CELL
 	var capture_path := DEFAULT_CAPTURE_PATH
+	var force_perspective := false
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--cell="):
 			var components := argument.trim_prefix("--cell=").split(",")
@@ -21,6 +22,8 @@ func _run() -> void:
 				capture_cell = Vector2i(int(components[0]), int(components[1]))
 		elif argument.begins_with("--output="):
 			capture_path = argument.trim_prefix("--output=")
+		elif argument == "--perspective":
+			force_perspective = true
 
 	var packed := load("res://scenes/main.tscn") as PackedScene
 	if packed == null:
@@ -35,6 +38,8 @@ func _run() -> void:
 		capture_cell.y * PlatinumWorldStreamer.CHUNK_SIZE
 	)
 	root.add_child(main)
+	if force_perspective:
+		camera.toggle_projection()
 
 	var streamer: PlatinumWorldStreamer
 	var stats: Dictionary
@@ -73,6 +78,7 @@ func _run() -> void:
 	print("WORLD_CAPTURE_OK ", ProjectSettings.globalize_path(capture_path))
 	print("WORLD_CAPTURE_STATS ", JSON.stringify(stats))
 	print("WORLD_CAPTURE_CAMERA_FORWARD ", forward)
+	print("WORLD_CAPTURE_PROJECTION ", camera.get_projection_name())
 	print("WORLD_CAPTURE_PLAYER_FRAME ", player.get_current_sprite_frame())
 	streamer.shutdown()
 	main.queue_free()
