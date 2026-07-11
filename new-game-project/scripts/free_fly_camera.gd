@@ -3,8 +3,7 @@ extends Camera3D
 @export_range(1.0, 200.0, 1.0) var move_speed := 28.0
 @export_range(1.0, 10.0, 0.5) var sprint_multiplier := 3.0
 @export_range(0.01, 1.0, 0.01) var look_sensitivity := 0.12
-@export_range(1.0, 100.0, 1.0) var minimum_speed := 4.0
-@export_range(10.0, 500.0, 1.0) var maximum_speed := 160.0
+@export_range(1.0, 15.0, 0.5) var wheel_pitch_step := 5.0
 
 var _looking := false
 var _pitch := 0.0
@@ -44,11 +43,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			_looking = mouse_button.pressed
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if _looking else Input.MOUSE_MODE_VISIBLE
 		elif mouse_button.pressed and mouse_button.button_index == MOUSE_BUTTON_WHEEL_UP:
-			move_speed = clampf(move_speed * 1.2, minimum_speed, maximum_speed)
+			_set_pitch(_pitch - wheel_pitch_step)
 		elif mouse_button.pressed and mouse_button.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			move_speed = clampf(move_speed / 1.2, minimum_speed, maximum_speed)
+			_set_pitch(_pitch + wheel_pitch_step)
 	elif event is InputEventMouseMotion and _looking:
 		var mouse_motion := event as InputEventMouseMotion
 		rotation_degrees.y -= mouse_motion.relative.x * look_sensitivity
-		_pitch = clampf(_pitch - mouse_motion.relative.y * look_sensitivity, -89.0, 89.0)
-		rotation_degrees.x = _pitch
+		_set_pitch(_pitch - mouse_motion.relative.y * look_sensitivity)
+
+
+func _set_pitch(value: float) -> void:
+	_pitch = clampf(value, -89.0, 89.0)
+	rotation_degrees.x = _pitch

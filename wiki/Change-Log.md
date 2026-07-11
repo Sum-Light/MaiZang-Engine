@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Set front-facing 60-degree camera
+
+- Use a zero-yaw 60-degree downward default view and map mouse-wheel input to 5-degree pitch steps instead of movement speed.
+
+
 ## 2026-07-12 - Use native NDS screen resolution
 
 - Set the Godot window, viewport, and render-capture contract to a fixed 256 by 192 single-screen layout.

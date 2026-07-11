@@ -50,6 +50,8 @@ The test verifies:
 
 - 468 manifest cells.
 - Initial `3 x 3` chunk load.
+- Default camera yaw `0`, downward pitch `60`, and wheel pitch steps of `5`.
+- Mouse-wheel pitch changes do not modify movement speed.
 - Correct floor-based cell boundaries.
 - Long-distance load and origin unload.
 - Zero failed assets and zero runtime material replacements.

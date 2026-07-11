@@ -34,8 +34,9 @@ shows draw-call pressure.
 
 The current viewer uses a free camera:
 
+- Default orientation: front-facing yaw `0` with a `60` degree downward pitch.
 - `WASD`: horizontal movement.
 - `Q/E`: descend or ascend.
 - Right mouse drag: look.
-- Mouse wheel: change movement speed.
+- Mouse wheel: adjust pitch in `5` degree steps.
 - `Shift`: sprint.

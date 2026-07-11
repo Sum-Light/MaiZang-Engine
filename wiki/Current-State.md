@@ -5,7 +5,7 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `a8536b7ecf590e9d5332e5b3dd0fd8f7d0b778ef3d587adc2ad7ebb1b973515f`
+- Source fingerprint: `248c9fbb00509048c4eb9f68717622de6ade65d320c250815469259efc6a8d40`
 - Fingerprinted files: 44
 - Godot runtime scripts: 2
 - Godot test scripts: 2
@@ -15,6 +15,7 @@
 
 - Godot target: 4.7 stable, compatibility renderer.
 - Display: one fixed `256 x 192` NDS screen at 4:3.
+- Camera: front-facing yaw `0`, downward pitch `60`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.

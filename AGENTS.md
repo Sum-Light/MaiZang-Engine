@@ -48,6 +48,7 @@ asset workflow.
 
 - Godot target: 4.7 stable, compatibility renderer.
 - Logical viewport and window: `256 x 192`, fixed 4:3 NDS screen.
+- Default camera: front-facing yaw `0`, downward pitch `60`, wheel step `5`.
 - Matrix coordinate unit: 32 world units per map block.
 - Matrix altitude unit: 0.5 world units.
 - Imported model scale: `1 / 16`.

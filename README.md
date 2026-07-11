@@ -51,7 +51,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_
 
 Open `new-game-project/project.godot` after the import completes. Use `WASD`
 to move, `Q/E` to descend or ascend, right mouse drag to look, the mouse wheel
-to change speed, and `Shift` to sprint.
+to adjust pitch in 5-degree steps, and `Shift` to sprint. The default camera
+faces forward with a 60-degree downward pitch.
 
 ## Development
 

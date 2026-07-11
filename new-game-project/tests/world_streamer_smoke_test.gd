@@ -40,6 +40,28 @@ func _run() -> void:
 		return
 
 	var camera := main.get_node("Camera") as Camera3D
+	if not is_equal_approx(camera.rotation_degrees.x, -60.0) or not is_zero_approx(camera.rotation_degrees.y):
+		_fail("Unexpected default camera rotation: %s" % camera.rotation_degrees)
+		return
+	var initial_move_speed := float(camera.get("move_speed"))
+	var wheel_up := InputEventMouseButton.new()
+	wheel_up.button_index = MOUSE_BUTTON_WHEEL_UP
+	wheel_up.pressed = true
+	camera._unhandled_input(wheel_up)
+	if not is_equal_approx(camera.rotation_degrees.x, -65.0):
+		_fail("Wheel up did not increase the downward pitch: %s" % camera.rotation_degrees.x)
+		return
+	var wheel_down := InputEventMouseButton.new()
+	wheel_down.button_index = MOUSE_BUTTON_WHEEL_DOWN
+	wheel_down.pressed = true
+	camera._unhandled_input(wheel_down)
+	if not is_equal_approx(camera.rotation_degrees.x, -60.0):
+		_fail("Wheel down did not restore the default pitch: %s" % camera.rotation_degrees.x)
+		return
+	if not is_equal_approx(float(camera.get("move_speed")), initial_move_speed):
+		_fail("Mouse wheel unexpectedly changed movement speed.")
+		return
+
 	camera.global_position = Vector3(
 		4.0 * PlatinumWorldStreamer.CHUNK_SIZE - 1.0,
 		52.0,
