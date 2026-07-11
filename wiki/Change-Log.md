@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Match orthographic camera scale
+
+- Set the default orthographic size to 12.3 so the player appears at nearly the same scale as the FOV-75 perspective debug view.
+
+
 ## 2026-07-12 - Add orthographic camera debug toggle
 
 - Start the player-follow camera in size-8 orthographic mode and let F1 toggle a transform-preserving FOV-75 perspective debug view.

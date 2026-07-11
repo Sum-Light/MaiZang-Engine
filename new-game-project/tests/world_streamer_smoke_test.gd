@@ -64,7 +64,7 @@ func _run() -> void:
 	if not is_equal_approx(camera.rotation_degrees.x, -60.0) or not is_zero_approx(camera.rotation_degrees.y):
 		_fail("Unexpected default camera rotation: %s" % camera.rotation_degrees)
 		return
-	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 8.0):
+	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 12.3):
 		_fail("Camera did not start in the expected orthographic mode.")
 		return
 	var camera_focus := player.global_position + Vector3.UP * camera.target_height
@@ -83,7 +83,7 @@ func _run() -> void:
 		_fail("Projection switching changed the camera transform.")
 		return
 	camera._unhandled_input(f1_event)
-	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 8.0):
+	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 12.3):
 		_fail("F1 did not restore orthographic mode.")
 		return
 	var wheel_up := InputEventMouseButton.new()

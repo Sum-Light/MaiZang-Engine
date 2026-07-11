@@ -54,7 +54,7 @@ The test verifies:
 - Diagonal input resolves to one cardinal axis.
 - `Z` running is faster than walking and selects columns 4-7.
 - The camera follows the player at distance `8`.
-- The camera starts orthographic at size `8`.
+- The camera starts orthographic at size `12.3`.
 - `F1` switches to FOV-75 perspective and back without changing its transform.
 - Default camera yaw `0`, downward pitch `60`, and wheel pitch steps of `5`.
 - Mouse-wheel pitch changes preserve the follow distance.

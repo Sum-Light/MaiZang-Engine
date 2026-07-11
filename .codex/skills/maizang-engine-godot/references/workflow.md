@@ -46,7 +46,7 @@ Expected Godot baselines:
 - 9 active chunks at the initial and destination cells.
 - 0 failed assets and 0 runtime material replacements.
 - Four-direction walking, `Z` running frames, and distance-8 camera following.
-- Default size-8 orthographic projection and transform-preserving `F1` toggle.
+- Default size-12.3 orthographic projection and transform-preserving `F1` toggle.
 
 ## Documentation and Memory
 

@@ -3,7 +3,7 @@ extends Camera3D
 
 @export_node_path("Node3D") var target_path: NodePath
 @export_group("Projection")
-@export_range(1.0, 32.0, 0.25) var orthographic_size := 8.0
+@export_range(1.0, 32.0, 0.1) var orthographic_size := 12.3
 @export_range(20.0, 120.0, 1.0) var perspective_fov := 75.0
 @export_group("Follow")
 @export_range(2.0, 30.0, 0.25) var follow_distance := 8.0

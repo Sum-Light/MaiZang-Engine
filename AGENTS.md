@@ -50,7 +50,7 @@ asset workflow.
 - Logical viewport and window: `256 x 192`, fixed 4:3 NDS screen.
 - Player movement is cardinal-only; `Z` selects the 5.5-unit running speed.
 - The camera follows the player at distance `8`, with yaw `0`, downward pitch
-  `60`, and wheel step `5`. It starts orthographic at size `8`; `F1` toggles
+  `60`, and wheel step `5`. It starts orthographic at size `12.3`; `F1` toggles
   the debug perspective view at FOV `75`.
 - Matrix coordinate unit: 32 world units per map block.
 - Matrix altitude unit: 0.5 world units.

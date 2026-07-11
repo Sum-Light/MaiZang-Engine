@@ -152,7 +152,7 @@ $currentState = @"
 - Godot target: 4.7 stable, compatibility renderer.
 - Display: one fixed ``256 x 192`` NDS screen at 4:3.
 - Player: four-direction movement, walk speed ``3.0``, ``Z`` run speed ``5.5``.
-- Camera: orthographic size ``8`` by default; ``F1`` toggles FOV-75 perspective.
+- Camera: orthographic size ``12.3`` by default; ``F1`` toggles FOV-75 perspective.
 - Camera transform: player follow distance ``8``, yaw ``0``, pitch ``60``, wheel step ``5``.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
@@ -188,7 +188,7 @@ MaiZang Engine and regenerate it in every functional commit.
 - Runtime: Godot 4.7 compatibility renderer.
 - Display: one fixed ``256 x 192`` NDS screen at 4:3.
 - Player: four-direction movement, walk ``3.0``, ``Z`` run ``5.5``.
-- Camera: size-8 orthographic default, ``F1`` FOV-75 perspective debug view.
+- Camera: size-12.3 orthographic default, ``F1`` FOV-75 perspective debug view.
 - Camera transform: player follow distance ``8``, yaw ``0``, pitch ``60``, wheel step ``5``.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
