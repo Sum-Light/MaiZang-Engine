@@ -18,7 +18,7 @@ and are regenerated from a user-supplied DSPRE project.
 - 480 deduplicated textures and 511 shared Godot materials.
 - Native single-screen NDS viewport and window at `256 x 192`.
 - Cardinal-only walking plus `Z` running with separate Dawn animation frames.
-- A size-12.3 orthographic follow camera with a 60-degree pitch, mouse-wheel
+- A size-11.24 orthographic follow camera with a 50-degree pitch, mouse-wheel
   pitch control, and an `F1` perspective debug view.
 - `3 x 3` active chunks, `5 x 5` asset prefetch, and radius-3 retention.
 - Godot 4.7 OpenGL smoke tests with zero failed asset loads.

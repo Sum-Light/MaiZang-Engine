@@ -1,8 +1,6 @@
 extends SceneTree
 
 const MAX_FRAMES := 1800
-
-
 func _initialize() -> void:
 	call_deferred("_run")
 
@@ -61,10 +59,10 @@ func _run() -> void:
 	if not has_z_run_binding:
 		_fail("The running action is not bound to the physical Z key.")
 		return
-	if not is_equal_approx(camera.rotation_degrees.x, -60.0) or not is_zero_approx(camera.rotation_degrees.y):
+	if not is_equal_approx(camera.rotation_degrees.x, -50.0) or not is_zero_approx(camera.rotation_degrees.y):
 		_fail("Unexpected default camera rotation: %s" % camera.rotation_degrees)
 		return
-	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 12.3):
+	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 11.24):
 		_fail("Camera did not start in the expected orthographic mode.")
 		return
 	var camera_focus := player.global_position + Vector3.UP * camera.target_height
@@ -83,21 +81,21 @@ func _run() -> void:
 		_fail("Projection switching changed the camera transform.")
 		return
 	camera._unhandled_input(f1_event)
-	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 12.3):
+	if camera.projection != Camera3D.PROJECTION_ORTHOGONAL or not is_equal_approx(camera.size, 11.24):
 		_fail("F1 did not restore orthographic mode.")
 		return
 	var wheel_up := InputEventMouseButton.new()
 	wheel_up.button_index = MOUSE_BUTTON_WHEEL_UP
 	wheel_up.pressed = true
 	camera._unhandled_input(wheel_up)
-	if not is_equal_approx(camera.rotation_degrees.x, -65.0):
+	if not is_equal_approx(camera.rotation_degrees.x, -55.0):
 		_fail("Wheel up did not increase the downward pitch: %s" % camera.rotation_degrees.x)
 		return
 	var wheel_down := InputEventMouseButton.new()
 	wheel_down.button_index = MOUSE_BUTTON_WHEEL_DOWN
 	wheel_down.pressed = true
 	camera._unhandled_input(wheel_down)
-	if not is_equal_approx(camera.rotation_degrees.x, -60.0):
+	if not is_equal_approx(camera.rotation_degrees.x, -50.0):
 		_fail("Wheel down did not restore the default pitch: %s" % camera.rotation_degrees.x)
 		return
 	if not is_equal_approx(camera.global_position.distance_to(camera_focus), camera.follow_distance):

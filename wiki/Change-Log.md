@@ -1,5 +1,9 @@
 # Change Log
 
+## 2026-07-12 - Set 50-degree camera composition
+
+- Set the default camera pitch to 50 degrees and use the requested orthographic size of 11.24 for a closer player and building composition.
+
 ## 2026-07-12 - Match orthographic camera scale
 
 - Set the default orthographic size to 12.3 so the player appears at nearly the same scale as the FOV-75 perspective debug view.
