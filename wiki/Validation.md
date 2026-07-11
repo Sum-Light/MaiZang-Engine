@@ -52,10 +52,22 @@ The test verifies:
 - Initial `3 x 3` chunk load.
 - Dawn's ignored local walk/run atlas is loaded.
 - Diagonal input resolves to one cardinal axis.
-- `Z` running is faster than walking and selects columns 4-7.
-- The camera follows the player at distance `8`.
+- A 16-pixel source tile maps to one world unit.
+- Player positions stay on half-integer tile centers without the prior 8-pixel offset.
+- The 32-pixel source sprite projects within one pixel of its native height at
+  orthographic size `11.24` on the 192-pixel viewport.
+- Platinum's 30 Hz walk/run actions map to 16/8 Godot physics ticks per tile.
+- A stationary direction change uses six ticks and does not move the player.
+- Walking and running preserve the 32-tick `neutral, foot A, neutral, foot B`
+  gait timeline in atlas banks `0..3` and `4..7` respectively.
+- Direction and `Z` changes during a step take effect only at the next tile.
+- Held input starts walking immediately after a stationary turn; continuous
+  walking changes direction without inserting another turn.
+- Held movement chains cells without drift; teleports clear unfinished actions.
+- The orthographic camera follows at distance `16`.
 - The camera starts orthographic at size `11.24`.
-- `F1` switches to FOV-75 perspective and back without changing its transform.
+- `F1` switches to distance-8, FOV-75 perspective and restores distance 16 at
+  the unchanged test target and pitch.
 - Default camera yaw `0`, downward pitch `50`, and wheel pitch steps of `5`.
 - Mouse-wheel pitch changes preserve the follow distance.
 - Correct floor-based cell boundaries.
@@ -80,10 +92,21 @@ The test verifies:
   --rendering-method gl_compatibility `
   --rendering-driver opengl3 `
   --script res://tests/render_world_capture.gd -- `
+  --cell=5,26 --offset=-4,-2 `
+  --output=res://captures/building_regression_orthographic.png
+
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/render_world_capture.gd -- `
   --cell=3,27 --output=res://captures/world_player_perspective.png --perspective
 ```
 
 Inspect the image for nonblank output, terrain seams, incorrect axes, building
 placement, player visibility, sprite transparency, nearest filtering, and
-overlapping geometry. Both PNGs must be exactly `256 x 192` pixels, and the
-reported projection must match the requested mode.
+overlapping geometry. The building regression capture must show complete blue
+foreground roofs without V-shaped camera-plane cuts. All PNGs must be exactly
+`256 x 192` pixels, and the reported projection and camera distance must match
+the requested mode.

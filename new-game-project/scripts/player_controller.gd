@@ -1,6 +1,9 @@
 class_name PlatinumPlayerController
 extends CharacterBody3D
 
+signal step_advanced(step_frame: int, step_duration: int, world_position: Vector3, sprite_frame: int)
+signal turn_advanced(turn_frame: int, turn_duration: int, world_position: Vector3, sprite_frame: int)
+
 enum Facing {
 	DOWN,
 	UP,
@@ -8,19 +11,54 @@ enum Facing {
 	RIGHT,
 }
 
+enum MotionState {
+	READY,
+	TURNING,
+	STEPPING,
+}
+
+enum ActionKind {
+	STOP,
+	TURN,
+	WALK,
+}
+
 const FRAME_COLUMNS := 8
 const FRAMES_PER_ACTION := 4
+const GRID_CELL_SIZE := 1.0
+const GRID_CENTER_OFFSET := GRID_CELL_SIZE * 0.5
+const SOURCE_FRAME_SCALE := 2
+const WALK_STEP_FRAMES := 16
+const RUN_STEP_FRAMES := 8
+const TURN_FRAMES := 6
+const GAIT_CYCLE_FRAMES := 32
+const GAIT_POSE_FRAMES := 8
+const GAIT_IDLE_ALIGNMENT := 16
+const RUN_STOP_HANDOFF_FRAMES := 4
+const IDLE_COLUMN := 0
+const WALK_FIRST_FOOT_COLUMN := 1
+const WALK_SECOND_IDLE_COLUMN := 2
+const WALK_SECOND_FOOT_COLUMN := 3
+const RUN_START_COLUMN := 4
+const RUN_FIRST_FOOT_COLUMN := 5
+const RUN_SECOND_IDLE_COLUMN := 6
+const RUN_SECOND_FOOT_COLUMN := 7
 
-@export_range(0.1, 20.0, 0.1) var walk_speed := 3.0
-@export_range(0.1, 30.0, 0.1) var run_speed := 5.5
-@export_range(1.0, 30.0, 0.5) var walk_animation_fps := 7.5
-@export_range(1.0, 30.0, 0.5) var run_animation_fps := 11.0
 @export_file("*.png") var sprite_sheet_path := "res://assets/platinum/characters/dawn_overworld.png"
 
 var _facing := Facing.DOWN
-var _animation_time := 0.0
-var _is_moving := false
-var _is_running := false
+var _motion_state := MotionState.READY
+var _previous_action := ActionKind.STOP
+var _accepted_input_axes := Vector2.ZERO
+var _move_direction := Vector2.ZERO
+var _step_origin := Vector3.ZERO
+var _step_target := Vector3.ZERO
+var _action_frame := 0
+var _action_duration := WALK_STEP_FRAMES
+var _step_running := false
+var _animation_running := false
+var _gait_frame := 0
+var _run_stop_frame := 0
 var _has_animation_sheet := false
 
 @onready var _sprite := $Sprite3D as Sprite3D
@@ -28,37 +66,62 @@ var _has_animation_sheet := false
 
 func _ready() -> void:
 	_load_sprite_sheet()
-	_update_sprite_frame()
+	teleport_to_grid(global_position)
 
 
 func _physics_process(delta: float) -> void:
-	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var direction := cardinalize(input_vector)
-	_is_moving = not direction.is_zero_approx()
-	_is_running = _is_moving and Input.is_action_pressed("player_run")
+	if _motion_state == MotionState.TURNING:
+		_advance_turn()
+		return
+	if _motion_state == MotionState.STEPPING:
+		_advance_step(delta)
+		return
 
-	if _is_moving:
-		var next_facing := _facing_for_direction(direction)
-		if next_facing != _facing:
-			_facing = next_facing
-			_animation_time = 0.0
-		_animation_time += delta
-		var speed := run_speed if _is_running else walk_speed
-		velocity = Vector3(direction.x, 0.0, direction.y) * speed
-	else:
-		velocity = Vector3.ZERO
-		_animation_time = 0.0
+	var input_axes := _read_input_axes()
+	var direction := select_cardinal_direction(input_axes, _accepted_input_axes, _move_direction)
+	if direction.is_zero_approx():
+		_settle_idle()
+		return
 
-	move_and_slide()
-	_update_sprite_frame()
+	_accepted_input_axes = input_axes
+	var next_facing := _facing_for_direction(direction)
+	if next_facing != _facing and _previous_action != ActionKind.WALK:
+		_begin_turn(direction, next_facing)
+		_advance_turn()
+		return
+
+	if _begin_step(direction, next_facing):
+		_advance_step(delta)
 
 
 static func cardinalize(input_vector: Vector2) -> Vector2:
-	if input_vector.is_zero_approx():
-		return Vector2.ZERO
-	if absf(input_vector.x) > absf(input_vector.y):
-		return Vector2(signf(input_vector.x), 0.0)
-	return Vector2(0.0, signf(input_vector.y))
+	var input_axes := Vector2(signf(input_vector.x), signf(input_vector.y))
+	return select_cardinal_direction(input_axes, Vector2.ZERO, Vector2.ZERO)
+
+
+static func select_cardinal_direction(
+	input_axes: Vector2,
+	accepted_input_axes: Vector2,
+	move_direction: Vector2
+) -> Vector2:
+	var horizontal := signf(input_axes.x)
+	var vertical := signf(input_axes.y)
+	if is_zero_approx(horizontal):
+		return Vector2(0.0, vertical)
+	if is_zero_approx(vertical):
+		return Vector2(horizontal, 0.0)
+
+	if not move_direction.is_zero_approx():
+		if (
+			is_equal_approx(horizontal, accepted_input_axes.x)
+			and is_equal_approx(vertical, accepted_input_axes.y)
+		):
+			return move_direction
+		if not is_equal_approx(vertical, accepted_input_axes.y):
+			return Vector2(0.0, vertical)
+		return Vector2(horizontal, 0.0)
+
+	return Vector2(0.0, vertical)
 
 
 func get_current_facing() -> int:
@@ -70,11 +133,227 @@ func get_current_sprite_frame() -> int:
 
 
 func is_running() -> bool:
-	return _is_running
+	return _motion_state == MotionState.STEPPING and _step_running
+
+
+func is_stepping() -> bool:
+	return _motion_state == MotionState.STEPPING
+
+
+func is_turning() -> bool:
+	return _motion_state == MotionState.TURNING
+
+
+func get_step_frame() -> int:
+	return _action_frame if is_stepping() else 0
+
+
+func get_step_duration() -> int:
+	return _action_duration if is_stepping() else 0
+
+
+func get_turn_frame() -> int:
+	return _action_frame if is_turning() else 0
+
+
+func get_turn_duration() -> int:
+	return TURN_FRAMES
+
+
+func get_gait_frame() -> int:
+	return _gait_frame
+
+
+func get_step_origin() -> Vector3:
+	return _step_origin
+
+
+func get_step_target() -> Vector3:
+	return _step_target
 
 
 func is_using_local_sprite_sheet() -> bool:
 	return _has_animation_sheet
+
+
+static func snap_to_grid_center(world_position: Vector3) -> Vector3:
+	return Vector3(
+		floorf(world_position.x / GRID_CELL_SIZE) * GRID_CELL_SIZE + GRID_CENTER_OFFSET,
+		world_position.y,
+		floorf(world_position.z / GRID_CELL_SIZE) * GRID_CELL_SIZE + GRID_CENTER_OFFSET
+	)
+
+
+func teleport_to_grid(world_position: Vector3, facing: int = -1) -> void:
+	var snapped_position := snap_to_grid_center(world_position)
+	global_position = snapped_position
+	velocity = Vector3.ZERO
+	if facing >= 0 and facing < Facing.size():
+		_facing = facing
+	_motion_state = MotionState.READY
+	_previous_action = ActionKind.STOP
+	_accepted_input_axes = Vector2.ZERO
+	_move_direction = Vector2.ZERO
+	_step_origin = snapped_position
+	_step_target = snapped_position
+	_action_frame = 0
+	_action_duration = WALK_STEP_FRAMES
+	_step_running = false
+	_animation_running = false
+	_gait_frame = 0
+	_run_stop_frame = 0
+	if is_instance_valid(_sprite):
+		_update_sprite_frame()
+
+
+func _read_input_axes() -> Vector2:
+	var horizontal := 0.0
+	if Input.is_action_pressed("move_left"):
+		horizontal = -1.0
+	elif Input.is_action_pressed("move_right"):
+		horizontal = 1.0
+
+	var vertical := 0.0
+	if Input.is_action_pressed("move_up"):
+		vertical = -1.0
+	elif Input.is_action_pressed("move_down"):
+		vertical = 1.0
+	return Vector2(horizontal, vertical)
+
+
+func _begin_turn(direction: Vector2, next_facing: int) -> void:
+	_facing = next_facing
+	_motion_state = MotionState.TURNING
+	_previous_action = ActionKind.TURN
+	_move_direction = direction
+	_action_frame = 0
+	_action_duration = TURN_FRAMES
+	_step_running = false
+	_animation_running = false
+	_gait_frame = 0
+	_run_stop_frame = 0
+	velocity = Vector3.ZERO
+	_update_sprite_frame()
+
+
+func _advance_turn() -> void:
+	_action_frame += 1
+	if _action_frame <= TURN_FRAMES - SOURCE_FRAME_SCALE and _action_frame % SOURCE_FRAME_SCALE == 0:
+		_gait_frame = (_gait_frame + GAIT_POSE_FRAMES) % GAIT_CYCLE_FRAMES
+	_update_sprite_frame()
+	var emitted_frame := _action_frame
+	if _action_frame >= TURN_FRAMES:
+		_motion_state = MotionState.READY
+		_action_frame = 0
+	turn_advanced.emit(emitted_frame, TURN_FRAMES, global_position, get_current_sprite_frame())
+
+
+func _begin_step(direction: Vector2, next_facing: int) -> bool:
+	var direction_changed := next_facing != _facing
+	var wants_to_run := Input.is_action_pressed("player_run")
+	_prepare_step_animation(wants_to_run, direction_changed)
+	_facing = next_facing
+	_move_direction = direction
+	_step_origin = global_position
+	_step_target = _step_origin + Vector3(direction.x, 0.0, direction.y) * GRID_CELL_SIZE
+	var collision := move_and_collide(_step_target - _step_origin, true)
+	if collision != null:
+		_previous_action = ActionKind.STOP
+		_step_target = _step_origin
+		_step_running = false
+		_animation_running = false
+		_gait_frame = _align_gait_to_idle(_gait_frame)
+		velocity = Vector3.ZERO
+		_update_sprite_frame()
+		return false
+
+	_motion_state = MotionState.STEPPING
+	_previous_action = ActionKind.WALK
+	_action_frame = 0
+	_action_duration = RUN_STEP_FRAMES if wants_to_run else WALK_STEP_FRAMES
+	_step_running = wants_to_run
+	return true
+
+
+func _prepare_step_animation(wants_to_run: bool, direction_changed: bool) -> void:
+	_run_stop_frame = 0
+	if direction_changed:
+		_gait_frame = 0
+	elif wants_to_run != _animation_running:
+		if wants_to_run:
+			_gait_frame = floori(
+				float(_gait_frame) / float(GAIT_POSE_FRAMES)
+			) * GAIT_POSE_FRAMES
+		else:
+			_gait_frame = _align_gait_to_idle(_gait_frame)
+	_animation_running = wants_to_run
+
+
+func _advance_step(delta: float) -> void:
+	_action_frame += 1
+	var progress := float(_action_frame) / float(_action_duration)
+	var desired_position := _step_origin.lerp(_step_target, progress)
+	var motion := desired_position - global_position
+	velocity = motion / maxf(delta, 0.000001)
+	var collision := move_and_collide(motion)
+	if collision != null:
+		_cancel_step()
+		return
+
+	_gait_frame = (_gait_frame + 1) % GAIT_CYCLE_FRAMES
+	_update_sprite_frame()
+	var emitted_frame := _action_frame
+	var emitted_duration := _action_duration
+	if _action_frame >= _action_duration:
+		global_position = _step_target
+		velocity = Vector3.ZERO
+		_motion_state = MotionState.READY
+		_action_frame = 0
+		_step_running = false
+	step_advanced.emit(
+		emitted_frame,
+		emitted_duration,
+		global_position,
+		get_current_sprite_frame()
+	)
+
+
+func _cancel_step() -> void:
+	global_position = _step_origin
+	velocity = Vector3.ZERO
+	_step_target = _step_origin
+	_motion_state = MotionState.READY
+	_previous_action = ActionKind.STOP
+	_action_frame = 0
+	_step_running = false
+	_animation_running = false
+	_gait_frame = _align_gait_to_idle(_gait_frame)
+	_run_stop_frame = 0
+	_update_sprite_frame()
+
+
+func _settle_idle() -> void:
+	velocity = Vector3.ZERO
+	_previous_action = ActionKind.STOP
+	_accepted_input_axes = Vector2.ZERO
+	_move_direction = Vector2.ZERO
+
+	if _animation_running:
+		_run_stop_frame += 1
+		if _run_stop_frame >= RUN_STOP_HANDOFF_FRAMES:
+			_animation_running = false
+			_gait_frame = _align_gait_to_idle(_gait_frame)
+			_run_stop_frame = 0
+	else:
+		_gait_frame = _align_gait_to_idle(_gait_frame)
+		_run_stop_frame = 0
+	_update_sprite_frame()
+
+
+func _align_gait_to_idle(gait_frame: int) -> int:
+	return floori(
+		float(gait_frame) / float(GAIT_IDLE_ALIGNMENT)
+	) * GAIT_IDLE_ALIGNMENT
 
 
 func _facing_for_direction(direction: Vector2) -> int:
@@ -91,12 +370,9 @@ func _update_sprite_frame() -> void:
 	if not _has_animation_sheet:
 		_sprite.frame = 0
 		return
-	var column := 0
-	if _is_moving:
-		var frame_rate := run_animation_fps if _is_running else walk_animation_fps
-		var action_offset := FRAMES_PER_ACTION if _is_running else 0
-		column = action_offset + (floori(_animation_time * frame_rate) % FRAMES_PER_ACTION)
-	_sprite.frame = (_facing * FRAME_COLUMNS) + column
+	var action_column := FRAMES_PER_ACTION if _animation_running else 0
+	var gait_column := floori(float(_gait_frame) / float(GAIT_POSE_FRAMES))
+	_sprite.frame = (_facing * FRAME_COLUMNS) + action_column + gait_column
 
 
 func _load_sprite_sheet() -> void:

@@ -40,8 +40,12 @@ the same player node as its focus:
 - Default orthographic projection with size `11.24`, using the requested closer
   player and building composition at the native 192-pixel viewport height.
 - `F1` toggles a perspective debug projection at FOV `75`.
-- Follow distance `8` world units and target height `0.9`.
+- Orthographic follow distance `16`; perspective debug distance `8`.
+- The longer orthographic distance keeps the reproduced city foreground roofs
+  ahead of the camera plane without changing orthographic scale or composition.
+- Target height `0.9` world units.
 - Mouse wheel pitch steps of `5` degrees, clamped from `35` to `80` degrees.
-- Pitch and projection changes preserve the camera transform and follow distance.
+- Pitch changes preserve the active distance. Projection toggles move only along
+  the view ray and restore distance `16` at the current target and pitch.
 
 Player movement and animation rules are documented in [Player Control](Player-Control).

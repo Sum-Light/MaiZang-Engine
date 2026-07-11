@@ -17,9 +17,11 @@ and are regenerated from a user-supplied DSPRE project.
 - 501 placed building instances.
 - 480 deduplicated textures and 511 shared Godot materials.
 - Native single-screen NDS viewport and window at `256 x 192`.
-- Cardinal-only walking plus `Z` running with separate Dawn animation frames.
+- Source-paced cardinal grid movement: one 16-pixel tile in 16 Godot physics
+  ticks while walking or 8 ticks while holding `Z` to run.
 - A size-11.24 orthographic follow camera with a 50-degree pitch, mouse-wheel
-  pitch control, and an `F1` perspective debug view.
+  pitch control, distance 16 to prevent the reproduced roof clipping, and an
+  `F1` perspective debug view.
 - `3 x 3` active chunks, `5 x 5` asset prefetch, and radius-3 retention.
 - Godot 4.7 OpenGL smoke tests with zero failed asset loads.
 

@@ -6,7 +6,8 @@ extends Camera3D
 @export_range(1.0, 32.0, 0.01) var orthographic_size := 11.24
 @export_range(20.0, 120.0, 1.0) var perspective_fov := 75.0
 @export_group("Follow")
-@export_range(2.0, 30.0, 0.25) var follow_distance := 8.0
+@export_range(2.0, 64.0, 0.25) var orthographic_follow_distance := 16.0
+@export_range(2.0, 30.0, 0.25) var perspective_follow_distance := 8.0
 @export_range(0.0, 4.0, 0.05) var target_height := 0.9
 @export_range(1.0, 15.0, 0.5) var wheel_pitch_step := 5.0
 @export_range(10.0, 80.0, 1.0) var minimum_downward_pitch := 35.0
@@ -56,6 +57,7 @@ func snap_to_target() -> void:
 		return
 	var focus := _target.global_position + Vector3.UP * target_height
 	var pitch_radians := deg_to_rad(-_pitch)
+	var follow_distance := get_active_follow_distance()
 	global_position = focus + Vector3(
 		0.0,
 		sin(pitch_radians) * follow_distance,
@@ -66,6 +68,14 @@ func snap_to_target() -> void:
 
 func get_follow_target() -> Node3D:
 	return _target
+
+
+func get_active_follow_distance() -> float:
+	return (
+		orthographic_follow_distance
+		if projection == Camera3D.PROJECTION_ORTHOGONAL
+		else perspective_follow_distance
+	)
 
 
 func toggle_projection() -> void:
@@ -91,3 +101,4 @@ func _set_projection(value: Camera3D.ProjectionType) -> void:
 		size = orthographic_size
 	else:
 		fov = perspective_fov
+	snap_to_target()

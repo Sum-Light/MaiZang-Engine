@@ -48,10 +48,14 @@ asset workflow.
 
 - Godot target: 4.7 stable, compatibility renderer.
 - Logical viewport and window: `256 x 192`, fixed 4:3 NDS screen.
-- Player movement is cardinal-only; `Z` selects the 5.5-unit running speed.
-- The camera follows the player at distance `8`, with yaw `0`, downward pitch
-  `50`, and wheel step `5`. It starts orthographic at size `11.24`; `F1` toggles
-  the debug perspective view at FOV `75`.
+- Physics cadence: fixed `60 Hz`.
+- Player movement is cardinal-only on a 1-world-unit grid (16 source pixels).
+  Grid centers are at half-integer X/Z coordinates. Platinum's 30 Hz walk/run
+  actions take 8/4 source frames, mapped to 16/8 Godot physics ticks per cell.
+  A stationary direction change takes 6 Godot ticks.
+- The camera uses yaw `0`, downward pitch `50`, and wheel step `5`. It starts
+  orthographic at size `11.24` and distance `16`; `F1` toggles the distance-8,
+  FOV-75 perspective debug view.
 - Matrix coordinate unit: 32 world units per map block.
 - Matrix altitude unit: 0.5 world units.
 - Imported model scale: `1 / 16`.

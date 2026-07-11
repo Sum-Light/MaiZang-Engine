@@ -151,9 +151,9 @@ $currentState = @"
 
 - Godot target: 4.7 stable, compatibility renderer.
 - Display: one fixed ``256 x 192`` NDS screen at 4:3.
-- Player: four-direction movement, walk speed ``3.0``, ``Z`` run speed ``5.5``.
+- Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: orthographic size ``11.24`` by default; ``F1`` toggles FOV-75 perspective.
-- Camera transform: player follow distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
+- Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -187,9 +187,9 @@ MaiZang Engine and regenerate it in every functional commit.
 - Source fingerprint: ``$sourceFingerprint``
 - Runtime: Godot 4.7 compatibility renderer.
 - Display: one fixed ``256 x 192`` NDS screen at 4:3.
-- Player: four-direction movement, walk ``3.0``, ``Z`` run ``5.5``.
+- Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: size-11.24 orthographic default, ``F1`` FOV-75 perspective debug view.
-- Camera transform: player follow distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
+- Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.

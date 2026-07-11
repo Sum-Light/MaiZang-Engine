@@ -13,13 +13,18 @@ func _initialize() -> void:
 func _run() -> void:
 	root.size = NDS_SCREEN_SIZE
 	var capture_cell := DEFAULT_CAPTURE_CELL
+	var capture_offset := Vector2.ZERO
 	var capture_path := DEFAULT_CAPTURE_PATH
 	var force_perspective := false
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--cell="):
-			var components := argument.trim_prefix("--cell=").split(",")
-			if components.size() == 2:
-				capture_cell = Vector2i(int(components[0]), int(components[1]))
+			var cell_components := argument.trim_prefix("--cell=").split(",")
+			if cell_components.size() == 2:
+				capture_cell = Vector2i(int(cell_components[0]), int(cell_components[1]))
+		elif argument.begins_with("--offset="):
+			var offset_components := argument.trim_prefix("--offset=").split(",")
+			if offset_components.size() == 2:
+				capture_offset = Vector2(float(offset_components[0]), float(offset_components[1]))
 		elif argument.begins_with("--output="):
 			capture_path = argument.trim_prefix("--output=")
 		elif argument == "--perspective":
@@ -33,9 +38,9 @@ func _run() -> void:
 	var player := main.get_node("Player") as PlatinumPlayerController
 	var camera := main.get_node("Camera") as PlatinumFollowCamera
 	player.position = Vector3(
-		capture_cell.x * PlatinumWorldStreamer.CHUNK_SIZE,
+		capture_cell.x * PlatinumWorldStreamer.CHUNK_SIZE + capture_offset.x,
 		player.position.y,
-		capture_cell.y * PlatinumWorldStreamer.CHUNK_SIZE
+		capture_cell.y * PlatinumWorldStreamer.CHUNK_SIZE + capture_offset.y
 	)
 	root.add_child(main)
 	if force_perspective:
@@ -79,6 +84,7 @@ func _run() -> void:
 	print("WORLD_CAPTURE_STATS ", JSON.stringify(stats))
 	print("WORLD_CAPTURE_CAMERA_FORWARD ", forward)
 	print("WORLD_CAPTURE_PROJECTION ", camera.get_projection_name())
+	print("WORLD_CAPTURE_CAMERA_DISTANCE ", camera.get_active_follow_distance())
 	print("WORLD_CAPTURE_PLAYER_FRAME ", player.get_current_sprite_frame())
 	streamer.shutdown()
 	main.queue_free()

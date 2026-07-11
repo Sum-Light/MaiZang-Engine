@@ -21,12 +21,15 @@
 ## Runtime Constants
 
 - Single-screen viewport and window: `256 x 192`, fixed 4:3.
-- Player: walk speed `3.0`, run speed `5.5`, cardinal input only, `Z` to run.
-- Follow camera: orthographic size `11.24`, debug perspective FOV `75`, distance
-  `8`, yaw `0`, downward pitch `50`, wheel step `5`, `F1` projection toggle.
+- Physics tick rate: `60 Hz`.
+- Player: half-integer-centered one-unit grid; Platinum's 30 Hz 8/4-frame
+  walk/run actions map to 16/8 Godot physics ticks, with 6-tick stationary turns.
+- Follow camera: orthographic size `11.24` and distance `16`; debug perspective
+  FOV `75` and distance `8`; yaw `0`, downward pitch `50`, wheel step `5`.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`
+- Source tile size 16 pixels = 1.0 world unit
 - Default start cell `(3, 27)`
 - Load radius 1, prefetch radius 2, unload/retention radius 3
 

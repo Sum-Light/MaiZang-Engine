@@ -45,9 +45,10 @@ Expected Godot baselines:
 - 511 unique external materials.
 - 9 active chunks at the initial and destination cells.
 - 0 failed assets and 0 runtime material replacements.
-- Four-direction walking, `Z` running frames, and distance-8 camera following.
-- Default pitch-50, size-11.24 orthographic projection and transform-preserving
-  `F1` toggle.
+- Half-integer-centered one-unit cardinal steps: 16 Godot physics ticks walking,
+  8 with `Z`, and 6 for a stationary turn.
+- Default pitch-50, size-11.24 orthographic projection at distance 16, with a
+  distance-8 FOV-75 perspective debug toggle.
 
 ## Documentation and Memory
 
