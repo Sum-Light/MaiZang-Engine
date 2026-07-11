@@ -46,6 +46,7 @@ function Clear-WikiWorktree {
     }
 }
 
+$localOnlyWiki = $false
 if (-not (Test-Path -LiteralPath (Join-Path $workRoot ".git") -PathType Container)) {
     if (Test-Path -LiteralPath $workRoot) {
         $resolved = [IO.Path]::GetFullPath($workRoot)
@@ -64,7 +65,17 @@ if (-not (Test-Path -LiteralPath (Join-Path $workRoot ".git") -PathType Containe
         New-Item -ItemType Directory -Path $workRoot -Force | Out-Null
         & git -C $workRoot init -b master
         & git -C $workRoot remote add origin $remote
+        $localOnlyWiki = $true
     }
+}
+
+if (-not $localOnlyWiki) {
+    & git -C $workRoot fetch origin master
+    if ($LASTEXITCODE -ne 0) {
+        throw "Could not fetch the GitHub Wiki remote."
+    }
+    & git -C $workRoot reset --hard origin/master
+    & git -C $workRoot clean -fd
 }
 
 Clear-WikiWorktree

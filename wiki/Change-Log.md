@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Handle initialized GitHub Wiki remotes
+
+- Reset the disposable Wiki worktree to the initialized remote before publishing versioned pages.
+
+
 ## 2026-07-12 - Replace repository with the DSPRE-to-Godot pipeline
 
 - Replaced the prior repository worktree with the current MaiZang Engine project.

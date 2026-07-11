@@ -34,17 +34,21 @@ if (-not (Test-Path -LiteralPath $changeLogPath -PathType Leaf)) {
 }
 
 $date = Get-Date -Format "yyyy-MM-dd"
+$heading = "## $date - $Message"
 $entry = "## $date - $Message`n`n- $Summary`n"
 $changeLog = Get-Content -LiteralPath $changeLogPath -Raw -Encoding UTF8
 if ($changeLog -notmatch '\A# Change Log\r?\n') {
     throw "Unexpected Change Log format."
 }
-$updatedChangeLog = [regex]::Replace(
-    $changeLog,
-    '\A# Change Log\r?\n',
-    "# Change Log`n`n$entry`n",
-    1
-)
+$updatedChangeLog = $changeLog
+if ($changeLog -notmatch [regex]::Escape($heading)) {
+    $updatedChangeLog = [regex]::Replace(
+        $changeLog,
+        '\A# Change Log\r?\n',
+        "# Change Log`n`n$entry`n",
+        1
+    )
+}
 [IO.File]::WriteAllText($changeLogPath, $updatedChangeLog.TrimEnd() + "`n", $utf8NoBom)
 
 & (Join-Path $ProjectRoot "tools\update_project_memory.ps1") -ProjectRoot $ProjectRoot
@@ -53,14 +57,17 @@ if ($LASTEXITCODE -ne 0) {
     throw "Could not stage the project change."
 }
 
-$validationArguments = @("-ProjectRoot", $ProjectRoot)
 if ($FullValidation) {
-    $validationArguments += "-Full"
-    if (-not [string]::IsNullOrWhiteSpace($GodotPath)) {
-        $validationArguments += @("-GodotPath", $GodotPath)
+    if ([string]::IsNullOrWhiteSpace($GodotPath)) {
+        & (Join-Path $ProjectRoot "tools\validate_repository.ps1") -ProjectRoot $ProjectRoot -Full
+    }
+    else {
+        & (Join-Path $ProjectRoot "tools\validate_repository.ps1") -ProjectRoot $ProjectRoot -Full -GodotPath $GodotPath
     }
 }
-& (Join-Path $ProjectRoot "tools\validate_repository.ps1") @validationArguments
+else {
+    & (Join-Path $ProjectRoot "tools\validate_repository.ps1") -ProjectRoot $ProjectRoot
+}
 
 & git -C $ProjectRoot diff --cached --quiet
 if ($LASTEXITCODE -eq 0) {
