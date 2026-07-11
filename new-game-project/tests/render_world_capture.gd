@@ -1,6 +1,7 @@
 extends SceneTree
 
 const MAX_FRAMES := 1800
+const NDS_SCREEN_SIZE := Vector2i(256, 192)
 const DEFAULT_CAPTURE_PATH := "res://captures/world_start.png"
 const DEFAULT_CAPTURE_CELL := Vector2i(3, 27)
 
@@ -10,7 +11,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	root.size = Vector2i(1280, 720)
+	root.size = NDS_SCREEN_SIZE
 	var capture_cell := DEFAULT_CAPTURE_CELL
 	var capture_path := DEFAULT_CAPTURE_PATH
 	for argument in OS.get_cmdline_user_args():
@@ -58,6 +59,9 @@ func _run() -> void:
 	var image := root.get_texture().get_image()
 	if image.is_empty():
 		_fail("Rendered viewport image is empty.")
+		return
+	if image.get_size() != NDS_SCREEN_SIZE:
+		_fail("Unexpected capture size: %s" % image.get_size())
 		return
 	var save_error := image.save_png(ProjectSettings.globalize_path(capture_path))
 	if save_error != OK:

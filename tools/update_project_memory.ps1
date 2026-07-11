@@ -143,6 +143,7 @@ $currentState = @"
 ## Runtime Baseline
 
 - Godot target: 4.7 stable, compatibility renderer.
+- Display: one fixed ``256 x 192`` NDS screen at 4:3.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -174,6 +175,7 @@ MaiZang Engine and regenerate it in every functional commit.
 - Branch: ``$branch``
 - Source fingerprint: ``$sourceFingerprint``
 - Runtime: Godot 4.7 compatibility renderer.
+- Display: one fixed ``256 x 192`` NDS screen at 4:3.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.

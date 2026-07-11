@@ -68,4 +68,5 @@ The test verifies:
 ```
 
 Inspect the image for nonblank output, terrain seams, incorrect axes, building
-placement, transparency, filtering, and overlapping geometry.
+placement, transparency, filtering, and overlapping geometry. The PNG must be
+exactly `256 x 192` pixels.

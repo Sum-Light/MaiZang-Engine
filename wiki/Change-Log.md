@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Use native NDS screen resolution
+
+- Set the Godot window, viewport, and render-capture contract to a fixed 256 by 192 single-screen layout.
+
+
 ## 2026-07-12 - Remove obsolete remote branches
 
 - Deleted 17 superseded codex branches and documented master as the only long-lived project branch.

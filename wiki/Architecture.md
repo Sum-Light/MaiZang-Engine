@@ -23,6 +23,20 @@
 and building `PackedScene` resources asynchronously, instantiates ready cells,
 and releases distant cells and cache references.
 
+## Display Contract
+
+The current viewer uses one native NDS-sized screen:
+
+```text
+logical viewport = 256 x 192
+window content   = 256 x 192
+aspect ratio     = 4:3
+scaling layer    = none
+```
+
+The window is fixed-size. This represents one NDS screen, not the combined
+dual-screen `256 x 384` layout. Texture filtering remains nearest-neighbor.
+
 ## Coordinate Contract
 
 The conversion follows the original Platinum field constants:

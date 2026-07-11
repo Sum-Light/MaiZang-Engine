@@ -18,6 +18,7 @@
 
 ## Runtime Constants
 
+- Single-screen viewport and window: `256 x 192`, fixed 4:3.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`
