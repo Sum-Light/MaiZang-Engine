@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/platinum_world_streamer.gd" id="1_streamer"]
+[ext_resource type="Script" path="res://scripts/free_fly_camera.gd" id="2_camera"]
+
+[sub_resource type="Environment" id="Environment_world"]
+background_mode = 1
+background_color = Color(0.43, 0.58, 0.67, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.8, 0.84, 0.78, 1)
+ambient_light_energy = 0.8
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_world")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -35, 0)
+light_color = Color(1, 0.94, 0.82, 1)
+light_energy = 1.2
+shadow_enabled = true
+directional_shadow_max_distance = 160.0
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 96, 52, 878)
+current = true
+far = 2500.0
+script = ExtResource("2_camera")
+
+[node name="WorldStreamer" type="Node3D" parent="."]
+script = ExtResource("1_streamer")
+focus_path = NodePath("../Camera")
+
+[node name="LoadedChunks" type="Node3D" parent="WorldStreamer"]

@@ -1,10 +1,20 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
+# Codex and local work state
+.agents/
+.work/
+.wiki-sync/
 
-# Local import configuration
-/tools/import_config.local.json
+# Generated DSPRE output. Rebuild it with the scripts in tools/.
+generated/
 
-# Python tooling cache
-__pycache__/
-*.pyc
+# Godot generated state
+**/.godot/
+**/exports/
+
+# Proprietary local game data and generated visual checks
+new-game-project/assets/platinum/
+new-game-project/captures/
+
+# Temporary files
+*.tmp
+*.part
+*~RF*.TMP
