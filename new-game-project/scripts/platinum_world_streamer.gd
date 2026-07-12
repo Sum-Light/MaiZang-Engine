@@ -10,7 +10,7 @@ const MODEL_SCALE := 1.0 / 16.0
 const DEFAULT_START_CELL := Vector2i(3, 27)
 const VisualProfileControllerScript := preload("res://scripts/visual_profile_controller.gd")
 const HD2D_VARIANT_ROOT := "res://assets/platinum/hd2d/shared_variants"
-const DEFAULT_HD2D_MATERIAL_PROFILE := "res://assets/platinum/hd2d/p3_city.profile.json"
+const DEFAULT_HD2D_MATERIAL_PROFILE := "res://assets/platinum/hd2d/world_semantics.profile.json"
 const HD2D_BINDINGS_META := &"hd2d_surface_bindings"
 const HD2D_ORIGINAL_CAST_SHADOW_META := &"hd2d_original_cast_shadow"
 
@@ -39,6 +39,10 @@ var _initial_signal_sent := false
 var _failed_asset_count := 0
 var _material_replacement_count := 0
 var _hd2d_profile_loaded := false
+var _hd2d_profile_id := ""
+var _hd2d_semantic_materials: Dictionary = {}
+var _hd2d_semantic_surface_references: Dictionary = {}
+var _hd2d_preserved_material_count := 0
 var _hd2d_material_enabled := false
 var _hd2d_pilot_cells: Dictionary = {}
 var _hd2d_asset_profiles: Dictionary = {}
@@ -102,11 +106,17 @@ func get_stream_stats() -> Dictionary:
 		"shared_materials": _shared_materials.size(),
 		"material_replacements": _material_replacement_count,
 		"hd2d_profile_loaded": _hd2d_profile_loaded,
+		"hd2d_profile_id": _hd2d_profile_id,
+		"hd2d_semantic_materials": _hd2d_semantic_materials.duplicate(true),
+		"hd2d_semantic_surface_references": _hd2d_semantic_surface_references.duplicate(true),
+		"hd2d_preserved_materials": _hd2d_preserved_material_count,
 		"hd2d_variants": _hd2d_variant_cache.size(),
 		"hd2d_registered_surfaces": _hd2d_registered_surface_count,
 		"hd2d_overrides": _hd2d_override_count,
 		"hd2d_pilot_instances": _hd2d_pilot_instance_count,
 		"hd2d_active_pilot_instances": _hd2d_active_pilot_instance_count,
+		"hd2d_profile_instances": _hd2d_pilot_instance_count,
+		"hd2d_active_profile_instances": _hd2d_active_pilot_instance_count,
 	}
 
 
@@ -123,6 +133,27 @@ func get_hd2d_binding_snapshot() -> Array[Dictionary]:
 			_collect_hd2d_bindings(chunk, chunk, coordinate, "", snapshot)
 	snapshot.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return String(a.get("binding_key", "")) < String(b.get("binding_key", ""))
+	)
+	return snapshot
+
+
+func get_hd2d_variant_snapshot() -> Array[Dictionary]:
+	var snapshot: Array[Dictionary] = []
+	for cache_key_value: Variant in _hd2d_variant_cache.keys():
+		var material := _hd2d_variant_cache[cache_key_value] as StandardMaterial3D
+		if material == null:
+			continue
+		snapshot.append({
+			"cache_key": String(cache_key_value),
+			"variant_tag": String(material.get_meta("hd2d_variant_tag", "")),
+			"base_material_key": String(material.get_meta("hd2d_base_material_key", "")),
+			"resource_path": material.resource_path,
+			"material_rid": material.get_rid().get_id(),
+			"shading_mode": int(material.shading_mode),
+			"emission_enabled": material.emission_enabled,
+		})
+	snapshot.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return String(a.get("cache_key", "")) < String(b.get("cache_key", ""))
 	)
 	return snapshot
 
@@ -147,6 +178,10 @@ func shutdown() -> void:
 	_hd2d_asset_profiles.clear()
 	_hd2d_pilot_cells.clear()
 	_hd2d_profile_loaded = false
+	_hd2d_profile_id = ""
+	_hd2d_semantic_materials.clear()
+	_hd2d_semantic_surface_references.clear()
+	_hd2d_preserved_material_count = 0
 	for chunk_value: Variant in _loaded_chunks.values():
 		var chunk := chunk_value as Node3D
 		if is_instance_valid(chunk):
@@ -171,6 +206,10 @@ func _on_visual_profile_changed(profile_name: StringName) -> void:
 
 func _load_hd2d_material_profile() -> void:
 	_hd2d_profile_loaded = false
+	_hd2d_profile_id = ""
+	_hd2d_semantic_materials.clear()
+	_hd2d_semantic_surface_references.clear()
+	_hd2d_preserved_material_count = 0
 	_hd2d_pilot_cells.clear()
 	_hd2d_asset_profiles.clear()
 	_hd2d_variant_cache.clear()
@@ -213,6 +252,12 @@ func _load_hd2d_material_profile() -> void:
 		return
 	_hd2d_asset_profiles = profile_assets.duplicate(true)
 	_hd2d_variant_cache = loaded_variants
+	_hd2d_profile_id = String(profile.get("profile_id", ""))
+	var semantic_materials: Dictionary = expectations.get("semantic_materials", {})
+	_hd2d_semantic_materials = semantic_materials.duplicate(true)
+	var semantic_surfaces: Dictionary = expectations.get("semantic_surface_references", {})
+	_hd2d_semantic_surface_references = semantic_surfaces.duplicate(true)
+	_hd2d_preserved_material_count = int(expectations.get("preserved_materials", 0))
 	_hd2d_profile_loaded = true
 
 
@@ -427,6 +472,7 @@ func _collect_hd2d_bindings(
 				"mesh_rid": mesh_instance.mesh.get_rid().get_id(),
 				"surface_index": surface_index,
 				"material_key": String(binding.get("material_key", "")),
+				"variant_tag": String(variant.get_meta("hd2d_variant_tag", "")) if variant != null else "",
 				"base_path": base_material.resource_path if base_material != null else "",
 				"base_rid": base_material.get_rid().get_id() if base_material != null else 0,
 				"base_shading_mode": int(base_material.shading_mode) if base_material is BaseMaterial3D else -1,

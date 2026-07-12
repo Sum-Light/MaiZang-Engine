@@ -103,9 +103,19 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe"
 ```
 
-The bounded `(3, 27)` pilot generates eight `lit_vertex` resources. The wrapper
-validates their metadata and protected texture/material properties, and hashes
-all 511 shared base `.tres` files before and after generation. Any base change
+The wrapper first regenerates the ignored `(3, 27)` P3 seed from the manifest
+and catalog, then derives the ignored world-semantic profile from tracked
+rules, the local manifest/material catalog, and all 398 GLB JSON chunks. It then
+builds 22 shared resources: six retained `lit_vertex` variants and 16
+`emissive_window` variants. Water, alpha foliage, legacy shadows, and one
+ambiguous material remain base-only through 63 explicit preserve policies.
+
+Generation validates an exact partition of 511 materials and 3249 primitive
+surface references. The seed stage derives and asserts its nine instances and
+22 selected primitive surfaces from the GLBs. The builder recursively removes
+stale variants even under unknown legacy tag directories, and the validator
+accepts only the exact 22 generated paths. All 511 shared base `.tres` files are
+hashed before and after the operation, including failed builds; any base change
 fails the command.
 
 ## Rebuild Rule

@@ -56,8 +56,14 @@ Expected Godot baselines:
   distance-8 FOV-75 perspective debug toggle.
 - Classic/HD2D F2 roundtrip preserves gameplay and streaming; HD2D capture uses
   camera-local pixel snap, depth fog, and a prebuilt player ground shadow.
-- The local `(3, 27)` pilot preloads 8 immutable variants, registers 9 asset
-  instances and 22 surfaces, and switches active overrides `0 -> 22 -> 0`.
+- The local world-semantic profile covers 468 cells and partitions exactly 511
+  materials / 3249 primitive surfaces into shadow, water, foliage, emissive,
+  ordinary, and ambiguous classes.
+- Full validation regenerates the ignored eight-material P3 seed before the
+  world profile, rebuilds all variants, and requires the exact generated path
+  set, so pre-existing local profile state cannot mask drift.
+- Runtime preloads 22 immutable variants, preserves 63 classified materials,
+  and switches active overrides `0 -> registered -> 0` for streamed cells.
 - HD2D generation leaves the SHA-256 of all 511 shared base materials unchanged.
 
 ## Documentation and Memory

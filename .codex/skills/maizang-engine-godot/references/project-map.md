@@ -14,13 +14,16 @@
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
 | `new-game-project/tools/build_hd2d_material_variants.gd` | Local semantic material variant generation without base-material mutation |
 | `new-game-project/tools/validate_hd2d_material_variants.gd` | HD2D variant metadata, dependency, and protected-property validation |
+| `new-game-project/tools/generate_hd2d_p3_seed_profile.gd` | Reproducible ignored `(3, 27)` ordinary-lighting seed from manifest/catalog semantics |
+| `new-game-project/tools/generate_hd2d_semantic_profile.gd` | Exact 511-material/3249-surface semantic classification from catalog and GLB structure |
+| `new-game-project/tools/hd2d_semantic_rules.json` | Tracked hash-free water, foliage, shadow, emissive, and ambiguity rules |
 | `tools/dspre_batch_export.ps1` | DSPRE binary data to isolated terrain/building GLBs and manifest |
 | `tools/dedupe_dspre_materials.ps1` | Shared texture pool, material signatures, GLB JSON rewrite |
 | `tools/sync_dspre_godot_assets.ps1` | Local generated output to ignored Godot asset tree |
 | `tools/configure_dspre_godot_materials.ps1` | External material mappings and scene reimport |
 | `tools/configure_dspre_godot_textures.ps1` | Lossless, no-mipmap texture import |
 | `tools/import_player_sprite.ps1` | Local Dawn walk/run atlas extraction and color-key transparency |
-| `tools/configure_hd2d_material_variants.ps1` | Build/validate the ignored HD2D pilot and hash-protect all 511 base materials |
+| `tools/configure_hd2d_material_variants.ps1` | Rebuild the ignored seed/world profiles, build/validate variants, and hash-protect all 511 base materials |
 | `wiki/` | Versioned GitHub Wiki source of truth |
 
 ## Runtime Constants
@@ -33,7 +36,8 @@
   FOV `75` and distance `8`; yaw `0`, downward pitch `50`, wheel step `5`.
 - Visual profile: Classic default; `F2` HD2D preview with camera-local pixel snap,
   depth fog, player ground shadow, and no gameplay or mesh mutation. The local
-  `(3, 27)` pilot owns 8 shared variants, 9 instances, and 22 surface bindings.
+  world profile owns 22 shared variants and 63 explicit base-preserve policies;
+  active binding counts follow the currently streamed cells.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`

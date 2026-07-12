@@ -96,8 +96,10 @@ changes the imported GLB materials or the shared base-material pool.
 The local ignored profile at
 `assets/platinum/hd2d/p3_city.profile.json` maps `(cell, asset key, material
 key)` to the `lit_vertex` semantic variant. The tracked example profile contains
-only placeholder keys. `configure_hd2d_material_variants.ps1` creates the local
-resources and proves that all 511 base-material SHA-256 hashes remain unchanged.
+only placeholder keys. `generate_hd2d_p3_seed_profile.gd` deterministically
+rebuilds the real seed from the manifest and catalog before
+`configure_hd2d_material_variants.ps1` creates the local resources. The wrapper
+proves that all 511 base-material SHA-256 hashes remain unchanged.
 
 The first pilot is cell `(3, 27)`:
 
@@ -106,6 +108,11 @@ The first pilot is cell `(3, 27)`:
 | Shared `lit_vertex` variants | 8 |
 | Terrain/building asset instances | 9 |
 | Per-instance surface bindings | 22 |
+
+The seed generator derives the instance and binding counts from the target cell
+and GLB primitives, rejects legacy-shadow aliases, and may add only materials
+classified as `ordinary_lit`. It cannot override water, foliage, emissive,
+legacy-shadow, or ambiguous policy decisions.
 
 Variants use per-vertex StandardMaterial lighting and reuse the original
 nearest-filtered textures. The streamer prepares bindings only after base
@@ -121,5 +128,48 @@ is active and restores the original setting in Classic, preventing duplicate
 shadows. After leaving `(3, 27)`, registered bindings return to zero while the
 bounded eight-resource variant cache remains available for a future return.
 
-The next material phase classifies water, foliage, emissive windows, and legacy
-shadow surfaces before expanding lit coverage beyond the pilot cell.
+The pilot remains the explicit ordinary-lighting seed. The world profile below
+adds conservative semantic handling without turning every unshaded surface into
+a lit material.
+
+## World Semantic Profile
+
+`generate_hd2d_semantic_profile.gd` now derives a local ignored
+`world_semantics.profile.json` from the manifest, global material catalog, and
+every GLB JSON chunk. Classification uses normalized material aliases, the
+actual material-to-image relationship, alpha mode, and emissive factor. Hashes
+remain only in the generated ignored profile.
+
+The rules form an exact, non-overlapping partition:
+
+| Semantic | Materials | GLB surfaces | P4a behavior |
+|---|---:|---:|---|
+| Legacy shadow | 7 | 278 | Keep base; use `legacy_only` cast policy |
+| Water | 32 | 287 | Keep static nearest-filtered base |
+| Alpha foliage | 23 | 469 | Keep base transparency, cutoff, and culling |
+| Emissive | 16 | 124 | Shared `emissive_window` variant |
+| Ordinary | 432 | 2070 | Keep base unless explicitly seeded by P3 |
+| Ambiguous | 1 | 21 | `manual_review`; never auto-modify |
+| **Total** | **511** | **3249** | Exact catalog and primitive coverage |
+
+Foliage classification requires a non-opaque alpha mode, preventing grass
+ground tiles from being treated as cutout tree cards. Emissive classification
+uses exact light/lamp tokens or a nonzero GLB emissive factor; image-only names
+such as a generic `neon` atlas do not automatically light an unrelated
+`lambert` surface. A material with multiple semantic signals is quarantined as
+ambiguous.
+
+P4a deliberately keeps water and foliage static and unshaded. It introduces no
+`TIME` shader, UV scrolling, wind deformation, screen texture, refraction, or
+glow pass. This preserves native nearest texels and stable alpha edges at
+`256 x 192`. Dedicated emissive surfaces use per-vertex lighting plus their
+original texture as a low-energy (`0.25`) additive emission mask.
+
+The world profile contains 22 immutable variants: 6 retained P3 `lit_vertex`
+resources and 16 `emissive_window` resources. Another 63 unique semantic
+materials are explicitly preserved. The generator prunes stale variant files,
+and validation rejects any count drift or uncovered surface.
+
+P4b water animation remains optional. It can proceed only after individual
+water surfaces are confirmed tileable and can move by whole source texels at a
+low fixed cadence without changing buildings, foliage, or the player.

@@ -4,12 +4,23 @@ const MANIFEST_PATH := "res://assets/platinum/matrix_0000/manifest.json"
 const CATALOG_PATH := "res://assets/platinum/matrix_0000/material_catalog.json"
 const BASE_MATERIAL_ROOT := "res://assets/platinum/shared_materials"
 const VARIANT_ROOT := "res://assets/platinum/hd2d/shared_variants"
-const DEFAULT_PROFILE_PATH := "res://assets/platinum/hd2d/p3_city.profile.json"
-const SUPPORTED_VARIANT := "lit_vertex"
+const DEFAULT_PROFILE_PATH := "res://assets/platinum/hd2d/world_semantics.profile.json"
+const SUPPORTED_VARIANTS := {
+	"lit_vertex": true,
+	"emissive_window": true,
+}
+const SUPPORTED_MATERIAL_POLICIES := {
+	"water_pixel_static": true,
+	"foliage_pixel_cutout": true,
+	"legacy_shadow_keep": true,
+	"manual_review": true,
+}
 
 var _profile_path := DEFAULT_PROFILE_PATH
 var _saved_variants := 0
+var _removed_stale_variants := 0
 var _variant_paths: Dictionary = {}
+var _preserved_materials: Dictionary = {}
 
 
 func _initialize() -> void:
@@ -24,6 +35,7 @@ func _run() -> void:
 	var catalog := _load_json(CATALOG_PATH)
 	var profile := _load_json(_profile_path)
 	if manifest.is_empty() or catalog.is_empty() or profile.is_empty():
+		_fail("Required HD2D input JSON must not be empty.")
 		return
 	if int(profile.get("schema_version", 0)) != 1:
 		_fail("Unsupported HD2D material profile schema.")
@@ -67,8 +79,16 @@ func _run() -> void:
 			_fail("Profile material variants are not an object: %s" % asset_key)
 			return
 		var material_variants: Dictionary = asset_profile.get("material_variants", {})
-		if material_variants.is_empty():
-			_fail("Profile asset has no material variants: %s" % asset_key)
+		if typeof(asset_profile.get("material_policies", {})) != TYPE_DICTIONARY:
+			_fail("Profile material policies are not an object: %s" % asset_key)
+			return
+		var material_policies: Dictionary = asset_profile.get("material_policies", {})
+		var shadow_policy := String(asset_profile.get("shadow_policy", "inherit"))
+		if shadow_policy not in ["inherit", "legacy_only"]:
+			_fail("Unsupported HD2D shadow policy: %s" % shadow_policy)
+			return
+		if material_variants.is_empty() and material_policies.is_empty() and shadow_policy == "inherit":
+			_fail("Profile asset has no semantic effect: %s" % asset_key)
 			return
 		for material_key_value: Variant in material_variants.keys():
 			var material_key := String(material_key_value)
@@ -76,12 +96,27 @@ func _run() -> void:
 			if not owned_materials.has(material_key):
 				_fail("Material %s does not belong to asset %s." % [material_key, asset_key])
 				return
-			if variant_tag != SUPPORTED_VARIANT:
+			if not SUPPORTED_VARIANTS.has(variant_tag):
 				_fail("Unsupported HD2D material variant: %s" % variant_tag)
 				return
 			if not _build_variant(material_key, variant_tag):
 				return
+		for material_key_value: Variant in material_policies.keys():
+			var material_key := String(material_key_value)
+			var material_policy := String(material_policies[material_key_value])
+			if not owned_materials.has(material_key):
+				_fail("Policy material %s does not belong to asset %s." % [material_key, asset_key])
+				return
+			if material_variants.has(material_key):
+				_fail("Material has both a variant and preserve policy: %s" % material_key)
+				return
+			if not SUPPORTED_MATERIAL_POLICIES.has(material_policy):
+				_fail("Unsupported HD2D material policy: %s" % material_policy)
+				return
+			_preserved_materials["%s:%s" % [material_policy, material_key]] = true
 
+	if not _prune_stale_variants():
+		return
 	var expectations: Dictionary = profile.get("expectations", {})
 	var expected_variants := int(expectations.get("unique_variants", _variant_paths.size()))
 	if _variant_paths.size() != expected_variants:
@@ -95,7 +130,9 @@ func _run() -> void:
 		"profile": String(profile.get("profile_id", "")),
 		"profile_assets": profile_assets.size(),
 		"saved_variants": _saved_variants,
+		"removed_stale_variants": _removed_stale_variants,
 		"unique_variants": _variant_paths.size(),
+		"preserved_materials": _preserved_materials.size(),
 	}))
 	call_deferred("_finish_success")
 
@@ -123,9 +160,7 @@ func _build_variant(material_key: String, variant_tag: String) -> bool:
 		return false
 	variant.resource_name = "hd2d_%s_%s" % [variant_tag, material_key]
 	variant.resource_local_to_scene = false
-	variant.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
-	variant.metallic = 0.0
-	variant.roughness = 1.0
+	_configure_variant(variant, base_material, variant_tag)
 	variant.set_meta("hd2d_variant_tag", variant_tag)
 	variant.set_meta("hd2d_base_material_key", material_key)
 
@@ -143,6 +178,59 @@ func _build_variant(material_key: String, variant_tag: String) -> bool:
 		return false
 	_variant_paths[cache_key] = variant_path
 	_saved_variants += 1
+	return true
+
+
+func _configure_variant(
+	variant: StandardMaterial3D,
+	base_material: StandardMaterial3D,
+	variant_tag: String
+) -> void:
+	variant.shading_mode = BaseMaterial3D.SHADING_MODE_PER_VERTEX
+	variant.metallic = 0.0
+	variant.roughness = 1.0
+	if variant_tag == "emissive_window":
+		variant.metallic_specular = 0.0
+		variant.emission_enabled = true
+		variant.emission = Color(1.0, 0.84, 0.62, 1.0)
+		variant.emission_texture = base_material.albedo_texture
+		variant.emission_energy_multiplier = 0.25
+		variant.emission_operator = BaseMaterial3D.EMISSION_OP_ADD
+
+
+func _prune_stale_variants() -> bool:
+	var retained_paths: Dictionary = {}
+	for path_value: Variant in _variant_paths.values():
+		retained_paths[String(path_value)] = true
+	return _prune_stale_variants_in_directory(VARIANT_ROOT, retained_paths)
+
+
+func _prune_stale_variants_in_directory(
+	directory_path: String,
+	retained_paths: Dictionary
+) -> bool:
+	var directory := DirAccess.open(directory_path)
+	if directory == null:
+		return true
+	directory.list_dir_begin()
+	var filename := directory.get_next()
+	while not filename.is_empty():
+		var resource_path := directory_path.path_join(filename)
+		if directory.current_is_dir():
+			if not _prune_stale_variants_in_directory(resource_path, retained_paths):
+				directory.list_dir_end()
+				return false
+		elif filename.ends_with(".tres") and not retained_paths.has(resource_path):
+			var remove_error := DirAccess.remove_absolute(
+				ProjectSettings.globalize_path(resource_path)
+			)
+			if remove_error != OK:
+				_fail("Could not remove stale HD2D variant: %s" % resource_path)
+				directory.list_dir_end()
+				return false
+			_removed_stale_variants += 1
+		filename = directory.get_next()
+	directory.list_dir_end()
 	return true
 
 
@@ -206,7 +294,11 @@ func _load_json(path: String) -> Dictionary:
 	if typeof(parsed) != TYPE_DICTIONARY:
 		_fail("JSON root is not an object: %s" % path)
 		return {}
-	return parsed as Dictionary
+	var document := parsed as Dictionary
+	if document.is_empty():
+		_fail("JSON object is empty: %s" % path)
+		return {}
+	return document
 
 
 func _fail(message: String) -> void:

@@ -26,6 +26,7 @@ func _run() -> void:
 	var requested_profile := DEFAULT_VISUAL_PROFILE
 	var warmup_frames := 10
 	var measure_frames := 0
+	var stability_frames := 8
 	var force_perspective := false
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--cell="):
@@ -46,6 +47,8 @@ func _run() -> void:
 			warmup_frames = maxi(0, int(argument.trim_prefix("--warmup-frames=")))
 		elif argument.begins_with("--measure-frames="):
 			measure_frames = maxi(0, int(argument.trim_prefix("--measure-frames=")))
+		elif argument.begins_with("--stability-frames="):
+			stability_frames = maxi(1, int(argument.trim_prefix("--stability-frames=")))
 		elif argument == "--perspective":
 			force_perspective = true
 
@@ -96,10 +99,19 @@ func _run() -> void:
 		if _streamer == null:
 			continue
 		stats = _streamer.get_stream_stats()
-		if int(stats.loaded_chunks) >= 9 and int(stats.loading_assets) == 0:
+		var wanted_chunks := int(stats.get("wanted_chunks", 0))
+		if (
+			wanted_chunks > 0
+			and int(stats.get("loaded_chunks", 0)) >= wanted_chunks
+			and int(stats.get("loading_assets", 0)) == 0
+		):
 			break
 
-	if _streamer == null or int(stats.get("loaded_chunks", 0)) < 9:
+	if (
+		_streamer == null
+		or int(stats.get("wanted_chunks", 0)) <= 0
+		or int(stats.get("loaded_chunks", 0)) < int(stats.get("wanted_chunks", 0))
+	):
 		_fail("World did not become ready for capture.")
 		return
 	if int(stats.get("failed_assets", -1)) != 0:
@@ -107,6 +119,23 @@ func _run() -> void:
 		return
 	if int(stats.get("material_replacements", -1)) != 0:
 		_fail("World changed shared materials at runtime: %s" % JSON.stringify(stats))
+		return
+	if (
+		not bool(stats.get("hd2d_profile_loaded", false))
+		or String(stats.get("hd2d_profile_id", "")) != "world_semantics_v1"
+		or int(stats.get("hd2d_variants", 0)) != 22
+	):
+		_fail("World semantic material profile is invalid: %s" % JSON.stringify(stats))
+		return
+	if requested_profile == VisualProfileControllerScript.HD2D_PROFILE:
+		if (
+			int(stats.get("hd2d_overrides", -1))
+			!= int(stats.get("hd2d_registered_surfaces", -2))
+		):
+			_fail("HD2D capture did not activate every registered variant surface.")
+			return
+	elif int(stats.get("hd2d_overrides", -1)) != 0:
+		_fail("Classic capture retained HD2D surface overrides.")
 		return
 
 	var viewport_rid := root.get_viewport_rid()
@@ -124,6 +153,22 @@ func _run() -> void:
 		_measurement_enabled = false
 		if not metrics_path.is_empty() and not _write_json(metrics_path, metrics):
 			return
+
+	var stable_pixels := PackedByteArray()
+	for stability_frame in stability_frames:
+		await process_frame
+		await RenderingServer.frame_post_draw
+		var stability_image := root.get_texture().get_image()
+		if stability_image.is_empty() or stability_image.get_size() != NDS_SCREEN_SIZE:
+			_fail("HD2D stability capture is empty or has an invalid size.")
+			return
+		var frame_pixels := stability_image.get_data()
+		if stability_frame == 0:
+			stable_pixels = frame_pixels
+		elif frame_pixels != stable_pixels:
+			_fail("Static world pixels changed on stability frame %d." % (stability_frame + 1))
+			return
+	print("WORLD_CAPTURE_STABILITY_OK ", stability_frames)
 
 	await RenderingServer.frame_post_draw
 	var image := root.get_texture().get_image()

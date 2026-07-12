@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-07-12 - Add world-scale HD2D semantic classification
+
+- Derive a hash-free semantic profile from catalog signatures, GLB texture bindings, alpha modes, emissive factors, and all 3249 material-bearing primitive surfaces.
+- Rebuild the ignored eight-material P3 seed from the manifest and catalog in both configuration and full-validation workflows.
+- Derive the seed's nine instances and 22 selected GLB surfaces, reject semantic-policy conflicts, and recursively prune unknown stale variant tags.
+- Preserve static water, alpha foliage, legacy shadows, and ambiguous materials while applying 16 low-energy emissive variants and retaining six explicit P3 lit variants.
+- Add 32-toggle material identity stress coverage, sparse-neighborhood capture readiness, and eight-frame RGBA stability validation.
+
 ## 2026-07-12 - Enforce clean renderer teardown
 
 - Flush the Compatibility renderer after world-test cleanup and make full validation reject logged shader, RID, resource, or orphan leaks even when Godot exits with code zero.

@@ -35,7 +35,7 @@ unique_materials: 511
 
 ## HD2D Material Variant Validation
 
-Build the local pilot after shared materials are configured:
+Build the local semantic profile after shared materials are configured:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
@@ -43,16 +43,22 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -ProjectRoot .\new-game-project
 ```
 
-Expected pilot baseline:
+Expected semantic-profile baseline:
 
 ```text
-profile_assets: 5
-unique_variants: 8
-pilot_instances: 9
-registered_surfaces: 22
-active_overrides: Classic 0, HD2D 22
+profile_cells: 468
+profile_assets: 311
+unique_variants: 22
+preserved_materials: 63
+semantic_materials: shadow 7, water 32, foliage 23, emissive 16, ordinary 432, ambiguous 1
+semantic_surfaces: shadow 278, water 287, foliage 469, emissive 124, ordinary 2070, ambiguous 21
 shared_base_material_hash_changes: 0 of 511
 ```
+
+The command rebuilds and audits the P3 seed first (`5` assets, `9` instances,
+`8` unique keys, `22` selected primitive surfaces). Full repository validation
+also runs the variant builder, so deleting the ignored variant cache or leaving
+an unknown stale tag directory cannot be hidden by an existing local build.
 
 ## Streaming Smoke Test
 
@@ -101,14 +107,17 @@ The test verifies:
 - HD2D screen-plane snap stays within half an output pixel and preserves view depth.
 - HD2D maps the 32-pixel player canvas to exactly 32 output pixels and keeps
   its camera-relative center unchanged while compensating the camera snap.
-- The local HD2D pilot preloads exactly 8 shared variants and binds exactly 22
-  surfaces across 9 instances in cell `(3, 27)`.
-- F2 changes those instance overrides `0 -> 22 -> 0` while node, Mesh, base
+- The local HD2D world profile preloads exactly 22 shared variants and exposes
+  the exact 511-material/3249-surface semantic partition.
+- F2 changes active instance overrides `0 -> registered -> 0` while node, Mesh, base
   material, Environment, and ground-shadow resource identities remain stable.
 - Base surfaces stay unshaded; variants are separate per-vertex-lit resources
   with the original texture dependency.
-- Leaving the pilot cell releases all 9 instance bindings and 22 surface
-  bindings; toggling HD2D at the destination affects no non-pilot surface.
+- Leaving the origin releases its instance bindings; destination bindings are
+  rebuilt only from the destination chunks and use the same bounded variant
+  cache without retaining origin node references.
+- Thirty-two consecutive profile toggles retain the same node, Mesh, base
+  material, and variant RIDs without increasing cache or override counts.
 - Teardown waits for a rendered cleanup frame and synchronizes the rendering
   server before exit. Full validation rejects Godot logs containing resource,
   RID, orphan, or shader cleanup errors even when the process returns success.
@@ -164,8 +173,25 @@ HD-2D baseline and measurement example:
   --metrics-output=res://captures/hd2d_start.metrics.json
 ```
 
-Metrics collection must finish before PNG readback. Reports must show 9 loaded
-chunks, zero failed assets, zero runtime base-material replacements, and
-nonempty render samples. The pilot HD2D capture must additionally report 8
-variants, 9 active pilot instances, and 22 active overrides. Classic and HD2D
-captures remain local ignored artifacts.
+Metrics collection must finish before PNG readback. The capture waits for all
+actual `wanted_chunks`, so sparse matrix neighborhoods need not contain nine
+chunks. Reports must show zero failed assets, zero runtime base-material
+replacements, 22 cached variants, and active overrides equal to registered
+variant surfaces in HD2D. Eight consecutive post-measurement RGBA frames must
+be byte-identical. Classic and HD2D captures remain local ignored artifacts.
+
+P4a representative captures:
+
+```text
+water:   --cell=16,16 --offset=-4.5,-2.5
+foliage: --cell=14,25 --offset=0,0
+tree:    --cell=17,16 --offset=8,0
+lights:  --cell=4,24  --offset=2,-2
+city:    --cell=5,26  --offset=-4,-2
+shadow:  --cell=3,27  --offset=0,0
+```
+
+Water and foliage captures must retain nearest edges and static pixels. Light
+captures must change only registered instance surfaces, without glow halos.
+The shadow capture must retain legacy shadow textures without duplicate dynamic
+casting.

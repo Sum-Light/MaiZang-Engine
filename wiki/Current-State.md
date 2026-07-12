@@ -5,8 +5,8 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `ba2498051505872b696daedee3e37bb14d9cae738b4d783194c8f560cda61283`
-- Fingerprinted files: 61
+- Source fingerprint: `5a64d3ca5a92556847e91a6eb93748639f6fd1ee18ed9b8a70b2713a7f1ac7bd`
+- Fingerprinted files: 64
 - Godot runtime scripts: 5
 - Godot test scripts: 2
 - PowerShell tools: 12
@@ -19,7 +19,7 @@
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
 - Visual profile: Classic default; `F2` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
-- HD2D pilot: cell `(3, 27)`, 8 shared variants, 9 asset instances, 22 bound surfaces; shared base materials remain immutable.
+- HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -36,8 +36,10 @@
 - Shared materials found: 511
 - Building instances found: 501
 - Dawn sprite atlas: present locally (ignored by Git).
+- HD2D semantic profile: present locally (ignored by Git).
+- HD2D material variants found: 22
 
 ## Next Engineering Milestone
 
-Classify water, foliage, emissive, and legacy-shadow surfaces before expanding
-HD2D material coverage beyond the bounded cell `(3, 27)` pilot.
+Tune restrained fog, color, sunlight, and emissive balance across the city,
+waterfall, foliage, and foreground-building regression areas.

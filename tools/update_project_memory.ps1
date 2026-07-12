@@ -132,6 +132,17 @@ $playerSpriteStatus = if (Test-Path -LiteralPath $playerSpritePath -PathType Lea
 else {
     "not present; run tools/import_player_sprite.ps1"
 }
+$hd2dProfilePath = Join-Path $assetRoot "hd2d\world_semantics.profile.json"
+$hd2dProfileStatus = if (Test-Path -LiteralPath $hd2dProfilePath -PathType Leaf) {
+    "present locally (ignored by Git)"
+}
+else {
+    "not present; run tools/configure_hd2d_material_variants.ps1"
+}
+$hd2dVariantRoot = Join-Path $assetRoot "hd2d\shared_variants"
+$hd2dVariants = @(
+    Get-ChildItem -LiteralPath $hd2dVariantRoot -Recurse -Filter "*.tres" -File -ErrorAction SilentlyContinue
+).Count
 
 $currentState = @"
 # Current State
@@ -155,7 +166,7 @@ $currentState = @"
 - Camera: orthographic size ``11.24`` by default; ``F1`` toggles FOV-75 perspective.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
-- HD2D pilot: cell ``(3, 27)``, 8 shared variants, 9 asset instances, 22 bound surfaces; shared base materials remain immutable.
+- HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -172,11 +183,13 @@ $currentState = @"
 - Shared materials found: $localMaterials
 - Building instances found: $localBuildings
 - Dawn sprite atlas: $playerSpriteStatus.
+- HD2D semantic profile: $hd2dProfileStatus.
+- HD2D material variants found: $hd2dVariants
 
 ## Next Engineering Milestone
 
-Classify water, foliage, emissive, and legacy-shadow surfaces before expanding
-HD2D material coverage beyond the bounded cell ``(3, 27)`` pilot.
+Tune restrained fog, color, sunlight, and emissive balance across the city,
+waterfall, foliage, and foreground-building regression areas.
 "@
 
 $skillState = @"
@@ -193,14 +206,15 @@ MaiZang Engine and regenerate it in every functional commit.
 - Camera: size-11.24 orthographic default, ``F1`` FOV-75 perspective debug view.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
-- HD2D pilot: cell ``(3, 27)``, 8 shared variants, 9 asset instances, 22 bound surfaces; shared base materials remain immutable.
+- HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.
 - Dawn sprite atlas: $playerSpriteStatus.
-- Next milestone: classify water, foliage, emissive, and legacy-shadow surfaces before expanding HD2D coverage.
+- HD2D semantic profile: $hd2dProfileStatus; variants found: $hd2dVariants.
+- Next milestone: tune restrained fog, color, sunlight, and emissive balance across representative areas.
 
 The public repository must not contain ROM-derived models, textures, maps, or
 other proprietary Pokemon assets.

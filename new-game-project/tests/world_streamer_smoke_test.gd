@@ -150,6 +150,11 @@ func _run() -> void:
 	var initial_player_facing := player.get_current_facing()
 	var initial_stream_stats := streamer.get_stream_stats()
 	var initial_binding_snapshot := streamer.get_hd2d_binding_snapshot()
+	var initial_variant_snapshot := streamer.get_hd2d_variant_snapshot()
+	var initial_registered_surfaces := int(
+		initial_stream_stats.get("hd2d_registered_surfaces", 0)
+	)
+	var initial_profile_instances := int(initial_stream_stats.get("hd2d_profile_instances", 0))
 	var initial_focus_cell := streamer.get_focus_cell()
 	var initial_sun_transform := sun.global_transform
 	var initial_sprite_camera_position := (
@@ -159,14 +164,42 @@ func _run() -> void:
 	var initial_environment_rid := world_environment.environment.get_rid()
 	var initial_shadow_mesh_rid := ground_shadow.mesh.get_rid()
 	var initial_visual_state := visual_profile.get_visual_state()
+	var expected_semantic_materials := {
+		"ambiguous": 1,
+		"emissive": 16,
+		"foliage": 23,
+		"legacy_shadow": 7,
+		"ordinary_lit": 432,
+		"water": 32,
+	}
+	var expected_semantic_surfaces := {
+		"ambiguous": 21,
+		"emissive": 124,
+		"foliage": 469,
+		"legacy_shadow": 278,
+		"ordinary_lit": 2070,
+		"water": 287,
+	}
 	if (
 		not bool(initial_stream_stats.get("hd2d_profile_loaded", false))
-		or int(initial_stream_stats.get("hd2d_variants", 0)) != 8
-		or int(initial_stream_stats.get("hd2d_pilot_instances", 0)) != 9
-		or int(initial_stream_stats.get("hd2d_active_pilot_instances", -1)) != 0
-		or int(initial_stream_stats.get("hd2d_registered_surfaces", 0)) != 22
+		or String(initial_stream_stats.get("hd2d_profile_id", "")) != "world_semantics_v1"
+		or not _semantic_counts_match(
+			initial_stream_stats.get("hd2d_semantic_materials", {}) as Dictionary,
+			expected_semantic_materials
+		)
+		or not _semantic_counts_match(
+			initial_stream_stats.get("hd2d_semantic_surface_references", {}) as Dictionary,
+			expected_semantic_surfaces
+		)
+		or int(initial_stream_stats.get("hd2d_preserved_materials", 0)) != 63
+		or int(initial_stream_stats.get("hd2d_variants", 0)) != 22
+		or initial_profile_instances <= 0
+		or int(initial_stream_stats.get("hd2d_active_profile_instances", -1)) != 0
+		or initial_registered_surfaces <= 0
 		or int(initial_stream_stats.get("hd2d_overrides", -1)) != 0
 		or not _validate_hd2d_binding_snapshot(initial_binding_snapshot, false)
+		or initial_binding_snapshot.size() != initial_registered_surfaces
+		or not _validate_hd2d_variant_snapshot(initial_variant_snapshot)
 	):
 		_fail(
 			"Classic HD2D material bindings are invalid: %s"
@@ -224,11 +257,14 @@ func _run() -> void:
 		_fail("Visual profile switching changed gameplay or streaming state.")
 		return
 	if (
-		int(hd2d_stream_stats.get("hd2d_variants", 0)) != 8
-		or int(hd2d_stream_stats.get("hd2d_pilot_instances", 0)) != 9
-		or int(hd2d_stream_stats.get("hd2d_active_pilot_instances", 0)) != 9
-		or int(hd2d_stream_stats.get("hd2d_registered_surfaces", 0)) != 22
-		or int(hd2d_stream_stats.get("hd2d_overrides", 0)) != 22
+		int(hd2d_stream_stats.get("hd2d_variants", 0)) != 22
+		or int(hd2d_stream_stats.get("hd2d_profile_instances", 0))
+		!= initial_profile_instances
+		or int(hd2d_stream_stats.get("hd2d_active_profile_instances", 0))
+		!= initial_profile_instances
+		or int(hd2d_stream_stats.get("hd2d_registered_surfaces", 0))
+		!= initial_registered_surfaces
+		or int(hd2d_stream_stats.get("hd2d_overrides", 0)) != initial_registered_surfaces
 		or not _validate_hd2d_binding_snapshot(
 			hd2d_binding_snapshot,
 			true,
@@ -236,7 +272,7 @@ func _run() -> void:
 		)
 	):
 		_fail(
-			"HD2D pilot material overrides are invalid: %s"
+			"HD2D semantic material overrides are invalid: %s"
 			% JSON.stringify(hd2d_stream_stats)
 		)
 		return
@@ -291,11 +327,14 @@ func _run() -> void:
 		or _stream_core_snapshot(restored_stream_stats) != _stream_core_snapshot(
 			initial_stream_stats
 		)
-		or int(restored_stream_stats.get("hd2d_variants", 0)) != 8
-		or int(restored_stream_stats.get("hd2d_pilot_instances", 0)) != 9
-		or int(restored_stream_stats.get("hd2d_active_pilot_instances", -1)) != 0
-		or int(restored_stream_stats.get("hd2d_registered_surfaces", 0)) != 22
+		or int(restored_stream_stats.get("hd2d_variants", 0)) != 22
+		or int(restored_stream_stats.get("hd2d_profile_instances", 0))
+		!= initial_profile_instances
+		or int(restored_stream_stats.get("hd2d_active_profile_instances", -1)) != 0
+		or int(restored_stream_stats.get("hd2d_registered_surfaces", 0))
+		!= initial_registered_surfaces
 		or int(restored_stream_stats.get("hd2d_overrides", -1)) != 0
+		or streamer.get_hd2d_variant_snapshot() != initial_variant_snapshot
 		or not _validate_hd2d_binding_snapshot(
 			restored_binding_snapshot,
 			false,
@@ -305,6 +344,40 @@ func _run() -> void:
 		_fail("F2 did not restore Classic without reallocating visual resources.")
 		return
 	print("VISUAL_PROFILE_ROUNDTRIP_OK ", JSON.stringify(hd2d_visual_state))
+	for toggle_cycle in 16:
+		visual_profile._unhandled_input(f2_event)
+		var stress_hd2d_stats := streamer.get_stream_stats()
+		if (
+			int(stress_hd2d_stats.get("hd2d_overrides", -1))
+			!= initial_registered_surfaces
+			or int(stress_hd2d_stats.get("hd2d_active_profile_instances", -1))
+			!= initial_profile_instances
+			or streamer.get_hd2d_variant_snapshot() != initial_variant_snapshot
+			or not _validate_hd2d_binding_snapshot(
+				streamer.get_hd2d_binding_snapshot(),
+				true,
+				initial_binding_snapshot
+			)
+		):
+			_fail("HD2D material stress toggle failed on cycle %d." % (toggle_cycle + 1))
+			return
+		visual_profile._unhandled_input(f2_event)
+		var stress_classic_stats := streamer.get_stream_stats()
+		if (
+			int(stress_classic_stats.get("hd2d_overrides", -1)) != 0
+			or int(stress_classic_stats.get("hd2d_active_profile_instances", -1)) != 0
+			or _stream_core_snapshot(stress_classic_stats)
+			!= _stream_core_snapshot(initial_stream_stats)
+			or streamer.get_hd2d_variant_snapshot() != initial_variant_snapshot
+			or not _validate_hd2d_binding_snapshot(
+				streamer.get_hd2d_binding_snapshot(),
+				false,
+				initial_binding_snapshot
+			)
+		):
+			_fail("Classic material restore failed on stress cycle %d." % (toggle_cycle + 1))
+			return
+	print("HD2D_MATERIAL_TOGGLE_STRESS_OK 32")
 
 	var f1_event := InputEventKey.new()
 	f1_event.keycode = KEY_F1
@@ -663,26 +736,42 @@ func _run() -> void:
 			if int(stats.loaded_assets) > int(stats.retained_assets):
 				_fail("Asset cache retained resources outside the unload radius: %s" % JSON.stringify(stats))
 				return
+			var destination_binding_snapshot := streamer.get_hd2d_binding_snapshot()
+			var destination_registered_surfaces := int(
+				stats.get("hd2d_registered_surfaces", 0)
+			)
+			var destination_profile_instances := int(stats.get("hd2d_profile_instances", 0))
 			if (
-				int(stats.get("hd2d_variants", 0)) != 8
-				or int(stats.get("hd2d_pilot_instances", -1)) != 0
-				or int(stats.get("hd2d_active_pilot_instances", -1)) != 0
-				or int(stats.get("hd2d_registered_surfaces", -1)) != 0
+				int(stats.get("hd2d_variants", 0)) != 22
+				or destination_profile_instances <= 0
+				or int(stats.get("hd2d_active_profile_instances", -1)) != 0
+				or destination_registered_surfaces <= 0
 				or int(stats.get("hd2d_overrides", -1)) != 0
-				or not streamer.get_hd2d_binding_snapshot().is_empty()
+				or destination_binding_snapshot.size() != destination_registered_surfaces
+				or not _validate_hd2d_binding_snapshot(destination_binding_snapshot, false)
+				or _snapshot_contains_cell(destination_binding_snapshot, "3,27")
+				or streamer.get_hd2d_variant_snapshot() != initial_variant_snapshot
 			):
-				_fail("Pilot HD2D bindings survived chunk unload: %s" % JSON.stringify(stats))
+				_fail("World semantic bindings were stale after streaming: %s" % JSON.stringify(stats))
 				return
 			var destination_core_stats := _stream_core_snapshot(stats)
 			visual_profile._unhandled_input(f2_event)
 			var destination_hd2d_stats := streamer.get_stream_stats()
+			var destination_hd2d_snapshot := streamer.get_hd2d_binding_snapshot()
 			if (
 				_stream_core_snapshot(destination_hd2d_stats) != destination_core_stats
-				or int(destination_hd2d_stats.get("hd2d_overrides", -1)) != 0
-				or int(destination_hd2d_stats.get("hd2d_pilot_instances", -1)) != 0
+				or int(destination_hd2d_stats.get("hd2d_overrides", -1))
+				!= destination_registered_surfaces
+				or int(destination_hd2d_stats.get("hd2d_active_profile_instances", -1))
+				!= destination_profile_instances
+				or not _validate_hd2d_binding_snapshot(
+					destination_hd2d_snapshot,
+					true,
+					destination_binding_snapshot
+				)
 			):
 				_fail(
-					"HD2D profile affected a non-pilot destination: %s"
+					"HD2D semantic profile did not rebind the destination: %s"
 					% JSON.stringify(destination_hd2d_stats)
 				)
 				return
@@ -705,12 +794,21 @@ func _stream_core_snapshot(stats: Dictionary) -> Dictionary:
 	return snapshot
 
 
+func _semantic_counts_match(actual: Dictionary, expected: Dictionary) -> bool:
+	if actual.size() != expected.size():
+		return false
+	for semantic: Variant in expected.keys():
+		if int(actual.get(semantic, -1)) != int(expected[semantic]):
+			return false
+	return true
+
+
 func _validate_hd2d_binding_snapshot(
 	snapshot: Array[Dictionary],
 	expect_active: bool,
 	reference: Array[Dictionary] = []
 ) -> bool:
-	if snapshot.size() != 22 or (not reference.is_empty() and reference.size() != snapshot.size()):
+	if snapshot.is_empty() or (not reference.is_empty() and reference.size() != snapshot.size()):
 		return false
 	var variant_rids: Dictionary = {}
 	var identity_keys: Array[String] = [
@@ -734,14 +832,16 @@ func _validate_hd2d_binding_snapshot(
 			if expect_active
 			else int(binding.get("classic_override_rid", 0))
 		)
+		var variant_tag := String(binding.get("variant_tag", ""))
 		if (
-			String(binding.get("cell", "")) != "3,27"
+			String(binding.get("cell", "")).is_empty()
 			or String(binding.get("asset_key", "")).is_empty()
+			or variant_tag not in ["lit_vertex", "emissive_window"]
 			or not String(binding.get("base_path", "")).begins_with(
 				"res://assets/platinum/shared_materials/"
 			)
 			or not String(binding.get("variant_path", "")).begins_with(
-				"res://assets/platinum/hd2d/shared_variants/lit_vertex/"
+				"res://assets/platinum/hd2d/shared_variants/%s/" % variant_tag
 			)
 			or int(binding.get("base_shading_mode", -1))
 			!= BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -757,7 +857,44 @@ func _validate_hd2d_binding_snapshot(
 			for key: String in identity_keys:
 				if binding.get(key) != reference_binding.get(key):
 					return false
-	return variant_rids.size() == 8
+	return not variant_rids.is_empty()
+
+
+func _validate_hd2d_variant_snapshot(snapshot: Array[Dictionary]) -> bool:
+	if snapshot.size() != 22:
+		return false
+	var material_rids: Dictionary = {}
+	var tag_counts: Dictionary = {}
+	for variant: Dictionary in snapshot:
+		var variant_tag := String(variant.get("variant_tag", ""))
+		var material_rid := int(variant.get("material_rid", 0))
+		if (
+			variant_tag not in ["lit_vertex", "emissive_window"]
+			or String(variant.get("base_material_key", "")).is_empty()
+			or not String(variant.get("resource_path", "")).begins_with(
+				"res://assets/platinum/hd2d/shared_variants/%s/" % variant_tag
+			)
+			or material_rid == 0
+			or int(variant.get("shading_mode", -1))
+			!= BaseMaterial3D.SHADING_MODE_PER_VERTEX
+			or bool(variant.get("emission_enabled", false))
+			!= (variant_tag == "emissive_window")
+		):
+			return false
+		material_rids[material_rid] = true
+		tag_counts[variant_tag] = int(tag_counts.get(variant_tag, 0)) + 1
+	return (
+		material_rids.size() == 22
+		and int(tag_counts.get("lit_vertex", 0)) == 6
+		and int(tag_counts.get("emissive_window", 0)) == 16
+	)
+
+
+func _snapshot_contains_cell(snapshot: Array[Dictionary], cell: String) -> bool:
+	for binding: Dictionary in snapshot:
+		if String(binding.get("cell", "")) == cell:
+			return true
+	return false
 
 
 func _fail(message: String) -> void:
