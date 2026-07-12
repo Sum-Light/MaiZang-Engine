@@ -8,6 +8,30 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+function Assert-CleanGodotLog {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+        [Parameter(Mandatory = $true)]
+        [string]$Label
+    )
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "$Label did not create its expected Godot log: $Path"
+    }
+    $failures = @(
+        Select-String -LiteralPath $Path -Pattern @(
+            "ERROR:",
+            "leaked at exit",
+            "never freed",
+            "orphan"
+        ) -SimpleMatch
+    )
+    if ($failures.Count -gt 0) {
+        throw "$Label reported renderer or resource cleanup errors: $($failures[0].Line)"
+    }
+}
+
 if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
     $ProjectRoot = Split-Path -Parent $PSScriptRoot
 }
@@ -97,18 +121,27 @@ if ($Full) {
     $logRoot = Join-Path $ProjectRoot ".work"
     New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
 
-    & $GodotPath --headless --path $godotProject --log-file (Join-Path $logRoot "shared-material-validation.log") --script "res://tools/validate_shared_materials.gd"
+    $sharedMaterialLog = Join-Path $logRoot "shared-material-validation.log"
+    $hd2dMaterialLog = Join-Path $logRoot "hd2d-material-validation.log"
+    $worldStreamerLog = Join-Path $logRoot "world-streamer-smoke.log"
+
+    & $GodotPath --headless --path $godotProject --log-file $sharedMaterialLog --script "res://tools/validate_shared_materials.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "Shared material validation failed."
     }
-    & $GodotPath --headless --path $godotProject --log-file (Join-Path $logRoot "hd2d-material-validation.log") --script "res://tools/validate_hd2d_material_variants.gd" -- "--profile=res://assets/platinum/hd2d/p3_city.profile.json"
+    Assert-CleanGodotLog -Path $sharedMaterialLog -Label "Shared material validation"
+
+    & $GodotPath --headless --path $godotProject --log-file $hd2dMaterialLog --script "res://tools/validate_hd2d_material_variants.gd" -- "--profile=res://assets/platinum/hd2d/p3_city.profile.json"
     if ($LASTEXITCODE -ne 0) {
         throw "HD2D material variant validation failed."
     }
-    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file (Join-Path $logRoot "world-streamer-smoke.log") --script "res://tests/world_streamer_smoke_test.gd"
+    Assert-CleanGodotLog -Path $hd2dMaterialLog -Label "HD2D material validation"
+
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file $worldStreamerLog --script "res://tests/world_streamer_smoke_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "World streamer smoke test failed."
     }
+    Assert-CleanGodotLog -Path $worldStreamerLog -Label "World streamer smoke test"
 }
 
 Write-Host "Repository validation complete."

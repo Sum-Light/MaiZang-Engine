@@ -776,6 +776,8 @@ func _fail(message: String) -> void:
 func _finish_failure() -> void:
 	for cleanup_frame in 10:
 		await process_frame
+	await RenderingServer.frame_post_draw
+	RenderingServer.force_sync()
 	quit(1)
 
 
@@ -889,4 +891,7 @@ func _wait_for_turn_samples(expected_count: int) -> bool:
 
 func _finish_success() -> void:
 	_release_all_test_inputs()
+	await process_frame
+	await RenderingServer.frame_post_draw
+	RenderingServer.force_sync()
 	quit(0)

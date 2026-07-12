@@ -1,5 +1,9 @@
 # Change Log
 
+## 2026-07-12 - Enforce clean renderer teardown
+
+- Flush the Compatibility renderer after world-test cleanup and make full validation reject logged shader, RID, resource, or orphan leaks even when Godot exits with code zero.
+
 ## 2026-07-12 - Add the HD2D semantic material pilot
 
 - Generate and validate eight ignored per-vertex-lit material variants for the bounded `(3, 27)` pilot while hash-protecting all 511 shared base materials.

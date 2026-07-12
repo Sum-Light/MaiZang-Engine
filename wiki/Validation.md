@@ -109,6 +109,9 @@ The test verifies:
   with the original texture dependency.
 - Leaving the pilot cell releases all 9 instance bindings and 22 surface
   bindings; toggling HD2D at the destination affects no non-pilot surface.
+- Teardown waits for a rendered cleanup frame and synchronizes the rendering
+  server before exit. Full validation rejects Godot logs containing resource,
+  RID, orphan, or shader cleanup errors even when the process returns success.
 
 ## Render Capture
 
