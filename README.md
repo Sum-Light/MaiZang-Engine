@@ -61,6 +61,9 @@ Open `new-game-project/project.godot` after the import completes. Use `WASD`
 or the arrow keys for four-direction movement, hold `Z` to run, and use the
 mouse wheel to adjust the follow camera pitch in 5-degree steps. Press `F1`
 to toggle between the default orthographic view and the perspective debug view.
+Press `F2` to open the in-game debug destination panel; the panel validates
+the requested matrix, AreaData, cell, and tile before reloading the world at
+that destination.
 
 For a debug start at another destination, edit the `maizang/debug/*` project
 settings or pass user arguments after `--`, for example:

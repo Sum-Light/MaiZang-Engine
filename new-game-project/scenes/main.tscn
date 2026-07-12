@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://lo1t84vmist3" path="res://scripts/platinum_world_streamer.gd" id="1_streamer"]
 [ext_resource type="Script" uid="uid://72icnjp56syw" path="res://scripts/follow_camera.gd" id="2_camera"]
 [ext_resource type="Script" uid="uid://cgsc71dn4w1g1" path="res://scripts/player_controller.gd" id="3_player"]
+[ext_resource type="Script" path="res://scripts/debug_destination_panel.gd" id="4_debug_panel"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 1
@@ -14,6 +15,87 @@ ambient_light_energy = 0.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape_player"]
 radius = 0.3
 height = 1.4
+
+[sub_resource type="Theme" id="Theme_debug_panel"]
+default_font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_debug_panel"]
+bg_color = Color(0.0745098, 0.0823529, 0.0901961, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.352941, 0.4, 0.423529, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_normal"]
+bg_color = Color(0.152941, 0.172549, 0.184314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.313726, 0.352941, 0.372549, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+bg_color = Color(0.223529, 0.25098, 0.262745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.470588, 0.521569, 0.541176, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+bg_color = Color(0.105882, 0.121569, 0.129412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25098, 0.290196, 0.305882, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_jump_normal"]
+bg_color = Color(0.12549, 0.313726, 0.286275, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.278431, 0.568627, 0.509804, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_jump_hover"]
+bg_color = Color(0.168627, 0.396078, 0.356863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.396078, 0.698039, 0.627451, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
 
 [node name="Main" type="Node3D" unique_id=1201451321]
 
@@ -58,3 +140,226 @@ script = ExtResource("1_streamer")
 focus_path = NodePath("../Player")
 
 [node name="LoadedChunks" type="Node3D" parent="WorldStreamer" unique_id=1845466634]
+
+[node name="DebugDestinationPanel" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+layer = 100
+script = ExtResource("4_debug_panel")
+
+[node name="ModalRoot" type="Control" parent="DebugDestinationPanel"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="DebugDestinationPanel/ModalRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 0
+color = Color(0.0117647, 0.0156863, 0.0196078, 0.78)
+
+[node name="Panel" type="PanelContainer" parent="DebugDestinationPanel/ModalRoot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -86.0
+offset_right = 116.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_debug_panel")
+theme_override_styles/panel = SubResource("StyleBox_debug_panel")
+
+[node name="Margin" type="MarginContainer" parent="DebugDestinationPanel/ModalRoot/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 7
+
+[node name="Content" type="VBoxContainer" parent="DebugDestinationPanel/ModalRoot/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.901961, 0.917647, 0.921569, 1)
+theme_override_font_sizes/font_size = 12
+text = "Debug destination"
+vertical_alignment = 1
+
+[node name="Fields" type="GridContainer" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 2
+columns = 4
+
+[node name="MatrixLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+custom_minimum_size = Vector2(34, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.752941, 0.764706, 1)
+theme_override_font_sizes/font_size = 10
+text = "Matrix"
+vertical_alignment = 1
+
+[node name="MatrixSpin" type="SpinBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 288.0
+update_on_text_changed = true
+allow_greater = false
+allow_lesser = false
+
+[node name="AreaLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.752941, 0.764706, 1)
+theme_override_font_sizes/font_size = 10
+text = "Area"
+vertical_alignment = 1
+
+[node name="AreaSpin" type="SpinBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 4095.0
+value = -1.0
+update_on_text_changed = true
+allow_greater = false
+allow_lesser = false
+
+[node name="CellLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+custom_minimum_size = Vector2(34, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.752941, 0.764706, 1)
+theme_override_font_sizes/font_size = 10
+text = "Cell X"
+vertical_alignment = 1
+
+[node name="CellXSpin" type="SpinBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1023.0
+update_on_text_changed = true
+allow_greater = false
+allow_lesser = false
+
+[node name="CellYLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.752941, 0.764706, 1)
+theme_override_font_sizes/font_size = 10
+text = "Y"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CellYSpin" type="SpinBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1023.0
+update_on_text_changed = true
+allow_greater = false
+allow_lesser = false
+
+[node name="TileLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+custom_minimum_size = Vector2(34, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.752941, 0.764706, 1)
+theme_override_font_sizes/font_size = 10
+text = "Tile X"
+vertical_alignment = 1
+
+[node name="TileXSpin" type="SpinBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 31.0
+update_on_text_changed = true
+allow_greater = false
+allow_lesser = false
+
+[node name="TileYLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+custom_minimum_size = Vector2(26, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.721569, 0.752941, 0.764706, 1)
+theme_override_font_sizes/font_size = 10
+text = "Y"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TileYSpin" type="SpinBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 31.0
+update_on_text_changed = true
+allow_greater = false
+allow_lesser = false
+
+[node name="DefaultCellCheck" type="CheckBox" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.819608, 0.827451, 1)
+theme_override_colors/font_hover_color = Color(0.92549, 0.937255, 0.941176, 1)
+theme_override_font_sizes/font_size = 10
+button_pressed = true
+text = "Use default cell"
+
+[node name="ErrorLabel" type="Label" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0.568627, 0.505882, 1)
+theme_override_font_sizes/font_size = 9
+autowrap_mode = 2
+max_lines_visible = 2
+
+[node name="Actions" type="HBoxContainer" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBox_button_normal")
+theme_override_styles/hover = SubResource("StyleBox_button_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+text = "Cancel"
+
+[node name="JumpButton" type="Button" parent="DebugDestinationPanel/ModalRoot/Panel/Margin/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBox_jump_normal")
+theme_override_styles/hover = SubResource("StyleBox_jump_hover")
+theme_override_styles/pressed = SubResource("StyleBox_button_pressed")
+text = "Jump"

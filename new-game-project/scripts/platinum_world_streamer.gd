@@ -15,6 +15,8 @@ const DEBUG_MATRIX_SETTING := "maizang/debug/matrix_id"
 const DEBUG_AREA_SETTING := "maizang/debug/area_data_id"
 const DEBUG_CELL_SETTING := "maizang/debug/matrix_cell"
 const DEBUG_TILE_SETTING := "maizang/debug/map_tile"
+const DebugDestinationResolver := preload("res://scripts/debug_destination_resolver.gd")
+const DebugDestinationRequest := preload("res://scripts/debug_destination_request.gd")
 
 @export_file("*.json") var catalog_path := "res://assets/platinum/matrix_catalog.json"
 @export_file("*.json") var manifest_path := "res://assets/platinum/matrix_0000/manifest.json"
@@ -46,6 +48,7 @@ var _area_data_id := -1
 var _start_cell := DEFAULT_START_CELL
 var _start_tile := Vector2i.ZERO
 var _start_world_position := Vector3.ZERO
+var _shutdown_complete := false
 
 @onready var _chunks_root: Node3D = $LoadedChunks
 
@@ -67,6 +70,10 @@ func _ready() -> void:
 		set_process(false)
 		return
 	_refresh_stream(true)
+
+
+func _exit_tree() -> void:
+	shutdown()
 
 
 func _process(delta: float) -> void:
@@ -133,6 +140,36 @@ func configure_debug_destination(
 	return true
 
 
+func resolve_debug_destination_request(
+	matrix_id: int,
+	area_data_id: int = -1,
+	matrix_cell: Vector2i = USE_DESTINATION_DEFAULT_CELL,
+	map_tile: Vector2i = Vector2i.ZERO
+) -> Dictionary:
+	var request: Dictionary = DebugDestinationResolver.make_request(
+		matrix_id, area_data_id, matrix_cell, map_tile
+	)
+	return DebugDestinationResolver.resolve(catalog_path, request)
+
+
+func queue_debug_destination_request(normalized_request: Dictionary) -> Dictionary:
+	if not is_inside_tree():
+		return {
+			"ok": false,
+			"error": "Debug destination requests require a streamer inside the SceneTree.",
+			"field": "request",
+			"token": &"",
+			"request": {},
+		}
+	return DebugDestinationRequest.queue(get_tree(), normalized_request)
+
+
+func cancel_debug_destination_request(token: StringName) -> bool:
+	if not is_inside_tree():
+		return false
+	return DebugDestinationRequest.cancel(get_tree(), token)
+
+
 func is_chunk_loaded(coordinate: Vector2i) -> bool:
 	return _loaded_chunks.has(coordinate)
 
@@ -167,6 +204,9 @@ func resolve_offset_grid_world_position(world_position: Vector3, offset: Vector2
 
 
 func shutdown() -> void:
+	if _shutdown_complete:
+		return
+	_shutdown_complete = true
 	set_process(false)
 	_wanted_chunks.clear()
 	_retained_asset_paths.clear()
@@ -174,109 +214,37 @@ func shutdown() -> void:
 	_shared_materials.clear()
 	for chunk_value: Variant in _loaded_chunks.values():
 		var chunk := chunk_value as Node3D
-		if is_instance_valid(chunk):
+		if is_instance_valid(chunk) and not chunk.is_queued_for_deletion():
 			chunk.queue_free()
 	_loaded_chunks.clear()
 
 
 func _resolve_debug_destination() -> bool:
 	_configuration_error = false
-	var configuration := _explicit_debug_destination.duplicate()
-	if not _has_explicit_debug_destination:
-		configuration = _debug_destination_from_settings_and_cli()
+	var configuration: Dictionary
+	if _has_explicit_debug_destination:
+		configuration = _explicit_debug_destination.duplicate()
+	else:
+		var pending_result: Dictionary = DebugDestinationRequest.take(get_tree())
+		if not bool(pending_result.ok):
+			_configuration_fail(String(pending_result.error))
+			return false
+		if bool(pending_result.pending):
+			configuration = (pending_result.request as Dictionary).duplicate(true)
+		else:
+			configuration = _debug_destination_from_settings_and_cli()
 	if _configuration_error:
 		return false
 
-	var requested_matrix := int(configuration.get("matrix", -1))
-	var requested_area := int(configuration.get("area", -1))
-	if requested_matrix < 0:
-		_configuration_fail("Debug matrix id must be zero or greater: %d" % requested_matrix)
+	var resolution: Dictionary = DebugDestinationResolver.resolve(catalog_path, configuration)
+	if not bool(resolution.ok):
+		_configuration_fail(String(resolution.error))
 		return false
-	if requested_area < -1:
-		_configuration_fail("Debug area data id must be -1 or greater: %d" % requested_area)
-		return false
-
-	_start_tile = configuration.get("tile", Vector2i.ZERO) as Vector2i
-	if not _is_valid_map_tile(_start_tile):
-		_configuration_fail("Debug map tile must be within 0..31 on both axes: %s" % _start_tile)
-		return false
-
-	if not FileAccess.file_exists(catalog_path):
-		_configuration_fail("Matrix catalog does not exist: %s" % catalog_path)
-		return false
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(catalog_path))
-	if typeof(parsed) != TYPE_DICTIONARY:
-		_configuration_fail("Matrix catalog is not a JSON object: %s" % catalog_path)
-		return false
-	var catalog := parsed as Dictionary
-	var destinations: Variant = catalog.get("destinations", [])
-	if typeof(destinations) != TYPE_ARRAY:
-		_configuration_fail("Matrix catalog destinations are not an array: %s" % catalog_path)
-		return false
-
-	var matrix_destinations: Array[Dictionary] = []
-	var matching_destinations: Array[Dictionary] = []
-	var area_less_destinations: Array[Dictionary] = []
-	for destination_value: Variant in destinations:
-		if typeof(destination_value) != TYPE_DICTIONARY:
-			continue
-		var destination := destination_value as Dictionary
-		if int(destination.get("matrix_id", -1)) != requested_matrix:
-			continue
-		matrix_destinations.append(destination)
-		var destination_area: Variant = destination.get("area_data_id", null)
-		if destination_area == null:
-			area_less_destinations.append(destination)
-		elif requested_area >= 0 and int(destination_area) == requested_area:
-			matching_destinations.append(destination)
-
-	if matrix_destinations.is_empty():
-		_configuration_fail("Matrix %04d has no ready destination in the matrix catalog." % requested_matrix)
-		return false
-
-	var selected: Dictionary
-	if requested_area >= 0:
-		if matching_destinations.size() != 1:
-			_configuration_fail(
-				"Matrix %04d has no unique ready destination for area %04d."
-				% [requested_matrix, requested_area]
-			)
-			return false
-		selected = matching_destinations[0]
-	elif area_less_destinations.size() == 1:
-		selected = area_less_destinations[0]
-	elif matrix_destinations.size() == 1:
-		selected = matrix_destinations[0]
-	else:
-		var available_areas: Array[int] = []
-		for destination: Dictionary in matrix_destinations:
-			var destination_area: Variant = destination.get("area_data_id", null)
-			if destination_area != null:
-				available_areas.append(int(destination_area))
-		available_areas.sort()
-		_configuration_fail(
-			"Matrix %04d has multiple ready areas %s; specify --area."
-			% [requested_matrix, available_areas]
-		)
-		return false
-
-	var relative_manifest := String(selected.get("manifest", ""))
-	if relative_manifest.is_empty():
-		_configuration_fail("The selected matrix destination has no manifest path.")
-		return false
-	manifest_path = catalog_path.get_base_dir().path_join(relative_manifest).simplify_path()
-	_matrix_id = int(selected.get("matrix_id", requested_matrix))
-	var selected_area: Variant = selected.get("area_data_id", null)
-	_area_data_id = -1 if selected_area == null else int(selected_area)
-
-	if bool(configuration.get("has_cell", false)):
-		_start_cell = configuration.get("cell", DEFAULT_START_CELL) as Vector2i
-	else:
-		var default_cell: Variant = _dictionary_to_vector2i(selected.get("default_cell", {}))
-		if default_cell == null:
-			_configuration_fail("The selected matrix destination has no valid default cell.")
-			return false
-		_start_cell = default_cell as Vector2i
+	manifest_path = String(resolution.manifest_path)
+	_matrix_id = int(resolution.matrix)
+	_area_data_id = int(resolution.area)
+	_start_cell = resolution.cell as Vector2i
+	_start_tile = resolution.tile as Vector2i
 	return true
 
 
@@ -355,15 +323,6 @@ func _project_vector2i_setting(setting_name: String, fallback: Vector2i) -> Vari
 		return Vector2i(value as Vector2)
 	_configuration_fail("Project setting %s must be a Vector2i." % setting_name)
 	return null
-
-
-func _dictionary_to_vector2i(value: Variant) -> Variant:
-	if typeof(value) != TYPE_DICTIONARY:
-		return null
-	var data := value as Dictionary
-	if not data.has("x") or not data.has("y"):
-		return null
-	return Vector2i(int(data.x), int(data.y))
 
 
 func _is_valid_map_tile(tile: Vector2i) -> bool:

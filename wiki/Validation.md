@@ -132,6 +132,25 @@ small-matrix chunk counts, and altitude-aware tile-centered player placement.
 The integration case also verifies matrix `0000` cell `(4,25)` at nonzero
 altitude; the synthetic coordinate test covers cross-cell capture offsets.
 
+## Runtime Debug Jump Test
+
+```powershell
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/runtime_debug_jump_test.gd -- `
+  --capture-panel=res://captures/runtime_debug_jump_panel.png
+```
+
+The test injects `F2`, checks modal focus and paused movement, rejects an
+ambiguous matrix `0049` request without reloading, then performs a real scene
+reload to AreaData `61`, cell `(1,1)`, tile `(31,31)`. It verifies one-shot
+request consumption, one live streamer, four loaded chunks, zero failed
+assets, and the expected tile-centered player position. The optional panel
+capture must be a nonblank native `256 x 192` image with no clipped controls.
+
 ## Render Capture
 
 ```powershell

@@ -5,6 +5,9 @@
 | Path | Owner and purpose |
 |---|---|
 | `new-game-project/scripts/platinum_world_streamer.gd` | Catalog destination selection, manifest loading, asynchronous asset cache, chunk lifecycle, placement |
+| `new-game-project/scripts/debug_destination_resolver.gd` | Side-effect-free catalog, manifest, AreaData, cell, and tile resolution shared by startup and in-game jumps |
+| `new-game-project/scripts/debug_destination_request.gd` | One-shot process-local destination handoff across a complete main-scene reload |
+| `new-game-project/scripts/debug_destination_panel.gd` | Native-resolution F2 modal, paused input ownership, validation feedback, and reload submission |
 | `new-game-project/scripts/player_controller.gd` | Cardinal movement, Dawn animation, walking and running state |
 | `new-game-project/scripts/follow_camera.gd` | Player following and mouse-wheel pitch control |
 | `new-game-project/scenes/main.tscn` | Minimal runnable world shell |
@@ -36,6 +39,7 @@
 - Source tile size 16 pixels = 1.0 world unit
 - Default start cell `(3, 27)`
 - Default debug destination: matrix `0000`, automatic AreaData, cell `(3, 27)`, tile `(0, 0)`
+- In-game debug destination shortcut: `F2`, validated one-shot full-scene reload
 - Load radius 1, prefetch radius 2, unload/retention radius 3
 
 ## Generated Baseline

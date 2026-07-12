@@ -41,7 +41,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\validate_reposit
 The full validator first runs
 `tools/validate_dspre_matrix_catalog.ps1 -RequireComplete`, then validates all
 lossless/no-mipmap texture imports, external materials, the matrix `0000`
-streaming baseline, and both default and command-line debug destinations.
+streaming baseline, default and command-line debug destinations, and the
+in-game F2 destination reload path.
 
 Expected Godot baselines:
 

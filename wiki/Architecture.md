@@ -20,6 +20,8 @@
 - A front-facing orthographic `Camera3D` that follows the player, owns pitch
   input, and exposes an `F1` perspective debug mode.
 - `PlatinumWorldStreamer` and its `LoadedChunks` runtime container.
+- A native-resolution `F2` debug destination panel that pauses the active
+  world while a jump is being configured.
 
 `PlatinumWorldStreamer` uses the player as its focus. It reads the generated
 matrix catalog and selected destination manifest, requests terrain and building `PackedScene` resources
@@ -29,7 +31,10 @@ references.
 The catalog key is a destination rather than only a matrix ID. This preserves
 the two AreaData variants of matrices `0049` and `0052`. Startup debug settings
 select `(matrix_id, area_data_id, cell, tile)` before the streamer issues any
-threaded load.
+threaded load. In-game jumps use the same side-effect-free resolver, place one
+validated request on the persistent `SceneTree`, and reload the complete main
+scene. The next streamer consumes that request once before falling back to
+command-line or ProjectSettings configuration.
 
 ## Display Contract
 

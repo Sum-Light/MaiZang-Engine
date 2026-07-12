@@ -55,6 +55,22 @@ Tests can call `configure_debug_destination()` before the streamer enters the
 scene tree. Explicit test configuration takes precedence over command-line and
 ProjectSettings values.
 
+## In-Game Debug Jump
+
+`F2` opens a compact destination panel over the native `256 x 192` viewport.
+The panel pauses the active scene tree and accepts a matrix, optional AreaData,
+catalog-default or explicit matrix cell, and an in-cell tile. `Enter` submits;
+`Escape` or `F2` closes the panel and restores the prior pause state.
+
+Submission uses the same catalog and manifest resolver as startup. Invalid,
+ambiguous, unresolved, out-of-range, or unoccupied destinations remain in the
+panel with a focused validation error. A valid selection is normalized into a
+one-shot process-local request and reloads `main.tscn`. The new streamer
+consumes and removes that request before it starts any threaded loads. This is
+a complete streamer lifecycle boundary rather than an in-place world swap, so
+old chunk nodes and strong `PackedScene` references are released first. The
+panel never writes ProjectSettings or `project.godot`.
+
 ## Resource Lifecycle
 
 1. A player-cell change computes active, prefetch, and retention regions.

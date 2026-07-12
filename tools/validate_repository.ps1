@@ -171,6 +171,11 @@ if ($Full) {
     if ($LASTEXITCODE -ne 0) {
         throw "Debug destination command-line test failed."
     }
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/runtime_debug_jump_test.gd" -- `
+        --capture-panel=res://captures/runtime_debug_jump_panel.png
+    if ($LASTEXITCODE -ne 0) {
+        throw "Runtime debug jump test failed."
+    }
 }
 
 Write-Host "Repository validation complete."

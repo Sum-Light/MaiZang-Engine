@@ -1,5 +1,12 @@
 # Change Log
 
+## 2026-07-13 - Add in-game debug destination jumps
+
+- Add an `F2` modal for selecting a matrix, AreaData variant, optional matrix cell, and in-cell tile while the game is running.
+- Preflight requests through the shared catalog/manifest resolver, pause the active world while editing, and keep invalid or ambiguous selections in the panel with focused errors.
+- Carry valid jumps through a one-shot `SceneTree` request and full scene reload so the old streamer's chunks and strong resource references are released before the new destination loads.
+- Add a real OpenGL reload test and native `256 x 192` panel capture covering input isolation, multi-Area rejection, exact placement, and single-consumption behavior.
+
 ## 2026-07-12 - Export the multi-matrix catalog
 
 - Inventory all 289 DSPRE matrix records and export 276 strict-ready matrices through 278 AreaData-aware destinations, including both linked variants of matrices `0049` and `0052`.

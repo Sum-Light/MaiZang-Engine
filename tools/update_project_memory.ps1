@@ -174,6 +174,7 @@ $currentState = @"
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Matrix catalog: $localSourceMatrices source matrices, $localReadyMatrices ready matrices, $localReadyDestinations runnable destinations, and $localUnresolvedMatrices unresolved source records.
+- Debug destination: ``F2`` validates an in-game selection and reloads the main scene through a one-shot process-local request.
 - Global asset variants: $localTerrainAssets terrain and $localBuildingAssets building/texture pairs.
 - Building instances across ready matrices: $localBuildings.
 - Shared resources: $localUniqueTextures unique texture hashes and $localMaterials external materials.
@@ -211,6 +212,7 @@ MaiZang Engine and regenerate it in every functional commit.
 - Camera: size-11.24 orthographic default, ``F1`` FOV-75 perspective debug view.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - World: $localReadyMatrices ready matrices exposed through $localReadyDestinations debug destinations, with $localUnresolvedMatrices unresolved source records; matrix ``0000`` remains the default.
+- Debug destination: ``F2`` opens the validated in-game selector and crosses a complete scene-reload boundary.
 - Assets: $localGlbs destination-scoped GLBs, $localUniqueTextures unique texture hashes, and $localMaterials shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.

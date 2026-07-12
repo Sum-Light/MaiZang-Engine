@@ -5,10 +5,10 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `e0fc7d4921bcf6d1d221a0c90d13354607898df3571fb0f2791cdda2a745afb9`
-- Fingerprinted files: 62
-- Godot runtime scripts: 3
-- Godot test scripts: 5
+- Source fingerprint: `85c4b139ff57693dac66e87fc1ec4e1978cc97dc5a3aba5c423f0d310d6893b0`
+- Fingerprinted files: 66
+- Godot runtime scripts: 6
+- Godot test scripts: 6
 - PowerShell tools: 14
 
 ## Runtime Baseline
@@ -20,6 +20,7 @@
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Matrix catalog: 289 source matrices, 276 ready matrices, 278 runnable destinations, and 13 unresolved source records.
+- Debug destination: `F2` validates an in-game selection and reloads the main scene through a one-shot process-local request.
 - Global asset variants: 645 terrain and 764 building/texture pairs.
 - Building instances across ready matrices: 3041.
 - Shared resources: 1722 unique texture hashes and 1804 external materials.
