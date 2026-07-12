@@ -22,9 +22,14 @@
 - `PlatinumWorldStreamer` and its `LoadedChunks` runtime container.
 
 `PlatinumWorldStreamer` uses the player as its focus. It reads the generated
-matrix manifest, requests terrain and building `PackedScene` resources
+matrix catalog and selected destination manifest, requests terrain and building `PackedScene` resources
 asynchronously, instantiates ready cells, and releases distant cells and cache
 references.
+
+The catalog key is a destination rather than only a matrix ID. This preserves
+the two AreaData variants of matrices `0049` and `0052`. Startup debug settings
+select `(matrix_id, area_data_id, cell, tile)` before the streamer issues any
+threaded load.
 
 ## Display Contract
 
@@ -56,13 +61,22 @@ uses `floor`, not nearest-integer rounding.
 ## Material Ownership
 
 GLBs retain valid local material slots, but import settings redirect matching
-material names to 511 external `.tres` resources. Runtime fallback sharing is
-implemented with `MeshInstance3D` surface overrides and never mutates a shared
-`ArrayMesh`.
+material names to catalog-wide external `.tres` resources. Runtime fallback
+sharing is implemented with `MeshInstance3D` surface overrides and never
+mutates a shared `ArrayMesh`.
+
+## Offline Matrix Boundary
+
+The local converter inventories all 289 source matrix records. It publishes
+only destinations whose AreaData is established by headers, duplicate map
+evidence, or a unique complete Nitro texture/palette match. Unreferenced and
+ambiguous records stay visible in `matrix_catalog.json` as unresolved metadata
+but have no runtime manifest path. ROM-derived manifests, GLBs, textures, and
+catalog files remain under ignored asset roots.
 
 ## Non-Goals for the Current Milestone
 
 - Terrain height snapping and player collision rules.
 - `a.dat` tile behavior and `h.bhc` height queries.
 - NPCs, scripts, warps, animations, and battle systems.
-- Full indoor, dungeon, or underground matrix coverage.
+- Guessing AreaData for unreferenced or internally inconsistent source matrices.

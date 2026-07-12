@@ -15,6 +15,23 @@
 - Update the relevant Wiki page while the implementation context is fresh.
 - Add one concise entry to `wiki/Change-Log.md`.
 
+For a complete local matrix refresh, use the catalog orchestrator instead of
+looping the single-matrix tools manually:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\dspre_export_all_matrices.ps1 `
+  -DspreContents "D:\path\to\game_DSPRE_contents" `
+  -ApiculaPath "D:\path\to\apicula.exe" `
+  -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe"
+```
+
+The command is resumable, preserves unresolved source records in the catalog,
+and performs one initial Godot import plus one configured reimport. Resume
+checks are content-bound: dedupe and sync completion markers must match their
+upstream manifest hashes. Do not replace unresolved AreaData with a guessed
+texture set in the normal pipeline.
+
 ## Before Commit
 
 Refresh generated project memory:

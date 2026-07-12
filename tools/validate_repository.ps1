@@ -27,6 +27,24 @@ if ($parseFailures.Count -gt 0) {
     throw "$($parseFailures.Count) PowerShell syntax error(s) found."
 }
 
+$syncScriptPath = Join-Path $ProjectRoot "tools\sync_dspre_godot_assets.ps1"
+$syncScriptText = [IO.File]::ReadAllText($syncScriptPath, [Text.Encoding]::UTF8)
+$hardLinkPreflightIndex = $syncScriptText.IndexOf(
+    'if ($Mode -eq "HardLink" -and -not $canHardLink)',
+    [StringComparison]::Ordinal
+)
+$destinationMutationIndex = $syncScriptText.IndexOf(
+    'if (Test-Path -LiteralPath $resolvedDestination)',
+    [StringComparison]::Ordinal
+)
+if (
+    $hardLinkPreflightIndex -lt 0 -or
+    $destinationMutationIndex -lt 0 -or
+    $hardLinkPreflightIndex -gt $destinationMutationIndex
+) {
+    throw "Hard-link compatibility must be preflighted before the sync destination can be removed."
+}
+
 $skillPath = Join-Path $ProjectRoot ".codex\skills\maizang-engine-godot"
 $skillValidator = Join-Path $env:USERPROFILE ".codex\skills\.system\skill-creator\scripts\quick_validate.py"
 if (-not (Test-Path -LiteralPath $skillValidator -PathType Leaf)) {
@@ -85,11 +103,57 @@ if ($Full) {
         throw "Godot executable was not found: $GodotPath"
     }
     $godotProject = Join-Path $ProjectRoot "new-game-project"
-    $manifestPath = Join-Path $godotProject "assets\platinum\matrix_0000\manifest.json"
-    if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
+    $catalogPath = Join-Path $godotProject "assets\platinum\matrix_catalog.json"
+    if (-not (Test-Path -LiteralPath $catalogPath -PathType Leaf)) {
         throw "Full validation requires locally generated Platinum assets."
     }
 
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass `
+        -File (Join-Path $ProjectRoot "tools\validate_dspre_matrix_catalog.ps1") `
+        -ProjectRoot $ProjectRoot `
+        -RequireComplete
+    if ($LASTEXITCODE -ne 0) {
+        throw "DSPRE matrix catalog validation failed."
+    }
+
+    $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+    $invalidTextureImports = New-Object System.Collections.Generic.List[string]
+    foreach ($destination in @($catalog.destinations)) {
+        $manifestPath = Join-Path $godotProject (
+            "assets\platinum\" + ([string]$destination.manifest).Replace('/', '\')
+        )
+        $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) |
+            ConvertFrom-Json
+        $textureRoot = Join-Path (Split-Path -Parent $manifestPath) (
+            ([string]$manifest.material_dedupe.shared_texture_root).Replace('/', '\')
+        )
+        $textureImports = @(Get-ChildItem -LiteralPath $textureRoot -Filter "*.png.import" -File)
+        if ($textureImports.Count -ne [int]$destination.textures) {
+            throw "Destination $($destination.key) texture import count is incomplete: $($textureImports.Count)/$($destination.textures)."
+        }
+        foreach ($importFile in $textureImports) {
+            $text = [IO.File]::ReadAllText($importFile.FullName, [Text.Encoding]::UTF8)
+            if (
+                $text -notmatch '(?m)^compress/mode=0$' -or
+                $text -notmatch '(?m)^mipmaps/generate=false$' -or
+                $text -notmatch '(?m)^detect_3d/compress_to=0$'
+            ) {
+                $invalidTextureImports.Add($importFile.FullName)
+            }
+        }
+    }
+    if ($invalidTextureImports.Count -ne 0) {
+        throw "$($invalidTextureImports.Count) texture imports do not retain lossless/no-mipmap settings."
+    }
+
+    & $GodotPath --headless --path $godotProject --script "res://tests/material_catalog_support_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Material catalog support test failed."
+    }
+    & $GodotPath --headless --path $godotProject --script "res://tests/debug_coordinate_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Debug coordinate test failed."
+    }
     & $GodotPath --headless --path $godotProject --script "res://tools/validate_shared_materials.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "Shared material validation failed."
@@ -97,6 +161,15 @@ if ($Full) {
     & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/world_streamer_smoke_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "World streamer smoke test failed."
+    }
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/debug_destination_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Debug destination test failed."
+    }
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/debug_destination_test.gd" -- `
+        --matrix=49 --area=4 --tile=7,9 --expect-runtime-cli
+    if ($LASTEXITCODE -ne 0) {
+        throw "Debug destination command-line test failed."
     }
 }
 

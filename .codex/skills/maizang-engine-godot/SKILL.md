@@ -54,7 +54,7 @@ unless the user explicitly requests a recovery operation.
 - Documentation or Skill changes: run `tools/validate_repository.ps1`.
 - PowerShell pipeline changes: parse all scripts and run the affected stage on
   a bounded sample before a full rebuild.
-- Import/material changes: run the 398-asset shared-material validator.
+- Import/material changes: run the catalog-wide shared-material validator.
 - Streaming/runtime changes: run the real OpenGL smoke test.
 - Player, input, or camera changes: run the OpenGL smoke test and inspect a
   native `256 x 192` capture with the player visible.

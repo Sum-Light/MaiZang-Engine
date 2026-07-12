@@ -4,18 +4,22 @@
 
 | Path | Owner and purpose |
 |---|---|
-| `new-game-project/scripts/platinum_world_streamer.gd` | Manifest loading, asynchronous asset cache, chunk lifecycle, placement |
+| `new-game-project/scripts/platinum_world_streamer.gd` | Catalog destination selection, manifest loading, asynchronous asset cache, chunk lifecycle, placement |
 | `new-game-project/scripts/player_controller.gd` | Cardinal movement, Dawn animation, walking and running state |
 | `new-game-project/scripts/follow_camera.gd` | Player following and mouse-wheel pitch control |
 | `new-game-project/scenes/main.tscn` | Minimal runnable world shell |
 | `new-game-project/tests/` | Streaming and render-capture integration tests |
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
+| `new-game-project/tools/material_catalog_support.gd` | Exact catalog/GLB material binding and content comparison helpers |
 | `tools/dspre_batch_export.ps1` | DSPRE binary data to isolated terrain/building GLBs and manifest |
+| `tools/resolve_dspre_matrix_areas.ps1` | Strict MapHeader, duplicate-map, and Nitro texture/palette AreaData resolution |
+| `tools/dspre_export_all_matrices.ps1` | Resumable all-matrix export, dedupe, sync, catalog, and Godot import orchestration |
 | `tools/dedupe_dspre_materials.ps1` | Shared texture pool, material signatures, GLB JSON rewrite |
 | `tools/sync_dspre_godot_assets.ps1` | Local generated output to ignored Godot asset tree |
 | `tools/configure_dspre_godot_materials.ps1` | External material mappings and scene reimport |
 | `tools/configure_dspre_godot_textures.ps1` | Lossless, no-mipmap texture import |
 | `tools/import_player_sprite.ps1` | Local Dawn walk/run atlas extraction and color-key transparency |
+| `tools/validate_dspre_matrix_catalog.ps1` | Bidirectional catalog, manifest, stage-marker, GLB, texture-hash, and spawn-cell validation |
 | `wiki/` | Versioned GitHub Wiki source of truth |
 
 ## Runtime Constants
@@ -31,17 +35,18 @@
 - `MODEL_SCALE = 1.0 / 16.0`
 - Source tile size 16 pixels = 1.0 world unit
 - Default start cell `(3, 27)`
+- Default debug destination: matrix `0000`, automatic AreaData, cell `(3, 27)`, tile `(0, 0)`
 - Load radius 1, prefetch radius 2, unload/retention radius 3
 
 ## Generated Baseline
 
 - Matrix `0000`: `30 x 30`, 468 occupied cells.
-- 176 terrain variants.
-- 222 building/texture variants.
-- 501 building instances.
-- 398 GLBs.
-- 480 unique PNGs from 3060 source image references.
-- 511 unique materials and 3249 mesh surface references.
+- Source inventory: 289 matrices.
+- Strict runtime catalog: 276 ready matrices through 278 destinations.
+- Multi-AreaData destinations: matrix `0049` areas `4/61` and matrix `0052` areas `8/54`.
+- Unresolved unreferenced source matrices: 13; these have no runnable destination.
+- Matrix `0000` retains 176 terrain variants, 222 building/texture variants,
+  501 building instances, 398 GLBs, 480 unique PNGs, and 511 materials.
 
 ## Local Dependencies
 

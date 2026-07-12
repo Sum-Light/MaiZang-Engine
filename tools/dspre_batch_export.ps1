@@ -4,7 +4,9 @@ param(
     [string]$ApiculaPath = "C:\Users\YbbNa\Downloads\DSPRE-win-Portable\current\Tools\apicula.exe",
     [string]$OutputRoot = "",
     [string]$WorkRoot = "",
+    [string]$AreaOverridesPath = "",
     [int]$MatrixId = 0,
+    [int]$AreaDataId = -1,
     [int]$MaxParallel = 4,
     [long]$HeaderTableOffset = 0xE56F0,
     [switch]$Force
@@ -178,8 +180,17 @@ if ([string]::IsNullOrWhiteSpace($DspreContents)) {
 
 $DspreContents = Resolve-ExistingDirectory $DspreContents "DSPRE contents directory"
 $ApiculaPath = Resolve-ExistingFile $ApiculaPath "apicula.exe"
+if ([string]::IsNullOrWhiteSpace($AreaOverridesPath)) {
+    $defaultAreaOverridesPath = Join-Path $workspaceRoot "generated\dspre_matrix_area_overrides.json"
+    if (Test-Path -LiteralPath $defaultAreaOverridesPath -PathType Leaf) {
+        $AreaOverridesPath = $defaultAreaOverridesPath
+    }
+}
 if ($MaxParallel -lt 1) {
     throw "MaxParallel must be at least 1."
+}
+if ($AreaDataId -lt -1 -or $AreaDataId -gt 0xFFFF) {
+    throw "AreaDataId must be -1 or a valid unsigned 16-bit ID."
 }
 
 $unpackedRoot = Resolve-ExistingDirectory (Join-Path $DspreContents "unpacked") "DSPRE unpacked directory"
@@ -193,16 +204,20 @@ $arm9Path = Resolve-ExistingFile (Join-Path $DspreContents "arm9\arm9.bin") "ARM
 $mapNamesPath = Resolve-ExistingFile (Join-Path $DspreContents "files\fielddata\maptable\mapname.bin") "Map names table"
 $matrixPath = Resolve-ExistingFile (Join-Path $matricesRoot ("{0:D4}" -f $MatrixId)) "Matrix file"
 
-$matrixOutputRoot = Join-Path $OutputRoot ("matrix_{0:D4}" -f $MatrixId)
+$matrixVariantName = if ($AreaDataId -ge 0) {
+    "matrix_{0:D4}_area_{1:D4}" -f $MatrixId, $AreaDataId
+}
+else {
+    "matrix_{0:D4}" -f $MatrixId
+}
+$matrixOutputRoot = Join-Path $OutputRoot $matrixVariantName
 $terrainOutputRoot = Join-Path $matrixOutputRoot "terrain"
 $buildingOutputRoot = Join-Path $matrixOutputRoot "buildings"
 $logsRoot = Join-Path $matrixOutputRoot "logs"
 $matrixWorkRoot = Join-Path $WorkRoot ("matrix_{0:D4}" -f $MatrixId)
 $mapModelsWorkRoot = Join-Path $matrixWorkRoot "map_models"
 
-foreach ($directory in @($terrainOutputRoot, $buildingOutputRoot, $logsRoot, $mapModelsWorkRoot)) {
-    New-Item -ItemType Directory -Path $directory -Force | Out-Null
-}
+New-Item -ItemType Directory -Path $mapModelsWorkRoot -Force | Out-Null
 
 Write-Host "Reading DSPRE data..."
 $arm9 = [IO.File]::ReadAllBytes($arm9Path)
@@ -236,6 +251,34 @@ Get-ChildItem -LiteralPath $areaDataRoot -File | ForEach-Object {
         map_texture_id = Get-U16 $bytes 2
         auxiliary_id = Get-U16 $bytes 4
         light_id = Get-U16 $bytes 6
+    }
+}
+
+$areaOverrides = @{}
+if (-not [string]::IsNullOrWhiteSpace($AreaOverridesPath)) {
+    $AreaOverridesPath = Resolve-ExistingFile $AreaOverridesPath "Matrix AreaData overrides"
+    $overrideDocument = [IO.File]::ReadAllText($AreaOverridesPath, [Text.Encoding]::UTF8) |
+        ConvertFrom-Json
+    if ([int]$overrideDocument.schema_version -ne 1) {
+        throw "Unsupported Matrix AreaData override schema: $($overrideDocument.schema_version)"
+    }
+    $overrideSource = [IO.Path]::GetFullPath([string]$overrideDocument.source.dspre_contents)
+    if (-not $overrideSource.Equals($DspreContents, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Matrix AreaData overrides were generated from a different DSPRE source. Regenerate them for: $DspreContents"
+    }
+    $expectedHeaderOffset = "0x{0:X}" -f $HeaderTableOffset
+    if (-not $expectedHeaderOffset.Equals(
+        [string]$overrideDocument.source.header_table_offset,
+        [StringComparison]::OrdinalIgnoreCase
+    )) {
+        throw "Matrix AreaData overrides use a different header table offset. Expected $expectedHeaderOffset."
+    }
+    foreach ($record in @($overrideDocument.overrides)) {
+        $overrideMatrixId = [int]$record.matrix_id
+        if ($areaOverrides.ContainsKey($overrideMatrixId)) {
+            throw "Matrix AreaData overrides contain duplicate matrix ID $overrideMatrixId."
+        }
+        $areaOverrides[$overrideMatrixId] = $record
     }
 }
 
@@ -274,14 +317,75 @@ for ($index = 0; $index -lt $cellCount; $index++) {
 }
 
 $fallbackHeader = $null
+$fallbackAreaResolution = "per_cell_header"
+if ($hasHeaders -and $AreaDataId -ge 0) {
+    throw "Matrix $MatrixId has per-cell headers and cannot use -AreaDataId."
+}
 if (-not $hasHeaders) {
     $linkedHeaders = @($headers | Where-Object { $_.matrix_id -eq $MatrixId })
-    if ($linkedHeaders.Count -eq 0) {
-        throw "Matrix $MatrixId has no per-cell headers and no linked map header."
+    $linkedAreaIds = @(
+        $linkedHeaders | ForEach-Object { $_.area_data_id } | Sort-Object -Unique
+    )
+    if ($AreaDataId -ge 0) {
+        $matchingHeaders = @($linkedHeaders | Where-Object { $_.area_data_id -eq $AreaDataId })
+        if ($matchingHeaders.Count -gt 0) {
+            $fallbackHeader = $matchingHeaders |
+                Where-Object { $_.location_name_id -ne 0 } |
+                Select-Object -First 1
+            if ($null -eq $fallbackHeader) {
+                $fallbackHeader = $matchingHeaders[0]
+            }
+            $fallbackAreaResolution = "linked_map_header"
+        }
+        elseif (
+            $areaOverrides.ContainsKey($MatrixId) -and
+            [int]$areaOverrides[$MatrixId].area_data_id -eq $AreaDataId
+        ) {
+            $fallbackHeader = [pscustomobject][ordered]@{
+                id = -1
+                area_data_id = $AreaDataId
+                matrix_id = $MatrixId
+                location_name_id = 0
+            }
+            $fallbackAreaResolution = [string]$areaOverrides[$MatrixId].resolution
+        }
+        else {
+            throw "Matrix $MatrixId is not linked to AreaData $AreaDataId and has no matching resolved override."
+        }
     }
-    $fallbackHeader = $linkedHeaders | Where-Object { $_.location_name_id -ne 0 } | Select-Object -First 1
-    if ($null -eq $fallbackHeader) {
-        $fallbackHeader = $linkedHeaders[0]
+    elseif ($linkedAreaIds.Count -gt 1) {
+        throw "Matrix $MatrixId is linked to multiple AreaData IDs ($($linkedAreaIds -join ', ')). Pass -AreaDataId."
+    }
+    if ($linkedHeaders.Count -eq 0) {
+        if ($null -ne $fallbackHeader) {
+            # An explicit AreaData override already selected the fallback.
+        }
+        elseif (-not $areaOverrides.ContainsKey($MatrixId)) {
+            throw "Matrix $MatrixId has no per-cell headers, linked map header, or resolved AreaData override. Run resolve_dspre_matrix_areas.ps1 or pass -AreaOverridesPath."
+        }
+        else {
+            $override = $areaOverrides[$MatrixId]
+            $overrideAreaId = [int]$override.area_data_id
+            if (-not $areaData.ContainsKey($overrideAreaId)) {
+                throw "Matrix $MatrixId override references missing AreaData $overrideAreaId."
+            }
+            $fallbackHeader = [pscustomobject][ordered]@{
+                id = -1
+                area_data_id = $overrideAreaId
+                matrix_id = $MatrixId
+                location_name_id = 0
+            }
+            $fallbackAreaResolution = [string]$override.resolution
+        }
+    }
+    elseif ($null -eq $fallbackHeader) {
+        $fallbackHeader = $linkedHeaders |
+            Where-Object { $_.location_name_id -ne 0 } |
+            Select-Object -First 1
+        if ($null -eq $fallbackHeader) {
+            $fallbackHeader = $linkedHeaders[0]
+        }
+        $fallbackAreaResolution = "linked_map_header"
     }
 }
 
@@ -332,6 +436,17 @@ for ($index = 0; $index -lt $cellCount; $index++) {
         }
         if ([Text.Encoding]::ASCII.GetString($mapBytes, $modelOffset, 4) -ne "BMD0") {
             throw "Map model section is not BMD0: $mapPath"
+        }
+
+        $buildingRemainder = $buildingsLength % 48
+        if ($buildingRemainder -ne 0) {
+            $paddingOffset = $buildingsOffset + $buildingsLength - $buildingRemainder
+            $hasKnownCrLfPadding = $buildingRemainder -eq 2 -and
+                $mapBytes[$paddingOffset] -eq 0x0D -and
+                $mapBytes[$paddingOffset + 1] -eq 0x0A
+            if (-not $hasKnownCrLfPadding) {
+                throw "Map building section has unsupported trailing bytes: $mapPath"
+            }
         }
 
         $buildings = New-Object System.Collections.Generic.List[object]
@@ -428,11 +543,19 @@ for ($index = 0; $index -lt $cellCount; $index++) {
         map_id = $mapId
         header_id = $headerId
         area_data_id = $header.area_data_id
+        area_resolution = if ($hasHeaders) { "per_cell_header" } else { $fallbackAreaResolution }
         map_texture_id = $area.map_texture_id
         building_texture_id = $area.building_texture_id
         terrain_asset_key = $terrainKey
         buildings = $cellBuildings
     })
+}
+
+if ($Force) {
+    Clear-DirectoryUnderRoot $matrixOutputRoot $OutputRoot
+}
+foreach ($directory in @($terrainOutputRoot, $buildingOutputRoot, $logsRoot)) {
+    New-Item -ItemType Directory -Path $directory -Force | Out-Null
 }
 
 $conversionJobs = New-Object System.Collections.Generic.List[object]
@@ -548,16 +671,19 @@ $manifest = [pscustomobject][ordered]@{
     source = [pscustomobject][ordered]@{
         dspre_contents = $DspreContents
         apicula = $ApiculaPath
+        area_overrides = $AreaOverridesPath
         header_table_offset = ("0x{0:X}" -f $HeaderTableOffset)
     }
     matrix = [pscustomobject][ordered]@{
         id = $MatrixId
+        variant = $matrixVariantName
         name = $matrixName
         width = $matrixWidth
         height = $matrixHeight
         has_headers = $hasHeaders
         has_heights = $hasHeights
         occupied_cells = $cells.Count
+        area_data_id = if ($hasHeaders) { $null } else { $fallbackHeader.area_data_id }
     }
     summary = [pscustomobject][ordered]@{
         terrain_assets = $terrainArray.Count
@@ -581,6 +707,8 @@ $summaryPath = Join-Path $matrixOutputRoot "summary.json"
 [IO.File]::WriteAllText($manifestPath, ($manifest | ConvertTo-Json -Depth 14), $utf8NoBom)
 [IO.File]::WriteAllText($summaryPath, ([pscustomobject][ordered]@{
     matrix_id = $MatrixId
+    variant = $matrixVariantName
+    area_data_id = if ($hasHeaders) { $null } else { $fallbackHeader.area_data_id }
     occupied_cells = $cells.Count
     terrain_assets = $terrainArray.Count
     building_assets = $buildingArray.Count

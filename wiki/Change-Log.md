@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-07-12 - Export the multi-matrix catalog
+
+- Inventory all 289 DSPRE matrix records and export 276 strict-ready matrices through 278 AreaData-aware destinations, including both linked variants of matrices `0049` and `0052`.
+- Catalog 1,153 occupied cells, 3,041 building instances, 2,042 destination-scoped GLBs, 1,722 unique texture keys, and 1,804 unique material keys.
+- Resolve unreferenced matrices only through duplicate-map or unique Nitro texture/palette evidence, and keep 13 ambiguous or inconsistent source records out of the runnable catalog.
+- Add manifest-hash-bound resumable all-matrix export, per-destination dedupe and sync, strict catalog/path validation, and catalog-wide Godot material and texture configuration.
+- Validate catalog-to-GLB material bindings and raw material content exactly, prune stale shared resources, preserve zero-texture destinations, and retry only sidecars whose external mappings are lost during editor import races.
+- Add ProjectSettings, command-line, and test APIs for starting directly at a selected matrix, AreaData variant, cell, and in-cell tile.
+
 ## 2026-07-12 - Add grid movement and fix foreground clipping
 
 - Center the player on half-integer tile coordinates and move one 16-pixel tile per atomic action, mapping Platinum's 30 Hz walk/run timing to 16/8 Godot physics ticks.

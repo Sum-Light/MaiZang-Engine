@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `8abfb9993e3739ac4f1f6651c16ad0b4530b23cc486c22b2d62e36076549aa36`
-- Fingerprinted files: 48
+- Source fingerprint: `e0fc7d4921bcf6d1d221a0c90d13354607898df3571fb0f2791cdda2a745afb9`
+- Fingerprinted files: 62
 - Godot runtime scripts: 3
-- Godot test scripts: 2
-- PowerShell tools: 11
+- Godot test scripts: 5
+- PowerShell tools: 14
 
 ## Runtime Baseline
 
@@ -19,20 +19,22 @@
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
-- Exported variants: 176 terrain and 222 building/texture pairs.
-- Building instances: 501.
-- Shared resources: 480 textures and 511 materials.
+- Matrix catalog: 289 source matrices, 276 ready matrices, 278 runnable destinations, and 13 unresolved source records.
+- Global asset variants: 645 terrain and 764 building/texture pairs.
+- Building instances across ready matrices: 3041.
+- Shared resources: 1722 unique texture hashes and 1804 external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
 - Coordinates: 32 world units per cell, 0.5 per altitude unit, model scale `1 / 16`.
 
 ## Local Asset Cache
 
-- Status: present locally (ignored by Git).
-- Manifest cells found: 468
-- GLBs found: 398
-- PNG textures found: 480
-- Shared materials found: 511
-- Building instances found: 501
+- Status: catalog present locally (ignored by Git).
+- Occupied cells across ready matrices: 1153
+- Destination-scoped GLBs: 2042
+- Destination-scoped PNG files: 4566
+- Unique texture hashes: 1722
+- Shared materials found: 1804
+- Building instances found: 3041
 - Dawn sprite atlas: present locally (ignored by Git).
 
 ## Next Engineering Milestone

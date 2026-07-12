@@ -5,23 +5,23 @@
 Run from the repository root:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\dspre_batch_export.ps1 `
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\dspre_export_all_matrices.ps1 `
   -DspreContents "D:\path\to\game_DSPRE_contents" `
-  -ApiculaPath "D:\path\to\apicula.exe"
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\dedupe_dspre_materials.ps1 -Force
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\sync_dspre_godot_assets.ps1
-& "D:\path\to\Godot_console.exe" --headless --path .\new-game-project --import
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_godot_materials.ps1 `
+  -ApiculaPath "D:\path\to\apicula.exe" `
   -GodotPath "D:\path\to\Godot_console.exe"
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
   -SourcePath "D:\path\to\Dawn.png"
 ```
 
-Never run `sync_dspre_godot_assets.ps1 -Force` until the destination resolves
-under `new-game-project/assets/platinum` and the generated source has passed
-its summary checks.
+The orchestrator resolves all source matrices, exports each strict destination,
+deduplicates and syncs it, writes `matrix_catalog.json`, and performs one
+initial import plus one configured reimport. Its SHA-256-bound completion
+markers prevent partial or stale dedupe and sync directories from being
+reused. Use `-RebuildExisting` only for an intentional rebuild. Never run
+`sync_dspre_godot_assets.ps1 -Force` until the destination resolves under
+`new-game-project/assets/platinum` and the generated source has passed its
+summary checks.
 
 ## Validation
 
@@ -38,12 +38,20 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\validate_reposit
   -Full -GodotPath "D:\path\to\Godot_console.exe"
 ```
 
+The full validator first runs
+`tools/validate_dspre_matrix_catalog.ps1 -RequireComplete`, then validates all
+lossless/no-mipmap texture imports, external materials, the matrix `0000`
+streaming baseline, and both default and command-line debug destinations.
+
 Expected Godot baselines:
 
-- 398 imported assets.
-- 3249 material-bearing mesh surface references.
-- 511 unique external materials.
-- 9 active chunks at the initial and destination cells.
+- 289 inventoried source matrices.
+- 276 strict ready matrices through 278 destination manifests.
+- 13 unresolved source records with no runtime destination.
+- Catalog-derived imported asset, material-surface, texture, and external
+  material counts; no matrix `0000` count is used as a global assertion.
+- 9 active chunks around the matrix `0000` start and all available retained
+  chunks for a smaller debug destination.
 - 0 failed assets and 0 runtime material replacements.
 - Half-integer-centered one-unit cardinal steps: 16 Godot physics ticks walking,
   8 with `Z`, and 6 for a stationary turn.

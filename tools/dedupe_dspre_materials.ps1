@@ -286,10 +286,20 @@ $OutputRoot = [IO.Path]::GetFullPath($OutputRoot).TrimEnd('\')
 if (-not (Test-Path -LiteralPath $SourceRoot -PathType Container)) {
     throw "Source export does not exist: $SourceRoot"
 }
+$sourcePrefix = $SourceRoot + '\'
+$outputPrefix = $OutputRoot + '\'
+if (
+    $SourceRoot.Equals($OutputRoot, [StringComparison]::OrdinalIgnoreCase) -or
+    $sourcePrefix.StartsWith($outputPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+    $outputPrefix.StartsWith($sourcePrefix, [StringComparison]::OrdinalIgnoreCase)
+) {
+    throw "Source and output must not overlap: $SourceRoot -> $OutputRoot"
+}
 $manifestPath = Join-Path $SourceRoot "manifest.json"
 if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
     throw "Source manifest does not exist: $manifestPath"
 }
+$sourceManifestSha256 = Get-Sha256File $manifestPath
 if (Test-Path -LiteralPath $OutputRoot) {
     if (-not $Force) {
         throw "Output already exists. Pass -Force to rebuild it: $OutputRoot"
@@ -515,8 +525,14 @@ $manifest | Add-Member -Force -NotePropertyName "material_dedupe" -NotePropertyV
 })
 [IO.File]::WriteAllText((Join-Path $OutputRoot "manifest.json"), ($manifest | ConvertTo-Json -Depth 30 -Compress), $utf8NoBom)
 
-$sourcePngBytes = (Get-ChildItem -LiteralPath $SourceRoot -Recurse -Filter "*.png" -File | Measure-Object Length -Sum).Sum
-$sharedPngBytes = (Get-ChildItem -LiteralPath $sharedTextureRoot -File | Measure-Object Length -Sum).Sum
+$sourcePngBytes = 0L
+foreach ($png in @(Get-ChildItem -LiteralPath $SourceRoot -Recurse -Filter "*.png" -File)) {
+    $sourcePngBytes += [long]$png.Length
+}
+$sharedPngBytes = 0L
+foreach ($png in @(Get-ChildItem -LiteralPath $sharedTextureRoot -Filter "*.png" -File)) {
+    $sharedPngBytes += [long]$png.Length
+}
 $summary = [pscustomobject][ordered]@{
     glbs = $sourceGlbs.Count
     source_image_references = $sourceImageCount
@@ -532,6 +548,21 @@ $summary = [pscustomobject][ordered]@{
     material_catalog = $catalogPath
 }
 [IO.File]::WriteAllText((Join-Path $OutputRoot "summary.json"), ($summary | ConvertTo-Json -Depth 5), $utf8NoBom)
+$outputManifestPath = Join-Path $OutputRoot "manifest.json"
+$completionMarker = [pscustomobject][ordered]@{
+    schema_version = 1
+    generated_utc = [DateTime]::UtcNow.ToString("o")
+    source_manifest_sha256 = $sourceManifestSha256
+    output_manifest_sha256 = Get-Sha256File $outputManifestPath
+    glbs = $sourceGlbs.Count
+    unique_images = $imageRecords.Count
+    unique_materials = $materialRecords.Count
+}
+[IO.File]::WriteAllText(
+    (Join-Path $OutputRoot ".dedupe-complete.json"),
+    ($completionMarker | ConvertTo-Json -Depth 4),
+    $utf8NoBom
+)
 
 Write-Host "Material dedupe complete."
 Write-Host "  GLBs:                 $($sourceGlbs.Count)"

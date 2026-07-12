@@ -25,13 +25,44 @@ if ($bad.Count) { throw "PowerShell syntax failures: $bad" }
   --script res://tools/validate_shared_materials.gd
 ```
 
-Expected baseline:
+The validator reads every runnable destination from `matrix_catalog.json`,
+checks every GLB against its material catalog and raw GLB content, rejects null
+material surfaces, verifies every material surface uses the expected external
+`.tres`, and rejects unreferenced material resources. For a bounded
+parser/import check, pass `-- --limit-assets=1`.
 
-```text
-assets: 398
-material_surface_references: 3249
-unique_materials: 511
+The synthetic material-signature and nonzero-altitude coordinate checks do not
+depend on generated Platinum assets:
+
+```powershell
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --headless --path .\new-game-project `
+  --script res://tests/material_catalog_support_test.gd
+
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --headless --path .\new-game-project `
+  --script res://tests/debug_coordinate_test.gd
 ```
+
+## Matrix Catalog Validation
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\validate_dspre_matrix_catalog.ps1 -RequireComplete
+```
+
+This validates all 289 matrix status records, all 278 expected destination
+keys, their matrix/AreaData bindings, one-to-one matrix ownership, default
+occupied cells, unique manifest-relative GLB paths, GLB headers, stage-complete
+manifest hashes, recomputed summary counts, and the 13 unresolved records with
+no runnable destination.
+
+`validate_repository.ps1 -Full` also requires every destination PNG import
+sidecar to retain lossless compression, disabled mipmaps, and disabled 3D
+texture compression before it starts the Godot material and runtime tests.
+The fast validation also guards the destructive sync ordering: an explicitly
+requested cross-volume hard-link transfer must fail before an existing Godot
+destination can be removed.
 
 ## Streaming Smoke Test
 
@@ -48,6 +79,7 @@ Use a real OpenGL renderer so renderer cleanup is exercised:
 
 The test verifies:
 
+- Explicit matrix `0000` startup independent of developer ProjectSettings.
 - 468 manifest cells.
 - Initial `3 x 3` chunk load.
 - Dawn's ignored local walk/run atlas is loaded.
@@ -75,6 +107,31 @@ The test verifies:
 - Zero failed assets and zero runtime material replacements.
 - Loaded assets do not exceed the current retention set.
 
+## Debug Destination Smoke Test
+
+```powershell
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/debug_destination_test.gd
+
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/debug_destination_test.gd -- `
+  --matrix=49 --area=4 --tile=7,9 --expect-runtime-cli
+```
+
+The focused test covers the explicit pre-tree API priority, command-line
+selection, automatic catalog default cells, AreaData variant selection,
+small-matrix chunk counts, and altitude-aware tile-centered player placement.
+The integration case also verifies matrix `0000` cell `(4,25)` at nonzero
+altitude; the synthetic coordinate test covers cross-cell capture offsets.
+
 ## Render Capture
 
 ```powershell
@@ -85,6 +142,15 @@ The test verifies:
   --rendering-driver opengl3 `
   --script res://tests/render_world_capture.gd -- `
   --cell=3,27 --output=res://captures/world_player_orthographic.png
+
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/render_world_capture.gd -- `
+  --matrix=49 --area=61 --tile=31,31 `
+  --output=res://captures/matrix_0049_area_0061.png
 
 & "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
   --path .\new-game-project `
@@ -106,7 +172,8 @@ The test verifies:
 
 Inspect the image for nonblank output, terrain seams, incorrect axes, building
 placement, player visibility, sprite transparency, nearest filtering, and
-overlapping geometry. The building regression capture must show complete blue
-foreground roofs without V-shaped camera-plane cuts. All PNGs must be exactly
-`256 x 192` pixels, and the reported projection and camera distance must match
-the requested mode.
+overlapping geometry. Small destinations are ready when their selected focus
+chunk is loaded; they are not required to contain nine cells. The building
+regression capture must show complete blue foreground roofs without V-shaped
+camera-plane cuts. All PNGs must be exactly `256 x 192` pixels, and the
+reported projection and camera distance must match the requested mode.

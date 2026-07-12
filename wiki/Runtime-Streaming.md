@@ -11,8 +11,49 @@ The default streamer settings are:
 | Chunk and asset retention radius | 3 cells |
 | Stream refresh interval | 0.12 seconds |
 
-Only cells present in the matrix manifest are considered. Small indoor maps
-can later use whole-matrix loading instead of this overworld strategy.
+Only cells present in the selected destination manifest are considered. A
+small indoor matrix can therefore load fewer than nine chunks without being
+treated as incomplete.
+
+## Matrix Destinations
+
+`assets/platinum/matrix_catalog.json` separates source matrix IDs from
+runnable destinations. Most matrices have one destination. Matrices `0049`
+and `0052` expose one destination per linked AreaData because the original
+game chooses their environment through the entry MapHeader.
+
+The streamer loads one destination manifest per process start. Terrain and
+building paths remain relative to that manifest, so destination caches stay
+isolated while external materials are shared globally. The debug selector does
+not hot-swap an active streamer; this keeps outstanding threaded requests from
+one matrix from crossing into another matrix lifecycle.
+
+## Debug Destination
+
+Project settings provide the default debug destination:
+
+```text
+maizang/debug/matrix_id
+maizang/debug/area_data_id
+maizang/debug/matrix_cell
+maizang/debug/map_tile
+```
+
+Command-line user arguments override those settings:
+
+```text
+--matrix=0049 --area=61 --cell=0,0 --tile=16,16
+```
+
+`cell` is a matrix-block coordinate. `tile` is a `0..31` coordinate inside
+that block. If a command-line matrix is selected without `--cell`, the catalog
+default cell is used. AreaData may be omitted only when the matrix has one
+destination. The spawn point is centered on the selected one-world-unit tile,
+and its Y coordinate includes the manifest cell altitude.
+
+Tests can call `configure_debug_destination()` before the streamer enters the
+scene tree. Explicit test configuration takes precedence over command-line and
+ProjectSettings values.
 
 ## Resource Lifecycle
 

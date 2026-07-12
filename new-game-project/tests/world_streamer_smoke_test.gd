@@ -25,6 +25,12 @@ func _run() -> void:
 		_fail("Main scene could not be loaded.")
 		return
 	var main := packed.instantiate()
+	var configured_streamer := main.get_node("WorldStreamer") as PlatinumWorldStreamer
+	if configured_streamer == null or not configured_streamer.configure_debug_destination(
+		0, -1, Vector2i(3, 27), Vector2i.ZERO
+	):
+		_fail("Matrix 0000 could not be configured before startup.")
+		return
 	_main = main
 	root.add_child(main)
 
@@ -37,6 +43,9 @@ func _run() -> void:
 			continue
 		var stats := streamer.get_stream_stats()
 		if int(stats.loaded_chunks) >= 1 and int(stats.loading_assets) == 0:
+			if int(stats.matrix) != 0 or int(stats.area) != -1:
+				_fail("Unexpected debug destination: %s" % JSON.stringify(stats))
+				return
 			if int(stats.manifest_cells) != 468:
 				_fail("Unexpected manifest cell count: %s" % stats.manifest_cells)
 				return

@@ -100,31 +100,49 @@ $godotRoot = Join-Path $ProjectRoot "new-game-project"
 $assetRoot = Join-Path $godotRoot "assets\platinum"
 $matrixRoot = Join-Path $assetRoot "matrix_0000"
 $manifestPath = Join-Path $matrixRoot "manifest.json"
-$localAssetsPresent = Test-Path -LiteralPath $manifestPath -PathType Leaf
+$catalogPath = Join-Path $assetRoot "matrix_catalog.json"
+$localAssetsPresent = (Test-Path -LiteralPath $manifestPath -PathType Leaf) -and
+    (Test-Path -LiteralPath $catalogPath -PathType Leaf)
 $localGlbs = 0
-$localTextures = 0
+$localPngFiles = 0
+$localUniqueTextures = 0
 $localMaterials = 0
 $localCells = 0
 $localBuildings = 0
+$localSourceMatrices = 0
+$localReadyMatrices = 0
+$localReadyDestinations = 0
+$localUnresolvedMatrices = 0
+$localTerrainAssets = 0
+$localBuildingAssets = 0
 if ($localAssetsPresent) {
-    $localGlbs = @(Get-ChildItem -LiteralPath $matrixRoot -Recurse -Filter "*.glb" -File).Count
-    $localTextures = @(Get-ChildItem -LiteralPath (Join-Path $matrixRoot "shared\textures") -Filter "*.png" -File).Count
-    $localMaterials = @(Get-ChildItem -LiteralPath (Join-Path $assetRoot "shared_materials") -Filter "*.tres" -File).Count
-    $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-    $localCells = @($manifest.cells).Count
-    $localBuildings = @(
-        foreach ($cell in $manifest.cells) {
-            foreach ($building in $cell.buildings) {
-                $building
-            }
-        }
+    $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+    $localGlbs = [int]$catalog.summary.destination_scoped_glbs
+    $localPngFiles = @(
+        Get-ChildItem -LiteralPath $assetRoot -Recurse -Filter "*.png" -File |
+            Where-Object { $_.FullName -like "*\shared\textures\*" }
     ).Count
+    $localUniqueTextures = [int]$catalog.summary.unique_textures
+    $localMaterials = @(Get-ChildItem -LiteralPath (Join-Path $assetRoot "shared_materials") -Filter "*.tres" -File).Count
+    $localCells = [int]$catalog.summary.occupied_cells
+    $localBuildings = [int]$catalog.summary.building_instances
+    $localSourceMatrices = [int]$catalog.summary.source_matrices
+    $localReadyMatrices = [int]$catalog.summary.ready_matrices
+    $localReadyDestinations = [int]$catalog.summary.ready_destinations
+    $localUnresolvedMatrices = [int]$catalog.summary.unresolved_matrices
+    $localTerrainAssets = [int]$catalog.summary.unique_terrain_assets
+    $localBuildingAssets = [int]$catalog.summary.unique_building_assets
 }
 
 $godotScripts = @(Get-ChildItem -LiteralPath (Join-Path $godotRoot "scripts") -Filter "*.gd" -File -ErrorAction SilentlyContinue).Count
 $godotTests = @(Get-ChildItem -LiteralPath (Join-Path $godotRoot "tests") -Filter "*.gd" -File -ErrorAction SilentlyContinue).Count
 $powershellTools = @(Get-ChildItem -LiteralPath (Join-Path $ProjectRoot "tools") -Filter "*.ps1" -File).Count
-$assetStatus = if ($localAssetsPresent) { "present locally (ignored by Git)" } else { "not present; rebuild from a local DSPRE project" }
+$assetStatus = if ($localAssetsPresent) {
+    "catalog present locally (ignored by Git)"
+}
+else {
+    "not present; rebuild from a local DSPRE project"
+}
 $playerSpritePath = Join-Path $assetRoot "characters\dawn_overworld.png"
 $playerSpriteStatus = if (Test-Path -LiteralPath $playerSpritePath -PathType Leaf) {
     "present locally (ignored by Git)"
@@ -155,18 +173,20 @@ $currentState = @"
 - Camera: orthographic size ``11.24`` by default; ``F1`` toggles FOV-75 perspective.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
-- Exported variants: 176 terrain and 222 building/texture pairs.
-- Building instances: 501.
-- Shared resources: 480 textures and 511 materials.
+- Matrix catalog: $localSourceMatrices source matrices, $localReadyMatrices ready matrices, $localReadyDestinations runnable destinations, and $localUnresolvedMatrices unresolved source records.
+- Global asset variants: $localTerrainAssets terrain and $localBuildingAssets building/texture pairs.
+- Building instances across ready matrices: $localBuildings.
+- Shared resources: $localUniqueTextures unique texture hashes and $localMaterials external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
 - Coordinates: 32 world units per cell, 0.5 per altitude unit, model scale ``1 / 16``.
 
 ## Local Asset Cache
 
 - Status: $assetStatus.
-- Manifest cells found: $localCells
-- GLBs found: $localGlbs
-- PNG textures found: $localTextures
+- Occupied cells across ready matrices: $localCells
+- Destination-scoped GLBs: $localGlbs
+- Destination-scoped PNG files: $localPngFiles
+- Unique texture hashes: $localUniqueTextures
 - Shared materials found: $localMaterials
 - Building instances found: $localBuildings
 - Dawn sprite atlas: $playerSpriteStatus.
@@ -190,8 +210,8 @@ MaiZang Engine and regenerate it in every functional commit.
 - Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: size-11.24 orthographic default, ``F1`` FOV-75 perspective debug view.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
-- World: matrix ``0000``, 468 occupied cells, 501 building instances.
-- Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
+- World: $localReadyMatrices ready matrices exposed through $localReadyDestinations debug destinations, with $localUnresolvedMatrices unresolved source records; matrix ``0000`` remains the default.
+- Assets: $localGlbs destination-scoped GLBs, $localUniqueTextures unique texture hashes, and $localMaterials shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.

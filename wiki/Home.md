@@ -7,13 +7,17 @@ complete game port.
 
 ## Current Milestone
 
-- Export main-world matrix `0000` through DSPRE's bundled Apicula converter.
+- Inventory all 289 source matrices and export 276 strict-ready matrices through
+  278 AreaData-aware destinations with DSPRE's bundled Apicula converter.
 - Deduplicate external PNGs and material signatures without changing GLB mesh data.
 - Import shared Godot materials and lossless nearest-filtered textures.
-- Assemble 468 occupied terrain cells and 501 building instances.
+- Preserve matrix `0000` as the default streamed overworld while making indoor
+  and dungeon destinations available through debug startup settings.
 - Control Dawn with four-direction walking and `Z` running animations.
 - Use a native-size orthographic camera with an `F1` perspective debug mode.
 - Stream nearby chunks around the player with bounded asset retention.
+- Keep 13 unreferenced or internally inconsistent source matrices unresolved
+  instead of assigning guessed textures.
 
 ## Documentation
 
