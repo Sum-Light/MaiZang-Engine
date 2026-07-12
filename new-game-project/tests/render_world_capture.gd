@@ -29,6 +29,8 @@ func _run() -> void:
 	var stability_frames := 8
 	var force_perspective := false
 	var requested_facing := -1
+	var max_render_cpu_p95 := -1.0
+	var max_render_gpu_p95 := -1.0
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--cell="):
 			var cell_components := argument.trim_prefix("--cell=").split(",")
@@ -57,6 +59,10 @@ func _run() -> void:
 			if requested_facing < 0:
 				_fail("Unknown player facing requested: %s" % argument)
 				return
+		elif argument.begins_with("--max-render-cpu-p95="):
+			max_render_cpu_p95 = float(argument.trim_prefix("--max-render-cpu-p95="))
+		elif argument.begins_with("--max-render-gpu-p95="):
+			max_render_gpu_p95 = float(argument.trim_prefix("--max-render-gpu-p95="))
 
 	if requested_profile not in [
 		VisualProfileControllerScript.CLASSIC_PROFILE,
@@ -159,6 +165,12 @@ func _run() -> void:
 		metrics = await _collect_metrics(viewport_rid, measure_frames)
 		RenderingServer.viewport_set_measure_render_time(viewport_rid, false)
 		_measurement_enabled = false
+		if not _metrics_are_within_limits(
+			metrics,
+			max_render_cpu_p95,
+			max_render_gpu_p95
+		):
+			return
 		if not metrics_path.is_empty() and not _write_json(metrics_path, metrics):
 			return
 
@@ -282,6 +294,35 @@ func _sample_summary(values: Array[float], zero_is_unavailable: bool = false) ->
 		"p99": _nearest_rank(sorted_values, 0.99),
 		"max": maximum,
 	}
+
+
+func _metrics_are_within_limits(
+	metrics: Dictionary,
+	max_render_cpu_p95: float,
+	max_render_gpu_p95: float
+) -> bool:
+	var render_cpu: Dictionary = metrics.get("render_cpu_ms", {})
+	if (
+		max_render_cpu_p95 >= 0.0
+		and float(render_cpu.get("p95", INF)) > max_render_cpu_p95
+	):
+		_fail(
+			"Render CPU p95 exceeded %.3f ms: %.3f ms"
+			% [max_render_cpu_p95, float(render_cpu.get("p95", INF))]
+		)
+		return false
+	var render_gpu: Dictionary = metrics.get("render_gpu_ms", {})
+	if (
+		max_render_gpu_p95 >= 0.0
+		and bool(render_gpu.get("available", false))
+		and float(render_gpu.get("p95", INF)) > max_render_gpu_p95
+	):
+		_fail(
+			"Render GPU p95 exceeded %.3f ms: %.3f ms"
+			% [max_render_gpu_p95, float(render_gpu.get("p95", INF))]
+		)
+		return false
+	return true
 
 
 func _nearest_rank(sorted_values: Array[float], percentile: float) -> float:

@@ -207,3 +207,17 @@ Water and foliage captures must retain nearest edges and static pixels. Light
 captures must change only registered instance surfaces, without glow halos.
 The shadow capture must retain legacy shadow textures without duplicate dynamic
 casting.
+
+Run the complete P5 atmosphere and performance gate with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\capture_hd2d_visual_matrix.ps1 `
+  -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe"
+```
+
+It generates one Classic baseline and five HD2D representative captures, each
+with 16-frame RGBA stability. It then samples the origin for 1800 frames and
+requires the frozen Classic SHA, `43/50/2402` draw topology, p95 Render CPU at
+or below `2.5 ms`, and available GPU p95 at or below `2.0 ms`. The RTX 4060
+acceptance run measured `1.552 ms` CPU and `1.299 ms` GPU.

@@ -84,13 +84,34 @@ func get_visual_state() -> Dictionary:
 	var environment := _world_environment.environment
 	return {
 		"profile": String(_active_profile_name),
+		"background_color": environment.background_color,
+		"ambient_light_source": environment.ambient_light_source,
+		"ambient_light_color": environment.ambient_light_color,
+		"ambient_light_energy": environment.ambient_light_energy,
 		"fog_enabled": environment.fog_enabled,
+		"fog_light_color": environment.fog_light_color,
+		"fog_light_energy": environment.fog_light_energy,
 		"fog_density": environment.fog_density,
+		"fog_depth_begin": environment.fog_depth_begin,
+		"fog_depth_end": environment.fog_depth_end,
+		"fog_depth_curve": environment.fog_depth_curve,
+		"fog_height_density": environment.fog_height_density,
+		"fog_aerial_perspective": environment.fog_aerial_perspective,
+		"fog_sun_scatter": environment.fog_sun_scatter,
+		"tonemap_mode": environment.tonemap_mode,
+		"tonemap_exposure": environment.tonemap_exposure,
+		"tonemap_white": environment.tonemap_white,
+		"glow_enabled": environment.glow_enabled,
 		"adjustment_enabled": environment.adjustment_enabled,
+		"adjustment_brightness": environment.adjustment_brightness,
+		"adjustment_contrast": environment.adjustment_contrast,
+		"adjustment_saturation": environment.adjustment_saturation,
 		"pixel_snap_enabled": _camera.is_pixel_snap_enabled(),
 		"player_shadow_enabled": _player_shadow.visible,
 		"player_sprite_pixel_size": _player_sprite.pixel_size,
 		"camera_far": _camera.far,
+		"sun_color": _sun.light_color,
+		"sun_energy": _sun.light_energy,
 		"sun_shadow_enabled": _sun.shadow_enabled,
 		"sun_shadow_max_distance": _sun.directional_shadow_max_distance,
 	}
@@ -128,6 +149,7 @@ func _apply_profile(profile: VisualProfileResource) -> void:
 	environment.fog_height_density = profile.fog_height_density
 	environment.fog_aerial_perspective = profile.fog_aerial_perspective
 	environment.fog_sun_scatter = profile.fog_sun_scatter
+	environment.glow_enabled = profile.glow_enabled
 	environment.adjustment_enabled = profile.adjustment_enabled
 	environment.adjustment_brightness = profile.adjustment_brightness
 	environment.adjustment_contrast = profile.adjustment_contrast

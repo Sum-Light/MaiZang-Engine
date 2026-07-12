@@ -20,17 +20,21 @@ GLB meshes, or shared `ArrayMesh` materials.
 | Player ground shadow | Hidden | Visible |
 | Player texel size | 0.06 | 11.24 / 192 |
 | Camera far | 2500 | 256 |
-| Depth fog begin/end | No visible fog | 20 / 48 |
-| Fog blend | 0.0001 | 0.22 |
-| Dynamic sun shadows | Existing setting | Off until material classification |
+| Depth fog begin/end | No visible fog | 18 / 26 |
+| Fog blend | 0.0001 | 0.14 |
+| Ambient color / energy | (0.8, 0.84, 0.78) / 0.8 | (0.75, 0.79, 0.82) / 0.74 |
+| Sun color / energy | (1, 0.94, 0.82) / 1.2 | (1, 0.93, 0.84) / 0.9 |
+| Dynamic sun shadows | Existing setting | Off |
+| Glow / adjustments | Off | Off |
 
 Classic keeps the fog shader warm with a blend of `0.0001`. This is visually
 identical to the previous fog-disabled baseline, but avoids a Godot 4.7 GLES3
 shader leak when F2 disables a compiled fog variant. A decoded `256 x 192`
 comparison must remain exactly zero changed pixels.
 
-The project starts in Classic until the complete HD2D validation gates pass.
-Use `F2` to switch profiles at runtime. The command line override is:
+Classic remains the deliberate default after the HD2D validation gates: it is
+the immutable A/B and public fallback while HD2D remains an opt-in visual
+preview. Use `F2` to switch profiles at runtime. The command line override is:
 
 ```text
 -- --visual-profile=classic
@@ -186,3 +190,19 @@ The renderer regression draws every frame into a transparent `34 x 34`
 SubViewport and requires an exact alpha-mask match. Directional world captures
 can be produced with `--facing`; down, up, left, and right each remain stable for
 16 frames at the canonical cell.
+
+## Atmosphere Gate
+
+The accepted HD2D atmosphere uses cool ambient fill with a restrained warm sun.
+Depth fog starts at `18`, ends at `26`, uses density `0.14` and curve `1.3`,
+with color `(0.48, 0.58, 0.64)`. It introduces no glow, color adjustment,
+height fog, aerial perspective, sun scatter, dynamic shadow, or time-based
+surface effect. Emissive energy remains `0.25`.
+
+`capture_hd2d_visual_matrix.ps1` validates Classic plus origin, city, water,
+foliage, and emissive areas. Every capture must be byte-stable for 16 frames;
+Classic must retain SHA-256
+`9B44D0BBC6DAACA46D2422C77BE2D453A126C0B221772E5E77EBB35A072196FE`.
+On the RTX 4060 OpenGL baseline, the accepted 1800-frame sample reports p95
+Render CPU `1.552 ms`, GPU `1.299 ms`, and constant `43` draw calls, `50`
+visible objects, and `2402` primitives.

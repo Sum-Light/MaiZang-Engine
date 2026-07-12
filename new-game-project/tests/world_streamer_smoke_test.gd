@@ -230,11 +230,40 @@ func _run() -> void:
 	var hd2d_visual_state := visual_profile.get_visual_state()
 	var hd2d_stream_stats := streamer.get_stream_stats()
 	var hd2d_binding_snapshot := streamer.get_hd2d_binding_snapshot()
+	var hd2d_fog_color: Color = hd2d_visual_state.get("fog_light_color", Color.BLACK)
+	var hd2d_ambient_color: Color = hd2d_visual_state.get(
+		"ambient_light_color", Color.BLACK
+	)
+	var hd2d_sun_color: Color = hd2d_visual_state.get("sun_color", Color.BLACK)
 	if (
 		visual_profile.get_active_profile_name()
 		!= VisualProfileControllerScript.HD2D_PROFILE
 		or not bool(hd2d_visual_state.get("fog_enabled", false))
-		or not is_equal_approx(float(hd2d_visual_state.get("fog_density", 0.0)), 0.22)
+		or not is_equal_approx(float(hd2d_visual_state.get("fog_density", 0.0)), 0.14)
+		or not is_equal_approx(float(hd2d_visual_state.get("fog_depth_begin", 0.0)), 18.0)
+		or not is_equal_approx(float(hd2d_visual_state.get("fog_depth_end", 0.0)), 26.0)
+		or not is_equal_approx(float(hd2d_visual_state.get("fog_depth_curve", 0.0)), 1.3)
+		or not hd2d_fog_color.is_equal_approx(Color(0.48, 0.58, 0.64, 1.0))
+		or not hd2d_ambient_color.is_equal_approx(Color(0.75, 0.79, 0.82, 1.0))
+		or not is_equal_approx(
+			float(hd2d_visual_state.get("ambient_light_energy", 0.0)), 0.74
+		)
+		or not hd2d_sun_color.is_equal_approx(Color(1.0, 0.93, 0.84, 1.0))
+		or not is_equal_approx(float(hd2d_visual_state.get("sun_energy", 0.0)), 0.9)
+		or bool(hd2d_visual_state.get("adjustment_enabled", true))
+		or not is_zero_approx(
+			float(hd2d_visual_state.get("fog_height_density", 1.0))
+		)
+		or not is_zero_approx(
+			float(hd2d_visual_state.get("fog_aerial_perspective", 1.0))
+		)
+		or not is_zero_approx(float(hd2d_visual_state.get("fog_sun_scatter", 1.0)))
+		or bool(hd2d_visual_state.get("glow_enabled", true))
+		or int(hd2d_visual_state.get("tonemap_mode", -1)) != 0
+		or not is_equal_approx(
+			float(hd2d_visual_state.get("tonemap_exposure", 0.0)), 1.0
+		)
+		or not is_equal_approx(float(hd2d_visual_state.get("tonemap_white", 0.0)), 1.0)
 		or not bool(hd2d_visual_state.get("pixel_snap_enabled", false))
 		or not bool(hd2d_visual_state.get("player_shadow_enabled", false))
 		or not is_equal_approx(

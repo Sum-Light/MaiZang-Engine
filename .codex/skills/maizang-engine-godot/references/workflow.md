@@ -68,6 +68,12 @@ Expected Godot baselines:
 - The local `272 x 136` player atlas renders all 32 padded `34 x 34` frame cells
   with source-identical alpha coordinates; use capture `--facing` for each
   cardinal world regression.
+- The accepted HD2D atmosphere is fog `0.14` over depth `18..26` (curve `1.3`),
+  cool ambient `(0.75, 0.79, 0.82)` at `0.74`, and warm sun
+  `(1, 0.93, 0.84)` at `0.9`; glow and adjustments stay disabled.
+- `capture_hd2d_visual_matrix.ps1` must retain the Classic SHA, six 16-frame
+  stable captures, `43/50/2402` draw topology, and target p95 limits of
+  `2.5 ms` CPU / `2.0 ms` GPU.
 
 ## Documentation and Memory
 

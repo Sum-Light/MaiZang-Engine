@@ -27,6 +27,7 @@ extends Resource
 @export_range(0.0, 1.0, 0.01) var fog_sun_scatter := 0.0
 
 @export_group("Adjustments")
+@export var glow_enabled := false
 @export var adjustment_enabled := false
 @export_range(0.01, 8.0, 0.01) var adjustment_brightness := 1.0
 @export_range(0.01, 8.0, 0.01) var adjustment_contrast := 1.0

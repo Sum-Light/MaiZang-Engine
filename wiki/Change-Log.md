@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Tune the HD2D atmosphere
+
+- Balance the opt-in HD2D preview with restrained depth fog, cool ambient fill, and a softer warm sun while keeping glow, adjustments, dynamic shadows, water, and foliage effects disabled.
+- Add a reproducible six-scene visual matrix with 16-frame stability, frozen Classic SHA, exact draw topology, and 1800-frame CPU/GPU p95 gates.
+
 ## 2026-07-12 - Lock native player sprite pixels
 
 - Render all 32 player frames through an isolated Compatibility SubViewport and require source-identical alpha coordinates, preventing the HD2D comparison image from squeezing or shifting sprite columns.

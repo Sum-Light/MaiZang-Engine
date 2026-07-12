@@ -66,6 +66,9 @@ asset workflow.
 - HD2D semantic materials must remain separate immutable resources applied
   through per-instance surface overrides; local profiles and generated variants
   stay under the ignored Platinum asset tree.
+- HD2D uses fog density `0.14`, depth `18..26`, curve `1.3`, and no
+  glow/adjustments/dynamic sun shadow. Classic remains the default, and visual
+  changes must pass the representative capture/performance matrix.
 - Distant chunks and their strong `PackedScene` references must be released.
 
 ## Git Workflow

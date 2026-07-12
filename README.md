@@ -23,7 +23,8 @@ and are regenerated from a user-supplied DSPRE project.
   pitch control, distance 16 to prevent the reproduced roof clipping, and an
   `F1` perspective debug view.
 - Reversible Classic/HD2D visual profiles with orthographic pixel stability,
-  lightweight depth fog, and a pixel-scale player ground shadow.
+  restrained cool-depth/warm-sun atmosphere, and a pixel-scale player ground
+  shadow. Classic remains the default A/B baseline; `F2` enables the preview.
 - A world-scale semantic material profile that classifies all 511 materials and
   3249 surfaces, preserving pixel-critical water/foliage/shadows while applying
   reversible lit and low-energy emissive instance overrides; both ignored
@@ -74,3 +75,5 @@ Press `F2` to compare the Classic baseline with the HD2D preview.
 Read [AGENTS.md](AGENTS.md) before changing the project. Every functional
 change must update the versioned Wiki and project Skill before it is committed.
 Use `tools/commit_project_change.ps1` for the normal commit and Wiki sync flow.
+Run `tools/capture_hd2d_visual_matrix.ps1` after any atmosphere, lighting,
+camera, material, or sprite-rendering change.

@@ -25,6 +25,7 @@
 | `tools/configure_dspre_godot_textures.ps1` | Lossless, no-mipmap texture import |
 | `tools/import_player_sprite.ps1` | Local Dawn walk/run atlas extraction and color-key transparency |
 | `tools/configure_hd2d_material_variants.ps1` | Rebuild the ignored seed/world profiles, build/validate variants, and hash-protect all 511 base materials |
+| `tools/capture_hd2d_visual_matrix.ps1` | Reproducible Classic/HD2D representative capture, stability, SHA, topology, and performance gate |
 | `wiki/` | Versioned GitHub Wiki source of truth |
 
 ## Runtime Constants

@@ -167,6 +167,7 @@ $currentState = @"
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
 - HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
+- HD2D atmosphere: fog ``0.14`` over ``18..26`` (curve ``1.3``), cool ambient ``(0.75, 0.79, 0.82)`` at ``0.74``, warm sun ``(1, 0.93, 0.84)`` at ``0.9``; glow, adjustments, and dynamic sun shadow are off.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -188,8 +189,8 @@ $currentState = @"
 
 ## Next Engineering Milestone
 
-Tune restrained fog, color, sunlight, and emissive balance across the city,
-waterfall, foliage, and foreground-building regression areas.
+Integrate terrain height and collision data, then validate grounded player
+movement and foreground occlusion against both Classic and HD2D profiles.
 "@
 
 $skillState = @"
@@ -207,6 +208,7 @@ MaiZang Engine and regenerate it in every functional commit.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
 - Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
 - HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
+- HD2D atmosphere: fog ``0.14`` over ``18..26`` (curve ``1.3``), cool ambient ``(0.75, 0.79, 0.82)`` at ``0.74``, warm sun ``(1, 0.93, 0.84)`` at ``0.9``; glow, adjustments, and dynamic sun shadow are off.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
@@ -214,7 +216,7 @@ MaiZang Engine and regenerate it in every functional commit.
 - Local asset cache: $assetStatus.
 - Dawn sprite atlas: $playerSpriteStatus.
 - HD2D semantic profile: $hd2dProfileStatus; variants found: $hd2dVariants.
-- Next milestone: tune restrained fog, color, sunlight, and emissive balance across representative areas.
+- Next milestone: integrate terrain height/collision and validate grounded movement plus foreground occlusion in both visual profiles.
 
 The public repository must not contain ROM-derived models, textures, maps, or
 other proprietary Pokemon assets.

@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `fad103a5ff0b23eacd5df34ccae45ea999e392337c741ff6a9ad8350c01dea8e`
-- Fingerprinted files: 65
+- Source fingerprint: `b044f06bfc38f6e254334c86e4fef4749e3ac4efc2fc53945d72e73e0957473e`
+- Fingerprinted files: 66
 - Godot runtime scripts: 5
 - Godot test scripts: 3
-- PowerShell tools: 12
+- PowerShell tools: 13
 
 ## Runtime Baseline
 
@@ -20,6 +20,7 @@
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
 - Visual profile: Classic default; `F2` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
 - HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
+- HD2D atmosphere: fog `0.14` over `18..26` (curve `1.3`), cool ambient `(0.75, 0.79, 0.82)` at `0.74`, warm sun `(1, 0.93, 0.84)` at `0.9`; glow, adjustments, and dynamic sun shadow are off.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -41,5 +42,5 @@
 
 ## Next Engineering Milestone
 
-Tune restrained fog, color, sunlight, and emissive balance across the city,
-waterfall, foliage, and foreground-building regression areas.
+Integrate terrain height and collision data, then validate grounded player
+movement and foreground occlusion against both Classic and HD2D profiles.
