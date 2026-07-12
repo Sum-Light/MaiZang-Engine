@@ -7,6 +7,8 @@
 | `new-game-project/scripts/platinum_world_streamer.gd` | Manifest loading, asynchronous asset cache, chunk lifecycle, placement |
 | `new-game-project/scripts/player_controller.gd` | Cardinal movement, Dawn animation, walking and running state |
 | `new-game-project/scripts/follow_camera.gd` | Player following and mouse-wheel pitch control |
+| `new-game-project/scripts/visual_profile_controller.gd` | Classic/HD2D environment, sun, pixel-snap, and player-shadow ownership |
+| `new-game-project/visual_profiles/` | Versioned Classic and HD2D visual parameter resources |
 | `new-game-project/scenes/main.tscn` | Minimal runnable world shell |
 | `new-game-project/tests/` | Streaming and render-capture integration tests |
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
@@ -26,6 +28,8 @@
   walk/run actions map to 16/8 Godot physics ticks, with 6-tick stationary turns.
 - Follow camera: orthographic size `11.24` and distance `16`; debug perspective
   FOV `75` and distance `8`; yaw `0`, downward pitch `50`, wheel step `5`.
+- Visual profile: Classic default; `F2` HD2D preview with camera-local pixel snap,
+  depth fog, player ground shadow, and no gameplay or mesh mutation.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`

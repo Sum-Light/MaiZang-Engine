@@ -19,6 +19,8 @@
 - A `CharacterBody3D` player with a billboarded four-direction sprite.
 - A front-facing orthographic `Camera3D` that follows the player, owns pitch
   input, and exposes an `F1` perspective debug mode.
+- A `VisualProfile` controller that applies reversible Classic/HD2D environment,
+  sun, pixel-stability, and player-shadow settings without changing gameplay.
 - `PlatinumWorldStreamer` and its `LoadedChunks` runtime container.
 
 `PlatinumWorldStreamer` uses the player as its focus. It reads the generated
@@ -59,6 +61,10 @@ GLBs retain valid local material slots, but import settings redirect matching
 material names to 511 external `.tres` resources. Runtime fallback sharing is
 implemented with `MeshInstance3D` surface overrides and never mutates a shared
 `ArrayMesh`.
+
+Visual profiles follow the same ownership rule. Global visual settings belong
+to `Main/VisualProfile`; future semantic material variants remain external
+shared resources and are applied only as instance surface overrides.
 
 ## Non-Goals for the Current Milestone
 

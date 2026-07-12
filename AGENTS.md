@@ -56,6 +56,8 @@ asset workflow.
 - The camera uses yaw `0`, downward pitch `50`, and wheel step `5`. It starts
   orthographic at size `11.24` and distance `16`; `F1` toggles the distance-8,
   FOV-75 perspective debug view.
+- Visual profile defaults to `classic`; `F2` toggles the `hd2d` preview. Profile
+  changes must not alter gameplay, projection, streaming state, or shared meshes.
 - Matrix coordinate unit: 32 world units per map block.
 - Matrix altitude unit: 0.5 world units.
 - Imported model scale: `1 / 16`.

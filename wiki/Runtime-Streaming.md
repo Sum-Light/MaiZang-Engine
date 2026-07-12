@@ -47,5 +47,10 @@ the same player node as its focus:
 - Mouse wheel pitch steps of `5` degrees, clamped from `35` to `80` degrees.
 - Pitch changes preserve the active distance. Projection toggles move only along
   the view ray and restore distance `16` at the current target and pitch.
+- `F2` toggles Classic/HD2D visual profiles without moving the player, changing
+  projection, refreshing the stream, or reallocating visual scene nodes.
+- HD2D orthographic mode snaps only the camera-local right/up coordinates to the
+  `11.24 / 192` output-pixel grid. Classic restores the exact unsnapped transform.
 
 Player movement and animation rules are documented in [Player Control](Player-Control).
+Visual profile ownership and validation are documented in [HD-2D Visuals](HD2D-Visuals).

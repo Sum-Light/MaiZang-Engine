@@ -22,6 +22,8 @@ and are regenerated from a user-supplied DSPRE project.
 - A size-11.24 orthographic follow camera with a 50-degree pitch, mouse-wheel
   pitch control, distance 16 to prevent the reproduced roof clipping, and an
   `F1` perspective debug view.
+- Reversible Classic/HD2D visual profiles with orthographic pixel stability,
+  lightweight depth fog, and a pixel-scale player ground shadow.
 - `3 x 3` active chunks, `5 x 5` asset prefetch, and radius-3 retention.
 - Godot 4.7 OpenGL smoke tests with zero failed asset loads.
 
@@ -61,6 +63,7 @@ Open `new-game-project/project.godot` after the import completes. Use `WASD`
 or the arrow keys for four-direction movement, hold `Z` to run, and use the
 mouse wheel to adjust the follow camera pitch in 5-degree steps. Press `F1`
 to toggle between the default orthographic view and the perspective debug view.
+Press `F2` to compare the Classic baseline with the HD2D preview.
 
 ## Development
 

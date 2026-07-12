@@ -74,6 +74,12 @@ The test verifies:
 - Long-distance load and origin unload.
 - Zero failed assets and zero runtime material replacements.
 - Loaded assets do not exceed the current retention set.
+- Classic keeps a visually zero fog blend with pixel snap and ground shadow off.
+- `F2` switches to HD2D and restores Classic without changing gameplay,
+  streaming state, projection, Environment RID, or ground-shadow mesh RID.
+- HD2D screen-plane snap stays within half an output pixel and preserves view depth.
+- HD2D maps the 32-pixel player canvas to exactly 32 output pixels and keeps
+  its camera-relative center unchanged while compensating the camera snap.
 
 ## Render Capture
 
@@ -110,3 +116,22 @@ overlapping geometry. The building regression capture must show complete blue
 foreground roofs without V-shaped camera-plane cuts. All PNGs must be exactly
 `256 x 192` pixels, and the reported projection and camera distance must match
 the requested mode.
+
+HD-2D baseline and measurement example:
+
+```powershell
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/render_world_capture.gd -- `
+  --visual-profile=hd2d --cell=3,27 `
+  --warmup-frames=300 --measure-frames=1800 `
+  --output=res://captures/hd2d_start.png `
+  --metrics-output=res://captures/hd2d_start.metrics.json
+```
+
+Metrics collection must finish before PNG readback. Reports must show 9 loaded
+chunks, zero failed assets, zero runtime material replacements, and nonempty
+render samples. Classic and HD2D captures remain local ignored artifacts.

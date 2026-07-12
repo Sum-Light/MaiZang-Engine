@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Add reversible HD-2D visual profiles
+
+- Add Classic/HD2D profile resources, F2 and command-line switching, camera-local orthographic pixel snapping with native-size Sprite3D compensation, a prebuilt player ground shadow, lightweight depth fog, and render-performance capture metrics.
+- Keep Classic pixel-identical through a zero-influence warm fog path that avoids a Godot 4.7 Compatibility shader leak during profile roundtrips.
+
 ## 2026-07-12 - Add grid movement and fix foreground clipping
 
 - Center the player on half-integer tile coordinates and move one 16-pixel tile per atomic action, mapping Platinum's 30 Hz walk/run timing to 16/8 Godot physics ticks.

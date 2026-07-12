@@ -49,6 +49,8 @@ Expected Godot baselines:
   8 with `Z`, and 6 for a stationary turn.
 - Default pitch-50, size-11.24 orthographic projection at distance 16, with a
   distance-8 FOV-75 perspective debug toggle.
+- Classic/HD2D F2 roundtrip preserves gameplay and streaming; HD2D capture uses
+  camera-local pixel snap, depth fog, and a prebuilt player ground shadow.
 
 ## Documentation and Memory
 

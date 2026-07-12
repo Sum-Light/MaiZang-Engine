@@ -3,6 +3,7 @@
 - [Asset Pipeline](Asset-Pipeline)
 - [Runtime Streaming](Runtime-Streaming)
 - [Player Control](Player-Control)
+- [HD-2D Visuals](HD2D-Visuals)
 - [Validation](Validation)
 - [Development Workflow](Development-Workflow)
 - [Repository Policy](Repository-Policy)

@@ -5,9 +5,9 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `8abfb9993e3739ac4f1f6651c16ad0b4530b23cc486c22b2d62e36076549aa36`
-- Fingerprinted files: 48
-- Godot runtime scripts: 3
+- Source fingerprint: `f6e40aca4e6b4d670406d2bec0abb40f2734ddfc32c17dfef2aad3df93638840`
+- Fingerprinted files: 55
+- Godot runtime scripts: 5
 - Godot test scripts: 2
 - PowerShell tools: 11
 
@@ -18,6 +18,7 @@
 - Player: half-integer-centered one-unit grid steps at `60 Hz`; walk `16` ticks, `Z` run `8` ticks, stationary turn `6` ticks.
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
+- Visual profile: Classic default; `F2` toggles the HD2D preview with pixel snap, depth fog, and player ground shadow.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -37,5 +38,5 @@
 
 ## Next Engineering Milestone
 
-Integrate `a.dat` tile behavior and `h.bhc` height/collision data without
-coupling the collision cache to rendered scene lifetime.
+Expand the HD2D preview from global profile effects to deterministic external
+material variants for the bounded cell `(3, 27)` pilot.
