@@ -86,15 +86,26 @@ if ($Full) {
     }
     $godotProject = Join-Path $ProjectRoot "new-game-project"
     $manifestPath = Join-Path $godotProject "assets\platinum\matrix_0000\manifest.json"
+    $hd2dProfilePath = Join-Path $godotProject "assets\platinum\hd2d\p3_city.profile.json"
     if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
         throw "Full validation requires locally generated Platinum assets."
     }
+    if (-not (Test-Path -LiteralPath $hd2dProfilePath -PathType Leaf)) {
+        throw "Full validation requires the local P3 HD2D material profile. Run tools\configure_hd2d_material_variants.ps1 first."
+    }
 
-    & $GodotPath --headless --path $godotProject --script "res://tools/validate_shared_materials.gd"
+    $logRoot = Join-Path $ProjectRoot ".work"
+    New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
+
+    & $GodotPath --headless --path $godotProject --log-file (Join-Path $logRoot "shared-material-validation.log") --script "res://tools/validate_shared_materials.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "Shared material validation failed."
     }
-    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/world_streamer_smoke_test.gd"
+    & $GodotPath --headless --path $godotProject --log-file (Join-Path $logRoot "hd2d-material-validation.log") --script "res://tools/validate_hd2d_material_variants.gd" -- "--profile=res://assets/platinum/hd2d/p3_city.profile.json"
+    if ($LASTEXITCODE -ne 0) {
+        throw "HD2D material variant validation failed."
+    }
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file (Join-Path $logRoot "world-streamer-smoke.log") --script "res://tests/world_streamer_smoke_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "World streamer smoke test failed."
     }

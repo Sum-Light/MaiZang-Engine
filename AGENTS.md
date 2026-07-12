@@ -63,6 +63,9 @@ asset workflow.
 - Imported model scale: `1 / 16`.
 - Streamed assets must load asynchronously without sub-threaded import.
 - Runtime code must not mutate shared `ArrayMesh` materials.
+- HD2D semantic materials must remain separate immutable resources applied
+  through per-instance surface overrides; local profiles and generated variants
+  stay under the ignored Platinum asset tree.
 - Distant chunks and their strong `PackedScene` references must be released.
 
 ## Git Workflow

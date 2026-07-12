@@ -6,6 +6,17 @@ const MAX_STEP_SAMPLE_FRAMES := 600
 const NDS_VIEWPORT_HEIGHT := 192.0
 const SOURCE_SPRITE_SIZE := 32.0
 const SPRITE_SIZE_TOLERANCE := 1.0
+const STREAM_CORE_KEYS: Array[String] = [
+	"manifest_cells",
+	"wanted_chunks",
+	"retained_assets",
+	"loaded_chunks",
+	"loading_assets",
+	"loaded_assets",
+	"failed_assets",
+	"shared_materials",
+	"material_replacements",
+]
 
 var _step_samples: Array[Dictionary] = []
 var _turn_samples: Array[Dictionary] = []
@@ -138,6 +149,7 @@ func _run() -> void:
 	var initial_player_transform := player.global_transform
 	var initial_player_facing := player.get_current_facing()
 	var initial_stream_stats := streamer.get_stream_stats()
+	var initial_binding_snapshot := streamer.get_hd2d_binding_snapshot()
 	var initial_focus_cell := streamer.get_focus_cell()
 	var initial_sun_transform := sun.global_transform
 	var initial_sprite_camera_position := (
@@ -147,6 +159,20 @@ func _run() -> void:
 	var initial_environment_rid := world_environment.environment.get_rid()
 	var initial_shadow_mesh_rid := ground_shadow.mesh.get_rid()
 	var initial_visual_state := visual_profile.get_visual_state()
+	if (
+		not bool(initial_stream_stats.get("hd2d_profile_loaded", false))
+		or int(initial_stream_stats.get("hd2d_variants", 0)) != 8
+		or int(initial_stream_stats.get("hd2d_pilot_instances", 0)) != 9
+		or int(initial_stream_stats.get("hd2d_active_pilot_instances", -1)) != 0
+		or int(initial_stream_stats.get("hd2d_registered_surfaces", 0)) != 22
+		or int(initial_stream_stats.get("hd2d_overrides", -1)) != 0
+		or not _validate_hd2d_binding_snapshot(initial_binding_snapshot, false)
+	):
+		_fail(
+			"Classic HD2D material bindings are invalid: %s"
+			% JSON.stringify(initial_stream_stats)
+		)
+		return
 	if (
 		visual_profile.get_active_profile_name()
 		!= VisualProfileControllerScript.CLASSIC_PROFILE
@@ -169,6 +195,8 @@ func _run() -> void:
 	f2_event.pressed = true
 	visual_profile._unhandled_input(f2_event)
 	var hd2d_visual_state := visual_profile.get_visual_state()
+	var hd2d_stream_stats := streamer.get_stream_stats()
+	var hd2d_binding_snapshot := streamer.get_hd2d_binding_snapshot()
 	if (
 		visual_profile.get_active_profile_name()
 		!= VisualProfileControllerScript.HD2D_PROFILE
@@ -189,11 +217,28 @@ func _run() -> void:
 		not player.global_transform.is_equal_approx(initial_player_transform)
 		or player.get_current_facing() != initial_player_facing
 		or streamer.get_focus_cell() != initial_focus_cell
-		or streamer.get_stream_stats() != initial_stream_stats
+		or _stream_core_snapshot(hd2d_stream_stats) != _stream_core_snapshot(initial_stream_stats)
 		or camera.projection != Camera3D.PROJECTION_ORTHOGONAL
 		or not sun.global_transform.is_equal_approx(initial_sun_transform)
 	):
 		_fail("Visual profile switching changed gameplay or streaming state.")
+		return
+	if (
+		int(hd2d_stream_stats.get("hd2d_variants", 0)) != 8
+		or int(hd2d_stream_stats.get("hd2d_pilot_instances", 0)) != 9
+		or int(hd2d_stream_stats.get("hd2d_active_pilot_instances", 0)) != 9
+		or int(hd2d_stream_stats.get("hd2d_registered_surfaces", 0)) != 22
+		or int(hd2d_stream_stats.get("hd2d_overrides", 0)) != 22
+		or not _validate_hd2d_binding_snapshot(
+			hd2d_binding_snapshot,
+			true,
+			initial_binding_snapshot
+		)
+	):
+		_fail(
+			"HD2D pilot material overrides are invalid: %s"
+			% JSON.stringify(hd2d_stream_stats)
+		)
 		return
 	var world_units_per_pixel := camera.get_world_units_per_pixel()
 	if not is_equal_approx(world_units_per_pixel, 11.24 / NDS_VIEWPORT_HEIGHT):
@@ -234,6 +279,8 @@ func _run() -> void:
 		return
 
 	visual_profile._unhandled_input(f2_event)
+	var restored_stream_stats := streamer.get_stream_stats()
+	var restored_binding_snapshot := streamer.get_hd2d_binding_snapshot()
 	if (
 		visual_profile.get_active_profile_name()
 		!= VisualProfileControllerScript.CLASSIC_PROFILE
@@ -241,6 +288,19 @@ func _run() -> void:
 		or not camera.global_transform.is_equal_approx(initial_camera_transform)
 		or world_environment.environment.get_rid() != initial_environment_rid
 		or ground_shadow.mesh.get_rid() != initial_shadow_mesh_rid
+		or _stream_core_snapshot(restored_stream_stats) != _stream_core_snapshot(
+			initial_stream_stats
+		)
+		or int(restored_stream_stats.get("hd2d_variants", 0)) != 8
+		or int(restored_stream_stats.get("hd2d_pilot_instances", 0)) != 9
+		or int(restored_stream_stats.get("hd2d_active_pilot_instances", -1)) != 0
+		or int(restored_stream_stats.get("hd2d_registered_surfaces", 0)) != 22
+		or int(restored_stream_stats.get("hd2d_overrides", -1)) != 0
+		or not _validate_hd2d_binding_snapshot(
+			restored_binding_snapshot,
+			false,
+			initial_binding_snapshot
+		)
 	):
 		_fail("F2 did not restore Classic without reallocating visual resources.")
 		return
@@ -603,6 +663,30 @@ func _run() -> void:
 			if int(stats.loaded_assets) > int(stats.retained_assets):
 				_fail("Asset cache retained resources outside the unload radius: %s" % JSON.stringify(stats))
 				return
+			if (
+				int(stats.get("hd2d_variants", 0)) != 8
+				or int(stats.get("hd2d_pilot_instances", -1)) != 0
+				or int(stats.get("hd2d_active_pilot_instances", -1)) != 0
+				or int(stats.get("hd2d_registered_surfaces", -1)) != 0
+				or int(stats.get("hd2d_overrides", -1)) != 0
+				or not streamer.get_hd2d_binding_snapshot().is_empty()
+			):
+				_fail("Pilot HD2D bindings survived chunk unload: %s" % JSON.stringify(stats))
+				return
+			var destination_core_stats := _stream_core_snapshot(stats)
+			visual_profile._unhandled_input(f2_event)
+			var destination_hd2d_stats := streamer.get_stream_stats()
+			if (
+				_stream_core_snapshot(destination_hd2d_stats) != destination_core_stats
+				or int(destination_hd2d_stats.get("hd2d_overrides", -1)) != 0
+				or int(destination_hd2d_stats.get("hd2d_pilot_instances", -1)) != 0
+			):
+				_fail(
+					"HD2D profile affected a non-pilot destination: %s"
+					% JSON.stringify(destination_hd2d_stats)
+				)
+				return
+			visual_profile._unhandled_input(f2_event)
 			print("WORLD_STREAMER_MOVE_OK ", JSON.stringify(stats))
 			streamer.shutdown()
 			main.queue_free()
@@ -612,6 +696,68 @@ func _run() -> void:
 			return
 
 	_fail("World streamer did not load the destination and unload the origin within %d frames." % MAX_FRAMES)
+
+
+func _stream_core_snapshot(stats: Dictionary) -> Dictionary:
+	var snapshot: Dictionary = {}
+	for key: String in STREAM_CORE_KEYS:
+		snapshot[key] = stats.get(key)
+	return snapshot
+
+
+func _validate_hd2d_binding_snapshot(
+	snapshot: Array[Dictionary],
+	expect_active: bool,
+	reference: Array[Dictionary] = []
+) -> bool:
+	if snapshot.size() != 22 or (not reference.is_empty() and reference.size() != snapshot.size()):
+		return false
+	var variant_rids: Dictionary = {}
+	var identity_keys: Array[String] = [
+		"binding_key",
+		"node_instance_id",
+		"mesh_rid",
+		"surface_index",
+		"material_key",
+		"base_path",
+		"base_rid",
+		"classic_override_rid",
+		"variant_path",
+		"variant_rid",
+	]
+	for index in snapshot.size():
+		var binding := snapshot[index]
+		var variant_rid := int(binding.get("variant_rid", 0))
+		var active_override_rid := int(binding.get("active_override_rid", 0))
+		var expected_override_rid := (
+			variant_rid
+			if expect_active
+			else int(binding.get("classic_override_rid", 0))
+		)
+		if (
+			String(binding.get("cell", "")) != "3,27"
+			or String(binding.get("asset_key", "")).is_empty()
+			or not String(binding.get("base_path", "")).begins_with(
+				"res://assets/platinum/shared_materials/"
+			)
+			or not String(binding.get("variant_path", "")).begins_with(
+				"res://assets/platinum/hd2d/shared_variants/lit_vertex/"
+			)
+			or int(binding.get("base_shading_mode", -1))
+			!= BaseMaterial3D.SHADING_MODE_UNSHADED
+			or int(binding.get("variant_shading_mode", -1))
+			!= BaseMaterial3D.SHADING_MODE_PER_VERTEX
+			or variant_rid == 0
+			or active_override_rid != expected_override_rid
+		):
+			return false
+		variant_rids[variant_rid] = true
+		if not reference.is_empty():
+			var reference_binding := reference[index]
+			for key: String in identity_keys:
+				if binding.get(key) != reference_binding.get(key):
+					return false
+	return variant_rids.size() == 8
 
 
 func _fail(message: String) -> void:

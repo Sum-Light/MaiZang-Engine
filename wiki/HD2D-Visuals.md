@@ -87,20 +87,39 @@ state. Capture and report paths are restricted to the ignored
 Canonical locations are the start area `(3, 27)` and the foreground-building
 regression at `(5, 26)` with offset `(-4, -2)`.
 
-## Material Roadmap
+## Semantic Material Pilot
 
-All 511 imported materials currently use Platinum's unshaded material model.
-The profile infrastructure therefore establishes fog, pixel stability, and
-player grounding first; it does not pretend that the world has full lighting.
+All 511 imported materials retain Platinum's unshaded material model. HD2D
+lighting is implemented as separate external resources, so Classic never
+changes the imported GLB materials or the shared base-material pool.
 
-The next phase generates external material variants alongside the existing
-shared base materials. A local ignored profile maps `(asset key, material key)`
-to semantic variants such as `lit_vertex`, while tracked tools and schemas stay
-free of ROM-derived material keys. The streamer will apply shared variants with
-per-instance surface overrides after base-material sharing. It must never call
-`ArrayMesh.surface_set_material()`.
+The local ignored profile at
+`assets/platinum/hd2d/p3_city.profile.json` maps `(cell, asset key, material
+key)` to the `lit_vertex` semantic variant. The tracked example profile contains
+only placeholder keys. `configure_hd2d_material_variants.ps1` creates the local
+resources and proves that all 511 base-material SHA-256 hashes remain unchanged.
 
-The first pilot is cell `(3, 27)`. It keeps legacy `tshadow` and `h_kage`
-surfaces, leaves water and foliage unshaded, and disables dynamic casting on
-pilot instances to prevent double shadows. Only after the pilot passes visual,
-streaming, material, and lifecycle tests can coverage expand.
+The first pilot is cell `(3, 27)`:
+
+| Pilot metric | Count |
+|---|---:|
+| Shared `lit_vertex` variants | 8 |
+| Terrain/building asset instances | 9 |
+| Per-instance surface bindings | 22 |
+
+Variants use per-vertex StandardMaterial lighting and reuse the original
+nearest-filtered textures. The streamer prepares bindings only after base
+material sharing, captures the exact Classic override, and switches with
+`MeshInstance3D.set_surface_override_material()`. It never mutates an
+`ArrayMesh`, duplicates a mesh, or keeps strong references to unloaded chunk
+nodes. F2 therefore changes `0 -> 22 -> 0` active overrides without changing
+the player, camera, chunk nodes, Mesh RIDs, or base-material RIDs.
+
+The pilot keeps legacy `tshadow` and `h_kage` surfaces and leaves water and
+foliage unshaded. Its `legacy_only` policy disables dynamic casting while HD2D
+is active and restores the original setting in Classic, preventing duplicate
+shadows. After leaving `(3, 27)`, registered bindings return to zero while the
+bounded eight-resource variant cache remains available for a future return.
+
+The next material phase classifies water, foliage, emissive windows, and legacy
+shadow surfaces before expanding lit coverage beyond the pilot cell.

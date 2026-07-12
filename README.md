@@ -24,6 +24,8 @@ and are regenerated from a user-supplied DSPRE project.
   `F1` perspective debug view.
 - Reversible Classic/HD2D visual profiles with orthographic pixel stability,
   lightweight depth fog, and a pixel-scale player ground shadow.
+- A bounded HD2D semantic-material pilot that adds per-vertex lighting through
+  reversible instance overrides without changing the 511 shared base materials.
 - `3 x 3` active chunks, `5 x 5` asset prefetch, and radius-3 retention.
 - Godot 4.7 OpenGL smoke tests with zero failed asset loads.
 

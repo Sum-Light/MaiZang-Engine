@@ -33,6 +33,27 @@ material_surface_references: 3249
 unique_materials: 511
 ```
 
+## HD2D Material Variant Validation
+
+Build the local pilot after shared materials are configured:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\configure_hd2d_material_variants.ps1 `
+  -ProjectRoot .\new-game-project
+```
+
+Expected pilot baseline:
+
+```text
+profile_assets: 5
+unique_variants: 8
+pilot_instances: 9
+registered_surfaces: 22
+active_overrides: Classic 0, HD2D 22
+shared_base_material_hash_changes: 0 of 511
+```
+
 ## Streaming Smoke Test
 
 Use a real OpenGL renderer so renderer cleanup is exercised:
@@ -80,6 +101,14 @@ The test verifies:
 - HD2D screen-plane snap stays within half an output pixel and preserves view depth.
 - HD2D maps the 32-pixel player canvas to exactly 32 output pixels and keeps
   its camera-relative center unchanged while compensating the camera snap.
+- The local HD2D pilot preloads exactly 8 shared variants and binds exactly 22
+  surfaces across 9 instances in cell `(3, 27)`.
+- F2 changes those instance overrides `0 -> 22 -> 0` while node, Mesh, base
+  material, Environment, and ground-shadow resource identities remain stable.
+- Base surfaces stay unshaded; variants are separate per-vertex-lit resources
+  with the original texture dependency.
+- Leaving the pilot cell releases all 9 instance bindings and 22 surface
+  bindings; toggling HD2D at the destination affects no non-pilot surface.
 
 ## Render Capture
 
@@ -133,5 +162,7 @@ HD-2D baseline and measurement example:
 ```
 
 Metrics collection must finish before PNG readback. Reports must show 9 loaded
-chunks, zero failed assets, zero runtime material replacements, and nonempty
-render samples. Classic and HD2D captures remain local ignored artifacts.
+chunks, zero failed assets, zero runtime base-material replacements, and
+nonempty render samples. The pilot HD2D capture must additionally report 8
+variants, 9 active pilot instances, and 22 active overrides. Classic and HD2D
+captures remain local ignored artifacts.

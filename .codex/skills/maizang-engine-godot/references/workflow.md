@@ -17,6 +17,11 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
   -SourcePath "D:\path\to\Dawn.png"
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\configure_hd2d_material_variants.ps1 `
+  -ProjectRoot .\new-game-project `
+  -GodotPath "D:\path\to\Godot_console.exe"
 ```
 
 Never run `sync_dspre_godot_assets.ps1 -Force` until the destination resolves
@@ -51,6 +56,9 @@ Expected Godot baselines:
   distance-8 FOV-75 perspective debug toggle.
 - Classic/HD2D F2 roundtrip preserves gameplay and streaming; HD2D capture uses
   camera-local pixel snap, depth fog, and a prebuilt player ground shadow.
+- The local `(3, 27)` pilot preloads 8 immutable variants, registers 9 asset
+  instances and 22 surfaces, and switches active overrides `0 -> 22 -> 0`.
+- HD2D generation leaves the SHA-256 of all 511 shared base materials unchanged.
 
 ## Documentation and Memory
 

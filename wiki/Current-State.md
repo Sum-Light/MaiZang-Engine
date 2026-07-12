@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `f6e40aca4e6b4d670406d2bec0abb40f2734ddfc32c17dfef2aad3df93638840`
-- Fingerprinted files: 55
+- Source fingerprint: `c034f3c0d0c90732cedf3ac3f554c34e4a7359d29d50bcaebad0bd6092b7ca1b`
+- Fingerprinted files: 61
 - Godot runtime scripts: 5
 - Godot test scripts: 2
-- PowerShell tools: 11
+- PowerShell tools: 12
 
 ## Runtime Baseline
 
@@ -18,7 +18,8 @@
 - Player: half-integer-centered one-unit grid steps at `60 Hz`; walk `16` ticks, `Z` run `8` ticks, stationary turn `6` ticks.
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
-- Visual profile: Classic default; `F2` toggles the HD2D preview with pixel snap, depth fog, and player ground shadow.
+- Visual profile: Classic default; `F2` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
+- HD2D pilot: cell `(3, 27)`, 8 shared variants, 9 asset instances, 22 bound surfaces; shared base materials remain immutable.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -38,5 +39,5 @@
 
 ## Next Engineering Milestone
 
-Expand the HD2D preview from global profile effects to deterministic external
-material variants for the bounded cell `(3, 27)` pilot.
+Classify water, foliage, emissive, and legacy-shadow surfaces before expanding
+HD2D material coverage beyond the bounded cell `(3, 27)` pilot.

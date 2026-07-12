@@ -154,7 +154,8 @@ $currentState = @"
 - Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: orthographic size ``11.24`` by default; ``F1`` toggles FOV-75 perspective.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
-- Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, and player ground shadow.
+- Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
+- HD2D pilot: cell ``(3, 27)``, 8 shared variants, 9 asset instances, 22 bound surfaces; shared base materials remain immutable.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -174,8 +175,8 @@ $currentState = @"
 
 ## Next Engineering Milestone
 
-Expand the HD2D preview from global profile effects to deterministic external
-material variants for the bounded cell ``(3, 27)`` pilot.
+Classify water, foliage, emissive, and legacy-shadow surfaces before expanding
+HD2D material coverage beyond the bounded cell ``(3, 27)`` pilot.
 "@
 
 $skillState = @"
@@ -191,14 +192,15 @@ MaiZang Engine and regenerate it in every functional commit.
 - Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: size-11.24 orthographic default, ``F1`` FOV-75 perspective debug view.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
-- Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, and player ground shadow.
+- Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
+- HD2D pilot: cell ``(3, 27)``, 8 shared variants, 9 asset instances, 22 bound surfaces; shared base materials remain immutable.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.
 - Dawn sprite atlas: $playerSpriteStatus.
-- Next milestone: external HD2D material variants for the cell ``(3, 27)`` pilot.
+- Next milestone: classify water, foliage, emissive, and legacy-shadow surfaces before expanding HD2D coverage.
 
 The public repository must not contain ROM-derived models, textures, maps, or
 other proprietary Pokemon assets.

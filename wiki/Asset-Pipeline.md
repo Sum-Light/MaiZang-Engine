@@ -90,8 +90,26 @@ group at `(170, 0)`, removes both source background colors, and writes an
 `8 x 4` transparent atlas to the ignored path
 `new-game-project/assets/platinum/characters/dawn_overworld.png`.
 
+### 6. Build Local HD2D Material Variants
+
+The public repository contains the builder, validator, and a placeholder
+profile schema. The real profile and generated variants remain under the
+ignored Platinum asset tree because their material keys are ROM-derived.
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\configure_hd2d_material_variants.ps1 `
+  -ProjectRoot .\new-game-project `
+  -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe"
+```
+
+The bounded `(3, 27)` pilot generates eight `lit_vertex` resources. The wrapper
+validates their metadata and protected texture/material properties, and hashes
+all 511 shared base `.tres` files before and after generation. Any base change
+fails the command.
+
 ## Rebuild Rule
 
-Do not hand-edit generated GLB, PNG, `.import`, material, atlas, or manifest
-output. Change the converter or import script, rebuild, then validate the
-complete set.
+Do not hand-edit generated GLB, PNG, `.import`, material, atlas, HD2D variant,
+or manifest output. Change the converter, profile, or import script, rebuild,
+then validate the complete set.

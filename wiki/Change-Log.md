@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Add the HD2D semantic material pilot
+
+- Generate and validate eight ignored per-vertex-lit material variants for the bounded `(3, 27)` pilot while hash-protecting all 511 shared base materials.
+- Bind 22 surfaces across nine terrain/building instances with reversible per-instance overrides, legacy-shadow restoration, F2 identity checks, and cross-region cleanup tests.
+
 ## 2026-07-12 - Add reversible HD-2D visual profiles
 
 - Add Classic/HD2D profile resources, F2 and command-line switching, camera-local orthographic pixel snapping with native-size Sprite3D compensation, a prebuilt player ground shadow, lightweight depth fog, and render-performance capture metrics.
