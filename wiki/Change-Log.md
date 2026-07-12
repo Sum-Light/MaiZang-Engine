@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-07-12 - Lock native player sprite pixels
+
+- Render all 32 player frames through an isolated Compatibility SubViewport and require source-identical alpha coordinates, preventing the HD2D comparison image from squeezing or shifting sprite columns.
+- Add explicit down/up/left/right world captures with 16-frame stability checks and include the pixel test in full repository validation.
+
 ## 2026-07-12 - Add world-scale HD2D semantic classification
 
 - Derive a hash-free semantic profile from catalog signatures, GLB texture bindings, alpha modes, emissive factors, and all 3249 material-bearing primitive surfaces.

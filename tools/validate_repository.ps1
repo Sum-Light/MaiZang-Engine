@@ -123,6 +123,7 @@ if ($Full) {
     $hd2dProfileLog = Join-Path $logRoot "hd2d-semantic-profile.log"
     $hd2dMaterialBuildLog = Join-Path $logRoot "hd2d-material-build.log"
     $hd2dMaterialLog = Join-Path $logRoot "hd2d-material-validation.log"
+    $playerSpritePixelLog = Join-Path $logRoot "player-sprite-pixel-test.log"
     $worldStreamerLog = Join-Path $logRoot "world-streamer-smoke.log"
 
     & $GodotPath --headless --path $godotProject --log-file $sharedMaterialLog --script "res://tools/validate_shared_materials.gd"
@@ -160,6 +161,12 @@ if ($Full) {
         throw "HD2D material variant validation failed."
     }
     Assert-CleanGodotLog -Path $hd2dMaterialLog -Label "HD2D material validation"
+
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file $playerSpritePixelLog --script "res://tests/player_sprite_pixel_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Player sprite pixel test failed."
+    }
+    Assert-CleanGodotLog -Path $playerSpritePixelLog -Label "Player sprite pixel test"
 
     & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file $worldStreamerLog --script "res://tests/world_streamer_smoke_test.gd"
     if ($LASTEXITCODE -ne 0) {

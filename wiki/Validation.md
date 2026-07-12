@@ -60,6 +60,14 @@ The command rebuilds and audits the P3 seed first (`5` assets, `9` instances,
 also runs the variant builder, so deleting the ignored variant cache or leaving
 an unknown stale tag directory cannot be hidden by an existing local build.
 
+Full validation also runs `player_sprite_pixel_test.gd` in a transparent
+`34 x 34` Compatibility-rendered SubViewport. All 32 atlas frames must preserve
+the source alpha mask at identical coordinates; this catches squeezed,
+duplicated, missing, or shifted columns independently of scene background and
+sRGB color conversion. The atlas baseline is `272 x 136`, arranged as
+`8 x 4` frames with a one-pixel padding border around the original `32 x 32`
+sprite canvas.
+
 ## Streaming Smoke Test
 
 Use a real OpenGL renderer so renderer cleanup is exercised:
@@ -123,6 +131,10 @@ The test verifies:
   RID, orphan, or shader cleanup errors even when the process returns success.
 
 ## Render Capture
+
+`render_world_capture.gd` accepts `--facing=down|up|left|right` for a real-world
+directional regression. The canonical HD2D direction captures at `(3, 27)`
+must each remain RGBA-stable for 16 consecutive frames.
 
 ```powershell
 & "D:\path\to\Godot_v4.7-stable_win64_console.exe" `

@@ -11,6 +11,7 @@
 | `new-game-project/visual_profiles/` | Versioned Classic and HD2D visual parameter resources |
 | `new-game-project/scenes/main.tscn` | Minimal runnable world shell |
 | `new-game-project/tests/` | Streaming and render-capture integration tests |
+| `new-game-project/tests/player_sprite_pixel_test.gd` | OpenGL alpha-mask identity test for all 32 native player frames |
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
 | `new-game-project/tools/build_hd2d_material_variants.gd` | Local semantic material variant generation without base-material mutation |
 | `new-game-project/tools/validate_hd2d_material_variants.gd` | HD2D variant metadata, dependency, and protected-property validation |

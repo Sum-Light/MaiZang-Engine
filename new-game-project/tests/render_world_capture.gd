@@ -28,6 +28,7 @@ func _run() -> void:
 	var measure_frames := 0
 	var stability_frames := 8
 	var force_perspective := false
+	var requested_facing := -1
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--cell="):
 			var cell_components := argument.trim_prefix("--cell=").split(",")
@@ -51,6 +52,11 @@ func _run() -> void:
 			stability_frames = maxi(1, int(argument.trim_prefix("--stability-frames=")))
 		elif argument == "--perspective":
 			force_perspective = true
+		elif argument.begins_with("--facing="):
+			requested_facing = _parse_facing(argument.trim_prefix("--facing=").to_lower())
+			if requested_facing < 0:
+				_fail("Unknown player facing requested: %s" % argument)
+				return
 
 	if requested_profile not in [
 		VisualProfileControllerScript.CLASSIC_PROFILE,
@@ -83,6 +89,8 @@ func _run() -> void:
 		capture_cell.y * PlatinumWorldStreamer.CHUNK_SIZE + capture_offset.y
 	)
 	root.add_child(main)
+	if requested_facing >= 0:
+		player.teleport_to_grid(player.global_position, requested_facing)
 	if visual_profile.get_active_profile_name() != requested_profile:
 		_fail(
 			"Visual profile mismatch: requested=%s active=%s"
@@ -194,6 +202,7 @@ func _run() -> void:
 	print("WORLD_CAPTURE_PROJECTION ", camera.get_projection_name())
 	print("WORLD_CAPTURE_CAMERA_DISTANCE ", camera.get_active_follow_distance())
 	print("WORLD_CAPTURE_PLAYER_FRAME ", player.get_current_sprite_frame())
+	print("WORLD_CAPTURE_PLAYER_FACING ", player.get_current_facing())
 	if not metrics.is_empty():
 		print("WORLD_CAPTURE_METRICS ", JSON.stringify(metrics))
 	_cleanup_scene()
@@ -297,6 +306,20 @@ func _write_json(path: String, value: Dictionary) -> bool:
 
 func _is_capture_path(path: String) -> bool:
 	return path.begins_with("res://captures/") and not path.contains("..")
+
+
+func _parse_facing(value: String) -> int:
+	match value:
+		"down":
+			return PlatinumPlayerController.Facing.DOWN
+		"up":
+			return PlatinumPlayerController.Facing.UP
+		"left":
+			return PlatinumPlayerController.Facing.LEFT
+		"right":
+			return PlatinumPlayerController.Facing.RIGHT
+		_:
+			return -1
 
 
 func _cleanup_scene() -> void:

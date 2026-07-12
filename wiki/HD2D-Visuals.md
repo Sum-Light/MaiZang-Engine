@@ -173,3 +173,16 @@ and validation rejects any count drift or uncovered surface.
 P4b water animation remains optional. It can proceed only after individual
 water surfaces are confirmed tileable and can move by whole source texels at a
 low fixed cadence without changing buildings, foliage, or the player.
+
+## Player Pixel Integrity
+
+The local player atlas is `272 x 136`: 32 frames in an `8 x 4` layout, each
+stored in a `34 x 34` cell around the original `32 x 32` sprite canvas. HD2D
+maps one source texel to one orthographic screen pixel and moves the Sprite3D
+anchor by the same camera snap offset, preventing the comparison image on the
+right from squeezing a column when the camera rounds to its pixel grid.
+
+The renderer regression draws every frame into a transparent `34 x 34`
+SubViewport and requires an exact alpha-mask match. Directional world captures
+can be produced with `--facing`; down, up, left, and right each remain stable for
+16 frames at the canonical cell.

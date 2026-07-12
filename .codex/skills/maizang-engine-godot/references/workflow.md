@@ -65,6 +65,9 @@ Expected Godot baselines:
 - Runtime preloads 22 immutable variants, preserves 63 classified materials,
   and switches active overrides `0 -> registered -> 0` for streamed cells.
 - HD2D generation leaves the SHA-256 of all 511 shared base materials unchanged.
+- The local `272 x 136` player atlas renders all 32 padded `34 x 34` frame cells
+  with source-identical alpha coordinates; use capture `--facing` for each
+  cardinal world regression.
 
 ## Documentation and Memory
 
