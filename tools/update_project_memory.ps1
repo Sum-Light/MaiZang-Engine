@@ -132,17 +132,6 @@ $playerSpriteStatus = if (Test-Path -LiteralPath $playerSpritePath -PathType Lea
 else {
     "not present; run tools/import_player_sprite.ps1"
 }
-$hd2dProfilePath = Join-Path $assetRoot "hd2d\world_semantics.profile.json"
-$hd2dProfileStatus = if (Test-Path -LiteralPath $hd2dProfilePath -PathType Leaf) {
-    "present locally (ignored by Git)"
-}
-else {
-    "not present; run tools/configure_hd2d_material_variants.ps1"
-}
-$hd2dVariantRoot = Join-Path $assetRoot "hd2d\shared_variants"
-$hd2dVariants = @(
-    Get-ChildItem -LiteralPath $hd2dVariantRoot -Recurse -Filter "*.tres" -File -ErrorAction SilentlyContinue
-).Count
 
 $currentState = @"
 # Current State
@@ -165,9 +154,6 @@ $currentState = @"
 - Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: orthographic size ``11.24`` by default; ``F1`` toggles FOV-75 perspective.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
-- Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
-- HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
-- HD2D atmosphere: fog ``0.14`` over ``18..26`` (curve ``1.3``), cool ambient ``(0.75, 0.79, 0.82)`` at ``0.74``, warm sun ``(1, 0.93, 0.84)`` at ``0.9``; glow, adjustments, and dynamic sun shadow are off.
 - Main matrix: ``0000`` (``30 x 30`` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -184,13 +170,11 @@ $currentState = @"
 - Shared materials found: $localMaterials
 - Building instances found: $localBuildings
 - Dawn sprite atlas: $playerSpriteStatus.
-- HD2D semantic profile: $hd2dProfileStatus.
-- HD2D material variants found: $hd2dVariants
 
 ## Next Engineering Milestone
 
-Integrate terrain height and collision data, then validate grounded player
-movement and foreground occlusion against both Classic and HD2D profiles.
+Integrate ``a.dat`` tile behavior and ``h.bhc`` height/collision data without
+coupling the collision cache to rendered scene lifetime.
 "@
 
 $skillState = @"
@@ -206,17 +190,13 @@ MaiZang Engine and regenerate it in every functional commit.
 - Player: half-integer-centered one-unit grid steps at ``60 Hz``; walk ``16`` ticks, ``Z`` run ``8`` ticks, stationary turn ``6`` ticks.
 - Camera: size-11.24 orthographic default, ``F1`` FOV-75 perspective debug view.
 - Camera transform: orthographic distance ``16``, perspective distance ``8``, yaw ``0``, pitch ``50``, wheel step ``5``.
-- Visual profile: Classic default; ``F2`` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
-- HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
-- HD2D atmosphere: fog ``0.14`` over ``18..26`` (curve ``1.3``), cool ambient ``(0.75, 0.79, 0.82)`` at ``0.74``, warm sun ``(1, 0.93, 0.84)`` at ``0.9``; glow, adjustments, and dynamic sun shadow are off.
 - World: matrix ``0000``, 468 occupied cells, 501 building instances.
 - Assets: 398 GLBs, 480 deduplicated textures, 511 shared materials.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.
 - Dawn sprite atlas: $playerSpriteStatus.
-- HD2D semantic profile: $hd2dProfileStatus; variants found: $hd2dVariants.
-- Next milestone: integrate terrain height/collision and validate grounded movement plus foreground occlusion in both visual profiles.
+- Next milestone: ``a.dat`` behavior plus ``h.bhc`` height and collision.
 
 The public repository must not contain ROM-derived models, textures, maps, or
 other proprietary Pokemon assets.

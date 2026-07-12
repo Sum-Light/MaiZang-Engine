@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://lo1t84vmist3" path="res://scripts/platinum_world_streamer.gd" id="1_streamer"]
 [ext_resource type="Script" uid="uid://72icnjp56syw" path="res://scripts/follow_camera.gd" id="2_camera"]
 [ext_resource type="Script" uid="uid://cgsc71dn4w1g1" path="res://scripts/player_controller.gd" id="3_player"]
-[ext_resource type="Script" path="res://scripts/visual_profile_controller.gd" id="4_visual_profile"]
-[ext_resource type="Resource" path="res://visual_profiles/classic.tres" id="5_classic_profile"]
-[ext_resource type="Resource" path="res://visual_profiles/hd2d.tres" id="6_hd2d_profile"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 1
@@ -17,28 +14,6 @@ ambient_light_energy = 0.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape_player"]
 radius = 0.3
 height = 1.4
-
-[sub_resource type="Gradient" id="Gradient_ground_shadow"]
-offsets = PackedFloat32Array(0, 0.7, 0.71, 1)
-colors = PackedColorArray(0.05, 0.08, 0.12, 0.3, 0.05, 0.08, 0.12, 0.3, 0.05, 0.08, 0.12, 0, 0.05, 0.08, 0.12, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ground_shadow"]
-gradient = SubResource("Gradient_ground_shadow")
-width = 12
-height = 6
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial_ground_shadow"]
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("GradientTexture2D_ground_shadow")
-texture_filter = 0
-
-[sub_resource type="QuadMesh" id="QuadMesh_ground_shadow"]
-material = SubResource("StandardMaterial_ground_shadow")
-size = Vector2(0.7, 0.46)
 
 [node name="Main" type="Node3D" unique_id=1201451321]
 
@@ -69,12 +44,6 @@ vframes = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape_player")
 
-[node name="GroundShadow" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.02, 0)
-visible = false
-cast_shadow = 0
-mesh = SubResource("QuadMesh_ground_shadow")
-
 [node name="Camera" type="Camera3D" parent="." unique_id=1405494576]
 transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 96.5, 14.156711, 874.7846)
 projection = 1
@@ -83,21 +52,9 @@ size = 11.24
 far = 2500.0
 script = ExtResource("2_camera")
 target_path = NodePath("../Player")
-pixel_snap_anchor_path = NodePath("../Player/Sprite3D")
 
 [node name="WorldStreamer" type="Node3D" parent="." unique_id=1398028523]
 script = ExtResource("1_streamer")
 focus_path = NodePath("../Player")
-visual_profile_path = NodePath("../VisualProfile")
 
 [node name="LoadedChunks" type="Node3D" parent="WorldStreamer" unique_id=1845466634]
-
-[node name="VisualProfile" type="Node" parent="."]
-script = ExtResource("4_visual_profile")
-world_environment_path = NodePath("../WorldEnvironment")
-sun_path = NodePath("../Sun")
-camera_path = NodePath("../Camera")
-player_shadow_path = NodePath("../Player/GroundShadow")
-player_sprite_path = NodePath("../Player/Sprite3D")
-classic_profile = ExtResource("5_classic_profile")
-hd2d_profile = ExtResource("6_hd2d_profile")

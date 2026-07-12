@@ -8,30 +8,6 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-function Assert-CleanGodotLog {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$Path,
-        [Parameter(Mandatory = $true)]
-        [string]$Label
-    )
-
-    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
-        throw "$Label did not create its expected Godot log: $Path"
-    }
-    $failures = @(
-        Select-String -LiteralPath $Path -Pattern @(
-            "ERROR:",
-            "leaked at exit",
-            "never freed",
-            "orphan"
-        ) -SimpleMatch
-    )
-    if ($failures.Count -gt 0) {
-        throw "$Label reported renderer or resource cleanup errors: $($failures[0].Line)"
-    }
-}
-
 if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
     $ProjectRoot = Split-Path -Parent $PSScriptRoot
 }
@@ -110,69 +86,18 @@ if ($Full) {
     }
     $godotProject = Join-Path $ProjectRoot "new-game-project"
     $manifestPath = Join-Path $godotProject "assets\platinum\matrix_0000\manifest.json"
-    $hd2dProfilePath = Join-Path $godotProject "assets\platinum\hd2d\world_semantics.profile.json"
-    $hd2dSeedProfilePath = Join-Path $godotProject "assets\platinum\hd2d\p3_city.profile.json"
     if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
         throw "Full validation requires locally generated Platinum assets."
     }
-    $logRoot = Join-Path $ProjectRoot ".work"
-    New-Item -ItemType Directory -Force -Path $logRoot | Out-Null
 
-    $sharedMaterialLog = Join-Path $logRoot "shared-material-validation.log"
-    $hd2dSeedProfileLog = Join-Path $logRoot "hd2d-p3-seed-profile.log"
-    $hd2dProfileLog = Join-Path $logRoot "hd2d-semantic-profile.log"
-    $hd2dMaterialBuildLog = Join-Path $logRoot "hd2d-material-build.log"
-    $hd2dMaterialLog = Join-Path $logRoot "hd2d-material-validation.log"
-    $playerSpritePixelLog = Join-Path $logRoot "player-sprite-pixel-test.log"
-    $worldStreamerLog = Join-Path $logRoot "world-streamer-smoke.log"
-
-    & $GodotPath --headless --path $godotProject --log-file $sharedMaterialLog --script "res://tools/validate_shared_materials.gd"
+    & $GodotPath --headless --path $godotProject --script "res://tools/validate_shared_materials.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "Shared material validation failed."
     }
-    Assert-CleanGodotLog -Path $sharedMaterialLog -Label "Shared material validation"
-
-    & $GodotPath --headless --path $godotProject --log-file $hd2dSeedProfileLog --script "res://tools/generate_hd2d_p3_seed_profile.gd" -- "--output-profile=res://assets/platinum/hd2d/p3_city.profile.json"
-    if ($LASTEXITCODE -ne 0) {
-        throw "HD2D P3 seed profile generation failed."
-    }
-    Assert-CleanGodotLog -Path $hd2dSeedProfileLog -Label "HD2D P3 seed profile generation"
-    if (-not (Test-Path -LiteralPath $hd2dSeedProfilePath -PathType Leaf)) {
-        throw "HD2D P3 seed profile was not generated."
-    }
-
-    & $GodotPath --headless --path $godotProject --log-file $hd2dProfileLog --script "res://tools/generate_hd2d_semantic_profile.gd" -- "--rules=res://tools/hd2d_semantic_rules.json" "--seed-profile=res://assets/platinum/hd2d/p3_city.profile.json" "--output-profile=res://assets/platinum/hd2d/world_semantics.profile.json"
-    if ($LASTEXITCODE -ne 0) {
-        throw "HD2D semantic profile generation failed."
-    }
-    Assert-CleanGodotLog -Path $hd2dProfileLog -Label "HD2D semantic profile generation"
-    if (-not (Test-Path -LiteralPath $hd2dProfilePath -PathType Leaf)) {
-        throw "HD2D semantic profile was not generated."
-    }
-
-    & $GodotPath --headless --path $godotProject --log-file $hd2dMaterialBuildLog --script "res://tools/build_hd2d_material_variants.gd" -- "--profile=res://assets/platinum/hd2d/world_semantics.profile.json"
-    if ($LASTEXITCODE -ne 0) {
-        throw "HD2D material variant build failed."
-    }
-    Assert-CleanGodotLog -Path $hd2dMaterialBuildLog -Label "HD2D material build"
-
-    & $GodotPath --headless --path $godotProject --log-file $hd2dMaterialLog --script "res://tools/validate_hd2d_material_variants.gd" -- "--profile=res://assets/platinum/hd2d/world_semantics.profile.json"
-    if ($LASTEXITCODE -ne 0) {
-        throw "HD2D material variant validation failed."
-    }
-    Assert-CleanGodotLog -Path $hd2dMaterialLog -Label "HD2D material validation"
-
-    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file $playerSpritePixelLog --script "res://tests/player_sprite_pixel_test.gd"
-    if ($LASTEXITCODE -ne 0) {
-        throw "Player sprite pixel test failed."
-    }
-    Assert-CleanGodotLog -Path $playerSpritePixelLog -Label "Player sprite pixel test"
-
-    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --log-file $worldStreamerLog --script "res://tests/world_streamer_smoke_test.gd"
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/world_streamer_smoke_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "World streamer smoke test failed."
     }
-    Assert-CleanGodotLog -Path $worldStreamerLog -Label "World streamer smoke test"
 }
 
 Write-Host "Repository validation complete."

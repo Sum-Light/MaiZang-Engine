@@ -17,11 +17,6 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\configure_dspre_
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
   -SourcePath "D:\path\to\Dawn.png"
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass `
-  -File .\tools\configure_hd2d_material_variants.ps1 `
-  -ProjectRoot .\new-game-project `
-  -GodotPath "D:\path\to\Godot_console.exe"
 ```
 
 Never run `sync_dspre_godot_assets.ps1 -Force` until the destination resolves
@@ -54,26 +49,6 @@ Expected Godot baselines:
   8 with `Z`, and 6 for a stationary turn.
 - Default pitch-50, size-11.24 orthographic projection at distance 16, with a
   distance-8 FOV-75 perspective debug toggle.
-- Classic/HD2D F2 roundtrip preserves gameplay and streaming; HD2D capture uses
-  camera-local pixel snap, depth fog, and a prebuilt player ground shadow.
-- The local world-semantic profile covers 468 cells and partitions exactly 511
-  materials / 3249 primitive surfaces into shadow, water, foliage, emissive,
-  ordinary, and ambiguous classes.
-- Full validation regenerates the ignored eight-material P3 seed before the
-  world profile, rebuilds all variants, and requires the exact generated path
-  set, so pre-existing local profile state cannot mask drift.
-- Runtime preloads 22 immutable variants, preserves 63 classified materials,
-  and switches active overrides `0 -> registered -> 0` for streamed cells.
-- HD2D generation leaves the SHA-256 of all 511 shared base materials unchanged.
-- The local `272 x 136` player atlas renders all 32 padded `34 x 34` frame cells
-  with source-identical alpha coordinates; use capture `--facing` for each
-  cardinal world regression.
-- The accepted HD2D atmosphere is fog `0.14` over depth `18..26` (curve `1.3`),
-  cool ambient `(0.75, 0.79, 0.82)` at `0.74`, and warm sun
-  `(1, 0.93, 0.84)` at `0.9`; glow and adjustments stay disabled.
-- `capture_hd2d_visual_matrix.ps1` must retain the Classic SHA, six 16-frame
-  stable captures, `43/50/2402` draw topology, and target p95 limits of
-  `2.5 ms` CPU / `2.0 ms` GPU.
 
 ## Documentation and Memory
 

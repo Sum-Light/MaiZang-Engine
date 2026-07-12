@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `b044f06bfc38f6e254334c86e4fef4749e3ac4efc2fc53945d72e73e0957473e`
-- Fingerprinted files: 66
-- Godot runtime scripts: 5
-- Godot test scripts: 3
-- PowerShell tools: 13
+- Source fingerprint: `8abfb9993e3739ac4f1f6651c16ad0b4530b23cc486c22b2d62e36076549aa36`
+- Fingerprinted files: 48
+- Godot runtime scripts: 3
+- Godot test scripts: 2
+- PowerShell tools: 11
 
 ## Runtime Baseline
 
@@ -18,9 +18,6 @@
 - Player: half-integer-centered one-unit grid steps at `60 Hz`; walk `16` ticks, `Z` run `8` ticks, stationary turn `6` ticks.
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
-- Visual profile: Classic default; `F2` toggles the HD2D preview with pixel snap, depth fog, player ground shadow, and reversible instance-material variants.
-- HD2D semantics: exact 511-material / 3249-surface partition; 22 shared variants and 63 explicit base-preserve policies; shared base materials remain immutable.
-- HD2D atmosphere: fog `0.14` over `18..26` (curve `1.3`), cool ambient `(0.75, 0.79, 0.82)` at `0.74`, warm sun `(1, 0.93, 0.84)` at `0.9`; glow, adjustments, and dynamic sun shadow are off.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
 - Exported variants: 176 terrain and 222 building/texture pairs.
 - Building instances: 501.
@@ -37,10 +34,8 @@
 - Shared materials found: 511
 - Building instances found: 501
 - Dawn sprite atlas: present locally (ignored by Git).
-- HD2D semantic profile: present locally (ignored by Git).
-- HD2D material variants found: 22
 
 ## Next Engineering Milestone
 
-Integrate terrain height and collision data, then validate grounded player
-movement and foreground occlusion against both Classic and HD2D profiles.
+Integrate `a.dat` tile behavior and `h.bhc` height/collision data without
+coupling the collision cache to rendered scene lifetime.

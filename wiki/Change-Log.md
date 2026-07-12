@@ -1,37 +1,5 @@
 # Change Log
 
-## 2026-07-12 - Tune the HD2D atmosphere
-
-- Balance the opt-in HD2D preview with restrained depth fog, cool ambient fill, and a softer warm sun while keeping glow, adjustments, dynamic shadows, water, and foliage effects disabled.
-- Add a reproducible six-scene visual matrix with 16-frame stability, frozen Classic SHA, exact draw topology, and 1800-frame CPU/GPU p95 gates.
-
-## 2026-07-12 - Lock native player sprite pixels
-
-- Render all 32 player frames through an isolated Compatibility SubViewport and require source-identical alpha coordinates, preventing the HD2D comparison image from squeezing or shifting sprite columns.
-- Add explicit down/up/left/right world captures with 16-frame stability checks and include the pixel test in full repository validation.
-
-## 2026-07-12 - Add world-scale HD2D semantic classification
-
-- Derive a hash-free semantic profile from catalog signatures, GLB texture bindings, alpha modes, emissive factors, and all 3249 material-bearing primitive surfaces.
-- Rebuild the ignored eight-material P3 seed from the manifest and catalog in both configuration and full-validation workflows.
-- Derive the seed's nine instances and 22 selected GLB surfaces, reject semantic-policy conflicts, and recursively prune unknown stale variant tags.
-- Preserve static water, alpha foliage, legacy shadows, and ambiguous materials while applying 16 low-energy emissive variants and retaining six explicit P3 lit variants.
-- Add 32-toggle material identity stress coverage, sparse-neighborhood capture readiness, and eight-frame RGBA stability validation.
-
-## 2026-07-12 - Enforce clean renderer teardown
-
-- Flush the Compatibility renderer after world-test cleanup and make full validation reject logged shader, RID, resource, or orphan leaks even when Godot exits with code zero.
-
-## 2026-07-12 - Add the HD2D semantic material pilot
-
-- Generate and validate eight ignored per-vertex-lit material variants for the bounded `(3, 27)` pilot while hash-protecting all 511 shared base materials.
-- Bind 22 surfaces across nine terrain/building instances with reversible per-instance overrides, legacy-shadow restoration, F2 identity checks, and cross-region cleanup tests.
-
-## 2026-07-12 - Add reversible HD-2D visual profiles
-
-- Add Classic/HD2D profile resources, F2 and command-line switching, camera-local orthographic pixel snapping with native-size Sprite3D compensation, a prebuilt player ground shadow, lightweight depth fog, and render-performance capture metrics.
-- Keep Classic pixel-identical through a zero-influence warm fog path that avoids a Godot 4.7 Compatibility shader leak during profile roundtrips.
-
 ## 2026-07-12 - Add grid movement and fix foreground clipping
 
 - Center the player on half-integer tile coordinates and move one 16-pixel tile per atomic action, mapping Platinum's 30 Hz walk/run timing to 16/8 Godot physics ticks.

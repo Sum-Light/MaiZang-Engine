@@ -90,36 +90,8 @@ group at `(170, 0)`, removes both source background colors, and writes an
 `8 x 4` transparent atlas to the ignored path
 `new-game-project/assets/platinum/characters/dawn_overworld.png`.
 
-### 6. Build Local HD2D Material Variants
-
-The public repository contains the builder, validator, and a placeholder
-profile schema. The real profile and generated variants remain under the
-ignored Platinum asset tree because their material keys are ROM-derived.
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass `
-  -File .\tools\configure_hd2d_material_variants.ps1 `
-  -ProjectRoot .\new-game-project `
-  -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe"
-```
-
-The wrapper first regenerates the ignored `(3, 27)` P3 seed from the manifest
-and catalog, then derives the ignored world-semantic profile from tracked
-rules, the local manifest/material catalog, and all 398 GLB JSON chunks. It then
-builds 22 shared resources: six retained `lit_vertex` variants and 16
-`emissive_window` variants. Water, alpha foliage, legacy shadows, and one
-ambiguous material remain base-only through 63 explicit preserve policies.
-
-Generation validates an exact partition of 511 materials and 3249 primitive
-surface references. The seed stage derives and asserts its nine instances and
-22 selected primitive surfaces from the GLBs. The builder recursively removes
-stale variants even under unknown legacy tag directories, and the validator
-accepts only the exact 22 generated paths. All 511 shared base `.tres` files are
-hashed before and after the operation, including failed builds; any base change
-fails the command.
-
 ## Rebuild Rule
 
-Do not hand-edit generated GLB, PNG, `.import`, material, atlas, HD2D variant,
-or manifest output. Change the converter, profile, or import script, rebuild,
-then validate the complete set.
+Do not hand-edit generated GLB, PNG, `.import`, material, atlas, or manifest
+output. Change the converter or import script, rebuild, then validate the
+complete set.

@@ -13,7 +13,6 @@ complete game port.
 - Assemble 468 occupied terrain cells and 501 building instances.
 - Control Dawn with four-direction walking and `Z` running animations.
 - Use a native-size orthographic camera with an `F1` perspective debug mode.
-- Preview a reversible HD-2D visual profile with `F2` while Classic stays the baseline.
 - Stream nearby chunks around the player with bounded asset retention.
 
 ## Documentation
@@ -22,7 +21,6 @@ complete game port.
 - [Asset Pipeline](Asset-Pipeline)
 - [Runtime Streaming](Runtime-Streaming)
 - [Player Control](Player-Control)
-- [HD-2D Visuals](HD2D-Visuals)
 - [Validation](Validation)
 - [Development Workflow](Development-Workflow)
 - [Repository Policy](Repository-Policy)

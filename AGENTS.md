@@ -56,19 +56,11 @@ asset workflow.
 - The camera uses yaw `0`, downward pitch `50`, and wheel step `5`. It starts
   orthographic at size `11.24` and distance `16`; `F1` toggles the distance-8,
   FOV-75 perspective debug view.
-- Visual profile defaults to `classic`; `F2` toggles the `hd2d` preview. Profile
-  changes must not alter gameplay, projection, streaming state, or shared meshes.
 - Matrix coordinate unit: 32 world units per map block.
 - Matrix altitude unit: 0.5 world units.
 - Imported model scale: `1 / 16`.
 - Streamed assets must load asynchronously without sub-threaded import.
 - Runtime code must not mutate shared `ArrayMesh` materials.
-- HD2D semantic materials must remain separate immutable resources applied
-  through per-instance surface overrides; local profiles and generated variants
-  stay under the ignored Platinum asset tree.
-- HD2D uses fog density `0.14`, depth `18..26`, curve `1.3`, and no
-  glow/adjustments/dynamic sun shadow. Classic remains the default, and visual
-  changes must pass the representative capture/performance matrix.
 - Distant chunks and their strong `PackedScene` references must be released.
 
 ## Git Workflow

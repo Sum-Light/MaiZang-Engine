@@ -4,28 +4,18 @@
 
 | Path | Owner and purpose |
 |---|---|
-| `new-game-project/scripts/platinum_world_streamer.gd` | Manifest loading, asynchronous asset cache, chunk lifecycle, placement, reversible HD2D instance-material bindings |
+| `new-game-project/scripts/platinum_world_streamer.gd` | Manifest loading, asynchronous asset cache, chunk lifecycle, placement |
 | `new-game-project/scripts/player_controller.gd` | Cardinal movement, Dawn animation, walking and running state |
 | `new-game-project/scripts/follow_camera.gd` | Player following and mouse-wheel pitch control |
-| `new-game-project/scripts/visual_profile_controller.gd` | Classic/HD2D environment, sun, pixel-snap, and player-shadow ownership |
-| `new-game-project/visual_profiles/` | Versioned Classic and HD2D visual parameter resources |
 | `new-game-project/scenes/main.tscn` | Minimal runnable world shell |
 | `new-game-project/tests/` | Streaming and render-capture integration tests |
-| `new-game-project/tests/player_sprite_pixel_test.gd` | OpenGL alpha-mask identity test for all 32 native player frames |
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
-| `new-game-project/tools/build_hd2d_material_variants.gd` | Local semantic material variant generation without base-material mutation |
-| `new-game-project/tools/validate_hd2d_material_variants.gd` | HD2D variant metadata, dependency, and protected-property validation |
-| `new-game-project/tools/generate_hd2d_p3_seed_profile.gd` | Reproducible ignored `(3, 27)` ordinary-lighting seed from manifest/catalog semantics |
-| `new-game-project/tools/generate_hd2d_semantic_profile.gd` | Exact 511-material/3249-surface semantic classification from catalog and GLB structure |
-| `new-game-project/tools/hd2d_semantic_rules.json` | Tracked hash-free water, foliage, shadow, emissive, and ambiguity rules |
 | `tools/dspre_batch_export.ps1` | DSPRE binary data to isolated terrain/building GLBs and manifest |
 | `tools/dedupe_dspre_materials.ps1` | Shared texture pool, material signatures, GLB JSON rewrite |
 | `tools/sync_dspre_godot_assets.ps1` | Local generated output to ignored Godot asset tree |
 | `tools/configure_dspre_godot_materials.ps1` | External material mappings and scene reimport |
 | `tools/configure_dspre_godot_textures.ps1` | Lossless, no-mipmap texture import |
 | `tools/import_player_sprite.ps1` | Local Dawn walk/run atlas extraction and color-key transparency |
-| `tools/configure_hd2d_material_variants.ps1` | Rebuild the ignored seed/world profiles, build/validate variants, and hash-protect all 511 base materials |
-| `tools/capture_hd2d_visual_matrix.ps1` | Reproducible Classic/HD2D representative capture, stability, SHA, topology, and performance gate |
 | `wiki/` | Versioned GitHub Wiki source of truth |
 
 ## Runtime Constants
@@ -36,10 +26,6 @@
   walk/run actions map to 16/8 Godot physics ticks, with 6-tick stationary turns.
 - Follow camera: orthographic size `11.24` and distance `16`; debug perspective
   FOV `75` and distance `8`; yaw `0`, downward pitch `50`, wheel step `5`.
-- Visual profile: Classic default; `F2` HD2D preview with camera-local pixel snap,
-  depth fog, player ground shadow, and no gameplay or mesh mutation. The local
-  world profile owns 22 shared variants and 63 explicit base-preserve policies;
-  active binding counts follow the currently streamed cells.
 - `CHUNK_SIZE = 32.0`
 - `HEIGHT_STEP = 0.5`
 - `MODEL_SCALE = 1.0 / 16.0`
