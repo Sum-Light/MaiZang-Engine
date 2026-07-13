@@ -7,9 +7,11 @@ directory must leave the existing MaiZang world runtime unchanged.
 ## Current Status
 
 Q0 provides only an editor quick-start surface and a synthetic text smoke
-shell. It does not contain a catalog, `BattleEngine`, playable battle, world
-integration, network stack, model, texture, animation, audio, or battle
-camera. P0 is the next implementation phase.
+shell. P0 is in progress: the target data generation, ruleset/mode/action
+scope, source-use classes, network deferrals, text-only policy, strict manifest
+schemas, and production license gate are frozen and tested. The module still
+does not contain a catalog, `BattleEngine`, playable battle, world integration,
+network stack, model, texture, animation, audio, or battle camera.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -64,3 +66,21 @@ should run in the same read-only gate.
 Licensed inputs, normalized data, runtime catalogs, generated reports, and
 temporary files remain ignored. Only schemas, reproducible tools, empty
 templates, and wholly synthetic fixtures may be committed.
+
+## P0 Manifest Gate
+
+`manifests/battle_scope_manifest.json` is the tracked scope authority. The
+licensed-source and source-audit template manifests contain no source records.
+Validate them with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_catalog\validators\validate_p0_manifests.ps1
+```
+
+The strict parser rejects duplicate keys, non-integer numbers, nonstandard
+literals, trailing commas, BOMs, unknown fields, stale evidence hashes, and
+absolute or traversing paths. `-GenerationMode Production` fails with
+`BATTLE_P0_LICENSED_SOURCE_REQUIRED` until an ignored, verified production
+manifest is supplied; the public empty template is never accepted as
+production authorization.

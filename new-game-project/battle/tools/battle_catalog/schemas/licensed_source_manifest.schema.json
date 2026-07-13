@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/licensed_source_manifest.schema.json",
+  "title": "LicensedSourceManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_kind", "manifest_mode", "scope_id", "target_data_generation", "records"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_kind": {"const": "LICENSED_SOURCE"},
+    "manifest_mode": {"enum": ["TEMPLATE", "PRODUCTION"]},
+    "scope_id": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+    "target_data_generation": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+    "records": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/licensed_source_record"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"manifest_mode": {"const": "PRODUCTION"}}},
+      "then": {"properties": {"records": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "licensed_source_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_class",
+        "license_basis",
+        "license_expression",
+        "license_evidence_ref",
+        "allowed_domains",
+        "source_version",
+        "record_count",
+        "field_count",
+        "content_sha256",
+        "local_relative_path",
+        "license_status"
+      ],
+      "properties": {
+        "source_id": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+        "source_class": {"const": "AUTHORING_DATA"},
+        "license_basis": {"enum": ["PROJECT_OWNED", "PERMISSIVE_LICENSE", "PUBLIC_DOMAIN", "EXPLICIT_WRITTEN_PERMISSION"]},
+        "license_expression": {"type": "string", "minLength": 1},
+        "license_evidence_ref": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:[\\\\/])(?![/\\\\]).+$"},
+        "allowed_domains": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["SPECIES", "FORM", "TYPE", "MOVE", "ABILITY", "ITEM", "GROWTH", "LEARNSET", "EGG", "EVOLUTION", "RULE_METADATA", "LOCALIZED_TEXT"]}
+        },
+        "source_version": {"type": "string", "minLength": 1},
+        "record_count": {"type": "integer", "minimum": 1},
+        "field_count": {"type": "integer", "minimum": 1},
+        "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "local_relative_path": {"type": "string", "pattern": "^local_data/source/[A-Za-z0-9._/-]+$"},
+        "license_status": {"const": "LICENSE_VERIFIED"}
+      }
+    }
+  }
+}

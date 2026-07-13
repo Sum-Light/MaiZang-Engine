@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Freeze battle P0 manifest contracts
+
+- Freeze the independent battle module's target data generation, rule version, local modes/actions, source-use classes, network deferrals, and text-only presentation scope behind exact compatibility hashes.
+- Add strict scope, licensed-source, source-audit, and implementation-work-item schemas plus empty public templates that cannot authorize production data.
+- Add a battle-local strict JSON parser, fail-closed production license gate, real contract/evidence hash validation, and focused rejection tests without importing source data or coupling the world runtime.
+
 ## 2026-07-13 - Add isolated battle quick start
 
 - Establish `new-game-project/battle/` as the only battle business root, with nested local-data and generated-artifact ignores.

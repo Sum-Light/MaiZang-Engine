@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/source_audit_disposition_manifest.schema.json",
+  "title": "SourceAuditDispositionManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_kind", "manifest_mode", "scope_id", "baseline", "entries"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_kind": {"const": "SOURCE_AUDIT_DISPOSITION"},
+    "manifest_mode": {"enum": ["TEMPLATE", "BASELINE"]},
+    "scope_id": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+    "baseline": {"$ref": "#/$defs/baseline"},
+    "entries": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/audit_entry"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"manifest_mode": {"const": "BASELINE"}}},
+      "then": {"properties": {"entries": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_index_manifest_sha256", "repositories", "expected_counts"],
+      "properties": {
+        "source_index_manifest_sha256": {"type": "string", "pattern": "^$|^[0-9a-f]{64}$"},
+        "repositories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/repository_baseline"}
+        },
+        "expected_counts": {
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "repository_baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "branch", "commit", "tree_sha256", "dirty_paths_sha256", "dirty_path_count"],
+      "properties": {
+        "repository": {"enum": ["battlelogic", "pokelib"]},
+        "branch": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "dirty_paths_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "dirty_path_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "audit_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "audit_id",
+        "source_repository",
+        "source_path",
+        "source_sha256",
+        "source_symbol_or_edge",
+        "source_category",
+        "domain_package",
+        "mechanism_ids",
+        "branch_ids",
+        "target_godot_types",
+        "fixture_ids",
+        "scope_disposition",
+        "evidence_status",
+        "release_status",
+        "test_evidence_disposition",
+        "classification_rule_id",
+        "reason_code",
+        "reason",
+        "known_ambiguities",
+        "review_status"
+      ],
+      "properties": {
+        "audit_id": {"type": "string", "pattern": "^AUDIT_[0-9A-F]{16}$"},
+        "source_repository": {"enum": ["battlelogic", "pokelib"]},
+        "source_path": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:[\\\\/])(?![/\\\\]).+$"},
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_symbol_or_edge": {"type": "string", "minLength": 1},
+        "source_category": {"enum": ["MODULE", "SOURCE_FILE", "SECTION", "EVENT_HANDLER", "EVENT", "COMMAND", "ACTION", "INTERRUPT", "SCHEMA", "TEST", "SCRIPT_SCENARIO", "LOGIC_EDGE"]},
+        "domain_package": {"type": "string", "minLength": 1},
+        "mechanism_ids": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "branch_ids": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "target_godot_types": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"}},
+        "fixture_ids": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "scope_disposition": {"enum": ["IMPLEMENT", "MERGED_INTO_OTHER_MECHANISM", "DEFERRED_N0", "TEXT_ONLY", "OUT_OF_SCOPE_PRESENTATION", "REJECTED_UNVERIFIED", "NOT_APPLICABLE"]},
+        "evidence_status": {"enum": ["CLEAN_INDEXED", "DIRTY_UNVERIFIED", "MISSING_SOURCE", "STALE_INDEX"]},
+        "release_status": {"enum": ["NOT_STARTED", "SPECIFIED", "IMPORTED", "BOUND", "IMPLEMENTED", "VERIFIED", "RELEASED", "BLOCKED_SOURCE", "REJECTED_UNVERIFIED"]},
+        "test_evidence_disposition": {"enum": ["PORT_BEHAVIOR", "REPLACED_BY_SYNTHETIC_FIXTURE", "NOT_APPLICABLE"]},
+        "classification_rule_id": {"type": "string", "pattern": "^[A-Z0-9_.-]+$"},
+        "reason_code": {"type": "string", "pattern": "^[A-Z0-9_.-]+$"},
+        "reason": {"type": "string", "minLength": 1},
+        "known_ambiguities": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "review_status": {"enum": ["GENERATED_SCOPE_CLASSIFICATION", "HUMAN_REVIEWED", "VERIFIED"]}
+      }
+    }
+  }
+}

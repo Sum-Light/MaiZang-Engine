@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "manifest_kind": "BATTLE_SCOPE",
+  "scope_id": "MAIZANG_GEN9_SINGLE_PLAYER_TEXT_V1",
+  "target_data_generation": "GENERATION_9_LICENSED_LOCAL_V1",
+  "rule_behavior_version": 1,
+  "compatibility_policy": "EXACT_SCOPE_CATALOG_RULE_HASH",
+  "data_domains": [
+    "SPECIES",
+    "FORM",
+    "TYPE",
+    "MOVE",
+    "ABILITY",
+    "ITEM",
+    "GROWTH",
+    "LEARNSET",
+    "EGG",
+    "EVOLUTION",
+    "RULE_METADATA"
+  ],
+  "ruleset_families": [
+    "STANDARD_SINGLE",
+    "STANDARD_DOUBLE",
+    "WILD",
+    "TRAINER",
+    "FACILITY",
+    "RAID",
+    "LOCAL_SPECIAL_FEATURE_PACK"
+  ],
+  "action_kinds": [
+    "FIGHT",
+    "ITEM",
+    "SWITCH",
+    "ESCAPE",
+    "SKIP",
+    "CANNOT_ACT",
+    "REVIVE",
+    "CHEER",
+    "ROOTING",
+    "EXTRA_ACTION"
+  ],
+  "source_classes": [
+    {
+      "kind": "AUTHORING_DATA",
+      "allowed_use": "CATALOG_VALUES_WITH_VERIFIED_LICENSE_ONLY"
+    },
+    {
+      "kind": "PUBLIC_BEHAVIOR_EVIDENCE",
+      "allowed_use": "BEHAVIOR_CLAIMS_AND_CROSS_CHECKS_ONLY"
+    },
+    {
+      "kind": "PROJECT_DECISION",
+      "allowed_use": "GODOT_ARCHITECTURE_AND_POLICY_ONLY"
+    },
+    {
+      "kind": "SYNTHETIC_FIXTURE",
+      "allowed_use": "PUBLIC_TESTS_WITH_PROJECT_OWNED_VALUES_ONLY"
+    }
+  ],
+  "scope_dispositions": [
+    "IMPLEMENT",
+    "MERGED_INTO_OTHER_MECHANISM",
+    "DEFERRED_N0",
+    "TEXT_ONLY",
+    "OUT_OF_SCOPE_PRESENTATION",
+    "REJECTED_UNVERIFIED",
+    "NOT_APPLICABLE"
+  ],
+  "deferred_capabilities": [
+    "REMOTE_PEER",
+    "ROOM_MATCHMAKING",
+    "ACK_HISTORY",
+    "RETRANSMIT",
+    "RECONNECT",
+    "SPECTATOR",
+    "HOST_MIGRATION",
+    "NETWORK_TRANSPORT"
+  ],
+  "presentation_policy": {
+    "runtime_mode": "TEXT_ONLY",
+    "out_of_scope": [
+      "MODEL",
+      "TEXTURE",
+      "ANIMATION",
+      "AUDIO",
+      "BATTLE_CAMERA",
+      "PRODUCTION_HUD"
+    ],
+    "required_text_fallback": true
+  },
+  "local_data_policy": {
+    "source_root": "local_data/source",
+    "normalized_root": "local_data/normalized",
+    "runtime_root": "local_data/runtime",
+    "generated_root": "generated",
+    "production_requires_licensed_records": true,
+    "missing_license_policy": "FAIL_PRODUCTION_ALLOW_SYNTHETIC"
+  }
+}
