@@ -19,7 +19,7 @@ directory.
 |---|---|---|
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
-| P1 | In progress (7/17) | Foundation values, checked math, canonical hash, typed errors/results, and dependency gate complete; protocol/session slices next |
+| P1 | In progress (7/17) | Foundation plus protocol/command envelopes are verified; empty engine, authority/session, and suite tooling remain |
 | P2-P18 | Not started | Mechanism trace, data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -149,6 +149,40 @@ engine, rules, and effects. The scope gate calls this check after its content
 asset gate; synthetic tests prove valid inward dependencies and rejection of
 Node, runtime load, outward foundation references, and unknown layers.
 
+## P1 Protocol And Command Contracts
+
+Eight additional public types establish the protocol boundary without adding
+gameplay behavior. `BattleDecisionPayload`, `BattleInputRequest`, and
+`BattleCommand` are fail-closed polymorphic bases. `BattleStepInput`,
+`BattleCommandBatch`, and `BattleStepResult` are concrete immutable envelopes,
+with dedicated typed build results for the two validated constructors.
+Concrete decision variants remain P8 work; concrete state, message, control,
+and presentation command payloads and codecs remain P16 work.
+
+Request number, battle progress, and command sequence are encoded as separate
+fields. Published batches may be empty but require every present command to
+use the contiguous sequence `1..N`. They also bind the catalog version/hash,
+optional accepted-action digest, audience, and before/after view hashes. A
+valid unpublished empty batch is the non-null sentinel for failures produced
+before a publishable transaction exists.
+
+All constructors copy at the boundary and compare canonical bytes. A subtype
+that returns itself from `copy_payload`, `copy_request`, or `copy_command` is
+rejected, successful typed build results retain independent snapshots, and a
+valid object cannot be reconfigured or invalidated after sealing.
+`BattleStepResult` validates the `COMPLETE`, `NEED_INPUT`, and `FAILED` field
+truth table; `BATTLE_ENDED` is reserved until the outcome contract lands in
+the next P1 slice.
+
+The focused Godot suite runs 151 assertions. It includes independent payload,
+empty-batch, and full published-batch golden hashes; the full vector uses
+request `17` and progress `3` so an axis swap cannot pass. It also covers
+sequence gaps, oversize batches, hash-presence rules, mismatch-specific error
+codes, deep-copy isolation, malicious subtype aliases, and deterministic
+result copies. The verified work item binds six Godot documents and clean
+source code/test hashes while recording that no sealed source test defines
+the project's canonical encoding or typed error truth table.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
@@ -158,6 +192,11 @@ and the currently verified P1 slice is `7/17`. Current mainline progress is
 therefore `52/465` items (`11.2%`), with `2/20` phases complete and P1
 active. This count advances only after a checklist item has implementation,
 focused verification, Wiki/Skill memory, and a focused commit.
+
+The protocol/command slice completes part of P1's already-counted public-type
+contract item, so it intentionally does not increment the conservative
+checklist numerator. The next count change requires closing one of the
+remaining engine, session, suite, or completion-gate items in full.
 
 ## Editor Entry
 
@@ -200,6 +239,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   --headless --path .\new-game-project `
   --script res://battle/tests/foundation/p1_foundation_test.gd
 
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --headless --path .\new-game-project `
+  --script res://battle/tests/protocol/p1_protocol_command_test.gd
+
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
 
@@ -238,3 +281,7 @@ result immutability, int64, rounding, ratio, canonical byte, writer failure,
 and SHA-256 contracts. The dependency test runs the real worktree scan plus
 adversarial worktree/staged fixtures; the existing scope test proves All mode
 cannot hide a forbidden staged blob behind a clean worktree copy.
+The P1 protocol/command test executes 151 checks across fail-closed base
+types, canonical golden hashes, independent request/progress/sequence axes,
+typed mismatch errors, empty/published batches, copy sealing, alias rejection,
+and step-result field combinations.

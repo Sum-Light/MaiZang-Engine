@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Add battle P1 protocol and command contracts
+
+- Add fail-closed decision, request, step-input, command, batch, and step-result envelopes with typed construction failures and stable protocol diagnostics.
+- Keep request number, battle progress, and command sequence independent; bind canonical catalog/action/view hashes, valid empty batches, and validated result field combinations without coupling the world runtime.
+- Reject mutable copy aliases and post-seal mutation, add independent payload/empty/full-batch golden hashes plus 151 adversarial Godot assertions, and bind the slice to clean source evidence in a verified work item.
+
 ## 2026-07-14 - Establish battle P1 foundation contracts
 
 - Add twelve isolated foundation types covering nine independent contract versions, stable IDs, diagnostic errors, and explicit operation/value results.

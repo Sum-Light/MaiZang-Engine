@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P1.PROTOCOL_COMMAND_DTOS",
+  "godot_contract_refs": [
+    {
+      "document": "04-battle-runtime-and-turn-flow.md",
+      "section": "Step input, request, result, and deterministic turn-flow envelopes",
+      "sha256": "316ae70d1eb32430d19dee45019c28b0156e1813161d4497e2e8f4fb73f0b7de"
+    },
+    {
+      "document": "06-command-presentation-boundary.md",
+      "section": "Ordered command batches and presentation boundary",
+      "sha256": "f5d97c3e0c8a3d52d5ef9b641415dc2cd13cd74a858ebabd882703f889aec30e"
+    },
+    {
+      "document": "07-client-server-and-replay.md",
+      "section": "Request, progress, sequence, canonical bytes, and replay hashes",
+      "sha256": "fd7bd80e0e42f289dfc1ee1c6e37b42436ebf06592119077c7fc22dd2b22808d"
+    },
+    {
+      "document": "13-api-contracts.md",
+      "section": "Typed deterministic RefCounted protocol APIs and error results",
+      "sha256": "b79175e253be47f6fb8e0161ab0c7dd8fd66954603628bb0b2c3ca8648f3867c"
+    },
+    {
+      "document": "14-single-player-first-implementation.md",
+      "section": "Single-player step loop and fail-closed protocol boundary",
+      "sha256": "a9dd695ff33ba1101b07de3209c5a59c4b92671a919ddaa9af852ea38e40ff0f"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P1 protocol, command, and session contract checklist",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/adapter/btl_CommunicationDataHeader.h",
+      "symbol": "CommunicationDataHeader and ServerRequestNo",
+      "sha256": "4612e5c75fb5074f9ded63968a27a9ebe4737a53843caaf55febfc9ba202be6a"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/adapter/btl_CommunicationDataID.h",
+      "symbol": "CommunicationDataID",
+      "sha256": "e310cf02894b3dc180ad8aa7be74c547a693af3e009f14ecfebdd5f735a2acb0"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/action/btl_action.h",
+      "symbol": "BtlAction and BTL_ACTION_PARAM",
+      "sha256": "447e68853e7962cca91580bf76b6ff5b62531c20b355622ef0e469cdd425bd86"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_ClientSendData.h",
+      "symbol": "ClientSendData::ACTION_SELECT",
+      "sha256": "98e864eb509f9e71b1672487a2eb10b9d7e790fcd6767194ee3779da79c8796f"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_ServerSendData.h",
+      "symbol": "SERVER_COMMAND and BATTLE_PROGRESS",
+      "sha256": "dcf445caad88302265c98bc79af4461522d163208d9d778f9b5177abaaeabd9b"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_logic/system/btl_client.cpp",
+      "symbol": "processServerRequest, processServerCommand, and registerReceivedData",
+      "sha256": "0fd4d61c9d6300e5e96310e82e94293a14c5f5444b03b872731d26130b32b5cc"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/server_command/btl_ServerCommandQueue.h",
+      "symbol": "Initialize, Put_Common, Read, and IsReadFinished",
+      "sha256": "7f8d9ac4979b2b8a21984f55a377d90e4ff8b8b0c6519879875d540b8921d564"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_ServerRequestResult.h",
+      "symbol": "ServerRequestResult",
+      "sha256": "e8cc509bf37fa233457fc5849f77862d1efc3d4fc2d38b550ee74b0d12652b48"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/battle_unit_test_client.cpp",
+      "symbol": "ConsoleBattleClient::setSubProc and storeActionSelectSendData",
+      "sha256": "a3bc59cad587f07a51b4a88946f321d2f2eb180524c75c15df54799eabed8b98"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [
+    "BattleCommand",
+    "BattleCommandBatch",
+    "BattleCommandBatchBuildResult",
+    "BattleDecisionPayload",
+    "BattleInputRequest",
+    "BattleStepInput",
+    "BattleStepInputBuildResult",
+    "BattleStepResult"
+  ],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean source separates request numbers, battle progress, explicit data tags, and ordered command storage, but it does not define this project's canonical byte order, immutable copy contract, typed failure truth table, or SHA-256 envelope.",
+    "The source queue implementation file is dirty and is not evidence; only the clean queue header supports the FIFO interface shape, while command sequence numbers begin at one by reviewed project decision.",
+    "No sealed source test directly covers empty batches, sequence gaps, duplicate or stale replies, copy alias rejection, canonical hashes, or BattleStepResult field combinations; P1 uses wholly synthetic adversarial and golden vectors for those contracts.",
+    "P1 provides fail-closed polymorphic payload, request, and command bases only. P8 owns concrete player decision request and payload variants, while P16 owns concrete state, message, control, and presentation command payloads and their codec.",
+    "BattleStepResult reserves the BATTLE_ENDED discriminator but cannot expose a valid ended factory until the P1 outcome contract is available in the following session slice."
+  ],
+  "completion_status": "VERIFIED"
+}

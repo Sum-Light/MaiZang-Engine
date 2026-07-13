@@ -6,15 +6,17 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0 and P0 are complete. P1 is in progress: its pure foundation slice now
-defines nine independent contract versions, stable IDs and diagnostics,
-typed results, checked integer/fixed-ratio math, canonical bytes, SHA-256,
-and a staged dependency gate. The module still does not contain a catalog,
-`BattleEngine`, playable battle, world integration, network stack, model,
-texture, animation, audio, or battle camera.
+Q0 and P0 are complete. P1 is in progress: its pure foundation and
+protocol/command slices now define nine independent contract versions,
+stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
+canonical bytes and SHA-256, fail-closed step envelopes, ordered command
+batches, and a staged dependency gate. The module still does not contain a
+catalog, `BattleEngine`, playable battle, world integration, network stack,
+model, texture, animation, audio, or battle camera.
 
-The next P1 slice adds protocol and command DTOs. It will not change the
-editor entry or connect the world.
+The next P1 slice adds the empty engine, authority/session contracts, and the
+battle-local suite runner. It will not change the editor entry or connect the
+world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -163,3 +165,36 @@ Run the focused foundation checks with:
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
 ```
+
+## P1 Protocol And Command DTOs
+
+`scripts/protocol/` owns immutable decision, request, step-input, and
+step-result envelopes. `scripts/commands/` owns immutable command and batch
+envelopes. The polymorphic payload, request, and command bases fail closed;
+P8 and P16 will add their concrete gameplay variants without changing the P1
+headers.
+
+Request number, battle progress, and per-batch command sequence are distinct
+axes. Published batches allow zero commands, require command sequence `1..N`,
+and carry explicit catalog, source-action, audience, and before/after view
+hash fields. The unpublished empty batch is a valid non-null sentinel for
+failures before publication. Copies are canonical-equivalent snapshots;
+self-aliasing subtype copies and post-seal mutation attempts are rejected.
+
+`BattleStepResult` currently admits `COMPLETE`, `NEED_INPUT`, and `FAILED`
+through validated factories. `BATTLE_ENDED` is reserved until the following
+P1 session slice introduces the outcome contract. Invalid field combinations
+normalize to a stable typed failure and never use `null` as the error channel.
+
+Run the focused protocol checks with:
+
+```powershell
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" --headless `
+  --path .\new-game-project `
+  --script res://battle/tests/protocol/p1_protocol_command_test.gd
+```
+
+The 151 checks include independent canonical/hash golden vectors, distinct
+request/progress fields, ordered command hashes, empty and published batches,
+typed mismatch errors, copy isolation, malicious self-alias rejection, and
+the step-result truth table.
