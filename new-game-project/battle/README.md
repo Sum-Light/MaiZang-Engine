@@ -7,12 +7,15 @@ directory must leave the existing MaiZang world runtime unchanged.
 ## Current Status
 
 Q0 provides only an editor quick-start surface and a synthetic text smoke
-shell. P0 is in progress: the target data generation, ruleset/mode/action
+shell. P0 is complete: the target data generation, ruleset/mode/action
 scope, source-use classes, network deferrals, text-only policy, strict manifest
 schemas, production license gate, and complete initial source-audit baseline
 are frozen and tested. The module still does not contain a catalog,
 `BattleEngine`, playable battle, world integration, network stack, model,
 texture, animation, audio, or battle camera.
+
+P1 is the next phase. It will add the battle-local test entry and foundation
+DTO/contracts without changing the editor entry or connecting the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -111,3 +114,19 @@ extensions are rejected, network-only entries are deferred to N0, and visual,
 audio, model, camera, and command entries retain explicit presentation/text
 dispositions. The tracked `source_audit_seal.json` contains only reproducible
 hashes and counts, never source payloads or machine-local paths.
+
+## P0 Asset And Generation Gate
+
+`tools/check_battle_assets.ps1` validates staged/index blobs rather than
+trusting file extensions in the worktree. The scope checker invokes it for
+every battle commit. P0 allows only the reviewed JSON contract paths and
+public text/code types; local/generated paths, production manifests, unknown
+JSON locations, non-empty public templates, catalog-like oversized JSON,
+raw text/data/binaries, media, archives, and machine-local paths fail closed.
+
+The tracked synthetic generation manifest is record-free, project-owned, and
+test-only. Synthetic validation succeeds without licensed data. Production
+validation reads only
+`local_data/source/licensed_source_manifest.json`; it returns
+`BATTLE_P0_LICENSED_SOURCE_REQUIRED` when the ignored local manifest is
+missing, empty, a public template, or not explicitly production-authorized.

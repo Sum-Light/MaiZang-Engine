@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P0.ASSET_AND_GENERATION_BOUNDARY",
+  "godot_contract_refs": [
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P0: scope, authorization, and asset boundary",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    },
+    {
+      "document": "08-data-resources-and-import.md",
+      "section": "Proprietary data boundary and reproducible offline import",
+      "sha256": "9fbb70f057eb6a082f4e856f0183fac6f7cbc8e51a16a792c0ae928a260968b9"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "PROJECT_DECISION",
+      "source_repository": "MaiZangEngine",
+      "relative_path": "new-game-project/battle/.gitignore",
+      "symbol": "local_data_and_generated_ignore_boundary",
+      "sha256": "84d711a5dda53b76d2b9a671ff51c1603014468e2687129d487ce48a381b2075"
+    },
+    {
+      "source_kind": "PROJECT_DECISION",
+      "source_repository": "MaiZangEngine",
+      "relative_path": "new-game-project/battle/fixtures/synthetic/p0/synthetic_generation_manifest.json",
+      "symbol": "SYNTHETIC_P0_CONTRACTS_V1",
+      "sha256": "d850b668780df88fe871004e449cdb8e7d64c3d2baa5347f9fea49987718dc5f"
+    }
+  ],
+  "source_test_evidence_refs": [],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "No production LicensedSourceManifest exists in the ignored local data root, so production generation intentionally remains blocked."
+  ],
+  "completion_status": "VERIFIED"
+}

@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Complete battle P0 asset and generation gates
+
+- Add a staged/index content gate that permits only reviewed battle source/contract paths and rejects local/generated data, production manifests, disguised catalogs, raw text/data/binaries, media, archives, absolute paths, and oversized JSON.
+- Add a record-free project-owned synthetic generation manifest while making Production read only the ignored local licensed-source manifest and fail with a stable error when authorization is absent.
+- Verify all four battle-local ignore roots, template emptiness, staged gate integration, Synthetic success, Production fail-closed behavior, and current repository/worktree asset safety; mark P0 complete and P1 next.
+
 ## 2026-07-14 - Seal battle P0 source audit baseline
 
 - Seal the two source revisions, dirty-path sets, all 7,372 source hashes, input index counts/hashes, and scanner hashes without copying source payloads or machine-local paths.

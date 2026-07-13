@@ -3,6 +3,7 @@ param(
     [string]$ProjectRoot = "",
     [string]$ScopeManifestPath = "",
     [string]$LicensedSourceManifestPath = "",
+    [string]$SyntheticGenerationManifestPath = "",
     [string]$SourceAuditManifestPath = "",
     [string[]]$WorkItemPaths = @(),
     [string]$GodotContractRoot = "",
@@ -28,7 +29,16 @@ if ([string]::IsNullOrWhiteSpace($ScopeManifestPath)) {
     $ScopeManifestPath = Join-Path $battleRoot "manifests\battle_scope_manifest.json"
 }
 if ([string]::IsNullOrWhiteSpace($LicensedSourceManifestPath)) {
-    $LicensedSourceManifestPath = Join-Path $battleRoot "manifests\licensed_source_manifest.template.json"
+    $LicensedSourceManifestPath = if ($GenerationMode -eq "Production") {
+        Join-Path $battleRoot "local_data\source\licensed_source_manifest.json"
+    }
+    else {
+        Join-Path $battleRoot "manifests\licensed_source_manifest.template.json"
+    }
+}
+if ([string]::IsNullOrWhiteSpace($SyntheticGenerationManifestPath)) {
+    $SyntheticGenerationManifestPath = Join-Path $battleRoot `
+        "fixtures\synthetic\p0\synthetic_generation_manifest.json"
 }
 if ([string]::IsNullOrWhiteSpace($SourceAuditManifestPath)) {
     $SourceAuditManifestPath = Join-Path $battleRoot "manifests\source_audit_disposition_manifest.template.json"
@@ -206,7 +216,8 @@ function Test-SchemaContracts {
         "battle_scope_manifest.schema.json",
         "licensed_source_manifest.schema.json",
         "implementation_work_item.schema.json",
-        "source_audit_disposition_manifest.schema.json"
+        "source_audit_disposition_manifest.schema.json",
+        "synthetic_generation_manifest.schema.json"
     )
     foreach ($schemaName in $schemaNames) {
         $schema = Read-StrictJson -Path (Join-Path $schemaRoot $schemaName) -Label $schemaName
@@ -376,6 +387,27 @@ function Test-LicensedSourceManifest {
         if ([string]$record.local_relative_path -notmatch '^local_data/source/') {
             throw "Licensed source data must remain below local_data/source/."
         }
+    }
+}
+
+function Test-SyntheticGenerationManifest {
+    param([PSCustomObject]$Manifest)
+
+    Assert-ExactProperties -Object $Manifest -Required @(
+        "schema_version", "manifest_kind", "generation_id", "scope_id",
+        "source_class", "allowed_use", "fixture_sets", "records"
+    ) -Context "SyntheticGenerationManifest"
+    if ([int]$Manifest.schema_version -ne 1 -or
+        $Manifest.manifest_kind -ne "SYNTHETIC_GENERATION" -or
+        [string]$Manifest.generation_id -cnotmatch $stableKeyPattern -or
+        $Manifest.source_class -ne "SYNTHETIC_FIXTURE" -or
+        $Manifest.allowed_use -ne "TEST_ONLY") {
+        throw "SyntheticGenerationManifest does not describe a project-owned test-only generation."
+    }
+    Assert-UniqueStringArray -Values @($Manifest.fixture_sets) `
+        -Context "SyntheticGenerationManifest.fixture_sets"
+    if (@($Manifest.records).Count -ne 0) {
+        throw "P0 synthetic generation must not embed catalog or Pokemon records."
     }
 }
 
@@ -593,12 +625,24 @@ function Test-ImplementationWorkItem {
 
 Test-SchemaContracts
 $scopeManifest = Read-StrictJson -Path $ScopeManifestPath -Label "BattleScopeManifest"
+if ($GenerationMode -eq "Production" -and
+    -not (Test-Path -LiteralPath $LicensedSourceManifestPath -PathType Leaf)) {
+    throw "BATTLE_P0_LICENSED_SOURCE_REQUIRED: Production generation requires the ignored local_data/source/licensed_source_manifest.json."
+}
 $licensedManifest = Read-StrictJson -Path $LicensedSourceManifestPath -Label "LicensedSourceManifest"
 $sourceAuditManifest = Read-StrictJson -Path $SourceAuditManifestPath -Label "SourceAuditDispositionManifest"
+$syntheticManifest = $null
+if ($GenerationMode -eq "Synthetic") {
+    $syntheticManifest = Read-StrictJson -Path $SyntheticGenerationManifestPath `
+        -Label "SyntheticGenerationManifest"
+}
 
 Test-BattleScopeManifest -Manifest $scopeManifest
 Test-LicensedSourceManifest -Manifest $licensedManifest
 Test-SourceAuditManifest -Manifest $sourceAuditManifest
+if ($null -ne $syntheticManifest) {
+    Test-SyntheticGenerationManifest -Manifest $syntheticManifest
+}
 
 if ($licensedManifest.scope_id -ne $scopeManifest.scope_id -or
     $sourceAuditManifest.scope_id -ne $scopeManifest.scope_id) {
@@ -606,6 +650,10 @@ if ($licensedManifest.scope_id -ne $scopeManifest.scope_id -or
 }
 if ($licensedManifest.target_data_generation -ne $scopeManifest.target_data_generation) {
     throw "LicensedSourceManifest does not target the frozen data generation."
+}
+if ($null -ne $syntheticManifest -and
+    $syntheticManifest.scope_id -ne $scopeManifest.scope_id) {
+    throw "SyntheticGenerationManifest does not reference the frozen battle scope."
 }
 
 foreach ($workItemPath in @($WorkItemPaths)) {
@@ -616,6 +664,9 @@ foreach ($workItemPath in @($WorkItemPaths)) {
 Write-Host "P0 manifest contracts validated."
 Write-Host "  Scope SHA-256:         $(Get-LowerSha256 $ScopeManifestPath)"
 Write-Host "  Licensed template hash: $(Get-LowerSha256 $LicensedSourceManifestPath)"
-Write-Host "  Audit template hash:    $(Get-LowerSha256 $SourceAuditManifestPath)"
+Write-Host "  Source audit hash:      $(Get-LowerSha256 $SourceAuditManifestPath)"
+if ($null -ne $syntheticManifest) {
+    Write-Host "  Synthetic input hash:   $(Get-LowerSha256 $SyntheticGenerationManifestPath)"
+}
 Write-Host "  Generation mode:        $GenerationMode"
 Write-Host "P0_MANIFEST_CONTRACTS_OK"

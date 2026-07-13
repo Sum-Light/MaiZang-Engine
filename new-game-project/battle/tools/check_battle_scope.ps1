@@ -247,6 +247,15 @@ if ($violations.Count -gt 0) {
     throw "Battle scope audit rejected $($violations.Count) path(s)."
 }
 
+$assetGatePath = Join-Path $PSScriptRoot "check_battle_assets.ps1"
+if (-not (Test-Path -LiteralPath $assetGatePath -PathType Leaf)) {
+    throw "Battle asset gate was not found: $assetGatePath"
+}
+& $assetGatePath -ProjectRoot $ProjectRoot -Mode $Mode
+if ($LASTEXITCODE -ne 0) {
+    throw "Battle asset gate failed with exit code $LASTEXITCODE."
+}
+
 if ($RunRepositoryValidator) {
     $validatorPath = Join-Path $ProjectRoot "tools\validate_repository.ps1"
     if (-not (Test-Path -LiteralPath $validatorPath -PathType Leaf)) {

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/synthetic_generation_manifest.schema.json",
+  "title": "SyntheticGenerationManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_kind",
+    "generation_id",
+    "scope_id",
+    "source_class",
+    "allowed_use",
+    "fixture_sets",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_kind": {"const": "SYNTHETIC_GENERATION"},
+    "generation_id": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+    "scope_id": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+    "source_class": {"const": "SYNTHETIC_FIXTURE"},
+    "allowed_use": {"const": "TEST_ONLY"},
+    "fixture_sets": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[A-Z0-9_]+$"}
+    },
+    "records": {"type": "array", "maxItems": 0}
+  }
+}
