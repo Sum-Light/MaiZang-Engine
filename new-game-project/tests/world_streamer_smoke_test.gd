@@ -27,7 +27,7 @@ func _run() -> void:
 	var main := packed.instantiate()
 	var configured_streamer := main.get_node("WorldStreamer") as PlatinumWorldStreamer
 	if configured_streamer == null or not configured_streamer.configure_debug_destination(
-		0, -1, Vector2i(3, 27), Vector2i.ZERO
+		0, -1, Vector2i(3, 27), PlatinumWorldStreamer.DEFAULT_START_TILE
 	):
 		_fail("Matrix 0000 could not be configured before startup.")
 		return
@@ -60,6 +60,35 @@ func _run() -> void:
 
 	if streamer == null or not streamer.is_chunk_loaded(Vector2i(3, 27)):
 		_fail("Initial world chunks did not become ready within %d frames." % MAX_FRAMES)
+		return
+	var initial_stats := streamer.get_stream_stats()
+	var collision_stats := initial_stats.get("collision", {}) as Dictionary
+	if (
+		int(collision_stats.get("source_assets", 0)) != 176
+		or int(collision_stats.get("decoded_assets", 0)) <= 0
+		or int(collision_stats.get("decode_failures", -1)) != 0
+	):
+		_fail("Initial collision cache is incomplete: %s" % JSON.stringify(collision_stats))
+		return
+	var start_chunk := streamer.get_node("LoadedChunks/Chunk_03_27") as Node3D
+	var terrain := start_chunk.get_node_or_null("Terrain") as Node3D if start_chunk != null else null
+	var buildings := start_chunk.get_node_or_null("Buildings") as Node3D if start_chunk != null else null
+	var expected_content_origin := Vector3(3.0 * 32.0 + 16.0, 0.0, 27.0 * 32.0 + 16.0)
+	if (
+		terrain == null
+		or buildings == null
+		or not terrain.global_position.is_equal_approx(expected_content_origin)
+		or not buildings.global_position.is_equal_approx(expected_content_origin)
+	):
+		_fail("Center-origin terrain/building placement is incorrect.")
+		return
+	var blocked_origin: Variant = streamer.resolve_cell_tile_world_position(Vector2i(3, 27), Vector2i(6, 5))
+	if blocked_origin == null:
+		_fail("Real map collision test origin has no BDHC height.")
+		return
+	var blocked_step := streamer.resolve_player_step(blocked_origin as Vector3, Vector2i.LEFT)
+	if not bool(blocked_step.get("blocked", false)) or String(blocked_step.get("reason", "")) != "tile_collision":
+		_fail("Real map a.dat collision did not block the expected tile.")
 		return
 
 	var player := main.get_node("Player") as PlatinumPlayerController

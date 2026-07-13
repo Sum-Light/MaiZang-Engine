@@ -12,6 +12,7 @@ if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
     $ProjectRoot = Split-Path -Parent $PSScriptRoot
 }
 $ProjectRoot = [IO.Path]::GetFullPath($ProjectRoot).TrimEnd('\')
+. (Join-Path $PSScriptRoot "dspre_collision_support.ps1")
 if ([string]::IsNullOrWhiteSpace($ResolutionPath)) {
     $ResolutionPath = Join-Path $ProjectRoot "generated\dspre_matrix_area_overrides.json"
 }
@@ -54,7 +55,7 @@ function Test-GlbFile {
 }
 
 $catalog = Read-JsonFile $catalogPath "Godot matrix catalog"
-if ([int]$catalog.schema_version -ne 1) {
+if ([int]$catalog.schema_version -ne 2) {
     throw "Unsupported matrix catalog schema: $($catalog.schema_version)"
 }
 $matrixEntries = @($catalog.matrices)
@@ -68,9 +69,12 @@ $destinationKeys = New-Object System.Collections.Generic.HashSet[string]([String
 $destinationByKey = @{}
 $terrainKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $buildingKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+$collisionKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+$collisionFingerprints = @{}
 $textureKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $materialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $recalculatedGlbs = 0
+$recalculatedDestinationCollisionAssets = 0
 foreach ($matrix in $matrixEntries) {
     if (-not $matrixIds.Add([int]$matrix.id)) {
         throw "Duplicate matrix catalog ID: $($matrix.id)"
@@ -117,6 +121,10 @@ foreach ($destination in $destinations) {
     }
     $manifestPath = Join-Path $destinationRoot "manifest.json"
     $manifest = Read-JsonFile $manifestPath "Destination manifest"
+    $collisionStats = Assert-DspreCollisionManifest `
+        -Manifest $manifest `
+        -Label "Destination $key" `
+        -ExpectedManifestSchema 3
     if ([int]$manifest.matrix.id -ne [int]$destination.matrix_id) {
         throw "Destination $key matrix ID does not match its manifest."
     }
@@ -167,6 +175,9 @@ foreach ($destination in $destinations) {
         [int]$destination.height -ne [int]$manifest.matrix.height -or
         [int]$destination.terrain_assets -ne @($manifest.assets.terrain).Count -or
         [int]$destination.building_assets -ne @($manifest.assets.buildings).Count -or
+        [int]$destination.collision_assets -ne [int]$collisionStats.collision_assets -or
+        [int]$destination.terrain_attribute_tiles -ne [int]$collisionStats.terrain_attribute_tiles -or
+        [int]$destination.bdhc_assets -ne [int]$collisionStats.bdhc_assets -or
         [int]$destination.building_instances -ne [int]$manifest.summary.building_instances
     ) {
         throw "Destination $key metadata does not match its manifest."
@@ -330,7 +341,22 @@ foreach ($destination in $destinations) {
     foreach ($asset in @($manifest.assets.buildings)) {
         $null = $buildingKeys.Add([string]$asset.key)
     }
+    foreach ($asset in @($manifest.collision_assets)) {
+        $collisionKey = [string]$asset.key
+        $fingerprint = "{0}:{1}" -f `
+            [string]$asset.terrain_attributes.sha256,
+            [string]$asset.bdhc.sha256
+        if (
+            $collisionFingerprints.ContainsKey($collisionKey) -and
+            [string]$collisionFingerprints[$collisionKey] -ne $fingerprint
+        ) {
+            throw "Collision asset $collisionKey differs across destination manifests."
+        }
+        $collisionFingerprints[$collisionKey] = $fingerprint
+        $null = $collisionKeys.Add($collisionKey)
+    }
     $recalculatedGlbs += $actualGlbs
+    $recalculatedDestinationCollisionAssets += [int]$collisionStats.collision_assets
     $destinationByKey[$key] = $destination
     if ($RequireComplete) {
         $dedupeMarkerPath = Join-Path $destinationRoot ".dedupe-complete.json"
@@ -438,8 +464,10 @@ if (
     $recalculatedCells -ne [int]$catalog.summary.occupied_cells -or
     $recalculatedBuildings -ne [int]$catalog.summary.building_instances -or
     $recalculatedGlbs -ne [int]$catalog.summary.destination_scoped_glbs -or
+    $recalculatedDestinationCollisionAssets -ne [int]$catalog.summary.destination_scoped_collision_assets -or
     $terrainKeys.Count -ne [int]$catalog.summary.unique_terrain_assets -or
     $buildingKeys.Count -ne [int]$catalog.summary.unique_building_assets -or
+    $collisionKeys.Count -ne [int]$catalog.summary.unique_collision_assets -or
     $textureKeys.Count -ne [int]$catalog.summary.unique_textures -or
     $materialKeys.Count -ne [int]$catalog.summary.unique_materials
 ) {

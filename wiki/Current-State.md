@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `85c4b139ff57693dac66e87fc1ec4e1978cc97dc5a3aba5c423f0d310d6893b0`
-- Fingerprinted files: 66
-- Godot runtime scripts: 6
-- Godot test scripts: 6
-- PowerShell tools: 14
+- Source fingerprint: `899c0b55fd9c6ec5c77e55c355c5999ce9215c2fb74a08cf19b15f180c4fb81e`
+- Fingerprinted files: 73
+- Godot runtime scripts: 7
+- Godot test scripts: 8
+- PowerShell tools: 16
 
 ## Runtime Baseline
 
@@ -22,6 +22,8 @@
 - Matrix catalog: 289 source matrices, 276 ready matrices, 278 runnable destinations, and 13 unresolved source records.
 - Debug destination: `F2` validates an in-game selection and reloads the main scene through a one-shot process-local request.
 - Global asset variants: 645 terrain and 764 building/texture pairs.
+- Collision assets: 637 unique maps across 647 destination-scoped records.
+- Collision runtime: lazy `a.dat`/BDHC cache, absolute height sampling, walking behavior actions, and fail-closed unsupported special movement.
 - Building instances across ready matrices: 3041.
 - Shared resources: 1722 unique texture hashes and 1804 external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
@@ -40,5 +42,5 @@
 
 ## Next Engineering Milestone
 
-Integrate `a.dat` tile behavior and `h.bhc` height/collision data without
-coupling the collision cache to rendered scene lifetime.
+Add dynamic map features, warps, and scripted collision overrides on top of the
+static terrain-attribute and BDHC query service.

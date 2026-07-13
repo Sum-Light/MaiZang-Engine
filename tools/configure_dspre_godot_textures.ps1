@@ -85,6 +85,9 @@ function Get-TextureDestinations {
             throw "Matrix catalog destination $key reuses a manifest: $manifestPath"
         }
         $manifest = Read-JsonFile $manifestPath "Destination $key manifest"
+        if ([int]$manifest.schema_version -ne 3) {
+            throw "Destination $key manifest schema 3 is required."
+        }
         $dedupe = Get-RequiredProperty $manifest "material_dedupe" "Destination $key manifest"
         $expectedPngCount = [int](Get-RequiredProperty $dedupe "unique_images" "Destination $key material_dedupe")
         if ($expectedPngCount -lt 0) {
@@ -139,6 +142,9 @@ if (-not (Test-Path -LiteralPath $GodotPath -PathType Leaf)) {
 }
 
 $catalog = Read-JsonFile $catalogPath "Matrix catalog"
+if ([int]$catalog.schema_version -ne 2) {
+    throw "Matrix catalog schema 2 is required."
+}
 $textureDestinations = @(Get-TextureDestinations $catalog $platinumRoot)
 $expectedTextureCount = 0
 foreach ($destination in $textureDestinations) {

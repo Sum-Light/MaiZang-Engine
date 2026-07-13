@@ -7,8 +7,8 @@ signal stream_error(message: String)
 const CHUNK_SIZE := 32.0
 const HEIGHT_STEP := 0.5
 const MODEL_SCALE := 1.0 / 16.0
-const PLAYER_HEIGHT_OFFSET := 1.0
 const DEFAULT_START_CELL := Vector2i(3, 27)
+const DEFAULT_START_TILE := Vector2i(16, 16)
 const USE_DESTINATION_DEFAULT_CELL := Vector2i(-1, -1)
 
 const DEBUG_MATRIX_SETTING := "maizang/debug/matrix_id"
@@ -17,6 +17,7 @@ const DEBUG_CELL_SETTING := "maizang/debug/matrix_cell"
 const DEBUG_TILE_SETTING := "maizang/debug/map_tile"
 const DebugDestinationResolver := preload("res://scripts/debug_destination_resolver.gd")
 const DebugDestinationRequest := preload("res://scripts/debug_destination_request.gd")
+const CollisionMap := preload("res://scripts/platinum_collision_map.gd")
 
 @export_file("*.json") var catalog_path := "res://assets/platinum/matrix_catalog.json"
 @export_file("*.json") var manifest_path := "res://assets/platinum/matrix_0000/manifest.json"
@@ -46,9 +47,10 @@ var _configuration_error := false
 var _matrix_id := -1
 var _area_data_id := -1
 var _start_cell := DEFAULT_START_CELL
-var _start_tile := Vector2i.ZERO
+var _start_tile := DEFAULT_START_TILE
 var _start_world_position := Vector3.ZERO
 var _shutdown_complete := false
+var _collision_map := CollisionMap.new() as PlatinumCollisionMap
 
 @onready var _chunks_root: Node3D = $LoadedChunks
 
@@ -96,7 +98,7 @@ func get_stream_stats() -> Dictionary:
 				loading_assets += 1
 			"loaded":
 				loaded_assets += 1
-	return {
+	var stats := {
 		"matrix": _matrix_id,
 		"area": _area_data_id,
 		"start": {
@@ -118,13 +120,15 @@ func get_stream_stats() -> Dictionary:
 		"shared_materials": _shared_materials.size(),
 		"material_replacements": _material_replacement_count,
 	}
+	stats["collision"] = _collision_map.get_stats()
+	return stats
 
 
 func configure_debug_destination(
 	matrix_id: int,
 	area_data_id: int = -1,
 	matrix_cell: Vector2i = USE_DESTINATION_DEFAULT_CELL,
-	map_tile: Vector2i = Vector2i.ZERO
+	map_tile: Vector2i = DEFAULT_START_TILE
 ) -> bool:
 	if is_inside_tree():
 		_fail("Debug destinations can only be configured before the streamer enters the scene tree.")
@@ -144,7 +148,7 @@ func resolve_debug_destination_request(
 	matrix_id: int,
 	area_data_id: int = -1,
 	matrix_cell: Vector2i = USE_DESTINATION_DEFAULT_CELL,
-	map_tile: Vector2i = Vector2i.ZERO
+	map_tile: Vector2i = DEFAULT_START_TILE
 ) -> Dictionary:
 	var request: Dictionary = DebugDestinationResolver.make_request(
 		matrix_id, area_data_id, matrix_cell, map_tile
@@ -179,14 +183,29 @@ func get_focus_cell() -> Vector2i:
 
 
 func resolve_cell_tile_world_position(matrix_cell: Vector2i, map_tile: Vector2i) -> Variant:
-	if not _is_valid_map_tile(map_tile) or not _cells.has(matrix_cell):
-		return null
-	var cell := _cells[matrix_cell] as Dictionary
-	return Vector3(
-		matrix_cell.x * CHUNK_SIZE + map_tile.x + 0.5,
-		float(cell.get("altitude", 0)) * HEIGHT_STEP + PLAYER_HEIGHT_OFFSET,
-		matrix_cell.y * CHUNK_SIZE + map_tile.y + 0.5
-	)
+	return _collision_map.resolve_cell_tile_world_position(matrix_cell, map_tile)
+
+
+func resolve_player_step(
+	origin: Vector3, direction: Vector2i, context: Dictionary = {}
+) -> Dictionary:
+	return _collision_map.resolve_step(origin, direction, context)
+
+
+func resolve_player_height(world_position: Vector3, reference_height: float) -> Variant:
+	return _collision_map.sample_ground_height(world_position, reference_height)
+
+
+func get_tile_attributes(matrix_cell: Vector2i, map_tile: Vector2i) -> Variant:
+	return _collision_map.get_tile_attributes(matrix_cell, map_tile)
+
+
+func get_tile_behavior(matrix_cell: Vector2i, map_tile: Vector2i) -> Variant:
+	return _collision_map.get_tile_behavior(matrix_cell, map_tile)
+
+
+func find_map_props_at_tile(matrix_cell: Vector2i, map_tile: Vector2i) -> Array[Dictionary]:
+	return _collision_map.find_map_props_at_tile(matrix_cell, map_tile)
 
 
 func resolve_offset_grid_world_position(world_position: Vector3, offset: Vector2) -> Variant:
@@ -200,7 +219,9 @@ func resolve_offset_grid_world_position(world_position: Vector3, offset: Vector2
 		floori(offset_position.x - offset_cell.x * CHUNK_SIZE),
 		floori(offset_position.z - offset_cell.y * CHUNK_SIZE)
 	)
-	return resolve_cell_tile_world_position(offset_cell, offset_tile)
+	return _collision_map.resolve_cell_tile_world_position(
+		offset_cell, offset_tile, world_position.y
+	)
 
 
 func shutdown() -> void:
@@ -212,6 +233,7 @@ func shutdown() -> void:
 	_retained_asset_paths.clear()
 	_asset_states.clear()
 	_shared_materials.clear()
+	_collision_map.clear()
 	for chunk_value: Variant in _loaded_chunks.values():
 		var chunk := chunk_value as Node3D
 		if is_instance_valid(chunk) and not chunk.is_queued_for_deletion():
@@ -250,7 +272,7 @@ func _resolve_debug_destination() -> bool:
 
 func _debug_destination_from_settings_and_cli() -> Dictionary:
 	var configured_cell: Variant = _project_vector2i_setting(DEBUG_CELL_SETTING, DEFAULT_START_CELL)
-	var configured_tile: Variant = _project_vector2i_setting(DEBUG_TILE_SETTING, Vector2i.ZERO)
+	var configured_tile: Variant = _project_vector2i_setting(DEBUG_TILE_SETTING, DEFAULT_START_TILE)
 	if configured_cell == null or configured_tile == null:
 		return {}
 	var configuration := {
@@ -351,9 +373,6 @@ func _configuration_fail(message: String) -> void:
 
 
 func _load_manifest() -> bool:
-	_cells.clear()
-	_terrain_paths.clear()
-	_building_paths.clear()
 	if not FileAccess.file_exists(manifest_path):
 		_fail("World manifest does not exist: %s" % manifest_path)
 		return false
@@ -363,7 +382,13 @@ func _load_manifest() -> bool:
 		_fail("World manifest is not a JSON object: %s" % manifest_path)
 		return false
 
-	var manifest := parsed as Dictionary
+	return _apply_manifest(parsed as Dictionary)
+
+
+func _apply_manifest(manifest: Dictionary) -> bool:
+	_cells.clear()
+	_terrain_paths.clear()
+	_building_paths.clear()
 	var matrix: Dictionary = manifest.get("matrix", {})
 	if int(matrix.get("id", -1)) != _matrix_id:
 		_fail("World manifest matrix id does not match the selected catalog destination.")
@@ -371,6 +396,10 @@ func _load_manifest() -> bool:
 	var manifest_area: Variant = matrix.get("area_data_id", null)
 	if _area_data_id >= 0 and (manifest_area == null or int(manifest_area) != _area_data_id):
 		_fail("World manifest area id does not match the selected catalog destination.")
+		return false
+	var collision_error := _collision_map.configure(manifest)
+	if not collision_error.is_empty():
+		_fail(collision_error)
 		return false
 	var assets: Dictionary = manifest.get("assets", {})
 	for asset_value: Variant in assets.get("terrain", []):
@@ -392,6 +421,8 @@ func _load_manifest() -> bool:
 	if _cells.is_empty() or _terrain_paths.is_empty():
 		_fail("World manifest has no cells or terrain assets.")
 		return false
+	if is_instance_valid(_focus) and _focus.has_method("set_collision_provider"):
+		_focus.call("set_collision_provider", self)
 	return true
 
 
@@ -409,6 +440,7 @@ func _refresh_stream(force: bool) -> void:
 	_last_focus_cell = focus_cell
 	_wanted_chunks.clear()
 	_retained_asset_paths.clear()
+	_collision_map.prepare_region(focus_cell, unload_radius)
 
 	for z in range(focus_cell.y - unload_radius, focus_cell.y + unload_radius + 1):
 		for x in range(focus_cell.x - unload_radius, focus_cell.x + unload_radius + 1):
@@ -538,7 +570,7 @@ func _instantiate_chunk(coordinate: Vector2i) -> void:
 	chunk.name = "Chunk_%02d_%02d" % [coordinate.x, coordinate.y]
 	chunk.position = Vector3(
 		coordinate.x * CHUNK_SIZE,
-		float(cell.get("altitude", 0)) * HEIGHT_STEP,
+		0.0,
 		coordinate.y * CHUNK_SIZE
 	)
 	chunk.set_meta("map_id", int(cell.get("map_id", -1)))
@@ -549,12 +581,18 @@ func _instantiate_chunk(coordinate: Vector2i) -> void:
 	var terrain := _instantiate_asset(String(_terrain_paths[terrain_key]))
 	if terrain != null:
 		terrain.name = "Terrain"
+		terrain.position = Vector3(
+			CHUNK_SIZE * 0.5,
+			float(cell.get("altitude", 0)) * HEIGHT_STEP,
+			CHUNK_SIZE * 0.5
+		)
 		terrain.scale = Vector3.ONE * MODEL_SCALE
 		chunk.add_child(terrain)
 		_share_materials(terrain)
 
 	var buildings := Node3D.new()
 	buildings.name = "Buildings"
+	buildings.position = Vector3(CHUNK_SIZE * 0.5, 0.0, CHUNK_SIZE * 0.5)
 	chunk.add_child(buildings)
 	var building_index := 0
 	for building_value: Variant in cell.get("buildings", []):
@@ -566,7 +604,7 @@ func _instantiate_chunk(coordinate: Vector2i) -> void:
 		instance.name = "Building_%04d_%02d" % [int(building.get("model_id", -1)), building_index]
 		instance.position = _dictionary_to_vector3(building.get("position", {}))
 		instance.rotation_degrees = _dictionary_to_vector3(building.get("rotation_degrees", {}))
-		instance.scale = _building_scale(building.get("size", {}))
+		instance.scale = _building_scale(building)
 		buildings.add_child(instance)
 		_share_materials(instance)
 		building_index += 1
@@ -631,8 +669,11 @@ func _dictionary_to_vector3(value: Variant) -> Vector3:
 	return Vector3(float(data.get("x", 0.0)), float(data.get("y", 0.0)), float(data.get("z", 0.0)))
 
 
-func _building_scale(value: Variant) -> Vector3:
-	var size := value as Dictionary
+func _building_scale(building: Dictionary) -> Vector3:
+	var scale_value: Variant = building.get("scale", null)
+	if scale_value is Dictionary:
+		return _dictionary_to_vector3(scale_value) * MODEL_SCALE
+	var size := building.get("size", {}) as Dictionary
 	return Vector3(
 		float(size.get("width", 16.0)) / 16.0,
 		float(size.get("height", 16.0)) / 16.0,

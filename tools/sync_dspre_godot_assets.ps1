@@ -11,6 +11,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot "dspre_collision_support.ps1")
 if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
     $SourceRoot = Join-Path $workspaceRoot "generated\dspre_glb_dedup\matrix_0000"
 }
@@ -55,6 +56,10 @@ if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot "manifest.json") -PathTy
 }
 $manifestPath = Join-Path $SourceRoot "manifest.json"
 $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+$null = Assert-DspreCollisionManifest `
+    -Manifest $manifest `
+    -Label "Deduplicated source manifest" `
+    -ExpectedManifestSchema 3
 $matrixId = [int]$manifest.matrix.id
 if ($matrixId -lt 0 -or $matrixId -gt 9999) {
     throw "Manifest matrix ID is outside the supported range: $matrixId"

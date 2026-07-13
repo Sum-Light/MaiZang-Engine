@@ -12,7 +12,7 @@ const TEST_MATRIX_ID := 49
 const TEST_AREA_DATA_ID := 61
 const TEST_CELL := Vector2i(1, 1)
 const TEST_TILE := Vector2i(31, 31)
-const TEST_POSITION := Vector3(63.5, 1.0, 63.5)
+const TEST_POSITION := Vector3(63.5, 0.5, 63.5)
 const DebugDestinationRequest := preload("res://scripts/debug_destination_request.gd")
 
 var _current_streamer: PlatinumWorldStreamer

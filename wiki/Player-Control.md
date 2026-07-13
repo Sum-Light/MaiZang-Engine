@@ -4,13 +4,13 @@
 
 `main.tscn` owns a `CharacterBody3D` named `Player`. Its child `Sprite3D` is
 unshaded, nearest-filtered, alpha-cut, and billboarded toward the camera. A
-capsule shape establishes the player body boundary for the upcoming collision
-milestone, although terrain and building collision are not generated yet.
+capsule shape preflights any existing Godot physics body, while authoritative
+static map collision is queried from the destination manifest.
 
-The default spawn is world position `(96.5, 1, 864.5)`, inside matrix cell `(3,
-27)`. The explicit `Y=1` matches the visible floor at the current start point;
-future `h.bhc` integration will replace this fixed height with per-tile height
-queries.
+The default runtime spawn is matrix cell `(3,27)`, tile `(16,16)`, centered at
+world X/Z `(112.5,880.5)`. Its Y is resolved from BDHC and is `1.0` for the
+default map. The scene's authored transform is only a bootstrap value before
+`PlatinumWorldStreamer` applies the selected destination.
 
 ## Input and Motion
 
@@ -53,10 +53,50 @@ continuous walk steps does not add another stationary turn. `teleport_to_grid()`
 cancels any unfinished action and snaps external warps to the same one-unit X/Z
 grid.
 
-The capsule can preflight an existing physics collider without leaving the
-grid, but terrain and building collision are not generated yet. Platinum's
-dedicated wall-bump action remains part of the upcoming `a.dat`/`h.bhc`
-collision milestone.
+Before a step begins, the controller asks the streamer's independent
+`PlatinumCollisionMap` to resolve the destination. Every result reports a
+`disposition` (`allow`, `blocked`, or `special`), an `action`, and a
+`landing_target`. The controller currently begins a normal grid step only for
+`allow`; both other dispositions remain fail-closed.
+
+The query applies these rules in order:
+
+1. Both current and destination tiles must have collision data.
+2. Current and destination low-byte behaviors are classified before bit 15.
+   A correctly approached ledge returns `jump` or `jump_two` with a
+   BDHC-resolved landing two tiles away.
+3. Behaviors requiring Surf, transitions or warps, forced ice movement,
+   dynamic mechanisms, Rock Climb, or a bicycle return `special` and remain
+   blocked until those action executors exist.
+4. If no special behavior applies, destination `a.dat` bit 15 (`0x8000`) must
+   be clear and directional behavior must permit both exit and entry.
+5. The destination `h.bhc` BDHC height must exist and differ from the current
+   height by less than `20` source units (`1.25` world units).
+6. The capsule must pass the existing Godot physics preflight.
+
+Rejected input stops before movement and keeps the player on the original grid
+center. Missing or malformed collision data also blocks the step. A dedicated
+wall-bump animation is not implemented yet.
+
+For an accepted step, X/Z still follow the fixed 16-tick walk or 8-tick run
+timeline. BDHC is sampled again on every physics tick using the current Y as
+the reference, so slopes and overlapping bridge levels remain continuous. If
+height sampling or a physics move fails during the action, the atomic step is
+cancelled back to its origin.
+
+The player carries a collision context across completed steps. Its
+`bridge_layer` is `unknown`, `ground`, or `elevated`, allowing the walking layer
+to distinguish an upper bridge crossing from water at the same X/Z position.
+The candidate `next_context` is committed only when the step reaches its target;
+blocked, special, or cancelled steps cannot change the active layer.
+
+BDHC heights are absolute field heights. Matrix altitude is used to place the
+terrain visual and is never added to the player height. Static buildings and
+other MapProps likewise do not create generic collision boxes: their blocking
+footprints are encoded in the cell terrain attributes, while their manifest
+records retain visual placement and interaction-anchor data. Those anchors are
+indexed by global world tile during collision-map configuration, so an O(1)
+query can find a MapProp whose anchor lies outside its owner matrix cell.
 
 ## Animation Atlas
 

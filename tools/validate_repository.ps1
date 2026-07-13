@@ -27,6 +27,12 @@ if ($parseFailures.Count -gt 0) {
     throw "$($parseFailures.Count) PowerShell syntax error(s) found."
 }
 
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+	-File (Join-Path $ProjectRoot "tools\test_dspre_collision_support.ps1")
+if ($LASTEXITCODE -ne 0) {
+	throw "DSPRE collision support test failed."
+}
+
 $syncScriptPath = Join-Path $ProjectRoot "tools\sync_dspre_godot_assets.ps1"
 $syncScriptText = [IO.File]::ReadAllText($syncScriptPath, [Text.Encoding]::UTF8)
 $hardLinkPreflightIndex = $syncScriptText.IndexOf(
@@ -153,6 +159,19 @@ if ($Full) {
     & $GodotPath --headless --path $godotProject --script "res://tests/debug_coordinate_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "Debug coordinate test failed."
+    }
+    & $GodotPath --headless --path $godotProject --script "res://tests/platinum_collision_map_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Platinum collision map test failed."
+    }
+    & $GodotPath --headless --path $godotProject --script "res://tests/platinum_collision_map_test.gd" -- `
+        --real-manifest=res://assets/platinum/matrix_0049_area_0061/manifest.json
+    if ($LASTEXITCODE -ne 0) {
+        throw "Real Platinum collision manifest test failed."
+    }
+    & $GodotPath --headless --path $godotProject --script "res://tests/player_collision_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Player collision test failed."
     }
     & $GodotPath --headless --path $godotProject --script "res://tools/validate_shared_materials.gd"
     if ($LASTEXITCODE -ne 0) {

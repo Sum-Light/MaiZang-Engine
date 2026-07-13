@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-07-13 - Add Platinum terrain collision and height queries
+
+- Export each map's exact `a.dat` terrain attributes and packed `BDHC` height data into every AreaData-aware destination manifest, with source hashes, map-level deduplication, completion markers, and catalog-wide contract validation.
+- Preserve exact MapProp FX32 scale while defining static building footprints through the cell terrain attributes instead of generating mesh colliders that would block roofs, arches, and other walkable geometry.
+- Add an independent, retention-bounded `PlatinumCollisionMap` resource that lazily decodes packed bytes, resolves row-major tile collision across matrix-cell boundaries, samples the nearest BDHC plate, and indexes MapProp anchors by global tile even when their visual owner cell unloads.
+- Classify walking behavior as allowed, blocked, or special; preserve Surf, ledge landing, Warp, forced movement, dynamic-feature, climbing, and bicycle actions while failing closed until their gameplay states exist, and carry bridge-layer context across accepted player steps.
+- Preflight each cardinal player step against terrain attributes and the 1.25-world-unit height threshold, then sample slopes on every physics tick while retaining `CharacterBody3D` collision for later dynamic bodies.
+- Correct terrain/building center-origin placement, start matrix `0000` on open tile `(16,16)`, and add synthetic, real-manifest, player-integration, streaming, and full-catalog validation coverage.
+
 ## 2026-07-13 - Add in-game debug destination jumps
 
 - Add an `F2` modal for selecting a matrix, AreaData variant, optional matrix cell, and in-cell tile while the game is running.

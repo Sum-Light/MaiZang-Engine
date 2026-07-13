@@ -115,6 +115,8 @@ $localReadyDestinations = 0
 $localUnresolvedMatrices = 0
 $localTerrainAssets = 0
 $localBuildingAssets = 0
+$localUniqueCollisionAssets = 0
+$localDestinationCollisionAssets = 0
 if ($localAssetsPresent) {
     $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
     $localGlbs = [int]$catalog.summary.destination_scoped_glbs
@@ -132,6 +134,12 @@ if ($localAssetsPresent) {
     $localUnresolvedMatrices = [int]$catalog.summary.unresolved_matrices
     $localTerrainAssets = [int]$catalog.summary.unique_terrain_assets
     $localBuildingAssets = [int]$catalog.summary.unique_building_assets
+    if ($null -ne $catalog.summary.PSObject.Properties["unique_collision_assets"]) {
+        $localUniqueCollisionAssets = [int]$catalog.summary.unique_collision_assets
+    }
+    if ($null -ne $catalog.summary.PSObject.Properties["destination_scoped_collision_assets"]) {
+        $localDestinationCollisionAssets = [int]$catalog.summary.destination_scoped_collision_assets
+    }
 }
 
 $godotScripts = @(Get-ChildItem -LiteralPath (Join-Path $godotRoot "scripts") -Filter "*.gd" -File -ErrorAction SilentlyContinue).Count
@@ -176,6 +184,8 @@ $currentState = @"
 - Matrix catalog: $localSourceMatrices source matrices, $localReadyMatrices ready matrices, $localReadyDestinations runnable destinations, and $localUnresolvedMatrices unresolved source records.
 - Debug destination: ``F2`` validates an in-game selection and reloads the main scene through a one-shot process-local request.
 - Global asset variants: $localTerrainAssets terrain and $localBuildingAssets building/texture pairs.
+- Collision assets: $localUniqueCollisionAssets unique maps across $localDestinationCollisionAssets destination-scoped records.
+- Collision runtime: lazy ``a.dat``/BDHC cache, absolute height sampling, walking behavior actions, and fail-closed unsupported special movement.
 - Building instances across ready matrices: $localBuildings.
 - Shared resources: $localUniqueTextures unique texture hashes and $localMaterials external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
@@ -194,8 +204,8 @@ $currentState = @"
 
 ## Next Engineering Milestone
 
-Integrate ``a.dat`` tile behavior and ``h.bhc`` height/collision data without
-coupling the collision cache to rendered scene lifetime.
+Add dynamic map features, warps, and scripted collision overrides on top of the
+static terrain-attribute and BDHC query service.
 "@
 
 $skillState = @"
@@ -214,11 +224,13 @@ MaiZang Engine and regenerate it in every functional commit.
 - World: $localReadyMatrices ready matrices exposed through $localReadyDestinations debug destinations, with $localUnresolvedMatrices unresolved source records; matrix ``0000`` remains the default.
 - Debug destination: ``F2`` opens the validated in-game selector and crosses a complete scene-reload boundary.
 - Assets: $localGlbs destination-scoped GLBs, $localUniqueTextures unique texture hashes, and $localMaterials shared materials.
+- Collision: $localUniqueCollisionAssets unique maps across $localDestinationCollisionAssets destination-scoped records, cached independently of visual chunks.
+- Collision runtime: absolute BDHC height, walking behavior actions, bridge-layer context, and fail-closed unsupported special movement.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.
 - Dawn sprite atlas: $playerSpriteStatus.
-- Next milestone: ``a.dat`` behavior plus ``h.bhc`` height and collision.
+- Next milestone: dynamic map features, warps, and scripted collision overrides.
 
 The public repository must not contain ROM-derived models, textures, maps, or
 other proprietary Pokemon assets.

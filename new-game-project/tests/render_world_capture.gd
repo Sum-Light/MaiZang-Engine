@@ -15,7 +15,7 @@ func _run() -> void:
 	var capture_matrix_id := 0
 	var capture_area_data_id := -1
 	var capture_cell := DEFAULT_CAPTURE_CELL
-	var capture_tile := Vector2i.ZERO
+	var capture_tile := PlatinumWorldStreamer.DEFAULT_START_TILE
 	var capture_offset := Vector2.ZERO
 	var capture_path := DEFAULT_CAPTURE_PATH
 	var force_perspective := false

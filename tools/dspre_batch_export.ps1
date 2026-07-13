@@ -9,6 +9,11 @@ param(
     [int]$AreaDataId = -1,
     [int]$MaxParallel = 4,
     [long]$HeaderTableOffset = 0xE56F0,
+    [string]$DspreSourceSha256 = "",
+    [string]$ExporterSha256 = "",
+    [string]$SupportToolSha256 = "",
+    [string]$ApiculaSha256 = "",
+    [string]$AreaResolutionSha256 = "",
     [switch]$Force
 )
 
@@ -16,6 +21,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot "dspre_collision_support.ps1")
 if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
     $OutputRoot = Join-Path $workspaceRoot "generated\dspre_glb"
 }
@@ -53,6 +59,29 @@ function Clear-DirectoryUnderRoot {
         Remove-Item -LiteralPath $fullPath -Recurse -Force
     }
     New-Item -ItemType Directory -Path $fullPath -Force | Out-Null
+}
+
+function Remove-StaleAssetDirectories {
+    param(
+        [string]$Directory,
+        [System.Collections.Generic.HashSet[string]]$ExpectedNames,
+        [string]$AllowedRoot
+    )
+
+    if (-not (Test-Path -LiteralPath $Directory -PathType Container)) {
+        return
+    }
+    $allowedPrefix = [IO.Path]::GetFullPath($AllowedRoot).TrimEnd('\') + '\'
+    foreach ($child in Get-ChildItem -LiteralPath $Directory -Directory) {
+        if ($ExpectedNames.Contains($child.Name)) {
+            continue
+        }
+        $fullPath = [IO.Path]::GetFullPath($child.FullName)
+        if (-not $fullPath.StartsWith($allowedPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+            throw "Refusing to remove a stale asset directory outside $AllowedRoot`: $fullPath"
+        }
+        Remove-Item -LiteralPath $fullPath -Recurse -Force
+    }
 }
 
 function Get-U16 {
@@ -282,6 +311,48 @@ if (-not [string]::IsNullOrWhiteSpace($AreaOverridesPath)) {
     }
 }
 
+$exporterPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dspre_batch_export.ps1") "DSPRE batch exporter"
+$supportToolPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dspre_collision_support.ps1") "DSPRE collision support tool"
+if ([string]::IsNullOrWhiteSpace($DspreSourceSha256)) {
+    Write-Host "Fingerprinting DSPRE contents..."
+    $DspreSourceSha256 = Get-DspreContentFingerprint -RootPath $DspreContents
+}
+else {
+    $DspreSourceSha256 = Assert-DspreSha256Fingerprint $DspreSourceSha256 "DSPRE source fingerprint"
+}
+if ([string]::IsNullOrWhiteSpace($ExporterSha256)) {
+    $ExporterSha256 = Get-DspreToolFileFingerprint -Path $exporterPath
+}
+else {
+    $ExporterSha256 = Assert-DspreSha256Fingerprint $ExporterSha256 "Batch exporter fingerprint"
+}
+if ([string]::IsNullOrWhiteSpace($SupportToolSha256)) {
+    $SupportToolSha256 = Get-DspreToolFileFingerprint -Path $supportToolPath
+}
+else {
+    $SupportToolSha256 = Assert-DspreSha256Fingerprint $SupportToolSha256 "Collision support tool fingerprint"
+}
+if ([string]::IsNullOrWhiteSpace($ApiculaSha256)) {
+    $ApiculaSha256 = Get-DspreToolFileFingerprint -Path $ApiculaPath
+}
+else {
+    $ApiculaSha256 = Assert-DspreSha256Fingerprint $ApiculaSha256 "apicula fingerprint"
+}
+if ([string]::IsNullOrWhiteSpace($AreaResolutionSha256)) {
+    $AreaResolutionSha256 = if ([string]::IsNullOrWhiteSpace($AreaOverridesPath)) {
+        ""
+    }
+    else {
+        Get-DspreAreaResolutionFingerprint -Path $AreaOverridesPath
+    }
+}
+else {
+    if ([string]::IsNullOrWhiteSpace($AreaOverridesPath)) {
+        throw "Area resolution fingerprint was provided without an AreaData override file."
+    }
+    $AreaResolutionSha256 = Assert-DspreSha256Fingerprint $AreaResolutionSha256 "Area resolution fingerprint"
+}
+
 $matrixBytes = [IO.File]::ReadAllBytes($matrixPath)
 if ($matrixBytes.Length -lt 5) {
     throw "Matrix file is too short: $matrixPath"
@@ -391,6 +462,7 @@ if (-not $hasHeaders) {
 
 $terrainAssets = @{}
 $buildingAssets = @{}
+$collisionAssets = @{}
 $mapCache = @{}
 $cells = New-Object System.Collections.Generic.List[object]
 
@@ -431,8 +503,9 @@ for ($index = 0; $index -lt $cellCount; $index++) {
         $terrainLength = [int](Get-U32 $mapBytes 12)
         $buildingsOffset = 16 + $permissionsLength
         $modelOffset = $buildingsOffset + $buildingsLength
-        if ($modelOffset + $modelLength -gt $mapBytes.Length) {
-            throw "Map section lengths exceed the file size: $mapPath"
+        $bdhcOffset = $modelOffset + $modelLength
+        if ($bdhcOffset + $terrainLength -ne $mapBytes.Length) {
+            throw "Map section lengths do not exactly cover the file: $mapPath"
         }
         if ([Text.Encoding]::ASCII.GetString($mapBytes, $modelOffset, 4) -ne "BMD0") {
             throw "Map model section is not BMD0: $mapPath"
@@ -461,6 +534,9 @@ for ($index = 0; $index -lt $cellCount; $index++) {
             $xRotation = Get-U16 $mapBytes ($recordOffset + 16)
             $yRotation = Get-U16 $mapBytes ($recordOffset + 20)
             $zRotation = Get-U16 $mapBytes ($recordOffset + 24)
+            $xScaleFx32 = [BitConverter]::ToInt32($mapBytes, $recordOffset + 28)
+            $yScaleFx32 = [BitConverter]::ToInt32($mapBytes, $recordOffset + 32)
+            $zScaleFx32 = [BitConverter]::ToInt32($mapBytes, $recordOffset + 36)
             $buildings.Add([pscustomobject][ordered]@{
                 model_id = [int](Get-U32 $mapBytes $recordOffset)
                 position = [pscustomobject][ordered]@{
@@ -475,6 +551,16 @@ for ($index = 0; $index -lt $cellCount; $index++) {
                     x = [Math]::Round($xRotation * 360.0 / 65536.0, 8)
                     y = [Math]::Round($yRotation * 360.0 / 65536.0, 8)
                     z = [Math]::Round($zRotation * 360.0 / 65536.0, 8)
+                }
+                scale_fx32 = [pscustomobject][ordered]@{
+                    x = $xScaleFx32
+                    y = $yScaleFx32
+                    z = $zScaleFx32
+                }
+                scale = [pscustomobject][ordered]@{
+                    x = [Math]::Round($xScaleFx32 / 4096.0, 8)
+                    y = [Math]::Round($yScaleFx32 / 4096.0, 8)
+                    z = [Math]::Round($zScaleFx32 / 4096.0, 8)
                 }
                 size = [pscustomobject][ordered]@{
                     width = Get-U16 $mapBytes ($recordOffset + 29)
@@ -493,7 +579,9 @@ for ($index = 0; $index -lt $cellCount; $index++) {
             model_length = $modelLength
             terrain_length = $terrainLength
             buildings = $buildings
+            collision = ConvertFrom-DspreMapCollision -Bytes $mapBytes -MapId $mapId
         }
+        $collisionAssets[$mapId] = $mapCache[$mapId].collision
     }
 
     if (-not $terrainAssets.ContainsKey($terrainKey)) {
@@ -532,7 +620,12 @@ for ($index = 0; $index -lt $cellCount; $index++) {
             position_fraction = $building.position_fraction
             rotation_u16 = $building.rotation_u16
             rotation_degrees = $building.rotation_degrees
+            scale_fx32 = $building.scale_fx32
+            scale = $building.scale
             size = $building.size
+            collision = [pscustomobject][ordered]@{
+                mode = "cell_terrain_attributes"
+            }
         })
     }
 
@@ -547,6 +640,7 @@ for ($index = 0; $index -lt $cellCount; $index++) {
         map_texture_id = $area.map_texture_id
         building_texture_id = $area.building_texture_id
         terrain_asset_key = $terrainKey
+        collision_asset_key = [string]$mapCache[$mapId].collision.key
         buildings = $cellBuildings
     })
 }
@@ -557,6 +651,16 @@ if ($Force) {
 foreach ($directory in @($terrainOutputRoot, $buildingOutputRoot, $logsRoot)) {
     New-Item -ItemType Directory -Path $directory -Force | Out-Null
 }
+$expectedTerrainDirectories = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+foreach ($key in $terrainAssets.Keys) {
+    $null = $expectedTerrainDirectories.Add([string]$key)
+}
+$expectedBuildingDirectories = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+foreach ($key in $buildingAssets.Keys) {
+    $null = $expectedBuildingDirectories.Add([string]$key)
+}
+Remove-StaleAssetDirectories $terrainOutputRoot $expectedTerrainDirectories $matrixOutputRoot
+Remove-StaleAssetDirectories $buildingOutputRoot $expectedBuildingDirectories $matrixOutputRoot
 
 $conversionJobs = New-Object System.Collections.Generic.List[object]
 foreach ($asset in @($terrainAssets.Values | Sort-Object key)) {
@@ -661,12 +765,13 @@ Write-Progress -Activity "Exporting DSPRE models" -Completed
 
 $terrainArray = @($terrainAssets.Values | Sort-Object key)
 $buildingArray = @($buildingAssets.Values | Sort-Object key)
+$collisionArray = @($collisionAssets.Values | Sort-Object map_id)
 $exportedCount = @($terrainArray + $buildingArray | Where-Object { $_.status -eq "exported" }).Count
 $skippedCount = @($terrainArray + $buildingArray | Where-Object { $_.status -eq "skipped_existing" }).Count
 $failedCount = @($terrainArray + $buildingArray | Where-Object { $_.status -eq "failed" }).Count
 
 $manifest = [pscustomobject][ordered]@{
-    schema_version = 1
+    schema_version = 2
     generated_utc = [DateTime]::UtcNow.ToString("o")
     source = [pscustomobject][ordered]@{
         dspre_contents = $DspreContents
@@ -688,6 +793,9 @@ $manifest = [pscustomobject][ordered]@{
     summary = [pscustomobject][ordered]@{
         terrain_assets = $terrainArray.Count
         building_assets = $buildingArray.Count
+        collision_assets = $collisionArray.Count
+        terrain_attribute_tiles = 1024 * $collisionArray.Count
+        bdhc_assets = $collisionArray.Count
         building_instances = [int](($cells | ForEach-Object { $_.buildings.Count } | Measure-Object -Sum).Sum)
         exported = $exportedCount
         skipped_existing = $skippedCount
@@ -697,6 +805,21 @@ $manifest = [pscustomobject][ordered]@{
         terrain = $terrainArray
         buildings = $buildingArray
     }
+    collision_format = [pscustomobject][ordered]@{
+        schema_version = 1
+        terrain_width = 32
+        terrain_height = 32
+        terrain_order = "row_major"
+        collision_mask = 0x8000
+        behavior_mask = 0x00FF
+        fx32_fraction_bits = 12
+        source_units_per_tile = 16
+        source_units_per_world_unit = 16
+        bdhc_origin = "map_center"
+        axes = "+x_right,+y_up,+z_down"
+        map_prop_collision = "cell_terrain_attributes"
+    }
+    collision_assets = $collisionArray
     cells = $cells
     failures = $failures
 }
@@ -712,12 +835,43 @@ $summaryPath = Join-Path $matrixOutputRoot "summary.json"
     occupied_cells = $cells.Count
     terrain_assets = $terrainArray.Count
     building_assets = $buildingArray.Count
+    collision_assets = $collisionArray.Count
+    terrain_attribute_tiles = 1024 * $collisionArray.Count
+    bdhc_assets = $collisionArray.Count
     building_instances = $manifest.summary.building_instances
     exported = $exportedCount
     skipped_existing = $skippedCount
     failed = $failedCount
     manifest = $manifestPath
 } | ConvertTo-Json -Depth 4), $utf8NoBom)
+
+$exportMarkerPath = Join-Path $matrixOutputRoot ".export-complete.json"
+if ($failedCount -eq 0) {
+    [IO.File]::WriteAllText($exportMarkerPath, ([pscustomobject][ordered]@{
+        schema_version = 2
+        export_contract_version = 3
+        matrix_id = $MatrixId
+        variant = $matrixVariantName
+        area_data_id = if ($hasHeaders) { $null } else { $fallbackHeader.area_data_id }
+        manifest_sha256 = (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant()
+        dspre_source_sha256 = $DspreSourceSha256
+        exporter_sha256 = $ExporterSha256
+        support_tool_sha256 = $SupportToolSha256
+        apicula_sha256 = $ApiculaSha256
+        area_resolution_sha256 = if ([string]::IsNullOrWhiteSpace($AreaResolutionSha256)) {
+            $null
+        }
+        else {
+            $AreaResolutionSha256
+        }
+        occupied_cells = $cells.Count
+        collision_assets = $collisionArray.Count
+        completed_utc = [DateTime]::UtcNow.ToString("o")
+    } | ConvertTo-Json -Depth 4), $utf8NoBom)
+}
+elseif (Test-Path -LiteralPath $exportMarkerPath -PathType Leaf) {
+    Remove-Item -LiteralPath $exportMarkerPath -Force
+}
 
 Write-Host ""
 Write-Host "Export complete."

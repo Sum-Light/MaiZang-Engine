@@ -83,6 +83,9 @@ function Get-MatrixDestinations {
             throw "Matrix catalog destination $key reuses a manifest: $manifestPath"
         }
         $manifest = Read-JsonFile $manifestPath "Destination $key manifest"
+        if ([int]$manifest.schema_version -ne 3) {
+            throw "Destination $key manifest schema 3 is required."
+        }
         $variantRoot = Split-Path -Parent $manifestPath
 
         $assets = Get-RequiredProperty $manifest "assets" "Destination $key manifest"
@@ -180,6 +183,9 @@ if (-not (Test-Path -LiteralPath $GodotPath -PathType Leaf)) {
 }
 
 $catalog = Read-JsonFile $catalogPath "Matrix catalog"
+if ([int]$catalog.schema_version -ne 2) {
+    throw "Matrix catalog schema 2 is required."
+}
 $matrixDestinations = @(Get-MatrixDestinations $catalog $platinumRoot)
 $expectedGlbCount = 0
 $expectedPngCount = 0

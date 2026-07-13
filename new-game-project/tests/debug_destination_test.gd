@@ -10,7 +10,7 @@ const CLI_TEST_CELL := Vector2i(0, 0)
 const CLI_TEST_TILE := Vector2i(7, 9)
 const ALTITUDE_TEST_CELL := Vector2i(4, 25)
 const ALTITUDE_TEST_TILE := Vector2i(28, 30)
-const ALTITUDE_TEST_POSITION := Vector3(156.5, 2.0, 830.5)
+const ALTITUDE_TEST_POSITION := Vector3(156.5, 0.0, 830.5)
 
 var _main: Node
 var _streamer: PlatinumWorldStreamer
@@ -78,12 +78,13 @@ func _run() -> void:
 		return
 
 	var player := _main.get_node("Player") as PlatinumPlayerController
-	var expected_position := Vector3(
-		expected_cell.x * PlatinumWorldStreamer.CHUNK_SIZE + expected_tile.x + 0.5,
-		1.0,
-		expected_cell.y * PlatinumWorldStreamer.CHUNK_SIZE + expected_tile.y + 0.5
+	var expected_position: Variant = _streamer.resolve_cell_tile_world_position(
+		expected_cell, expected_tile
 	)
-	if player == null or not player.global_position.is_equal_approx(expected_position):
+	if expected_position == null:
+		_fail("The requested destination has no BDHC height at its start tile.")
+		return
+	if player == null or not player.global_position.is_equal_approx(expected_position as Vector3):
 		var actual_position := player.global_position if player != null else Vector3.INF
 		_fail("Player start position is incorrect: %s" % actual_position)
 		return

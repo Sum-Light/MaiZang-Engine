@@ -60,6 +60,9 @@ var _animation_running := false
 var _gait_frame := 0
 var _run_stop_frame := 0
 var _has_animation_sheet := false
+var _collision_provider: Node
+var _collision_context := {"locomotion": "walk", "bridge_layer": "unknown"}
+var _pending_collision_context := _collision_context.duplicate()
 
 @onready var _sprite := $Sprite3D as Sprite3D
 
@@ -176,6 +179,14 @@ func is_using_local_sprite_sheet() -> bool:
 	return _has_animation_sheet
 
 
+func set_collision_provider(provider: Node) -> void:
+	_collision_provider = provider
+
+
+func get_collision_context() -> Dictionary:
+	return _collision_context.duplicate(true)
+
+
 static func snap_to_grid_center(world_position: Vector3) -> Vector3:
 	return Vector3(
 		floorf(world_position.x / GRID_CELL_SIZE) * GRID_CELL_SIZE + GRID_CENTER_OFFSET,
@@ -202,6 +213,8 @@ func teleport_to_grid(world_position: Vector3, facing: int = -1) -> void:
 	_animation_running = false
 	_gait_frame = 0
 	_run_stop_frame = 0
+	_collision_context = {"locomotion": "walk", "bridge_layer": "unknown"}
+	_pending_collision_context = _collision_context.duplicate()
 	if is_instance_valid(_sprite):
 		_update_sprite_frame()
 
@@ -255,16 +268,26 @@ func _begin_step(direction: Vector2, next_facing: int) -> bool:
 	_facing = next_facing
 	_move_direction = direction
 	_step_origin = global_position
-	_step_target = _step_origin + Vector3(direction.x, 0.0, direction.y) * GRID_CELL_SIZE
+	if is_instance_valid(_collision_provider) and _collision_provider.has_method("resolve_player_step"):
+		var step_result: Dictionary = _collision_provider.call(
+			"resolve_player_step",
+			_step_origin,
+			Vector2i(roundi(direction.x), roundi(direction.y)),
+			_collision_context
+		)
+		if not bool(step_result.get("ok", false)) or bool(step_result.get("blocked", true)):
+			_stop_before_step()
+			return false
+		_step_target = step_result.get("target", _step_origin) as Vector3
+		_pending_collision_context = (
+			step_result.get("next_context", _collision_context) as Dictionary
+		).duplicate(true)
+	else:
+		_step_target = _step_origin + Vector3(direction.x, 0.0, direction.y) * GRID_CELL_SIZE
+		_pending_collision_context = _collision_context.duplicate(true)
 	var collision := move_and_collide(_step_target - _step_origin, true)
 	if collision != null:
-		_previous_action = ActionKind.STOP
-		_step_target = _step_origin
-		_step_running = false
-		_animation_running = false
-		_gait_frame = _align_gait_to_idle(_gait_frame)
-		velocity = Vector3.ZERO
-		_update_sprite_frame()
+		_stop_before_step()
 		return false
 
 	_motion_state = MotionState.STEPPING
@@ -293,6 +316,14 @@ func _advance_step(delta: float) -> void:
 	_action_frame += 1
 	var progress := float(_action_frame) / float(_action_duration)
 	var desired_position := _step_origin.lerp(_step_target, progress)
+	if is_instance_valid(_collision_provider) and _collision_provider.has_method("resolve_player_height"):
+		var sampled_height: Variant = _collision_provider.call(
+			"resolve_player_height", desired_position, global_position.y
+		)
+		if sampled_height == null:
+			_cancel_step()
+			return
+		desired_position.y = float(sampled_height)
 	var motion := desired_position - global_position
 	velocity = motion / maxf(delta, 0.000001)
 	var collision := move_and_collide(motion)
@@ -306,6 +337,7 @@ func _advance_step(delta: float) -> void:
 	var emitted_duration := _action_duration
 	if _action_frame >= _action_duration:
 		global_position = _step_target
+		_collision_context = _pending_collision_context.duplicate(true)
 		velocity = Vector3.ZERO
 		_motion_state = MotionState.READY
 		_action_frame = 0
@@ -322,6 +354,7 @@ func _cancel_step() -> void:
 	global_position = _step_origin
 	velocity = Vector3.ZERO
 	_step_target = _step_origin
+	_pending_collision_context = _collision_context.duplicate(true)
 	_motion_state = MotionState.READY
 	_previous_action = ActionKind.STOP
 	_action_frame = 0
@@ -329,6 +362,17 @@ func _cancel_step() -> void:
 	_animation_running = false
 	_gait_frame = _align_gait_to_idle(_gait_frame)
 	_run_stop_frame = 0
+	_update_sprite_frame()
+
+
+func _stop_before_step() -> void:
+	_previous_action = ActionKind.STOP
+	_step_target = _step_origin
+	_pending_collision_context = _collision_context.duplicate(true)
+	_step_running = false
+	_animation_running = false
+	_gait_frame = _align_gait_to_idle(_gait_frame)
+	velocity = Vector3.ZERO
 	_update_sprite_frame()
 
 

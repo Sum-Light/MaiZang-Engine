@@ -71,6 +71,8 @@ static func resolve(catalog_path: String, request: Dictionary) -> Dictionary:
 	if not bool(catalog_result.ok):
 		return _error(result, "catalog", String(catalog_result.error))
 	var catalog := catalog_result.value as Dictionary
+	if int(catalog.get("schema_version", -1)) != 2:
+		return _error(result, "catalog", "Matrix catalog schema 2 is required.")
 	var destinations_value: Variant = catalog.get("destinations", null)
 	if typeof(destinations_value) != TYPE_ARRAY:
 		return _error(
@@ -163,6 +165,8 @@ static func resolve(catalog_path: String, request: Dictionary) -> Dictionary:
 	if not bool(manifest_result.ok):
 		return _error(result, "manifest", String(manifest_result.error))
 	var manifest := manifest_result.value as Dictionary
+	if int(manifest.get("schema_version", -1)) != 3:
+		return _error(result, "manifest", "World manifest schema 3 is required.")
 	var manifest_matrix_value: Variant = manifest.get("matrix", null)
 	if typeof(manifest_matrix_value) != TYPE_DICTIONARY:
 		return _error(

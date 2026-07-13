@@ -9,6 +9,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot "dspre_collision_support.ps1")
 if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
     $SourceRoot = Join-Path $workspaceRoot "generated\dspre_glb\matrix_0000"
 }
@@ -299,6 +300,11 @@ $manifestPath = Join-Path $SourceRoot "manifest.json"
 if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
     throw "Source manifest does not exist: $manifestPath"
 }
+$manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+$null = Assert-DspreCollisionManifest `
+    -Manifest $manifest `
+    -Label "Source export manifest" `
+    -ExpectedManifestSchema 2
 $sourceManifestSha256 = Get-Sha256File $manifestPath
 if (Test-Path -LiteralPath $OutputRoot) {
     if (-not $Force) {
@@ -511,8 +517,7 @@ $catalog = [pscustomobject][ordered]@{
 $catalogPath = Join-Path $OutputRoot "material_catalog.json"
 [IO.File]::WriteAllText($catalogPath, ($catalog | ConvertTo-Json -Depth 30 -Compress), $utf8NoBom)
 
-$manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-$manifest.schema_version = 2
+$manifest.schema_version = 3
 $manifest.generated_utc = [DateTime]::UtcNow.ToString("o")
 $manifest | Add-Member -Force -NotePropertyName "material_dedupe" -NotePropertyValue ([pscustomobject][ordered]@{
     catalog = "material_catalog.json"

@@ -14,6 +14,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
+. (Join-Path $PSScriptRoot "dspre_collision_support.ps1")
 $rawRoot = Join-Path $workspaceRoot "generated\dspre_glb"
 $dedupRoot = Join-Path $workspaceRoot "generated\dspre_glb_dedup"
 $projectRoot = Join-Path $workspaceRoot "new-game-project"
@@ -276,6 +277,10 @@ function Test-DedupeComplete {
     try {
         $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+        $null = Assert-DspreCollisionManifest `
+            -Manifest $manifest `
+            -Label "Deduplicated destination $ExpectedVariant" `
+            -ExpectedManifestSchema 3
         $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $actualGlbs = @(Get-ChildItem -LiteralPath $DestinationRoot -Recurse -Filter "*.glb" -File).Count
@@ -357,6 +362,10 @@ function Test-SyncComplete {
             ConvertFrom-Json
         $destination = [IO.File]::ReadAllText($destinationManifest, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
+        $null = Assert-DspreCollisionManifest `
+            -Manifest $destination `
+            -Label "Godot destination $ExpectedVariant" `
+            -ExpectedManifestSchema 3
         $destinationVariant = if ($null -ne $destination.matrix.PSObject.Properties["variant"]) {
             [string]$destination.matrix.variant
         }
@@ -444,6 +453,14 @@ if (-not $ReuseAreaResolution -or -not (Test-Path -LiteralPath $resolutionPath -
 }
 $resolution = [IO.File]::ReadAllText($resolutionPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
 Assert-AreaResolution $resolution $allMatrixIds $DspreContents 0xE56F0
+$batchExporterPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dspre_batch_export.ps1") "DSPRE batch exporter"
+$supportToolPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dspre_collision_support.ps1") "DSPRE collision support tool"
+Write-Host "Fingerprinting DSPRE contents once for all matrix variants..."
+$dspreSourceSha256 = Get-DspreContentFingerprint -RootPath $DspreContents
+$exporterSha256 = Get-DspreToolFileFingerprint -Path $batchExporterPath
+$supportToolSha256 = Get-DspreToolFileFingerprint -Path $supportToolPath
+$apiculaSha256 = Get-DspreToolFileFingerprint -Path $ApiculaPath
+$areaResolutionSha256 = Get-DspreAreaResolutionFingerprint -Path $resolutionPath
 $unresolvedById = @{}
 foreach ($record in @($resolution.unresolved)) {
     $unresolvedById[[int]$record.matrix_id] = $record
@@ -482,6 +499,7 @@ foreach ($variantRecord in $readyRequestedVariants) {
     $godotMatrixRoot = Join-Path $platinumRoot $variantName
     $rawManifest = Join-Path $rawMatrixRoot "manifest.json"
     $rawSummaryPath = Join-Path $rawMatrixRoot "summary.json"
+    $rawMarkerPath = Join-Path $rawMatrixRoot ".export-complete.json"
     $dedupManifest = Join-Path $dedupMatrixRoot "manifest.json"
     $dedupSummaryPath = Join-Path $dedupMatrixRoot "summary.json"
     $dedupCatalogPath = Join-Path $dedupMatrixRoot "material_catalog.json"
@@ -496,7 +514,8 @@ foreach ($variantRecord in $readyRequestedVariants) {
     $rawComplete = $false
     if (
         (Test-Path -LiteralPath $rawManifest -PathType Leaf) -and
-        (Test-Path -LiteralPath $rawSummaryPath -PathType Leaf)
+        (Test-Path -LiteralPath $rawSummaryPath -PathType Leaf) -and
+        (Test-Path -LiteralPath $rawMarkerPath -PathType Leaf)
     ) {
         try {
             $existingRawSummary = [IO.File]::ReadAllText(
@@ -507,6 +526,14 @@ foreach ($variantRecord in $readyRequestedVariants) {
                 $rawManifest,
                 [Text.Encoding]::UTF8
             ) | ConvertFrom-Json
+            $existingRawMarker = [IO.File]::ReadAllText(
+                $rawMarkerPath,
+                [Text.Encoding]::UTF8
+            ) | ConvertFrom-Json
+            $null = Assert-DspreCollisionManifest `
+                -Manifest $existingRawManifest `
+                -Label "Raw destination $variantName" `
+                -ExpectedManifestSchema 2
             $manifestVariant = if (
                 $null -ne $existingRawManifest.matrix.PSObject.Properties["variant"]
             ) {
@@ -529,7 +556,21 @@ foreach ($variantRecord in $readyRequestedVariants) {
                     [int]$expectedArea -eq [int]$manifestArea)
             $rawComplete = [int]$existingRawSummary.failed -eq 0 -and
                 [int]$existingRawManifest.matrix.id -eq $matrixId -and
-                $manifestVariant -eq $variantName -and $areaMatches
+                $manifestVariant -eq $variantName -and $areaMatches -and
+                [int]$existingRawMarker.schema_version -eq 2 -and
+                [int]$existingRawMarker.export_contract_version -eq 3 -and
+                [int]$existingRawMarker.matrix_id -eq $matrixId -and
+                [string]$existingRawMarker.variant -eq $variantName -and
+                [string]$existingRawMarker.manifest_sha256 -eq (
+                    Get-FileHash -LiteralPath $rawManifest -Algorithm SHA256
+                ).Hash.ToLowerInvariant() -and
+                [string]$existingRawMarker.dspre_source_sha256 -eq $dspreSourceSha256 -and
+                [string]$existingRawMarker.exporter_sha256 -eq $exporterSha256 -and
+                [string]$existingRawMarker.support_tool_sha256 -eq $supportToolSha256 -and
+                [string]$existingRawMarker.apicula_sha256 -eq $apiculaSha256 -and
+                [string]$existingRawMarker.area_resolution_sha256 -eq $areaResolutionSha256 -and
+                [int]$existingRawMarker.occupied_cells -eq @($existingRawManifest.cells).Count -and
+                [int]$existingRawMarker.collision_assets -eq @($existingRawManifest.collision_assets).Count
         }
         catch {
             $rawComplete = $false
@@ -543,7 +584,12 @@ foreach ($variantRecord in $readyRequestedVariants) {
             AreaOverridesPath = $resolutionPath
             MatrixId = $matrixId
             MaxParallel = $MaxParallel
-            Force = (Test-Path -LiteralPath $rawMatrixRoot)
+            DspreSourceSha256 = $dspreSourceSha256
+            ExporterSha256 = $exporterSha256
+            SupportToolSha256 = $supportToolSha256
+            ApiculaSha256 = $apiculaSha256
+            AreaResolutionSha256 = $areaResolutionSha256
+            Force = $true
         }
         if ($variantName -match '_area_\d{4}$') {
             $exportArguments.AreaDataId = [int]$variantRecord.area_data_id
@@ -558,6 +604,12 @@ foreach ($variantRecord in $readyRequestedVariants) {
         $rawManifest,
         [Text.Encoding]::UTF8
     ) | ConvertFrom-Json
+    $rawMarker = [IO.File]::ReadAllText($rawMarkerPath, [Text.Encoding]::UTF8) |
+        ConvertFrom-Json
+    $null = Assert-DspreCollisionManifest `
+        -Manifest $rawManifestDocument `
+        -Label "Raw destination $variantName" `
+        -ExpectedManifestSchema 2
     $rawManifestVariant = if ($null -ne $rawManifestDocument.matrix.PSObject.Properties["variant"]) {
         [string]$rawManifestDocument.matrix.variant
     }
@@ -578,7 +630,17 @@ foreach ($variantRecord in $readyRequestedVariants) {
         [int]$rawSummary.failed -ne 0 -or
         [int]$rawManifestDocument.matrix.id -ne $matrixId -or
         $rawManifestVariant -ne $variantName -or
-        -not $rawAreaMatches
+        -not $rawAreaMatches -or
+        [int]$rawMarker.schema_version -ne 2 -or
+        [int]$rawMarker.export_contract_version -ne 3 -or
+        [string]$rawMarker.manifest_sha256 -ne (
+            Get-FileHash -LiteralPath $rawManifest -Algorithm SHA256
+        ).Hash.ToLowerInvariant() -or
+        [string]$rawMarker.dspre_source_sha256 -ne $dspreSourceSha256 -or
+        [string]$rawMarker.exporter_sha256 -ne $exporterSha256 -or
+        [string]$rawMarker.support_tool_sha256 -ne $supportToolSha256 -or
+        [string]$rawMarker.apicula_sha256 -ne $apiculaSha256 -or
+        [string]$rawMarker.area_resolution_sha256 -ne $areaResolutionSha256
     ) {
         throw "$variantName raw export does not match its resolution record."
     }
@@ -616,8 +678,31 @@ foreach ($variantRecord in $readyRequestedVariants) {
 }
 Write-Progress -Activity "Migrating DSPRE matrices" -Completed
 
+$changedInputs = New-Object System.Collections.Generic.List[string]
+if ((Get-DspreContentFingerprint -RootPath $DspreContents) -ne $dspreSourceSha256) {
+    $changedInputs.Add("DSPRE contents")
+}
+if ((Get-DspreToolFileFingerprint -Path $batchExporterPath) -ne $exporterSha256) {
+    $changedInputs.Add("batch exporter")
+}
+if ((Get-DspreToolFileFingerprint -Path $supportToolPath) -ne $supportToolSha256) {
+    $changedInputs.Add("collision support tool")
+}
+if ((Get-DspreToolFileFingerprint -Path $ApiculaPath) -ne $apiculaSha256) {
+    $changedInputs.Add("apicula")
+}
+if ((Get-DspreAreaResolutionFingerprint -Path $resolutionPath) -ne $areaResolutionSha256) {
+    $changedInputs.Add("AreaData resolution")
+}
+if ($changedInputs.Count -ne 0) {
+    throw "Export inputs changed during the matrix run: $($changedInputs -join ', '). Rerun before publishing the catalog."
+}
+Write-Host "Export input fingerprints remained stable throughout the matrix run."
+
 $terrainKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $buildingKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+$collisionKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+$collisionFingerprints = @{}
 $textureKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $materialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $matrixEntries = New-Object System.Collections.Generic.List[object]
@@ -625,6 +710,7 @@ $destinationEntries = New-Object System.Collections.Generic.List[object]
 $totalCells = 0
 $totalBuildings = 0
 $totalGlbs = 0
+$totalDestinationCollisionAssets = 0
 $readyMatrixCount = 0
 $readyDestinationCount = 0
 $notExportedMatrixCount = 0
@@ -659,6 +745,10 @@ foreach ($matrixId in $allMatrixIds) {
         }
         $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
+        $null = Assert-DspreCollisionManifest `
+            -Manifest $manifest `
+            -Label "Catalog destination $variantName" `
+            -ExpectedManifestSchema 3
         $materialCatalog = [IO.File]::ReadAllText(
             $materialCatalogPath,
             [Text.Encoding]::UTF8
@@ -672,6 +762,20 @@ foreach ($matrixId in $allMatrixIds) {
         foreach ($asset in @($manifest.assets.buildings)) {
             $null = $buildingKeys.Add([string]$asset.key)
         }
+        foreach ($asset in @($manifest.collision_assets)) {
+            $collisionKey = [string]$asset.key
+            $collisionFingerprint = "{0}:{1}" -f `
+                [string]$asset.terrain_attributes.sha256,
+                [string]$asset.bdhc.sha256
+            if (
+                $collisionFingerprints.ContainsKey($collisionKey) -and
+                [string]$collisionFingerprints[$collisionKey] -ne $collisionFingerprint
+            ) {
+                throw "Collision asset $collisionKey differs across destination manifests."
+            }
+            $collisionFingerprints[$collisionKey] = $collisionFingerprint
+            $null = $collisionKeys.Add($collisionKey)
+        }
         foreach ($image in @($materialCatalog.images)) {
             $null = $textureKeys.Add([string]$image.key)
         }
@@ -681,7 +785,9 @@ foreach ($matrixId in $allMatrixIds) {
         $defaultCell = Get-DefaultCell $manifest
         $glbCount = [int]$materialCatalog.summary.glbs
         $buildingCount = [int]$manifest.summary.building_instances
+        $collisionCount = @($manifest.collision_assets).Count
         $totalGlbs += $glbCount
+        $totalDestinationCollisionAssets += $collisionCount
         $readyDestinationCount++
         $destinationKeys.Add($variantName)
         $destinationEntries.Add([pscustomobject][ordered]@{
@@ -701,6 +807,9 @@ foreach ($matrixId in $allMatrixIds) {
             default_cell = $defaultCell
             terrain_assets = @($manifest.assets.terrain).Count
             building_assets = @($manifest.assets.buildings).Count
+            collision_assets = $collisionCount
+            terrain_attribute_tiles = [int]$manifest.summary.terrain_attribute_tiles
+            bdhc_assets = [int]$manifest.summary.bdhc_assets
             building_instances = $buildingCount
             glbs = $glbCount
             textures = [int]$materialCatalog.summary.unique_images
@@ -736,7 +845,7 @@ foreach ($matrixId in $allMatrixIds) {
 }
 
 $catalog = [pscustomobject][ordered]@{
-    schema_version = 1
+    schema_version = 2
     generated_utc = [DateTime]::UtcNow.ToString("o")
     summary = [pscustomobject][ordered]@{
         source_matrices = $allMatrixIds.Count
@@ -748,8 +857,10 @@ $catalog = [pscustomobject][ordered]@{
         occupied_cells = $totalCells
         building_instances = $totalBuildings
         destination_scoped_glbs = $totalGlbs
+        destination_scoped_collision_assets = $totalDestinationCollisionAssets
         unique_terrain_assets = $terrainKeys.Count
         unique_building_assets = $buildingKeys.Count
+        unique_collision_assets = $collisionKeys.Count
         unique_textures = $textureKeys.Count
         unique_materials = $materialKeys.Count
     }
@@ -768,6 +879,7 @@ Write-Host "  Ready destinations:  $readyDestinationCount"
 Write-Host "  Unresolved matrices: $($unresolvedById.Count)"
 Write-Host "  Occupied cells:      $totalCells"
 Write-Host "  Matrix GLBs:         $totalGlbs"
+Write-Host "  Collision assets:    $($collisionKeys.Count) unique / $totalDestinationCollisionAssets destination-scoped"
 Write-Host "  Catalog:             $godotCatalogPath"
 
 if (-not $SkipGodotImport) {
