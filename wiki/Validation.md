@@ -35,8 +35,23 @@ DSPRE tree fingerprint is stable across absolute root relocation and file
 creation order, while a same-length content edit or relative-path rename changes
 it. Tool hashes ignore installation path but react to content changes. Area
 resolution hashes ignore generated time and absolute source path while reacting
-to semantic resolution changes. All-matrix export recomputes those fingerprints
-before catalog publication, detecting source or tool changes made during a run.
+to semantic resolution changes. All-matrix export recomputes all seven source,
+stage-tool, and semantic fingerprints after catalog aggregation and before
+publication, detecting input changes made during a run.
+The same focused test validates raw marker schema, exact raw file records, and
+real manifest hashes,
+proves that stale unselected raw output is rejected before a catalog sentinel
+can change, and creates a real Windows junction to verify that recursive-delete
+validation preserves an external sentinel. Static ordering checks require
+partial preflight before catalog withdrawal or destination mutation and require
+all three destructive pipeline consumers to call the shared safety helper. It
+also injects same-length content replacement and same-count path replacement at
+both raw and downstream boundaries, nested directory junctions, and a failure
+during the second catalog promotion to prove exact stage records and
+dual-catalog withdrawal. It additionally proves stale destination cleanup is
+all-or-nothing around junctions and that direct batch reuse is wired to a
+whole-destination contract; Godot `.import` sidecars remain an explicit
+exception.
 
 ## Collision and Height Validation
 
@@ -62,9 +77,17 @@ indexed by global tile even when their anchors extend into another matrix cell.
 These results only expose requirements to later locomotion systems; the test
 does not claim that Surf, Warp, ice movement, or the ledge-jump animation is
 implemented. It additionally covers collision-cache pruning independent of
-rendered chunks. The second test verifies that a blocked cardinal step never
-starts and that a permitted 16-tick step resamples BDHC height throughout a
-slope.
+rendered chunks, including an ambiguous inner bridge that must return
+`requires_bridge_context` until a trusted layer is supplied. The second test
+verifies missing, incomplete, malformed, mid-step-lost, mid-step-replaced, and
+callback-reentrant provider replacement or queued deletion fail closed. It also
+proves a rejected provider cannot mutate the active context snapshot;
+`ok` and `blocked` must be actual booleans,
+`landing_target` must equal the normal target, and `next_context` must be
+explicit and typed; special or named actions cannot enter the normal path;
+invalid targets and height samples are rejected; and a
+permitted 16-tick step resamples BDHC throughout a slope while committing the
+final sampled height.
 
 A generated destination can be checked directly without loading its GLBs:
 
@@ -108,6 +131,10 @@ depend on generated Platinum assets:
   --script res://tests/debug_coordinate_test.gd
 ```
 
+The material-signature test also compares equivalent compressed and
+uncompressed texture images, proving that shared-material reuse decompresses
+before RGBA8 pixel comparison.
+
 ## Matrix Catalog Validation
 
 ```powershell
@@ -118,8 +145,11 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 This validates all 289 matrix status records, all 278 expected destination
 keys, their matrix/AreaData bindings, one-to-one matrix ownership, default
 occupied cells, unique manifest-relative GLB paths, GLB headers, stage-complete
-manifest hashes, recomputed summary counts, and the 13 unresolved records with
-no runnable destination. It requires catalog schema `2` and destination
+manifest hashes, current dedupe/sync tool hashes, exact marker-recorded file
+sets and content, recomputed summary counts, and the 13 unresolved records with
+no runnable destination. Complete mode first requires the generated and Godot
+catalog files to exist and be byte-identical. It requires catalog schema `2`,
+downstream marker schema `2`, material-catalog schema `1`, and destination
 manifest schema `3`, then validates every embedded collision payload through
 the shared parser. The complete count contract is 637 globally unique and 647
 destination-scoped collision assets, with exactly 1,024 terrain tiles and one
@@ -127,6 +157,19 @@ BDHC payload per destination-scoped asset. This yields 662,528
 destination-scoped terrain tiles and 647 destination-scoped BDHC payloads.
 Reused map IDs must retain identical terrain and BDHC hashes across AreaData
 variants.
+
+Complete mode also requires the actual `generated/dspre_glb` and
+`generated/dspre_glb_dedup` roots to contain exactly the 278 expected
+destination directories. It validates every raw and dedupe marker against the
+current stage tools and exact file records, requires one DSPRE/apicula snapshot
+across all raw destinations, and proves each generated dedupe marker and
+payload is identical to its validated Godot sync counterpart. Reparse points
+are rejected from the repository root through every stage ancestor and before
+any catalog, destination manifest, or recursive stage file is read. Material
+catalog validation also rejects non-object signatures, empty bindings,
+unknown keys, and non-positive output material counts before Godot sees the
+catalog. Repeated surface bindings may share one material key; the output count
+tracks the unique bound keys, matching the Godot consumer.
 
 `validate_repository.ps1 -Full` also requires every destination PNG import
 sidecar to retain lossless compression, disabled mipmaps, and disabled 3D

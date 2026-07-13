@@ -20,6 +20,11 @@ $dedupRoot = Join-Path $workspaceRoot "generated\dspre_glb_dedup"
 $projectRoot = Join-Path $workspaceRoot "new-game-project"
 $platinumRoot = Join-Path $projectRoot "assets\platinum"
 $resolutionPath = Join-Path $workspaceRoot "generated\dspre_matrix_area_overrides.json"
+$rawRoot = Assert-DspreSafeRecursiveDeletePath -Path $rawRoot -AllowedRoot $workspaceRoot
+$dedupRoot = Assert-DspreSafeRecursiveDeletePath -Path $dedupRoot -AllowedRoot $workspaceRoot
+$platinumRoot = Assert-DspreSafeRecursiveDeletePath -Path $platinumRoot -AllowedRoot $projectRoot
+$generatedCatalogPath = Join-Path $dedupRoot "matrix_catalog.json"
+$godotCatalogPath = Join-Path $platinumRoot "matrix_catalog.json"
 $utf8NoBom = [Text.UTF8Encoding]::new($false)
 
 function Resolve-ExistingFile {
@@ -63,6 +68,64 @@ function Invoke-ProjectScript {
     & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $Path @argumentList
     if ($LASTEXITCODE -ne 0) {
         throw "$([IO.Path]::GetFileName($Path)) failed with exit code $LASTEXITCODE."
+    }
+}
+
+function Publish-MatrixCatalogPair {
+    param(
+        [string]$GeneratedPath,
+        [string]$GodotPath,
+        [string]$Json,
+        [Text.Encoding]$Encoding
+    )
+
+    $token = [Guid]::NewGuid().ToString("N")
+    $generatedTemp = Join-Path (Split-Path -Parent $GeneratedPath) ".matrix_catalog.$token.tmp"
+    $godotTemp = Join-Path (Split-Path -Parent $GodotPath) ".matrix_catalog.$token.tmp"
+    try {
+        foreach ($finalPath in @($GeneratedPath, $GodotPath)) {
+            if (Test-Path -LiteralPath $finalPath) {
+                throw "Catalog publication requires an absent final path: $finalPath"
+            }
+        }
+        [IO.File]::WriteAllText($generatedTemp, $Json, $Encoding)
+        [IO.File]::WriteAllText($godotTemp, $Json, $Encoding)
+        [IO.File]::Move($generatedTemp, $GeneratedPath)
+        [IO.File]::Move($godotTemp, $GodotPath)
+    }
+    catch {
+        $publishError = $_
+        $cleanupErrors = New-Object System.Collections.Generic.List[string]
+        foreach ($path in @($generatedTemp, $godotTemp, $GeneratedPath, $GodotPath)) {
+            try {
+                if (Test-Path -LiteralPath $path -PathType Leaf) {
+                    [IO.File]::Delete($path)
+                }
+            }
+            catch {
+                $cleanupErrors.Add("$path ($($_.Exception.Message))")
+            }
+        }
+        $remainingCatalogs = @(
+            @($GeneratedPath, $GodotPath) |
+                Where-Object { Test-Path -LiteralPath $_ -PathType Leaf }
+        )
+        if ($cleanupErrors.Count -ne 0 -or $remainingCatalogs.Count -ne 0) {
+            throw "Matrix catalog pair publication failed and cleanup could not withdraw both catalogs: $($cleanupErrors -join '; ')"
+        }
+        throw "Matrix catalog pair publication failed; both catalogs were withdrawn: $($publishError.Exception.Message)"
+    }
+    finally {
+        foreach ($tempPath in @($generatedTemp, $godotTemp)) {
+            try {
+                if (Test-Path -LiteralPath $tempPath -PathType Leaf) {
+                    [IO.File]::Delete($tempPath)
+                }
+            }
+            catch {
+                Write-Warning "Could not remove catalog publication temporary file: $tempPath"
+            }
+        }
     }
 }
 
@@ -121,6 +184,132 @@ function Get-ReadyStatus {
         return "ready_unique_texture"
     }
     return "ready_header"
+}
+
+function Test-GlbFile {
+    param([string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        return $false
+    }
+    $item = Get-Item -LiteralPath $Path
+    if ($item.Length -lt 12) {
+        return $false
+    }
+    $stream = [IO.File]::OpenRead($item.FullName)
+    try {
+        $header = New-Object byte[] 12
+        if ($stream.Read($header, 0, 12) -ne 12) {
+            return $false
+        }
+        return [Text.Encoding]::ASCII.GetString($header, 0, 4) -eq "glTF" -and
+            [BitConverter]::ToUInt32($header, 4) -eq 2 -and
+            [BitConverter]::ToUInt32($header, 8) -eq $item.Length
+    }
+    finally {
+        $stream.Dispose()
+    }
+}
+
+function Get-StageFileRecords {
+    param(
+        [string]$RootPath,
+        [string[]]$ExcludedRelativePaths = @(),
+        [switch]$IgnoreGodotImportSidecars
+    )
+
+    $records = @(Get-DspreStageFileRecords `
+        -RootPath $RootPath `
+        -ExcludedRelativePaths $ExcludedRelativePaths `
+        -IgnoreGodotImportSidecars:$IgnoreGodotImportSidecars `
+        -Label "All-matrix stage")
+    if ($IgnoreGodotImportSidecars) {
+        $records = @($records | Where-Object {
+            [string]$_.relative_path -notmatch '(?i)\.import~[^/]+\.tmp$'
+        })
+    }
+    return $records
+}
+
+function Assert-StageFileRecords {
+    param(
+        [string]$RootPath,
+        [object[]]$ExpectedRecords,
+        [string[]]$ExcludedRelativePaths = @(),
+        [switch]$IgnoreGodotImportSidecars,
+        [string]$Label = "Stage output"
+    )
+
+    $expectedByPath = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::OrdinalIgnoreCase)
+    foreach ($record in @($ExpectedRecords)) {
+        $relativePath = ([string]$record.relative_path).Replace('\', '/')
+        if (
+            [string]::IsNullOrWhiteSpace($relativePath) -or
+            [IO.Path]::IsPathRooted($relativePath) -or
+            $relativePath -match '(^|/)\.\.(/|$)' -or
+            $expectedByPath.ContainsKey($relativePath) -or
+            [long]$record.byte_length -lt 0 -or
+            [string]$record.sha256 -notmatch '^[0-9a-f]{64}$'
+        ) {
+            throw "$Label contains an invalid or duplicate file record: $relativePath"
+        }
+        $expectedByPath.Add($relativePath, $record)
+    }
+    $actualRecords = @(Get-StageFileRecords `
+        -RootPath $RootPath `
+        -ExcludedRelativePaths $ExcludedRelativePaths `
+        -IgnoreGodotImportSidecars:$IgnoreGodotImportSidecars)
+    if ($actualRecords.Count -ne $expectedByPath.Count) {
+        throw "$Label file count does not match its completion record."
+    }
+    foreach ($actual in $actualRecords) {
+        $relativePath = [string]$actual.relative_path
+        if (-not $expectedByPath.ContainsKey($relativePath)) {
+            throw "$Label contains an undeclared file: $relativePath"
+        }
+        $expected = $expectedByPath[$relativePath]
+        if (
+            [long]$actual.byte_length -ne [long]$expected.byte_length -or
+            [string]$actual.sha256 -ne [string]$expected.sha256
+        ) {
+            throw "$Label file content does not match its completion record: $relativePath"
+        }
+    }
+    return $actualRecords
+}
+
+function Assert-EquivalentStageFileRecords {
+    param(
+        [object[]]$ExpectedRecords,
+        [object[]]$ActualRecords,
+        [string]$Label
+    )
+
+    $expectedByPath = @{}
+    foreach ($record in @($ExpectedRecords)) {
+        $key = ([string]$record.relative_path).ToLowerInvariant()
+        if ($expectedByPath.ContainsKey($key)) {
+            throw "$Label contains a duplicate expected file: $($record.relative_path)"
+        }
+        $expectedByPath[$key] = $record
+    }
+    if ($expectedByPath.Count -ne @($ActualRecords).Count) {
+        throw "$Label file sets have different counts."
+    }
+    foreach ($record in @($ActualRecords)) {
+        $key = ([string]$record.relative_path).ToLowerInvariant()
+        if (-not $expectedByPath.ContainsKey($key)) {
+            throw "$Label contains an unexpected file: $($record.relative_path)"
+        }
+        $expected = $expectedByPath[$key]
+        if (
+            [long]$record.byte_length -ne [long]$expected.byte_length -or
+            [string]$record.sha256 -ne [string]$expected.sha256
+        ) {
+            throw "$Label contains different file content: $($record.relative_path)"
+        }
+    }
+    return $true
 }
 
 function Assert-AreaResolution {
@@ -262,9 +451,13 @@ function Test-DedupeComplete {
         [string]$DestinationRoot,
         [string]$ExpectedVariant,
         [int]$ExpectedMatrixId,
-        $ExpectedAreaDataId
+        $ExpectedAreaDataId,
+        [string]$ExpectedDedupeToolSha256,
+        [switch]$MarkerOnly
     )
 
+    $DestinationRoot = [IO.Path]::GetFullPath($DestinationRoot).TrimEnd('\')
+    $destinationPrefix = $DestinationRoot + '\'
     $markerPath = Join-Path $DestinationRoot ".dedupe-complete.json"
     $manifestPath = Join-Path $DestinationRoot "manifest.json"
     $summaryPath = Join-Path $DestinationRoot "summary.json"
@@ -277,13 +470,135 @@ function Test-DedupeComplete {
     try {
         $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+        $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+        $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+        $catalogMaterials = @($catalog.materials)
+        if (
+            [int]$marker.schema_version -ne 2 -or
+            [string]$marker.dedupe_tool_sha256 -ne $ExpectedDedupeToolSha256
+        ) {
+            return $false
+        }
+        if ($MarkerOnly) {
+            $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
+                [string]$manifest.matrix.variant
+            }
+            else {
+                "matrix_{0:D4}" -f [int]$manifest.matrix.id
+            }
+            $manifestArea = if ($null -ne $manifest.matrix.PSObject.Properties["area_data_id"]) {
+                $manifest.matrix.area_data_id
+            }
+            else {
+                $null
+            }
+            $areaMatches = ($null -eq $ExpectedAreaDataId -and $null -eq $manifestArea) -or
+                ($null -ne $ExpectedAreaDataId -and $null -ne $manifestArea -and
+                    [int]$ExpectedAreaDataId -eq [int]$manifestArea)
+            return @($marker.files).Count -gt 0 -and
+                [int]$catalog.schema_version -eq 1 -and
+                [string]$marker.source_manifest_sha256 -eq (Get-FileHash -LiteralPath $SourceManifest -Algorithm SHA256).Hash.ToLowerInvariant() -and
+                [string]$marker.output_manifest_sha256 -eq (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant() -and
+                [int]$manifest.matrix.id -eq $ExpectedMatrixId -and
+                $manifestVariant -eq $ExpectedVariant -and
+                $areaMatches -and
+                [int]$manifest.summary.failed -eq 0 -and
+                [int]$marker.glbs -eq [int]$summary.glbs -and
+                [int]$summary.glbs -eq [int]$catalog.summary.glbs -and
+                [int]$marker.unique_images -eq [int]$summary.unique_images -and
+                [int]$summary.unique_images -eq [int]$catalog.summary.unique_images -and
+                [int]$marker.unique_materials -eq $catalogMaterials.Count -and
+                [int]$summary.unique_materials -eq $catalogMaterials.Count -and
+                [int]$catalog.summary.unique_materials -eq $catalogMaterials.Count
+        }
         $null = Assert-DspreCollisionManifest `
             -Manifest $manifest `
             -Label "Deduplicated destination $ExpectedVariant" `
             -ExpectedManifestSchema 3
-        $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
-        $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
-        $actualGlbs = @(Get-ChildItem -LiteralPath $DestinationRoot -Recurse -Filter "*.glb" -File).Count
+        $materialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+        foreach ($material in $catalogMaterials) {
+            if (
+                [string]$material.key -notmatch '^mat_[0-9a-f]{64}$' -or
+                -not $materialKeys.Add([string]$material.key) -or
+                $null -eq $material.PSObject.Properties["signature"] -or
+                $material.signature -isnot [pscustomobject]
+            ) {
+                return $false
+            }
+        }
+        $validatedFileRecords = @(Assert-StageFileRecords `
+            -RootPath $DestinationRoot `
+            -ExpectedRecords @($marker.files) `
+            -ExcludedRelativePaths @(".dedupe-complete.json") `
+            -Label "Deduplicated destination $ExpectedVariant")
+        $fileRecordByPath = @{}
+        foreach ($record in $validatedFileRecords) {
+            $fileRecordByPath[([string]$record.relative_path).ToLowerInvariant()] = $record
+        }
+
+        $actualGlbFiles = @(
+            Get-ChildItem -LiteralPath $DestinationRoot -Recurse -Filter "*.glb" -File
+        )
+        $actualGlbPaths = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+        foreach ($glb in $actualGlbFiles) {
+            if (-not (Test-GlbFile $glb.FullName) -or -not $actualGlbPaths.Add($glb.FullName)) {
+                return $false
+            }
+        }
+        $declaredGlbs = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+        foreach ($asset in @($manifest.assets.terrain) + @($manifest.assets.buildings)) {
+            foreach ($relativeGlb in @($asset.output_glbs)) {
+                $relativePath = [string]$relativeGlb
+                $fullPath = [IO.Path]::GetFullPath(
+                    (Join-Path $DestinationRoot $relativePath.Replace('/', '\'))
+                )
+                if (
+                    [IO.Path]::IsPathRooted($relativePath) -or
+                    -not $fullPath.StartsWith($destinationPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+                    -not $declaredGlbs.Add($fullPath) -or
+                    -not $actualGlbPaths.Contains($fullPath)
+                ) {
+                    return $false
+                }
+            }
+        }
+        if ($declaredGlbs.Count -ne $actualGlbPaths.Count) {
+            return $false
+        }
+
+        $catalogGlbs = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+        foreach ($asset in @($catalog.assets)) {
+            $fullPath = [IO.Path]::GetFullPath(
+                (Join-Path $DestinationRoot ([string]$asset.glb).Replace('/', '\'))
+            )
+            if (
+                -not $fullPath.StartsWith($destinationPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+                -not $catalogGlbs.Add($fullPath) -or
+                -not $declaredGlbs.Contains($fullPath)
+            ) {
+                return $false
+            }
+            $materialBindings = @($asset.materials)
+            $boundMaterialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+            foreach ($binding in $materialBindings) {
+                $boundKey = [string]$binding.material_key
+                if (-not $materialKeys.Contains($boundKey)) {
+                    return $false
+                }
+                $null = $boundMaterialKeys.Add($boundKey)
+            }
+            if (
+                $materialBindings.Count -eq 0 -or
+                [int]$asset.output_material_count -le 0 -or
+                $boundMaterialKeys.Count -ne [int]$asset.output_material_count
+            ) {
+                return $false
+            }
+        }
+        if ($catalogGlbs.Count -ne $declaredGlbs.Count) {
+            return $false
+        }
+
         $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
             [string]$manifest.matrix.variant
         }
@@ -300,30 +615,52 @@ function Test-DedupeComplete {
             ($null -ne $ExpectedAreaDataId -and $null -ne $manifestArea -and
                 [int]$ExpectedAreaDataId -eq [int]$manifestArea)
         $textureRoot = Join-Path $DestinationRoot "shared\textures"
-        $actualPngs = @(Get-ChildItem -LiteralPath $textureRoot -Filter "*.png" -File -ErrorAction SilentlyContinue)
+        $actualPngs = @(
+            Get-ChildItem -LiteralPath $textureRoot -Filter "*.png" -File -ErrorAction Stop
+        )
+        $allPngs = @(Get-ChildItem -LiteralPath $DestinationRoot -Recurse -Filter "*.png" -File)
+        if ($actualPngs.Count -ne $allPngs.Count) {
+            return $false
+        }
+        $actualPngPaths = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+        foreach ($png in $actualPngs) {
+            $null = $actualPngPaths.Add($png.FullName)
+        }
         $catalogImages = @($catalog.images)
-        $catalogMaterials = @($catalog.materials)
+        $catalogPngPaths = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
         foreach ($image in $catalogImages) {
             $imagePath = [IO.Path]::GetFullPath(
                 (Join-Path $DestinationRoot ([string]$image.relative_path).Replace('/', '\'))
             )
+            $sha256 = [string]$image.sha256
+            $imageRelativePath = $imagePath.Substring($destinationPrefix.Length).Replace('\', '/')
+            $imageRecordKey = $imageRelativePath.ToLowerInvariant()
             if (
-                -not $imagePath.StartsWith($DestinationRoot.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase) -or
-                -not (Test-Path -LiteralPath $imagePath -PathType Leaf) -or
-                (Get-FileHash -LiteralPath $imagePath -Algorithm SHA256).Hash.ToLowerInvariant() -ne [string]$image.sha256
+                -not $imagePath.StartsWith($destinationPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+                -not $catalogPngPaths.Add($imagePath) -or
+                -not $actualPngPaths.Contains($imagePath) -or
+                -not $fileRecordByPath.ContainsKey($imageRecordKey) -or
+                $sha256 -notmatch '^[0-9a-f]{64}$' -or
+                [string]$image.key -ne "img_$sha256" -or
+                [long]$image.byte_length -ne [long]$fileRecordByPath[$imageRecordKey].byte_length -or
+                [string]$fileRecordByPath[$imageRecordKey].sha256 -ne $sha256
             ) {
                 return $false
             }
         }
-        return [int]$marker.schema_version -eq 1 -and
+        if ($catalogPngPaths.Count -ne $actualPngPaths.Count) {
+            return $false
+        }
+        return [int]$catalog.schema_version -eq 1 -and
             [string]$marker.source_manifest_sha256 -eq (Get-FileHash -LiteralPath $SourceManifest -Algorithm SHA256).Hash.ToLowerInvariant() -and
             [string]$marker.output_manifest_sha256 -eq (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant() -and
             [int]$manifest.matrix.id -eq $ExpectedMatrixId -and
             $manifestVariant -eq $ExpectedVariant -and
             $areaMatches -and
-            [int]$marker.glbs -eq $actualGlbs -and
-            [int]$summary.glbs -eq $actualGlbs -and
-            [int]$catalog.summary.glbs -eq $actualGlbs -and
+            [int]$manifest.summary.failed -eq 0 -and
+            [int]$marker.glbs -eq $actualGlbPaths.Count -and
+            [int]$summary.glbs -eq $actualGlbPaths.Count -and
+            [int]$catalog.summary.glbs -eq $actualGlbPaths.Count -and
             [int]$marker.unique_images -eq $actualPngs.Count -and
             [int]$summary.unique_images -eq $actualPngs.Count -and
             [int]$catalog.summary.unique_images -eq $actualPngs.Count -and
@@ -345,13 +682,19 @@ function Test-SyncComplete {
         [string]$DestinationRoot,
         [string]$ExpectedVariant,
         [int]$ExpectedMatrixId,
-        $ExpectedAreaDataId
+        $ExpectedAreaDataId,
+        [string]$ExpectedDedupeToolSha256,
+        [string]$ExpectedSyncToolSha256,
+        [switch]$MarkerOnly
     )
 
+    $sourceRoot = Split-Path -Parent $SourceManifest
+    $sourceDedupeMarkerPath = Join-Path $sourceRoot ".dedupe-complete.json"
     $destinationManifest = Join-Path $DestinationRoot "manifest.json"
     $markerPath = Join-Path $DestinationRoot ".sync-complete.json"
     if (
         -not (Test-Path -LiteralPath $SourceManifest -PathType Leaf) -or
+        -not (Test-Path -LiteralPath $sourceDedupeMarkerPath -PathType Leaf) -or
         -not (Test-Path -LiteralPath $destinationManifest -PathType Leaf) -or
         -not (Test-Path -LiteralPath $markerPath -PathType Leaf)
     ) {
@@ -360,12 +703,12 @@ function Test-SyncComplete {
     try {
         $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
+        $sourceDedupeMarker = [IO.File]::ReadAllText(
+            $sourceDedupeMarkerPath,
+            [Text.Encoding]::UTF8
+        ) | ConvertFrom-Json
         $destination = [IO.File]::ReadAllText($destinationManifest, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
-        $null = Assert-DspreCollisionManifest `
-            -Manifest $destination `
-            -Label "Godot destination $ExpectedVariant" `
-            -ExpectedManifestSchema 3
         $destinationVariant = if ($null -ne $destination.matrix.PSObject.Properties["variant"]) {
             [string]$destination.matrix.variant
         }
@@ -384,7 +727,12 @@ function Test-SyncComplete {
             ($null -ne $ExpectedAreaDataId -and $null -ne $destinationArea -and
                 [int]$ExpectedAreaDataId -eq [int]$destinationArea)
         if (
-            [int]$marker.schema_version -ne 1 -or
+            [int]$sourceDedupeMarker.schema_version -ne 2 -or
+            [string]$sourceDedupeMarker.dedupe_tool_sha256 -ne $ExpectedDedupeToolSha256 -or
+            [string]$sourceDedupeMarker.output_manifest_sha256 -ne $sourceHash -or
+            [int]$marker.schema_version -ne 2 -or
+            [string]$marker.dedupe_tool_sha256 -ne $ExpectedDedupeToolSha256 -or
+            [string]$marker.sync_tool_sha256 -ne $ExpectedSyncToolSha256 -or
             [int]$marker.matrix_id -ne $ExpectedMatrixId -or
             [string]$marker.variant -ne $ExpectedVariant -or
             [int]$destination.matrix.id -ne $ExpectedMatrixId -or
@@ -395,19 +743,248 @@ function Test-SyncComplete {
         ) {
             return $false
         }
-        $actualGlbs = @(
+        if ($MarkerOnly) {
+            return @($marker.files).Count -gt 0 -and
+                [int]$marker.glbs -gt 0 -and
+                [int]$marker.textures -ge 0
+        }
+        $null = Assert-DspreCollisionManifest `
+            -Manifest $destination `
+            -Label "Godot destination $ExpectedVariant" `
+            -ExpectedManifestSchema 3
+        $destinationRecords = @(Assert-StageFileRecords `
+            -RootPath $DestinationRoot `
+            -ExpectedRecords @($marker.files) `
+            -ExcludedRelativePaths @(".sync-complete.json") `
+            -IgnoreGodotImportSidecars `
+            -Label "Godot destination $ExpectedVariant")
+        $sourceDedupeMarkerItem = Get-Item -LiteralPath $sourceDedupeMarkerPath
+        $sourceRecords = @(
+            @($sourceDedupeMarker.files) + @([pscustomobject][ordered]@{
+                relative_path = ".dedupe-complete.json"
+                byte_length = [long]$sourceDedupeMarkerItem.Length
+                sha256 = (Get-FileHash `
+                    -LiteralPath $sourceDedupeMarkerPath `
+                    -Algorithm SHA256).Hash.ToLowerInvariant()
+            }) | Sort-Object { [string]$_.relative_path }
+        )
+        $null = Assert-EquivalentStageFileRecords `
+            -ExpectedRecords $sourceRecords `
+            -ActualRecords $destinationRecords `
+            -Label "Godot destination $ExpectedVariant"
+
+        $actualGlbFiles = @(
             Get-ChildItem -LiteralPath $DestinationRoot -Recurse -Filter "*.glb" -File
-        ).Count
+        )
+        foreach ($glb in $actualGlbFiles) {
+            if (-not (Test-GlbFile $glb.FullName)) {
+                return $false
+            }
+        }
         $textureRoot = Join-Path $DestinationRoot "shared\textures"
         $actualTextures = @(
             Get-ChildItem -LiteralPath $textureRoot -Filter "*.png" -File
         ).Count
-        return $actualGlbs -eq [int]$marker.glbs -and
+        return $actualGlbFiles.Count -eq [int]$marker.glbs -and
             $actualTextures -eq [int]$marker.textures
     }
     catch {
         return $false
     }
+}
+
+function Test-RawMarkerCurrent {
+    param(
+        [string]$DestinationRoot,
+        [string]$ExpectedVariant,
+        [int]$ExpectedMatrixId,
+        $ExpectedAreaDataId,
+        [string]$ExpectedDspreSourceSha256,
+        [string]$ExpectedExporterSha256,
+        [string]$ExpectedSupportToolSha256,
+        [string]$ExpectedApiculaSha256,
+        [string]$ExpectedAreaResolutionSha256
+    )
+
+    $manifestPath = Join-Path $DestinationRoot "manifest.json"
+    $summaryPath = Join-Path $DestinationRoot "summary.json"
+    $markerPath = Join-Path $DestinationRoot ".export-complete.json"
+    foreach ($path in @($manifestPath, $summaryPath, $markerPath)) {
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+            return $false
+        }
+    }
+    try {
+        $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) |
+            ConvertFrom-Json
+        $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) |
+            ConvertFrom-Json
+        $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) |
+            ConvertFrom-Json
+        $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
+            [string]$manifest.matrix.variant
+        }
+        else {
+            "matrix_{0:D4}" -f [int]$manifest.matrix.id
+        }
+        $manifestArea = if ($null -ne $manifest.matrix.PSObject.Properties["area_data_id"]) {
+            $manifest.matrix.area_data_id
+        }
+        else {
+            $null
+        }
+        $areaMatches = ($null -eq $ExpectedAreaDataId -and $null -eq $manifestArea) -or
+            ($null -ne $ExpectedAreaDataId -and $null -ne $manifestArea -and
+                [int]$ExpectedAreaDataId -eq [int]$manifestArea)
+        return (Assert-DspreRawExportMarker `
+            -Marker $marker `
+            -ExpectedMatrixId $ExpectedMatrixId `
+            -ExpectedVariant $ExpectedVariant `
+            -ExpectedAreaDataId $ExpectedAreaDataId `
+            -ExpectedDspreSourceSha256 $ExpectedDspreSourceSha256 `
+            -ExpectedExporterSha256 $ExpectedExporterSha256 `
+            -ExpectedSupportToolSha256 $ExpectedSupportToolSha256 `
+            -ExpectedApiculaSha256 $ExpectedApiculaSha256 `
+            -ExpectedAreaResolutionSha256 $ExpectedAreaResolutionSha256 `
+            -ExpectedManifestSha256 (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant() `
+            -ExpectedOccupiedCells @($manifest.cells).Count `
+            -ExpectedCollisionAssets @($manifest.collision_assets).Count `
+            -Label "Raw destination $ExpectedVariant marker") -and
+            @($marker.files).Count -gt 0 -and
+            [int]$summary.failed -eq 0 -and
+            [int]$manifest.matrix.id -eq $ExpectedMatrixId -and
+            $manifestVariant -eq $ExpectedVariant -and
+            $areaMatches
+    }
+    catch {
+        return $false
+    }
+}
+
+function Assert-AllDestinationStagesCurrent {
+    param(
+        [object[]]$Variants,
+        [string]$RawRoot,
+        [string]$DedupRoot,
+        [string]$GodotRoot,
+        [string]$ExpectedDspreSourceSha256,
+        [string]$ExpectedExporterSha256,
+        [string]$ExpectedSupportToolSha256,
+        [string]$ExpectedDedupeToolSha256,
+        [string]$ExpectedSyncToolSha256,
+        [string]$ExpectedApiculaSha256,
+        [string]$ExpectedAreaResolutionSha256
+    )
+
+    $expectedKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+    foreach ($variantRecord in @($Variants)) {
+        $variantName = [string]$variantRecord.variant
+        if (
+            $variantName -notmatch '^matrix_\d{4}(_area_\d{4})?$' -or
+            -not $expectedKeys.Add($variantName)
+        ) {
+            throw "Final destination validation received an invalid or duplicate variant: $variantName"
+        }
+    }
+    if ($expectedKeys.Count -ne @($Variants).Count) {
+        throw "Final destination validation did not cover every expected variant."
+    }
+
+    $validatedRaw = 0
+    $validatedDedupe = 0
+    $validatedSync = 0
+    foreach ($variantRecord in @($Variants)) {
+        $variantName = [string]$variantRecord.variant
+        $matrixId = [int]$variantRecord.matrix_id
+        $rawManifestPath = Join-Path $RawRoot "$variantName\manifest.json"
+        $rawVariantRoot = Join-Path $RawRoot $variantName
+        $dedupVariantRoot = Join-Path $DedupRoot $variantName
+        $dedupManifestPath = Join-Path $dedupVariantRoot "manifest.json"
+        $godotVariantRoot = Join-Path $GodotRoot $variantName
+        if (-not (Test-RawMarkerCurrent `
+            $rawVariantRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $ExpectedDspreSourceSha256 `
+            $ExpectedExporterSha256 `
+            $ExpectedSupportToolSha256 `
+            $ExpectedApiculaSha256 `
+            $ExpectedAreaResolutionSha256
+        )) {
+            throw "Final destination validation found a stale raw marker: $variantName"
+        }
+        $validatedRaw++
+        if (-not (Test-DedupeComplete `
+            $rawManifestPath `
+            $dedupVariantRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $ExpectedDedupeToolSha256 `
+            -MarkerOnly
+        )) {
+            throw "Final destination validation found stale dedupe output: $variantName"
+        }
+        $validatedDedupe++
+        if (-not (Test-SyncComplete `
+            $dedupManifestPath `
+            $godotVariantRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $ExpectedDedupeToolSha256 `
+            $ExpectedSyncToolSha256 `
+            -MarkerOnly
+        )) {
+            throw "Final destination validation found stale Godot sync output: $variantName"
+        }
+        $validatedSync++
+    }
+    if (
+        $validatedRaw -ne $expectedKeys.Count -or
+        $validatedDedupe -ne $expectedKeys.Count -or
+        $validatedSync -ne $expectedKeys.Count
+    ) {
+        throw "Final destination stage validation count does not match the expected variants."
+    }
+	return $expectedKeys.Count
+}
+
+function Get-UnexpectedMatrixDestinations {
+	param(
+		[object[]]$Variants,
+		[string]$RootPath,
+		[string]$AllowedRoot,
+		[string]$Label
+	)
+
+	$expectedKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+	foreach ($variantRecord in @($Variants)) {
+		$variantName = [string]$variantRecord.variant
+		if (-not $expectedKeys.Add($variantName)) {
+			throw "$Label received a duplicate expected variant: $variantName"
+		}
+	}
+
+	$staleDirectories = New-Object System.Collections.Generic.List[string]
+	foreach ($item in @(Get-ChildItem -LiteralPath $RootPath -Directory -Force -ErrorAction Stop)) {
+		if ($item.Name -notmatch '^matrix_\d{4}(_area_\d{4})?$') {
+			continue
+		}
+		if ($expectedKeys.Contains($item.Name)) {
+			continue
+		}
+		$safePath = Assert-DspreSafeRecursiveDeletePath `
+			-Path $item.FullName `
+			-AllowedRoot $AllowedRoot
+		$null = Assert-DspreTreeHasNoReparsePoints `
+			-RootPath $safePath `
+			-Label "$Label stale destination"
+		$staleDirectories.Add($safePath)
+	}
+
+	return @($staleDirectories)
 }
 
 if ([string]::IsNullOrWhiteSpace($DspreContents)) {
@@ -431,7 +1008,6 @@ $matricesRoot = Resolve-ExistingDirectory (Join-Path $DspreContents "unpacked\ma
 if ($MaxParallel -lt 1) {
     throw "MaxParallel must be at least 1."
 }
-New-Item -ItemType Directory -Path $rawRoot, $dedupRoot, $platinumRoot -Force | Out-Null
 
 $allMatrixIds = @(
     Get-ChildItem -LiteralPath $matricesRoot -File |
@@ -455,10 +1031,14 @@ $resolution = [IO.File]::ReadAllText($resolutionPath, [Text.Encoding]::UTF8) | C
 Assert-AreaResolution $resolution $allMatrixIds $DspreContents 0xE56F0
 $batchExporterPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dspre_batch_export.ps1") "DSPRE batch exporter"
 $supportToolPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dspre_collision_support.ps1") "DSPRE collision support tool"
+$dedupeToolPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "dedupe_dspre_materials.ps1") "DSPRE material dedupe tool"
+$syncToolPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "sync_dspre_godot_assets.ps1") "DSPRE Godot sync tool"
 Write-Host "Fingerprinting DSPRE contents once for all matrix variants..."
 $dspreSourceSha256 = Get-DspreContentFingerprint -RootPath $DspreContents
 $exporterSha256 = Get-DspreToolFileFingerprint -Path $batchExporterPath
 $supportToolSha256 = Get-DspreToolFileFingerprint -Path $supportToolPath
+$dedupeToolSha256 = Get-DspreToolFileFingerprint -Path $dedupeToolPath
+$syncToolSha256 = Get-DspreToolFileFingerprint -Path $syncToolPath
 $apiculaSha256 = Get-DspreToolFileFingerprint -Path $ApiculaPath
 $areaResolutionSha256 = Get-DspreAreaResolutionFingerprint -Path $resolutionPath
 $unresolvedById = @{}
@@ -484,6 +1064,107 @@ $readyRequestedVariants = @(
     $allVariants | Where-Object { [int]$_.matrix_id -in $requestedIds }
 )
 $skippedRequestedIds = @($requestedIds | Where-Object { $unresolvedById.ContainsKey($_) })
+
+if ($MatrixIds.Count -gt 0) {
+    $null = Assert-DspreUnrequestedRawMarkersCurrent `
+        -Variants $allVariants `
+        -RequestedMatrixIds $requestedIds `
+        -RawRoot $rawRoot `
+        -ExpectedDspreSourceSha256 $dspreSourceSha256 `
+        -ExpectedExporterSha256 $exporterSha256 `
+        -ExpectedSupportToolSha256 $supportToolSha256 `
+        -ExpectedApiculaSha256 $apiculaSha256 `
+        -ExpectedAreaResolutionSha256 $areaResolutionSha256
+
+    $staleDownstreamVariants = New-Object System.Collections.Generic.List[string]
+    foreach ($variantRecord in $allVariants) {
+        $matrixId = [int]$variantRecord.matrix_id
+        if ($matrixId -in $requestedIds) {
+            continue
+        }
+        $variantName = [string]$variantRecord.variant
+        $rawManifestPath = Join-Path $rawRoot "$variantName\manifest.json"
+        $dedupVariantRoot = Join-Path $dedupRoot $variantName
+        $dedupManifestPath = Join-Path $dedupVariantRoot "manifest.json"
+        $godotVariantRoot = Join-Path $platinumRoot $variantName
+        if (-not (Test-DedupeComplete `
+            $rawManifestPath `
+            $dedupVariantRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $dedupeToolSha256
+        )) {
+            $staleDownstreamVariants.Add("$variantName (dedupe)")
+            continue
+        }
+        if (-not (Test-SyncComplete `
+            $dedupManifestPath `
+            $godotVariantRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $dedupeToolSha256 `
+            $syncToolSha256
+        )) {
+            $staleDownstreamVariants.Add("$variantName (Godot sync)")
+        }
+    }
+    if ($staleDownstreamVariants.Count -ne 0) {
+        $details = @($staleDownstreamVariants | Select-Object -First 8) -join '; '
+        if ($staleDownstreamVariants.Count -gt 8) {
+            $details += "; ... and $($staleDownstreamVariants.Count - 8) more"
+        }
+        throw "Partial matrix export cannot publish a complete catalog while unrequested destinations are stale: $details. Rerun without -MatrixIds."
+    }
+}
+
+$rawRoot = Assert-DspreSafeRecursiveDeletePath -Path $rawRoot -AllowedRoot $workspaceRoot
+$dedupRoot = Assert-DspreSafeRecursiveDeletePath -Path $dedupRoot -AllowedRoot $workspaceRoot
+$platinumRoot = Assert-DspreSafeRecursiveDeletePath -Path $platinumRoot -AllowedRoot $projectRoot
+New-Item -ItemType Directory -Path $rawRoot, $dedupRoot, $platinumRoot -Force | Out-Null
+
+$publishedCatalogPaths = @($generatedCatalogPath, $godotCatalogPath)
+foreach ($catalogPath in $publishedCatalogPaths) {
+    if (Test-Path -LiteralPath $catalogPath) {
+        $catalogItem = Get-Item -LiteralPath $catalogPath -Force -ErrorAction Stop
+        if (
+            $catalogItem.PSIsContainer -or
+            ($catalogItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0
+        ) {
+            throw "Published matrix catalog path is not a file: $catalogPath"
+        }
+    }
+}
+foreach ($catalogPath in $publishedCatalogPaths) {
+	if (Test-Path -LiteralPath $catalogPath -PathType Leaf) {
+		Remove-Item -LiteralPath $catalogPath -Force
+	}
+}
+
+$staleDestinationPaths = @(
+	Get-UnexpectedMatrixDestinations `
+		-Variants $allVariants `
+		-RootPath $rawRoot `
+		-AllowedRoot $workspaceRoot `
+		-Label "Raw output"
+	Get-UnexpectedMatrixDestinations `
+		-Variants $allVariants `
+		-RootPath $dedupRoot `
+		-AllowedRoot $workspaceRoot `
+		-Label "Deduplicated output"
+	Get-UnexpectedMatrixDestinations `
+		-Variants $allVariants `
+		-RootPath $platinumRoot `
+		-AllowedRoot $projectRoot `
+		-Label "Godot output"
+)
+foreach ($staleDestinationPath in $staleDestinationPaths) {
+	Remove-Item -LiteralPath $staleDestinationPath -Recurse -Force
+}
+if ($staleDestinationPaths.Count -gt 0) {
+	Write-Host "Removed $($staleDestinationPaths.Count) stale matrix destination directories."
+}
 
 Write-Host "DSPRE all-matrix export starting."
 Write-Host "  Requested matrices: $($requestedIds.Count)"
@@ -513,6 +1194,7 @@ foreach ($variantRecord in $readyRequestedVariants) {
 
     $rawComplete = $false
     if (
+        -not $RebuildExisting -and
         (Test-Path -LiteralPath $rawManifest -PathType Leaf) -and
         (Test-Path -LiteralPath $rawSummaryPath -PathType Leaf) -and
         (Test-Path -LiteralPath $rawMarkerPath -PathType Leaf)
@@ -554,23 +1236,24 @@ foreach ($variantRecord in $readyRequestedVariants) {
             $areaMatches = ($null -eq $expectedArea -and $null -eq $manifestArea) -or
                 ($null -ne $expectedArea -and $null -ne $manifestArea -and
                     [int]$expectedArea -eq [int]$manifestArea)
-            $rawComplete = [int]$existingRawSummary.failed -eq 0 -and
+            $markerMatches = Assert-DspreRawExportMarker `
+                -Marker $existingRawMarker `
+                -ExpectedMatrixId $matrixId `
+                -ExpectedVariant $variantName `
+                -ExpectedAreaDataId $expectedArea `
+                -ExpectedDspreSourceSha256 $dspreSourceSha256 `
+                -ExpectedExporterSha256 $exporterSha256 `
+                -ExpectedSupportToolSha256 $supportToolSha256 `
+                -ExpectedApiculaSha256 $apiculaSha256 `
+                -ExpectedAreaResolutionSha256 $areaResolutionSha256 `
+                -ExpectedManifestSha256 (Get-FileHash -LiteralPath $rawManifest -Algorithm SHA256).Hash.ToLowerInvariant() `
+                -ExpectedOccupiedCells @($existingRawManifest.cells).Count `
+                -ExpectedCollisionAssets @($existingRawManifest.collision_assets).Count `
+                -OutputRoot $rawMatrixRoot `
+                -Label "Raw destination $variantName marker"
+            $rawComplete = $markerMatches -and [int]$existingRawSummary.failed -eq 0 -and
                 [int]$existingRawManifest.matrix.id -eq $matrixId -and
-                $manifestVariant -eq $variantName -and $areaMatches -and
-                [int]$existingRawMarker.schema_version -eq 2 -and
-                [int]$existingRawMarker.export_contract_version -eq 3 -and
-                [int]$existingRawMarker.matrix_id -eq $matrixId -and
-                [string]$existingRawMarker.variant -eq $variantName -and
-                [string]$existingRawMarker.manifest_sha256 -eq (
-                    Get-FileHash -LiteralPath $rawManifest -Algorithm SHA256
-                ).Hash.ToLowerInvariant() -and
-                [string]$existingRawMarker.dspre_source_sha256 -eq $dspreSourceSha256 -and
-                [string]$existingRawMarker.exporter_sha256 -eq $exporterSha256 -and
-                [string]$existingRawMarker.support_tool_sha256 -eq $supportToolSha256 -and
-                [string]$existingRawMarker.apicula_sha256 -eq $apiculaSha256 -and
-                [string]$existingRawMarker.area_resolution_sha256 -eq $areaResolutionSha256 -and
-                [int]$existingRawMarker.occupied_cells -eq @($existingRawManifest.cells).Count -and
-                [int]$existingRawMarker.collision_assets -eq @($existingRawManifest.collision_assets).Count
+                $manifestVariant -eq $variantName -and $areaMatches
         }
         catch {
             $rawComplete = $false
@@ -626,78 +1309,96 @@ foreach ($variantRecord in $readyRequestedVariants) {
     $rawAreaMatches = ($null -eq $expectedArea -and $null -eq $rawManifestArea) -or
         ($null -ne $expectedArea -and $null -ne $rawManifestArea -and
             [int]$expectedArea -eq [int]$rawManifestArea)
+    $markerMatches = Assert-DspreRawExportMarker `
+        -Marker $rawMarker `
+        -ExpectedMatrixId $matrixId `
+        -ExpectedVariant $variantName `
+        -ExpectedAreaDataId $expectedArea `
+        -ExpectedDspreSourceSha256 $dspreSourceSha256 `
+        -ExpectedExporterSha256 $exporterSha256 `
+        -ExpectedSupportToolSha256 $supportToolSha256 `
+        -ExpectedApiculaSha256 $apiculaSha256 `
+        -ExpectedAreaResolutionSha256 $areaResolutionSha256 `
+        -ExpectedManifestSha256 (Get-FileHash -LiteralPath $rawManifest -Algorithm SHA256).Hash.ToLowerInvariant() `
+        -ExpectedOccupiedCells @($rawManifestDocument.cells).Count `
+        -ExpectedCollisionAssets @($rawManifestDocument.collision_assets).Count `
+        -Label "Raw destination $variantName marker"
     if (
+        -not $markerMatches -or
         [int]$rawSummary.failed -ne 0 -or
         [int]$rawManifestDocument.matrix.id -ne $matrixId -or
         $rawManifestVariant -ne $variantName -or
-        -not $rawAreaMatches -or
-        [int]$rawMarker.schema_version -ne 2 -or
-        [int]$rawMarker.export_contract_version -ne 3 -or
-        [string]$rawMarker.manifest_sha256 -ne (
-            Get-FileHash -LiteralPath $rawManifest -Algorithm SHA256
-        ).Hash.ToLowerInvariant() -or
-        [string]$rawMarker.dspre_source_sha256 -ne $dspreSourceSha256 -or
-        [string]$rawMarker.exporter_sha256 -ne $exporterSha256 -or
-        [string]$rawMarker.support_tool_sha256 -ne $supportToolSha256 -or
-        [string]$rawMarker.apicula_sha256 -ne $apiculaSha256 -or
-        [string]$rawMarker.area_resolution_sha256 -ne $areaResolutionSha256
+        -not $rawAreaMatches
     ) {
         throw "$variantName raw export does not match its resolution record."
     }
 
-    $dedupComplete = Test-DedupeComplete `
-        $rawManifest $dedupMatrixRoot $variantName $matrixId $variantRecord.area_data_id
-    if ($rawWasRebuilt -or -not $dedupComplete) {
+    $dedupComplete = $false
+    if (-not $rawWasRebuilt) {
+        $dedupComplete = Test-DedupeComplete `
+            $rawManifest `
+            $dedupMatrixRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $dedupeToolSha256
+    }
+    $dedupWasRebuilt = $rawWasRebuilt -or -not $dedupComplete
+    if ($dedupWasRebuilt) {
         Invoke-ProjectScript (Join-Path $PSScriptRoot "dedupe_dspre_materials.ps1") @{
             SourceRoot = $rawMatrixRoot
             OutputRoot = $dedupMatrixRoot
+            DedupeToolSha256 = $dedupeToolSha256
             Force = (Test-Path -LiteralPath $dedupMatrixRoot)
         }
+        $dedupComplete = Test-DedupeComplete `
+            $rawManifest `
+            $dedupMatrixRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $dedupeToolSha256 `
+            -MarkerOnly
     }
-    if (-not (Test-DedupeComplete `
-        $rawManifest $dedupMatrixRoot $variantName $matrixId $variantRecord.area_data_id
-    )) {
+    if (-not $dedupComplete) {
         throw "$variantName dedupe output is incomplete or inconsistent."
     }
 
-    $syncComplete = Test-SyncComplete `
-        $dedupManifest $godotMatrixRoot $variantName $matrixId $variantRecord.area_data_id
-    if ($RebuildExisting -or -not $syncComplete) {
+    $syncComplete = $false
+    if (-not $RebuildExisting -and -not $dedupWasRebuilt) {
+        $syncComplete = Test-SyncComplete `
+            $dedupManifest `
+            $godotMatrixRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $dedupeToolSha256 `
+            $syncToolSha256
+    }
+    if ($RebuildExisting -or $dedupWasRebuilt -or -not $syncComplete) {
         Invoke-ProjectScript (Join-Path $PSScriptRoot "sync_dspre_godot_assets.ps1") @{
             SourceRoot = $dedupMatrixRoot
             ProjectRoot = $projectRoot
+            DedupeToolSha256 = $dedupeToolSha256
+            SyncToolSha256 = $syncToolSha256
             Force = (Test-Path -LiteralPath $godotMatrixRoot)
         }
+        $syncComplete = Test-SyncComplete `
+            $dedupManifest `
+            $godotMatrixRoot `
+            $variantName `
+            $matrixId `
+            $variantRecord.area_data_id `
+            $dedupeToolSha256 `
+            $syncToolSha256 `
+            -MarkerOnly
     }
-    if (-not (Test-SyncComplete `
-        $dedupManifest $godotMatrixRoot $variantName $matrixId $variantRecord.area_data_id
-    )) {
+    if (-not $syncComplete) {
         throw "$variantName Godot sync is incomplete or inconsistent."
     }
     $processed++
 }
 Write-Progress -Activity "Migrating DSPRE matrices" -Completed
-
-$changedInputs = New-Object System.Collections.Generic.List[string]
-if ((Get-DspreContentFingerprint -RootPath $DspreContents) -ne $dspreSourceSha256) {
-    $changedInputs.Add("DSPRE contents")
-}
-if ((Get-DspreToolFileFingerprint -Path $batchExporterPath) -ne $exporterSha256) {
-    $changedInputs.Add("batch exporter")
-}
-if ((Get-DspreToolFileFingerprint -Path $supportToolPath) -ne $supportToolSha256) {
-    $changedInputs.Add("collision support tool")
-}
-if ((Get-DspreToolFileFingerprint -Path $ApiculaPath) -ne $apiculaSha256) {
-    $changedInputs.Add("apicula")
-}
-if ((Get-DspreAreaResolutionFingerprint -Path $resolutionPath) -ne $areaResolutionSha256) {
-    $changedInputs.Add("AreaData resolution")
-}
-if ($changedInputs.Count -ne 0) {
-    throw "Export inputs changed during the matrix run: $($changedInputs -join ', '). Rerun before publishing the catalog."
-}
-Write-Host "Export input fingerprints remained stable throughout the matrix run."
 
 $terrainKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $buildingKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
@@ -741,7 +1442,7 @@ foreach ($matrixId in $allMatrixIds) {
         $manifestPath = Join-Path $dedupRoot "$variantName\manifest.json"
         $materialCatalogPath = Join-Path $dedupRoot "$variantName\material_catalog.json"
         if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
-            continue
+            throw "Expected catalog destination manifest is missing: $manifestPath"
         }
         $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
@@ -753,6 +1454,9 @@ foreach ($matrixId in $allMatrixIds) {
             $materialCatalogPath,
             [Text.Encoding]::UTF8
         ) | ConvertFrom-Json
+        if ([int]$materialCatalog.schema_version -ne 1) {
+            throw "Catalog destination $variantName has an unsupported material catalog schema: $($materialCatalog.schema_version)"
+        }
         if ($null -eq $firstManifest) {
             $firstManifest = $manifest
         }
@@ -868,10 +1572,63 @@ $catalog = [pscustomobject][ordered]@{
     destinations = @($destinationEntries | ForEach-Object { $_ })
 }
 $catalogJson = $catalog | ConvertTo-Json -Depth 12
-$generatedCatalogPath = Join-Path $dedupRoot "matrix_catalog.json"
-$godotCatalogPath = Join-Path $platinumRoot "matrix_catalog.json"
-[IO.File]::WriteAllText($generatedCatalogPath, $catalogJson, $utf8NoBom)
-[IO.File]::WriteAllText($godotCatalogPath, $catalogJson, $utf8NoBom)
+
+$validatedDestinationCount = Assert-AllDestinationStagesCurrent `
+    -Variants $allVariants `
+    -RawRoot $rawRoot `
+    -DedupRoot $dedupRoot `
+    -GodotRoot $platinumRoot `
+    -ExpectedDspreSourceSha256 $dspreSourceSha256 `
+    -ExpectedExporterSha256 $exporterSha256 `
+    -ExpectedSupportToolSha256 $supportToolSha256 `
+    -ExpectedDedupeToolSha256 $dedupeToolSha256 `
+    -ExpectedSyncToolSha256 $syncToolSha256 `
+    -ExpectedApiculaSha256 $apiculaSha256 `
+    -ExpectedAreaResolutionSha256 $areaResolutionSha256
+if (
+    $validatedDestinationCount -ne $allVariants.Count -or
+    $readyDestinationCount -ne $allVariants.Count -or
+    $destinationEntries.Count -ne $allVariants.Count -or
+    $notExportedMatrixCount -ne 0
+) {
+    throw "Catalog aggregation did not cover every expected runnable destination."
+}
+Write-Host "All $validatedDestinationCount expected raw, dedupe, and sync destinations passed final validation."
+
+$changedInputs = New-Object System.Collections.Generic.List[string]
+if ((Get-DspreContentFingerprint -RootPath $DspreContents) -ne $dspreSourceSha256) {
+    $changedInputs.Add("DSPRE contents")
+}
+if ((Get-DspreToolFileFingerprint -Path $batchExporterPath) -ne $exporterSha256) {
+    $changedInputs.Add("batch exporter")
+}
+if ((Get-DspreToolFileFingerprint -Path $supportToolPath) -ne $supportToolSha256) {
+    $changedInputs.Add("collision support tool")
+}
+if ((Get-DspreToolFileFingerprint -Path $dedupeToolPath) -ne $dedupeToolSha256) {
+    $changedInputs.Add("material dedupe tool")
+}
+if ((Get-DspreToolFileFingerprint -Path $syncToolPath) -ne $syncToolSha256) {
+    $changedInputs.Add("Godot sync tool")
+}
+if ((Get-DspreToolFileFingerprint -Path $ApiculaPath) -ne $apiculaSha256) {
+    $changedInputs.Add("apicula")
+}
+if ((Get-DspreAreaResolutionFingerprint -Path $resolutionPath) -ne $areaResolutionSha256) {
+    $changedInputs.Add("AreaData resolution")
+}
+if ($changedInputs.Count -ne 0) {
+    throw "Export inputs changed during the matrix run: $($changedInputs -join ', '). Rerun before publishing the catalog."
+}
+Write-Host "Export input fingerprints remained stable throughout catalog aggregation."
+
+$dedupRoot = Assert-DspreSafeRecursiveDeletePath -Path $dedupRoot -AllowedRoot $workspaceRoot
+$platinumRoot = Assert-DspreSafeRecursiveDeletePath -Path $platinumRoot -AllowedRoot $projectRoot
+Publish-MatrixCatalogPair `
+    -GeneratedPath $generatedCatalogPath `
+    -GodotPath $godotCatalogPath `
+    -Json $catalogJson `
+    -Encoding $utf8NoBom
 
 Write-Host "DSPRE matrix migration complete."
 Write-Host "  Ready matrices:      $readyMatrixCount"

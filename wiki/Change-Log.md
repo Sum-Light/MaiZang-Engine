@@ -36,6 +36,23 @@
 - Add a Godot 4.7 Inspector tool button that validates and launches only the independent Q0 text smoke shell, without changing the existing project or world runtime.
 - Add scene, native-resolution render, dependency-boundary, Git-scope, forced-local-data, and untracked-path validation plus Battle Wiki and Skill ownership memory.
 
+## 2026-07-13 - Harden collision state and matrix publication
+
+- Make normal player movement require a complete stable collision provider, strictly typed booleans, an explicit `allow`/`none` result and context, a finite adjacent target, and finite per-tick BDHC samples; reject or roll back when that provider disappears or is replaced before, during, or between its callbacks.
+- Preserve the final sampled BDHC height, accept explicit teleport bridge context, clear stale context outside bridge tiles, and fail closed with `requires_bridge_context` instead of guessing that an unknown inner bridge tile is elevated.
+- Validate every unselected raw, dedupe, and Godot-sync destination before a partial matrix export can mutate output; withdraw both published catalogs before destination changes and republish them only after stable-input validation succeeds.
+- Reject recursive deletion through junctions or other reparse points in raw export, material dedupe, and Godot sync, with synthetic marker, mutation-order, and external-sentinel regression coverage.
+- Bind schema-2 dedupe and sync markers to their current tool hashes and exact path/length/SHA-256 file records; validate exact downstream GLB, PNG, and material sets while excluding only editor-generated `.import` sidecars from the Godot destination post-check.
+- Recheck all seven inputs after catalog aggregation and publish both catalogs through temporary files, withdrawing both on a controlled half-publication failure; validate generated roots before creation, catalog access, or publication.
+- Bind raw reuse to exact path/length/SHA-256 file records; direct batch export now reuses only a wholly current destination and otherwise rebuilds its complete output and work slice instead of re-certifying individual old GLBs.
+- Reject reparse points inside every recursively deleted, fingerprinted, or writable work tree without following them; constrain raw/work output roots and preserve external sentinels during nested-junction rejection.
+- Remove obsolete matrix-shaped stage directories only after all three output trees pass complete safety preflight, revalidate all 278 raw/dedupe/sync marker identities before publication, and leave exact full-tree hashing to stage consumption/reuse and complete validation instead of repeating it after every successful child stage.
+- Remove repeated whole-work-tree probes from each terrain model write; recursive deletion still rejects every reparse point, and each write still validates its exact ancestor path.
+- Reuse the sync stage's exact file records for material-image verification and destination counts, avoiding a second PNG hash pass and redundant tree enumeration.
+- Ignore only Godot's stable `.import` sidecars and transient `.import~*.TMP` atomic-write files when validating imported destinations, while keeping every managed asset and other extra file exact.
+- Reject ancestor junctions and malformed schema-1 material catalogs before validation or publication, including non-object signatures, empty or unknown GLB bindings, and non-positive unique output counts.
+- Decompress imported texture-image copies before shared-material pixel comparison, avoiding Godot compressed-format conversion failures during full catalog rebuilds.
+
 ## 2026-07-13 - Add Platinum terrain collision and height queries
 
 - Export each map's exact `a.dat` terrain attributes and packed `BDHC` height data into every AreaData-aware destination manifest, with source hashes, map-level deduplication, completion markers, and catalog-wide contract validation.

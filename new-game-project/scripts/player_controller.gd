@@ -180,6 +180,10 @@ func is_using_local_sprite_sheet() -> bool:
 
 
 func set_collision_provider(provider: Node) -> void:
+	if provider == _collision_provider:
+		return
+	if is_stepping():
+		_cancel_step()
 	_collision_provider = provider
 
 
@@ -195,7 +199,11 @@ static func snap_to_grid_center(world_position: Vector3) -> Vector3:
 	)
 
 
-func teleport_to_grid(world_position: Vector3, facing: int = -1) -> void:
+func teleport_to_grid(
+	world_position: Vector3,
+	facing: int = -1,
+	collision_context: Dictionary = {}
+) -> void:
 	var snapped_position := snap_to_grid_center(world_position)
 	global_position = snapped_position
 	velocity = Vector3.ZERO
@@ -213,7 +221,7 @@ func teleport_to_grid(world_position: Vector3, facing: int = -1) -> void:
 	_animation_running = false
 	_gait_frame = 0
 	_run_stop_frame = 0
-	_collision_context = {"locomotion": "walk", "bridge_layer": "unknown"}
+	_collision_context = _normalized_collision_context(collision_context)
 	_pending_collision_context = _collision_context.duplicate()
 	if is_instance_valid(_sprite):
 		_update_sprite_frame()
@@ -268,23 +276,57 @@ func _begin_step(direction: Vector2, next_facing: int) -> bool:
 	_facing = next_facing
 	_move_direction = direction
 	_step_origin = global_position
-	if is_instance_valid(_collision_provider) and _collision_provider.has_method("resolve_player_step"):
-		var step_result: Dictionary = _collision_provider.call(
-			"resolve_player_step",
-			_step_origin,
-			Vector2i(roundi(direction.x), roundi(direction.y)),
-			_collision_context
-		)
-		if not bool(step_result.get("ok", false)) or bool(step_result.get("blocked", true)):
-			_stop_before_step()
-			return false
-		_step_target = step_result.get("target", _step_origin) as Vector3
-		_pending_collision_context = (
-			step_result.get("next_context", _collision_context) as Dictionary
-		).duplicate(true)
-	else:
-		_step_target = _step_origin + Vector3(direction.x, 0.0, direction.y) * GRID_CELL_SIZE
-		_pending_collision_context = _collision_context.duplicate(true)
+	if not _has_collision_provider_contract():
+		_stop_before_step()
+		return false
+	var collision_provider := _collision_provider
+	var step_direction := Vector2i(roundi(direction.x), roundi(direction.y))
+	var step_value: Variant = collision_provider.call(
+		"resolve_player_step",
+		_step_origin,
+		step_direction,
+		_collision_context.duplicate(true)
+	)
+	if not is_instance_valid(collision_provider) or collision_provider != _collision_provider:
+		_stop_before_step()
+		return false
+	if not step_value is Dictionary:
+		_stop_before_step()
+		return false
+	var step_result := step_value as Dictionary
+	var ok_value: Variant = step_result.get("ok", null)
+	var blocked_value: Variant = step_result.get("blocked", null)
+	var disposition_value: Variant = step_result.get("disposition", null)
+	var action_value: Variant = step_result.get("action", null)
+	var target_value: Variant = step_result.get("target", null)
+	var landing_target_value: Variant = step_result.get("landing_target", null)
+	if (
+		typeof(ok_value) != TYPE_BOOL
+		or not ok_value
+		or typeof(blocked_value) != TYPE_BOOL
+		or blocked_value
+		or typeof(disposition_value) != TYPE_STRING
+		or disposition_value != "allow"
+		or typeof(action_value) != TYPE_STRING
+		or action_value != "none"
+		or not target_value is Vector3
+		or not landing_target_value is Vector3
+		or not (landing_target_value as Vector3).is_equal_approx(target_value as Vector3)
+	):
+		_stop_before_step()
+		return false
+	_step_target = target_value as Vector3
+	if not _is_valid_normal_step_target(_step_target, step_direction):
+		_stop_before_step()
+		return false
+	var next_context_value: Variant = step_result.get("next_context", null)
+	if (
+		not next_context_value is Dictionary
+		or not _is_valid_collision_context(next_context_value as Dictionary)
+	):
+		_stop_before_step()
+		return false
+	_pending_collision_context = _normalized_collision_context(next_context_value as Dictionary)
 	var collision := move_and_collide(_step_target - _step_origin, true)
 	if collision != null:
 		_stop_before_step()
@@ -313,17 +355,32 @@ func _prepare_step_animation(wants_to_run: bool, direction_changed: bool) -> voi
 
 
 func _advance_step(delta: float) -> void:
+	var collision_provider := _collision_provider
+	if not is_instance_valid(collision_provider):
+		_cancel_step()
+		return
 	_action_frame += 1
 	var progress := float(_action_frame) / float(_action_duration)
 	var desired_position := _step_origin.lerp(_step_target, progress)
-	if is_instance_valid(_collision_provider) and _collision_provider.has_method("resolve_player_height"):
-		var sampled_height: Variant = _collision_provider.call(
-			"resolve_player_height", desired_position, global_position.y
-		)
-		if sampled_height == null:
+	var sampled_height: Variant = collision_provider.call(
+		"resolve_player_height", desired_position, global_position.y
+	)
+	if (
+		_motion_state != MotionState.STEPPING
+		or not is_instance_valid(collision_provider)
+		or collision_provider != _collision_provider
+	):
+		if _motion_state == MotionState.STEPPING:
 			_cancel_step()
-			return
-		desired_position.y = float(sampled_height)
+		return
+	if sampled_height == null or not sampled_height is float and not sampled_height is int:
+		_cancel_step()
+		return
+	var resolved_height := float(sampled_height)
+	if is_nan(resolved_height) or is_inf(resolved_height):
+		_cancel_step()
+		return
+	desired_position.y = resolved_height
 	var motion := desired_position - global_position
 	velocity = motion / maxf(delta, 0.000001)
 	var collision := move_and_collide(motion)
@@ -336,6 +393,7 @@ func _advance_step(delta: float) -> void:
 	var emitted_frame := _action_frame
 	var emitted_duration := _action_duration
 	if _action_frame >= _action_duration:
+		_step_target = Vector3(_step_target.x, desired_position.y, _step_target.z)
 		global_position = _step_target
 		_collision_context = _pending_collision_context.duplicate(true)
 		velocity = Vector3.ZERO
@@ -374,6 +432,59 @@ func _stop_before_step() -> void:
 	_gait_frame = _align_gait_to_idle(_gait_frame)
 	velocity = Vector3.ZERO
 	_update_sprite_frame()
+
+
+func _has_collision_provider_contract() -> bool:
+	return (
+		is_instance_valid(_collision_provider)
+		and _collision_provider.has_method("resolve_player_step")
+		and _collision_provider.has_method("resolve_player_height")
+	)
+
+
+func _is_finite_vector3(value: Vector3) -> bool:
+	return (
+		not is_nan(value.x)
+		and not is_inf(value.x)
+		and not is_nan(value.y)
+		and not is_inf(value.y)
+		and not is_nan(value.z)
+		and not is_inf(value.z)
+	)
+
+
+func _is_valid_normal_step_target(target: Vector3, direction: Vector2i) -> bool:
+	return (
+		_is_finite_vector3(target)
+		and is_equal_approx(target.x, _step_origin.x + direction.x * GRID_CELL_SIZE)
+		and is_equal_approx(target.z, _step_origin.z + direction.y * GRID_CELL_SIZE)
+	)
+
+
+func _is_valid_collision_context(context: Dictionary) -> bool:
+	if not context.has("bridge_layer") or not context.has("locomotion"):
+		return false
+	var bridge_layer: Variant = context.bridge_layer
+	var locomotion: Variant = context.locomotion
+	return (
+		typeof(bridge_layer) == TYPE_STRING
+		and bridge_layer in ["ground", "elevated", "unknown"]
+		and typeof(locomotion) == TYPE_STRING
+		and not locomotion.is_empty()
+	)
+
+
+func _normalized_collision_context(context: Dictionary) -> Dictionary:
+	var bridge_layer := String(context.get("bridge_layer", "unknown"))
+	if bridge_layer not in ["ground", "elevated", "unknown"]:
+		bridge_layer = "unknown"
+	var locomotion := String(context.get("locomotion", "walk"))
+	if locomotion.is_empty():
+		locomotion = "walk"
+	return {
+		"locomotion": locomotion,
+		"bridge_layer": bridge_layer,
+	}
 
 
 func _settle_idle() -> void:

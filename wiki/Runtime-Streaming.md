@@ -141,7 +141,15 @@ Walking queries also carry `bridge_layer` as `unknown`, `ground`, or
 `elevated`. Bridge entry and exit behaviors update the returned `next_context`;
 only a completed allowed step commits it. This prevents an elevated crossing
 from being interpreted as water below, while an unknown or ground-level water
-bridge still reports `requires_surf`.
+bridge still reports `requires_surf`. A player placed directly on an inner
+bridge tile without a trusted layer receives `requires_bridge_context`; the
+runtime does not infer `elevated` from behavior `0x71`. Normal movement also
+requires a stable provider for the whole atomic action, and the final per-tick
+BDHC sample remains authoritative when the step commits. Provider identity is
+rechecked after every collision callback; synchronous replacement from inside
+a preflight or height query fails closed before another collision world can be
+used. The preflight receives a deep context snapshot, so a rejected provider
+cannot mutate the player's active bridge layer through Dictionary aliasing.
 
 Visual placement remains separate from collision coordinates. A `Chunk_*` root
 sits at the matrix cell's top-left X/Z with Y zero. Its terrain child is offset

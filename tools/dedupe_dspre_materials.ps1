@@ -2,6 +2,7 @@
 param(
     [string]$SourceRoot = "",
     [string]$OutputRoot = "",
+    [string]$DedupeToolSha256 = "",
     [switch]$Force
 )
 
@@ -53,6 +54,96 @@ function Get-Sha256Text {
     return Get-Sha256Bytes ([Text.UTF8Encoding]::new($false).GetBytes($Text))
 }
 
+function Get-StageFilesWithoutReparsePoints {
+    param(
+        [string]$RootPath,
+        [string]$Label = "Stage tree"
+    )
+
+    $root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
+    $rootItem = Get-Item -LiteralPath $root -Force -ErrorAction Stop
+    if (-not $rootItem.PSIsContainer) {
+        throw "$Label root is not a directory: $root"
+    }
+    if (($rootItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+        throw "$Label root cannot be a reparse point: $root"
+    }
+
+    $rootPrefix = $root + [IO.Path]::DirectorySeparatorChar
+    $directories = [Collections.Generic.Queue[string]]::new()
+    $files = [Collections.Generic.List[IO.FileInfo]]::new()
+    $directories.Enqueue($root)
+    while ($directories.Count -ne 0) {
+        $directory = $directories.Dequeue()
+        foreach ($entry in @(Get-ChildItem -LiteralPath $directory -Force)) {
+            $fullPath = [IO.Path]::GetFullPath($entry.FullName)
+            if (-not $fullPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+                throw "$Label entry escaped its root: $fullPath"
+            }
+            if (($entry.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                throw "$Label cannot contain a reparse point: $fullPath"
+            }
+            if ($entry.PSIsContainer) {
+                $directories.Enqueue($fullPath)
+            }
+            else {
+                $files.Add($entry)
+            }
+        }
+    }
+    return $files.ToArray()
+}
+
+function Resolve-DedupeOutputPath {
+    param([string]$Path)
+
+    $dedupeRoot = [IO.Path]::GetFullPath(
+        (Join-Path $workspaceRoot "generated\dspre_glb_dedup")
+    ).TrimEnd('\', '/')
+    $fullPath = [IO.Path]::GetFullPath($Path).TrimEnd('\', '/')
+    $dedupePrefix = $dedupeRoot + [IO.Path]::DirectorySeparatorChar
+    if (
+        $fullPath.Equals($dedupeRoot, [StringComparison]::OrdinalIgnoreCase) -or
+        -not $fullPath.StartsWith($dedupePrefix, [StringComparison]::OrdinalIgnoreCase)
+    ) {
+        throw "Refusing to write outside a dedupe destination: $fullPath"
+    }
+    return Assert-DspreSafeRecursiveDeletePath -Path $fullPath -AllowedRoot $workspaceRoot
+}
+
+function Get-OutputFileRecords {
+    param(
+        [string]$RootPath,
+        [string[]]$ExcludedRelativePaths = @()
+    )
+
+    $root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\')
+    $rootPrefix = $root + '\'
+    $excluded = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+    foreach ($relativePath in $ExcludedRelativePaths) {
+        $null = $excluded.Add(([string]$relativePath).Replace('\', '/'))
+    }
+    $records = New-Object System.Collections.Generic.List[object]
+    foreach ($file in @(Get-StageFilesWithoutReparsePoints `
+        -RootPath $root `
+        -Label "Dedupe output")) {
+        $fullPath = [IO.Path]::GetFullPath($file.FullName)
+        if (-not $fullPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+            throw "Dedupe output file escaped its root: $fullPath"
+        }
+        $relativePath = $fullPath.Substring($rootPrefix.Length).Replace('\', '/')
+        if ($excluded.Contains($relativePath)) {
+            continue
+        }
+        $records.Add([pscustomobject][ordered]@{
+            relative_path = $relativePath
+            byte_length = [long]$file.Length
+            sha256 = Get-Sha256File $fullPath
+        })
+    }
+    return @($records | Sort-Object { [string]$_.relative_path })
+}
+
 function Get-ForwardRelativePath {
     param([string]$BasePath, [string]$FullPath)
 
@@ -72,12 +163,11 @@ function Get-RelativeUriFromDirectory {
 function Clear-OutputDirectory {
     param([string]$Path)
 
-    $fullPath = [IO.Path]::GetFullPath($Path).TrimEnd('\')
-    $allowedRoot = [IO.Path]::GetFullPath((Join-Path $workspaceRoot "generated\dspre_glb_dedup")).TrimEnd('\') + '\'
-    if (-not $fullPath.StartsWith($allowedRoot, [StringComparison]::OrdinalIgnoreCase)) {
-        throw "Refusing to clear output outside the dedupe root: $fullPath"
-    }
+    $fullPath = Resolve-DedupeOutputPath -Path $Path
     if (Test-Path -LiteralPath $fullPath) {
+        $null = @(Get-StageFilesWithoutReparsePoints `
+            -RootPath $fullPath `
+            -Label "Existing dedupe output")
         Remove-Item -LiteralPath $fullPath -Recurse -Force
     }
     New-Item -ItemType Directory -Path $fullPath -Force | Out-Null
@@ -284,6 +374,19 @@ function Get-MaterialSignature {
 
 $SourceRoot = [IO.Path]::GetFullPath($SourceRoot).TrimEnd('\')
 $OutputRoot = [IO.Path]::GetFullPath($OutputRoot).TrimEnd('\')
+$OutputRoot = Resolve-DedupeOutputPath -Path $OutputRoot
+$actualDedupeToolSha256 = Get-DspreToolFileFingerprint -Path $PSCommandPath
+if ([string]::IsNullOrWhiteSpace($DedupeToolSha256)) {
+    $DedupeToolSha256 = $actualDedupeToolSha256
+}
+else {
+    $DedupeToolSha256 = Assert-DspreSha256Fingerprint `
+        $DedupeToolSha256 `
+        "Expected material dedupe tool fingerprint"
+    if ($DedupeToolSha256 -ne $actualDedupeToolSha256) {
+        throw "Material dedupe tool changed before the stage started."
+    }
+}
 if (-not (Test-Path -LiteralPath $SourceRoot -PathType Container)) {
     throw "Source export does not exist: $SourceRoot"
 }
@@ -296,6 +399,9 @@ if (
 ) {
     throw "Source and output must not overlap: $SourceRoot -> $OutputRoot"
 }
+$sourceFiles = @(Get-StageFilesWithoutReparsePoints `
+    -RootPath $SourceRoot `
+    -Label "Raw export source")
 $manifestPath = Join-Path $SourceRoot "manifest.json"
 if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
     throw "Source manifest does not exist: $manifestPath"
@@ -306,6 +412,40 @@ $null = Assert-DspreCollisionManifest `
     -Label "Source export manifest" `
     -ExpectedManifestSchema 2
 $sourceManifestSha256 = Get-Sha256File $manifestPath
+$sourceMarkerPath = Join-Path $SourceRoot ".export-complete.json"
+if (-not (Test-Path -LiteralPath $sourceMarkerPath -PathType Leaf)) {
+    throw "Raw export completion marker does not exist: $sourceMarkerPath"
+}
+$sourceMarker = [IO.File]::ReadAllText($sourceMarkerPath, [Text.Encoding]::UTF8) |
+    ConvertFrom-Json
+$sourceMatrixId = [int]$manifest.matrix.id
+$sourceVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
+    [string]$manifest.matrix.variant
+}
+else {
+    "matrix_{0:D4}" -f $sourceMatrixId
+}
+$sourceAreaDataId = if ($null -ne $manifest.matrix.PSObject.Properties["area_data_id"]) {
+    $manifest.matrix.area_data_id
+}
+else {
+    $null
+}
+$null = Assert-DspreRawExportMarker `
+    -Marker $sourceMarker `
+    -ExpectedMatrixId $sourceMatrixId `
+    -ExpectedVariant $sourceVariant `
+    -ExpectedAreaDataId $sourceAreaDataId `
+    -ExpectedDspreSourceSha256 ([string]$sourceMarker.dspre_source_sha256) `
+    -ExpectedExporterSha256 ([string]$sourceMarker.exporter_sha256) `
+    -ExpectedSupportToolSha256 ([string]$sourceMarker.support_tool_sha256) `
+    -ExpectedApiculaSha256 ([string]$sourceMarker.apicula_sha256) `
+    -ExpectedAreaResolutionSha256 ([string]$sourceMarker.area_resolution_sha256) `
+    -ExpectedManifestSha256 $sourceManifestSha256 `
+    -ExpectedOccupiedCells @($manifest.cells).Count `
+    -ExpectedCollisionAssets @($manifest.collision_assets).Count `
+    -OutputRoot $SourceRoot `
+    -Label "Raw export source marker"
 if (Test-Path -LiteralPath $OutputRoot) {
     if (-not $Force) {
         throw "Output already exists. Pass -Force to rebuild it: $OutputRoot"
@@ -318,7 +458,11 @@ else {
 
 $sharedTextureRoot = Join-Path $OutputRoot "shared\textures"
 New-Item -ItemType Directory -Path $sharedTextureRoot -Force | Out-Null
-$sourceGlbs = @(Get-ChildItem -LiteralPath $SourceRoot -Recurse -Filter "*.glb" -File | Sort-Object FullName)
+$sourceGlbs = @(
+    $sourceFiles |
+        Where-Object { $_.Extension -ieq ".glb" } |
+        Sort-Object FullName
+)
 if ($sourceGlbs.Count -eq 0) {
     throw "No GLBs were found under $SourceRoot"
 }
@@ -531,11 +675,14 @@ $manifest | Add-Member -Force -NotePropertyName "material_dedupe" -NotePropertyV
 [IO.File]::WriteAllText((Join-Path $OutputRoot "manifest.json"), ($manifest | ConvertTo-Json -Depth 30 -Compress), $utf8NoBom)
 
 $sourcePngBytes = 0L
-foreach ($png in @(Get-ChildItem -LiteralPath $SourceRoot -Recurse -Filter "*.png" -File)) {
+foreach ($png in @($sourceFiles | Where-Object { $_.Extension -ieq ".png" })) {
     $sourcePngBytes += [long]$png.Length
 }
 $sharedPngBytes = 0L
-foreach ($png in @(Get-ChildItem -LiteralPath $sharedTextureRoot -Filter "*.png" -File)) {
+foreach ($png in @(Get-StageFilesWithoutReparsePoints `
+    -RootPath $sharedTextureRoot `
+    -Label "Shared texture output" |
+    Where-Object { $_.Extension -ieq ".png" })) {
     $sharedPngBytes += [long]$png.Length
 }
 $summary = [pscustomobject][ordered]@{
@@ -554,18 +701,23 @@ $summary = [pscustomobject][ordered]@{
 }
 [IO.File]::WriteAllText((Join-Path $OutputRoot "summary.json"), ($summary | ConvertTo-Json -Depth 5), $utf8NoBom)
 $outputManifestPath = Join-Path $OutputRoot "manifest.json"
+$outputFileRecords = Get-OutputFileRecords `
+    -RootPath $OutputRoot `
+    -ExcludedRelativePaths @(".dedupe-complete.json")
 $completionMarker = [pscustomobject][ordered]@{
-    schema_version = 1
+    schema_version = 2
     generated_utc = [DateTime]::UtcNow.ToString("o")
+    dedupe_tool_sha256 = $DedupeToolSha256
     source_manifest_sha256 = $sourceManifestSha256
     output_manifest_sha256 = Get-Sha256File $outputManifestPath
     glbs = $sourceGlbs.Count
     unique_images = $imageRecords.Count
     unique_materials = $materialRecords.Count
+    files = $outputFileRecords
 }
 [IO.File]::WriteAllText(
     (Join-Path $OutputRoot ".dedupe-complete.json"),
-    ($completionMarker | ConvertTo-Json -Depth 4),
+    ($completionMarker | ConvertTo-Json -Depth 6),
     $utf8NoBom
 )
 

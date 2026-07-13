@@ -237,6 +237,10 @@ static func _textures_equivalent(expected: Texture2D, actual: Texture2D) -> bool
 		return expected_image.is_empty() and actual_image.is_empty()
 	if expected_image.get_size() != actual_image.get_size():
 		return false
+	if expected_image.is_compressed() and expected_image.decompress() != OK:
+		return false
+	if actual_image.is_compressed() and actual_image.decompress() != OK:
+		return false
 	expected_image.convert(Image.FORMAT_RGBA8)
 	actual_image.convert(Image.FORMAT_RGBA8)
 	return expected_image.get_data() == actual_image.get_data()

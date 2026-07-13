@@ -564,15 +564,22 @@ func _resolve_special_behavior(
 		)
 
 	var bridge_layer := String(next_context.get("bridge_layer", "unknown"))
-	if (
-		bridge_layer == "unknown"
-		and (current_behavior < BRIDGE_START or current_behavior > BRIDGE_END)
-	):
+	var current_is_bridge := current_behavior >= BRIDGE_START and current_behavior <= BRIDGE_END
+	var target_is_bridge := target_behavior >= BRIDGE_START and target_behavior <= BRIDGE_END
+	if bridge_layer == "unknown" and current_is_bridge:
+		return _special_step(
+			origin,
+			"requires_bridge_context",
+			target_attributes,
+			target_behavior,
+			next_context
+		)
+	if not current_is_bridge:
 		bridge_layer = "ground"
 		next_context["bridge_layer"] = bridge_layer
 	if current_behavior == BRIDGE_START:
 		bridge_layer = "elevated"
-	if target_behavior >= BRIDGE_START and target_behavior <= BRIDGE_END:
+	if target_is_bridge:
 		if target_behavior == BRIDGE_START:
 			bridge_layer = "elevated"
 		elif target_behavior < BIKE_BRIDGE_START:
@@ -580,8 +587,6 @@ func _resolve_special_behavior(
 				return _special_step(
 					origin, "requires_surf", target_attributes, target_behavior, next_context
 				)
-			if target_behavior == 0x71 and bridge_layer == "unknown":
-				bridge_layer = "elevated"
 		elif bridge_layer == "ground" and BIKE_BRIDGE_GROUND_PASSABLE.has(target_behavior):
 			pass
 		elif bridge_layer == "ground" and BIKE_BRIDGE_WATER.has(target_behavior):
@@ -593,7 +598,7 @@ func _resolve_special_behavior(
 				origin, "requires_bike", target_attributes, target_behavior, next_context
 			)
 		next_context["bridge_layer"] = bridge_layer
-	elif current_behavior >= BRIDGE_START and current_behavior <= BRIDGE_END:
+	elif current_is_bridge:
 		next_context["bridge_layer"] = "ground"
 	return {}
 

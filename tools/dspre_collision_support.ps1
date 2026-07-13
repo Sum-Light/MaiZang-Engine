@@ -1,5 +1,207 @@
 Set-StrictMode -Version Latest
 
+function Assert-DspreSafeRecursiveDeletePath {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$Path,
+        [Parameter(Mandatory)]
+        [string]$AllowedRoot
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Path) -or [string]::IsNullOrWhiteSpace($AllowedRoot)) {
+        throw "Recursive-delete paths cannot be empty."
+    }
+
+    $fullRoot = [IO.Path]::GetFullPath($AllowedRoot).TrimEnd('\', '/')
+    $fullPath = [IO.Path]::GetFullPath($Path).TrimEnd('\', '/')
+    $rootPrefix = $fullRoot + [IO.Path]::DirectorySeparatorChar
+    if (
+        $fullPath.Equals($fullRoot, [StringComparison]::OrdinalIgnoreCase) -or
+        -not $fullPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)
+    ) {
+        throw "Refusing a recursive delete outside a strict descendant of ${fullRoot}: $fullPath"
+    }
+
+    $rootItem = Get-Item -LiteralPath $fullRoot -Force -ErrorAction SilentlyContinue
+    if ($null -ne $rootItem) {
+        if (($rootItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "Recursive-delete root cannot be a reparse point: $fullRoot"
+        }
+        if (-not $rootItem.PSIsContainer) {
+            throw "Recursive-delete root is not a directory: $fullRoot"
+        }
+    }
+
+    $relativePath = $fullPath.Substring($rootPrefix.Length)
+    $currentPath = $fullRoot
+    foreach ($component in $relativePath.Split(@('\', '/'), [StringSplitOptions]::RemoveEmptyEntries)) {
+        $currentPath = Join-Path $currentPath $component
+        $item = Get-Item -LiteralPath $currentPath -Force -ErrorAction SilentlyContinue
+        if ($null -eq $item) {
+            break
+        }
+        if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "Recursive-delete path cannot contain a reparse point: $currentPath"
+        }
+        if (-not $item.PSIsContainer) {
+            throw "Recursive-delete path contains a non-directory component: $currentPath"
+        }
+    }
+
+    return $fullPath
+}
+
+function Get-DspreTreeFiles {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$RootPath,
+        [string]$Label = "DSPRE tree"
+    )
+
+    $root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
+    $rootItem = Get-Item -LiteralPath $root -Force -ErrorAction SilentlyContinue
+    if ($null -eq $rootItem -or -not $rootItem.PSIsContainer) {
+        throw "$Label root was not found: $root"
+    }
+    if (($rootItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+        throw "$Label root cannot be a reparse point: $root"
+    }
+
+    $rootPrefix = $root + [IO.Path]::DirectorySeparatorChar
+    $directories = [Collections.Generic.Queue[object]]::new()
+    $files = [Collections.Generic.List[object]]::new()
+    $directories.Enqueue($rootItem)
+    while ($directories.Count -gt 0) {
+        $directory = $directories.Dequeue()
+        foreach ($child in @(Get-ChildItem -LiteralPath $directory.FullName -Force)) {
+            $fullPath = [IO.Path]::GetFullPath($child.FullName)
+            if (-not $fullPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+                throw "$Label entry escaped its root: $fullPath"
+            }
+            if (($child.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                throw "$Label cannot contain a reparse point: $fullPath"
+            }
+            if ($child.PSIsContainer) {
+                $directories.Enqueue($child)
+            }
+            else {
+                $files.Add($child)
+            }
+        }
+    }
+    return @($files | Sort-Object FullName)
+}
+
+function Assert-DspreTreeHasNoReparsePoints {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$RootPath,
+        [string]$Label = "DSPRE tree"
+    )
+
+    if (Test-Path -LiteralPath $RootPath) {
+        $null = @(Get-DspreTreeFiles -RootPath $RootPath -Label $Label)
+    }
+    return [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
+}
+
+function Get-DspreStageFileRecords {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$RootPath,
+        [string[]]$ExcludedRelativePaths = @(),
+        [switch]$IgnoreGodotImportSidecars,
+        [string]$Label = "DSPRE stage"
+    )
+
+    $root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
+    $rootPrefixLength = $root.Length + 1
+    $excluded = [Collections.Generic.HashSet[string]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    foreach ($relativePath in $ExcludedRelativePaths) {
+        $null = $excluded.Add(([string]$relativePath).Replace('\', '/'))
+    }
+    $records = [Collections.Generic.List[object]]::new()
+    foreach ($file in @(Get-DspreTreeFiles -RootPath $root -Label $Label)) {
+        $relativePath = $file.FullName.Substring($rootPrefixLength).Replace('\', '/')
+        if (
+            $excluded.Contains($relativePath) -or
+            ($IgnoreGodotImportSidecars -and $relativePath.EndsWith(
+                ".import",
+                [StringComparison]::OrdinalIgnoreCase
+            ))
+        ) {
+            continue
+        }
+        $fingerprint = Get-DspreFileFingerprintRecord -Path $file.FullName
+        $records.Add([pscustomobject][ordered]@{
+            relative_path = $relativePath
+            byte_length = [long]$fingerprint.byte_length
+            sha256 = [string]$fingerprint.sha256
+        })
+    }
+    return @($records | Sort-Object { [string]$_.relative_path })
+}
+
+function Assert-DspreStageFileRecords {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$RootPath,
+        [Parameter(Mandatory)]
+        [object[]]$ExpectedRecords,
+        [string[]]$ExcludedRelativePaths = @(),
+        [switch]$IgnoreGodotImportSidecars,
+        [string]$Label = "DSPRE stage"
+    )
+
+    $expectedByPath = [Collections.Generic.Dictionary[string, object]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    foreach ($record in @($ExpectedRecords)) {
+        $relativePath = ([string]$record.relative_path).Replace('\', '/')
+        if (
+            [string]::IsNullOrWhiteSpace($relativePath) -or
+            [IO.Path]::IsPathRooted($relativePath) -or
+            $relativePath -match '(^|/)\.\.(/|$)' -or
+            $expectedByPath.ContainsKey($relativePath) -or
+            [long]$record.byte_length -lt 0 -or
+            [string]$record.sha256 -notmatch '^[0-9a-f]{64}$'
+        ) {
+            throw "$Label contains an invalid or duplicate file record: $relativePath"
+        }
+        $expectedByPath.Add($relativePath, $record)
+    }
+
+    $actualRecords = @(Get-DspreStageFileRecords `
+        -RootPath $RootPath `
+        -ExcludedRelativePaths $ExcludedRelativePaths `
+        -IgnoreGodotImportSidecars:$IgnoreGodotImportSidecars `
+        -Label $Label)
+    if ($actualRecords.Count -ne $expectedByPath.Count) {
+        throw "$Label file count does not match its completion marker."
+    }
+    foreach ($actual in $actualRecords) {
+        $relativePath = [string]$actual.relative_path
+        if (-not $expectedByPath.ContainsKey($relativePath)) {
+            throw "$Label contains an undeclared file: $relativePath"
+        }
+        $expected = $expectedByPath[$relativePath]
+        if (
+            [long]$actual.byte_length -ne [long]$expected.byte_length -or
+            [string]$actual.sha256 -ne [string]$expected.sha256
+        ) {
+            throw "$Label file content does not match its completion marker: $relativePath"
+        }
+    }
+    return $actualRecords
+}
+
 function Get-DspreFileFingerprintRecord {
     param([Parameter(Mandatory)][string]$Path)
 
@@ -43,24 +245,11 @@ function Get-DspreContentFingerprint {
         throw "Fingerprint input directory was not found: $RootPath"
     }
 	$root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
-	$rootItem = Get-Item -LiteralPath $root -Force
-	if (($rootItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
-		throw "Fingerprint input root cannot be a reparse point: $root"
-	}
 	$rootPrefix = $root + [IO.Path]::DirectorySeparatorChar
 	$rootPrefixLength = $root.Length + 1
 	$filesByRelativePath = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
 	$relativePaths = New-Object 'System.Collections.Generic.List[string]'
-	$reparseDirectory = Get-ChildItem -LiteralPath $root -Recurse -Directory -Force |
-		Where-Object { ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0 } |
-		Select-Object -First 1
-	if ($null -ne $reparseDirectory) {
-		throw "Fingerprint input cannot contain a reparse-point directory: $($reparseDirectory.FullName)"
-	}
-	foreach ($file in Get-ChildItem -LiteralPath $root -Recurse -File -Force) {
-		if (($file.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
-			throw "Fingerprint input cannot contain a reparse point: $($file.FullName)"
-		}
+	foreach ($file in @(Get-DspreTreeFiles -RootPath $root -Label "Fingerprint input")) {
 		$fullPath = [IO.Path]::GetFullPath($file.FullName)
 		if (-not $fullPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
 			throw "Fingerprint input escaped its root: $fullPath"
@@ -114,6 +303,279 @@ function Assert-DspreSha256Fingerprint {
         throw "$Label must be a SHA-256 fingerprint."
     }
     return $fingerprint.ToLowerInvariant()
+}
+
+function Assert-DspreRawExportMarker {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        $Marker,
+        [Parameter(Mandatory)]
+        [ValidateRange(0, 0xFFFF)]
+        [int]$ExpectedMatrixId,
+        [Parameter(Mandatory)]
+        [string]$ExpectedVariant,
+        [AllowNull()]
+        $ExpectedAreaDataId = $null,
+        [Parameter(Mandatory)]
+        [string]$ExpectedDspreSourceSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedExporterSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedSupportToolSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedApiculaSha256,
+        [Parameter(Mandatory)]
+        [AllowEmptyString()]
+        [string]$ExpectedAreaResolutionSha256,
+        [string]$ExpectedManifestSha256 = "",
+        [int]$ExpectedOccupiedCells = -1,
+        [int]$ExpectedCollisionAssets = -1,
+        [string]$OutputRoot = "",
+        [string]$Label = "DSPRE raw export marker"
+    )
+
+    $requiredProperties = @(
+        "schema_version",
+        "export_contract_version",
+        "matrix_id",
+        "variant",
+        "area_data_id",
+        "manifest_sha256",
+        "dspre_source_sha256",
+        "exporter_sha256",
+        "support_tool_sha256",
+        "apicula_sha256",
+        "area_resolution_sha256",
+        "occupied_cells",
+        "collision_assets",
+        "files"
+    )
+    foreach ($propertyName in $requiredProperties) {
+        if ($null -eq $Marker.PSObject.Properties[$propertyName]) {
+            throw "$Label is missing '$propertyName'."
+        }
+    }
+
+    if ([int]$Marker.schema_version -ne 2 -or [int]$Marker.export_contract_version -ne 3) {
+        throw "$Label must use marker schema 2 and export contract 3."
+    }
+
+    $filePaths = [Collections.Generic.HashSet[string]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    foreach ($record in @($Marker.files)) {
+        $relativePath = ([string]$record.relative_path).Replace('\', '/')
+        if (
+            [string]::IsNullOrWhiteSpace($relativePath) -or
+            [IO.Path]::IsPathRooted($relativePath) -or
+            $relativePath -match '(^|/)\.\.(/|$)' -or
+            $relativePath.Equals(
+                ".export-complete.json",
+                [StringComparison]::OrdinalIgnoreCase
+            ) -or
+            -not $filePaths.Add($relativePath) -or
+            [long]$record.byte_length -lt 0 -or
+            [string]$record.sha256 -notmatch '^[0-9a-f]{64}$'
+        ) {
+            throw "$Label contains an invalid or duplicate file record: $relativePath"
+        }
+    }
+    if ($filePaths.Count -eq 0) {
+        throw "$Label must declare at least one output file."
+    }
+    if ([int]$Marker.matrix_id -ne $ExpectedMatrixId -or [string]$Marker.variant -ne $ExpectedVariant) {
+        throw "$Label does not match matrix $ExpectedMatrixId variant '$ExpectedVariant'."
+    }
+
+    $actualAreaDataId = $Marker.area_data_id
+    $areaMatches = ($null -eq $ExpectedAreaDataId -and $null -eq $actualAreaDataId) -or
+        ($null -ne $ExpectedAreaDataId -and $null -ne $actualAreaDataId -and
+            [int]$ExpectedAreaDataId -eq [int]$actualAreaDataId)
+    if (-not $areaMatches) {
+        throw "$Label does not match the expected AreaData ID."
+    }
+
+    $expectedFingerprints = [ordered]@{
+        dspre_source_sha256 = Assert-DspreSha256Fingerprint $ExpectedDspreSourceSha256 "Expected DSPRE source fingerprint"
+        exporter_sha256 = Assert-DspreSha256Fingerprint $ExpectedExporterSha256 "Expected batch exporter fingerprint"
+        support_tool_sha256 = Assert-DspreSha256Fingerprint $ExpectedSupportToolSha256 "Expected collision support fingerprint"
+        apicula_sha256 = Assert-DspreSha256Fingerprint $ExpectedApiculaSha256 "Expected apicula fingerprint"
+    }
+    foreach ($entry in $expectedFingerprints.GetEnumerator()) {
+        if ([string]$Marker.($entry.Key) -ne [string]$entry.Value) {
+            throw "$Label has a stale $($entry.Key) value."
+        }
+    }
+    if ([string]::IsNullOrWhiteSpace($ExpectedAreaResolutionSha256)) {
+        if (-not [string]::IsNullOrWhiteSpace([string]$Marker.area_resolution_sha256)) {
+            throw "$Label unexpectedly binds an AreaData resolution fingerprint."
+        }
+    }
+    else {
+        $expectedAreaResolution = Assert-DspreSha256Fingerprint `
+            $ExpectedAreaResolutionSha256 `
+            "Expected AreaData resolution fingerprint"
+        if ([string]$Marker.area_resolution_sha256 -ne $expectedAreaResolution) {
+            throw "$Label has a stale area_resolution_sha256 value."
+        }
+    }
+
+    $manifestSha256 = Assert-DspreSha256Fingerprint $Marker.manifest_sha256 "$Label manifest fingerprint"
+    if (-not [string]::IsNullOrWhiteSpace($ExpectedManifestSha256)) {
+        $expectedManifest = Assert-DspreSha256Fingerprint $ExpectedManifestSha256 "Expected manifest fingerprint"
+        if ($manifestSha256 -ne $expectedManifest) {
+            throw "$Label does not match its manifest."
+        }
+    }
+    if ([int]$Marker.occupied_cells -lt 0 -or [int]$Marker.collision_assets -lt 0) {
+        throw "$Label contains negative output counts."
+    }
+    if ($ExpectedOccupiedCells -ge 0 -and [int]$Marker.occupied_cells -ne $ExpectedOccupiedCells) {
+        throw "$Label occupied-cell count does not match its manifest."
+    }
+    if ($ExpectedCollisionAssets -ge 0 -and [int]$Marker.collision_assets -ne $ExpectedCollisionAssets) {
+        throw "$Label collision-asset count does not match its manifest."
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($OutputRoot)) {
+        $null = Assert-DspreStageFileRecords `
+            -RootPath $OutputRoot `
+            -ExpectedRecords @($Marker.files) `
+            -ExcludedRelativePaths @(".export-complete.json") `
+            -Label "$Label output"
+    }
+
+    return $true
+}
+
+function Assert-DspreUnrequestedRawMarkersCurrent {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [object[]]$Variants,
+        [Parameter(Mandatory)]
+        [int[]]$RequestedMatrixIds,
+        [Parameter(Mandatory)]
+        [string]$RawRoot,
+        [Parameter(Mandatory)]
+        [string]$ExpectedDspreSourceSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedExporterSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedSupportToolSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedApiculaSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedAreaResolutionSha256
+    )
+
+    $requested = New-Object System.Collections.Generic.HashSet[int]
+    foreach ($matrixId in $RequestedMatrixIds) {
+        $null = $requested.Add([int]$matrixId)
+    }
+    $staleVariants = New-Object System.Collections.Generic.List[string]
+    foreach ($variantRecord in $Variants) {
+        $matrixId = [int]$variantRecord.matrix_id
+        if ($requested.Contains($matrixId)) {
+            continue
+        }
+        $variantName = [string]$variantRecord.variant
+        if ($variantName -notmatch '^matrix_\d{4}(_area_\d{4})?$') {
+            throw "Partial matrix export received an unsafe variant name: '$variantName'."
+        }
+        $variantRoot = Join-Path $RawRoot $variantName
+        $manifestPath = Join-Path $variantRoot "manifest.json"
+        $summaryPath = Join-Path $variantRoot "summary.json"
+        $markerPath = Join-Path $variantRoot ".export-complete.json"
+        try {
+            if (-not (Test-Path -LiteralPath $markerPath -PathType Leaf)) {
+                throw "required raw output is missing: $([IO.Path]::GetFileName($markerPath))"
+            }
+            $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) |
+                ConvertFrom-Json
+            $expectedAreaDataId = $variantRecord.area_data_id
+            $markerArguments = @{
+                Marker = $marker
+                ExpectedMatrixId = $matrixId
+                ExpectedVariant = $variantName
+                ExpectedAreaDataId = $expectedAreaDataId
+                ExpectedDspreSourceSha256 = $ExpectedDspreSourceSha256
+                ExpectedExporterSha256 = $ExpectedExporterSha256
+                ExpectedSupportToolSha256 = $ExpectedSupportToolSha256
+                ExpectedApiculaSha256 = $ExpectedApiculaSha256
+                ExpectedAreaResolutionSha256 = $ExpectedAreaResolutionSha256
+                Label = "Raw destination $variantName marker"
+            }
+            $null = Assert-DspreRawExportMarker @markerArguments
+
+            foreach ($requiredPath in @($manifestPath, $summaryPath)) {
+                if (-not (Test-Path -LiteralPath $requiredPath -PathType Leaf)) {
+                    throw "required raw output is missing: $([IO.Path]::GetFileName($requiredPath))"
+                }
+            }
+            $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) |
+                ConvertFrom-Json
+            $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) |
+                ConvertFrom-Json
+            $null = Assert-DspreCollisionManifest `
+                -Manifest $manifest `
+                -Label "Raw destination $variantName" `
+                -ExpectedManifestSchema 2
+            $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
+                [string]$manifest.matrix.variant
+            }
+            else {
+                "matrix_{0:D4}" -f [int]$manifest.matrix.id
+            }
+            $manifestAreaDataId = if (
+                $null -ne $manifest.matrix.PSObject.Properties["area_data_id"]
+            ) {
+                $manifest.matrix.area_data_id
+            }
+            else {
+                $null
+            }
+            $manifestAreaMatches = ($null -eq $expectedAreaDataId -and $null -eq $manifestAreaDataId) -or
+                ($null -ne $expectedAreaDataId -and $null -ne $manifestAreaDataId -and
+                    [int]$expectedAreaDataId -eq [int]$manifestAreaDataId)
+            $summaryAreaMatches = ($null -eq $expectedAreaDataId -and $null -eq $summary.area_data_id) -or
+                ($null -ne $expectedAreaDataId -and $null -ne $summary.area_data_id -and
+                    [int]$expectedAreaDataId -eq [int]$summary.area_data_id)
+            if (
+                [int]$manifest.matrix.id -ne $matrixId -or
+                $manifestVariant -ne $variantName -or
+                -not $manifestAreaMatches -or
+                [int]$summary.matrix_id -ne $matrixId -or
+                [string]$summary.variant -ne $variantName -or
+                -not $summaryAreaMatches -or
+                [int]$summary.failed -ne 0 -or
+                [int]$summary.occupied_cells -ne @($manifest.cells).Count -or
+                [int]$summary.collision_assets -ne @($manifest.collision_assets).Count
+            ) {
+                throw "manifest or summary identity/counts do not match the resolution record"
+            }
+            $markerArguments.ExpectedManifestSha256 = (
+                Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256
+            ).Hash.ToLowerInvariant()
+            $markerArguments.ExpectedOccupiedCells = @($manifest.cells).Count
+            $markerArguments.ExpectedCollisionAssets = @($manifest.collision_assets).Count
+            $markerArguments.OutputRoot = $variantRoot
+            $null = Assert-DspreRawExportMarker @markerArguments
+        }
+        catch {
+            $staleVariants.Add("$variantName ($($_.Exception.Message))")
+        }
+    }
+    if ($staleVariants.Count -ne 0) {
+        $details = @($staleVariants | Select-Object -First 8) -join '; '
+        if ($staleVariants.Count -gt 8) {
+            $details += "; ... and $($staleVariants.Count - 8) more"
+        }
+        throw "Partial matrix export cannot publish a complete catalog while unrequested destinations are stale: $details. Rerun without -MatrixIds."
+    }
+
+    return $true
 }
 
 function Get-DspreAreaResolutionFingerprint {

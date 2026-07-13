@@ -51,13 +51,17 @@ at the next grid boundary. A direction held through the six-tick stationary
 turn starts moving immediately afterward. A direction change between
 continuous walk steps does not add another stationary turn. `teleport_to_grid()`
 cancels any unfinished action and snaps external warps to the same one-unit X/Z
-grid.
+grid. It resets bridge state to `unknown` unless a trusted caller supplies an
+explicit `ground` or `elevated` collision context for the destination.
 
 Before a step begins, the controller asks the streamer's independent
 `PlatinumCollisionMap` to resolve the destination. Every result reports a
 `disposition` (`allow`, `blocked`, or `special`), an `action`, and a
-`landing_target`. The controller currently begins a normal grid step only for
-`allow`; both other dispositions remain fail-closed.
+`landing_target`. The controller begins a normal grid step only when a live
+provider exposes both step and height queries and returns `ok`, unblocked,
+`disposition = allow`, and `action = none`, with a finite adjacent-grid target
+and valid context. Missing, incomplete, malformed, or special results remain
+fail-closed.
 
 The query applies these rules in order:
 
@@ -75,20 +79,29 @@ The query applies these rules in order:
 6. The capsule must pass the existing Godot physics preflight.
 
 Rejected input stops before movement and keeps the player on the original grid
-center. Missing or malformed collision data also blocks the step. A dedicated
-wall-bump animation is not implemented yet.
+center. Missing or malformed collision data also blocks the step. The provider
+receives a deep collision-context snapshot, and its identity is checked again
+after both the preflight and height callbacks.
+Losing or replacing it before, during, or between those callbacks rejects the
+step or cancels the complete atomic action back to its origin, so preflight
+state from one collision world cannot be committed with another world's height
+samples. A dedicated wall-bump animation is not implemented yet.
 
 For an accepted step, X/Z still follow the fixed 16-tick walk or 8-tick run
 timeline. BDHC is sampled again on every physics tick using the current Y as
 the reference, so slopes and overlapping bridge levels remain continuous. If
 height sampling or a physics move fails during the action, the atomic step is
-cancelled back to its origin.
+cancelled back to its origin. The last successful sample is the committed Y;
+the earlier preflight height cannot overwrite it at the grid boundary.
 
 The player carries a collision context across completed steps. Its
 `bridge_layer` is `unknown`, `ground`, or `elevated`, allowing the walking layer
 to distinguish an upper bridge crossing from water at the same X/Z position.
 The candidate `next_context` is committed only when the step reaches its target;
-blocked, special, or cancelled steps cannot change the active layer.
+blocked, special, or cancelled steps cannot change the active layer. An
+`unknown` context already inside a bridge remains ambiguous and returns
+`special/requires_bridge_context`; it is never guessed to be elevated. Leaving
+bridge behavior resets a stale bridge layer to `ground`.
 
 BDHC heights are absolute field heights. Matrix altitude is used to place the
 terrain visual and is never added to the player height. Static buildings and

@@ -50,12 +50,11 @@ function Resolve-ExistingDirectory {
 function Clear-DirectoryUnderRoot {
     param([string]$Path, [string]$AllowedRoot)
 
-    $fullPath = [IO.Path]::GetFullPath($Path).TrimEnd('\')
-    $fullRoot = [IO.Path]::GetFullPath($AllowedRoot).TrimEnd('\') + '\'
-    if (-not $fullPath.StartsWith($fullRoot, [StringComparison]::OrdinalIgnoreCase)) {
-        throw "Refusing to clear a directory outside the allowed root: $fullPath"
-    }
+    $fullPath = Assert-DspreSafeRecursiveDeletePath -Path $Path -AllowedRoot $AllowedRoot
     if (Test-Path -LiteralPath $fullPath) {
+        $null = Assert-DspreTreeHasNoReparsePoints `
+            -RootPath $fullPath `
+            -Label "DSPRE export delete target"
         Remove-Item -LiteralPath $fullPath -Recurse -Force
     }
     New-Item -ItemType Directory -Path $fullPath -Force | Out-Null
@@ -68,18 +67,18 @@ function Remove-StaleAssetDirectories {
         [string]$AllowedRoot
     )
 
-    if (-not (Test-Path -LiteralPath $Directory -PathType Container)) {
+    $safeDirectory = Assert-DspreSafeRecursiveDeletePath -Path $Directory -AllowedRoot $AllowedRoot
+    if (-not (Test-Path -LiteralPath $safeDirectory -PathType Container)) {
         return
     }
-    $allowedPrefix = [IO.Path]::GetFullPath($AllowedRoot).TrimEnd('\') + '\'
-    foreach ($child in Get-ChildItem -LiteralPath $Directory -Directory) {
+    foreach ($child in Get-ChildItem -LiteralPath $safeDirectory -Directory -Force) {
         if ($ExpectedNames.Contains($child.Name)) {
             continue
         }
-        $fullPath = [IO.Path]::GetFullPath($child.FullName)
-        if (-not $fullPath.StartsWith($allowedPrefix, [StringComparison]::OrdinalIgnoreCase)) {
-            throw "Refusing to remove a stale asset directory outside $AllowedRoot`: $fullPath"
-        }
+        $fullPath = Assert-DspreSafeRecursiveDeletePath -Path $child.FullName -AllowedRoot $AllowedRoot
+        $null = Assert-DspreTreeHasNoReparsePoints `
+            -RootPath $fullPath `
+            -Label "DSPRE stale asset delete target"
         Remove-Item -LiteralPath $fullPath -Recurse -Force
     }
 }
@@ -136,6 +135,170 @@ function Get-ValidGlbs {
             Where-Object { Test-GlbFile $_.FullName } |
             Sort-Object Name
     )
+}
+
+function Assert-CurrentRawDestination {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$RootPath,
+        [Parameter(Mandatory)]
+        [int]$ExpectedMatrixId,
+        [Parameter(Mandatory)]
+        [string]$ExpectedVariant,
+        [AllowNull()]
+        $ExpectedAreaDataId,
+        [Parameter(Mandatory)]
+        [string]$ExpectedDspreSourceSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedExporterSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedSupportToolSha256,
+        [Parameter(Mandatory)]
+        [string]$ExpectedApiculaSha256,
+        [Parameter(Mandatory)]
+        [AllowEmptyString()]
+        [string]$ExpectedAreaResolutionSha256
+    )
+
+    $manifestPath = Join-Path $RootPath "manifest.json"
+    $summaryPath = Join-Path $RootPath "summary.json"
+    $markerPath = Join-Path $RootPath ".export-complete.json"
+    foreach ($requiredPath in @($manifestPath, $summaryPath, $markerPath)) {
+        if (-not (Test-Path -LiteralPath $requiredPath -PathType Leaf)) {
+            throw "Raw destination is missing $([IO.Path]::GetFileName($requiredPath))."
+        }
+    }
+
+    $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) |
+        ConvertFrom-Json
+    $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) |
+        ConvertFrom-Json
+    $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) |
+        ConvertFrom-Json
+    $null = Assert-DspreCollisionManifest `
+        -Manifest $manifest `
+        -Label "Raw destination $ExpectedVariant" `
+        -ExpectedManifestSchema 2
+
+    $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
+        [string]$manifest.matrix.variant
+    }
+    else {
+        "matrix_{0:D4}" -f [int]$manifest.matrix.id
+    }
+    $manifestAreaDataId = if (
+        $null -ne $manifest.matrix.PSObject.Properties["area_data_id"]
+    ) {
+        $manifest.matrix.area_data_id
+    }
+    else {
+        $null
+    }
+    $manifestAreaMatches = (
+        $null -eq $ExpectedAreaDataId -and $null -eq $manifestAreaDataId
+    ) -or (
+        $null -ne $ExpectedAreaDataId -and
+        $null -ne $manifestAreaDataId -and
+        [int]$ExpectedAreaDataId -eq [int]$manifestAreaDataId
+    )
+    $summaryAreaMatches = (
+        $null -eq $ExpectedAreaDataId -and $null -eq $summary.area_data_id
+    ) -or (
+        $null -ne $ExpectedAreaDataId -and
+        $null -ne $summary.area_data_id -and
+        [int]$ExpectedAreaDataId -eq [int]$summary.area_data_id
+    )
+    $terrainAssets = @($manifest.assets.terrain)
+    $buildingAssets = @($manifest.assets.buildings)
+    $assetCount = $terrainAssets.Count + $buildingAssets.Count
+    $collisionAssetCount = @($manifest.collision_assets).Count
+    $occupiedCellCount = @($manifest.cells).Count
+    if (
+        [int]$manifest.matrix.id -ne $ExpectedMatrixId -or
+        $manifestVariant -ne $ExpectedVariant -or
+        -not $manifestAreaMatches -or
+        [int]$summary.matrix_id -ne $ExpectedMatrixId -or
+        [string]$summary.variant -ne $ExpectedVariant -or
+        -not $summaryAreaMatches -or
+        [int]$manifest.summary.terrain_assets -ne $terrainAssets.Count -or
+        [int]$manifest.summary.building_assets -ne $buildingAssets.Count -or
+        [int]$manifest.summary.failed -ne 0 -or
+        [int]$manifest.summary.exported -ne $assetCount -or
+        [int]$manifest.summary.skipped_existing -ne 0 -or
+        @($manifest.failures).Count -ne 0 -or
+        [int]$summary.occupied_cells -ne $occupiedCellCount -or
+        [int]$summary.terrain_assets -ne $terrainAssets.Count -or
+        [int]$summary.building_assets -ne $buildingAssets.Count -or
+        [int]$summary.collision_assets -ne $collisionAssetCount -or
+        [int]$summary.exported -ne $assetCount -or
+        [int]$summary.skipped_existing -ne 0 -or
+        [int]$summary.failed -ne 0
+    ) {
+        throw "Raw destination manifest or summary does not match the complete matrix contract."
+    }
+
+    $declaredGlbs = [Collections.Generic.HashSet[string]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    $root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
+    $rootPrefix = $root + [IO.Path]::DirectorySeparatorChar
+    foreach ($asset in @($terrainAssets + $buildingAssets)) {
+        $outputGlbs = @($asset.output_glbs)
+        if ([string]$asset.status -ne "exported" -or $outputGlbs.Count -eq 0) {
+            throw "Raw destination asset '$($asset.key)' was not produced by a complete rebuild."
+        }
+        foreach ($relativeGlb in $outputGlbs) {
+            $normalizedPath = ([string]$relativeGlb).Replace('\', '/')
+            if (
+                [string]::IsNullOrWhiteSpace($normalizedPath) -or
+                [IO.Path]::IsPathRooted($normalizedPath) -or
+                $normalizedPath -match '(^|/)\.\.(/|$)' -or
+                -not $normalizedPath.EndsWith(".glb", [StringComparison]::OrdinalIgnoreCase) -or
+                -not $declaredGlbs.Add($normalizedPath)
+            ) {
+                throw "Raw destination contains an invalid or duplicate GLB path: $normalizedPath"
+            }
+            $fullGlbPath = [IO.Path]::GetFullPath((Join-Path $root $normalizedPath))
+            if (
+                -not $fullGlbPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+                -not (Test-GlbFile $fullGlbPath)
+            ) {
+                throw "Raw destination contains an invalid declared GLB: $normalizedPath"
+            }
+        }
+    }
+    $markerGlbs = @(
+        $marker.files |
+            ForEach-Object { ([string]$_.relative_path).Replace('\', '/') } |
+            Where-Object { $_.EndsWith(".glb", [StringComparison]::OrdinalIgnoreCase) }
+    )
+    if ($markerGlbs.Count -ne $declaredGlbs.Count) {
+        throw "Raw destination marker and manifest declare different GLB counts."
+    }
+    foreach ($relativeGlb in $markerGlbs) {
+        if (-not $declaredGlbs.Contains($relativeGlb)) {
+            throw "Raw destination marker contains an undeclared GLB: $relativeGlb"
+        }
+    }
+
+    $null = Assert-DspreRawExportMarker `
+        -Marker $marker `
+        -ExpectedMatrixId $ExpectedMatrixId `
+        -ExpectedVariant $ExpectedVariant `
+        -ExpectedAreaDataId $ExpectedAreaDataId `
+        -ExpectedDspreSourceSha256 $ExpectedDspreSourceSha256 `
+        -ExpectedExporterSha256 $ExpectedExporterSha256 `
+        -ExpectedSupportToolSha256 $ExpectedSupportToolSha256 `
+        -ExpectedApiculaSha256 $ExpectedApiculaSha256 `
+        -ExpectedAreaResolutionSha256 $ExpectedAreaResolutionSha256 `
+        -ExpectedManifestSha256 (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant() `
+        -ExpectedOccupiedCells $occupiedCellCount `
+        -ExpectedCollisionAssets $collisionAssetCount `
+        -OutputRoot $RootPath `
+        -Label "Raw destination $ExpectedVariant marker"
+
+    return $summary
 }
 
 function Get-ForwardRelativePath {
@@ -209,6 +372,28 @@ if ([string]::IsNullOrWhiteSpace($DspreContents)) {
 
 $DspreContents = Resolve-ExistingDirectory $DspreContents "DSPRE contents directory"
 $ApiculaPath = Resolve-ExistingFile $ApiculaPath "apicula.exe"
+$generatedRoot = [IO.Path]::GetFullPath((Join-Path $workspaceRoot "generated")).TrimEnd('\', '/')
+$workBoundary = [IO.Path]::GetFullPath((Join-Path $workspaceRoot ".work")).TrimEnd('\', '/')
+$requestedOutputRoot = [IO.Path]::GetFullPath($OutputRoot).TrimEnd('\', '/')
+$requestedWorkRoot = [IO.Path]::GetFullPath($WorkRoot).TrimEnd('\', '/')
+if (-not $requestedOutputRoot.StartsWith(
+    $generatedRoot + [IO.Path]::DirectorySeparatorChar,
+    [StringComparison]::OrdinalIgnoreCase
+)) {
+    throw "Raw export output must remain below the generated root: $requestedOutputRoot"
+}
+if (-not $requestedWorkRoot.StartsWith(
+    $workBoundary + [IO.Path]::DirectorySeparatorChar,
+    [StringComparison]::OrdinalIgnoreCase
+)) {
+    throw "Raw export work files must remain below the .work root: $requestedWorkRoot"
+}
+$OutputRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path $requestedOutputRoot `
+    -AllowedRoot $workspaceRoot
+$WorkRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path $requestedWorkRoot `
+    -AllowedRoot $workspaceRoot
 if ([string]::IsNullOrWhiteSpace($AreaOverridesPath)) {
     $defaultAreaOverridesPath = Join-Path $workspaceRoot "generated\dspre_matrix_area_overrides.json"
     if (Test-Path -LiteralPath $defaultAreaOverridesPath -PathType Leaf) {
@@ -243,10 +428,12 @@ $matrixOutputRoot = Join-Path $OutputRoot $matrixVariantName
 $terrainOutputRoot = Join-Path $matrixOutputRoot "terrain"
 $buildingOutputRoot = Join-Path $matrixOutputRoot "buildings"
 $logsRoot = Join-Path $matrixOutputRoot "logs"
-$matrixWorkRoot = Join-Path $WorkRoot ("matrix_{0:D4}" -f $MatrixId)
-$mapModelsWorkRoot = Join-Path $matrixWorkRoot "map_models"
-
-New-Item -ItemType Directory -Path $mapModelsWorkRoot -Force | Out-Null
+$matrixWorkRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path (Join-Path $WorkRoot ("matrix_{0:D4}" -f $MatrixId)) `
+    -AllowedRoot $workspaceRoot
+$mapModelsWorkRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path (Join-Path $matrixWorkRoot "map_models") `
+    -AllowedRoot $workspaceRoot
 
 Write-Host "Reading DSPRE data..."
 $arm9 = [IO.File]::ReadAllBytes($arm9Path)
@@ -460,6 +647,37 @@ if (-not $hasHeaders) {
     }
 }
 
+$expectedAreaDataId = if ($hasHeaders) { $null } else { $fallbackHeader.area_data_id }
+if (-not $Force) {
+    $existingSummary = $null
+    $reuseFailure = ""
+    try {
+        $existingSummary = Assert-CurrentRawDestination `
+            -RootPath $matrixOutputRoot `
+            -ExpectedMatrixId $MatrixId `
+            -ExpectedVariant $matrixVariantName `
+            -ExpectedAreaDataId $expectedAreaDataId `
+            -ExpectedDspreSourceSha256 $DspreSourceSha256 `
+            -ExpectedExporterSha256 $ExporterSha256 `
+            -ExpectedSupportToolSha256 $SupportToolSha256 `
+            -ExpectedApiculaSha256 $ApiculaSha256 `
+            -ExpectedAreaResolutionSha256 $AreaResolutionSha256
+    }
+    catch {
+        $reuseFailure = $_.Exception.Message
+    }
+    if ($null -ne $existingSummary) {
+        Write-Host "Raw destination $matrixVariantName is complete and current; reusing it unchanged."
+        Write-Host "  Assets:   $([int]$existingSummary.terrain_assets + [int]$existingSummary.building_assets)"
+        Write-Host "  Manifest: $(Join-Path $matrixOutputRoot 'manifest.json')"
+        return
+    }
+    Write-Host "Raw destination $matrixVariantName is not reusable; rebuilding the complete destination."
+    if (-not [string]::IsNullOrWhiteSpace($reuseFailure)) {
+        Write-Host "  Reason: $reuseFailure"
+    }
+}
+
 $terrainAssets = @{}
 $buildingAssets = @{}
 $collisionAssets = @{}
@@ -645,10 +863,17 @@ for ($index = 0; $index -lt $cellCount; $index++) {
     })
 }
 
-if ($Force) {
-    Clear-DirectoryUnderRoot $matrixOutputRoot $OutputRoot
-}
+$null = Assert-DspreSafeRecursiveDeletePath -Path $matrixOutputRoot -AllowedRoot $workspaceRoot
+$null = Assert-DspreSafeRecursiveDeletePath -Path $matrixWorkRoot -AllowedRoot $workspaceRoot
+$null = Assert-DspreSafeRecursiveDeletePath -Path $mapModelsWorkRoot -AllowedRoot $workspaceRoot
+Clear-DirectoryUnderRoot $matrixWorkRoot $workspaceRoot
+$mapModelsWorkRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path (Join-Path $matrixWorkRoot "map_models") `
+    -AllowedRoot $workspaceRoot
+New-Item -ItemType Directory -Path $mapModelsWorkRoot -Force | Out-Null
+Clear-DirectoryUnderRoot $matrixOutputRoot $workspaceRoot
 foreach ($directory in @($terrainOutputRoot, $buildingOutputRoot, $logsRoot)) {
+    $null = Assert-DspreSafeRecursiveDeletePath -Path $directory -AllowedRoot $workspaceRoot
     New-Item -ItemType Directory -Path $directory -Force | Out-Null
 }
 $expectedTerrainDirectories = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
@@ -659,27 +884,21 @@ $expectedBuildingDirectories = New-Object System.Collections.Generic.HashSet[str
 foreach ($key in $buildingAssets.Keys) {
     $null = $expectedBuildingDirectories.Add([string]$key)
 }
-Remove-StaleAssetDirectories $terrainOutputRoot $expectedTerrainDirectories $matrixOutputRoot
-Remove-StaleAssetDirectories $buildingOutputRoot $expectedBuildingDirectories $matrixOutputRoot
+Remove-StaleAssetDirectories $terrainOutputRoot $expectedTerrainDirectories $workspaceRoot
+Remove-StaleAssetDirectories $buildingOutputRoot $expectedBuildingDirectories $workspaceRoot
 
 $conversionJobs = New-Object System.Collections.Generic.List[object]
 foreach ($asset in @($terrainAssets.Values | Sort-Object key)) {
     $mapInfo = $mapCache[$asset.map_id]
-    $modelPath = Join-Path $mapModelsWorkRoot ("{0}.nsbmd" -f $asset.key)
-    if ($Force -or -not (Test-Path -LiteralPath $modelPath -PathType Leaf)) {
-        $modelBytes = New-Object byte[] $mapInfo.model_length
-        [Buffer]::BlockCopy($mapInfo.bytes, $mapInfo.model_offset, $modelBytes, 0, $mapInfo.model_length)
-        [IO.File]::WriteAllBytes($modelPath, $modelBytes)
-    }
+    $modelPath = Assert-DspreSafeRecursiveDeletePath `
+        -Path (Join-Path $mapModelsWorkRoot ("{0}.nsbmd" -f $asset.key)) `
+        -AllowedRoot $workspaceRoot
+    $modelBytes = New-Object byte[] $mapInfo.model_length
+    [Buffer]::BlockCopy($mapInfo.bytes, $mapInfo.model_offset, $modelBytes, 0, $mapInfo.model_length)
+    [IO.File]::WriteAllBytes($modelPath, $modelBytes)
     $asset.source_texture = Resolve-ExistingFile $asset.source_texture "Map texture $($asset.texture_id)"
     $outputDirectory = Join-Path $terrainOutputRoot $asset.key
-    $validGlbs = @(Get-ValidGlbs $outputDirectory)
-    if (-not $Force -and $validGlbs.Count -gt 0) {
-        $asset.status = "skipped_existing"
-        $asset.output_glbs = @($validGlbs | ForEach-Object { Get-ForwardRelativePath $matrixOutputRoot $_.FullName })
-        continue
-    }
-    Clear-DirectoryUnderRoot $outputDirectory $matrixOutputRoot
+    Clear-DirectoryUnderRoot $outputDirectory $workspaceRoot
     $conversionJobs.Add([pscustomobject][ordered]@{
         Kind = "terrain"
         Key = $asset.key
@@ -694,13 +913,7 @@ foreach ($asset in @($buildingAssets.Values | Sort-Object key)) {
     $asset.source_model = Resolve-ExistingFile $asset.source_model "Building model $($asset.model_id)"
     $asset.source_texture = Resolve-ExistingFile $asset.source_texture "Building texture $($asset.texture_id)"
     $outputDirectory = Join-Path $buildingOutputRoot $asset.key
-    $validGlbs = @(Get-ValidGlbs $outputDirectory)
-    if (-not $Force -and $validGlbs.Count -gt 0) {
-        $asset.status = "skipped_existing"
-        $asset.output_glbs = @($validGlbs | ForEach-Object { Get-ForwardRelativePath $matrixOutputRoot $_.FullName })
-        continue
-    }
-    Clear-DirectoryUnderRoot $outputDirectory $matrixOutputRoot
+    Clear-DirectoryUnderRoot $outputDirectory $workspaceRoot
     $conversionJobs.Add([pscustomobject][ordered]@{
         Kind = "building"
         Key = $asset.key
@@ -847,6 +1060,10 @@ $summaryPath = Join-Path $matrixOutputRoot "summary.json"
 
 $exportMarkerPath = Join-Path $matrixOutputRoot ".export-complete.json"
 if ($failedCount -eq 0) {
+    $outputFileRecords = @(Get-DspreStageFileRecords `
+        -RootPath $matrixOutputRoot `
+        -ExcludedRelativePaths @(".export-complete.json") `
+        -Label "Raw destination $matrixVariantName")
     [IO.File]::WriteAllText($exportMarkerPath, ([pscustomobject][ordered]@{
         schema_version = 2
         export_contract_version = 3
@@ -866,8 +1083,9 @@ if ($failedCount -eq 0) {
         }
         occupied_cells = $cells.Count
         collision_assets = $collisionArray.Count
+        files = $outputFileRecords
         completed_utc = [DateTime]::UtcNow.ToString("o")
-    } | ConvertTo-Json -Depth 4), $utf8NoBom)
+    } | ConvertTo-Json -Depth 6), $utf8NoBom)
 }
 elseif (Test-Path -LiteralPath $exportMarkerPath -PathType Leaf) {
     Remove-Item -LiteralPath $exportMarkerPath -Force

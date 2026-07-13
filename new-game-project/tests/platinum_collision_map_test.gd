@@ -106,17 +106,37 @@ func _initialize() -> void:
 	var unknown_water_bridge := collision_map.resolve_step(
 		Vector3(14.5, 1.0, 2.5), Vector2i.RIGHT, {"bridge_layer": "unknown"}
 	)
+	var ambiguous_inner_bridge := collision_map.resolve_step(
+		Vector3(16.5, 2.25, 2.5), Vector2i.RIGHT, {"bridge_layer": "unknown"}
+	)
+	var explicit_elevated_bridge := collision_map.resolve_step(
+		Vector3(16.5, 2.25, 2.5), Vector2i.RIGHT, {"bridge_layer": "elevated"}
+	)
+	var stale_elevated_context := collision_map.resolve_step(
+		Vector3(18.5, 2.25, 2.5), Vector2i.RIGHT, {"bridge_layer": "elevated"}
+	)
 	if (
 		bool(bridge_start.blocked)
 		or String(bridge_start.next_context.bridge_layer) != "elevated"
 		or bool(elevated_bridge.blocked)
 		or not bool(unknown_water_bridge.blocked)
 		or String(unknown_water_bridge.action) != "requires_surf"
+		or not bool(ambiguous_inner_bridge.blocked)
+		or String(ambiguous_inner_bridge.disposition) != "special"
+		or String(ambiguous_inner_bridge.action) != "requires_bridge_context"
+		or String(ambiguous_inner_bridge.next_context.bridge_layer) != "unknown"
+		or bool(explicit_elevated_bridge.blocked)
+		or String(explicit_elevated_bridge.next_context.bridge_layer) != "elevated"
+		or bool(stale_elevated_context.blocked)
+		or String(stale_elevated_context.next_context.bridge_layer) != "ground"
 	):
 		_fail("Bridge layer context did not distinguish elevated walking from water below: %s" % JSON.stringify({
 			"start": bridge_start,
 			"elevated": elevated_bridge,
 			"unknown": unknown_water_bridge,
+			"ambiguous_inner": ambiguous_inner_bridge,
+			"explicit_inner": explicit_elevated_bridge,
+			"stale_elevated": stale_elevated_context,
 		}))
 		return
 	var boundary_origin := Vector3(31.5, 2.25, 2.5)
@@ -217,6 +237,8 @@ func _make_manifest() -> Dictionary:
 	attributes_a.encode_u16((2 * 32 + 12) * 2, 0x0070)
 	attributes_a.encode_u16((2 * 32 + 13) * 2, 0x0073)
 	attributes_a.encode_u16((2 * 32 + 15) * 2, 0x0073)
+	attributes_a.encode_u16((2 * 32 + 16) * 2, 0x0071)
+	attributes_a.encode_u16((2 * 32 + 17) * 2, 0x0071)
 	var attributes_b := PackedByteArray()
 	attributes_b.resize(2048)
 	attributes_b.encode_u16((2 * 32) * 2, 0x0031)

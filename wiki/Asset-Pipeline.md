@@ -66,12 +66,29 @@ Raw export, material dedupe, and Godot sync are treated as separate stages.
 All three write their completion marker last. Raw export writes
 `.export-complete.json` with marker schema `2`, export contract `3`, the
 matrix/variant binding, manifest SHA-256, occupied-cell count, and collision
-asset count. It also binds the raw output to the complete DSPRE content tree,
-batch exporter, shared collision support tool, `apicula.exe`, and semantic
-AreaData resolution fingerprints. Dedupe and sync retain marker schema `1` and
-bind their output to the upstream manifest SHA-256. A missing, damaged,
-obsolete, or mismatched marker rebuilds that stage instead of reusing a
-possibly partial directory.
+asset count. It also records every raw output's relative path, byte length, and
+SHA-256, and binds the raw output to the complete DSPRE content tree, batch
+exporter, shared collision support tool, `apicula.exe`, and semantic AreaData
+resolution fingerprints. A direct header-backed export without a resolution
+file records a null resolution fingerprint, which direct dedupe accepts only
+when the marker and expected contract are both unbound. Dedupe and sync use
+marker schema `2`.
+Dedupe binds its output to the upstream manifest and current dedupe-tool
+SHA-256; sync binds to that manifest plus the current dedupe- and sync-tool
+SHA-256 values. Both downstream markers record every output's normalized
+relative path, exact byte length, and SHA-256. Godot-generated `.import`
+sidecars are excluded from the sync record and destination post-check because
+an open editor can create them during the copy; complete validation also ignores
+Godot's transient `.import~*.TMP` atomic-write files. Source files and every
+other destination file remain exact. Import sidecars are validated by the import
+workflow. A missing, damaged, obsolete, or mismatched marker rebuilds
+that stage instead of reusing a possibly partial directory.
+
+A direct `dspre_batch_export.ps1` call may reuse a destination only when its
+marker, manifest, summary, collision contract, declared GLBs, complete file
+records, and all current input/tool fingerprints pass together. Otherwise it
+removes and rebuilds the entire destination plus its matrix work slice; it
+never re-certifies individual old GLBs from a valid header alone.
 
 The DSPRE source fingerprint recursively covers every file below the selected
 `*_DSPRE_contents` root. It hashes an ordinally sorted stream of normalized
@@ -85,11 +102,55 @@ fingerprint is supplied.
 Tool fingerprints are content-only SHA-256 values and are likewise independent
 of installation path. The AreaData resolution fingerprint excludes its
 generated timestamp and absolute DSPRE path, but includes the semantic matrix,
-variant, AreaData, evidence, and unresolved records. Any source, tool, or
-semantic resolution change invalidates raw reuse and forces both existing GLBs
-and `.work` model slices to be rebuilt. The orchestrator recomputes every input
-fingerprint after the destination loop and refuses to publish a catalog if any
-source or tool changed during the run.
+variant, AreaData, evidence, and unresolved records. Source, batch-export,
+collision-support, `apicula.exe`, or semantic resolution changes invalidate raw
+reuse and force both existing GLBs and `.work` model slices to be rebuilt.
+Dedupe- or sync-tool changes invalidate only their downstream stage and later
+stages. After complete catalog aggregation, the orchestrator recomputes all
+seven source/tool/resolution fingerprints and refuses to publish if any input
+changed during the run. It also revalidates all 278 expected raw, dedupe, and
+sync marker identities immediately before that final fingerprint scan. Exact
+file content is checked once before a stage is reused or consumed and again by
+complete repository validation, rather than repeatedly hashing the same tree
+after each successful child stage.
+
+Shared-material validation compares texture pixels only after decompressing any
+imported compressed `Image` copies, then normalizing both sides to RGBA8. This
+keeps reuse checks content-based without asking Godot to convert a compressed
+format directly.
+
+A partial all-matrix run using `-MatrixIds` may publish a complete catalog only
+after every unselected variant passes its current raw marker, manifest,
+summary, collision, dedupe, and Godot-sync contracts against the same source,
+tool, and AreaData fingerprints. Downstream checks compare exact file sets and
+content, validate every GLB header, and reconcile PNGs and material bindings
+with the material catalog instead of accepting equal file counts. This
+preflight occurs before either published catalog or any destination is changed;
+stale unselected output requires a full run. After preflight, both existing
+`matrix_catalog.json` copies are withdrawn before destination mutation. After
+catalog aggregation and the final fingerprint check, two temporary files are
+written and promoted as a pair. A controlled failure removes both final paths,
+so no old or half-published catalog points into a partially replaced asset
+tree.
+
+After both old catalogs are withdrawn, matrix-shaped directories no longer in
+the current AreaData resolution are removed from raw, dedupe, and Godot output
+only after candidates across all three trees pass the same non-following
+reparse preflight. Other project asset roots such as `characters` and
+`shared_materials` are not part of that cleanup.
+
+Every recursive output removal in raw export, material dedupe, and Godot sync
+must be a strict descendant of its declared generated root. The shared safety
+check rejects the root itself and every junction or other reparse point from
+that root through the target before `Remove-Item -Recurse` can run. The
+all-matrix orchestrator applies the same check to the raw, dedupe, and Godot
+roots before creating them, inspecting or withdrawing catalogs, and again
+before catalog publication. Each delete target and stage-file traversal also
+uses an explicit breadth-first walk that rejects a reparse file or directory
+without descending through it. Direct raw output is restricted to `generated/`
+and work slices to `.work/`. Recursive cleanup performs one complete non-following
+tree check immediately before deletion, while each model write validates its
+exact ancestor path without rescanning the whole work tree.
 
 For a focused single-matrix export, use `dspre_batch_export.ps1 -MatrixId`.
 The exporter automatically discovers the generated AreaData resolution file
@@ -100,7 +161,10 @@ Raw manifests use schema `2`. The dedupe stage validates that schema, preserves
 the collision payload unchanged, adds `material_dedupe`, and emits destination
 manifest schema `3`. `matrix_catalog.json` uses schema `2`; all Godot-side
 material, texture, streaming, and validation consumers require those exact
-versions.
+versions. Per-destination `material_catalog.json` uses schema `1`.
+Every material entry must contain an object signature, and every GLB must bind
+at least one known material with a positive matching unique output count before
+dedupe reuse, Godot sync, or catalog publication can proceed.
 
 Each raw and deduplicated manifest contains a `collision_format` schema `1`
 record and a map-ID-deduplicated `collision_assets` array. A collision asset is
@@ -187,9 +251,11 @@ GLB and PNG checks come from the manifest instead of fixed matrix `0000`
 counts. Matrix ID and AreaData suffixes must agree with the manifest before the
 destination is created, and source/destination path overlap is rejected before
 any existing output can be removed. The source dedupe marker, manifest hash,
-GLB/PNG sets, material catalog, destination manifest schema `3`, and complete
-collision contract are fully preflighted before an existing destination can be
-removed. Sync copies the manifest itself, so the embedded Base64 payloads and
+GLB/PNG sets, material catalog, destination manifest schema `3`, complete
+collision contract, tool hashes, and dedupe marker's exact file records are
+fully preflighted before an existing destination can be removed. The completed
+sync is compared byte-for-byte with that source set before its marker is
+published. Sync copies the manifest itself, so the embedded Base64 payloads and
 their hashes cross into Godot without a separate sidecar lifecycle.
 
 ### 4. Import Shared Materials and Lossless Textures

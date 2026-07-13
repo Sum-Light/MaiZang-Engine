@@ -44,6 +44,19 @@ func _run() -> void:
 	if MaterialCatalogSupport.materials_equivalent(expected_material, matching_material):
 		_fail("A material texture mismatch was accepted.")
 		return
+	matching_material = expected_material.duplicate(false) as StandardMaterial3D
+	var compressed_image := (expected_material.albedo_texture as Texture2D).get_image()
+	if compressed_image.compress(Image.COMPRESS_S3TC) != OK:
+		_fail("The compressed-texture regression fixture could not be created.")
+		return
+	matching_material.albedo_texture = ImageTexture.create_from_image(compressed_image)
+	var stored_compressed_image := (matching_material.albedo_texture as Texture2D).get_image()
+	if not stored_compressed_image.is_compressed():
+		_fail("The compressed-texture regression fixture lost its compressed format.")
+		return
+	if not MaterialCatalogSupport.materials_equivalent(expected_material, matching_material):
+		_fail("Equivalent compressed and uncompressed textures were rejected.")
+		return
 
 	var root_node := Node3D.new()
 	var mesh_instance := MeshInstance3D.new()
@@ -71,6 +84,7 @@ func _run() -> void:
 		"assets": asset_materials.size(),
 		"null_surface_rejected": true,
 		"content_mismatch_rejected": true,
+		"compressed_texture_compared": true,
 	}))
 	quit(0)
 
