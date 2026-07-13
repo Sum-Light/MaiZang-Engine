@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P1.ENGINE_SESSION_LIFECYCLE",
+  "godot_contract_refs": [
+    {
+      "document": "02-project-layout-and-dependencies.md",
+      "section": "Engine and application dependency direction",
+      "sha256": "45365ed46e8d88be46a50b565e348911baaa0f7ec3cfd81b6f850a6b8ed92117"
+    },
+    {
+      "document": "04-battle-runtime-and-turn-flow.md",
+      "section": "Synchronous step boundary, inbox path, and reentry invariant",
+      "sha256": "316ae70d1eb32430d19dee45019c28b0156e1813161d4497e2e8f4fb73f0b7de"
+    },
+    {
+      "document": "13-api-contracts.md",
+      "section": "Authority port, per-battle Session, and result publication",
+      "sha256": "b79175e253be47f6fb8e0161ab0c7dd8fd66954603628bb0b2c3ca8648f3867c"
+    },
+    {
+      "document": "14-single-player-first-implementation.md",
+      "section": "Local authority lifecycle, controlled inbox, and release order",
+      "sha256": "a9dd695ff33ba1101b07de3209c5a59c4b92671a919ddaa9af852ea38e40ff0f"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P1 empty engine, authority, Session, reentry, and release gates",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_MainModule.h",
+      "symbol": "MainModule::Initialize, MainLoop, Finalize, and owned runtime references",
+      "sha256": "ae019bfb27262d4f39c57123830ae3d008dc15eef5a59efc8acc92ab63266bbe"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_client.h",
+      "symbol": "RequestProcessResult, processServerRequest, processServerCommand, request and command sequence state",
+      "sha256": "2b2a5c75ae49c1bab29ebc218d69c16ec04e6139507f8d66bb4a8311506f090b"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_logic/system/btl_client.cpp",
+      "symbol": "mainProc_Normal, processServerRequest, and processServerCommand",
+      "sha256": "0fd4d61c9d6300e5e96310e82e94293a14c5f5444b03b872731d26130b32b5cc"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/adapter/btl_CommunicationDataHeader.h",
+      "symbol": "CommunicationDataHeader and ServerRequestNo",
+      "sha256": "4612e5c75fb5074f9ded63968a27a9ebe4737a53843caaf55febfc9ba202be6a"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_ServerRequestResult.h",
+      "symbol": "ServerRequestResult",
+      "sha256": "e8cc509bf37fa233457fc5849f77862d1efc3d4fc2d38b550ee74b0d12652b48"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/battle_unit_test_main.cpp",
+      "symbol": "BattleUnitTestMain::updateFunc_Main and updateFunc_Finalize",
+      "sha256": "76fcd55a2bfe4519abc1d2edd867650a12faee2eda602c5463a3f24799b62bb9"
+    },
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/battle_unit_test_client.cpp",
+      "symbol": "ConsoleBattleClient::setSubProc and storeActionSelectSendData",
+      "sha256": "a3bc59cad587f07a51b4a88946f321d2f2eb180524c75c15df54799eabed8b98"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [
+    "BattleAuthorityPort",
+    "BattleEngine",
+    "BattleSession",
+    "BattleStepResult",
+    "LocalBattleAuthority"
+  ],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean source proves explicit initialize, main-loop, request/command sequence, and finalize shapes, but its frame-driven state machine, intrusive pointers, and nullable processor results are not the Godot lifecycle or typed-error oracle.",
+    "P1 intentionally does not create placeholder BattleSetup, DexCatalog, BattleState, BattleOutcome, consumer, mirror, or concrete decision types. The empty engine therefore returns a stable typed failure and unpublished empty batch instead of pretending that a battle ended.",
+    "BattleStepResult is a sealed concrete P1 envelope. Engine, authority, Session, and canonical encoding use its static validator so a scripted subtype cannot override validation and forge a publishable result.",
+    "BattleSession uses an explicit bounded pump as its controlled main-thread entry. A stable inbox snapshot prevents signal subscribers from reentering authority work; inputs queued by a result callback remain for the next pump.",
+    "No sealed source test covers Godot signal listener order, self-aliasing copies, canonical empty-state hashes, close-after-shutdown-failure cleanup, or WeakRef release. P1 defines those contracts with wholly synthetic golden, adversarial, FIFO, and 100-cycle release vectors.",
+    "Real pending requests, state progression, battle progress semantics, outcomes, and mutation-command atomicity remain P8 and P9 work; concrete command consumption and presentation remain P16 work."
+  ],
+  "completion_status": "VERIFIED"
+}

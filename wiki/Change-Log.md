@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Add battle P1 engine and Session lifecycle
+
+- Add a stable empty `BattleEngine` with typed not-configured, unexpected-input, shutdown, and reentry failures plus sealed static step-result validation and canonical golden hashes.
+- Add an isolated local authority and explicit-pump Session with battle-ID binding, bounded FIFO delivery, one-reply request gating, synchronous dispatch protection, terminal exactly-once behavior, and idempotent graph cleanup.
+- Add 282 adversarial and release checks, including both listener orders, injected FIFO work, forged results, 100 WeakRef cycles, and real SceneTree release; bind the slice to a verified clean-source work item without coupling the world runtime.
+
 ## 2026-07-14 - Add battle P1 protocol and command contracts
 
 - Add fail-closed decision, request, step-input, command, batch, and step-result envelopes with typed construction failures and stable protocol diagnostics.

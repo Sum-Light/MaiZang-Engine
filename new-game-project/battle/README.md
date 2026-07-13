@@ -10,13 +10,13 @@ Q0 and P0 are complete. P1 is in progress: its pure foundation and
 protocol/command slices now define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
-batches, and a staged dependency gate. The module still does not contain a
-catalog, `BattleEngine`, playable battle, world integration, network stack,
+batches, a stable empty `BattleEngine`, local authority/session lifecycle,
+and a staged dependency gate. The module still does not contain a catalog,
+configured battle state, playable battle, world integration, network stack,
 model, texture, animation, audio, or battle camera.
 
-The next P1 slice adds the empty engine, authority/session contracts, and the
-battle-local suite runner. It will not change the editor entry or connect the
-world.
+The final P1 slice adds the battle-local suite runner and optional repository
+validation switch. It will not change the editor entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -182,9 +182,11 @@ failures before publication. Copies are canonical-equivalent snapshots;
 self-aliasing subtype copies and post-seal mutation attempts are rejected.
 
 `BattleStepResult` currently admits `COMPLETE`, `NEED_INPUT`, and `FAILED`
-through validated factories. `BATTLE_ENDED` is reserved until the following
-P1 session slice introduces the outcome contract. Invalid field combinations
-normalize to a stable typed failure and never use `null` as the error channel.
+through validated factories. It is a sealed concrete envelope whose static
+validator rejects forged subtypes and inconsistent fields. `BATTLE_ENDED` is
+reserved until the later battle/outcome phases introduce the outcome
+contract. Invalid field combinations normalize to a stable typed failure and
+never use `null` as the error channel.
 
 Run the focused protocol checks with:
 
@@ -198,3 +200,42 @@ The 151 checks include independent canonical/hash golden vectors, distinct
 request/progress fields, ordered command hashes, empty and published batches,
 typed mismatch errors, copy isolation, malicious self-alias rejection, and
 the step-result truth table.
+
+## P1 Empty Engine And Session
+
+`BattleEngine.step()` is a synchronous RefCounted boundary with a guard that
+remains active through result validation, canonical encoding, and copying.
+The P1 engine has no placeholder setup, catalog, state, or outcome: `step(null)`
+returns a repeatable `BATTLE_ENGINE_NOT_CONFIGURED` failure, a valid
+unpublished empty batch, and independent golden authority/result hashes.
+Non-null input without a pending request and calls after shutdown have their
+own stable errors and do not mutate the empty state.
+
+`LocalBattleAuthority` owns the engine reference, keeps its busy guard active
+through synchronous signal publication, binds published results to its battle
+ID, and validates every reply against the current copied request.
+`BattleSession` is the only Node in this slice. It copies authority results
+into a bounded FIFO and exposes an explicit `pump()` stable-batch entry. A
+result callback may queue one valid reply, but that reply cannot call the
+engine until a later pump; each pump submits at most one input.
+
+Session start, pump, and authority-dispatch guards reject recursive start,
+pump, close, duplicate reply, cross-battle result, forged terminal state, and
+late terminal delivery without changing state. `close()` disconnects both
+signal directions, clears results/inputs/pending requests, shuts down the
+authority graph, and remains idempotent. `_exit_tree()` performs the same
+cleanup when the scene is freed.
+
+Run the focused lifecycle checks with:
+
+```powershell
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" --headless `
+  --path .\new-game-project `
+  --script res://battle/tests/application/p1_session_lifecycle_test.gd
+```
+
+The 282 checks include empty-state and full-result goldens, real `_step_impl`
+and canonical-copy reentry, both signal listener orders during start, stable
+FIFO injection, request gating, error category/code pairs, terminal exactly
+once behavior, 100 advanced create/progress/close release graphs, and a real
+SceneTree `queue_free()` release path.

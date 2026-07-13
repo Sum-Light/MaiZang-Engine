@@ -11,6 +11,7 @@ enum Kind {
 
 const RESULT_SCHEMA_VERSION: int = 1
 const CANONICAL_DOMAIN: String = "BATTLE_STEP_RESULT"
+const SCRIPT_PATH: String = "res://battle/scripts/protocol/battle_step_result.gd"
 
 var _kind: Kind = Kind.FAILED
 var _commands := BattleCommandBatch.empty_unpublished()
@@ -125,6 +126,59 @@ static func failed(
 	return result
 
 
+func is_valid() -> bool:
+	return BattleStepResult.validate_instance(self).is_ok
+
+
+func validate() -> BattleOperationResult:
+	return BattleStepResult.validate_instance(self)
+
+
+static func validate_instance(result: BattleStepResult) -> BattleOperationResult:
+	if result == null:
+		return _validation_failure(&"step_result_null")
+	var script := result.get_script() as Script
+	if script == null or script.resource_path != SCRIPT_PATH:
+		return _validation_failure(&"step_result_must_be_sealed_base_type")
+	if result._commands == null or not result._commands.is_valid():
+		return _validation_failure(&"step_result_commands")
+	var hash_error := _validate_hash_presence(
+		result._has_authority_hash,
+		result._authority_state_hash_after
+	)
+	if hash_error.is_error():
+		return BattleOperationResult.failure(hash_error)
+	if result._error == null:
+		return _validation_failure(&"step_result_error")
+
+	match result._kind:
+		Kind.COMPLETE:
+			if (
+				not result._commands.is_published()
+				or result._input_request != null
+				or result._error.is_error()
+			):
+				return _validation_failure(&"step_result_complete_fields")
+		Kind.NEED_INPUT:
+			if (
+				not result._commands.is_published()
+				or result._input_request == null
+				or not result._input_request.is_valid()
+				or result._error.is_error()
+			):
+				return _validation_failure(&"step_result_need_input_fields")
+			if result._commands.get_battle_id() != result._input_request.get_battle_id():
+				return _validation_failure(&"step_result_need_input_battle_id")
+		Kind.FAILED:
+			if result._input_request != null or not result._error.is_error():
+				return _validation_failure(&"step_result_failed_fields")
+		Kind.BATTLE_ENDED:
+			return _validation_failure(&"step_result_ended_without_outcome")
+		_:
+			return _validation_failure(&"step_result_kind")
+	return BattleOperationResult.success()
+
+
 func get_kind() -> Kind:
 	return _kind
 
@@ -182,6 +236,9 @@ func copy_result() -> BattleStepResult:
 
 
 func canonical_bytes() -> BattleBytesResult:
+	var validation := BattleStepResult.validate_instance(self)
+	if not validation.is_ok:
+		return BattleBytesResult.failure(validation.error)
 	var command_bytes := _commands.canonical_bytes()
 	if not command_bytes.is_ok:
 		return command_bytes
@@ -253,6 +310,18 @@ static func _is_independent_batch_copy(
 		and copied_bytes.is_ok
 		and original_bytes.value == copied_bytes.value
 	)
+
+
+static func _validation_failure(detail_key: StringName) -> BattleOperationResult:
+	return BattleOperationResult.failure(BattleError.create(
+		BattleError.Category.PROTOCOL,
+		BattleError.INVALID_STEP_RESULT,
+		BattleError.INVALID_CONTEXT_ID,
+		BattleError.INVALID_CONTEXT_ID,
+		BattleError.INVALID_CONTEXT_ID,
+		BattleError.INVALID_CONTEXT_ID,
+		detail_key
+	))
 
 
 static func _contract_failure(detail_key: StringName) -> BattleStepResult:

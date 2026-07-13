@@ -19,7 +19,7 @@ directory.
 |---|---|---|
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
-| P1 | In progress (7/17) | Foundation plus protocol/command envelopes are verified; empty engine, authority/session, and suite tooling remain |
+| P1 | In progress (13/17) | Foundation, protocol/command envelopes, empty engine, and authority/session lifecycle are verified; suite tooling remains |
 | P2-P18 | Not started | Mechanism trace, data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -171,8 +171,9 @@ that returns itself from `copy_payload`, `copy_request`, or `copy_command` is
 rejected, successful typed build results retain independent snapshots, and a
 valid object cannot be reconfigured or invalidated after sealing.
 `BattleStepResult` validates the `COMPLETE`, `NEED_INPUT`, and `FAILED` field
-truth table; `BATTLE_ENDED` is reserved until the outcome contract lands in
-the next P1 slice.
+truth table through a sealed concrete envelope and static validator that
+rejects scripted subtypes. `BATTLE_ENDED` is reserved until the later
+battle/outcome phases introduce the outcome contract.
 
 The focused Godot suite runs 151 assertions. It includes independent payload,
 empty-batch, and full published-batch golden hashes; the full vector uses
@@ -183,20 +184,56 @@ result copies. The verified work item binds six Godot documents and clean
 source code/test hashes while recording that no sealed source test defines
 the project's canonical encoding or typed error truth table.
 
+## P1 Empty Engine And Session Lifecycle
+
+`BattleEngine.step()` is a synchronous RefCounted boundary whose guard remains
+active through implementation dispatch, static result validation, canonical
+encoding, and copying. P1 deliberately has no placeholder setup, catalog,
+state, or outcome. An empty step returns the stable
+`BATTLE_ENGINE_NOT_CONFIGURED` failure, a valid unpublished empty batch, and
+independent golden authority/result hashes; unexpected input and post-shutdown
+calls have separate stable failures without mutating empty state.
+
+`LocalBattleAuthority` owns the engine graph, keeps its busy guard active
+through synchronous result publication, binds every published result to the
+battle ID, and validates a reply against the copied pending request.
+`BattleSession` is the only Node in this slice. It copies authority results
+into a bounded FIFO and exposes an explicit `pump()` stable-snapshot boundary.
+A callback may queue one valid reply, but each pump submits at most one input
+and callback input cannot reenter the engine until a later pump.
+
+Start, pump, dispatch, and terminal guards reject recursive lifecycle calls,
+duplicate replies, cross-battle results, forged result subtypes, and late
+terminal delivery without corrupting state. `close()` disconnects both signal
+directions, clears result/input/request references, shuts down the authority
+graph, and stays idempotent even if authority shutdown reports a failure.
+`_exit_tree()` applies the same cleanup when a scene-owned Session is freed.
+
+The focused lifecycle suite runs 282 checks. It covers empty/full-result
+goldens, implementation and canonical-copy reentry, both signal-listener
+orders during start, stable FIFO injection, request and error contracts,
+terminal exactly-once behavior, 100 advanced create/progress/close WeakRef
+graphs, and a real SceneTree `queue_free()` release path. The verified work
+item binds the contract to clean lifecycle and request/command source evidence
+without treating the source's frame loop or intrusive pointers as a Godot
+lifecycle oracle.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
 items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`,
-and the currently verified P1 slice is `7/17`. Current mainline progress is
-therefore `52/465` items (`11.2%`), with `2/20` phases complete and P1
+and the currently verified P1 slice is `13/17`. Current mainline progress is
+therefore `58/465` items (`12.5%`), with `2/20` phases complete and P1
 active. This count advances only after a checklist item has implementation,
 focused verification, Wiki/Skill memory, and a focused commit.
 
-The protocol/command slice completes part of P1's already-counted public-type
-contract item, so it intentionally does not increment the conservative
-checklist numerator. The next count change requires closing one of the
-remaining engine, session, suite, or completion-gate items in full.
+The empty-engine and Session slice closes six P1 items: single authority and
+Session ownership, the stable empty engine, Session lifecycle verification,
+stable empty setup/catalog/hash failure behavior, create/progress/reentry/
+release coverage, and the core dependency gate. The remaining four items are
+the aggregate suite runner, one-command invocation, exact failure exit
+propagation, and the final P1 completion gate.
 
 ## Editor Entry
 
@@ -243,6 +280,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   --headless --path .\new-game-project `
   --script res://battle/tests/protocol/p1_protocol_command_test.gd
 
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --headless --path .\new-game-project `
+  --script res://battle/tests/application/p1_session_lifecycle_test.gd
+
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
 
@@ -285,3 +326,7 @@ The P1 protocol/command test executes 151 checks across fail-closed base
 types, canonical golden hashes, independent request/progress/sequence axes,
 typed mismatch errors, empty/published batches, copy sealing, alias rejection,
 and step-result field combinations.
+The P1 Session lifecycle test executes 282 checks across stable empty-engine
+hashes and failures, static result sealing, authority/session reentry guards,
+battle binding, bounded FIFO and request gates, exact terminal publication,
+shutdown cleanup, 100 WeakRef graphs, and real SceneTree release.
