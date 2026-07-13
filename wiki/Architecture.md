@@ -5,6 +5,7 @@
 | Path | Responsibility |
 |---|---|
 | `new-game-project/` | Godot 4.7 project, runtime scripts, scenes, and tests |
+| `new-game-project/battle/` | Isolated battle development root with an editor-only Q0 quick start and no world-runtime dependency |
 | `new-game-project/scripts/platinum_collision_map.gd` | Manifest-backed tile attributes, BDHC height queries, step validation, and decoded collision retention |
 | `tools/` | DSPRE export, GLB dedupe, Godot import, validation, and Git automation |
 | `wiki/` | Versioned source for the project and GitHub Wiki |
@@ -135,5 +136,6 @@ catalog files remain under ignored asset roots.
 ## Remaining Non-Goals
 
 - Dynamic collision overrides for moving platforms and scripted map changes.
-- NPCs, scripts, warps, animations, and battle systems.
+- NPCs, scripts, warps, animations, and world-to-battle integration. The
+  isolated Q0 battle root is only an editor smoke surface at this stage.
 - Guessing AreaData for unreferenced or internally inconsistent source matrices.

@@ -4,6 +4,7 @@
 
 | Path | Owner and purpose |
 |---|---|
+| `new-game-project/battle/` | Isolated battle business root; Q0 owns the editor-only quick start, text smoke shell, battle-local tests/tools, and future battle implementation without world-runtime dependencies |
 | `new-game-project/scripts/platinum_world_streamer.gd` | Catalog destination selection, manifest loading, asynchronous visual cache, collision query delegation, chunk lifecycle, placement |
 | `new-game-project/scripts/platinum_collision_map.gd` | Lazy terrain-attribute and BDHC decode, walking behavior classification, height/step queries, bridge context, global MapProp anchor index |
 | `new-game-project/scripts/debug_destination_resolver.gd` | Side-effect-free catalog, manifest, AreaData, cell, and tile resolution shared by startup and in-game jumps |
@@ -42,6 +43,7 @@
 - Default start cell `(3, 27)`
 - Default debug destination: matrix `0000`, automatic AreaData, cell `(3, 27)`, tile `(16, 16)`
 - In-game debug destination shortcut: `F2`, validated one-shot full-scene reload
+- Battle development entry: Inspector tool button in `res://battle/quick_start/battle_quick_start.tscn`; Q0 launches only the independent synthetic text smoke shell
 - Load radius 1, prefetch radius 2, unload/retention radius 3
 
 ## Generated Baseline

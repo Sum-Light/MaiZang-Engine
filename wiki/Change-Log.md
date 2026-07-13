@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-13 - Add isolated battle quick start
+
+- Establish `new-game-project/battle/` as the only battle business root, with nested local-data and generated-artifact ignores.
+- Add a Godot 4.7 Inspector tool button that validates and launches only the independent Q0 text smoke shell, without changing the existing project or world runtime.
+- Add scene, native-resolution render, dependency-boundary, Git-scope, forced-local-data, and untracked-path validation plus Battle Wiki and Skill ownership memory.
+
 ## 2026-07-13 - Add Platinum terrain collision and height queries
 
 - Export each map's exact `a.dat` terrain attributes and packed `BDHC` height data into every AreaData-aware destination manifest, with source hashes, map-level deduplication, completion markers, and catalog-wide contract validation.

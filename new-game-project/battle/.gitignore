@@ -1,0 +1,18 @@
+# Licensed authoring data and derived local catalogs stay local. Keep only the
+# two .gdignore sentinels so Godot never scans source or normalized inputs.
+local_data/*
+!local_data/source/
+!local_data/normalized/
+local_data/source/*
+!local_data/source/.gdignore
+local_data/normalized/*
+!local_data/normalized/.gdignore
+
+# Generated reports and local tool state are reproducible but not versioned.
+generated/
+.tmp/
+tmp/
+temp/
+*.tmp
+*.temp
+*.part

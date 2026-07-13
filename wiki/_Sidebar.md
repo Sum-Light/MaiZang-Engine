@@ -1,5 +1,6 @@
 - [Home](Home)
 - [Architecture](Architecture)
+- [Battle Development](Battle-Development)
 - [Asset Pipeline](Asset-Pipeline)
 - [Runtime Streaming](Runtime-Streaming)
 - [Player Control](Player-Control)
