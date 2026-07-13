@@ -18,7 +18,7 @@ directory.
 | Phase | Status | Delivered behavior |
 |---|---|---|
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
-| P0 | In progress | Frozen scope and authorization/evidence schemas are complete; source-audit generation and the staged asset gate remain |
+| P0 | In progress | Frozen scope/contracts and the 6,559-entry initial source audit are complete; the staged asset and local generation gates remain |
 | P1-P18 | Not started | Battle contracts, data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -56,6 +56,31 @@ the executable scripted-scenario denominator is `964`. P0 source-audit work
 must retain the two documents in the test inventory while classifying them as
 non-scenarios instead of silently claiming `966` executable fixtures.
 
+## P0 Source Audit Baseline
+
+The tracked source-index baseline seals both branch/commit/tree identities,
+all `135` dirty paths, ordinal source aggregates for all `7,372` files, nine
+input index hashes, and six scanner/validator tool hashes. A source payload or
+dirty-path change blocks generation before an audit seal can be produced.
+
+The exact module policy classifies all `183` modules once with no fallback:
+non-network behavior/schema evidence remains in scope, host migration is
+`DEFERRED_N0`, command/talk modules are `TEXT_ONLY`, presentation definitions
+remain out of scope, and Auction, Kodaigame, runtime binaries, and unverified
+root schema/data extensions are `REJECTED_UNVERIFIED`. Dirty evidence remains
+`BLOCKED_SOURCE`; generated scope classification never promotes a mechanism to
+implemented or released status.
+
+The ignored canonical `SourceAuditDispositionManifest` contains `6,559`
+entries and has SHA-256
+`0e91976589d1eba3b9427ce893a63d5c2e670e1589530f95c8df3de1fe107593`.
+It covers `257` Sections, `839` effect registrations, `246` events, `215`
+commands, `16` actions, `10` interrupts, `83` protocol entries, `23` battle
+modes, `102` schema declarations, `1,064` tests, `966` script-text candidates,
+and `2,555` logic edges. The tracked seal contains only counts and hashes; the
+5.5 MB entry manifest remains under ignored `res://battle/generated/p0/` and
+contains no source payload or absolute path.
+
 ## Editor Entry
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select
@@ -88,6 +113,12 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\catalog\p0_manifest_contract_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\catalog\p0_source_audit_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_catalog\importers\build_p0_source_audit.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_catalog\validators\validate_p0_manifests.ps1 `
   -WorkItemPaths .\new-game-project\battle\manifests\work_items\P0_MANIFEST_CONTRACTS.json `
   -GodotContractRoot D:\PokemonSV-Battle-Architecture\docs\godot
@@ -107,4 +138,7 @@ native-resolution frame and proves scene cleanup preserves the prior pause
 state. The P0 contract test parses all battle-local PowerShell, exercises
 strict JSON rejection cases, validates the frozen scope and empty public
 templates, proves missing production authorization fails, and checks actual
-contract/evidence hashes for a valid and stale work item.
+contract/evidence hashes for a valid and stale work item. The source-audit
+test re-hashes every current source payload, regenerates the canonical audit,
+compares it with the reviewed seal, validates every disposition entry, and
+proves an altered input-index hash fails closed.

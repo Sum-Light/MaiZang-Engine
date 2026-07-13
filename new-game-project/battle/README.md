@@ -9,9 +9,10 @@ directory must leave the existing MaiZang world runtime unchanged.
 Q0 provides only an editor quick-start surface and a synthetic text smoke
 shell. P0 is in progress: the target data generation, ruleset/mode/action
 scope, source-use classes, network deferrals, text-only policy, strict manifest
-schemas, and production license gate are frozen and tested. The module still
-does not contain a catalog, `BattleEngine`, playable battle, world integration,
-network stack, model, texture, animation, audio, or battle camera.
+schemas, production license gate, and complete initial source-audit baseline
+are frozen and tested. The module still does not contain a catalog,
+`BattleEngine`, playable battle, world integration, network stack, model,
+texture, animation, audio, or battle camera.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -84,3 +85,29 @@ absolute or traversing paths. `-GenerationMode Production` fails with
 `BATTLE_P0_LICENSED_SOURCE_REQUIRED` until an ignored, verified production
 manifest is supplied; the public empty template is never accepted as
 production authorization.
+
+## P0 Source Audit
+
+`manifests/source_audit/source_index_baseline.json` seals both source Git
+revisions, dirty-path sets, source-file aggregates, scanner tools, and every
+input index hash. `source_audit_policy.json` classifies each of the `183`
+indexed modules exactly once; adding or removing a module fails instead of
+falling through to a default rule.
+
+Build the full local audit with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_catalog\importers\build_p0_source_audit.ps1
+```
+
+The ignored output contains `6,559` source-disposition entries: all Sections,
+effect registrations, event/command/action/interrupt/protocol/mode enums,
+schema declarations, tests, `2,555` logic edges, and `966` text candidates.
+Two text candidates are documentation, so the executable scenario denominator
+is `964`; both remain audited with `NOT_APPLICABLE` scenario disposition.
+Dirty evidence is `BLOCKED_SOURCE`, Auction/Kodaigame and unverified binary
+extensions are rejected, network-only entries are deferred to N0, and visual,
+audio, model, camera, and command entries retain explicit presentation/text
+dispositions. The tracked `source_audit_seal.json` contains only reproducible
+hashes and counts, never source payloads or machine-local paths.

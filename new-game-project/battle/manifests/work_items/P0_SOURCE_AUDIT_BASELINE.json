@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P0.SOURCE_AUDIT_BASELINE",
+  "godot_contract_refs": [
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P0: scope, authorization, and asset boundary",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    },
+    {
+      "document": "18-mechanism-specification-and-traceability.md",
+      "section": "Source evidence and traceability generation",
+      "sha256": "8e38bf63cb8e05323473323540cb98f9c2406a479afd65fe97784a88762bd242"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/action/btl_PokeAction.h",
+      "symbol": "PokeActionCategory",
+      "sha256": "36d5c134567d769716f99872b6a1a4ed9f50b9f3ce5373efb74c4f9f8e5d074e"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/event/btl_Event.h",
+      "symbol": "EventID",
+      "sha256": "dc96b83176d194d4953b71a9ebd088440a5bf60469a3a1cd72114d76d663b1d9"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/server_command/btl_ServerCommand.h",
+      "symbol": "ServerCommand",
+      "sha256": "7c72bb7cefac1a0e9b73d1b8403ceb8d8a236072e72d408f0bce0ff73943269c"
+    },
+    {
+      "source_kind": "SOURCE_SCHEMA",
+      "source_repository": "pokelib",
+      "relative_path": "resource/converters/personal/converter/evolution_data.fbs",
+      "symbol": "EvolutionData",
+      "sha256": "a8a7ec35af3eae176a16968661094ac0d63641b79a2884520f5aea91ea269bc8"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "pokelib",
+      "relative_path": "program/test/battle_test.cpp",
+      "symbol": "BattleAffinity",
+      "sha256": "a65d1bbf9eb233a78be548448dfc1185b9448c96795ac6fcd39f37ba6cfba8c5"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "Both source repositories contain pre-existing dirty paths; dirty evidence is blocked from release.",
+    "The 966 text candidates include 964 executable scenarios and two documentation files.",
+    "The architecture index directory has no Git revision, so scanner file hashes are sealed directly."
+  ],
+  "completion_status": "VERIFIED"
+}

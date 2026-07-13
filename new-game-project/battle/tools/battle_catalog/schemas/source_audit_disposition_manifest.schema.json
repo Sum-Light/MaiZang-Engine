@@ -44,12 +44,13 @@
     "repository_baseline": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repository", "branch", "commit", "tree_sha256", "dirty_paths_sha256", "dirty_path_count"],
+      "required": ["repository", "branch", "commit", "head_tree", "source_aggregate_sha256", "dirty_paths_sha256", "dirty_path_count"],
       "properties": {
         "repository": {"enum": ["battlelogic", "pokelib"]},
         "branch": {"type": "string", "minLength": 1},
         "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-        "tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "head_tree": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "source_aggregate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "dirty_paths_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "dirty_path_count": {"type": "integer", "minimum": 0}
       }
@@ -85,7 +86,7 @@
         "source_path": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:[\\\\/])(?![/\\\\]).+$"},
         "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "source_symbol_or_edge": {"type": "string", "minLength": 1},
-        "source_category": {"enum": ["MODULE", "SOURCE_FILE", "SECTION", "EVENT_HANDLER", "EVENT", "COMMAND", "ACTION", "INTERRUPT", "SCHEMA", "TEST", "SCRIPT_SCENARIO", "LOGIC_EDGE"]},
+        "source_category": {"enum": ["MODULE", "SOURCE_FILE", "SECTION", "EVENT_HANDLER", "EVENT", "COMMAND", "ACTION", "INTERRUPT", "PROTOCOL", "BATTLE_MODE", "SCHEMA", "TEST", "SCRIPT_SCENARIO", "LOGIC_EDGE"]},
         "domain_package": {"type": "string", "minLength": 1},
         "mechanism_ids": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
         "branch_ids": {"type": "array", "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},

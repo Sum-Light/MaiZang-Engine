@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Seal battle P0 source audit baseline
+
+- Seal the two source revisions, dirty-path sets, all 7,372 source hashes, input index counts/hashes, and scanner hashes without copying source payloads or machine-local paths.
+- Generate an ignored canonical 6,559-entry disposition manifest covering every module, Section, handler, enum family, schema declaration, test, script candidate, and logic edge, with dirty and unverified evidence blocked from release.
+- Add exact no-fallback module policy, a tracked reproducible audit seal, real source/schema/test evidence, and a full rebuild/strict-validation/tamper regression test.
+
 ## 2026-07-14 - Freeze battle P0 manifest contracts
 
 - Freeze the independent battle module's target data generation, rule version, local modes/actions, source-use classes, network deferrals, and text-only presentation scope behind exact compatibility hashes.

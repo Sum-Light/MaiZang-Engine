@@ -398,6 +398,26 @@ function Test-SourceAuditManifest {
     Assert-Sha256 -Value $Manifest.baseline.source_index_manifest_sha256 `
         -Context "source index manifest hash" -AllowEmpty
 
+    foreach ($repository in @($Manifest.baseline.repositories)) {
+        Assert-ExactProperties -Object $repository -Required @(
+            "repository", "branch", "commit", "head_tree",
+            "source_aggregate_sha256", "dirty_paths_sha256", "dirty_path_count"
+        ) -Context "SourceAuditDispositionManifest repository baseline"
+        Assert-EnumValue -Value $repository.repository -Allowed @("battlelogic", "pokelib") `
+            -Context "source audit repository"
+        if ([string]$repository.commit -cnotmatch '^[0-9a-f]{40}$' -or
+            [string]$repository.head_tree -cnotmatch '^[0-9a-f]{40}$') {
+            throw "Source audit repository commit/tree must be lowercase Git object IDs."
+        }
+        Assert-Sha256 -Value $repository.source_aggregate_sha256 `
+            -Context "source aggregate hash"
+        Assert-Sha256 -Value $repository.dirty_paths_sha256 `
+            -Context "dirty paths hash"
+        if ([int64]$repository.dirty_path_count -lt 0) {
+            throw "Source audit dirty_path_count must not be negative."
+        }
+    }
+
     $entries = @($Manifest.entries)
     if ($Manifest.manifest_mode -eq "TEMPLATE" -and
         (@($Manifest.baseline.repositories).Count -ne 0 -or $entries.Count -ne 0)) {
@@ -405,6 +425,86 @@ function Test-SourceAuditManifest {
     }
     if ($Manifest.manifest_mode -eq "BASELINE" -and $entries.Count -eq 0) {
         throw "A source audit BASELINE must contain classified entries."
+    }
+    if ($Manifest.manifest_mode -ne "BASELINE") {
+        return
+    }
+
+    $allowedCategories = @(
+        "MODULE", "SOURCE_FILE", "SECTION", "EVENT_HANDLER", "EVENT",
+        "COMMAND", "ACTION", "INTERRUPT", "PROTOCOL", "BATTLE_MODE",
+        "SCHEMA", "TEST", "SCRIPT_SCENARIO", "LOGIC_EDGE"
+    )
+    $allowedEvidenceStatuses = @(
+        "CLEAN_INDEXED", "DIRTY_UNVERIFIED", "MISSING_SOURCE", "STALE_INDEX"
+    )
+    $allowedReleaseStatuses = @(
+        "NOT_STARTED", "SPECIFIED", "IMPORTED", "BOUND", "IMPLEMENTED",
+        "VERIFIED", "RELEASED", "BLOCKED_SOURCE", "REJECTED_UNVERIFIED"
+    )
+    $allowedTestDispositions = @(
+        "PORT_BEHAVIOR", "REPLACED_BY_SYNTHETIC_FIXTURE", "NOT_APPLICABLE"
+    )
+    $seenAuditIds = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    $seenIdentities = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    foreach ($entry in $entries) {
+        Assert-ExactProperties -Object $entry -Required @(
+            "audit_id", "source_repository", "source_path", "source_sha256",
+            "source_symbol_or_edge", "source_category", "domain_package",
+            "mechanism_ids", "branch_ids", "target_godot_types", "fixture_ids",
+            "scope_disposition", "evidence_status", "release_status",
+            "test_evidence_disposition", "classification_rule_id", "reason_code",
+            "reason", "known_ambiguities", "review_status"
+        ) -Context "SourceAuditDispositionManifest entry"
+        if ([string]$entry.audit_id -cnotmatch '^AUDIT_[0-9A-F]{16}$' -or
+            -not $seenAuditIds.Add([string]$entry.audit_id)) {
+            throw "Source audit IDs must be unique AUDIT_ plus 16 uppercase hex digits."
+        }
+        Assert-EnumValue -Value $entry.source_repository -Allowed @("battlelogic", "pokelib") `
+            -Context "source audit entry repository"
+        Assert-RelativePath -Value $entry.source_path -Context "source audit entry path"
+        Assert-Sha256 -Value $entry.source_sha256 -Context "source audit entry hash"
+        Assert-StringValue -Value $entry.source_symbol_or_edge `
+            -Context "source audit entry symbol/edge"
+        Assert-StringValue -Value $entry.domain_package -Context "source audit domain package"
+        Assert-EnumValue -Value $entry.source_category -Allowed $allowedCategories `
+            -Context "source audit category"
+        Assert-EnumValue -Value $entry.scope_disposition -Allowed $scopeDispositions `
+            -Context "source audit scope disposition"
+        Assert-EnumValue -Value $entry.evidence_status -Allowed $allowedEvidenceStatuses `
+            -Context "source audit evidence status"
+        Assert-EnumValue -Value $entry.release_status -Allowed $allowedReleaseStatuses `
+            -Context "source audit release status"
+        Assert-EnumValue -Value $entry.test_evidence_disposition `
+            -Allowed $allowedTestDispositions -Context "source test evidence disposition"
+        Assert-StringValue -Value $entry.classification_rule_id `
+            -Context "source audit classification rule"
+        Assert-StringValue -Value $entry.reason_code -Context "source audit reason code"
+        Assert-StringValue -Value $entry.reason -Context "source audit reason"
+        Assert-EnumValue -Value $entry.review_status -Allowed @(
+            "GENERATED_SCOPE_CLASSIFICATION", "HUMAN_REVIEWED", "VERIFIED"
+        ) -Context "source audit review status"
+        $identity = "$($entry.source_category)`t$($entry.source_repository)`t$($entry.source_path)`t$($entry.source_symbol_or_edge)"
+        if (-not $seenIdentities.Add($identity)) {
+            throw "Source audit contains a duplicate source identity: $identity"
+        }
+        if ($entry.evidence_status -ne "CLEAN_INDEXED" -and
+            $entry.release_status -notin @("BLOCKED_SOURCE", "REJECTED_UNVERIFIED")) {
+            throw "Unverified source evidence cannot advance its release status."
+        }
+        if ($entry.scope_disposition -eq "REJECTED_UNVERIFIED" -and
+            $entry.release_status -ne "REJECTED_UNVERIFIED") {
+            throw "Rejected source scope must retain REJECTED_UNVERIFIED release status."
+        }
+        if ($entry.source_category -notin @("TEST", "SCRIPT_SCENARIO") -and
+            $entry.test_evidence_disposition -ne "NOT_APPLICABLE") {
+            throw "Only test/scenario entries may declare a test port disposition."
+        }
+    }
+    $expectedProperties = @($Manifest.baseline.expected_counts.PSObject.Properties.Name)
+    if ("audit_entries" -notin $expectedProperties -or
+        [int64]$Manifest.baseline.expected_counts.audit_entries -ne $entries.Count) {
+        throw "Source audit entry count does not match its sealed baseline."
     }
 }
 

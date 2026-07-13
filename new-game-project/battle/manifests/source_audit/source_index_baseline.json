@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "manifest_kind": "SOURCE_INDEX_BASELINE",
+  "baseline_id": "SV_SOURCE_INDEX_2026_07_13_V1",
+  "repositories": [
+    {
+      "repository": "battlelogic",
+      "branch": "sudachi_1",
+      "commit": "4e20856a4013cd908646c30a91bc883030c04df4",
+      "head_tree": "70332894bca0ab4d915ce44d5675e4471408e92a",
+      "file_count": 2250,
+      "source_aggregate_sha256": "25ef140a1cc1555cbed5b4567350d3d013920a748530904845739024d0fa875d",
+      "dirty_path_count": 122,
+      "dirty_paths_sha256": "5ee37b6e505815545641dae7b047e61c285424b8942251c112a3b92e529744f7"
+    },
+    {
+      "repository": "pokelib",
+      "branch": "workaround/pokelib_2022.9.1",
+      "commit": "68e6d3531cc89f37e4a6fbc82cc73c37133596fa",
+      "head_tree": "e34b4d7127de4307b16a21810d84c15b2266132f",
+      "file_count": 5122,
+      "source_aggregate_sha256": "3f9201f1f3525cf1569edabb834a1059ca29e9733d13ead36e8493014984821c",
+      "dirty_path_count": 13,
+      "dirty_paths_sha256": "b1c2ad9fa7fcc01596cba3b5fe1afe1afedcb68c078cf431748228bb7d83c3f1"
+    }
+  ],
+  "index_files": [
+    {
+      "relative_path": "source-files.csv",
+      "record_count": 7372,
+      "sha256": "4a580a3d9973adf73170ebabb734a1c71045c12dcc2f6485aaaefc63f6072623"
+    },
+    {
+      "relative_path": "modules.csv",
+      "record_count": 183,
+      "sha256": "d66ffb78638b41a5c1104a1fa0e63015a91e8b1a1a80f1827eb39cf42f49d128"
+    },
+    {
+      "relative_path": "sections.csv",
+      "record_count": 257,
+      "sha256": "2689e0f0c8b26ce76ceb48ff2fd44578dd4f5324fd928f3e42925e5cae6b8c3e"
+    },
+    {
+      "relative_path": "event-handler-symbols.csv",
+      "record_count": 839,
+      "sha256": "11110f52036eba4195b50a954ded36bde98afbe10729d959eecdf6cead30ada9"
+    },
+    {
+      "relative_path": "protocol-and-domain-enums.csv",
+      "record_count": 593,
+      "sha256": "c8d7a76c2f89f44b6b4011c0c216273cc75626a579336d59b061cd5d9db93337"
+    },
+    {
+      "relative_path": "schema-declarations.csv",
+      "record_count": 102,
+      "sha256": "7141797e4ab2c4333425e9fc8f6cd49ea85865be133dd0b1588d297f9f39b158"
+    },
+    {
+      "relative_path": "tests.csv",
+      "record_count": 1064,
+      "sha256": "e9c3bd7de40dfd5e4388fd1028ad46eacf9c3ef426bdc7b792b7d73ccb415e9b"
+    },
+    {
+      "relative_path": "logic-edges.csv",
+      "record_count": 2555,
+      "sha256": "67030c2e8bde47681fb6964163e9576035ca78368981d31a14c2e989c62477c5"
+    },
+    {
+      "relative_path": "worktree-changes.csv",
+      "record_count": 135,
+      "sha256": "ff97c5ceffdcea2feaf319fbc186a9a070ecbff13ca7010959a0bca049bd1a1b"
+    }
+  ],
+  "scanner_files": [
+    {
+      "relative_path": "scan_source.ps1",
+      "sha256": "98ed8b297150881dca485ce9aaa52ba9db6464ed1c9d9641f0ff79aceb30c8d3"
+    },
+    {
+      "relative_path": "scan_logic_edges.ps1",
+      "sha256": "cc292a4c0bc13e3e9f04468387262e5a2c3f0bc3784919f83678905c65bdad81"
+    },
+    {
+      "relative_path": "scan_data_shapes.ps1",
+      "sha256": "d7ed108bccd9d445e33513c7aeec928609c5971f0ac1da4a2c4caf785d891eb8"
+    },
+    {
+      "relative_path": "build_reference_pages.ps1",
+      "sha256": "12dcc95f529b55acf46200254a985e69416af43a66de6bfff9c28cce54655c5f"
+    },
+    {
+      "relative_path": "validate_analysis.ps1",
+      "sha256": "5d6a00c834b0431ab5f1bb052502e3fb1837be965a91e0162aef3ef66422299b"
+    },
+    {
+      "relative_path": "rebuild_catalog.ps1",
+      "sha256": "ad4608d460935b7b7229467c04db3a2396f1839f477de7b024f647cc9c81a78d"
+    }
+  ],
+  "expected_counts": {
+    "modules": 183,
+    "sections": 257,
+    "event_handlers": 839,
+    "events": 246,
+    "commands": 215,
+    "actions": 16,
+    "interrupts": 10,
+    "protocol_entries": 83,
+    "battle_modes": 23,
+    "schema_declarations": 102,
+    "tests": 1064,
+    "script_scenario_candidates": 966,
+    "executable_script_scenarios": 964,
+    "non_scenario_text_documents": 2,
+    "logic_edges": 2555,
+    "audit_entries": 6559
+  },
+  "known_ambiguities": [
+    {
+      "ambiguity_id": "SCRIPT_SCENARIO_CANDIDATE_COUNT",
+      "candidate_count": 966,
+      "executable_count": 964,
+      "non_scenario_paths": [
+        "programs/msvc/battle/battle_unit_test/HowToBuild_battle_unit_test.txt",
+        "programs/msvc/battle/battle_unit_test/README.txt"
+      ],
+      "disposition": "KEEP_AS_TEST_AND_MARK_SCENARIO_NOT_APPLICABLE"
+    },
+    {
+      "ambiguity_id": "DIRTY_SOURCE_EXTENSIONS",
+      "repositories": [
+        "battlelogic",
+        "pokelib"
+      ],
+      "disposition": "BLOCK_RELEASE_UNTIL_EVIDENCE_REVIEW"
+    }
+  ]
+}
