@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P1.SUITE_RUNNER",
+  "godot_contract_refs": [
+    {
+      "document": "02-project-layout-and-dependencies.md",
+      "section": "Battle-local test entry and isolated process boundary",
+      "sha256": "45365ed46e8d88be46a50b565e348911baaa0f7ec3cfd81b6f850a6b8ed92117"
+    },
+    {
+      "document": "11-testing-and-observability.md",
+      "section": "Headless suite selection, reliable exit codes, and clean-cache testing",
+      "sha256": "cdca94047a78159770c7171e4246d6cf3934efc3def86e87d8ef9d79e4355950"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P1 aggregate runner, one-command tool, optional root validation, and no-asset completion gate",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/battle_unit_test_main.cpp",
+      "symbol": "BattleUnitTestMain::updateFunc_Main and updateFunc_Finalize",
+      "sha256": "76fcd55a2bfe4519abc1d2edd867650a12faee2eda602c5463a3f24799b62bb9"
+    }
+  ],
+  "source_test_evidence_refs": [],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean source test has an explicit update and finalize loop, but it does not define Godot SceneTree command-line parsing, process isolation, headless renderer policy, or PowerShell exit-code behavior.",
+    "Godot 4.7 retains cyclic GDScript resources when all three inner-class vector scripts are loaded into one runner process. The aggregate suite therefore launches the fixed three single-suite child processes in order and validates each exit code, unique marker, exact check count, and absence of leak diagnostics.",
+    "The default battle tool excludes the OpenGL Q0 render test and root Full validation. RepositoryValidation Full is explicit because the existing root validator may require local Platinum assets and renderer-backed checks.",
+    "The battle-only P1 aggregate needs no external source or asset roots. The broader PowerShell All selection also reruns the already-verified P0 source audit and therefore retains its explicit analysis and clean-source evidence path parameters."
+  ],
+  "completion_status": "VERIFIED"
+}

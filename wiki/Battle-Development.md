@@ -19,8 +19,9 @@ directory.
 |---|---|---|
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
-| P1 | In progress (13/17) | Foundation, protocol/command envelopes, empty engine, and authority/session lifecycle are verified; suite tooling remains |
-| P2-P18 | Not started | Mechanism trace, data, engine, rules, AI, settlement, replay, and full text interaction |
+| P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
+| P2 | Next | Mechanism IDs/specs, trace, coverage registry, and fixture compiler infrastructure |
+| P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
 Q0 intentionally reports `Catalog: not implemented`, `Engine: not
@@ -218,22 +219,59 @@ item binds the contract to clean lifecycle and request/command source evidence
 without treating the source's frame loop or intrusive pointers as a Godot
 lifecycle oracle.
 
+## P1 Suite Runner And Completion Gate
+
+`res://battle/tests/battle_suite_test.gd` is the SceneTree aggregate entry.
+It accepts `all`, `p1_foundation`, `p1_protocol_command`, and
+`p1_session_lifecycle`, with no argument defaulting to `all`. Each selected
+suite has a fixed expected count: `164`, `151`, or `282`; aggregate success
+requires all `597`. The Session count includes the awaited 12-check real-tree
+release probe in addition to its 270 synchronous vectors.
+
+A single selection loads its vector script directly. Godot 4.7 retains cyclic
+GDScript resources if all three inner-class vector scripts share one process,
+so `all` launches the three fixed headless child selections in order and
+checks each exit code, final marker, and exact count. This keeps test state and
+references isolated and exits without the resource-leak diagnostics produced
+by a multi-preload runner.
+
+`res://battle/tools/test_battle.ps1` provides individual, phase, and default
+`All` selections. It captures `$LASTEXITCODE` immediately after every native
+call and exits with the same nonzero code. `RepositoryValidation` defaults to
+`None`; `Fast` and `Full` forward to the existing root validator, and `Full`
+also forwards the selected Godot executable. The P0 audit receives explicit
+`AnalysisRoot`, `SourceRoot`, and `GodotContractRoot` overrides. The tool never
+modifies the root validator. Default battle checks omit the OpenGL Q0 render
+test and root Full gate; opting into Full may require local Platinum assets.
+
+The 57-check runner contract proves `0/1/2` Godot success/assertion/usage
+semantics, ordered single/aggregate selectors, absence of success markers on
+failure, leak-free exits, single-suite isolation, missing project/Godot
+configuration errors, rejection of a non-Godot executable that returns zero,
+mandatory unique success markers at the Godot aggregate and PowerShell
+layers, fake-child code `37`, root Full code `41`, and exact Full arguments.
+It also performs a fresh headless script scan and all `597` checks in a
+temporary project containing only a minimal `project.godot`, battle scripts,
+and battle tests. No Platinum assets, world scripts, renderer arguments, or
+existing import cache are present. The verified work item binds the test-loop
+shape to clean source evidence without treating that source as the CLI/process
+oracle.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
-items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`,
-and the currently verified P1 slice is `13/17`. Current mainline progress is
-therefore `58/465` items (`12.5%`), with `2/20` phases complete and P1
-active. This count advances only after a checklist item has implementation,
+items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, and
+P1 is `17/17`. Current mainline progress is therefore `62/465` items
+(`13.3%`), with `3/20` phases complete and P2 next. This count advances only
+after a checklist item has implementation,
 focused verification, Wiki/Skill memory, and a focused commit.
 
-The empty-engine and Session slice closes six P1 items: single authority and
-Session ownership, the stable empty engine, Session lifecycle verification,
-stable empty setup/catalog/hash failure behavior, create/progress/reentry/
-release coverage, and the core dependency gate. The remaining four items are
-the aggregate suite runner, one-command invocation, exact failure exit
-propagation, and the final P1 completion gate.
+The final four P1 items are now closed: the aggregate SceneTree runner; the
+PowerShell single/all suite entry with exact child-code propagation; optional
+read-only root `validate_repository.ps1 -Full` forwarding without root edits;
+and headless exit zero without OpenGL or Platinum assets. P2 mechanism/trace
+infrastructure is the next checklist boundary.
 
 ## Editor Entry
 
@@ -284,6 +322,15 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   --headless --path .\new-game-project `
   --script res://battle/tests/application/p1_session_lifecycle_test.gd
 
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --no-header --headless --path .\new-game-project `
+  --script res://battle/tests/battle_suite_test.gd
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\test_battle.ps1 `
+  -GodotPath "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  -Suite P1 -RepositoryValidation Fast
+
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
 
@@ -330,3 +377,9 @@ The P1 Session lifecycle test executes 282 checks across stable empty-engine
 hashes and failures, static result sealing, authority/session reentry guards,
 battle binding, bounded FIFO and request gates, exact terminal publication,
 shutdown cleanup, 100 WeakRef graphs, and real SceneTree release.
+The P1 aggregate requires all 597 focused vectors in three isolated headless
+child suites. Its 57-check tool contract proves selector parsing, clean-cache
+battle-only execution, assertion and usage failures, exact child/root exit
+propagation, and optional root Full arguments. The one-command P1 selection
+also runs the dependency gate; `RepositoryValidation Fast` adds the current
+read-only root gate without requiring Platinum assets.

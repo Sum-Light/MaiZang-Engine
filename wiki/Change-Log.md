@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Complete battle P1 suite entry
+
+- Add a SceneTree aggregate with fixed Foundation, Protocol/Command, and Session selectors, exact `164 + 151 + 282 = 597` counts, isolated headless child processes, and explicit success/assertion/usage exit codes.
+- Add one PowerShell entry for individual, phase, and all battle checks with exact child-code propagation plus opt-in existing root `Fast`/`Full` validation; keep the default path free of OpenGL rendering and Platinum assets.
+- Add 57 runner-contract checks covering clean-cache battle-only execution, malformed CLI input, count drift, leak-free ordered selection, missing/non-Godot tools, missing/duplicate success markers, fake Godot/root failures, and Full argument forwarding; record a verified clean-source work item and mark P1 `17/17` complete with P2 next.
+
 ## 2026-07-14 - Add battle P1 engine and Session lifecycle
 
 - Add a stable empty `BattleEngine` with typed not-configured, unexpected-input, shutdown, and reentry failures plus sealed static step-result validation and canonical golden hashes.

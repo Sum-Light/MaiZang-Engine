@@ -1,5 +1,7 @@
 extends RefCounted
 
+const EXPECTED_CHECKS: int = 164
+
 var _failures: Array[String] = []
 var _checks := 0
 

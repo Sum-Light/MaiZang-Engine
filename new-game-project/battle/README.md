@@ -6,17 +6,18 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0 and P0 are complete. P1 is in progress: its pure foundation and
-protocol/command slices now define nine independent contract versions,
+Q0, P0, and P1 are complete. The pure foundation and protocol/command
+contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
 batches, a stable empty `BattleEngine`, local authority/session lifecycle,
-and a staged dependency gate. The module still does not contain a catalog,
-configured battle state, playable battle, world integration, network stack,
-model, texture, animation, audio, or battle camera.
+an isolated headless suite entry, and a staged dependency gate. The module
+still does not contain a catalog, configured battle state, playable battle,
+world integration, network stack, model, texture, animation, audio, or battle
+camera.
 
-The final P1 slice adds the battle-local suite runner and optional repository
-validation switch. It will not change the editor entry or connect the world.
+P2 is next: it establishes mechanism IDs, specs, trace, and coverage
+infrastructure. It will not change the editor entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -239,3 +240,46 @@ and canonical-copy reentry, both signal listener orders during start, stable
 FIFO injection, request gating, error category/code pairs, terminal exactly
 once behavior, 100 advanced create/progress/close release graphs, and a real
 SceneTree `queue_free()` release path.
+
+## P1 Suite Runner
+
+`tests/battle_suite_test.gd` is the battle-local SceneTree entry. It accepts
+`all`, `p1_foundation`, `p1_protocol_command`, or
+`p1_session_lifecycle`; no argument defaults to `all`. A single suite loads
+its vectors directly. The aggregate runs the fixed three suites in isolated
+headless child processes so GDScript test classes, signals, and references do
+not cross suite boundaries. It requires exact success markers and check counts
+of `164`, `151`, and `282`, for `597` total.
+
+The runner exits `0` on success, `1` on assertion/count/load failure, and `2`
+for invalid runner arguments. `tools/test_battle.ps1` preserves every child
+exit code and supports individual suites, phase groups, or the default `All`
+selection. Its default repository validation is `None`; `Fast` and `Full`
+explicitly call the existing root validator without changing it. `Full` is
+opt-in because the root validator may require local Platinum assets and
+renderer-backed checks.
+
+Run P1 in one command with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\test_battle.ps1 `
+  -GodotPath "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  -Suite P1
+```
+
+Use `-Suite P1Foundation`, `P1Protocol`, or `P1Session` for one Godot suite.
+The default `All` also reruns Q0 and P0 battle checks and therefore retains
+the explicit analysis/clean-source path parameters used by the P0 audit.
+Add `-RepositoryValidation Fast` for the read-only root fast gate, or use
+`Full` only when its local asset prerequisites are available.
+
+The 57 runner-contract checks cover all suite selectors, exact counts,
+success/assertion/usage exit codes, battle-only clean-cache execution without
+Platinum assets, leak-free ordered aggregation, single-suite isolation,
+missing-tool and non-Godot rejection, mandatory success markers, exact Godot
+child-code propagation, duplicate-marker rejection at both aggregate layers,
+and root `Full` argument plus failure-code propagation. `-SourceRoot` is
+forwarded to the P0 source-audit test when an explicit clean-source override
+is needed. The verified work item records the clean source test-loop evidence
+as structural context rather than a Godot CLI oracle.

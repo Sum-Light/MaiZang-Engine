@@ -12,6 +12,11 @@ func _initialize() -> void:
 func _run() -> void:
 	var vectors := PROTOCOL_VECTORS.new()
 	var failures: Array[String] = vectors.run()
+	if vectors.check_count() != PROTOCOL_VECTORS.EXPECTED_CHECKS:
+		failures.append("Protocol vector count stopped at %d; expected %d." % [
+			vectors.check_count(),
+			PROTOCOL_VECTORS.EXPECTED_CHECKS,
+		])
 	if not failures.is_empty():
 		for failure in failures:
 			push_error(failure)

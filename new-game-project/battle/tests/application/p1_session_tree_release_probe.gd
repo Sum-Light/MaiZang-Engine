@@ -1,17 +1,14 @@
 extends RefCounted
 
-const SESSION_VECTORS = preload(
-	"res://battle/tests/application/p1_session_lifecycle_vectors.gd"
-)
 const EXPECTED_CHECKS: int = 12
 
 var _failures: Array[String] = []
 var _checks := 0
 
 
-func run(tree: SceneTree) -> Array[String]:
+func run(tree: SceneTree, session_vectors: Script) -> Array[String]:
 	var battle_id := &"battle-tree-release"
-	var engine := SESSION_VECTORS.SyntheticEngine.new(battle_id)
+	var engine = session_vectors.SyntheticEngine.new(battle_id)
 	var authority := LocalBattleAuthority.create(battle_id, engine)
 	var session := BattleSession.new()
 	tree.root.add_child(session)

@@ -21,7 +21,7 @@ func _run() -> void:
 			SESSION_VECTORS.EXPECTED_CHECKS,
 		])
 	var tree_probe := TREE_RELEASE_PROBE.new()
-	var tree_failures: Array[String] = await tree_probe.run(self)
+	var tree_failures: Array[String] = await tree_probe.run(self, SESSION_VECTORS)
 	failures.append_array(tree_failures)
 	if tree_probe.check_count() != TREE_RELEASE_PROBE.EXPECTED_CHECKS:
 		failures.append("Tree release vector count stopped at %d; expected %d." % [
