@@ -6,16 +6,15 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0 provides only an editor quick-start surface and a synthetic text smoke
-shell. P0 is complete: the target data generation, ruleset/mode/action
-scope, source-use classes, network deferrals, text-only policy, strict manifest
-schemas, production license gate, and complete initial source-audit baseline
-are frozen and tested. The module still does not contain a catalog,
+Q0 and P0 are complete. P1 is in progress: its pure foundation slice now
+defines nine independent contract versions, stable IDs and diagnostics,
+typed results, checked integer/fixed-ratio math, canonical bytes, SHA-256,
+and a staged dependency gate. The module still does not contain a catalog,
 `BattleEngine`, playable battle, world integration, network stack, model,
 texture, animation, audio, or battle camera.
 
-P1 is the next phase. It will add the battle-local test entry and foundation
-DTO/contracts without changing the editor entry or connecting the world.
+The next P1 slice adds protocol and command DTOs. It will not change the
+editor entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -130,3 +129,37 @@ validation reads only
 `local_data/source/licensed_source_manifest.json`; it returns
 `BATTLE_P0_LICENSED_SOURCE_REQUIRED` when the ignored local manifest is
 missing, empty, a public template, or not explicitly production-authorized.
+
+## P1 Foundation
+
+`scripts/foundation/` contains one public `class_name` per file. Stable IDs
+reserve zero and use the reviewed positive signed-32 range. Errors carry a
+stable category/code plus mechanism, stage, source, target, and detail
+diagnostics. Result objects always distinguish success from failure and never
+use a false, zero, or empty payload as the error channel.
+
+`BattleIntMath` checks signed-64 add, subtract, and multiply before mutation,
+centralizes the six documented rounding modes, and rejects invalid
+denominators or clamp ranges. `FixedRatio` reduces equivalent values and
+canonicalizes zero to `0/1`. `CanonicalWriter` emits fixed big-endian
+integers and bounded length-prefixed bytes, UTF-8 strings, and typed arrays.
+Its first failure is sticky and `finish()` never exposes partial bytes.
+`BattleHash` accepts only canonical bytes and produces a 32-byte SHA-256
+digest.
+
+`tools/check_battle_dependencies.ps1` reads either worktree files or staged
+Git blobs. It enforces the documented layer direction and rejects Node,
+SceneTree, UI, network, runtime resource loading, filesystem I/O, and
+singleton lookup from the core directories. The battle scope gate invokes it
+for every commit.
+
+Run the focused foundation checks with:
+
+```powershell
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" --headless `
+  --path .\new-game-project `
+  --script res://battle/tests/foundation/p1_foundation_test.gd
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
+```

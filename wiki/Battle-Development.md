@@ -19,7 +19,7 @@ directory.
 |---|---|---|
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
-| P1 | Next | Battle-local test entry, foundation values, errors, versions, authority port, and protocol DTO contracts |
+| P1 | In progress (7/17) | Foundation values, checked math, canonical hash, typed errors/results, and dependency gate complete; protocol/session slices next |
 | P2-P18 | Not started | Mechanism trace, data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -103,6 +103,62 @@ or to the public licensed-source template: only the ignored
 returns `BATTLE_P0_LICENSED_SOURCE_REQUIRED`. No production source currently
 exists locally, so production catalog work remains correctly blocked for P4.
 
+## P1 Foundation Contracts
+
+The first P1 slice adds twelve public foundation types, each in its own
+`class_name` file. `BattleContractVersions` freezes independent schema,
+catalog, profile, handler, feature, snapshot, command, save, and fixture
+versions at `1`. `BattleStableId` reserves `0` and accepts the explicit
+positive signed-32 range; P2 remains responsible for domain manifests,
+append-only IDs, and tombstones.
+
+`BattleError` carries a stable category and string code plus mechanism,
+stage, source, target, and detail diagnostics. Dedicated operation, integer,
+byte, string, and fixed-ratio results keep the success bit, payload, and error
+separate. A failed result cannot be confused with a valid false, zero, empty
+string, or empty byte sequence.
+
+`BattleIntMath` performs signed-64 overflow checks before add, subtract, or
+multiply and owns all six specified rounding modes. Division requires a
+positive denominator. `FixedRatio` rejects invalid denominators, reduces by
+GCD, and canonicalizes every zero ratio to `0/1`. The synthetic vector suite
+covers positive and negative ties, exact and non-exact division, signed
+limits, overflow, reversed clamps, and ratio normalization.
+
+`CanonicalWriter` uses fixed big-endian signed-64 integers, unsigned-32
+length prefixes, UTF-8 strings, ordered typed arrays, and a one-mebibyte
+sequence bound. It validates a whole field before appending, retains its first
+error, seals once, and only returns bytes from a successful `finish()`.
+`BattleHash` is limited to SHA-256 over those canonical bytes. Golden byte
+vectors, standard empty/`abc` SHA-256 answers, repeat encoding, oversize
+failure, result immutability, and sealed-writer behavior are covered by 164
+Godot assertions.
+
+The work item references clean source evidence for explicit IDs, fixed-point
+helpers, typed result grouping, ordered binary writes, and schema field
+typing. Those sources are not treated as behavioral oracles: their fixed
+math uses float or unchecked multiplication with inconsistent tie behavior,
+and their writer is unbounded native `memcpy` without a canonical byte
+order. No source payload or licensed value is committed.
+
+`check_battle_dependencies.ps1` validates either worktree scripts or exact
+staged Git blobs. It maps public classes to layers, rejects outward
+dependencies, and rejects Node/SceneTree, UI, networking, runtime `load()`,
+filesystem I/O, and singleton discovery in foundation, catalog, domain,
+engine, rules, and effects. The scope gate calls this check after its content
+asset gate; synthetic tests prove valid inward dependencies and rejection of
+Node, runtime load, outward foundation references, and unknown layers.
+
+## Quantified Progress
+
+The local implementation mainline contains `465` checklist items across Q0
+and P0-P18. The separately deferred N0 network phase and nine shared preamble
+items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`,
+and the currently verified P1 slice is `7/17`. Current mainline progress is
+therefore `52/465` items (`11.2%`), with `2/20` phases complete and P1
+active. This count advances only after a checklist item has implementation,
+focused verification, Wiki/Skill memory, and a focused commit.
+
 ## Editor Entry
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select
@@ -140,6 +196,13 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\catalog\p0_asset_boundary_test.ps1
 
+& "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --headless --path .\new-game-project `
+  --script res://battle/tests/foundation/p1_foundation_test.gd
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
+
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_catalog\importers\build_p0_source_audit.ps1
 
@@ -170,3 +233,8 @@ proves an altered input-index hash fails closed.
 The asset-boundary test scans tracked/worktree content, verifies all four
 ignore roots, exercises disguised data and production-manifest rejection, and
 proves Synthetic succeeds while missing/template Production fails.
+The P1 foundation vector test executes 164 checks across version, ID, error,
+result immutability, int64, rounding, ratio, canonical byte, writer failure,
+and SHA-256 contracts. The dependency test runs the real worktree scan plus
+adversarial worktree/staged fixtures; the existing scope test proves All mode
+cannot hide a forbidden staged blob behind a clean worktree copy.

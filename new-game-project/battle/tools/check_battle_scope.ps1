@@ -256,6 +256,23 @@ if ($LASTEXITCODE -ne 0) {
     throw "Battle asset gate failed with exit code $LASTEXITCODE."
 }
 
+$dependencyGatePath = Join-Path $PSScriptRoot "check_battle_dependencies.ps1"
+if (-not (Test-Path -LiteralPath $dependencyGatePath -PathType Leaf)) {
+    throw "Battle dependency gate was not found: $dependencyGatePath"
+}
+if ($Mode -in @("Staged", "All")) {
+    & $dependencyGatePath -ProjectRoot $ProjectRoot -Mode Staged
+    if ($LASTEXITCODE -ne 0) {
+        throw "Staged battle dependency gate failed with exit code $LASTEXITCODE."
+    }
+}
+if ($Mode -in @("Worktree", "All")) {
+    & $dependencyGatePath -ProjectRoot $ProjectRoot -Mode Worktree
+    if ($LASTEXITCODE -ne 0) {
+        throw "Worktree battle dependency gate failed with exit code $LASTEXITCODE."
+    }
+}
+
 if ($RunRepositoryValidator) {
     $validatorPath = Join-Path $ProjectRoot "tools\validate_repository.ps1"
     if (-not (Test-Path -LiteralPath $validatorPath -PathType Leaf)) {

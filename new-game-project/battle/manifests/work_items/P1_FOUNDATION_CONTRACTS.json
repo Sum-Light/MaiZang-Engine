@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P1.FOUNDATION_CONTRACTS",
+  "godot_contract_refs": [
+    {
+      "document": "02-project-layout-and-dependencies.md",
+      "section": "Layering, allowed dependencies, and headless dependency scan",
+      "sha256": "45365ed46e8d88be46a50b565e348911baaa0f7ec3cfd81b6f850a6b8ed92117"
+    },
+    {
+      "document": "07-client-server-and-replay.md",
+      "section": "Explicit versioned codec and SHA-256 over canonical bytes",
+      "sha256": "fd7bd80e0e42f289dfc1ee1c6e37b42436ebf06592119077c7fc22dd2b22808d"
+    },
+    {
+      "document": "13-api-contracts.md",
+      "section": "Typed deterministic RefCounted API and error results",
+      "sha256": "b79175e253be47f6fb8e0161ab0c7dd8fd66954603628bb0b2c3ca8648f3867c"
+    },
+    {
+      "document": "15-core-mechanics-and-numeric-contract.md",
+      "section": "Checked integer math, FixedRatio, and common rounding modes",
+      "sha256": "fcafa4af06f958279cfc9c4878eb3fc14b60a1d8cac1228cffe476bbf585105d"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P1: project skeleton, test entry, and foundation contracts",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/poke_id/btl_PokeID.h",
+      "symbol": "PokeID::Value and PokeID::INVALID",
+      "sha256": "d0b8d39a186f066252c298d1f2bc1ce3e48a2261ba0f8405178ee22bd82de04a"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/btl_fx32.h",
+      "symbol": "fx32, FX_Mul, and FX_Div",
+      "sha256": "e488d9c85c10ef965efec851261b5e8ceec90404045458af1e6dbd0f6b168e88"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/serialize/btl_binary_writer.h",
+      "symbol": "BinaryWriter::Write",
+      "sha256": "f816ca5effe09c638c22a82ba96229df64cf7510ed3fa2ceb4c948300f471538"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/system/btl_ServerRequestResult.h",
+      "symbol": "ServerRequestResult",
+      "sha256": "e8cc509bf37fa233457fc5849f77862d1efc3d4fc2d38b550ee74b0d12652b48"
+    },
+    {
+      "source_kind": "SOURCE_SCHEMA",
+      "source_repository": "battlelogic",
+      "relative_path": "resource/fbs/battle_setting.fbs",
+      "symbol": "IntValue and BattleSetting",
+      "sha256": "5ef12761a8d8c4e7a28b37abc9bd2c786fff9f426f3046e8a41752b9e5de508e"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_unit_test/test_modules/parser.h",
+      "symbol": "Parser::Result and Parser::Parse",
+      "sha256": "72f8f5557ccf85f124e3f67b423c8370e10035d78e204085a16d46f546650e98"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [
+    "BattleBytesResult",
+    "BattleContractVersions",
+    "BattleError",
+    "BattleHash",
+    "BattleIntMath",
+    "BattleIntResult",
+    "BattleOperationResult",
+    "BattleStableId",
+    "BattleStringResult",
+    "CanonicalWriter",
+    "FixedRatio",
+    "FixedRatioResult"
+  ],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The source fixed-point helpers use floating-point division or unchecked multiplication and disagree on exact-half rounding, so they are structural evidence rather than a behavioral oracle.",
+    "The source binary writer uses native raw memory without byte order, bounds, schema version, or typed failure; the Godot canonical format is defined solely by the reviewed contract.",
+    "No sealed source test directly covers the indexed fixed-math, binary-writer, action-sequence, or canonical-hash symbols; P1 therefore uses wholly synthetic vectors and standard SHA-256 known answers.",
+    "The clean source entity ID reserves zero as invalid; P1 adopts that sentinel while deferring append-only per-domain ID manifests to P2."
+  ],
+  "completion_status": "VERIFIED"
+}

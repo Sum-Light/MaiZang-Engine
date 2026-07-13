@@ -22,7 +22,10 @@ function Write-TestFile {
 }
 
 function New-TestRepository {
-    param([string]$Name)
+    param(
+        [string]$Name,
+        [switch]$WithoutBattleFixture
+    )
 
     $repository = Join-Path $tempRoot $Name
     New-Item -ItemType Directory -Path $repository -Force | Out-Null
@@ -33,6 +36,12 @@ function New-TestRepository {
     & git -C $repository config user.name "Battle Scope Test"
     & git -C $repository config user.email "battle-scope@example.invalid"
     & git -C $repository config core.autocrlf false
+    if (-not $WithoutBattleFixture) {
+        Write-TestFile $repository "new-game-project/battle/scripts/foundation/scope_fixture.gd" @'
+class_name ScopeFixture
+extends RefCounted
+'@
+    }
     return $repository
 }
 
@@ -66,6 +75,23 @@ try {
     & git -C $allowed add --all
     if ((Invoke-Checker $allowed "Staged") -ne 0) {
         throw "Scope checker rejected an allowed staged battle change."
+    }
+
+    $splitIndex = New-TestRepository "split-index-dependency"
+    & git -C $splitIndex add --all
+    & git -C $splitIndex commit --quiet -m "Add valid dependency baseline"
+    $splitScript = "new-game-project/battle/scripts/foundation/scope_fixture.gd"
+    Write-TestFile $splitIndex $splitScript @'
+class_name ScopeFixture
+extends Node
+'@
+    & git -C $splitIndex add --all
+    Write-TestFile $splitIndex $splitScript @'
+class_name ScopeFixture
+extends RefCounted
+'@
+    if ((Invoke-Checker $splitIndex "All") -eq 0) {
+        throw "Scope checker All mode ignored a forbidden staged dependency blob."
     }
 
     $runtime = New-TestRepository "runtime-outside"
@@ -153,7 +179,7 @@ try {
         throw "Scope checker normalized a leading-space path into the battle root."
     }
 
-    $uppercase = New-TestRepository "uppercase-prefix"
+    $uppercase = New-TestRepository "uppercase-prefix" -WithoutBattleFixture
     Write-TestFile $uppercase "NEW-GAME-PROJECT/BATTLE/outside.gd"
     & git -C $uppercase add --all
     if ((Invoke-Checker $uppercase "Staged") -eq 0) {

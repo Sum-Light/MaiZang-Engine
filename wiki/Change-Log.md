@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Establish battle P1 foundation contracts
+
+- Add twelve isolated foundation types covering nine independent contract versions, stable IDs, diagnostic errors, and explicit operation/value results.
+- Add checked signed-64 arithmetic, six centralized rounding modes, canonical fixed ratios, deterministic big-endian bytes, sticky atomic writer failure, and SHA-256 known-answer coverage.
+- Add worktree/staged layer scanning to the battle commit gate, focused adversarial and 164-vector tests, and a quantified P1/mainline progress baseline without coupling the world runtime.
+
 ## 2026-07-14 - Complete battle P0 asset and generation gates
 
 - Add a staged/index content gate that permits only reviewed battle source/contract paths and rejects local/generated data, production manifests, disguised catalogs, raw text/data/binaries, media, archives, absolute paths, and oversized JSON.
