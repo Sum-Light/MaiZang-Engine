@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | In progress (6/16) | ID/presentation and strict authoring contracts plus deterministic cross-reference compiler/runtime catalog; trace, coverage, and fixtures remain |
+| P2 | In progress (6/16) | ID/presentation, strict authoring, deterministic spec compiler, and a non-executable fixture-requirement preflight; production setup compilation, trace, coverage, and fixtures remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -435,6 +435,43 @@ public actions, no-write operation, byte-identical double output, stable
 locked verification, tamper/oversize detection, immutable publication, output
 boundaries, ignored-path enforcement, and all major reference failures.
 
+## P2 Fixture Requirement Preflight
+
+P2 Todo 6 remains open because its two setup paths require production types
+that the ordered roadmap assigns to P7. `CANONICAL_SETUP` must decode the exact
+production `BattleSetup` and pass `BattleSetupValidator`; `LAUNCH_REQUEST` must
+use the exact production `BattleLaunchRequest`, `BattleSetupBuilder`, synthetic
+source ports, and the same validator. This slice therefore does not introduce
+a fixture-only setup DTO, default expansion, setup digest, executable
+`BattleFixture`, runner, or coverage observation.
+
+The battle-local P2D preflight instead derives a closed fixture-requirement
+manifest from already validated `SCENARIO TestManifestEntry` records. It
+requires `fixture_id == test_id`, copies only coverage targets, expected
+event/handler/state-op/command IDs, and required oracle kinds, and sorts rows
+by numeric fixture ID. Before projection it independently canonicalizes and
+re-hashes the compiled spec manifest and input set, revalidates each test
+authoring record, and joins the same authoring hash through the input index and
+compiled test index. A caller cannot bind substituted test declarations to an
+unrelated spec hash.
+
+The requirement artifact is separate from the runtime catalog. Its source spec
+compiler version, preflight version, spec hash, and stable-ID hash are explicit;
+it contains no paths, fixture payload, setup data, execution status, or
+coverage result. The current empty manifest hash is
+`ab8ecfeb6a3c5ba0b1a7147ee06082b6cb174d6c9e95c917f034a74d1c836b59`.
+Any path below `res://battle/fixtures/synthetic/scenarios/` fails in Repository,
+Worktree, and Staged views with `P2D_SETUP_COMPILER_UNAVAILABLE_P7` and produces
+no artifact. The scope gate now runs this preflight after the spec compiler.
+
+The 118-check focused suite covers the recursively closed output schema,
+byte-identical empty and synthetic projections, numeric fixture ordering,
+non-scenario exclusion, exact field projections, canonical spec/input/test
+hash binding, post-compilation forgery and noncanonical JSON rejection, and
+read-only fixture-path rejection in all three Git views. The clean source
+script container, parser, and tester are structural evidence only; their text
+syntax, payloads, identifiers, values, and permissive parsing are not copied.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
@@ -449,8 +486,9 @@ P2 Todo1-5 and deterministic completion gate G01 are now closed: append-only/
 tombstone-safe mechanism and runtime ID domains, the presentation cue/payload/
 tag manifest, five strict authoring schemas, validator-owned maturity, the
 deterministic spec compiler, and byte-identical spec/runtime manifest output.
-Todo6 remains next: the fixture compiler and trace probe, still without
-coupling the battle module to the MaiZang world runtime.
+Todo6 remains next and now has a deterministic requirement preflight, but its
+setup-bearing fixture compiler cannot close until the ordered P7 production
+setup contracts exist. No world-runtime coupling has been introduced.
 
 ## Editor Entry
 
@@ -526,7 +564,14 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_spec_compiler_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_fixture_preflight_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_specs.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_fixture_requirements.ps1 `
   -Mode Repository
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
@@ -594,3 +639,7 @@ projection, canonical double output, deterministic errors, global/scoped/test
 and phase-event references, maturity thresholds, closed no-write/write/verify
 actions, stable locked pairs, immutable ignored output, tamper/oversize
 detection, and pair preflight.
+The P2 fixture-preflight suite executes 118 checks across the closed requirement
+schema, canonical source/input/test hash binding, deterministic SCENARIO-only
+projection, forged-compilation rejection, no-write CLI behavior, and explicit
+Repository/Worktree/Staged refusal of setup-bearing fixture files before P7.

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/compiled_fixture_requirement_manifest.schema.json",
+  "title": "CompiledFixtureRequirementManifest",
+  "$comment": "Generated P2D preflight output only. The compiler emits fixture_requirements in ascending fixture_id order and executable validation enforces fixture_id == test_id. Draft 2020-12 cannot express either cross-item ordering or equality between two instance properties without a nonstandard extension.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "schema_version",
+    "preflight_contract_version",
+    "source_spec_compiler_contract_version",
+    "setup_compiler_status",
+    "spec_manifest_sha256",
+    "stable_id_manifest_sha256",
+    "fixture_requirements"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "COMPILED_FIXTURE_REQUIREMENT_MANIFEST"},
+    "schema_version": {"const": 1},
+    "preflight_contract_version": {"const": 1},
+    "source_spec_compiler_contract_version": {"const": 1},
+    "setup_compiler_status": {"const": "UNAVAILABLE_P7"},
+    "spec_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "stable_id_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "fixture_requirements": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/fixture_requirement"}
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "stable_id_set": {
+      "type": "array",
+      "maxItems": 512,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "oracle_kind": {
+      "enum": [
+        "FORMULA",
+        "RESOLVER_PHASE",
+        "EVENT_HANDLER",
+        "RNG",
+        "STATE_MUTATION",
+        "COMMAND_PRESENTATION",
+        "AUDIENCE",
+        "GAMEPLAY_INTERRUPTION",
+        "SETTLEMENT_DECISION",
+        "SCENARIO",
+        "REPLAY",
+        "PERFORMANCE"
+      ]
+    },
+    "coverage_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism_id", "branch_id"],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "branch_id": {"$ref": "#/$defs/stable_id"}
+      }
+    },
+    "fixture_requirement": {
+      "$comment": "The P2D compiler enforces fixture_id == test_id before this projection is emitted.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture_id",
+        "test_id",
+        "coverage_targets",
+        "expected_event_ids",
+        "expected_handler_ids",
+        "expected_state_op_ids",
+        "expected_command_ids",
+        "required_oracle_kinds"
+      ],
+      "properties": {
+        "fixture_id": {"$ref": "#/$defs/stable_id"},
+        "test_id": {"$ref": "#/$defs/stable_id"},
+        "coverage_targets": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/coverage_target"}
+        },
+        "expected_event_ids": {"$ref": "#/$defs/stable_id_set"},
+        "expected_handler_ids": {"$ref": "#/$defs/stable_id_set"},
+        "expected_state_op_ids": {"$ref": "#/$defs/stable_id_set"},
+        "expected_command_ids": {"$ref": "#/$defs/stable_id_set"},
+        "required_oracle_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "contains": {"const": "SCENARIO"},
+          "items": {"$ref": "#/$defs/oracle_kind"}
+        }
+      }
+    }
+  }
+}

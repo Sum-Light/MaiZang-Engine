@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P2.FIXTURE_REQUIREMENT_PREFLIGHT",
+  "godot_contract_refs": [
+    {
+      "document": "16-setup-rules-outcome-and-persistence.md",
+      "section": "Production BattleSetup, BattleLaunchRequest, BattleSetupBuilder, and BattleSetupValidator ownership",
+      "sha256": "8fc052fe13b27d898f859cb96daaa62e0c12101ee0db9df460c13b703c4e71ac"
+    },
+    {
+      "document": "19-test-fixture-dsl-and-coverage.md",
+      "section": "Fixture identity, setup-source compilation boundary, and deterministic coverage declarations",
+      "sha256": "93181b20dc9878e2b68a6cb4679157311cddafb8a0bac385d147e2e1519c3e93"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P2 fixture schema/compiler ordering and P7 production setup ownership",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_unit_test/test_modules/script.h",
+      "symbol": "script_test::Script",
+      "sha256": "76945fd14a283c7522e2e1063d03f30a940f8fbdd3fdd387b08dfb677f177624"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/test_modules/parser.cpp",
+      "symbol": "script_test::Parser::Parse, ParseSetupBlock, CheckSetupBlock, ParseExecutionBlock, and AddAssertion",
+      "sha256": "8638979f7c26af748380cfd10f7c3a261c3cdb212bf394f569bf2af044da437f"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/test_modules/tester.cpp",
+      "symbol": "script_test::Tester::InitializeOneGame, FinalizeOneGame, Check, and OutputResult",
+      "sha256": "af0e1959ce11e47dfdf8bba65be4e82633051d368593d91274c89a3d7597e922"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean script container, parser, and tester are structural evidence for data-driven setup, inputs, checkpoints, validation, repetition, and result aggregation only; their proprietary text syntax, values, identifiers, fixtures, and permissive parsing behavior are not copied or treated as Godot contract truth.",
+    "P2 Todo 6 remains open: chapter 19 requires CANONICAL_SETUP to use the production BattleSetupValidator and LAUNCH_REQUEST to use the production BattleSetupBuilder plus the same validator, while chapter 22 assigns those production contracts to P7.",
+    "This work item emits only a deterministic requirement manifest derived from already validated SCENARIO TestManifestEntry records; it does not define or accept setup_source, publish an executable BattleFixture, create a fixture-only setup DTO, or calculate an expected setup digest.",
+    "Any synthetic scenario fixture file fails with P2D_SETUP_COMPILER_UNAVAILABLE_P7 until P7 supplies the exact production setup schemas, builder, validator, catalog/profile/hash checks, default expansion, and source ports.",
+    "Declared requirements never count as executed, observed, passed, or coverage-promoting evidence, and the requirement manifest is not added to the runtime rule catalog or its hash.",
+    "The tracked mechanism, event, handler, resolver, test, and scenario fixture sets remain empty, so no source payload, proprietary value, or generated fixture artifact enters Git."
+  ],
+  "completion_status": "VERIFIED"
+}

@@ -295,6 +295,8 @@ $p2SpecGatePath = Join-Path $PSScriptRoot `
     "battle_specs\validators\validate_p2_spec_contracts.ps1"
 $p2CompilerGatePath = Join-Path $PSScriptRoot `
     "battle_specs\compilers\compile_p2_specs.ps1"
+$p2FixturePreflightGatePath = Join-Path $PSScriptRoot `
+    "battle_specs\compilers\compile_p2_fixture_requirements.ps1"
 foreach ($contractMode in @("Staged", "Worktree")) {
     if ($contractMode -eq "Staged" -and $Mode -notin @("Staged", "All")) {
         continue
@@ -317,6 +319,13 @@ foreach ($contractMode in @("Staged", "Worktree")) {
         throw "P2 spec compiler gate was not found: $p2CompilerGatePath"
     }
     & $p2CompilerGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
+    if (-not (Test-Path -LiteralPath $p2FixturePreflightGatePath -PathType Leaf)) {
+        throw (
+            "P2 fixture requirement preflight gate was not found: " +
+            $p2FixturePreflightGatePath
+        )
+    }
+    & $p2FixturePreflightGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
 }
 
 $dependencyGatePath = Join-Path $PSScriptRoot "check_battle_dependencies.ps1"

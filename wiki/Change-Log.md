@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Guard battle fixture compilation prerequisites
+
+- Add a deterministic, non-executable P2 fixture-requirement preflight that derives SCENARIO identity, coverage targets, expected IDs, and oracle kinds from the validated spec compilation without changing the runtime catalog.
+- Re-hash and close the compiled spec, authoring input set, and test-record joins; reject substituted declarations, noncanonical manifests, and every pre-P7 scenario fixture path with `P2D_SETUP_COMPILER_UNAVAILABLE_P7` and no output.
+- Add a closed requirement-manifest schema, verified clean source/test evidence, staged review and scope-gate integration, and 118 focused checks while keeping P2 at `6/16` and Todo 6 explicitly open until P7 owns the production setup builder and validator.
+
 ## 2026-07-14 - Compile deterministic battle P2 specs
 
 - Add bounded immutable Repository/Worktree/Staged views and a deterministic compiler that closes global/scoped IDs, cues, five authoring sets, bidirectional handler/resolver/event and formula-rounding links, RNG draws, resolver graphs, maturity-gated test requirements, and phase-owned emissions with stably ordered diagnostics.

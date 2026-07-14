@@ -16,11 +16,13 @@ still does not contain a catalog, configured battle state, playable battle,
 world integration, network stack, model, texture, animation, audio, or battle
 camera.
 
-The first three P2 slices establish append-only stable-ID/presentation
+The completed P2 slices establish append-only stable-ID/presentation
 contracts, five strict spec schemas with validator-owned maturity, and the
-deterministic cross-file compiler. The authoring sets remain empty; fixture
-compilation, runtime trace, and coverage reports remain later P2 work. P2 does
-not change the editor entry or connect the world.
+deterministic cross-file compiler. A non-executable fixture-requirement
+preflight now protects the next checklist item without claiming it complete.
+The authoring sets remain empty; setup-bearing fixture compilation, runtime
+trace, and coverage reports remain later work. P2 does not change the editor
+entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -376,6 +378,22 @@ compiles to spec hash
 and runtime hash
 `5d3971516b957d9f58986eba6d5b8e741dc8da8b609c234ffb8b7222e00b9d39`.
 
+The separate P2D fixture-requirement preflight derives only `SCENARIO` test
+identity, coverage targets, expected IDs, and required oracle kinds from the
+already validated spec compilation. It re-hashes the canonical spec manifest,
+authoring input set, and every test record before binding them, sorts
+requirements by numeric `fixture_id`, and emits a closed manifest that never
+enters the runtime catalog. The current empty requirement manifest hash is
+`ab8ecfeb6a3c5ba0b1a7147ee06082b6cb174d6c9e95c917f034a74d1c836b59`.
+
+P2 Todo 6 remains open. The fixture contract requires `CANONICAL_SETUP` to use
+the production `BattleSetupValidator` and `LAUNCH_REQUEST` to use the
+production `BattleSetupBuilder` plus that same validator; P7 owns those types.
+Until then, any file below `fixtures/synthetic/scenarios/` fails with
+`P2D_SETUP_COMPILER_UNAVAILABLE_P7`. This preflight does not accept a fixture
+payload, create a setup DTO or digest, run a battle, or mark coverage as
+observed or passed.
+
 Run the focused checks with:
 
 ```powershell
@@ -392,6 +410,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_spec_compiler_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_fixture_preflight_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_id_manifests.ps1 `
   -Mode Repository
 
@@ -401,5 +422,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_specs.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_fixture_requirements.ps1 `
   -Mode Repository
 ```
