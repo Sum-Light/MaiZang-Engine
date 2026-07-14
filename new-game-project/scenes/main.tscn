@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/debug_destination_panel.gd" id="4_debug_panel"]
 [ext_resource type="Script" uid="uid://dvdcmexo1lt38" path="res://scripts/platinum_map_animation_controller.gd" id="5_map_animation"]
 [ext_resource type="Script" uid="uid://drv7tbwdoc0uv" path="res://scripts/platinum_warp_controller.gd" id="6_warp"]
+[ext_resource type="Script" uid="uid://dlj4ghsbl30f0" path="res://scripts/platinum_field_texture_animation_controller.gd" id="7_field_texture_animation"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 1
@@ -140,10 +141,14 @@ target_path = NodePath("../Player")
 [node name="MapAnimationController" type="Node" parent="."]
 script = ExtResource("5_map_animation")
 
+[node name="FieldTextureAnimationController" type="Node" parent="."]
+script = ExtResource("7_field_texture_animation")
+
 [node name="WorldStreamer" type="Node3D" parent="." unique_id=1398028523]
 script = ExtResource("1_streamer")
 focus_path = NodePath("../Player")
 map_animation_controller_path = NodePath("../MapAnimationController")
+field_texture_animation_controller_path = NodePath("../FieldTextureAnimationController")
 
 [node name="LoadedChunks" type="Node3D" parent="WorldStreamer" unique_id=1845466634]
 

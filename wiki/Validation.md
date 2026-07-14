@@ -239,6 +239,45 @@ The fast validation also guards the destructive sync ordering: an explicitly
 requested cross-volume hard-link transfer must fail before an existing Godot
 destination can be removed.
 
+The field-texture support tests cover all 52 `fldtanime` records, 30 Hz
+`delay + 1` timing, TEX0 texture formats and palette selection, content-pooled
+frame output, the cross-format `sea` target-prefix transfer, exact stage reuse,
+and fail-closed ambiguous palette variants. Transaction tests inject builder,
+catalog publication, backup-cleanup, import, sidecar, and missing-cache failures
+and require an atomic pair plus a resumable import boundary.
+Complete catalog validation checks every pooled frame's path, length, SHA-256,
+and generated/Godot byte identity. For a field-texture-only change, use the
+focused path without rescanning unrelated destination GLBs, collision, or
+materials:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\validate_dspre_matrix_catalog.ps1 `
+  -ProjectRoot . `
+  -FieldTextureAnimationsOnly
+```
+
+## Field Texture Animation Test
+
+```powershell
+& "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  --path .\new-game-project `
+  --audio-driver Dummy `
+  --rendering-method gl_compatibility `
+  --rendering-driver opengl3 `
+  --script res://tests/field_texture_animation_streaming_test.gd
+```
+
+The synthetic controller test proves lazy non-subthreaded loading, shared
+runtime material copies, original first-hold timing, weak ownership, and
+nonblocking pending-request handoff across controller replacement. The real
+renderer test loads matrix `0000` cell `(3,27)` for the `lakep.1` water
+timeline, cell `(27,5)` for the cross-format `sea` prefix transfer, and cell
+`(6,20)` for `rhana`, then requires the
+bound surface texture and controller switch count to advance with zero asset
+failures. It also proves the catalog's `nhana` image hash remains unbound
+because that texture is static in the original table.
+
 ## Streaming Smoke Test
 
 Use a real OpenGL renderer so renderer cleanup is exercised:

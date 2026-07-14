@@ -2,7 +2,8 @@
 param(
     [string]$ProjectRoot = "",
     [string]$ResolutionPath = "",
-    [switch]$RequireComplete
+    [switch]$RequireComplete,
+    [switch]$FieldTextureAnimationsOnly
 )
 
 Set-StrictMode -Version Latest
@@ -99,6 +100,114 @@ function Assert-FilesByteIdentical {
         if ($expectedBytes[$index] -ne $actualBytes[$index]) {
             throw "$Label files are not byte-identical."
         }
+    }
+}
+
+function Assert-FieldTextureAnimationCatalog {
+    param($Catalog, [string]$GeneratedRoot, [string]$GodotAssetRoot)
+
+    if ($null -eq $Catalog.PSObject.Properties["field_texture_animations"]) {
+        throw "Matrix catalog has no field texture animation section."
+    }
+    $section = $Catalog.field_texture_animations
+    $bindings = @($section.bindings)
+    $deferred = @($section.deferred)
+    $animations = @($section.animations)
+    if (
+        [int]$section.schema_version -ne 1 -or
+        [int]$section.source_fps -ne 30 -or
+        $animations.Count -ne 52 -or
+        $bindings.Count -lt 1 -or
+        [int]$section.summary.source_animations -ne $animations.Count -or
+        [int]$section.summary.ready_bindings -ne $bindings.Count -or
+        [int]$section.summary.deferred_variants -ne $deferred.Count
+    ) {
+        throw "Field texture animation catalog has inconsistent schema or counts."
+    }
+    $bindingIds = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+    $baseTextureHashes = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+    $frameMetadata = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
+    foreach ($binding in $bindings) {
+        $bindingId = [string]$binding.binding_id
+        $baseTextureHash = [string]$binding.base_texture_sha256
+        $frames = @($binding.frames)
+        if (
+            [string]::IsNullOrWhiteSpace($bindingId) -or
+            -not $bindingIds.Add($bindingId) -or
+            $baseTextureHash -notmatch '^[0-9a-f]{64}$' -or
+            -not $baseTextureHashes.Add($baseTextureHash) -or
+            [int]$binding.source_fps -ne 30 -or
+            -not [bool]$binding.initial_base_texture -or
+            $frames.Count -lt 1
+        ) {
+            throw "Field texture animation binding is invalid or duplicated: $bindingId"
+        }
+        $cycleTicks = 0
+        for ($sequenceIndex = 0; $sequenceIndex -lt $frames.Count; $sequenceIndex++) {
+            $frame = $frames[$sequenceIndex]
+            $relativePath = ([string]$frame.path).Replace('\', '/')
+            if (
+                [int]$frame.sequence_index -ne $sequenceIndex -or
+                [int]$frame.hold_ticks -lt 1 -or
+                $relativePath -notmatch '^field_texture_animations/frames/[0-9a-f]{64}\.png$' -or
+                [long]$frame.byte_length -lt 1 -or
+                [string]$frame.sha256 -notmatch '^[0-9a-f]{64}$'
+            ) {
+                throw "Field texture animation binding $bindingId has an invalid frame."
+            }
+            $cycleTicks += [int]$frame.hold_ticks
+            $fingerprint = "{0}:{1}" -f [long]$frame.byte_length, [string]$frame.sha256
+            if ($frameMetadata.ContainsKey($relativePath)) {
+                if ([string]$frameMetadata[$relativePath] -ne $fingerprint) {
+                    throw "Field texture frame metadata differs for pooled path $relativePath."
+                }
+            }
+            else {
+                $frameMetadata.Add($relativePath, $fingerprint)
+                $generatedPath = [IO.Path]::GetFullPath((Join-Path $GeneratedRoot $relativePath.Replace('/', '\')))
+                $godotPath = [IO.Path]::GetFullPath((Join-Path $GodotAssetRoot $relativePath.Replace('/', '\')))
+                foreach ($path in @($generatedPath, $godotPath)) {
+                    $item = Get-ValidatedRegularFile -Path $path -Label "Field texture animation frame"
+                    if (
+                        [long]$item.Length -ne [long]$frame.byte_length -or
+                        (Get-DspreToolFileFingerprint -Path $path) -ne [string]$frame.sha256
+                    ) {
+                        throw "Field texture animation frame does not match its catalog: $path"
+                    }
+                }
+                Assert-FilesByteIdentical `
+                    -ExpectedPath $generatedPath `
+                    -ActualPath $godotPath `
+                    -Label "Generated and Godot field texture frame"
+            }
+        }
+        if ($cycleTicks -ne [int]$binding.cycle_ticks) {
+            throw "Field texture animation binding $bindingId has an invalid cycle duration."
+        }
+    }
+    if (
+        $frameMetadata.Count -ne [int]$section.summary.generated_unique_frames -or
+        [int]$Catalog.summary.field_texture_animation_bindings -ne $bindings.Count -or
+        [int]$Catalog.summary.deferred_field_texture_variants -ne $deferred.Count -or
+        [int]$Catalog.summary.field_texture_animation_frames -ne $frameMetadata.Count
+    ) {
+        throw "Matrix catalog field texture animation summary is inconsistent."
+    }
+    foreach ($root in @(
+        (Join-Path $GeneratedRoot "field_texture_animations"),
+        (Join-Path $GodotAssetRoot "field_texture_animations")
+    )) {
+        $sectionPath = Join-Path $root "field_texture_animations.json"
+        $publishedSection = Read-JsonFile $sectionPath "Published field texture animation section"
+        if (($publishedSection | ConvertTo-Json -Depth 20 -Compress) -cne
+            ($section | ConvertTo-Json -Depth 20 -Compress)) {
+            throw "Published field texture animation section differs from the matrix catalog."
+        }
+    }
+    return [pscustomobject]@{
+        bindings = $bindings.Count
+        deferred = $deferred.Count
+        frames = $frameMetadata.Count
     }
 }
 
@@ -230,6 +339,7 @@ function Assert-ExpectedDestinationTree {
         [string]$RootPath,
         [string[]]$ExpectedKeys,
         [string[]]$AllowedRootFiles = @(),
+        [string[]]$AllowedRootDirectories = @(),
         [string]$Label
     )
 
@@ -254,12 +364,19 @@ function Assert-ExpectedDestinationTree {
     foreach ($fileName in @($AllowedRootFiles)) {
         $null = $allowedFiles.Add([string]$fileName)
     }
+    $allowedDirectories = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+    foreach ($directoryName in @($AllowedRootDirectories)) {
+        $null = $allowedDirectories.Add([string]$directoryName)
+    }
     $actual = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
     foreach ($item in @(Get-ChildItem -LiteralPath $root -Force -ErrorAction Stop)) {
         if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
             throw "$Label root cannot contain a reparse point: $($item.FullName)"
         }
         if ($item.PSIsContainer) {
+            if ($allowedDirectories.Contains($item.Name)) {
+                continue
+            }
             if (-not $expected.Contains($item.Name) -or -not $actual.Add($item.Name)) {
                 throw "$Label contains an unexpected destination directory: $($item.Name)"
             }
@@ -480,6 +597,7 @@ function Assert-GeneratedDestinationStages {
         -RootPath $DedupRoot `
         -ExpectedKeys $variantKeys `
         -AllowedRootFiles @("matrix_catalog.json") `
+        -AllowedRootDirectories @("field_texture_animations") `
         -Label "Generated dedupe tree"
     if ($rawCoverage -ne $variantKeys.Count -or $dedupCoverage -ne $variantKeys.Count) {
         throw "Generated stage destination counts do not cover every expected variant."
@@ -661,6 +779,29 @@ function Assert-GeneratedDestinationStages {
     return $validated
 }
 
+if ($FieldTextureAnimationsOnly) {
+    Assert-FilesByteIdentical `
+        -ExpectedPath $generatedCatalogPath `
+        -ActualPath $catalogPath `
+        -Label "Generated and Godot matrix catalogs"
+    $focusedCatalog = Read-JsonFile $catalogPath "Godot matrix catalog"
+    if ([int]$focusedCatalog.schema_version -ne 3) {
+        throw "Unsupported matrix catalog schema: $($focusedCatalog.schema_version)"
+    }
+    $focusedStats = Assert-FieldTextureAnimationCatalog `
+        -Catalog $focusedCatalog `
+        -GeneratedRoot $dedupRoot `
+        -GodotAssetRoot $platinumRoot
+    Write-Output ([pscustomobject][ordered]@{
+        schema_version = 3
+        field_texture_animation_bindings = [int]$focusedStats.bindings
+        deferred_field_texture_variants = [int]$focusedStats.deferred
+        field_texture_animation_frames = [int]$focusedStats.frames
+        catalog_pair_identical = $true
+    } | ConvertTo-Json -Compress)
+    return
+}
+
 $exporterSha256 = Get-DspreToolFileFingerprint `
     -Path (Join-Path $PSScriptRoot "dspre_batch_export.ps1")
 $supportToolSha256 = Get-DspreSupportBundleFingerprint -ToolsRoot $PSScriptRoot
@@ -679,6 +820,10 @@ $catalog = Read-JsonFile $catalogPath "Godot matrix catalog"
 if ([int]$catalog.schema_version -ne 3) {
     throw "Unsupported matrix catalog schema: $($catalog.schema_version)"
 }
+$fieldTextureStats = Assert-FieldTextureAnimationCatalog `
+    -Catalog $catalog `
+    -GeneratedRoot $dedupRoot `
+    -GodotAssetRoot $platinumRoot
 $matrixEntries = @($catalog.matrices)
 $destinations = @($catalog.destinations)
 $catalogHeaders = @($catalog.headers)

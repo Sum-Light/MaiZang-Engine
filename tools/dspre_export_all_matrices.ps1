@@ -7,6 +7,7 @@ param(
     [int]$MaxParallel = 4,
     [switch]$RebuildExisting,
     [switch]$ReuseAreaResolution,
+    [switch]$FieldTextureAnimationsOnly,
     [switch]$SkipGodotImport
 )
 
@@ -129,6 +130,71 @@ function Publish-MatrixCatalogPair {
     }
 }
 
+function Remove-MatrixCatalogPair {
+    param(
+        [Parameter(Mandatory)][string]$GeneratedPath,
+        [Parameter(Mandatory)][string]$GodotPath
+    )
+
+    $paths = @($GeneratedPath, $GodotPath)
+    foreach ($path in $paths) {
+        if (-not (Test-Path -LiteralPath $path)) {
+            continue
+        }
+        $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
+        if (
+            $item.PSIsContainer -or
+            ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0
+        ) {
+            throw "Matrix catalog path must be a regular non-reparse file: $path"
+        }
+    }
+    foreach ($path in $paths) {
+        if (Test-Path -LiteralPath $path -PathType Leaf) {
+            [IO.File]::Delete($path)
+        }
+    }
+}
+
+function Invoke-MatrixCatalogWithdrawalTransaction {
+    param(
+        [Parameter(Mandatory)][string]$GeneratedPath,
+        [Parameter(Mandatory)][string]$GodotCatalogPath,
+        [Parameter(Mandatory)][scriptblock]$Operation
+    )
+
+    Remove-MatrixCatalogPair -GeneratedPath $GeneratedPath -GodotPath $GodotCatalogPath
+    try {
+        $result = @(& $Operation)
+        foreach ($path in @($GeneratedPath, $GodotCatalogPath)) {
+            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+                throw "Matrix catalog transaction did not publish both catalogs: $path"
+            }
+        }
+        $generatedBytes = [IO.File]::ReadAllBytes($GeneratedPath)
+        $godotBytes = [IO.File]::ReadAllBytes($GodotCatalogPath)
+        if ($generatedBytes.Length -ne $godotBytes.Length) {
+            throw "Matrix catalog transaction published different catalog lengths."
+        }
+        for ($index = 0; $index -lt $generatedBytes.Length; $index++) {
+            if ($generatedBytes[$index] -ne $godotBytes[$index]) {
+                throw "Matrix catalog transaction published different catalog content."
+            }
+        }
+        return $result
+    }
+    catch {
+        $failure = $_
+        try {
+            Remove-MatrixCatalogPair -GeneratedPath $GeneratedPath -GodotPath $GodotCatalogPath
+        }
+        catch {
+            throw "Matrix catalog transaction failed and could not withdraw both catalogs: $($failure.Exception.Message); cleanup: $($_.Exception.Message)"
+        }
+        throw $failure
+    }
+}
+
 function Get-DefaultCell {
     param($Manifest)
 
@@ -176,6 +242,245 @@ function Get-OptionalSummaryCount {
         throw "$Label summary '$Name' must be a non-negative integer."
     }
     return [int]$value
+}
+
+function Test-FieldTextureCatalogDataEquivalent {
+    param($Catalog, $Section)
+
+    if (
+        $null -eq $Catalog.PSObject.Properties["field_texture_animations"] -or
+        $null -eq $Catalog.PSObject.Properties["summary"]
+    ) {
+        return $false
+    }
+    $summary = $Catalog.summary
+    foreach ($propertyName in @(
+        "field_texture_animation_bindings",
+        "deferred_field_texture_variants",
+        "field_texture_animation_frames"
+    )) {
+        if ($null -eq $summary.PSObject.Properties[$propertyName]) {
+            return $false
+        }
+    }
+    if (
+        [int]$summary.field_texture_animation_bindings -ne [int]$Section.summary.ready_bindings -or
+        [int]$summary.deferred_field_texture_variants -ne [int]$Section.summary.deferred_variants -or
+        [int]$summary.field_texture_animation_frames -ne [int]$Section.summary.generated_unique_frames
+    ) {
+        return $false
+    }
+    return (
+        ($Catalog.field_texture_animations | ConvertTo-Json -Depth 20 -Compress) -ceq
+        ($Section | ConvertTo-Json -Depth 20 -Compress)
+    )
+}
+
+function Get-FieldTextureAnimationImportStatus {
+    param(
+        [Parameter(Mandatory)]$Section,
+        [Parameter(Mandatory)][string]$AssetRoot
+    )
+
+    $root = [IO.Path]::GetFullPath($AssetRoot).TrimEnd('\', '/')
+    $rootPrefix = $root + [IO.Path]::DirectorySeparatorChar
+    $projectRootForImports = Split-Path (Split-Path $root -Parent) -Parent
+    $cacheRoot = [IO.Path]::GetFullPath(
+        (Join-Path $projectRootForImports ".godot\imported")
+    ).TrimEnd('\', '/') + [IO.Path]::DirectorySeparatorChar
+    $paths = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+    foreach ($binding in @($Section.bindings)) {
+        foreach ($frame in @($binding.frames)) {
+            $relativePath = ([string]$frame.path).Replace('/', '\')
+            $path = [IO.Path]::GetFullPath((Join-Path $root $relativePath))
+            if (
+                -not $path.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+                -not $paths.Add($path)
+            ) {
+                continue
+            }
+            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+                throw "Field texture animation frame was not found: $path"
+            }
+        }
+    }
+    if ($paths.Count -ne [int]$Section.summary.generated_unique_frames) {
+        throw "Field texture animation frame paths do not match the section summary."
+    }
+
+    $missingSidecars = 0
+    $invalidSidecars = 0
+    $missingCaches = 0
+    foreach ($path in $paths) {
+        $importPath = "$path.import"
+        if (-not (Test-Path -LiteralPath $importPath -PathType Leaf)) {
+            $missingSidecars++
+            continue
+        }
+        $text = [IO.File]::ReadAllText($importPath, [Text.Encoding]::UTF8)
+        if (
+            $text -notmatch '(?m)^compress/mode=0$' -or
+            $text -notmatch '(?m)^mipmaps/generate=false$' -or
+            $text -notmatch '(?m)^detect_3d/compress_to=0$'
+        ) {
+            $invalidSidecars++
+            continue
+        }
+        $destMatch = [regex]::Match($text, '(?m)^dest_files=\[(.+)\]$')
+        if (-not $destMatch.Success) {
+            $invalidSidecars++
+            continue
+        }
+        foreach ($pathMatch in [regex]::Matches($destMatch.Groups[1].Value, '"([^"]+)"')) {
+            $resourcePath = $pathMatch.Groups[1].Value
+            if (-not $resourcePath.StartsWith("res://.godot/imported/", [StringComparison]::Ordinal)) {
+                throw "Field texture animation cache path is invalid: $resourcePath"
+            }
+            $cachePath = [IO.Path]::GetFullPath((Join-Path $projectRootForImports (
+                $resourcePath.Substring("res://".Length).Replace('/', '\')
+            )))
+            if (-not $cachePath.StartsWith($cacheRoot, [StringComparison]::OrdinalIgnoreCase)) {
+                throw "Field texture animation cache escaped the import root: $cachePath"
+            }
+            if (-not (Test-Path -LiteralPath $cachePath -PathType Leaf)) {
+                $missingCaches++
+            }
+        }
+    }
+    return [pscustomobject][ordered]@{
+        frames = $paths.Count
+        missing_sidecars = $missingSidecars
+        invalid_sidecars = $invalidSidecars
+        missing_caches = $missingCaches
+        all_current = (
+            $missingSidecars -eq 0 -and
+            $invalidSidecars -eq 0 -and
+            $missingCaches -eq 0
+        )
+    }
+}
+
+function Get-FieldTextureFastImportPlan {
+    param(
+        [Parameter(Mandatory)]$BuildResult,
+        [Parameter(Mandatory)]$ImportStatus
+    )
+
+    foreach ($propertyName in @(
+        "reused",
+        "godot_stage_repaired",
+        "godot_stage_changed"
+    )) {
+        $property = $BuildResult.PSObject.Properties[$propertyName]
+        if ($null -eq $property -or $property.Value -isnot [bool]) {
+            throw "Field texture build result is missing Boolean '$propertyName'."
+        }
+    }
+    $stageChanged = [bool]$BuildResult.godot_stage_changed
+    $missingSidecars = [int]$ImportStatus.missing_sidecars -gt 0
+    $initialImport = $stageChanged -or $missingSidecars -or
+        [int]$ImportStatus.missing_caches -gt 0
+    $configureTextures = $stageChanged -or $missingSidecars -or
+        [int]$ImportStatus.invalid_sidecars -gt 0
+    return [pscustomobject][ordered]@{
+        initial_import = $initialImport
+        configure_textures = $configureTextures
+        no_op = -not $initialImport -and -not $configureTextures
+    }
+}
+
+function Invoke-FieldTextureAnimationBuild {
+    param(
+        [string]$SourceRoot,
+        [switch]$Force
+    )
+
+    $builderPath = Resolve-ExistingFile `
+        (Join-Path $PSScriptRoot "build_dspre_field_texture_animations.ps1") `
+        "DSPRE field texture animation builder"
+    $buildOutput = @(& {
+        param(
+            [string]$Path,
+            [string]$DspreRoot,
+            [string]$MaterialRoot,
+            [string]$GeneratedRoot,
+            [string]$GodotRoot,
+            [string]$BuildWorkRoot,
+            [bool]$Rebuild
+        )
+        . $Path
+        Invoke-DspreFieldTextureAnimationBuild `
+            -SourceRoot $DspreRoot `
+            -MaterialRoot $MaterialRoot `
+            -GeneratedRoot $GeneratedRoot `
+            -GodotRoot $GodotRoot `
+            -BuildWorkRoot $BuildWorkRoot `
+            -ExpectedCatalogCount 278 `
+            -Rebuild:$Rebuild
+    } `
+        $builderPath `
+        $SourceRoot `
+        $dedupRoot `
+        (Join-Path $dedupRoot "field_texture_animations") `
+        (Join-Path $platinumRoot "field_texture_animations") `
+        (Join-Path $workspaceRoot ".work\dspre_field_texture_animations") `
+        ([bool]$Force))
+    $buildResult = @(
+        $buildOutput | Where-Object {
+            $null -ne $_ -and $null -ne $_.PSObject.Properties["reused"]
+        }
+    ) | Select-Object -Last 1
+    if ($null -eq $buildResult) {
+        throw "Field texture animation builder did not return its build result."
+    }
+    $sectionPath = Join-Path $dedupRoot "field_texture_animations\field_texture_animations.json"
+    if (-not (Test-Path -LiteralPath $sectionPath -PathType Leaf)) {
+        throw "Field texture animation builder did not publish its catalog section."
+    }
+    $section = [IO.File]::ReadAllText($sectionPath, [Text.Encoding]::UTF8) |
+        ConvertFrom-Json
+    if (
+        [int]$section.schema_version -ne 1 -or
+        [int]$section.source_fps -ne 30 -or
+        @($section.bindings).Count -lt 1 -or
+        [int]$section.summary.ready_bindings -ne @($section.bindings).Count
+    ) {
+        throw "Field texture animation builder published an invalid catalog section."
+    }
+    foreach ($propertyName in @(
+        "reused",
+        "godot_stage_repaired",
+        "godot_stage_changed"
+    )) {
+        $property = $buildResult.PSObject.Properties[$propertyName]
+        if ($null -eq $property -or $property.Value -isnot [bool]) {
+            throw "Field texture animation builder returned an invalid '$propertyName' value."
+        }
+    }
+    return [pscustomobject][ordered]@{
+        section = $section
+        reused = [bool]$buildResult.reused
+        godot_stage_repaired = [bool]$buildResult.godot_stage_repaired
+        godot_stage_changed = [bool]$buildResult.godot_stage_changed
+    }
+}
+
+function Add-FieldTextureAnimationCatalogData {
+    param($Catalog, $Section)
+
+    $Catalog | Add-Member -NotePropertyName "field_texture_animations" -NotePropertyValue $Section -Force
+    $Catalog.summary | Add-Member `
+        -NotePropertyName "field_texture_animation_bindings" `
+        -NotePropertyValue ([int]$Section.summary.ready_bindings) `
+        -Force
+    $Catalog.summary | Add-Member `
+        -NotePropertyName "deferred_field_texture_variants" `
+        -NotePropertyValue ([int]$Section.summary.deferred_variants) `
+        -Force
+    $Catalog.summary | Add-Member `
+        -NotePropertyName "field_texture_animation_frames" `
+        -NotePropertyValue ([int]$Section.summary.generated_unique_frames) `
+        -Force
 }
 
 function Get-ReadyStatus {
@@ -1060,6 +1365,104 @@ if ([string]::IsNullOrWhiteSpace($DspreContents)) {
 }
 
 $DspreContents = Resolve-ExistingDirectory $DspreContents "DSPRE contents directory"
+if ($FieldTextureAnimationsOnly) {
+    if ($MatrixIds.Count -gt 0) {
+        throw "FieldTextureAnimationsOnly cannot be combined with MatrixIds."
+    }
+    foreach ($catalogPath in @($generatedCatalogPath, $godotCatalogPath)) {
+        if (-not (Test-Path -LiteralPath $catalogPath -PathType Leaf)) {
+            throw "Field texture fast update requires the existing complete catalog: $catalogPath"
+        }
+        $catalogItem = Get-Item -LiteralPath $catalogPath -Force
+        if (($catalogItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "Field texture fast update refuses a reparse-point catalog: $catalogPath"
+        }
+    }
+    if ((Get-DspreToolFileFingerprint -Path $generatedCatalogPath) -ne
+        (Get-DspreToolFileFingerprint -Path $godotCatalogPath)) {
+        throw "Field texture fast update requires byte-identical generated and Godot catalogs."
+    }
+    $existingCatalogJson = [IO.File]::ReadAllText($generatedCatalogPath, [Text.Encoding]::UTF8)
+    $existingCatalog = $existingCatalogJson | ConvertFrom-Json
+    if (
+        [int]$existingCatalog.schema_version -ne 3 -or
+        @($existingCatalog.destinations).Count -ne 278
+    ) {
+        throw "Field texture fast update requires the complete schema-3 matrix catalog."
+    }
+    $fieldTextureTransactionResult = Invoke-MatrixCatalogWithdrawalTransaction `
+        -GeneratedPath $generatedCatalogPath `
+        -GodotCatalogPath $godotCatalogPath `
+        -Operation {
+            $fieldTextureBuild = Invoke-FieldTextureAnimationBuild `
+                -SourceRoot $DspreContents `
+                -Force:$RebuildExisting
+            $fieldTextureSection = $fieldTextureBuild.section
+            $catalogDataUnchanged = Test-FieldTextureCatalogDataEquivalent `
+                -Catalog $existingCatalog `
+                -Section $fieldTextureSection
+            if ($catalogDataUnchanged) {
+                $catalogJson = $existingCatalogJson
+            }
+            else {
+                Add-FieldTextureAnimationCatalogData `
+                    -Catalog $existingCatalog `
+                    -Section $fieldTextureSection
+                $existingCatalog.generated_utc = [DateTime]::UtcNow.ToString("o")
+                $catalogJson = $existingCatalog | ConvertTo-Json -Depth 20
+            }
+            Publish-MatrixCatalogPair `
+                -GeneratedPath $generatedCatalogPath `
+                -GodotPath $godotCatalogPath `
+                -Json $catalogJson `
+                -Encoding $utf8NoBom
+            $null = Invoke-ProjectScript (Join-Path $PSScriptRoot "validate_dspre_matrix_catalog.ps1") @{
+                ProjectRoot = $workspaceRoot
+                FieldTextureAnimationsOnly = $true
+            }
+            return [pscustomobject][ordered]@{
+                build = $fieldTextureBuild
+                section = $fieldTextureSection
+            }
+        }
+    if (
+        $null -eq $fieldTextureTransactionResult -or
+        $null -eq $fieldTextureTransactionResult.PSObject.Properties["build"] -or
+        $null -eq $fieldTextureTransactionResult.PSObject.Properties["section"]
+    ) {
+        throw "Field texture catalog transaction did not return its build state."
+    }
+    Write-Host "Field texture animation catalog update complete."
+    if (-not $SkipGodotImport) {
+        $importStatus = Get-FieldTextureAnimationImportStatus `
+            -Section $fieldTextureTransactionResult.section `
+            -AssetRoot $platinumRoot
+        $importPlan = Get-FieldTextureFastImportPlan `
+            -BuildResult $fieldTextureTransactionResult.build `
+            -ImportStatus $importStatus
+        if ($importPlan.no_op) {
+            Write-Host "Field texture animation PNGs and import sidecars are unchanged; Godot import skipped."
+        }
+        else {
+            $GodotPath = Resolve-ExistingFile $GodotPath "Godot console executable"
+            if ($importPlan.initial_import) {
+                & $GodotPath --headless --path $projectRoot --import
+                if ($LASTEXITCODE -ne 0) {
+                    throw "Field texture animation import failed with exit code $LASTEXITCODE."
+                }
+            }
+            if ($importPlan.configure_textures) {
+                Invoke-ProjectScript (Join-Path $PSScriptRoot "configure_dspre_godot_textures.ps1") @{
+                    ProjectRoot = $projectRoot
+                    GodotPath = $GodotPath
+                    RepairInvalidOnly = $true
+                    FieldTextureAnimationsOnly = $true
+                }
+            }
+        }
+    }
+    return
+}
 $ApiculaPath = Resolve-ExistingFile $ApiculaPath "apicula.exe"
 $matricesRoot = Resolve-ExistingDirectory (Join-Path $DspreContents "unpacked\matrices") "Matrix directory"
 if ($MaxParallel -lt 1) {
@@ -1241,6 +1644,7 @@ Write-Host "  Ready variants:     $($readyRequestedVariants.Count)"
 Write-Host "  Unresolved:         $($skippedRequestedIds.Count)"
 
 $processed = 0
+$destinationAssetsChanged = $false
 foreach ($variantRecord in $readyRequestedVariants) {
     $matrixId = [int]$variantRecord.matrix_id
     $variantName = [string]$variantRecord.variant
@@ -1445,6 +1849,7 @@ foreach ($variantRecord in $readyRequestedVariants) {
             $syncToolSha256
     }
     if ($RebuildExisting -or $dedupWasRebuilt -or -not $syncComplete) {
+		$destinationAssetsChanged = $true
         $dedupeMarkerPath = Join-Path $dedupMatrixRoot ".dedupe-complete.json"
         $dedupeMarkerSha256 = (
             Get-FileHash -LiteralPath $dedupeMarkerPath -Algorithm SHA256
@@ -1474,6 +1879,11 @@ foreach ($variantRecord in $readyRequestedVariants) {
     $processed++
 }
 Write-Progress -Activity "Migrating DSPRE matrices" -Completed
+
+$fieldTextureBuild = Invoke-FieldTextureAnimationBuild `
+    -SourceRoot $DspreContents `
+    -Force:$RebuildExisting
+$fieldTextureSection = $fieldTextureBuild.section
 
 $terrainKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $buildingKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
@@ -1766,6 +2176,7 @@ $catalog = [pscustomobject][ordered]@{
     destinations = @($destinationEntries | ForEach-Object { $_ })
     headers = @($headerEntries | Sort-Object header_id | ForEach-Object { $_ })
 }
+Add-FieldTextureAnimationCatalogData -Catalog $catalog -Section $fieldTextureSection
 $catalogJson = $catalog | ConvertTo-Json -Depth 12
 
 $validatedDestinationCount = Assert-AllDestinationStagesCurrent `
@@ -1840,8 +2251,17 @@ if (-not $SkipGodotImport) {
     if ($LASTEXITCODE -ne 0) {
         throw "Initial Godot import failed with exit code $LASTEXITCODE."
     }
-    Invoke-ProjectScript (Join-Path $PSScriptRoot "configure_dspre_godot_materials.ps1") @{
-        ProjectRoot = $projectRoot
-        GodotPath = $GodotPath
+    if ($destinationAssetsChanged) {
+        Invoke-ProjectScript (Join-Path $PSScriptRoot "configure_dspre_godot_materials.ps1") @{
+            ProjectRoot = $projectRoot
+            GodotPath = $GodotPath
+        }
+    }
+    else {
+        Invoke-ProjectScript (Join-Path $PSScriptRoot "configure_dspre_godot_textures.ps1") @{
+            ProjectRoot = $projectRoot
+            GodotPath = $GodotPath
+            RepairInvalidOnly = $true
+        }
     }
 }

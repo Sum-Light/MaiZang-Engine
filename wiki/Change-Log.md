@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-15 - Animate Platinum field textures
+
+- Parse all 52 `fldtanime` descriptors and strict TEX0 texture formats, reproduce each target map texture with its own palette, honor Platinum's target-allocation prefix copy for cross-format `sea`, and export 55 safe 30 Hz bindings backed by 272 content-pooled RGBA frames; keep three SHA-ambiguous `pika*` variants static instead of guessing.
+- Add one lazy field-texture controller that reuses runtime material overrides, loads frame textures asynchronously without subthreads, advances one source clock, explicitly releases streamed references, and hands in-flight requests across scene reloads without blocking; verify real `lakep.1` water and `rhana` flower surfaces change texture in OpenGL while `nhana` remains unbound.
+- Add a fingerprinted global build plus transactional `-FieldTextureAnimationsOnly` publication, focused catalog validation, field-frame-only sidecar/cache repair, and resumable post-commit import; avoid all matrix/GLB/shared-material rebuilds, reduce repeat frame builds to about eight seconds, and complete a fully current no-op update in about 18 seconds.
+
 ## 2026-07-15 - Close battle release reference triples
 
 - Add a closed, deterministic P2F overlay that selects only authored `RELEASED` targets and proves Godot work-item contracts, the complete declared set of exact joined battlelogic/pokelib SourceEvidence, and actual SCENARIO fixture references without changing computed maturity or runtime catalogs.

@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `b6542a830aa604f7f5c048ac4a3fd821aaec8183744fe8fa09eb268884866c84`
-- Fingerprinted files: 252
-- Godot runtime scripts: 10
-- Godot test scripts: 11
-- PowerShell tools: 21
+- Source fingerprint: `931d82ac9ab00b17169f9e3ba455c4340131213542d7c47979110a25f95736f4`
+- Fingerprinted files: 264
+- Godot runtime scripts: 11
+- Godot test scripts: 13
+- PowerShell tools: 27
 
 ## Runtime Baseline
 
@@ -26,6 +26,7 @@
 - Collision runtime: lazy `a.dat`/BDHC cache, absolute height sampling, walking behavior actions, and fail-closed unsupported special movement.
 - Warp runtime: 593 Headers and 1213 records; 1087 static ordinary Warps executable, with 120 dynamic and 6 special-return records fail-closed.
 - MapProp animation: 308 destination-scoped animated assets, 148 native NSBCA clips, and 377 deferred NSBTA/NSBTP clips.
+- Field texture animation: 55 palette-correct 30 Hz bindings using 272 pooled frames; 3 unsafe palette variants remain static.
 - Building instances across ready matrices: 3041.
 - Shared resources: 1722 unique texture hashes and 1804 external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
@@ -45,4 +46,4 @@
 ## Next Engineering Milestone
 
 Add saved-state/script providers for dynamic and special Warps, then implement
-NSBTA/NSBTP and field texture animation before NPC/object event execution.
+deferred NSBTA/NSBTP MapProp material animation before NPC/object event execution.

@@ -10,6 +10,7 @@
 | `new-game-project/scripts/platinum_warp_controller.gd` | Static Warp execution, input lock, door animation, fade, and one-shot scene-reload handoff |
 | `new-game-project/scripts/world_transition_request.gd` | Strict process-local Warp destination handoff across a main-scene reload |
 | `new-game-project/scripts/platinum_map_animation_controller.gd` | Explicitly registered 30 Hz NSBCA loops and door one-shots using weak instance ownership |
+| `new-game-project/scripts/platinum_field_texture_animation_controller.gd` | Lazy 30 Hz `fldtanime` frame loading and runtime-owned surface material overrides |
 | `new-game-project/scripts/debug_destination_resolver.gd` | Side-effect-free catalog, manifest, AreaData, cell, and tile resolution shared by startup and in-game jumps |
 | `new-game-project/scripts/debug_destination_request.gd` | One-shot process-local destination handoff across a complete main-scene reload |
 | `new-game-project/scripts/debug_destination_panel.gd` | Native-resolution F2 modal, paused input ownership, validation feedback, and reload submission |
@@ -23,6 +24,8 @@
 | `tools/dspre_collision_support.ps1` | Packed land-data plus field-feature/animation manifest validation and deterministic source/tool fingerprints |
 | `tools/dspre_field_feature_support.ps1` | MapHeader event archive parsing, static/dynamic Warp classification, and endpoint resolution |
 | `tools/dspre_map_animation_support.ps1` | `bm_anime` descriptor parsing and atomic Nitro animation-member extraction |
+| `tools/dspre_field_texture_animation_support.ps1` | Strict `fldtanime`/TEX0 parsing, target-palette selection, and frame decoding |
+| `tools/build_dspre_field_texture_animations.ps1` | Global content-pooled field texture animation build and paired generated/Godot publication |
 | `tools/resolve_dspre_matrix_areas.ps1` | Strict MapHeader, duplicate-map, and Nitro texture/palette AreaData resolution |
 | `tools/dspre_export_all_matrices.ps1` | Resumable all-matrix export, dedupe, sync, catalog, and Godot import orchestration |
 | `tools/dedupe_dspre_materials.ps1` | Shared texture pool, material signatures, GLB JSON rewrite |
@@ -50,6 +53,7 @@
 - In-game debug destination shortcut: `F2`, validated one-shot full-scene reload
 - Static Warp transitions: Header-scoped one-shot reload; dynamic/special Warp records fail closed
 - MapProp animation clock: 30 Hz, explicit loaded-instance registration; NSBCA automatic/door clips only
+- Field texture animation clock: 30 Hz, lazy active-binding frame loads and per-material surface overrides
 - Battle development entry: Inspector tool button in `res://battle/quick_start/battle_quick_start.tscn`; Q0 launches only the independent synthetic text smoke shell
 - Load radius 1, prefetch radius 2, unload/retention radius 3
 

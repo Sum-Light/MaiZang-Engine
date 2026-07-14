@@ -47,6 +47,7 @@ const CURRENT_AUTOMATIC_TRANSITIONS := {
 @export_file("*.json") var manifest_path := "res://assets/platinum/matrix_0000/manifest.json"
 @export var focus_path: NodePath
 @export var map_animation_controller_path: NodePath
+@export var field_texture_animation_controller_path: NodePath
 @export_range(0, 8, 1) var load_radius := 1
 @export_range(0, 10, 1) var prefetch_radius := 2
 @export_range(1, 12, 1) var unload_radius := 3
@@ -69,6 +70,7 @@ var _catalog_destinations: Dictionary = {}
 var _map_prop_instances: Dictionary = {}
 var _door_props_by_world_tile: Dictionary = {}
 var _chunk_prop_ids: Dictionary = {}
+var _chunk_field_texture_ids: Dictionary = {}
 var _stream_accumulator := 0.0
 var _last_focus_cell := Vector2i(1 << 20, 1 << 20)
 var _initial_signal_sent := false
@@ -94,6 +96,7 @@ var _arrival_escape_world_tile: Variant = null
 var _shutdown_complete := false
 var _collision_map := CollisionMap.new() as PlatinumCollisionMap
 var _map_animation_controller: Node
+var _field_texture_animation_controller: Node
 
 @onready var _chunks_root: Node3D = $LoadedChunks
 
@@ -102,8 +105,13 @@ func _ready() -> void:
 	add_to_group("platinum_world_streamer")
 	_focus = get_node_or_null(focus_path) as Node3D
 	_map_animation_controller = get_node_or_null(map_animation_controller_path)
+	_field_texture_animation_controller = get_node_or_null(field_texture_animation_controller_path)
 	if _focus == null:
 		_fail("World streamer focus node was not found: %s" % focus_path)
+		set_process(false)
+		return
+	if _field_texture_animation_controller == null:
+		_fail("Field texture animation controller was not found: %s" % field_texture_animation_controller_path)
 		set_process(false)
 		return
 	if not _resolve_debug_destination():
@@ -165,6 +173,11 @@ func get_stream_stats() -> Dictionary:
 		"material_replacements": _material_replacement_count,
 	}
 	stats["collision"] = _collision_map.get_stats()
+	if (
+		is_instance_valid(_field_texture_animation_controller)
+		and _field_texture_animation_controller.has_method("get_stats")
+	):
+		stats["field_texture_animations"] = _field_texture_animation_controller.call("get_stats")
 	return stats
 
 
@@ -439,6 +452,11 @@ func shutdown() -> void:
 		and _map_animation_controller.has_method("clear")
 	):
 		_map_animation_controller.call("clear")
+	if (
+		is_instance_valid(_field_texture_animation_controller)
+		and _field_texture_animation_controller.has_method("clear")
+	):
+		_field_texture_animation_controller.call("clear")
 	_building_animations.clear()
 	_warps_by_header_tile.clear()
 	_manifest_header_ids.clear()
@@ -447,6 +465,7 @@ func shutdown() -> void:
 	_map_prop_instances.clear()
 	_door_props_by_world_tile.clear()
 	_chunk_prop_ids.clear()
+	_chunk_field_texture_ids.clear()
 
 
 func _resolve_debug_destination() -> bool:
@@ -727,6 +746,25 @@ func _load_catalog_indices() -> bool:
 	if int(catalog.get("schema_version", -1)) != 3:
 		_fail("Matrix catalog schema is not 3.")
 		return false
+	if is_instance_valid(_field_texture_animation_controller):
+		var field_texture_section_value: Variant = catalog.get("field_texture_animations", null)
+		if not field_texture_section_value is Dictionary:
+			_fail("Matrix catalog has no field texture animation section.")
+			return false
+		if not _field_texture_animation_controller.has_method("configure"):
+			_fail("Field texture animation controller has no configure API.")
+			return false
+		var field_texture_result: Variant = _field_texture_animation_controller.call(
+			"configure",
+			field_texture_section_value as Dictionary,
+			catalog_path.get_base_dir()
+		)
+		if (
+			not field_texture_result is Dictionary
+			or not bool((field_texture_result as Dictionary).get("ok", false))
+		):
+			_fail("Matrix catalog field texture animation section is invalid.")
+			return false
 	for destination_value: Variant in catalog.get("destinations", []):
 		if not destination_value is Dictionary:
 			_fail("Matrix catalog contains a malformed destination.")
@@ -984,7 +1022,7 @@ func _instantiate_chunk(coordinate: Vector2i) -> void:
 		)
 		terrain.scale = Vector3.ONE * MODEL_SCALE
 		chunk.add_child(terrain)
-		_share_materials(terrain)
+		_share_materials(terrain, coordinate)
 
 	var buildings := Node3D.new()
 	buildings.name = "Buildings"
@@ -1003,7 +1041,7 @@ func _instantiate_chunk(coordinate: Vector2i) -> void:
 		instance.rotation_degrees = _dictionary_to_vector3(building.get("rotation_degrees", {}))
 		instance.scale = _building_scale(building)
 		buildings.add_child(instance)
-		_share_materials(instance)
+		_share_materials(instance, coordinate)
 		_register_map_prop_instance(coordinate, building_index, building, instance)
 		building_index += 1
 
@@ -1030,7 +1068,7 @@ func _instantiate_asset(path: String) -> Node3D:
 	return packed_scene.instantiate() as Node3D
 
 
-func _share_materials(root: Node) -> void:
+func _share_materials(root: Node, coordinate: Vector2i) -> void:
 	var stack: Array[Node] = [root]
 	while not stack.is_empty():
 		var node: Node = stack.pop_back()
@@ -1047,21 +1085,81 @@ func _share_materials(root: Node) -> void:
 			if material == null or not material.resource_name.begins_with("dspre_mat_"):
 				continue
 			var material_key := material.resource_name.trim_prefix("dspre_")
+			var effective_material := material
 			if _shared_materials.has(material_key):
 				var shared_material := _shared_materials[material_key] as Material
 				if material != shared_material:
 					mesh_instance.set_surface_override_material(surface_index, shared_material)
 					_material_replacement_count += 1
+				effective_material = shared_material
 			else:
 				_shared_materials[material_key] = material
+			_register_field_texture_surface(
+				coordinate,
+				mesh_instance,
+				surface_index,
+				effective_material
+			)
+
+
+func _register_field_texture_surface(
+	coordinate: Vector2i,
+	mesh_instance: MeshInstance3D,
+	surface_index: int,
+	material: Material
+) -> void:
+	if not material is StandardMaterial3D:
+		return
+	if not _field_texture_animation_controller.has_method("resolve_binding_id"):
+		return
+	var binding_id := StringName(_field_texture_animation_controller.call(
+		"resolve_binding_id", material as StandardMaterial3D
+	))
+	if String(binding_id).is_empty():
+		return
+	var stable_id := StringName(
+		"%s:%d:%d:field:%d:%d" % [
+			_manifest_variant,
+			coordinate.x,
+			coordinate.y,
+			mesh_instance.get_instance_id(),
+			surface_index,
+		]
+	)
+	var result: Variant = _field_texture_animation_controller.call(
+		"register_surface",
+		stable_id,
+		mesh_instance,
+		surface_index,
+		binding_id,
+		material as StandardMaterial3D
+	)
+	if not result is Dictionary or not bool((result as Dictionary).get("ok", false)):
+		_fail("Field texture animation surface registration failed: %s" % stable_id)
+		return
+	if not _chunk_field_texture_ids.has(coordinate):
+		_chunk_field_texture_ids[coordinate] = []
+	(_chunk_field_texture_ids[coordinate] as Array).append(stable_id)
 
 
 func _unload_chunk(coordinate: Vector2i) -> void:
+	_unregister_chunk_field_textures(coordinate)
 	_unregister_chunk_props(coordinate)
 	var chunk := _loaded_chunks.get(coordinate) as Node3D
 	if chunk != null:
 		chunk.queue_free()
 	_loaded_chunks.erase(coordinate)
+
+
+func _unregister_chunk_field_textures(coordinate: Vector2i) -> void:
+	if not _chunk_field_texture_ids.has(coordinate):
+		return
+	if _field_texture_animation_controller.has_method("unregister_surface"):
+		for stable_id_value: Variant in _chunk_field_texture_ids[coordinate] as Array:
+			_field_texture_animation_controller.call(
+				"unregister_surface", StringName(stable_id_value)
+			)
+	_chunk_field_texture_ids.erase(coordinate)
 
 
 func _register_map_prop_instance(

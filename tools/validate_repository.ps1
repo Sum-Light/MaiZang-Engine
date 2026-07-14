@@ -46,6 +46,30 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 & powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_dspre_field_texture_animation_support.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE field texture animation support test failed."
+}
+
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_dspre_field_texture_tex0.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE field texture TEX0 test failed."
+}
+
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_build_dspre_field_texture_animations.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE field texture animation builder test failed."
+}
+
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_dspre_field_texture_fast_transaction.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE field texture fast-transaction test failed."
+}
+
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
     -File (Join-Path $ProjectRoot "tools\test_dspre_sync_incremental.ps1")
 if ($LASTEXITCODE -ne 0) {
     throw "DSPRE incremental sync test failed."
@@ -148,6 +172,31 @@ if ($Full) {
             }
         }
     }
+    $fieldTextureImports = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+    foreach ($binding in @($catalog.field_texture_animations.bindings)) {
+        foreach ($frame in @($binding.frames)) {
+            $relativePath = ([string]$frame.path).Replace('/', '\')
+            $texturePath = [IO.Path]::GetFullPath((Join-Path $godotProject "assets\platinum\$relativePath"))
+            $importPath = "$texturePath.import"
+            if (-not $fieldTextureImports.Add($importPath)) {
+                continue
+            }
+            if (-not (Test-Path -LiteralPath $importPath -PathType Leaf)) {
+                throw "Field texture animation import sidecar is missing: $importPath"
+            }
+            $text = [IO.File]::ReadAllText($importPath, [Text.Encoding]::UTF8)
+            if (
+                $text -notmatch '(?m)^compress/mode=0$' -or
+                $text -notmatch '(?m)^mipmaps/generate=false$' -or
+                $text -notmatch '(?m)^detect_3d/compress_to=0$'
+            ) {
+                $invalidTextureImports.Add($importPath)
+            }
+        }
+    }
+    if ($fieldTextureImports.Count -ne [int]$catalog.summary.field_texture_animation_frames) {
+        throw "Field texture animation import count does not match the matrix catalog."
+    }
     if ($invalidTextureImports.Count -ne 0) {
         throw "$($invalidTextureImports.Count) texture imports do not retain lossless/no-mipmap settings."
     }
@@ -177,6 +226,10 @@ if ($Full) {
     if ($LASTEXITCODE -ne 0) {
         throw "MapProp animation test failed."
     }
+    & $GodotPath --headless --path $godotProject --script "res://tests/field_texture_animation_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Field texture animation controller test failed."
+    }
     & $GodotPath --headless --path $godotProject --script "res://tests/world_transition_runtime_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "World transition runtime test failed."
@@ -188,6 +241,10 @@ if ($Full) {
     & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/world_streamer_smoke_test.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "World streamer smoke test failed."
+    }
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/field_texture_animation_streaming_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Real field texture animation streaming test failed."
     }
     & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/debug_destination_test.gd"
     if ($LASTEXITCODE -ne 0) {

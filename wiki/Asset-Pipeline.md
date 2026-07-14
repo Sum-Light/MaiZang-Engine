@@ -17,6 +17,8 @@ The matrix pipeline resolves:
 - Per-map `32 x 32` terrain attributes and complete BDHC payloads.
 - Per-cell collision references and the source-faithful rule that map-prop
   blocking is owned by the cell terrain attributes rather than visual meshes.
+- The global `fldtanime.narc` texture timelines used by water and selected
+  flowers, decoded against each destination map texture's existing palette.
 
 The source contains 289 matrix records. Strict resolution exposes 276 matrices
 through 278 runnable destinations. Matrix `0049` has AreaData `4` and `61`
@@ -83,6 +85,31 @@ Godot's transient `.import~*.TMP` atomic-write files. Source files and every
 other destination file remain exact. Import sidecars are validated by the import
 workflow. A missing, damaged, obsolete, or mismatched marker rebuilds
 that stage instead of reusing a possibly partial directory.
+
+When matrix geometry, collision, and destination materials are already current,
+refresh only the global field-texture animation stage with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\dspre_export_all_matrices.ps1 `
+  -DspreContents "D:\path\to\game_DSPRE_contents" `
+  -GodotPath "D:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  -FieldTextureAnimationsOnly
+```
+
+This mode requires the existing complete, byte-identical matrix catalogs. It
+does not fingerprint or rebuild all matrix payloads, GLBs, collision data,
+dedupe output, sync output, or shared materials. It reads the existing 278
+material catalogs, rebuilds or reuses one global animation frame pool, updates
+the catalog pair, and reimports only changed global PNGs. Its texture-sidecar
+repair scope is limited to the pooled animation frames instead of rescanning
+all destination textures.
+
+Before a changed frame stage is published, both old catalogs are withdrawn;
+the builder, paired catalog publication, and focused catalog validator form one
+transaction. Godot import runs only after that transaction commits, so an
+import failure leaves the valid stage/catalog pair available for a focused
+retry. A fully reused stage verifies each frame sidecar and its declared
+`.ctex`; when both are current, the workflow skips Godot entirely.
 
 A direct `dspre_batch_export.ps1` call may reuse a destination only when its
 marker, manifest, summary, collision contract, declared GLBs, complete file
@@ -217,6 +244,27 @@ accepted only for the one-time compatible schema-2/export-contract-3 static
 GLB predecessor. Any future change to model or animation conversion semantics
 must increment the conversion contract so stale GLBs cannot be reused.
 
+Field texture animation is a separate global stage derived from
+`files/data/fldtanime.narc`. Platinum does not upload those members' palettes at
+runtime: it copies only the selected frame's raw texels into the already loaded
+AreaData map texture. The exporter mirrors that behavior. It parses the target
+map texture and every animation frame as TEX0, selects a target palette only
+when decoding the target base texture reproduces the deduplicated PNG exactly,
+then copies the target texture allocation length from each frame and decodes it
+with the target format and palette. This also preserves the original PLTT16-to-
+PLTT4 `sea` prefix transfer instead of requiring source and target allocations
+to be equal. Short frames, ambiguous variants, or incompatible
+variants remain explicit `unsupported_deferred` records instead of receiving a
+guessed color mapping.
+
+The global stage uses its own source/tool/material-catalog fingerprints and an
+exact path/length/SHA-256 marker, so it does not invalidate per-destination raw,
+dedupe, or sync markers. Identical RGBA frames share one content-addressed PNG.
+The catalog keeps Platinum's 30 Hz `delay + 1` hold semantics and the initial
+static base texture before the first transition. `nhana` is intentionally not
+bound because the original animation table does not list it; `rhana` is the
+animated flower texture.
+
 Generated layout:
 
 ```text
@@ -224,7 +272,9 @@ generated/dspre_glb/matrix_####/
 generated/dspre_glb_dedup/matrix_####/
 generated/dspre_glb/matrix_0049_area_0004/
 generated/dspre_glb_dedup/matrix_0049_area_0004/
+generated/dspre_glb_dedup/field_texture_animations/
 new-game-project/assets/platinum/matrix_####/
+new-game-project/assets/platinum/field_texture_animations/
 new-game-project/assets/platinum/matrix_catalog.json
 ```
 
@@ -323,8 +373,9 @@ invalidates only the scene caches whose mappings changed, and calls texture
 configuration with `-RepairInvalidOnly -DeferReimport`. Scene and texture cache
 repairs therefore share one final Godot import instead of starting one import
 per asset or repair class. The texture set includes the existing global
-`characters/dawn_overworld.png` alongside every matrix texture, so the same
-lossless/no-mipmap contract covers the whole Platinum asset root.
+`characters/dawn_overworld.png` and pooled field-animation frames alongside
+every matrix texture, so the same lossless/no-mipmap contract covers the whole
+Platinum asset root.
 
 If an open editor rewrites a subset of material or texture import sidecars
 during reimport, the workflow again repairs only those missing mappings or

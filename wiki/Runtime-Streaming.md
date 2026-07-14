@@ -123,8 +123,10 @@ animation, and still completes fade/input release instead of trapping control.
 5. A chunk is instantiated only when all terrain and building scenes are ready.
 6. Animated MapProps register a stable destination/cell/building ID with one
    central 30 Hz controller; doors also enter a fixed tile index.
-7. Chunks outside radius 3 explicitly unregister those IDs before deletion.
-8. Loaded `PackedScene` records outside radius 3 are removed so long-distance
+7. Terrain and building surfaces whose base texture hash has a `fldtanime`
+   binding register with a separate central 30 Hz texture controller.
+8. Chunks outside radius 3 explicitly unregister both animation ID sets before deletion.
+9. Loaded `PackedScene` records outside radius 3 are removed so long-distance
    traversal does not accumulate the entire world in memory.
 
 External texture and material resources remain shared through Godot's resource
@@ -154,6 +156,29 @@ runs door one-shots on demand. Chunk unload restores player state and drops all
 animation/door indices. JSON numeric fields are normalized once at registration
 only when they are finite exact integers; fractional or malformed descriptors
 fail closed. Unsupported NSBTA/NSBTP descriptors remain inert.
+
+Field texture animation does not mutate imported materials or shared
+`ArrayMesh` resources. During the existing one-time material traversal for a
+new chunk, the streamer resolves a binding from the base texture's content-hash
+filename. The controller creates one runtime `StandardMaterial3D` duplicate per
+binding and original material identity, shares it through surface overrides,
+and keeps weak surface ownership plus explicit chunk unregister records.
+Distinct alpha or unlit material signatures therefore never collapse together.
+
+Frame textures use top-level `ResourceLoader.load_threaded_request` with
+sub-threaded loading disabled and are requested only while at least one bound
+surface is active. One global physics clock advances the Platinum 30 Hz
+timeline; no surface owns a timer or `_process`, and the controller never scans
+the scene tree. The imported static base remains visible for the first source
+hold, then the controller changes only `albedo_texture` when the selected frame
+actually changes. Removing the last surface restores its previous override and
+drops runtime material and frame references.
+
+Scene reload does not block on an in-flight frame request. `clear()` transfers
+unfinished paths to a process-local handoff set; the next controller adopts a
+matching request or drains it at terminal state before dropping the resource.
+Warp and F2 reloads therefore neither wait for all animation frames nor abandon
+threaded-loader ownership with the old scene.
 
 ## Collision Queries
 

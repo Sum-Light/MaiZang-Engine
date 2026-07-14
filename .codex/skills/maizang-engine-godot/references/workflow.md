@@ -10,6 +10,12 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\dspre_export_all
   -ApiculaPath "D:\path\to\apicula.exe" `
   -GodotPath "D:\path\to\Godot_console.exe"
 
+# Refresh only fldtanime frames and their catalog section.
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\dspre_export_all_matrices.ps1 `
+  -DspreContents "D:\path\to\game_DSPRE_contents" `
+  -GodotPath "D:\path\to\Godot_console.exe" `
+  -FieldTextureAnimationsOnly
+
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\import_player_sprite.ps1 `
   -SourcePath "D:\path\to\Dawn.png"
 ```
@@ -41,6 +47,18 @@ only for an intentional rebuild. Never run
 `sync_dspre_godot_assets.ps1 -Force` until the destination resolves under
 `new-game-project/assets/platinum` and the generated source has passed its
 summary checks.
+
+The field-texture-only mode requires the existing complete catalog pair. It
+reuses all destination stages and shared materials, rebuilds one global
+palette-correct frame pool when its own fingerprints change, and repairs only
+the field-frame PNG import settings. Validate that scope with
+`validate_dspre_matrix_catalog.ps1 -FieldTextureAnimationsOnly`. Field texture
+support changes must not be added to the per-destination collision support
+fingerprint bundle.
+
+The frame stage and catalog pair commit before Godot import. Import failure
+therefore keeps a valid catalog available for retry. A reused stage with valid
+sidecars and declared `.ctex` caches skips Godot import completely.
 
 Direct sync keeps the strict source-record hash pass. The all-matrix
 orchestrator can pass the SHA-256 of an already validated dedupe marker so sync
@@ -78,10 +96,11 @@ The full validator first runs
 `tools/validate_dspre_matrix_catalog.ps1 -RequireComplete`, then validates all
 lossless/no-mipmap texture imports, external materials, the matrix `0000`
 streaming baseline, default and command-line debug destinations, and the
-in-game F2 destination reload path. Focused field-feature and MapProp-animation
-tests cover Warp endpoint resolution, dynamic fail-closed metadata, 30 Hz
-animation timing, and one-shot transition handoff; the real renderer test uses
-a static BCA door Warp from matrix `0007` to matrix `0086`.
+in-game F2 destination reload path. Focused field-feature, MapProp-animation,
+and field-texture tests cover Warp endpoint resolution, dynamic fail-closed
+metadata, 30 Hz timing, and one-shot transition handoff; real renderer tests
+use a static BCA door Warp from matrix `0007` to matrix `0086` plus `lakep.1`
+and `rhana` texture timelines in matrix `0000`.
 
 Expected Godot baselines:
 

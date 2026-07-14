@@ -3,7 +3,8 @@ param(
     [string]$ProjectRoot = "",
     [string]$GodotPath = "",
     [switch]$DeferReimport,
-    [switch]$RepairInvalidOnly
+    [switch]$RepairInvalidOnly,
+    [switch]$FieldTextureAnimationsOnly
 )
 
 Set-StrictMode -Version Latest
@@ -118,6 +119,36 @@ function Get-TextureDestinations {
     return @($results.ToArray())
 }
 
+function Get-FieldTextureAnimationPaths {
+    param($Catalog, [string]$AssetRoot)
+
+    $section = Get-RequiredProperty $Catalog "field_texture_animations" "Matrix catalog"
+    if (
+        [int](Get-RequiredProperty $section "schema_version" "Field texture animations") -ne 1 -or
+        [int](Get-RequiredProperty $section "source_fps" "Field texture animations") -ne 30
+    ) {
+        throw "Field texture animation catalog schema 1 at 30 Hz is required."
+    }
+    $paths = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+    foreach ($binding in @(Get-RequiredProperty $section "bindings" "Field texture animations")) {
+        foreach ($frame in @(Get-RequiredProperty $binding "frames" "Field texture animation binding")) {
+            $relativePath = [string](Get-RequiredProperty $frame "path" "Field texture animation frame")
+            if (-not $relativePath.StartsWith("field_texture_animations/frames/", [StringComparison]::Ordinal)) {
+                throw "Field texture animation frame is outside its global frame pool: $relativePath"
+            }
+            $fullPath = Resolve-PathUnderRoot $AssetRoot $relativePath "Field texture animation frame"
+            if (-not (Test-Path -LiteralPath $fullPath -PathType Leaf)) {
+                throw "Field texture animation frame was not found: $fullPath"
+            }
+            $null = $paths.Add($fullPath)
+        }
+    }
+    if ($paths.Count -eq 0) {
+        throw "Field texture animation catalog contains no runnable frame textures."
+    }
+    return @($paths | Sort-Object)
+}
+
 function Test-TextureImportSettings {
     param([IO.FileInfo[]]$ImportFiles)
 
@@ -142,13 +173,26 @@ $catalog = Read-JsonFile $catalogPath "Matrix catalog"
 if ([int]$catalog.schema_version -ne 3) {
     throw "Matrix catalog schema 3 is required."
 }
-$textureDestinations = @(Get-TextureDestinations $catalog $platinumRoot)
+$textureDestinations = @(
+    if (-not $FieldTextureAnimationsOnly) {
+        Get-TextureDestinations $catalog $platinumRoot
+    }
+)
 $expectedTextureCount = 0
 foreach ($destination in $textureDestinations) {
     $expectedTextureCount += $destination.ExpectedPngCount
 }
+$fieldTextureAnimationPaths = @(
+    Get-FieldTextureAnimationPaths -Catalog $catalog -AssetRoot $platinumRoot
+)
 $globalTexturePaths = @(
-    Join-Path $platinumRoot "characters\dawn_overworld.png"
+    if ($FieldTextureAnimationsOnly) {
+        $fieldTextureAnimationPaths
+    }
+    else {
+        Join-Path $platinumRoot "characters\dawn_overworld.png"
+        $fieldTextureAnimationPaths
+    }
 )
 foreach ($globalTexturePath in $globalTexturePaths) {
     if (-not (Test-Path -LiteralPath $globalTexturePath -PathType Leaf)) {
