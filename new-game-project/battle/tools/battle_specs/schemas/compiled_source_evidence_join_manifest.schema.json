@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/compiled_source_evidence_join_manifest.schema.json",
+  "title": "CompiledSourceEvidenceJoinManifest",
+  "$comment": "Generated P2 evidence-to-audit-to-spec join only. The closed projection contains stable IDs, canonical hashes, currentness, and deterministic blocker codes; source paths, symbols, observations, payloads, timestamps, and runtime objects are deliberately absent. Executable validation owns ordering, count equality, set closure, and bidirectional evidence links.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "schema_version",
+    "join_contract_version",
+    "source_spec_compiler_contract_version",
+    "scope_id",
+    "spec_manifest_sha256",
+    "spec_input_set_sha256",
+    "source_audit_seal_sha256",
+    "source_audit_manifest_sha256",
+    "evidence_input_set_sha256",
+    "counts",
+    "evidence_records",
+    "mechanism_evidence"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "COMPILED_SOURCE_EVIDENCE_JOIN_MANIFEST"},
+    "schema_version": {"const": 1},
+    "join_contract_version": {"const": 1},
+    "source_spec_compiler_contract_version": {"const": 1},
+    "scope_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$",
+      "maxLength": 128
+    },
+    "spec_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "spec_input_set_sha256": {"$ref": "#/$defs/sha256"},
+    "source_audit_seal_sha256": {"$ref": "#/$defs/sha256"},
+    "source_audit_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "evidence_input_set_sha256": {"$ref": "#/$defs/sha256"},
+    "counts": {"$ref": "#/$defs/counts"},
+    "evidence_records": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/evidence_record"}
+    },
+    "mechanism_evidence": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/mechanism_evidence_record"}
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "audit_id": {
+      "type": "string",
+      "pattern": "^AUDIT_[0-9A-F]{16}$"
+    },
+    "blocker_code": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "maxLength": 128
+    },
+    "stable_id_set": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "blocker_code_set": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/blocker_code"}
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_record_count",
+        "active_evidence_count",
+        "tombstone_evidence_count",
+        "current_evidence_count",
+        "blocked_evidence_count",
+        "mechanism_count",
+        "evidence_link_count"
+      ],
+      "properties": {
+        "evidence_record_count": {"$ref": "#/$defs/count"},
+        "active_evidence_count": {"$ref": "#/$defs/count"},
+        "tombstone_evidence_count": {"$ref": "#/$defs/count"},
+        "current_evidence_count": {"$ref": "#/$defs/count"},
+        "blocked_evidence_count": {"$ref": "#/$defs/count"},
+        "mechanism_count": {"$ref": "#/$defs/count"},
+        "evidence_link_count": {"$ref": "#/$defs/count"}
+      }
+    },
+    "evidence_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "evidence_version",
+        "status",
+        "canonical_authoring_sha256",
+        "source_audit_id",
+        "evidence_current",
+        "blocker_codes",
+        "mechanism_ids"
+      ],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/stable_id"},
+        "evidence_version": {"$ref": "#/$defs/version"},
+        "status": {"enum": ["ACTIVE", "TOMBSTONE"]},
+        "canonical_authoring_sha256": {"$ref": "#/$defs/sha256"},
+        "source_audit_id": {"$ref": "#/$defs/audit_id"},
+        "evidence_current": {"type": "boolean"},
+        "blocker_codes": {"$ref": "#/$defs/blocker_code_set"},
+        "mechanism_ids": {"$ref": "#/$defs/stable_id_set"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"status": {"const": "TOMBSTONE"}},
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "evidence_current": {"const": false},
+              "mechanism_ids": {"maxItems": 0}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"evidence_current": {"const": true}},
+            "required": ["evidence_current"]
+          },
+          "then": {
+            "properties": {
+              "status": {"const": "ACTIVE"},
+              "blocker_codes": {"maxItems": 0}
+            }
+          }
+        }
+      ]
+    },
+    "mechanism_evidence_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mechanism_id",
+        "required_evidence_ids",
+        "joined_evidence_ids",
+        "evidence_current",
+        "blocker_codes"
+      ],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "required_evidence_ids": {"$ref": "#/$defs/stable_id_set"},
+        "joined_evidence_ids": {"$ref": "#/$defs/stable_id_set"},
+        "evidence_current": {"type": "boolean"},
+        "blocker_codes": {"$ref": "#/$defs/blocker_code_set"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"evidence_current": {"const": true}},
+            "required": ["evidence_current"]
+          },
+          "then": {
+            "properties": {"blocker_codes": {"maxItems": 0}}
+          }
+        }
+      ]
+    }
+  }
+}

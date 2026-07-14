@@ -41,7 +41,8 @@ function Test-BattleAllowedJsonPath {
         $RelativePath -cmatch '^new-game-project/battle/specs/events/[0-9]{10}\.event_schema\.json$' -or
         $RelativePath -cmatch '^new-game-project/battle/specs/handlers/[0-9]{10}\.handler_binding\.json$' -or
         $RelativePath -cmatch '^new-game-project/battle/specs/resolvers/[0-9]{10}\.resolver_spec\.json$' -or
-        $RelativePath -cmatch '^new-game-project/battle/specs/tests/[0-9]{10}\.test_manifest_entry\.json$') {
+        $RelativePath -cmatch '^new-game-project/battle/specs/tests/[0-9]{10}\.test_manifest_entry\.json$' -or
+        $RelativePath -cmatch '^new-game-project/battle/specs/evidence/[0-9]{10}\.source_evidence\.json$') {
         return $true
     }
     if ($RelativePath -cmatch '^new-game-project/battle/tools/battle_catalog/schemas/[a-z0-9_]+\.schema\.json$') {
@@ -55,6 +56,8 @@ function Test-BattleAllowedJsonPath {
         "new-game-project/battle/tools/battle_specs/schemas/handler_binding.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/resolver_spec.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/test_manifest_entry.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/source_evidence.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/compiled_source_evidence_join_manifest.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/compiled_fixture_requirement_manifest.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/compiled_spec_manifest.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/runtime_rule_catalog_manifest.schema.json"

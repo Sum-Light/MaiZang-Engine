@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P2.SOURCE_EVIDENCE_AUDIT_JOIN",
+  "godot_contract_refs": [
+    {
+      "document": "18-mechanism-specification-and-traceability.md",
+      "section": "SourceEvidence identity, claim-level MechanismSpec traceability, source-audit join, and runtime exclusion",
+      "sha256": "8e38bf63cb8e05323473323540cb98f9c2406a479afd65fe97784a88762bd242"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P2 source evidence and source audit disposition join Todo",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_logic/section/btl_Section_Fight.cpp",
+      "symbol": "btl_Section_Fight",
+      "sha256": "0e84d2edccf1248c8c71efe5ef30ebf65b846aee5e40ec9d97757bd1415c3ddb"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/test_modules/tester.cpp",
+      "symbol": "test:programs/src/battle_unit_test/test_modules/tester.cpp",
+      "sha256": "af0e1959ce11e47dfdf8bba65be4e82633051d368593d91274c89a3d7597e922"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The tracked SourceEvidence authoring set remains empty; this work item's clean Section and test references prove implementation provenance only and are not silently promoted into SourceEvidence records.",
+    "Each future external SourceEvidence record must name one exact sealed audit ID and repeat its repository, category, relative path, symbol, file SHA-256, and baseline commit or tree; the compiler never expands all entries that happen to share a file.",
+    "The 6,559-entry source audit remains an ignored reproducible P0 artifact. A nonempty SourceEvidence catalog requires its exact sealed bytes locally, while the empty public clone validates the tracked seal without requiring or creating generated data.",
+    "The audit's GENERATED_SCOPE_CLASSIFICATION review status is not human evidence review. Authoring independently requires explicit confidence and review status, and only HIGH plus VERIFIED can produce current evidence.",
+    "Dirty, missing, stale, deferred, merged, text-only, presentation-only, rejected, and non-applicable audit dispositions remain deterministic blocker codes. Todo 10 owns the later hard release failure for stale or uncovered evidence.",
+    "MechanismSpec evidence IDs and behavior claims close bidirectionally. Claims resolve only behavioral JSON Pointer targets and use branch zero for mechanism-wide claims or an existing declared branch ID.",
+    "The compiled join contains only IDs, canonical hashes, currentness, counts, and blocker codes. Paths, symbols, summaries, source payloads, timestamps, GUIDs, runtime objects, and absolute paths are excluded.",
+    "The join is a read-only non-runtime overlay and does not change the existing spec manifest, runtime catalog, stable-ID domains, maturity promotion, fixture execution, coverage observation, or P0 audit disposition manifest.",
+    "Project-requirement-only mechanisms with no evidence IDs are valid and vacuously current for this join; their project requirement and release eligibility remain owned by later gates.",
+    "SourceEvidence history is append-only by numeric ID, semantic edits increment evidence_version exactly once, deletion requires a tombstone, and tombstones cannot change or revive."
+  ],
+  "completion_status": "VERIFIED"
+}

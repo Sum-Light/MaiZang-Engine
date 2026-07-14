@@ -6,7 +6,7 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0, P0, and P1 are complete. P2 is in progress (`8/16`). The pure foundation
+Q0, P0, and P1 are complete. P2 is in progress (`9/16`). The pure foundation
 and protocol/command contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
@@ -18,11 +18,13 @@ camera.
 
 The completed P2 slices establish append-only stable-ID/presentation
 contracts, five strict spec schemas with validator-owned maturity, the
-deterministic cross-file compiler, and a bounded mechanism trace probe. A
+deterministic cross-file compiler, a bounded mechanism trace probe, and a
+non-runtime SourceEvidence/audit-disposition join. A
 non-executable fixture-requirement preflight protects Todo 6 without claiming
-it complete. The authoring sets remain empty; setup-bearing fixture compilation
-and coverage joins/reports remain later work. P2 does not change the editor
-entry or connect the world.
+it complete. The spec, fixture, and SourceEvidence authoring sets remain empty;
+setup-bearing fixture compilation, release-reference closure, and coverage
+reports remain later work. P2 does not change the editor entry or connect the
+world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -415,6 +417,41 @@ increments `dropped_count`, and latches `BATTLE_TRACE_CAPACITY_EXCEEDED`, so an
 incomplete window cannot be promoted as coverage evidence. `stage_id` is a
 mechanism-local formula stage, never a resolver phase.
 
+`specs/evidence/` now owns strict, ten-digit `SourceEvidence` authoring without
+adding an evidence domain to the runtime stable-ID registry. Each ACTIVE record
+selects exactly one sealed P0 `audit_id`, repeats its repository/category/path/
+symbol/file hash and commit-or-tree revision, and carries sorted behavior claims
+to exact `MechanismSpec` JSON Pointers. Claims use branch sentinel zero for a
+mechanism-wide observation or a declared coverage branch. Evidence IDs and spec
+back-references must close in both directions. History is append-only: new IDs
+start at version 1 above the prior maximum, semantic edits advance one version,
+and tombstones cannot be removed, changed, revived, or referenced.
+
+The join verifies the tracked policy/baseline/seal chain. An empty evidence set
+does not require the ignored 5.5 MB audit payload; a nonempty set reads only
+`battle/generated/p0/source_audit_disposition_manifest.json` through a bounded
+no-follow handle and requires its raw SHA-256 to equal the seal before indexing
+it. Every selected audit ID is then re-derived from repository, category, path,
+and symbol and all repeated identity fields must match. Unknown, forged, or
+stale identity links fail compilation. Dirty, missing, stale-index, deferred,
+rejected, insufficient-review, and insufficient-confidence evidence remains in
+the deterministic join with sorted blockers so Todo 10 can enforce the later
+release gate.
+
+The closed `COMPILED_SOURCE_EVIDENCE_JOIN_MANIFEST` contains only stable IDs,
+canonical hashes, currentness, and blocker codes. It excludes source paths,
+symbols, observations, claims, source payloads, timestamps, GUIDs, runtime
+objects, and machine paths, and never enters the runtime catalog. The current
+empty evidence input hash is
+`a07e6384acd2d662315e412856053b2c6b9404b0fc7083e262cefd8884572e33`;
+the empty join hash is
+`ac1277e109e28492a380656c8c39d783bfd464aca5251cd78d1edf30d99313fe`.
+The 496-check focused suite also covers schema closure, history, exact audit
+identity, bidirectional claim closure, JSON Pointer/branch failures, blocker
+propagation, minimal output, and order-independent projection. Todo 8 is closed;
+release triple references, reports, stale-evidence release failure, and fixture
+execution remain open.
+
 Run the focused checks with:
 
 ```powershell
@@ -432,6 +469,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_fixture_preflight_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_source_evidence_join_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\test_battle.ps1 `
@@ -452,5 +492,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_fixture_requirements.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_source_evidence_join.ps1 `
   -Mode Repository
 ```

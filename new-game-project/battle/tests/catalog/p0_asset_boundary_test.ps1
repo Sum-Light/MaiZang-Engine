@@ -102,6 +102,7 @@ foreach ($approvedP2Path in @(
     "new-game-project/battle/specs/handlers/0000000001.handler_binding.json",
     "new-game-project/battle/specs/resolvers/0000000001.resolver_spec.json",
     "new-game-project/battle/specs/tests/0000000001.test_manifest_entry.json",
+    "new-game-project/battle/specs/evidence/0000000001.source_evidence.json",
     "new-game-project/battle/tools/battle_specs/schemas/stable_id_manifest.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/mechanism_spec.schema.json",
@@ -109,6 +110,8 @@ foreach ($approvedP2Path in @(
     "new-game-project/battle/tools/battle_specs/schemas/handler_binding.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/resolver_spec.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/test_manifest_entry.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/source_evidence.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/compiled_source_evidence_join_manifest.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/compiled_spec_manifest.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/runtime_rule_catalog_manifest.schema.json"
 )) {
@@ -122,6 +125,10 @@ foreach ($unapprovedP2Path in @(
     "new-game-project/battle/specs/mechanisms/1.mechanism_spec.json",
     "new-game-project/battle/specs/mechanisms/0000000001.event_schema.json",
     "new-game-project/battle/specs/mechanisms/nested/0000000001.mechanism_spec.json",
+    "new-game-project/battle/specs/evidence/1.source_evidence.json",
+    "new-game-project/battle/specs/evidence/0000000001.evidence.json",
+    "new-game-project/battle/specs/evidence/nested/0000000001.source_evidence.json",
+    "new-game-project/battle/specs/Evidence/0000000001.source_evidence.json",
     "new-game-project/battle/specs/Events/0000000001.event_schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/rogue.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/mechanism_specs.schema.json"

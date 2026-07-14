@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/source_evidence.schema.json",
+  "title": "SourceEvidence",
+  "$comment": "Behavior-only evidence authoring. Records retain source identity and short observations, but never source payloads, copied algorithms, or runtime dependencies. Executable validation owns audit-entry identity, MechanismSpec pointer resolution, ordering, and history closure.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "evidence_id",
+    "evidence_version",
+    "status",
+    "source_audit_id",
+    "source_kind",
+    "source_repository",
+    "source_category",
+    "source_revision",
+    "source_relative_path",
+    "symbol_or_record_key",
+    "line_anchor_at_scan_time",
+    "file_sha256",
+    "observation_summary",
+    "behavior_claims",
+    "confidence",
+    "known_ambiguities",
+    "review_status",
+    "license_boundary"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "SOURCE_EVIDENCE"},
+    "evidence_id": {"$ref": "#/$defs/stable_id"},
+    "evidence_version": {"$ref": "#/$defs/version"},
+    "status": {"enum": ["ACTIVE", "TOMBSTONE"]},
+    "source_audit_id": {"$ref": "#/$defs/audit_id"},
+    "source_kind": {"enum": ["SOURCE_CODE", "SOURCE_SCHEMA", "SOURCE_TEST"]},
+    "source_repository": {"enum": ["battlelogic", "pokelib"]},
+    "source_category": {"$ref": "#/$defs/source_category"},
+    "source_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_relative_path": {"$ref": "#/$defs/relative_slash_path"},
+    "symbol_or_record_key": {"$ref": "#/$defs/bounded_identity"},
+    "line_anchor_at_scan_time": {"$ref": "#/$defs/stable_id"},
+    "file_sha256": {"$ref": "#/$defs/sha256"},
+    "observation_summary": {"$ref": "#/$defs/summary"},
+    "behavior_claims": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/behavior_claim"}
+    },
+    "confidence": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+    "known_ambiguities": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/ambiguity"}
+    },
+    "review_status": {"enum": ["DRAFT", "HUMAN_REVIEWED", "VERIFIED"]},
+    "license_boundary": {"const": "BEHAVIOR_EVIDENCE_ONLY"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "ACTIVE"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {"behavior_claims": {"minItems": 1}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"status": {"const": "TOMBSTONE"}},
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {"behavior_claims": {"maxItems": 0}}
+      }
+    }
+  ],
+  "$defs": {
+    "stable_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "audit_id": {
+      "type": "string",
+      "pattern": "^AUDIT_[0-9A-F]{16}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "relative_slash_path": {
+      "$comment": "Forward-slash relative path with non-empty segments; drive roots, absolute paths, backslashes, dot traversal segments, control characters, repeated separators, and trailing separators are excluded.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "pattern": "^(?![A-Za-z]:)(?!\\.{1,2}(?:/|$))[^/\\\\\\u0000-\\u001F\\u007F]+(?:/(?!\\.{1,2}(?:/|$))[^/\\\\\\u0000-\\u001F\\u007F]+)*$"
+    },
+    "bounded_identity": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?=.*\\S)[^\\r\\n\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F\\u007F]+$"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "pattern": "^(?=.*\\S)[^\\r\\n\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F\\u007F]+$"
+    },
+    "ambiguity": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?=.*\\S)[^\\r\\n\\u0000-\\u0008\\u000B\\u000C\\u000E-\\u001F\\u007F]+$"
+    },
+    "source_category": {
+      "enum": [
+        "MODULE",
+        "SOURCE_FILE",
+        "SECTION",
+        "EVENT_HANDLER",
+        "EVENT",
+        "COMMAND",
+        "ACTION",
+        "INTERRUPT",
+        "PROTOCOL",
+        "BATTLE_MODE",
+        "SCHEMA",
+        "TEST",
+        "SCRIPT_SCENARIO",
+        "LOGIC_EDGE"
+      ]
+    },
+    "json_pointer": {
+      "$comment": "A non-empty RFC 6901 JSON Pointer. Executable validation rejects metadata-only targets and resolves the pointer against the claimed MechanismSpec.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?:/(?:[^~/\\u0000-\\u001F\\u007F]|~[01])*)+$"
+    },
+    "behavior_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mechanism_id",
+        "branch_id",
+        "spec_field_pointer",
+        "claim_summary"
+      ],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "branch_id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "spec_field_pointer": {"$ref": "#/$defs/json_pointer"},
+        "claim_summary": {"$ref": "#/$defs/summary"}
+      }
+    }
+  }
+}

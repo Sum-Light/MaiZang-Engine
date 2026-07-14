@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Join battle source evidence to the sealed audit
+
+- Add strict append-only `SourceEvidence` authoring with exact audit identity, commit/tree revision, behavior-only claims, mechanism/branch/JSON-Pointer closure, immutable tombstones, and no runtime ID or catalog dependency.
+- Add a deterministic non-runtime join that protects the tracked P0 policy/baseline/seal in Git views, reads the ignored full audit only for nonempty authoring, re-derives selected audit IDs, propagates stable blockers, and emits no source paths, observations, payloads, time, GUIDs, or machine data.
+- Add a verified evidence-bound work item, scope/asset/staged-surface integration, a real 6,559-entry sealed-audit smoke, and 496 focused checks; close P2 Todo 8 at `9/16` (`71/465`) while preserving the existing spec/runtime hashes and leaving release closure, coverage, stale-evidence release failure, fixtures, and world integration open.
+
 ## 2026-07-14 - Add scoped battle mechanism trace probe
 
 - Add the six contract `MechanismTraceProbe` observation methods as battle-local, RefCounted-only `void` calls with a disabled mode that allocates no trace-record capacity and strict scenario/unit test scope inheritance.

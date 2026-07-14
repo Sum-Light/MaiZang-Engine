@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | In progress (8/16) | ID/presentation, strict authoring, deterministic spec compiler, fixture-requirement preflight, and mechanism trace scope enforcement; production setup compilation, coverage, and fixtures remain |
+| P2 | In progress (9/16) | ID/presentation, strict authoring, deterministic spec compiler, fixture-requirement preflight, mechanism trace scope enforcement, and sealed SourceEvidence joins; production setup compilation, release closure, coverage, and fixtures remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -517,25 +517,85 @@ rejection for every observation method, lifecycle errors, ID/cursor boundaries,
 bounded overflow, first-error and snapshot isolation, disabled behavior, and
 byte-identical repeated traces. It does not execute a fixture or claim coverage.
 
+## P2 Source Evidence Audit Join
+
+P2 Todo 8 is complete. `SourceEvidence` is an independent, non-runtime catalog
+under `specs/evidence/`; it is not an `ImplementationWorkItem` reference and it
+does not add a sixteenth runtime stable-ID domain. Every ten-digit record keeps
+an append-only positive evidence ID, version, ACTIVE/TOMBSTONE status, one exact
+P0 audit ID, repository/category/path/symbol/file hash, a sealed commit-or-tree
+revision, a short behavior-only observation, review/confidence state, retained
+ambiguities, and sorted field-level behavior claims. Tombstones retain identity
+but contain no claims, cannot revive, and cannot satisfy a mechanism.
+
+ACTIVE claims close bidirectionally with `MechanismSpec.evidence_ids`. A
+mechanism that uses project requirement keys and declares no evidence remains
+valid and vacuously current for this join; later gates own that requirement's
+status. Each
+claim names an existing mechanism, uses branch zero or one declared coverage
+branch, and resolves a real RFC 6901 pointer whose first segment is behavioral;
+metadata, missing members, noncanonical indexes, invalid escapes, and scalar
+traversal fail with stable P2E codes. One evidence record can support multiple
+mechanisms, but one audit ID cannot be silently fanned out into multiple
+evidence identities. A selected audit row is re-derived from repository,
+category, path, and symbol and must exactly match every repeated identity field,
+file SHA-256, and the sealed repository revision.
+
+The compiler captures spec/evidence authoring and the three tracked P0
+governance files through one immutable Repository/Worktree/Staged view. In
+Worktree and Staged modes the policy, source-index baseline, and audit seal must
+remain byte-identical to HEAD, so a staged evidence edit cannot forge its trust
+root. An empty evidence set validates that chain without requiring local audit
+payloads. Once evidence exists, the compiler opens only the canonical ignored
+`generated/p0/source_audit_disposition_manifest.json` through a bounded
+no-follow handle, proves its raw 5,565,578-byte hash equals
+`0e91976589d1eba3b9427ce893a63d5c2e670e1589530f95c8df3de1fe107593`,
+and indexes all 6,559 sealed audit IDs. The real baseline smoke completes
+without copying or publishing any source payload.
+
+Unknown/forged audit IDs, identity/hash/revision mismatch, unknown mechanisms
+or branches, one-sided claims, and tombstone references are structural failures.
+Clean IMPLEMENT evidence becomes current only at HIGH confidence and VERIFIED
+author review. Dirty, missing, stale-index, merged, deferred, text-only,
+presentation-only, rejected, non-applicable, and non-port test dispositions
+remain joined with sorted blocker codes rather than being promoted. Todo 10
+still owns the release hard-fail policy; this slice does not claim Todo 9's
+contract/source/fixture triple or Todo 10's coverage/orphan reports.
+
+The generated closed overlay binds the unchanged P2 spec/input hashes, tracked
+seal hash, sealed audit hash, and evidence input hash, then emits only evidence/
+mechanism IDs, canonical authoring hashes, currentness, and blocker codes. It
+contains no source path, symbol, summary, claim text, payload, absolute path,
+time, GUID, or runtime object and does not alter the spec or runtime catalog.
+The current empty evidence input hash is
+`a07e6384acd2d662315e412856053b2c6b9404b0fc7083e262cefd8884572e33` and
+the empty join hash is
+`ac1277e109e28492a380656c8c39d783bfd464aca5251cd78d1edf30d99313fe`.
+The 496-check focused suite covers both closed schemas, strict authoring and
+history, empty and synthetic joins, audit identity, bidirectional closure,
+pointer/branch failures, blocker propagation, deterministic ordering, minimal
+output, CLI marker, and unchanged spec/runtime hashes.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
 items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, P1 is
-`17/17`, and P2 is `8/16`. Current mainline progress is therefore `70/465`
-items (`15.1%`), with `3/20` phases complete and P2 in progress. This count
+`17/17`, and P2 is `9/16`. Current mainline progress is therefore `71/465`
+items (`15.3%`), with `3/20` phases complete and P2 in progress. This count
 advances only after a checklist item has implementation, focused verification,
 Wiki/Skill memory, and a focused commit.
 
-P2 Todo1-5, Todo7, deterministic gate G01, and scope gate G03 are now closed:
+P2 Todo1-5, Todo7-8, deterministic gate G01, and scope gate G03 are now closed:
 append-only/
 tombstone-safe mechanism and runtime ID domains, the presentation cue/payload/
 tag manifest, five strict authoring schemas, validator-owned maturity, the
-deterministic spec compiler, byte-identical spec/runtime manifest output, and
-bounded in-scope mechanism trace records. Todo6 has a deterministic requirement
+deterministic spec compiler, byte-identical spec/runtime manifest output,
+bounded in-scope mechanism trace records, and sealed SourceEvidence/audit joins.
+Todo6 has a deterministic requirement
 preflight but cannot close until the ordered P7 production setup contracts
-exist. Todo8, the source-evidence/audit-disposition join, is the next independent
-P2 item. No world-runtime coupling has been introduced.
+exist. Todo9, release-mechanism contract/source/fixture closure, is the next
+independent P2 item. No world-runtime coupling has been introduced.
 
 ## Editor Entry
 

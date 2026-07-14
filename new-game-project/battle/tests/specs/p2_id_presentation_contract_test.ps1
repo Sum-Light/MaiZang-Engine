@@ -790,6 +790,11 @@ try {
         "new-game-project/battle/tools/battle_specs/schemas/" +
         "presentation_contracts.schema.json"
     )
+    $p0GovernanceRelatives = @(
+        "new-game-project/battle/manifests/source_audit/source_audit_policy.json",
+        "new-game-project/battle/manifests/source_audit/source_audit_seal.json",
+        "new-game-project/battle/manifests/source_audit/source_index_baseline.json"
+    )
     $stableBytes = [IO.File]::ReadAllBytes($stablePath)
     $presentationBytes = [IO.File]::ReadAllBytes($presentationPath)
     Write-ContainedBytes $tempRoot $stableRelative $stableBytes
@@ -799,12 +804,17 @@ try {
     Write-ContainedBytes $tempRoot $stableSchemaRelative $stableSchemaBytes
     Write-ContainedBytes $tempRoot $presentationSchemaRelative `
         $presentationSchemaBytes
+    foreach ($relativePath in $p0GovernanceRelatives) {
+        $sourcePath = Join-Path $ProjectRoot $relativePath.Replace('/', '\')
+        Write-ContainedBytes $tempRoot $relativePath `
+            ([IO.File]::ReadAllBytes($sourcePath))
+    }
     $contractPaths = @(
         $stableRelative,
         $presentationRelative,
         $stableSchemaRelative,
         $presentationSchemaRelative
-    )
+    ) + $p0GovernanceRelatives
     $null = Invoke-TestGit $tempRoot (@("add", "--") + $contractPaths)
     $invalidInitialStable = Copy-JsonValue $stableManifest
     $invalidInitialStable.generation = 2
