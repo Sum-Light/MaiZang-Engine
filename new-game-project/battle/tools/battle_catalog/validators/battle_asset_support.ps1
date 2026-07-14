@@ -28,7 +28,9 @@ function Test-BattleAllowedJsonPath {
         "new-game-project/battle/manifests/source_audit/source_audit_policy.json",
         "new-game-project/battle/manifests/source_audit/source_audit_seal.json",
         "new-game-project/battle/manifests/source_audit/source_index_baseline.json",
-        "new-game-project/battle/fixtures/synthetic/p0/synthetic_generation_manifest.json"
+        "new-game-project/battle/fixtures/synthetic/p0/synthetic_generation_manifest.json",
+        "new-game-project/battle/specs/id_manifests/battle_stable_ids.json",
+        "new-game-project/battle/specs/presentation/presentation_contracts.json"
     )) {
         return $true
     }
@@ -36,6 +38,12 @@ function Test-BattleAllowedJsonPath {
         return $true
     }
     if ($RelativePath -cmatch '^new-game-project/battle/tools/battle_catalog/schemas/[a-z0-9_]+\.schema\.json$') {
+        return $true
+    }
+    if ($RelativePath -in @(
+        "new-game-project/battle/tools/battle_specs/schemas/stable_id_manifest.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json"
+    )) {
         return $true
     }
     return $false
@@ -99,7 +107,7 @@ function Test-BattleAssetCandidate {
         throw "BATTLE_ASSET_TYPE_NOT_ALLOWED: '$path' is not an allowed tracked battle source type."
     }
     if (-not (Test-BattleAllowedJsonPath -RelativePath $path)) {
-        throw "BATTLE_ASSET_JSON_PATH_NOT_ALLOWED: '$path' is not an approved P0 JSON contract path."
+        throw "BATTLE_ASSET_JSON_PATH_NOT_ALLOWED: '$path' is not an approved battle JSON contract path."
     }
     if ($Bytes.Length -gt 524288) {
         throw "BATTLE_ASSET_JSON_TOO_LARGE: '$path' resembles a catalog or generated payload."

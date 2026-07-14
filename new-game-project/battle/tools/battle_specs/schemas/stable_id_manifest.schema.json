@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/stable_id_manifest.schema.json",
+  "title": "BattleStableIdRegistry",
+  "$comment": "Cross-domain owner existence and append-only history require baseline-aware semantic validation by validate_p2_id_manifests.ps1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_kind",
+    "generation",
+    "invalid_id",
+    "max_id",
+    "domains"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_kind": {"const": "BATTLE_STABLE_ID_REGISTRY"},
+    "generation": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "invalid_id": {"const": 0},
+    "max_id": {"const": 2147483647},
+    "domains": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "prefixItems": [
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "MECHANISM"},
+                "id_prefix": {"const": "MECH"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "BRANCH"},
+                "id_prefix": {"const": "BRANCH"},
+                "scope_kind": {"const": "MECHANISM"},
+                "entries": {"items": {"$ref": "#/$defs/scoped_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "EVENT"},
+                "id_prefix": {"const": "EVENT"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "HANDLER"},
+                "id_prefix": {"const": "HANDLER"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "RESOLVER"},
+                "id_prefix": {"const": "RESOLVER"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "PHASE"},
+                "id_prefix": {"const": "PHASE"},
+                "scope_kind": {"const": "RESOLVER"},
+                "entries": {"items": {"$ref": "#/$defs/scoped_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "RNG_DRAW"},
+                "id_prefix": {"const": "RNG_DRAW"},
+                "scope_kind": {"const": "MECHANISM"},
+                "entries": {"items": {"$ref": "#/$defs/scoped_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "RNG_STREAM"},
+                "id_prefix": {"const": "RNG_STREAM"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "RNG_TAG"},
+                "id_prefix": {"const": "RNG_TAG"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "STATE_OP"},
+                "id_prefix": {"const": "STATE_OP"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "COMMAND"},
+                "id_prefix": {"const": "COMMAND"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "ACTION"},
+                "id_prefix": {"const": "ACTION"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "INTERRUPT"},
+                "id_prefix": {"const": "INTERRUPT"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "FEATURE"},
+                "id_prefix": {"const": "FEATURE"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/domain"},
+            {
+              "properties": {
+                "domain": {"const": "TEST"},
+                "id_prefix": {"const": "TEST"},
+                "scope_kind": {"const": "GLOBAL"},
+                "entries": {"items": {"$ref": "#/$defs/global_entry"}}
+              }
+            }
+          ]
+        }
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "id_prefix", "scope_kind", "entries"],
+      "properties": {
+        "domain": {
+          "enum": ["MECHANISM", "BRANCH", "EVENT", "HANDLER", "RESOLVER", "PHASE", "RNG_DRAW", "RNG_STREAM", "RNG_TAG", "STATE_OP", "COMMAND", "ACTION", "INTERRUPT", "FEATURE", "TEST"]
+        },
+        "id_prefix": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "scope_kind": {"enum": ["GLOBAL", "MECHANISM", "RESOLVER"]},
+        "entries": {
+          "type": "array",
+          "maxItems": 65535,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/entry"}
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope_id", "id", "debug_key", "status", "aliases"],
+      "properties": {
+        "scope_id": {"type": "integer", "minimum": 0, "maximum": 2147483647},
+        "id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+        "debug_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128},
+        "status": {"enum": ["ACTIVE", "TOMBSTONE"]},
+        "aliases": {
+          "type": "array",
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128}
+        }
+      }
+    },
+    "global_entry": {
+      "allOf": [
+        {"$ref": "#/$defs/entry"},
+        {"properties": {"scope_id": {"const": 0}}}
+      ]
+    },
+    "scoped_entry": {
+      "allOf": [
+        {"$ref": "#/$defs/entry"},
+        {"properties": {"scope_id": {"minimum": 1}}}
+      ]
+    }
+  }
+}

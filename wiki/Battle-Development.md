@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | Next | Mechanism IDs/specs, trace, coverage registry, and fixture compiler infrastructure |
+| P2 | In progress (2/16) | Append-only stable-ID registry and presentation tag/payload/cue contracts; mechanism schemas, trace, coverage, and fixture compiler remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -257,21 +257,74 @@ existing import cache are present. The verified work item binds the test-loop
 shape to clean source evidence without treating that source as the CLI/process
 oracle.
 
+## P2 Stable ID And Presentation Contracts
+
+The first two P2 checklist items are complete. The authoring registry fixes 15
+domains in reviewed order: mechanism, mechanism-scoped branch, event, handler,
+resolver, resolver-scoped phase, mechanism-scoped RNG draw, RNG stream/tag,
+state-op, command, action, interrupt, feature, and test. Zero remains the
+invalid sentinel and every allocatable value is a positive signed-32 integer.
+The initial entries are intentionally empty: this slice establishes ownership
+and history rules without inventing gameplay IDs or importing catalog values.
+
+Each domain preserves authoring history rather than sorting changes before
+validation. Existing `(scope_id, id)` entries cannot be deleted, inserted
+ahead of history, reordered, replaced, reused from an old gap, or revived from
+a tombstone. New IDs append above the prior maximum within their scope. A
+debug-key rename retains the old key as an appended alias, and aliases cannot
+be removed or reordered. This lets branch and RNG draw ID `1` legitimately
+exist under different mechanism scopes while preventing accidental global-ID
+semantics. Every scoped owner must exist in the mechanism or resolver domain;
+an active scoped ID cannot remain below a tombstoned owner, while tombstoned
+children retain their historical owner identity.
+
+The separate presentation contract fixes IDs `1..7` as `PRES_VISUAL`,
+`PRES_AUDIO`, `PRES_CAMERA`, `PRES_UI`, `PRES_TEXT`, `PRES_TIMING`, and
+`PRES_NONE`. Payload schemas admit only bounded stable entity/effect/item/move/
+message IDs, public signed integers, and booleans with explicit cardinality.
+Cues require at least one active tag and an active payload schema;
+`PRES_NONE` is exclusive. Their phase, information class, fallback text key,
+and local-only barrier are authoring data, while Node, Resource, Callable,
+asset paths, authority state, rule RNG, and continuation state have no field
+in the contract.
+
+The strict validator computes independent canonical SHA-256 values for the
+stable-ID and presentation manifests. Repository mode validates explicit
+authoring files; Worktree compares them with `HEAD`; Staged reads exact index
+blobs and cannot be redirected to a clean worktree copy. A semantic change
+must increment generation exactly once, while unchanged content cannot bump
+generation. The scope gate invokes this check whenever either manifest exists
+in the candidate or baseline, so deleting a registry cannot bypass it.
+Staged validation also compares the reviewed gate scripts, schemas, and tests
+with their index blobs, preventing a clean worktree tool from certifying a
+different staged implementation.
+
+The 75-check PowerShell suite covers schema headers, canonical repeatability,
+scoped local-ID reuse, range/order/name collisions, valid append/tombstone/
+rename transitions, every forbidden history mutation, the seven presentation
+tags, payload field kinds and ordering, cue cross-references, `PRES_NONE`, and
+presentation semantic immutability. Temporary Git repositories prove first
+staged introduction, index/worktree isolation, semantic scope rejection,
+core-manifest deletion rejection, and one-sided baseline rejection. The
+verified work item uses a clean typed-ID/invalid-sentinel source only as
+structural evidence; append-only history and cue semantics remain Godot
+contracts and project decisions.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
-items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, and
-P1 is `17/17`. Current mainline progress is therefore `62/465` items
-(`13.3%`), with `3/20` phases complete and P2 next. This count advances only
-after a checklist item has implementation,
-focused verification, Wiki/Skill memory, and a focused commit.
+items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, P1 is
+`17/17`, and P2 is `2/16`. Current mainline progress is therefore `64/465`
+items (`13.8%`), with `3/20` phases complete and P2 in progress. This count
+advances only after a checklist item has implementation, focused verification,
+Wiki/Skill memory, and a focused commit.
 
-The final four P1 items are now closed: the aggregate SceneTree runner; the
-PowerShell single/all suite entry with exact child-code propagation; optional
-read-only root `validate_repository.ps1 -Full` forwarding without root edits;
-and headless exit zero without OpenGL or Platinum assets. P2 mechanism/trace
-infrastructure is the next checklist boundary.
+The first two P2 items are now closed: append-only/tombstone-safe mechanism
+and runtime ID domains, plus the presentation cue/payload/tag manifest. The
+next P2 slice defines strict `MechanismSpec`, `EventSchema`, `HandlerBinding`,
+`ResolverSpec`, and `TestManifestEntry` authoring contracts and makes
+`computed_status` validator-owned.
 
 ## Editor Entry
 
@@ -335,6 +388,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\foundation\p1_dependency_gate_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_id_presentation_contract_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_catalog\importers\build_p0_source_audit.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
@@ -383,3 +439,6 @@ battle-only execution, assertion and usage failures, exact child/root exit
 propagation, and optional root Full arguments. The one-command P1 selection
 also runs the dependency gate; `RepositoryValidation Fast` adds the current
 read-only root gate without requiring Platinum assets.
+The P2 ID/presentation suite executes 75 checks across strict structure,
+canonical hashes, append-only evolution, tombstones, scoped IDs, cue/payload
+cross-references, staged-index isolation, and semantic scope-gate integration.

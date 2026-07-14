@@ -256,6 +256,60 @@ if ($LASTEXITCODE -ne 0) {
     throw "Battle asset gate failed with exit code $LASTEXITCODE."
 }
 
+$p2StableIdPath = "new-game-project/battle/specs/id_manifests/battle_stable_ids.json"
+$p2PresentationPath = "new-game-project/battle/specs/presentation/presentation_contracts.json"
+function Test-GitObjectExists {
+    param([Parameter(Mandatory = $true)][string]$ObjectSpec)
+
+    $previousErrorAction = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = "Continue"
+        & git -C $ProjectRoot cat-file -e $ObjectSpec 1>$null 2>$null
+        $exitCode = $LASTEXITCODE
+    }
+    finally {
+        $ErrorActionPreference = $previousErrorAction
+    }
+    return $exitCode -eq 0
+}
+
+function Test-P2ContractsRelevant {
+    param([ValidateSet("Staged", "Worktree")][string]$ContractMode)
+
+    foreach ($path in @($p2StableIdPath, $p2PresentationPath)) {
+        if (Test-GitObjectExists -ObjectSpec "HEAD:$path") {
+            return $true
+        }
+        if ($ContractMode -eq "Staged" -and
+            (Test-GitObjectExists -ObjectSpec ":$path")) {
+            return $true
+        }
+        if ($ContractMode -eq "Worktree" -and
+            (Test-Path -LiteralPath (Join-Path $ProjectRoot $path.Replace('/', '\')) -PathType Leaf)) {
+            return $true
+        }
+    }
+    return $false
+}
+
+$p2ContractGatePath = Join-Path $PSScriptRoot `
+    "battle_specs\validators\validate_p2_id_manifests.ps1"
+foreach ($contractMode in @("Staged", "Worktree")) {
+    if ($contractMode -eq "Staged" -and $Mode -notin @("Staged", "All")) {
+        continue
+    }
+    if ($contractMode -eq "Worktree" -and $Mode -notin @("Worktree", "All")) {
+        continue
+    }
+    if (-not (Test-P2ContractsRelevant -ContractMode $contractMode)) {
+        continue
+    }
+    if (-not (Test-Path -LiteralPath $p2ContractGatePath -PathType Leaf)) {
+        throw "P2 ID/presentation contract gate was not found: $p2ContractGatePath"
+    }
+    & $p2ContractGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
+}
+
 $dependencyGatePath = Join-Path $PSScriptRoot "check_battle_dependencies.ps1"
 if (-not (Test-Path -LiteralPath $dependencyGatePath -PathType Leaf)) {
     throw "Battle dependency gate was not found: $dependencyGatePath"

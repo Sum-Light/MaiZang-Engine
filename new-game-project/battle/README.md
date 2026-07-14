@@ -6,8 +6,8 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0, P0, and P1 are complete. The pure foundation and protocol/command
-contracts define nine independent contract versions,
+Q0, P0, and P1 are complete. P2 is in progress (`2/16`). The pure foundation
+and protocol/command contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
 batches, a stable empty `BattleEngine`, local authority/session lifecycle,
@@ -16,8 +16,10 @@ still does not contain a catalog, configured battle state, playable battle,
 world integration, network stack, model, texture, animation, audio, or battle
 camera.
 
-P2 is next: it establishes mechanism IDs, specs, trace, and coverage
-infrastructure. It will not change the editor entry or connect the world.
+The first P2 slice establishes append-only stable-ID and presentation-cue
+authoring contracts. Mechanism specs, fixture compilation, runtime trace, and
+coverage reports remain later P2 work. P2 does not change the editor entry or
+connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -121,7 +123,7 @@ hashes and counts, never source payloads or machine-local paths.
 
 `tools/check_battle_assets.ps1` validates staged/index blobs rather than
 trusting file extensions in the worktree. The scope checker invokes it for
-every battle commit. P0 allows only the reviewed JSON contract paths and
+every battle commit. The gate allows only reviewed JSON contract paths and
 public text/code types; local/generated paths, production manifests, unknown
 JSON locations, non-empty public templates, catalog-like oversized JSON,
 raw text/data/binaries, media, archives, and machine-local paths fail closed.
@@ -283,3 +285,40 @@ and root `Full` argument plus failure-code propagation. `-SourceRoot` is
 forwarded to the P0 source-audit test when an explicit clean-source override
 is needed. The verified work item records the clean source test-loop evidence
 as structural context rather than a Godot CLI oracle.
+
+## P2 Stable IDs And Presentation Contracts
+
+`specs/id_manifests/battle_stable_ids.json` owns the fixed 15-domain registry
+for mechanism, scoped branch, event, handler, resolver, scoped phase, scoped
+RNG draw, RNG stream/tag, state-op, command, action, interrupt, feature, and
+test IDs. Zero is invalid, every allocated ID is a positive signed-32 integer,
+and branch/draw/phase identities use their explicit owner scope. Authoring
+order is historical: every scope owner must exist, an active scoped ID needs
+an active owner, and existing entries cannot be deleted, reordered, reused, or
+revived after tombstoning. A rename retains the prior key as an alias.
+
+`specs/presentation/presentation_contracts.json` freezes the seven
+`PRES_VISUAL` through `PRES_NONE` tags and separately owns append-only payload
+schema and cue IDs. Cue tags are non-empty, `PRES_NONE` is exclusive, payloads
+are restricted to bounded stable IDs/public integers/booleans, and active cues
+must reference active tags and payload schemas. Cue records cannot contain
+Node, Resource, Callable, asset-path, RNG, authority-state, or continuation
+payloads.
+
+The P2 validator reads strict UTF-8 JSON, checks exact properties and semantic
+cross-references, emits independent canonical SHA-256 values, and compares
+worktree or index candidates with `HEAD`. A semantic edit must advance the
+manifest generation exactly once; unchanged content cannot advance it. The
+scope gate invokes the same validator, including staged-blob validation, and
+rejects an index/worktree split across the reviewed gate scripts and schemas.
+
+Run the focused checks with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_id_presentation_contract_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_id_manifests.ps1 `
+  -Mode Repository
+```

@@ -53,6 +53,21 @@ function Assert-CandidateFails {
     }
 }
 
+function Assert-CandidatePasses {
+    param(
+        [string]$Path,
+        [string]$Text,
+        [string]$Label
+    )
+
+    try {
+        Test-BattleAssetCandidate -RelativePath $Path -Bytes $utf8NoBom.GetBytes($Text)
+    }
+    catch {
+        throw "$Label failed unexpectedly: $($_.Exception.Message)"
+    }
+}
+
 & $assetGatePath -ProjectRoot $ProjectRoot -Mode Repository
 & $assetGatePath -ProjectRoot $ProjectRoot -Mode Worktree
 
@@ -79,6 +94,29 @@ Assert-CandidateFails `
     -Path "new-game-project/battle/fixtures/synthetic/p0/unapproved.json" `
     -Text '{"schema_version":1}' -MessagePattern "BATTLE_ASSET_JSON_PATH_NOT_ALLOWED" `
     -Label "unapproved JSON path"
+foreach ($approvedP2Path in @(
+    "new-game-project/battle/specs/id_manifests/battle_stable_ids.json",
+    "new-game-project/battle/specs/presentation/presentation_contracts.json",
+    "new-game-project/battle/tools/battle_specs/schemas/stable_id_manifest.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json"
+)) {
+    Assert-CandidatePasses -Path $approvedP2Path -Text '{"schema_version":1}' `
+        -Label "approved P2 JSON path $approvedP2Path"
+}
+foreach ($unapprovedP2Path in @(
+    "new-game-project/battle/specs/id_manifests/nearby.json",
+    "new-game-project/battle/specs/presentation/nearby.json",
+    "new-game-project/battle/specs/mechanisms/rogue.json",
+    "new-game-project/battle/tools/battle_specs/schemas/rogue.schema.json"
+)) {
+    Assert-CandidateFails -Path $unapprovedP2Path -Text '{}' `
+        -MessagePattern "BATTLE_ASSET_JSON_PATH_NOT_ALLOWED" `
+        -Label "unapproved P2 JSON path $unapprovedP2Path"
+}
+Assert-CandidateFails `
+    -Path "new-game-project/battle/generated/battle_specs/mechanism_coverage.json" `
+    -Text '{}' -MessagePattern "BATTLE_ASSET_LOCAL_ARTIFACT" `
+    -Label "tracked generated P2 report"
 Assert-CandidateFails `
     -Path "new-game-project/battle/manifests/licensed_source_manifest.template.json" `
     -Text '{"schema_version":1,"manifest_kind":"LICENSED_SOURCE","manifest_mode":"PRODUCTION","scope_id":"X","target_data_generation":"X","records":[]}' `

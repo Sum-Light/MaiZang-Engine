@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/presentation_contracts.schema.json",
+  "title": "PresentationContracts",
+  "$comment": "Active cue references and append-only history require baseline-aware semantic validation by validate_p2_id_manifests.ps1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_kind",
+    "generation",
+    "invalid_id",
+    "max_id",
+    "tags",
+    "payload_schemas",
+    "cues"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_kind": {"const": "PRESENTATION_CONTRACTS"},
+    "generation": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "invalid_id": {"const": 0},
+    "max_id": {"const": 2147483647},
+    "tags": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "prefixItems": [
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 1}, "debug_key": {"const": "PRES_VISUAL"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 2}, "debug_key": {"const": "PRES_AUDIO"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 3}, "debug_key": {"const": "PRES_CAMERA"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 4}, "debug_key": {"const": "PRES_UI"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 5}, "debug_key": {"const": "PRES_TEXT"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 6}, "debug_key": {"const": "PRES_TIMING"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/tag"},
+            {"properties": {"presentation_tag_id": {"const": 7}, "debug_key": {"const": "PRES_NONE"}}}
+          ]
+        }
+      ],
+      "items": false
+    },
+    "payload_schemas": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/payload_schema"}
+    },
+    "cues": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/cue"}
+    }
+  },
+  "$defs": {
+    "alias_list": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128}
+    },
+    "tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["presentation_tag_id", "debug_key", "status", "aliases"],
+      "properties": {
+        "presentation_tag_id": {"type": "integer", "minimum": 1, "maximum": 7},
+        "debug_key": {"type": "string", "pattern": "^PRES_[A-Z0-9_]+$", "maxLength": 128},
+        "status": {"enum": ["ACTIVE", "TOMBSTONE"]},
+        "aliases": {"$ref": "#/$defs/alias_list"}
+      }
+    },
+    "payload_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["payload_schema_id", "debug_key", "status", "aliases", "schema_version", "fields"],
+      "properties": {
+        "payload_schema_id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+        "debug_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128},
+        "status": {"enum": ["ACTIVE", "TOMBSTONE"]},
+        "aliases": {"$ref": "#/$defs/alias_list"},
+        "schema_version": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+        "fields": {
+          "type": "array",
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/payload_field"}
+        }
+      }
+    },
+    "payload_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_name", "value_kind", "stable_domain", "minimum", "maximum", "required", "cardinality", "max_items"],
+      "properties": {
+        "field_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 64},
+        "value_kind": {"enum": ["STABLE_ID", "PUBLIC_INT", "PUBLIC_BOOL"]},
+        "stable_domain": {"enum": ["ENTITY", "EFFECT", "ITEM", "MOVE", "MESSAGE", "NONE"]},
+        "minimum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "maximum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "required": {"type": "boolean"},
+        "cardinality": {"enum": ["ONE", "MANY"]},
+        "max_items": {"type": "integer", "minimum": 1, "maximum": 64}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"value_kind": {"const": "STABLE_ID"}}, "required": ["value_kind"]},
+          "then": {
+            "properties": {
+              "stable_domain": {"enum": ["ENTITY", "EFFECT", "ITEM", "MOVE", "MESSAGE"]},
+              "minimum": {"const": 1},
+              "maximum": {"const": 2147483647}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"value_kind": {"const": "PUBLIC_INT"}}, "required": ["value_kind"]},
+          "then": {"properties": {"stable_domain": {"const": "NONE"}}}
+        },
+        {
+          "if": {"properties": {"value_kind": {"const": "PUBLIC_BOOL"}}, "required": ["value_kind"]},
+          "then": {
+            "properties": {
+              "stable_domain": {"const": "NONE"},
+              "minimum": {"const": 0},
+              "maximum": {"const": 1}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"cardinality": {"const": "ONE"}}, "required": ["cardinality"]},
+          "then": {"properties": {"max_items": {"const": 1}}}
+        }
+      ]
+    },
+    "cue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "presentation_cue_id",
+        "debug_key",
+        "status",
+        "aliases",
+        "presentation_tags",
+        "semantic_phase",
+        "information_class",
+        "fallback_text_key",
+        "local_barrier_policy",
+        "payload_schema_id"
+      ],
+      "properties": {
+        "presentation_cue_id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+        "debug_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128},
+        "status": {"enum": ["ACTIVE", "TOMBSTONE"]},
+        "aliases": {"$ref": "#/$defs/alias_list"},
+        "presentation_tags": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 1, "maximum": 7}
+        },
+        "semantic_phase": {"enum": ["BEFORE", "ALONGSIDE", "AFTER"]},
+        "information_class": {"enum": ["REQUIRED_INFORMATION", "OPTIONAL_FLAVOR"]},
+        "fallback_text_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]*$", "maxLength": 192},
+        "local_barrier_policy": {"enum": ["NONE", "OPTIONAL", "REQUIRED_LOCAL_ONLY"]},
+        "payload_schema_id": {"type": "integer", "minimum": 1, "maximum": 2147483647}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"presentation_tags": {"contains": {"const": 7}}}, "required": ["presentation_tags"]},
+          "then": {"properties": {"presentation_tags": {"minItems": 1, "maxItems": 1, "items": {"const": 7}}}}
+        }
+      ]
+    }
+  }
+}

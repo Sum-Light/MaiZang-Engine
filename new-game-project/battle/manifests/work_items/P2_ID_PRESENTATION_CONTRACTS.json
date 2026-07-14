@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P2.ID_PRESENTATION_CONTRACTS",
+  "godot_contract_refs": [
+    {
+      "document": "18-mechanism-specification-and-traceability.md",
+      "section": "Stable IDs, tombstones, mechanism traceability, and generated coverage",
+      "sha256": "8e38bf63cb8e05323473323540cb98f9c2406a479afd65fe97784a88762bd242"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P2 mechanism, ID, trace, coverage, and presentation cue contracts",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/director/btl_DirectorTaskID.h",
+      "symbol": "DirectorTaskID::Value and DirectorTaskID::None",
+      "sha256": "0e9dd62f2e50fb600581aa19f062ba0cf199c1277ceca200e48b27f5244d5819"
+    }
+  ],
+  "source_test_evidence_refs": [],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean DirectorTaskID source is structural evidence for a typed integer identifier and an explicit invalid sentinel only; it is not a behavioral or numeric oracle for this registry.",
+    "Append-only allocation, tombstone retention, scoped ID domains, aliases, presentation tags, payload schemas, and cue semantics are reviewed Godot contracts and project decisions rather than source-derived behavior.",
+    "This work item intentionally authors no gameplay IDs, mechanism values, payload definitions, or presentation cues; those records require later evidence-bound work items and synthetic fixtures."
+  ],
+  "completion_status": "VERIFIED"
+}

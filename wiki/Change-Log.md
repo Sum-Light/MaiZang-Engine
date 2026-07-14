@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Establish battle P2 ID and presentation contracts
+
+- Add a fixed 15-domain stable-ID authoring registry with owner-checked global/mechanism/resolver scopes, positive signed-32 IDs, append-only history, retained tombstones, and alias-preserving renames without allocating gameplay values.
+- Add the seven stable `PRES_*` tags plus strict bounded payload-schema and cue contracts that reject empty/mixed no-op tags, inactive references, untyped values, asset/runtime objects, and semantic in-place mutation.
+- Add canonical hashes, Repository/Worktree/exact-Staged history validation, reviewed-tool index parity, scope/asset-gate integration, a verified evidence-bound work item, and 75 adversarial checks; advance P2 to `2/16` and the mainline to `64/465` (`13.8%`).
+
 ## 2026-07-14 - Complete battle P1 suite entry
 
 - Add a SceneTree aggregate with fixed Foundation, Protocol/Command, and Session selectors, exact `164 + 151 + 282 = 597` counts, isolated headless child processes, and explicit success/assertion/usage exit codes.
