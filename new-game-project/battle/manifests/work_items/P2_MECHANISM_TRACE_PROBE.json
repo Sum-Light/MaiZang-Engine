@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P2.MECHANISM_TRACE_PROBE",
+  "godot_contract_refs": [
+    {
+      "document": "11-testing-and-observability.md",
+      "section": "Fixed-width structured trace, bounded ring storage, and explicit dropped-record diagnostics",
+      "sha256": "cdca94047a78159770c7171e4246d6cf3934efc3def86e87d8ef9d79e4355950"
+    },
+    {
+      "document": "18-mechanism-specification-and-traceability.md",
+      "section": "MechanismTraceProbe API, test scope inheritance, and disabled null-object behavior",
+      "sha256": "8e38bf63cb8e05323473323540cb98f9c2406a479afd65fe97784a88762bd242"
+    },
+    {
+      "document": "19-test-fixture-dsl-and-coverage.md",
+      "section": "Runner scope pairing, normalized trace dimensions, and no-scope infrastructure failure",
+      "sha256": "93181b20dc9878e2b68a6cb4679157311cddafb8a0bac385d147e2e1519c3e93"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P2 MechanismTraceProbe Todo and no-test-scope completion gate",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/unit_test/btl_script_check.h",
+      "symbol": "btl::ScriptCheck::Check",
+      "sha256": "01bf7bf6947847c23d7a9c1997cc5482832d0c0edeee1d5226db315ea7fab810"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_logic/section/btl_Section_Fight.cpp",
+      "symbol": "btl::Section_Fight::Execute",
+      "sha256": "0e84d2edccf1248c8c71efe5ef30ebf65b846aee5e40ec9d97757bd1415c3ddb"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/utility/btl_Random.h",
+      "symbol": "btl::Random::Context, Initialize, GetValue, GetContext, Serialize, and Deserialize",
+      "sha256": "b6a8d65b44b6c36aadd915b2eb8535d319184fdc50a9328560fe1a9688596338"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/test_modules/tester.cpp",
+      "symbol": "script_test::Tester::InitializeOneGame, FinalizeOneGame, Attach, Check, OutputResult, and destructor",
+      "sha256": "af0e1959ce11e47dfdf8bba65be4e82633051d368593d91274c89a3d7597e922"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [
+    "MechanismTraceProbe"
+  ],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean source checkpoint hook, fight-section boundaries, test lifecycle, and RNG context are structural design evidence only; they do not define stable test, fixture, mechanism, branch, stage, draw, stream, tag, state-op, or opcode IDs for the Godot port.",
+    "The probe is located in the local foundation layer rather than the contract sketch's rules directory so future rules, effects, and engine layers can share the same observer without reversing the repository dependency graph; it remains RefCounted-only and has no world, scene, resource, network, or filesystem dependency.",
+    "The 13-field PackedInt64Array record uses zero for absent stable-ID fields and minus one for absent cursor fields; begin_test and end_test are scope controls and do not consume record capacity.",
+    "The bounded ring retains the latest records and increments dropped_count on overwrite; the first overflow also latches BATTLE_TRACE_CAPACITY_EXCEEDED, so an incomplete window cannot be promoted as coverage evidence.",
+    "An RNG record represents an actual draw receipt, so cursor_after must be greater than cursor_before; zero-consumption paths are proven by the absence of an RNG record plus later fixture cursor/oracle assertions.",
+    "enter_stage records a mechanism-local formula stage_id and does not accept resolver phase_id or subphase_id; resolver-phase trace remains future work.",
+    "This probe observes synthetic integer records only. It does not execute a BattleFixture, join coverage, instantiate a battle scene, or make the P7-blocked fixture compiler executable."
+  ],
+  "completion_status": "VERIFIED"
+}

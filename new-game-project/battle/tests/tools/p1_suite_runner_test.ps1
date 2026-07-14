@@ -169,6 +169,30 @@ Assert-Condition (-not ($toolResult.Output -join "`n").Contains(
     "BATTLE_SUITE_OK suite=all"
 )) "test_battle.ps1 single-suite selection also ran the aggregate."
 
+$traceToolResult = Invoke-CapturedProcess "powershell.exe" @(
+    "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $toolPath,
+    "-ProjectRoot", $ProjectRoot,
+    "-GodotPath", $GodotPath,
+    "-Suite", "P2Trace",
+    "-RepositoryValidation", "None"
+)
+$traceToolText = $traceToolResult.Output -join "`n"
+Assert-Condition ($traceToolResult.ExitCode -eq 0) (
+    "test_battle.ps1 P2Trace invocation failed.`n" + $traceToolText
+)
+Assert-Condition $traceToolText.Contains(
+    "BATTLE_TESTS_OK suites=P2Trace repository_validation=None"
+) "test_battle.ps1 did not report the P2Trace selection."
+Assert-Condition (
+    [regex]::Matches(
+        $traceToolText,
+        [regex]::Escape("BATTLE_P2_MECHANISM_TRACE_OK checks=227")
+    ).Count -eq 1
+) "test_battle.ps1 did not require exactly one P2 trace success marker."
+Assert-Condition (-not $traceToolText.Contains("BATTLE_SUITE_OK suite=all")) (
+    "test_battle.ps1 P2Trace selection also ran the P1 aggregate."
+)
+
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\')
 $tempRoot = [IO.Path]::GetFullPath((Join-Path $tempParent (
     "maizang-battle-runner-{0}" -f [guid]::NewGuid().ToString("N")
@@ -458,6 +482,28 @@ finally {
 }
 
 $toolText = [IO.File]::ReadAllText($toolPath, [Text.Encoding]::UTF8)
+$allSelectionMatch = [regex]::Match(
+    $toolText,
+    '(?s)"All"\s*\{\s*foreach \(\$step in @\((?<steps>.*?)\)\)'
+)
+Assert-Condition $allSelectionMatch.Success (
+    "Could not inspect the PowerShell All selection."
+)
+Assert-Condition (
+    [regex]::Matches(
+        $allSelectionMatch.Groups["steps"].Value,
+        '"P2Trace"'
+    ).Count -eq 1
+) "PowerShell All must include P2Trace exactly once."
+Assert-Condition (
+    ($toolText -match (
+        '(?s)\$orderedSteps\s*=\s*@\(' +
+        '.*?"P2Trace"\s*,\s*"Q0Scene".*?\)'
+    )) -and ($toolText -match (
+        '(?s)"P2Trace"\s*\{.*?"--quit-after"\s*,\s*"600".*?' +
+        'BATTLE_P2_MECHANISM_TRACE_OK checks=227'
+    ))
+) "P2Trace ordering, forced-exit guard, or success marker changed."
 foreach ($forbidden in @(
     "q0_console_render_test.gd", "--editor", "--import",
     "rendering-driver", "assets\platinum"
@@ -472,7 +518,7 @@ foreach ($required in @("validate_repository.ps1", '"-Full"', "RepositoryValidat
     )
 }
 
-$expectedChecks = 57
+$expectedChecks = 64
 if ($checks -ne $expectedChecks) {
     throw "P1 suite runner test stopped at $checks checks; expected $expectedChecks."
 }

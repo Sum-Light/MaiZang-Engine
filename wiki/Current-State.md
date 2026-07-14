@@ -5,8 +5,8 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `958e7ed16c101b7324bb3e6b7b200a818c3273a0c5ed8e8856ed7ea93cf951af`
-- Fingerprinted files: 217
+- Source fingerprint: `47371cbd86329ba0bd95a95680c8c8133adaf8090fa6d25c55b0e8dbad8a9590`
+- Fingerprinted files: 224
 - Godot runtime scripts: 7
 - Godot test scripts: 8
 - PowerShell tools: 16

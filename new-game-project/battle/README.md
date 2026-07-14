@@ -6,7 +6,7 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0, P0, and P1 are complete. P2 is in progress (`6/16`). The pure foundation
+Q0, P0, and P1 are complete. P2 is in progress (`8/16`). The pure foundation
 and protocol/command contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
@@ -17,11 +17,11 @@ world integration, network stack, model, texture, animation, audio, or battle
 camera.
 
 The completed P2 slices establish append-only stable-ID/presentation
-contracts, five strict spec schemas with validator-owned maturity, and the
-deterministic cross-file compiler. A non-executable fixture-requirement
-preflight now protects the next checklist item without claiming it complete.
-The authoring sets remain empty; setup-bearing fixture compilation, runtime
-trace, and coverage reports remain later work. P2 does not change the editor
+contracts, five strict spec schemas with validator-owned maturity, the
+deterministic cross-file compiler, and a bounded mechanism trace probe. A
+non-executable fixture-requirement preflight protects Todo 6 without claiming
+it complete. The authoring sets remain empty; setup-bearing fixture compilation
+and coverage joins/reports remain later work. P2 does not change the editor
 entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
@@ -279,12 +279,13 @@ the explicit analysis/clean-source path parameters used by the P0 audit.
 Add `-RepositoryValidation Fast` for the read-only root fast gate, or use
 `Full` only when its local asset prerequisites are available.
 
-The 57 runner-contract checks cover all suite selectors, exact counts,
+The 64 runner-contract checks cover all P1 SceneTree selectors, exact counts,
 success/assertion/usage exit codes, battle-only clean-cache execution without
 Platinum assets, leak-free ordered aggregation, single-suite isolation,
 missing-tool and non-Godot rejection, mandatory success markers, exact Godot
 child-code propagation, duplicate-marker rejection at both aggregate layers,
-and root `Full` argument plus failure-code propagation. `-SourceRoot` is
+the P2 trace selector/default-All ordering, and root `Full` argument plus
+failure-code propagation. `-SourceRoot` is
 forwarded to the P0 source-audit test when an explicit clean-source override
 is needed. The verified work item records the clean source test-loop evidence
 as structural context rather than a Godot CLI oracle.
@@ -394,6 +395,26 @@ Until then, any file below `fixtures/synthetic/scenarios/` fails with
 payload, create a setup DTO or digest, run a battle, or mark coverage as
 observed or passed.
 
+`MechanismTraceProbe` completes P2 Todo 7 and completion gate G03. Its six
+documented observation methods remain `void`, so rule code cannot branch on a
+trace result. The default constructor is a disabled null object that allocates
+nothing, validates nothing, and never opens a scope. An explicitly enabled
+probe allocates no trace-record capacity and accepts scenario scopes only when
+`fixture_id == test_id`, unit scopes
+only with fixture sentinel zero, and rejects branch, stage, RNG, or state-op
+records outside a matching scope with `BATTLE_TRACE_SCOPE_REQUIRED`.
+
+Enabled records use a preallocated 13-integer `PackedInt64Array` layout:
+kind, sequence, test, fixture, mechanism, branch, stage, draw, stream, tag,
+cursor-before, cursor-after, and opcode. Unused stable-ID fields are zero and
+unused cursor fields are minus one. Stable IDs use the positive signed-32
+contract; an RNG receipt requires nonnegative cursors with `after > before`.
+Zero-consumption paths emit no RNG record. The bounded ring
+returns chronological defensive snapshots. Overflow keeps the latest window,
+increments `dropped_count`, and latches `BATTLE_TRACE_CAPACITY_EXCEEDED`, so an
+incomplete window cannot be promoted as coverage evidence. `stage_id` is a
+mechanism-local formula stage, never a resolver phase.
+
 Run the focused checks with:
 
 ```powershell
@@ -411,6 +432,11 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_fixture_preflight_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\test_battle.ps1 `
+  -GodotPath "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  -Suite P2Trace
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_id_manifests.ps1 `

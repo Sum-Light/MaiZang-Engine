@@ -6,7 +6,7 @@ param(
     [ValidateSet(
         "All", "Q0", "Q0Scene", "P0", "P0Manifest", "P0SourceAudit",
         "P0AssetBoundary", "Scope", "P1", "P1Foundation", "P1Protocol",
-        "P1Session", "P1Dependency", "P1Runner"
+        "P1Session", "P1Dependency", "P1Runner", "P2Trace"
     )]
     [string[]]$Suite = @("All"),
 
@@ -160,7 +160,7 @@ foreach ($requestedSuite in $Suite) {
             foreach ($step in @(
                 "P1All", "Q0Scene", "ScopeContract", "P0Manifest",
                 "P0AssetBoundary", "P0SourceAudit", "P1Dependency",
-                "P1RunnerContract"
+                "P1RunnerContract", "P2Trace"
             )) {
                 Add-BattleStep $step
             }
@@ -186,13 +186,17 @@ foreach ($requestedSuite in $Suite) {
         "P1Session" { Add-BattleStep "P1Session" }
         "P1Dependency" { Add-BattleStep "P1Dependency" }
         "P1Runner" { Add-BattleStep "P1RunnerContract" }
+        "P2Trace" { Add-BattleStep "P2Trace" }
     }
 }
 if ($steps.Count -eq 0) {
     Stop-BattleTest 2 "At least one battle suite is required."
 }
 
-$godotStepNames = @("P1All", "P1Foundation", "P1Protocol", "P1Session", "Q0Scene", "P1RunnerContract")
+$godotStepNames = @(
+    "P1All", "P1Foundation", "P1Protocol", "P1Session", "P2Trace",
+    "Q0Scene", "P1RunnerContract"
+)
 $requiresGodot = $RepositoryValidation -eq "Full"
 foreach ($step in $godotStepNames) {
     if ($steps.Contains($step)) {
@@ -205,7 +209,7 @@ if ($requiresGodot) {
 }
 
 $orderedSteps = @(
-    "P1All", "P1Foundation", "P1Protocol", "P1Session", "Q0Scene",
+    "P1All", "P1Foundation", "P1Protocol", "P1Session", "P2Trace", "Q0Scene",
     "ScopeContract", "P0Manifest", "P0AssetBoundary", "P0SourceAudit",
     "P1Dependency", "P1RunnerContract"
 )
@@ -241,6 +245,13 @@ foreach ($step in $orderedSteps) {
                 "--script", "res://battle/tests/battle_suite_test.gd",
                 "--", "--suite=p1_session_lifecycle"
             ) "BATTLE_SUITE_OK suite=p1_session_lifecycle checks=282"
+        }
+        "P2Trace" {
+            Invoke-BattleProcess "P2 mechanism trace" $resolvedGodot @(
+                "--no-header", "--headless", "--quit-after", "600",
+                "--path", $godotProject,
+                "--script", "res://battle/tests/specs/p2_mechanism_trace_test.gd"
+            ) "BATTLE_P2_MECHANISM_TRACE_OK checks=227"
         }
         "Q0Scene" {
             Invoke-BattleProcess "Q0 scene smoke" $resolvedGodot @(

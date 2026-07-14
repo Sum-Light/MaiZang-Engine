@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Add scoped battle mechanism trace probe
+
+- Add the six contract `MechanismTraceProbe` observation methods as battle-local, RefCounted-only `void` calls with a disabled mode that allocates no trace-record capacity and strict scenario/unit test scope inheritance.
+- Store fixed 13-integer records in a bounded chronological ring, reject invalid IDs/cursors and every out-of-scope record with stable typed diagnostics, and make overflow explicit through a dropped counter plus an invalid coverage state.
+- Add a verified clean-source work item, a marker-checked `P2Trace` selector covered by the extended 64-check runner contract, and 227 focused trace checks including repeated ring wraps; close P2 Todo 7 and G03 at `8/16` (`70/465`) without executing fixtures, claiming coverage, or coupling the world runtime.
+
 ## 2026-07-14 - Guard battle fixture compilation prerequisites
 
 - Add a deterministic, non-executable P2 fixture-requirement preflight that derives SCENARIO identity, coverage targets, expected IDs, and oracle kinds from the validated spec compilation without changing the runtime catalog.

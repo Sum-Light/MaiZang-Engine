@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | In progress (6/16) | ID/presentation, strict authoring, deterministic spec compiler, and a non-executable fixture-requirement preflight; production setup compilation, trace, coverage, and fixtures remain |
+| P2 | In progress (8/16) | ID/presentation, strict authoring, deterministic spec compiler, fixture-requirement preflight, and mechanism trace scope enforcement; production setup compilation, coverage, and fixtures remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -236,7 +236,10 @@ references isolated and exits without the resource-leak diagnostics produced
 by a multi-preload runner.
 
 `res://battle/tools/test_battle.ps1` provides individual, phase, and default
-`All` selections. It captures `$LASTEXITCODE` immediately after every native
+`All` selections. The PowerShell `All` path runs the independent P2 mechanism
+trace after the fixed 597-check P1 aggregate and before Q0/P0 checks; the Godot
+P1 aggregate itself remains unchanged. The tool captures `$LASTEXITCODE`
+immediately after every native
 call and exits with the same nonzero code. `RepositoryValidation` defaults to
 `None`; `Fast` and `Full` forward to the existing root validator, and `Full`
 also forwards the selected Godot executable. The P0 audit receives explicit
@@ -244,13 +247,14 @@ also forwards the selected Godot executable. The P0 audit receives explicit
 modifies the root validator. Default battle checks omit the OpenGL Q0 render
 test and root Full gate; opting into Full may require local Platinum assets.
 
-The 57-check runner contract proves `0/1/2` Godot success/assertion/usage
+The 64-check runner contract proves `0/1/2` Godot success/assertion/usage
 semantics, ordered single/aggregate selectors, absence of success markers on
 failure, leak-free exits, single-suite isolation, missing project/Godot
 configuration errors, rejection of a non-Godot executable that returns zero,
 mandatory unique success markers at the Godot aggregate and PowerShell
 layers, fake-child code `37`, root Full code `41`, and exact Full arguments.
-It also performs a fresh headless script scan and all `597` checks in a
+It also proves the real P2 trace selector/unique marker and its default-All
+position, then performs a fresh headless script scan and all `597` P1 checks in a
 temporary project containing only a minimal `project.godot`, battle scripts,
 and battle tests. No Platinum assets, world scripts, renderer arguments, or
 existing import cache are present. The verified work item binds the test-loop
@@ -472,23 +476,66 @@ read-only fixture-path rejection in all three Git views. The clean source
 script container, parser, and tester are structural evidence only; their text
 syntax, payloads, identifiers, values, and permissive parsing are not copied.
 
+## P2 Mechanism Trace Probe
+
+P2 Todo 7 and completion gate G03 are complete. `MechanismTraceProbe` retains
+the six contract methods `begin_test`, `enter_branch`, `enter_stage`,
+`record_rng`, `record_state_op`, and `end_test` as `void` observation calls.
+The default instance is a disabled null object: it allocates no trace-record
+capacity, ignores
+malformed calls, maintains no scope, and cannot alter rule ordering, RNG, or
+mutation. Enabled instances are explicitly bounded from 1 through 65,536
+records and preallocate only fixed-width integer storage.
+
+Scenario records require a positive `test_id` with `fixture_id == test_id`;
+unit records require a positive test ID and fixture sentinel zero. Nested begin,
+missing/mismatched end, invalid stable IDs, negative or reversed RNG cursors,
+and all four observation calls outside a scope are rejected without appending.
+The first typed error is latched and copied to callers while later rejection
+and dropped counters remain diagnostic only. A mismatched end clears its scope
+so teardown cannot leak it into the next run.
+
+Every accepted record has exactly 13 signed integers: kind, one-based sequence,
+test, fixture, mechanism, branch, stage, draw, stream, tag, cursor before,
+cursor after, and opcode. Zero marks an unused stable-ID field and minus one an
+unused cursor field. `records()` returns the retained window in chronological
+order as a defensive packed-array snapshot. When the ring overwrites its oldest
+entry it increments `dropped_count` and latches
+`BATTLE_TRACE_CAPACITY_EXCEEDED`; consumers must require a valid, closed probe
+before treating any window as coverage evidence. An RNG record requires
+`cursor_after > cursor_before`; zero-consumption paths emit no RNG record and
+later fixture cursor/oracle assertions must prove that absence.
+
+The probe lives in the local foundation layer so future rules, effects, and
+engine code can share one observer without reversing the dependency graph. It
+remains RefCounted-only and has no Node, SceneTree, runtime resource load,
+filesystem, network, world, or presentation dependency. Its `stage_id` is the
+mechanism-local formula stage defined by the P2 spec; resolver `phase_id` and
+`subphase_id` are deliberately not folded into this API. The 227-check headless
+suite proves exact layouts, scenario/unit inheritance, before/after-scope G03
+rejection for every observation method, lifecycle errors, ID/cursor boundaries,
+bounded overflow, first-error and snapshot isolation, disabled behavior, and
+byte-identical repeated traces. It does not execute a fixture or claim coverage.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
 items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, P1 is
-`17/17`, and P2 is `6/16`. Current mainline progress is therefore `68/465`
-items (`14.6%`), with `3/20` phases complete and P2 in progress. This count
+`17/17`, and P2 is `8/16`. Current mainline progress is therefore `70/465`
+items (`15.1%`), with `3/20` phases complete and P2 in progress. This count
 advances only after a checklist item has implementation, focused verification,
 Wiki/Skill memory, and a focused commit.
 
-P2 Todo1-5 and deterministic completion gate G01 are now closed: append-only/
+P2 Todo1-5, Todo7, deterministic gate G01, and scope gate G03 are now closed:
+append-only/
 tombstone-safe mechanism and runtime ID domains, the presentation cue/payload/
 tag manifest, five strict authoring schemas, validator-owned maturity, the
-deterministic spec compiler, and byte-identical spec/runtime manifest output.
-Todo6 remains next and now has a deterministic requirement preflight, but its
-setup-bearing fixture compiler cannot close until the ordered P7 production
-setup contracts exist. No world-runtime coupling has been introduced.
+deterministic spec compiler, byte-identical spec/runtime manifest output, and
+bounded in-scope mechanism trace records. Todo6 has a deterministic requirement
+preflight but cannot close until the ordered P7 production setup contracts
+exist. Todo8, the source-evidence/audit-disposition join, is the next independent
+P2 item. No world-runtime coupling has been introduced.
 
 ## Editor Entry
 
@@ -567,6 +614,11 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_fixture_preflight_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\test_battle.ps1 `
+  -GodotPath "C:\path\to\Godot_v4.7-stable_win64_console.exe" `
+  -Suite P2Trace
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_specs.ps1 `
   -Mode Repository
 
@@ -618,7 +670,7 @@ hashes and failures, static result sealing, authority/session reentry guards,
 battle binding, bounded FIFO and request gates, exact terminal publication,
 shutdown cleanup, 100 WeakRef graphs, and real SceneTree release.
 The P1 aggregate requires all 597 focused vectors in three isolated headless
-child suites. Its 57-check tool contract proves selector parsing, clean-cache
+child suites. Its 64-check tool contract proves selector parsing, clean-cache
 battle-only execution, assertion and usage failures, exact child/root exit
 propagation, and optional root Full arguments. The one-command P1 selection
 also runs the dependency gate; `RepositoryValidation Fast` adds the current
@@ -643,3 +695,7 @@ The P2 fixture-preflight suite executes 118 checks across the closed requirement
 schema, canonical source/input/test hash binding, deterministic SCENARIO-only
 projection, forged-compilation rejection, no-write CLI behavior, and explicit
 Repository/Worktree/Staged refusal of setup-bearing fixture files before P7.
+The P2 mechanism-trace suite executes 227 Godot checks across its fixed 13-field
+records, scenario/unit scope inheritance, all eight before/after-scope record
+rejections, lifecycle and input failures, capacity-one and repeated ring wraps, defensive
+diagnostics/snapshots, disabled null behavior, and deterministic repeated bytes.
