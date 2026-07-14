@@ -402,6 +402,43 @@ if ($LoadCompilerFixturesOnly) {
 $specSet = New-P2CompilerSyntheticSpecSet
 $first = Invoke-P2ValidatedSpecCompilerCore -SpecSet $specSet
 $second = Invoke-P2ValidatedSpecCompilerCore -SpecSet $specSet
+$releaseInspectionSet = Copy-P2CompilerSpecSet $specSet
+$releaseInspectionSet.MechanismSpecs[0].Manifest.target_maturity = "RELEASED"
+$releaseInspectionRecord = New-P2CompilerRecord `
+    -Manifest $releaseInspectionSet.MechanismSpecs[0].Manifest `
+    -Validator "Test-P2MechanismSpec" `
+    -RelativePath $releaseInspectionSet.MechanismSpecs[0].RelativePath
+$releaseInspectionSet.MechanismSpecs = [object[]]@($releaseInspectionRecord)
+$releaseInspectionSet.InputSet.mechanism_specs = New-P2CompilerInputRecords `
+    $releaseInspectionSet.MechanismSpecs
+$releaseInspectionSet.InputSetHash = Get-BattleSha256Text (
+    ConvertTo-BattleCanonicalJson $releaseInspectionSet.InputSet
+)
+Assert-Throws -Label "default compiler retains release maturity gate" `
+    -MessagePattern "P2_MATURITY_TARGET_UNMET" -Action {
+        Invoke-P2ValidatedSpecCompilerCore -SpecSet $releaseInspectionSet
+    }
+$releaseInspection = Invoke-P2ValidatedSpecCompilerCore `
+    -SpecSet $releaseInspectionSet -InspectUnmetMaturityTargets
+$releaseInspectionRepeat = Invoke-P2ValidatedSpecCompilerCore `
+    -SpecSet $releaseInspectionSet -InspectUnmetMaturityTargets
+Assert-Condition (
+    [string]$releaseInspection.SpecManifest.mechanisms[0].target_maturity -ceq
+        "RELEASED" -and
+    [string]$releaseInspection.SpecManifest.mechanisms[0].computed_status -ceq
+        "SPECIFIED"
+) "Release inspection changed target ownership or promoted computed maturity."
+Assert-Condition (
+    [string]$releaseInspection.SpecManifestHash -ceq (Get-BattleSha256Text (
+        ConvertTo-BattleCanonicalJson $releaseInspection.SpecManifest
+    ))
+) "Release inspection did not retain canonical spec hashing."
+Assert-BytesEqual $releaseInspection.RuntimeManifestBytes `
+    $releaseInspectionRepeat.RuntimeManifestBytes `
+    "repeated release inspection runtime catalog"
+Assert-Condition (-not (Get-Command Invoke-P2SpecCompiler).Parameters.ContainsKey(
+    "InspectUnmetMaturityTargets"
+)) "Public P2 compiler exposed the inspection-only maturity bypass."
 Assert-Throws -Label "public compiler rejects injected spec set" `
     -MessagePattern "parameter.*SpecSet" -Action {
         Invoke-P2SpecCompiler -SpecSet $specSet

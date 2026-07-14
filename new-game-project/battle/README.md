@@ -6,7 +6,7 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0, P0, and P1 are complete. P2 is in progress (`9/16`). The pure foundation
+Q0, P0, and P1 are complete. P2 is in progress (`10/16`). The pure foundation
 and protocol/command contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
@@ -18,13 +18,13 @@ camera.
 
 The completed P2 slices establish append-only stable-ID/presentation
 contracts, five strict spec schemas with validator-owned maturity, the
-deterministic cross-file compiler, a bounded mechanism trace probe, and a
-non-runtime SourceEvidence/audit-disposition join. A
+deterministic cross-file compiler, a bounded mechanism trace probe, a
+non-runtime SourceEvidence/audit-disposition join, and a static release-target
+reference-closure overlay. A
 non-executable fixture-requirement preflight protects Todo 6 without claiming
 it complete. The spec, fixture, and SourceEvidence authoring sets remain empty;
-setup-bearing fixture compilation, release-reference closure, and coverage
-reports remain later work. P2 does not change the editor entry or connect the
-world.
+setup-bearing fixture compilation and coverage/orphan reports remain later
+work. P2 does not change the editor entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -435,8 +435,8 @@ it. Every selected audit ID is then re-derived from repository, category, path,
 and symbol and all repeated identity fields must match. Unknown, forged, or
 stale identity links fail compilation. Dirty, missing, stale-index, deferred,
 rejected, insufficient-review, and insufficient-confidence evidence remains in
-the deterministic join with sorted blockers so Todo 10 can enforce the later
-release gate.
+the deterministic join with sorted blockers so Todo 10 can report them and
+Todo 11 can enforce the later release gate.
 
 The closed `COMPILED_SOURCE_EVIDENCE_JOIN_MANIFEST` contains only stable IDs,
 canonical hashes, currentness, and blocker codes. It excludes source paths,
@@ -449,8 +449,57 @@ the empty join hash is
 The 496-check focused suite also covers schema closure, history, exact audit
 identity, bidirectional claim closure, JSON Pointer/branch failures, blocker
 propagation, minimal output, and order-independent projection. Todo 8 is closed;
-release triple references, reports, stale-evidence release failure, and fixture
-execution remain open.
+reports, stale-evidence release failure, and fixture execution remain open.
+
+The P2F release-reference validator closes Todo 9 without weakening the
+existing maturity gate. It selects the checked set only from validated
+`MechanismSpec.target_maturity == RELEASED`; neither generated
+`computed_status` nor work-item completion status can add or remove a mechanism.
+For each selected mechanism, a Godot contract edge requires a validated
+work-item `mechanism_ids` relation; `project_requirement_keys` keeps its
+existing project-requirement meaning. P2F requires `GodotContractRoot` once the
+release-target set is nonempty, then repeats the bounded no-follow
+whole-document SHA-256 check and requires each mechanism-bound section to
+exactly name a column-zero top-level ATX Markdown heading; the current empty
+set remains portable. Historical unbound work-item section labels remain
+descriptive. The
+external evidence edge requires every
+battlelogic/pokelib `SourceEvidence` identity declared by the mechanism to be
+closed by the P2E join and exactly matched by a work-item source locator; a
+partial match remains incomplete. A fixture edge requires a real
+P2D `SCENARIO` requirement that covers the mechanism plus its work-item fixture
+ID. Project decisions and work-item-only source or fixture claims cannot stand
+in for the two generated joins.
+
+The closed `COMPILED_RELEASE_MECHANISM_REFERENCE_MANIFEST` is a read-only,
+non-runtime overlay. It contains stable IDs, canonical hashes, booleans, and
+sorted blocker codes, but no contract path/section, source locator/observation,
+fixture payload, timestamp, GUID, execution result, coverage result, or
+`computed_status`. Noncurrent evidence remains a present reference with an
+explicit blocker. A declared scenario reference can close the static triple,
+while `SETUP_COMPILER_UNAVAILABLE_P7` remains explicit until the production
+setup compiler exists. The diagnostic projection retains missing-leg details;
+the public CLI and scope gate fail when any selected mechanism lacks the full
+static triple, while noncurrent/P7 blockers do not masquerade as a missing leg.
+The public validator returns only the closed manifest, canonical JSON/bytes/hash,
+and summary counts; inspection-only compiler, raw evidence, fixture, and work-item
+objects remain internal. Contract headings are accepted only at column zero and
+outside fenced code and HTML blocks/comments; Setext and container headings are
+intentionally unsupported so ambiguous Markdown cannot close a release edge.
+Todo 10 generates traceability, coverage, and orphan
+reports; Todo 11 owns later hard failures for stale evidence, unexecuted tests,
+and coverage defects.
+
+The public authoring sets contain no release-target mechanism, so the current
+overlay is deterministically empty with hash
+`bd30940a4c04452238c6f410df79da14a4755754ae5585a63c07fecd5de15439`.
+The 181-check focused suite covers recursive schema closure, synthetic RELEASED-target
+specs with complete static triples, target-only selection, each missing leg,
+project-decision substitution, five-field identity mismatches, partial and
+noncurrent evidence, mixed work-item review, evidence-only project requirements,
+recomputed upstream joins/currentness, cross-artifact consistency failures,
+minimal output, unchanged public maturity enforcement, CLI stability, and no
+generated writes.
 
 Run the focused checks with:
 
@@ -472,6 +521,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_source_evidence_join_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_release_reference_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\test_battle.ps1 `
@@ -496,5 +548,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_source_evidence_join.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\compilers\validate_p2_release_references.ps1 `
   -Mode Repository
 ```

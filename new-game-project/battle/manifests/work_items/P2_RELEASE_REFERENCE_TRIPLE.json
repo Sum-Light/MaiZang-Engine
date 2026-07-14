@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P2.RELEASE_REFERENCE_TRIPLE",
+  "godot_contract_refs": [
+    {
+      "document": "18-mechanism-specification-and-traceability.md",
+      "section": "来源证据",
+      "sha256": "8e38bf63cb8e05323473323540cb98f9c2406a479afd65fe97784a88762bd242"
+    },
+    {
+      "document": "19-test-fixture-dsl-and-coverage.md",
+      "section": "机制覆盖矩阵",
+      "sha256": "93181b20dc9878e2b68a6cb4679157311cddafb8a0bac385d147e2e1519c3e93"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P2：机制、ID、trace 与 coverage 基础设施",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_unit_test/test_modules/script.h",
+      "symbol": "script_test::Script",
+      "sha256": "76945fd14a283c7522e2e1063d03f30a940f8fbdd3fdd387b08dfb677f177624"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/src/battle_unit_test/test_modules/tester.cpp",
+      "symbol": "script_test::Tester::InitializeOneGame, FinalizeOneGame, Check, and OutputResult",
+      "sha256": "af0e1959ce11e47dfdf8bba65be4e82633051d368593d91274c89a3d7597e922"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "Release membership is selected only from validated MechanismSpec target_maturity == RELEASED; computed_status and ImplementationWorkItem completion_status never define the checked set.",
+    "The current authoring set contains no mechanisms, so the repository result is a deterministic empty overlay and does not claim a released battle behavior.",
+    "A Godot contract edge is bound by ImplementationWorkItem mechanism_ids; project_requirement_keys keeps its existing project-requirement meaning and is not reinterpreted as a work-item ID. A nonempty release-target set requires the contract root, a bounded no-follow whole-document SHA-256 recheck, and an exact ordinal match between every bound section and a column-zero top-level ATX Markdown heading outside fenced code and HTML blocks. Empty authoring remains portable, while historical unbound work-item section labels remain descriptive for compatibility.",
+    "An external evidence edge requires every SourceEvidence identity declared by the MechanismSpec to be closed by the P2 source-audit join and exactly matched by battlelogic or pokelib ImplementationWorkItem source references; partial evidence sets, project decisions, and work-item self-reports cannot substitute for full SourceEvidence closure.",
+    "A fixture edge requires an actual SCENARIO requirement from the P2 fixture preflight, coverage of the mechanism, and a matching ImplementationWorkItem fixture ID; a work-item-only fixture number does not count.",
+    "Noncurrent SourceEvidence remains a present reference with an explicit blocker. Todo 10 generates traceability, coverage, and orphan reports; Todo 11 owns the later hard release failure for stale evidence, unexecuted tests, and other coverage defects.",
+    "The P7 production setup compiler remains unavailable. A declared SCENARIO reference can close the static triple, but the overlay records SETUP_COMPILER_UNAVAILABLE_P7 and never claims compilation, execution, pass status, or coverage.",
+    "The overlay is read-only and non-runtime. It does not change computed maturity, spec/runtime manifests, fixture payloads, runtime catalogs, reports, timestamps, GUIDs, paths, symbols, source observations, or proprietary content.",
+    "Synthetic nonempty tests exercise complete static triples, independent missing legs, five-field evidence identity mismatches, incomplete and noncurrent evidence, mixed work-item review, project-decision substitution, evidence-only project requirements, re-derived audit currentness, cross-artifact consistency checks, output leakage, and the unchanged default maturity gate.",
+    "The public validator inspects unmet release targets without publishing its candidate runtime projection, fails when any selected mechanism lacks a static triple, and captures specs, work items, source-audit governance, and fixture declarations from one Repository, Worktree, or Staged view; a nonempty SourceEvidence set still requires the exact ignored sealed P0 audit bytes."
+  ],
+  "completion_status": "VERIFIED"
+}

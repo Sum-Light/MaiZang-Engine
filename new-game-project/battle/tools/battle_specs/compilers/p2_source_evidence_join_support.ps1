@@ -1583,6 +1583,7 @@ function Invoke-P2ValidatedSourceEvidenceJoinCore {
         Compilation = $Compilation
         EvidenceSet = $EvidenceSet
         Governance = $Governance
+        AuditValidation = $AuditValidation
         Manifest = $manifest
         ManifestJson = $manifestJson
         ManifestBytes = [Text.UTF8Encoding]::new($false, $true).GetBytes(

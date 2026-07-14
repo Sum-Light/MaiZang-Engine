@@ -8,6 +8,14 @@ $checker = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\tools\check_battl
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\')
 $tempRoot = Join-Path $tempParent ("maizang-battle-scope-{0}" -f [guid]::NewGuid().ToString("N"))
 $utf8NoBom = [Text.UTF8Encoding]::new($false)
+$checkerText = [IO.File]::ReadAllText($checker, [Text.Encoding]::UTF8)
+if ($checkerText -cnotmatch '\[string\]\$GodotContractRoot' -or
+    $checkerText -cnotmatch (
+        '(?s)& \$p2ReleaseReferenceGatePath.*?' +
+        '-GodotContractRoot \$GodotContractRoot'
+    )) {
+    throw "Scope checker does not forward the configurable Godot contract root."
+}
 
 function Write-TestFile {
     param(

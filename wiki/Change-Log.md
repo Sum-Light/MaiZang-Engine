@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-15 - Close battle release reference triples
+
+- Add a closed, deterministic P2F overlay that selects only authored `RELEASED` targets and proves Godot work-item contracts, the complete declared set of exact joined battlelogic/pokelib SourceEvidence, and actual SCENARIO fixture references without changing computed maturity or runtime catalogs.
+- Capture specs, work items, audit governance, and fixture declarations from one immutable Git view; require exact column-zero top-level ATX headings for mechanism-bound Godot references, fail the public gate on incomplete triples or forged identities/hashes/counts, retain noncurrent/P7 conditions as stable non-coverage blockers, and exclude paths, observations, payloads, execution, coverage, time, GUIDs, and proprietary content from output.
+- Add a verified work item with real external-document headings, portable empty-set handling plus mandatory contract bytes and conservative non-fenced/non-HTML heading validation for nonempty release sets, a minimal public result that excludes inspection-only compiler/evidence objects, asset/scope/staged-surface integration, a closed output schema, 181 focused closure checks, and 638 compiler checks preserving the default maturity hard gate; close P2 Todo 9 at `10/16` and advance the mainline to `72/465` (`15.5%`) while leaving Todo 10 report generation, Todo 11 hard gates, P7 setup compilation, fixtures, and world integration open.
+
 ## 2026-07-14 - Join battle source evidence to the sealed audit
 
 - Add strict append-only `SourceEvidence` authoring with exact audit identity, commit/tree revision, behavior-only claims, mechanism/branch/JSON-Pointer closure, immutable tombstones, and no runtime ID or catalog dependency.

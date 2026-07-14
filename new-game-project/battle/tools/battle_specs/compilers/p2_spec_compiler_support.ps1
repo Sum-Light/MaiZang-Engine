@@ -1526,7 +1526,8 @@ function New-P2CompilerProjection {
 function New-P2CompilerMaturityResult {
     param(
         [Parameter(Mandatory = $true)][PSCustomObject]$Mechanism,
-        [Parameter(Mandatory = $true)][object]$RequirementEvaluation
+        [Parameter(Mandatory = $true)][object]$RequirementEvaluation,
+        [switch]$InspectUnmetMaturityTargets
     )
 
     $evaluation = [PSCustomObject]$RequirementEvaluation
@@ -1552,7 +1553,9 @@ function New-P2CompilerMaturityResult {
     $result = Get-P2MaturityComputation `
         -MechanismId ([long]$Mechanism.mechanism_id) `
         -TargetMaturity ([string]$Mechanism.target_maturity) -Facts $facts
-    $null = Assert-P2MaturityTarget -Computation $result
+    if (-not $InspectUnmetMaturityTargets) {
+        $null = Assert-P2MaturityTarget -Computation $result
+    }
     return $result
 }
 
@@ -1560,7 +1563,8 @@ function New-P2CompiledSpecManifest {
     param(
         [Parameter(Mandatory = $true)][object]$SpecSet,
         [Parameter(Mandatory = $true)]
-        [Collections.Generic.Dictionary[long, object]]$RequirementEvaluations
+        [Collections.Generic.Dictionary[long, object]]$RequirementEvaluations,
+        [switch]$InspectUnmetMaturityTargets
     )
 
     $mechanisms = [Collections.Generic.List[object]]::new()
@@ -1572,7 +1576,7 @@ function New-P2CompiledSpecManifest {
         $maturity = New-P2CompilerMaturityResult -Mechanism $mechanism `
             -RequirementEvaluation $RequirementEvaluations[
                 [long]$mechanism.mechanism_id
-            ]
+            ] -InspectUnmetMaturityTargets:$InspectUnmetMaturityTargets
         $mechanisms.Add([pscustomobject][ordered]@{
             mechanism_id = [long]$mechanism.mechanism_id
             spec_schema_version = [long]$mechanism.spec_schema_version
@@ -1741,7 +1745,10 @@ function New-P2RuntimeRuleCatalog {
 # Public compilation constructs this value through Read-P2ValidatedSpecSet.
 # Synthetic tests use the core directly to isolate cross-reference failures.
 function Invoke-P2ValidatedSpecCompilerCore {
-    param([Parameter(Mandatory = $true)][object]$SpecSet)
+    param(
+        [Parameter(Mandatory = $true)][object]$SpecSet,
+        [switch]$InspectUnmetMaturityTargets
+    )
 
     foreach ($property in @(
         "StableManifest", "StableManifestHash", "PresentationManifest",
@@ -1773,7 +1780,8 @@ function Invoke-P2ValidatedSpecCompilerCore {
     $requirementEvaluations = Test-P2CompilerCrossReferences -SpecSet $SpecSet `
         -StableIndex $stableIndex -SpecMaps $specMaps -CueIndex $cueIndex
     $specManifest = New-P2CompiledSpecManifest -SpecSet $SpecSet `
-        -RequirementEvaluations $requirementEvaluations
+        -RequirementEvaluations $requirementEvaluations `
+        -InspectUnmetMaturityTargets:$InspectUnmetMaturityTargets
     $specJson = ConvertTo-BattleCanonicalJson -Value $specManifest
     $specHash = Get-BattleSha256Text -Text $specJson
     $runtimeManifest = New-P2RuntimeRuleCatalog -SpecSet $SpecSet `

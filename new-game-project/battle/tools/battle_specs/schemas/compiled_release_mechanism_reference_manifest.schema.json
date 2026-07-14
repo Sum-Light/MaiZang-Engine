@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/compiled_release_mechanism_reference_manifest.schema.json",
+  "title": "CompiledReleaseMechanismReferenceManifest",
+  "$comment": "Generated P2F static reference-closure overlay only. It evaluates and reports whether release-target mechanisms have traced Godot contract, external SourceEvidence, and SCENARIO fixture references. The executable validator also enforces ordinal ordering and exact link/count equality. This artifact does not promote maturity, execute fixtures, claim coverage, or enter the runtime catalog.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "schema_version",
+    "closure_contract_version",
+    "source_spec_compiler_contract_version",
+    "source_evidence_join_contract_version",
+    "fixture_preflight_contract_version",
+    "validation_scope",
+    "setup_compiler_status",
+    "scope_id",
+    "spec_manifest_sha256",
+    "stable_id_manifest_sha256",
+    "spec_input_set_sha256",
+    "source_evidence_join_manifest_sha256",
+    "fixture_requirement_manifest_sha256",
+    "work_item_input_set_sha256",
+    "counts",
+    "release_mechanisms"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "COMPILED_RELEASE_MECHANISM_REFERENCE_MANIFEST"},
+    "schema_version": {"const": 1},
+    "closure_contract_version": {"const": 1},
+    "source_spec_compiler_contract_version": {"const": 1},
+    "source_evidence_join_contract_version": {"const": 1},
+    "fixture_preflight_contract_version": {"const": 1},
+    "validation_scope": {"const": "STATIC_REFERENCE_TRIPLE_ONLY"},
+    "setup_compiler_status": {"const": "UNAVAILABLE_P7"},
+    "scope_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$",
+      "maxLength": 128
+    },
+    "spec_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "stable_id_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "spec_input_set_sha256": {"$ref": "#/$defs/sha256"},
+    "source_evidence_join_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "fixture_requirement_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "work_item_input_set_sha256": {"$ref": "#/$defs/sha256"},
+    "counts": {"$ref": "#/$defs/counts"},
+    "release_mechanisms": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/release_mechanism"}
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "work_item_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9_.-]*$",
+      "maxLength": 128
+    },
+    "blocker_code": {
+      "type": "string",
+      "enum": [
+        "EXTERNAL_SOURCE_EVIDENCE_NONCURRENT",
+        "EXTERNAL_SOURCE_EVIDENCE_REF_INCOMPLETE",
+        "EXTERNAL_SOURCE_EVIDENCE_REF_MISSING",
+        "GODOT_CONTRACT_REF_MISSING",
+        "GODOT_CONTRACT_REVIEW_INCOMPLETE",
+        "SCENARIO_FIXTURE_REF_MISSING",
+        "SETUP_COMPILER_UNAVAILABLE_P7"
+      ]
+    },
+    "stable_id_set": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "work_item_id_set": {
+      "type": "array",
+      "maxItems": 4096,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/work_item_id"}
+    },
+    "sha256_set": {
+      "type": "array",
+      "maxItems": 262144,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/sha256"}
+    },
+    "blocker_code_set": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/blocker_code"}
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_mechanism_count",
+        "reference_triple_count",
+        "blocked_mechanism_count",
+        "contract_work_item_link_count",
+        "godot_contract_ref_link_count",
+        "external_evidence_ref_link_count",
+        "scenario_fixture_ref_link_count"
+      ],
+      "properties": {
+        "release_mechanism_count": {"$ref": "#/$defs/count"},
+        "reference_triple_count": {"$ref": "#/$defs/count"},
+        "blocked_mechanism_count": {"$ref": "#/$defs/count"},
+        "contract_work_item_link_count": {"$ref": "#/$defs/count"},
+        "godot_contract_ref_link_count": {"$ref": "#/$defs/count"},
+        "external_evidence_ref_link_count": {"$ref": "#/$defs/count"},
+        "scenario_fixture_ref_link_count": {"$ref": "#/$defs/count"}
+      }
+    },
+    "release_mechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mechanism_id",
+        "target_maturity",
+        "contract_work_item_ids",
+        "godot_contract_ref_hashes",
+        "external_evidence_ids",
+        "scenario_fixture_ids",
+        "godot_contract_ref_present",
+        "external_source_evidence_ref_present",
+        "scenario_fixture_ref_present",
+        "reference_triple_present",
+        "source_evidence_current",
+        "blocker_codes"
+      ],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "target_maturity": {"const": "RELEASED"},
+        "contract_work_item_ids": {"$ref": "#/$defs/work_item_id_set"},
+        "godot_contract_ref_hashes": {"$ref": "#/$defs/sha256_set"},
+        "external_evidence_ids": {"$ref": "#/$defs/stable_id_set"},
+        "scenario_fixture_ids": {"$ref": "#/$defs/stable_id_set"},
+        "godot_contract_ref_present": {"type": "boolean"},
+        "external_source_evidence_ref_present": {"type": "boolean"},
+        "scenario_fixture_ref_present": {"type": "boolean"},
+        "reference_triple_present": {"type": "boolean"},
+        "source_evidence_current": {"type": "boolean"},
+        "blocker_codes": {"$ref": "#/$defs/blocker_code_set"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"godot_contract_ref_present": {"const": true}}, "required": ["godot_contract_ref_present"]},
+          "then": {"properties": {"contract_work_item_ids": {"minItems": 1}, "godot_contract_ref_hashes": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"godot_contract_ref_present": {"const": false}}, "required": ["godot_contract_ref_present"]},
+          "then": {"properties": {"contract_work_item_ids": {"maxItems": 0}, "godot_contract_ref_hashes": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"external_source_evidence_ref_present": {"const": true}}, "required": ["external_source_evidence_ref_present"]},
+          "then": {"properties": {"external_evidence_ids": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"external_evidence_ids": {"maxItems": 0}}, "required": ["external_evidence_ids"]},
+          "then": {"properties": {"external_source_evidence_ref_present": {"const": false}}}
+        },
+        {
+          "if": {"properties": {"scenario_fixture_ref_present": {"const": true}}, "required": ["scenario_fixture_ref_present"]},
+          "then": {"properties": {"scenario_fixture_ids": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"scenario_fixture_ref_present": {"const": false}}, "required": ["scenario_fixture_ref_present"]},
+          "then": {"properties": {"scenario_fixture_ids": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"reference_triple_present": {"const": true}}, "required": ["reference_triple_present"]},
+          "then": {"properties": {"godot_contract_ref_present": {"const": true}, "external_source_evidence_ref_present": {"const": true}, "scenario_fixture_ref_present": {"const": true}}}
+        },
+        {
+          "if": {"properties": {"reference_triple_present": {"const": false}}, "required": ["reference_triple_present"]},
+          "then": {"anyOf": [
+            {"properties": {"godot_contract_ref_present": {"const": false}}},
+            {"properties": {"external_source_evidence_ref_present": {"const": false}}},
+            {"properties": {"scenario_fixture_ref_present": {"const": false}}}
+          ]}
+        },
+        {
+          "if": {"properties": {"source_evidence_current": {"const": true}}, "required": ["source_evidence_current"]},
+          "then": {"properties": {"external_source_evidence_ref_present": {"const": true}}}
+        }
+      ]
+    }
+  }
+}

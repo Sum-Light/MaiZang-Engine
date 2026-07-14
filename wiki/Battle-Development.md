@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | In progress (9/16) | ID/presentation, strict authoring, deterministic spec compiler, fixture-requirement preflight, mechanism trace scope enforcement, and sealed SourceEvidence joins; production setup compilation, release closure, coverage, and fixtures remain |
+| P2 | In progress (10/16) | ID/presentation, strict authoring, deterministic spec compiler, fixture-requirement preflight, mechanism trace scope enforcement, sealed SourceEvidence joins, and release-target reference closure; production setup compilation, coverage, and fixtures remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -431,7 +431,7 @@ and
 The 69-check repository-view suite covers captured/cloned worktree, HEAD, and
 index bytes; per-file/path/aggregate/Git-output limits; ordinal paths; invalid
 UTF-8; no-follow final-path containment; reparse/nonregular/unmerged states;
-and reviewed surface/ignore parity. The 632-check compiler suite covers both
+and reviewed surface/ignore parity. The 638-check compiler suite covers both
 output schemas and all cross-schema pointers, a complete synthetic graph,
 schema projections, maturity threshold independence, test-requirement and
 phase-event ownership, semantic ordering, deterministic diagnostics, closed
@@ -559,8 +559,9 @@ Clean IMPLEMENT evidence becomes current only at HIGH confidence and VERIFIED
 author review. Dirty, missing, stale-index, merged, deferred, text-only,
 presentation-only, rejected, non-applicable, and non-port test dispositions
 remain joined with sorted blocker codes rather than being promoted. Todo 10
-still owns the release hard-fail policy; this slice does not claim Todo 9's
-contract/source/fixture triple or Todo 10's coverage/orphan reports.
+generates traceability/coverage/orphan reports and Todo 11 owns the release
+hard-fail policy; this join alone does not claim the separate Todo 9
+contract/source/fixture triple or those later outputs.
 
 The generated closed overlay binds the unchanged P2 spec/input hashes, tracked
 seal hash, sealed audit hash, and evidence input hash, then emits only evidence/
@@ -576,25 +577,102 @@ history, empty and synthetic joins, audit identity, bidirectional closure,
 pointer/branch failures, blocker propagation, deterministic ordering, minimal
 output, CLI marker, and unchanged spec/runtime hashes.
 
+## P2 Release Mechanism Reference Closure
+
+P2 Todo 9 is complete as a static reference-closure overlay. Release membership
+comes only from an ACTIVE validated `MechanismSpec` whose authored
+`target_maturity` is exactly `RELEASED`. The validator never selects by
+generated `computed_status`, `ImplementationWorkItem.completion_status`, or a
+source-audit release disposition, so a missing reference cannot make a target
+silently disappear from the checked set. The existing P2 compiler maturity
+gate remains unchanged and still rejects a target above the facts it can prove.
+P2F alone uses an internal inspection-only compiler switch so it can report an
+unmet authored release target; the public compiler does not expose that switch.
+The current repository has no mechanism authoring, so its release set is empty.
+
+All three edges use independent authorities and then close through the same
+mechanism. The Godot edge uses `ImplementationWorkItem.mechanism_ids` without
+reinterpreting `MechanismSpec.project_requirement_keys` as a work-item ID.
+P2F requires `GodotContractRoot` whenever the release-target set is nonempty,
+then performs a bounded no-follow whole-document SHA-256 check and requires
+each mechanism-bound section to exactly match a column-zero top-level ATX
+Markdown heading. Empty authoring remains portable without weakening a real
+release check; historical unbound work-item section labels remain descriptive
+for compatibility. The source edge
+requires every ACTIVE battlelogic/pokelib `SourceEvidence` ID declared by the
+mechanism to be joined by P2E and exactly matched by a work-item repository/
+kind/path/symbol/file-hash locator. A partial evidence set, project decision,
+or work-item locator without real `SourceEvidence` does not count. The fixture
+edge requires a P2D SCENARIO requirement whose
+`fixture_id == test_id`, whose coverage target names the mechanism, and whose ID
+is listed by the bound work item. A work-item-only fixture number does not count.
+
+Structural substitution fails immediately: unsupported artifact/contract
+versions, noncanonical hashes, count drift, incomplete spec/evidence/fixture/
+work-item input binding, repeated identities, unknown mechanism/fixture IDs,
+or stale Godot document bytes cannot produce a nonempty release overlay. A
+genuinely absent leg instead produces one of
+`GODOT_CONTRACT_REF_MISSING`,
+`EXTERNAL_SOURCE_EVIDENCE_REF_MISSING`, or
+`SCENARIO_FIXTURE_REF_MISSING`. Noncurrent evidence still proves that a source
+reference exists, but adds `EXTERNAL_SOURCE_EVIDENCE_NONCURRENT`; a partially
+matched required set adds `EXTERNAL_SOURCE_EVIDENCE_REF_INCOMPLETE`. The
+diagnostic projection retains those details, then the public CLI and scope gate
+fail with `P2F_RELEASE_REFERENCE_CLOSURE_FAILED` if any selected mechanism lacks
+a full static triple. The public validator returns only the closed manifest,
+canonical JSON/bytes/hash, and summary counts; inspection-only compiler, raw
+evidence, fixture, and work-item objects remain internal. Contract headings are
+accepted only at column zero and outside fenced code and HTML blocks/comments;
+Setext and container headings are intentionally unsupported so ambiguous
+Markdown cannot close a release edge. A scenario
+declaration likewise proves a fixture reference while retaining
+`SETUP_COMPILER_UNAVAILABLE_P7`; it never claims that setup compiled, executed,
+passed, or covered a branch. Todo 10 owns traceability, coverage, and orphan
+report generation; Todo 11 owns the later hard-fail policy for stale evidence,
+unexecuted tests, and coverage defects.
+
+The generated `COMPILED_RELEASE_MECHANISM_REFERENCE_MANIFEST` binds the stable
+ID/spec input, compiled spec, P2E join, P2D requirement, P0 audit, and complete
+work-item input hashes. It emits only stable IDs, hashed contract references,
+booleans, counts, and sorted blockers. Paths, section text, symbols,
+observations, fixture payloads, source data, timestamps, GUIDs, runtime objects,
+execution/coverage results, and `computed_status` are excluded. It is read-only,
+does not enter or alter the runtime catalog, and captures all tracked inputs
+from one immutable Repository/Worktree/Staged view. The empty repository
+manifest hash is
+`bd30940a4c04452238c6f410df79da14a4755754ae5585a63c07fecd5de15439`.
+
+The 181-check focused suite covers recursive schema closure, deterministic
+empty output, two synthetic RELEASED-target specs with complete static reference triples,
+strict target-based selection, each missing leg, project-decision substitution,
+five-field evidence identity mismatches, partial/noncurrent evidence, mixed
+contract review, evidence-only project requirements, recomputed upstream joins
+and currentness, forged counts/hashes and cross-artifact bindings, output
+leakage, unchanged public maturity enforcement, CLI stability, and absence of
+generated writes.
+The scope gate runs P2F after the existing spec, fixture-preflight, and
+SourceEvidence joins.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
 items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, P1 is
-`17/17`, and P2 is `9/16`. Current mainline progress is therefore `71/465`
-items (`15.3%`), with `3/20` phases complete and P2 in progress. This count
+`17/17`, and P2 is `10/16`. Current mainline progress is therefore `72/465`
+items (`15.5%`), with `3/20` phases complete and P2 in progress. This count
 advances only after a checklist item has implementation, focused verification,
 Wiki/Skill memory, and a focused commit.
 
-P2 Todo1-5, Todo7-8, deterministic gate G01, and scope gate G03 are now closed:
+P2 Todo1-5, Todo7-9, deterministic gate G01, and scope gate G03 are now closed:
 append-only/
 tombstone-safe mechanism and runtime ID domains, the presentation cue/payload/
 tag manifest, five strict authoring schemas, validator-owned maturity, the
 deterministic spec compiler, byte-identical spec/runtime manifest output,
-bounded in-scope mechanism trace records, and sealed SourceEvidence/audit joins.
+bounded in-scope mechanism trace records, sealed SourceEvidence/audit joins,
+and static release-target contract/source/fixture reference closure.
 Todo6 has a deterministic requirement
 preflight but cannot close until the ordered P7 production setup contracts
-exist. Todo9, release-mechanism contract/source/fixture closure, is the next
+exist. Todo10, traceability/coverage/orphan report generation, is the next
 independent P2 item. No world-runtime coupling has been introduced.
 
 ## Editor Entry
@@ -745,7 +823,7 @@ The P2 repository-view suite executes 69 checks across captured and cloned
 worktree/HEAD/index bytes, bounded allocation, ordinal paths, invalid
 encodings, no-follow redirects, reparse points, review/ignore surface parity,
 Git modes, and unmerged indexes without mutating Git.
-The P2 compiler suite executes 632 checks across recursive output-schema
+The P2 compiler suite executes 638 checks across recursive output-schema
 closure and cross-schema pointers, a closed synthetic graph, runtime
 projection, canonical double output, deterministic errors, global/scoped/test
 and phase-event references, maturity thresholds, closed no-write/write/verify

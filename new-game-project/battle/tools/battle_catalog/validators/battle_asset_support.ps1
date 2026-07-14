@@ -59,6 +59,7 @@ function Test-BattleAllowedJsonPath {
         "new-game-project/battle/tools/battle_specs/schemas/source_evidence.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/compiled_source_evidence_join_manifest.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/compiled_fixture_requirement_manifest.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/compiled_release_mechanism_reference_manifest.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/compiled_spec_manifest.schema.json",
         "new-game-project/battle/tools/battle_specs/schemas/runtime_rule_catalog_manifest.schema.json"
     )) {
