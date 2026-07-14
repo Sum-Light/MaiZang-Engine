@@ -117,6 +117,14 @@ $localTerrainAssets = 0
 $localBuildingAssets = 0
 $localUniqueCollisionAssets = 0
 $localDestinationCollisionAssets = 0
+$localHeaders = 0
+$localWarpEvents = 0
+$localOrdinaryWarps = 0
+$localSpecialReturns = 0
+$localDynamicWarps = 0
+$localAnimatedBuildingAssets = 0
+$localNativeAnimationClips = 0
+$localUnsupportedAnimationClips = 0
 if ($localAssetsPresent) {
     $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
     $localGlbs = [int]$catalog.summary.destination_scoped_glbs
@@ -139,6 +147,24 @@ if ($localAssetsPresent) {
     }
     if ($null -ne $catalog.summary.PSObject.Properties["destination_scoped_collision_assets"]) {
         $localDestinationCollisionAssets = [int]$catalog.summary.destination_scoped_collision_assets
+    }
+    foreach ($field in @(
+        "headers",
+        "warp_events",
+        "ordinary_warps",
+        "special_returns",
+        "dynamic_warps",
+        "animated_building_assets",
+        "native_animation_clips",
+        "unsupported_animation_clips"
+    )) {
+        if ($null -eq $catalog.summary.PSObject.Properties[$field]) {
+            continue
+        }
+        $variableSuffix = @(($field -split '_') | ForEach-Object {
+            $_.Substring(0, 1).ToUpperInvariant() + $_.Substring(1)
+        }) -join ""
+        Set-Variable -Name ("local" + $variableSuffix) -Value ([int]$catalog.summary.$field)
     }
 }
 
@@ -186,6 +212,8 @@ $currentState = @"
 - Global asset variants: $localTerrainAssets terrain and $localBuildingAssets building/texture pairs.
 - Collision assets: $localUniqueCollisionAssets unique maps across $localDestinationCollisionAssets destination-scoped records.
 - Collision runtime: lazy ``a.dat``/BDHC cache, absolute height sampling, walking behavior actions, and fail-closed unsupported special movement.
+- Warp runtime: $localHeaders Headers and $localWarpEvents records; $($localOrdinaryWarps - $localDynamicWarps) static ordinary Warps executable, with $localDynamicWarps dynamic and $localSpecialReturns special-return records fail-closed.
+- MapProp animation: $localAnimatedBuildingAssets destination-scoped animated assets, $localNativeAnimationClips native NSBCA clips, and $localUnsupportedAnimationClips deferred NSBTA/NSBTP clips.
 - Building instances across ready matrices: $localBuildings.
 - Shared resources: $localUniqueTextures unique texture hashes and $localMaterials external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
@@ -204,8 +232,8 @@ $currentState = @"
 
 ## Next Engineering Milestone
 
-Add dynamic map features, warps, and scripted collision overrides on top of the
-static terrain-attribute and BDHC query service.
+Add saved-state/script providers for dynamic and special Warps, then implement
+NSBTA/NSBTP and field texture animation before NPC/object event execution.
 "@
 
 $skillState = @"
@@ -226,11 +254,13 @@ MaiZang Engine and regenerate it in every functional commit.
 - Assets: $localGlbs destination-scoped GLBs, $localUniqueTextures unique texture hashes, and $localMaterials shared materials.
 - Collision: $localUniqueCollisionAssets unique maps across $localDestinationCollisionAssets destination-scoped records, cached independently of visual chunks.
 - Collision runtime: absolute BDHC height, walking behavior actions, bridge-layer context, and fail-closed unsupported special movement.
+- Warp runtime: $($localOrdinaryWarps - $localDynamicWarps) static ordinary records execute through Header-scoped scene reload; $localDynamicWarps dynamic and $localSpecialReturns special records remain fail-closed.
+- MapProp animation: one 30 Hz loaded-instance controller for $localNativeAnimationClips NSBCA clips; $localUnsupportedAnimationClips NSBTA/NSBTP clips remain deferred.
 - Streaming: ``3 x 3`` active, ``5 x 5`` prefetch, radius-3 retention.
 - Scale: cell 32, altitude step 0.5, imported model scale ``1 / 16``.
 - Local asset cache: $assetStatus.
 - Dawn sprite atlas: $playerSpriteStatus.
-- Next milestone: dynamic map features, warps, and scripted collision overrides.
+- Next milestone: dynamic/special Warp state, NSBTA/NSBTP and field texture animation, then NPC/object events.
 
 The public repository must not contain ROM-derived models, textures, maps, or
 other proprietary Pokemon assets.

@@ -6,6 +6,8 @@ param(
     [string]$Mode = "Auto",
     [string]$DedupeToolSha256 = "",
     [string]$SyncToolSha256 = "",
+    [switch]$TrustSourceMarkerRecords,
+    [string]$ExpectedDedupeMarkerSha256 = "",
     [switch]$Force
 )
 
@@ -19,6 +21,13 @@ if ([string]::IsNullOrWhiteSpace($SourceRoot)) {
 }
 if ([string]::IsNullOrWhiteSpace($ProjectRoot)) {
     $ProjectRoot = Join-Path $workspaceRoot "new-game-project"
+}
+
+function Test-GodotImportSidecarArtifact {
+    param([string]$RelativePath)
+
+    return $RelativePath.EndsWith(".import", [StringComparison]::OrdinalIgnoreCase) -or
+        $RelativePath -match '(?i)\.import~[^/]+\.tmp$'
 }
 
 $SourceRoot = [IO.Path]::GetFullPath($SourceRoot).TrimEnd('\')
@@ -114,10 +123,7 @@ function Get-StageFileRecords {
         $relativePath = $fullPath.Substring($rootPrefix.Length).Replace('\', '/')
         if (
             $excluded.Contains($relativePath) -or
-            ($IgnoreGodotImportSidecars -and $relativePath.EndsWith(
-                ".import",
-                [StringComparison]::OrdinalIgnoreCase
-            ))
+            ($IgnoreGodotImportSidecars -and (Test-GodotImportSidecarArtifact $relativePath))
         ) {
             continue
         }
@@ -177,6 +183,411 @@ function Assert-StageFileRecords {
     return $actualRecords
 }
 
+function ConvertTo-StageRecordMap {
+    param(
+        [object[]]$Records,
+        [string]$Label = "Stage records"
+    )
+
+    $recordsByPath = New-Object 'System.Collections.Generic.Dictionary[string,object]' (
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    foreach ($record in @($Records)) {
+        $relativePath = ([string]$record.relative_path).Replace('\', '/')
+        if (
+            [string]::IsNullOrWhiteSpace($relativePath) -or
+            [IO.Path]::IsPathRooted($relativePath) -or
+            $relativePath -match '(^|/)\.\.(/|$)' -or
+            $recordsByPath.ContainsKey($relativePath) -or
+            [long]$record.byte_length -lt 0 -or
+            [string]$record.sha256 -notmatch '^[0-9a-f]{64}$'
+        ) {
+            throw "$Label contains an invalid or duplicate file record: $relativePath"
+        }
+        $recordsByPath.Add($relativePath, [pscustomobject][ordered]@{
+            relative_path = $relativePath
+            byte_length = [long]$record.byte_length
+            sha256 = [string]$record.sha256
+        })
+    }
+    return $recordsByPath
+}
+
+function Get-StageFileShapes {
+    param(
+        [string]$RootPath,
+        [string[]]$ExcludedRelativePaths = @(),
+        [switch]$IgnoreGodotImportSidecars,
+        [string]$Label = "Stage output"
+    )
+
+    $root = [IO.Path]::GetFullPath($RootPath).TrimEnd('\', '/')
+    $rootPrefix = $root + [IO.Path]::DirectorySeparatorChar
+    $excluded = New-Object System.Collections.Generic.HashSet[string](
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    foreach ($relativePath in $ExcludedRelativePaths) {
+        $null = $excluded.Add(([string]$relativePath).Replace('\', '/'))
+    }
+    $shapes = New-Object System.Collections.Generic.List[object]
+    foreach ($file in @(Get-StageFilesWithoutReparsePoints -RootPath $root -Label $Label)) {
+        $fullPath = [IO.Path]::GetFullPath($file.FullName)
+        if (-not $fullPath.StartsWith($rootPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+            throw "$Label file escaped its root: $fullPath"
+        }
+        $relativePath = $fullPath.Substring($rootPrefix.Length).Replace('\', '/')
+        if (
+            $excluded.Contains($relativePath) -or
+            ($IgnoreGodotImportSidecars -and (Test-GodotImportSidecarArtifact $relativePath))
+        ) {
+            continue
+        }
+        $shapes.Add([pscustomobject][ordered]@{
+            relative_path = $relativePath
+            byte_length = [long]$file.Length
+        })
+    }
+    return @($shapes | Sort-Object { [string]$_.relative_path })
+}
+
+function Assert-StageFileShapes {
+    param(
+        [string]$RootPath,
+        [object[]]$ExpectedRecords,
+        [string[]]$ExcludedRelativePaths = @(),
+        [switch]$IgnoreGodotImportSidecars,
+        [string]$Label = "Stage output"
+    )
+
+    $expectedByPath = ConvertTo-StageRecordMap -Records $ExpectedRecords -Label $Label
+    $actualShapes = @(Get-StageFileShapes `
+        -RootPath $RootPath `
+        -ExcludedRelativePaths $ExcludedRelativePaths `
+        -IgnoreGodotImportSidecars:$IgnoreGodotImportSidecars `
+        -Label $Label)
+    if ($actualShapes.Count -ne $expectedByPath.Count) {
+        throw "$Label file count does not match its completion record."
+    }
+    foreach ($actual in $actualShapes) {
+        $relativePath = [string]$actual.relative_path
+        if (-not $expectedByPath.ContainsKey($relativePath)) {
+            throw "$Label contains an undeclared file: $relativePath"
+        }
+        if ([long]$actual.byte_length -ne [long]$expectedByPath[$relativePath].byte_length) {
+            throw "$Label file length does not match its completion record: $relativePath"
+        }
+    }
+    return $actualShapes
+}
+
+function Assert-DspreTrustedMarkerFingerprint {
+    param(
+        [string]$Path,
+        [string]$ExpectedSha256,
+        [string]$Label = "Trusted completion marker"
+    )
+
+    $expected = Assert-DspreSha256Fingerprint $ExpectedSha256 "$Label fingerprint"
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
+        throw "$Label does not exist: $Path"
+    }
+    $actual = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($actual -ne $expected) {
+        throw "$Label changed after its upstream stage was validated."
+    }
+    return $actual
+}
+
+function Test-GodotImportAssetPath {
+    param([string]$RelativePath)
+
+    return $RelativePath.EndsWith(".glb", [StringComparison]::OrdinalIgnoreCase) -or
+        $RelativePath.EndsWith(".png", [StringComparison]::OrdinalIgnoreCase)
+}
+
+function Remove-GodotManagedFile {
+    param(
+        [string]$DestinationRoot,
+        [string]$RelativePath,
+        [ref]$RemovedSidecars
+    )
+
+    $destinationPath = Join-Path $DestinationRoot $RelativePath.Replace('/', '\')
+    if (Test-Path -LiteralPath $destinationPath -PathType Leaf) {
+        $item = Get-Item -LiteralPath $destinationPath -Force -ErrorAction Stop
+        if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "Managed destination file cannot be a reparse point: $destinationPath"
+        }
+        Remove-Item -LiteralPath $destinationPath -Force
+    }
+    if (Test-GodotImportAssetPath $RelativePath) {
+        $sidecarPath = "$destinationPath.import"
+        if (Test-Path -LiteralPath $sidecarPath -PathType Leaf) {
+            $sidecar = Get-Item -LiteralPath $sidecarPath -Force -ErrorAction Stop
+            if (($sidecar.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                throw "Godot import sidecar cannot be a reparse point: $sidecarPath"
+            }
+            Remove-Item -LiteralPath $sidecarPath -Force
+            $RemovedSidecars.Value++
+        }
+    }
+}
+
+function Sync-DspreManagedFiles {
+    param(
+        [string]$SourceRoot,
+        [string]$DestinationRoot,
+        [string]$AllowedRoot,
+        [object[]]$SourceRecords,
+        [int]$ExpectedMatrixId,
+        [string]$ExpectedVariant,
+        [ValidateSet("Auto", "HardLink", "Copy")]
+        [string]$Mode = "Auto",
+        [switch]$Force
+    )
+
+    $sourceRecordsByPath = ConvertTo-StageRecordMap `
+        -Records $SourceRecords `
+        -Label "Deduplicated source transfer records"
+    if ($sourceRecordsByPath.Count -eq 0) {
+        throw "Deduplicated source has no managed files to sync."
+    }
+
+    $sourceDrive = [IO.Path]::GetPathRoot($SourceRoot)
+    $destinationDrive = [IO.Path]::GetPathRoot($DestinationRoot)
+    $canHardLink = $sourceDrive.Equals($destinationDrive, [StringComparison]::OrdinalIgnoreCase)
+    $useHardLinks = $Mode -eq "HardLink" -or ($Mode -eq "Auto" -and $canHardLink)
+    if ($Mode -eq "HardLink" -and -not $canHardLink) {
+        throw "Hard links require source and destination on the same volume."
+    }
+
+    $destinationExists = Test-Path -LiteralPath $DestinationRoot -PathType Container
+    if ($destinationExists -and -not $Force) {
+        throw "Destination already exists. Pass -Force to reconcile it: $DestinationRoot"
+    }
+
+    $oldRecordsByPath = New-Object 'System.Collections.Generic.Dictionary[string,object]' (
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    $oldMarkerPath = Join-Path $DestinationRoot ".sync-complete.json"
+    $transactionMarkerPath = Join-Path $DestinationRoot ".sync-in-progress.json"
+    if ($destinationExists) {
+        $DestinationRoot = Assert-DspreSafeRecursiveDeletePath `
+            -Path $DestinationRoot `
+            -AllowedRoot $AllowedRoot
+        $null = @(Get-StageFilesWithoutReparsePoints `
+            -RootPath $DestinationRoot `
+            -Label "Existing Godot sync destination")
+        $transactionTemporaryFiles = @(
+            Get-ChildItem -LiteralPath $DestinationRoot -Force -File |
+                Where-Object { $_.Name -match '^\.sync-in-progress~[0-9a-f]{32}\.tmp$' }
+        )
+        if (
+            (Test-Path -LiteralPath $transactionMarkerPath -PathType Leaf) -or
+            $transactionTemporaryFiles.Count -gt 0
+        ) {
+            if (-not (Test-Path -LiteralPath $transactionMarkerPath -PathType Leaf)) {
+                Remove-Item -LiteralPath $DestinationRoot -Recurse -Force
+                New-Item -ItemType Directory -Path $DestinationRoot -Force | Out-Null
+                $destinationExists = $false
+            }
+            else {
+            $transaction = [IO.File]::ReadAllText(
+                $transactionMarkerPath,
+                [Text.Encoding]::UTF8
+            ) | ConvertFrom-Json
+            if (
+                [int]$transaction.schema_version -ne 1 -or
+                [int]$transaction.matrix_id -ne $ExpectedMatrixId -or
+                [string]$transaction.variant -ne $ExpectedVariant
+            ) {
+                throw "Interrupted Godot sync marker does not belong to $ExpectedVariant."
+            }
+            Remove-Item -LiteralPath $DestinationRoot -Recurse -Force
+            New-Item -ItemType Directory -Path $DestinationRoot -Force | Out-Null
+            $destinationExists = $false
+            }
+        }
+        elseif (Test-Path -LiteralPath $oldMarkerPath -PathType Leaf) {
+            $oldMarker = [IO.File]::ReadAllText($oldMarkerPath, [Text.Encoding]::UTF8) |
+                ConvertFrom-Json
+            if (
+                [int]$oldMarker.schema_version -ne 2 -or
+                [int]$oldMarker.matrix_id -ne $ExpectedMatrixId -or
+                [string]$oldMarker.variant -ne $ExpectedVariant
+            ) {
+                throw "Existing Godot sync marker does not belong to $ExpectedVariant."
+            }
+            $null = @(Assert-StageFileRecords `
+                -RootPath $DestinationRoot `
+                -ExpectedRecords @($oldMarker.files) `
+                -ExcludedRelativePaths @(".sync-complete.json") `
+                -IgnoreGodotImportSidecars `
+                -Label "Existing Godot sync destination")
+            $oldRecordsByPath = ConvertTo-StageRecordMap `
+                -Records @($oldMarker.files) `
+                -Label "Existing Godot sync marker"
+        }
+        else {
+            $unownedFiles = @(Get-StageFileShapes `
+                -RootPath $DestinationRoot `
+                -IgnoreGodotImportSidecars `
+                -Label "Unmarked Godot sync destination")
+            if ($unownedFiles.Count -ne 0) {
+                throw "Unmarked Godot sync destination contains unexpected managed files."
+            }
+        }
+    }
+    else {
+        New-Item -ItemType Directory -Path $DestinationRoot -Force | Out-Null
+    }
+
+    $transactionTemporaryPath = Join-Path $DestinationRoot (
+        ".sync-in-progress~{0}.tmp" -f [Guid]::NewGuid().ToString("N")
+    )
+    try {
+        [IO.File]::WriteAllText(
+            $transactionTemporaryPath,
+            ([pscustomobject][ordered]@{
+                schema_version = 1
+                matrix_id = $ExpectedMatrixId
+                variant = $ExpectedVariant
+                started_utc = [DateTime]::UtcNow.ToString("o")
+            } | ConvertTo-Json -Compress),
+            [Text.UTF8Encoding]::new($false)
+        )
+        [IO.File]::Move($transactionTemporaryPath, $transactionMarkerPath)
+    }
+    finally {
+        if (Test-Path -LiteralPath $transactionTemporaryPath -PathType Leaf) {
+            Remove-Item -LiteralPath $transactionTemporaryPath -Force
+        }
+    }
+
+    $unchangedPaths = New-Object System.Collections.Generic.HashSet[string](
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    foreach ($entry in $sourceRecordsByPath.GetEnumerator()) {
+        if (-not $oldRecordsByPath.ContainsKey($entry.Key)) {
+            continue
+        }
+        $oldRecord = $oldRecordsByPath[$entry.Key]
+        $newRecord = $entry.Value
+        if (
+            [long]$oldRecord.byte_length -eq [long]$newRecord.byte_length -and
+            [string]$oldRecord.sha256 -eq [string]$newRecord.sha256
+        ) {
+            $null = $unchangedPaths.Add($entry.Key)
+        }
+    }
+
+    $removedSidecars = 0
+    $removedFiles = 0
+    foreach ($entry in $oldRecordsByPath.GetEnumerator()) {
+        if ($unchangedPaths.Contains($entry.Key)) {
+            continue
+        }
+        Remove-GodotManagedFile `
+            -DestinationRoot $DestinationRoot `
+            -RelativePath ([string]$entry.Value.relative_path) `
+            -RemovedSidecars ([ref]$removedSidecars)
+        $removedFiles++
+    }
+
+    $linked = 0
+    $copied = 0
+    $retained = $unchangedPaths.Count
+    $orderedRecords = @($sourceRecordsByPath.Values | Sort-Object {
+        [string]$_.relative_path
+    })
+    for ($index = 0; $index -lt $orderedRecords.Count; $index++) {
+        $record = $orderedRecords[$index]
+        $relativePath = [string]$record.relative_path
+        if ($unchangedPaths.Contains($relativePath)) {
+            continue
+        }
+        $sourcePath = Join-Path $SourceRoot $relativePath.Replace('/', '\')
+        $destinationPath = Join-Path $DestinationRoot $relativePath.Replace('/', '\')
+        New-Item -ItemType Directory -Path (Split-Path -Parent $destinationPath) -Force |
+            Out-Null
+
+        $wasLinked = $false
+        if ($useHardLinks) {
+            try {
+                New-Item -ItemType HardLink -Path $destinationPath -Target $sourcePath -Force |
+                    Out-Null
+                $wasLinked = $true
+                $linked++
+            }
+            catch {
+                if ($Mode -eq "HardLink") {
+                    throw
+                }
+            }
+        }
+        if (-not $wasLinked) {
+            Copy-Item -LiteralPath $sourcePath -Destination $destinationPath -Force
+            $destinationHash = (
+                Get-FileHash -LiteralPath $destinationPath -Algorithm SHA256
+            ).Hash.ToLowerInvariant()
+            if (
+                (Get-Item -LiteralPath $destinationPath).Length -ne [long]$record.byte_length -or
+                $destinationHash -ne [string]$record.sha256
+            ) {
+                throw "Copied Godot sync file differs from its source record: $relativePath"
+            }
+            $copied++
+        }
+        else {
+            if ((Get-Item -LiteralPath $destinationPath).Length -ne [long]$record.byte_length) {
+                throw "Hard-linked Godot sync file has an unexpected length: $relativePath"
+            }
+        }
+
+        Write-Progress `
+            -Activity "Syncing DSPRE assets into Godot" `
+            -Status "$($index + 1) / $($orderedRecords.Count)" `
+            -PercentComplete (100.0 * ($index + 1) / $orderedRecords.Count)
+    }
+    Write-Progress -Activity "Syncing DSPRE assets into Godot" -Completed
+
+    foreach ($file in @(Get-StageFilesWithoutReparsePoints `
+        -RootPath $DestinationRoot `
+        -Label "Reconciled Godot sync destination")) {
+        $relativePath = $file.FullName.Substring($DestinationRoot.Length + 1).Replace('\', '/')
+        if ($relativePath -match '(?i)\.import~[^/]+\.tmp$') {
+            continue
+        }
+        if (-not $relativePath.EndsWith(".import", [StringComparison]::OrdinalIgnoreCase)) {
+            continue
+        }
+        $assetRelativePath = $relativePath.Substring(0, $relativePath.Length - 7)
+        if (
+            -not (Test-GodotImportAssetPath $assetRelativePath) -or
+            -not $unchangedPaths.Contains($assetRelativePath)
+        ) {
+            Remove-Item -LiteralPath $file.FullName -Force
+            $removedSidecars++
+        }
+    }
+
+    $null = @(Assert-StageFileShapes `
+        -RootPath $DestinationRoot `
+        -ExpectedRecords $orderedRecords `
+        -ExcludedRelativePaths @(".sync-complete.json", ".sync-in-progress.json") `
+        -IgnoreGodotImportSidecars `
+        -Label "Godot sync destination")
+    return [pscustomobject][ordered]@{
+        records = $orderedRecords
+        linked = $linked
+        copied = $copied
+        retained = $retained
+        removed_files = $removedFiles
+        removed_sidecars = $removedSidecars
+        transaction_marker = $transactionMarkerPath
+    }
+}
+
 $actualDedupeToolSha256 = Get-DspreToolFileFingerprint `
     -Path (Join-Path $PSScriptRoot "dedupe_dspre_materials.ps1")
 if ([string]::IsNullOrWhiteSpace($DedupeToolSha256)) {
@@ -214,7 +625,7 @@ $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | Conve
 $null = Assert-DspreCollisionManifest `
     -Manifest $manifest `
     -Label "Deduplicated source manifest" `
-    -ExpectedManifestSchema 3
+    -ExpectedManifestSchema 4
 $matrixId = [int]$manifest.matrix.id
 if ($matrixId -lt 0 -or $matrixId -gt 9999) {
     throw "Manifest matrix ID is outside the supported range: $matrixId"
@@ -280,17 +691,48 @@ $materialCatalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) |
 $dedupeMarker = [IO.File]::ReadAllText($dedupeMarkerPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
 $sourceManifestHash = (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant()
 
-$sourcePayloadRecords = @(Assert-StageFileRecords `
-    -RootPath $SourceRoot `
-    -ExpectedRecords @($dedupeMarker.files) `
-    -ExcludedRelativePaths @(".dedupe-complete.json") `
-    -Label "Deduplicated source")
+$dedupeMarkerSha256 = if ($TrustSourceMarkerRecords) {
+    if ([string]::IsNullOrWhiteSpace($ExpectedDedupeMarkerSha256)) {
+        throw "TrustSourceMarkerRecords requires ExpectedDedupeMarkerSha256."
+    }
+    Assert-DspreTrustedMarkerFingerprint `
+        -Path $dedupeMarkerPath `
+        -ExpectedSha256 $ExpectedDedupeMarkerSha256 `
+        -Label "Trusted dedupe completion marker"
+}
+else {
+    if (-not [string]::IsNullOrWhiteSpace($ExpectedDedupeMarkerSha256)) {
+        throw "ExpectedDedupeMarkerSha256 requires TrustSourceMarkerRecords."
+    }
+    (Get-FileHash -LiteralPath $dedupeMarkerPath -Algorithm SHA256).Hash.ToLowerInvariant()
+}
+$sourcePayloadRecords = if ($TrustSourceMarkerRecords) {
+    $null = @(Assert-StageFileShapes `
+        -RootPath $SourceRoot `
+        -ExpectedRecords @($dedupeMarker.files) `
+        -ExcludedRelativePaths @(".dedupe-complete.json") `
+        -Label "Trusted deduplicated source")
+    @($dedupeMarker.files | ForEach-Object {
+        [pscustomobject][ordered]@{
+            relative_path = ([string]$_.relative_path).Replace('\', '/')
+            byte_length = [long]$_.byte_length
+            sha256 = [string]$_.sha256
+        }
+    } | Sort-Object { [string]$_.relative_path })
+}
+else {
+    @(Assert-StageFileRecords `
+        -RootPath $SourceRoot `
+        -ExpectedRecords @($dedupeMarker.files) `
+        -ExcludedRelativePaths @(".dedupe-complete.json") `
+        -Label "Deduplicated source")
+}
 $dedupeMarkerItem = Get-Item -LiteralPath $dedupeMarkerPath
 $sourceTransferRecords = @(
     @($sourcePayloadRecords) + @([pscustomobject][ordered]@{
         relative_path = ".dedupe-complete.json"
         byte_length = [long]$dedupeMarkerItem.Length
-        sha256 = (Get-FileHash -LiteralPath $dedupeMarkerPath -Algorithm SHA256).Hash.ToLowerInvariant()
+        sha256 = $dedupeMarkerSha256
     }) | Sort-Object { [string]$_.relative_path }
 )
 $sourceRecordByPath = @{}
@@ -479,66 +921,21 @@ $files = @($sourceFiles | Sort-Object FullName)
 if ($files.Count -eq 0) {
     throw "No source assets were found: $SourceRoot"
 }
-
-$sourceDrive = [IO.Path]::GetPathRoot($SourceRoot)
-$destinationDrive = [IO.Path]::GetPathRoot($resolvedDestination)
-$canHardLink = $sourceDrive.Equals($destinationDrive, [StringComparison]::OrdinalIgnoreCase)
-$useHardLinks = $Mode -eq "HardLink" -or ($Mode -eq "Auto" -and $canHardLink)
-if ($Mode -eq "HardLink" -and -not $canHardLink) {
-    throw "Hard links require source and destination on the same volume."
-}
-
-if (Test-Path -LiteralPath $resolvedDestination) {
-    if (-not $Force) {
-        throw "Destination already exists. Pass -Force to rebuild it: $resolvedDestination"
-    }
-    $resolvedDestination = Assert-DspreSafeRecursiveDeletePath `
-        -Path $resolvedDestination `
-        -AllowedRoot $ProjectRoot
-    $null = @(Get-StageFilesWithoutReparsePoints `
-        -RootPath $resolvedDestination `
-        -Label "Existing Godot sync destination")
-    Remove-Item -LiteralPath $resolvedDestination -Recurse -Force
-}
-New-Item -ItemType Directory -Path $resolvedDestination -Force | Out-Null
+$syncResult = Sync-DspreManagedFiles `
+    -SourceRoot $SourceRoot `
+    -DestinationRoot $resolvedDestination `
+    -AllowedRoot $ProjectRoot `
+    -SourceRecords $sourceTransferRecords `
+    -ExpectedMatrixId $matrixId `
+    -ExpectedVariant $matrixVariant `
+    -Mode $Mode `
+    -Force:$Force
 New-Item -ItemType Directory -Path $destinationTextureRoot -Force | Out-Null
-
-$linked = 0
-$copied = 0
-for ($index = 0; $index -lt $files.Count; $index++) {
-    $sourceFile = $files[$index]
-    $relativePath = $sourceFile.FullName.Substring($SourceRoot.Length).TrimStart('\')
-    $destinationPath = Join-Path $resolvedDestination $relativePath
-    New-Item -ItemType Directory -Path (Split-Path -Parent $destinationPath) -Force | Out-Null
-
-    if ($useHardLinks) {
-        try {
-            New-Item -ItemType HardLink -Path $destinationPath -Target $sourceFile.FullName -Force | Out-Null
-            $linked++
-        }
-        catch {
-            if ($Mode -eq "HardLink") {
-                throw
-            }
-            Copy-Item -LiteralPath $sourceFile.FullName -Destination $destinationPath -Force
-            $copied++
-        }
-    }
-    else {
-        Copy-Item -LiteralPath $sourceFile.FullName -Destination $destinationPath -Force
-        $copied++
-    }
-
-    Write-Progress -Activity "Syncing DSPRE assets into Godot" -Status "$($index + 1) / $($files.Count)" -PercentComplete (100.0 * ($index + 1) / $files.Count)
-}
-Write-Progress -Activity "Syncing DSPRE assets into Godot" -Completed
-
-$destinationFileRecords = @(Assert-StageFileRecords `
-    -RootPath $resolvedDestination `
-    -ExpectedRecords $sourceTransferRecords `
-    -ExcludedRelativePaths @(".sync-complete.json") `
-    -IgnoreGodotImportSidecars `
-    -Label "Godot sync destination")
+$destinationFileRecords = @($syncResult.records)
+$null = Assert-DspreTrustedMarkerFingerprint `
+    -Path $dedupeMarkerPath `
+    -ExpectedSha256 $dedupeMarkerSha256 `
+    -Label "Dedupe completion marker"
 $glbCount = @($destinationFileRecords | Where-Object {
     ([string]$_.relative_path).EndsWith(".glb", [StringComparison]::OrdinalIgnoreCase)
 }).Count
@@ -561,15 +958,42 @@ $completionMarker = [pscustomobject][ordered]@{
     files = $destinationFileRecords
     completed_utc = [DateTime]::UtcNow.ToString("o")
 }
-[IO.File]::WriteAllText(
-    (Join-Path $resolvedDestination ".sync-complete.json"),
-    ($completionMarker | ConvertTo-Json -Depth 6),
-    $utf8NoBom
+$completionMarkerPath = Join-Path $resolvedDestination ".sync-complete.json"
+$temporaryMarkerPath = Join-Path $resolvedDestination (
+    ".sync-complete.{0}.tmp" -f [Guid]::NewGuid().ToString("N")
 )
+$backupMarkerPath = Join-Path $resolvedDestination (
+    ".sync-complete.{0}.bak" -f [Guid]::NewGuid().ToString("N")
+)
+try {
+    [IO.File]::WriteAllText(
+        $temporaryMarkerPath,
+        ($completionMarker | ConvertTo-Json -Depth 6),
+        $utf8NoBom
+    )
+    if (Test-Path -LiteralPath $completionMarkerPath -PathType Leaf) {
+        [IO.File]::Replace($temporaryMarkerPath, $completionMarkerPath, $backupMarkerPath)
+        Remove-Item -LiteralPath $backupMarkerPath -Force
+    }
+    else {
+        [IO.File]::Move($temporaryMarkerPath, $completionMarkerPath)
+    }
+    Remove-Item -LiteralPath ([string]$syncResult.transaction_marker) -Force
+}
+finally {
+    if (Test-Path -LiteralPath $temporaryMarkerPath -PathType Leaf) {
+        Remove-Item -LiteralPath $temporaryMarkerPath -Force
+    }
+    if (Test-Path -LiteralPath $backupMarkerPath -PathType Leaf) {
+        Remove-Item -LiteralPath $backupMarkerPath -Force
+    }
+}
 
 Write-Host "DSPRE $matrixVariant Godot asset sync complete."
 Write-Host "  Destination: $resolvedDestination"
-Write-Host "  Hard linked: $linked"
-Write-Host "  Copied:      $copied"
+Write-Host "  Retained:    $($syncResult.retained)"
+Write-Host "  Hard linked: $($syncResult.linked)"
+Write-Host "  Copied:      $($syncResult.copied)"
+Write-Host "  Sidecars removed: $($syncResult.removed_sidecars)"
 Write-Host "  GLBs:        $glbCount"
 Write-Host "  PNGs:        $pngCount"

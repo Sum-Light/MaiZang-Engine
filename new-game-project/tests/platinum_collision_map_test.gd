@@ -195,6 +195,22 @@ func _initialize() -> void:
 	if reloaded_attributes == null or int(reloaded_attributes) != 0x8015:
 		_fail("A pruned collision asset could not be decoded again on demand.")
 		return
+	for automatic_x in [18, 20]:
+		var automatic_origin := Vector3(automatic_x + 0.5, 2.25, 4.5)
+		var automatic_result := collision_map.resolve_step(automatic_origin, Vector2i.RIGHT)
+		var escape_result := collision_map.resolve_step(
+			automatic_origin, Vector2i.RIGHT, {}, true
+		)
+		if (
+			String(automatic_result.get("action", "")) != "transition"
+			or bool(escape_result.get("blocked", true))
+			or String(escape_result.get("disposition", "")) != "allow"
+		):
+			_fail("Automatic Warp behavior could not be bypassed for one arrival tile: %s" % JSON.stringify({
+				"automatic": automatic_result,
+				"escape": escape_result,
+			}))
+			return
 
 	print("PLATINUM_COLLISION_MAP_OK ", JSON.stringify(collision_map.get_stats()))
 	quit(0)
@@ -239,6 +255,8 @@ func _make_manifest() -> Dictionary:
 	attributes_a.encode_u16((2 * 32 + 15) * 2, 0x0073)
 	attributes_a.encode_u16((2 * 32 + 16) * 2, 0x0071)
 	attributes_a.encode_u16((2 * 32 + 17) * 2, 0x0071)
+	attributes_a.encode_u16((4 * 32 + 18) * 2, 0x0067)
+	attributes_a.encode_u16((4 * 32 + 20) * 2, 0x006E)
 	var attributes_b := PackedByteArray()
 	attributes_b.resize(2048)
 	attributes_b.encode_u16((2 * 32) * 2, 0x0031)
@@ -246,7 +264,7 @@ func _make_manifest() -> Dictionary:
 	var bdhc_b := _make_split_height_bdhc(36.0, 36.0)
 	var bdhc_c := _make_overlapping_height_bdhc(16.0, 48.0)
 	return {
-		"schema_version": 3,
+		"schema_version": 4,
 		"collision_format": {
 			"schema_version": 1,
 			"terrain_width": 32,
@@ -263,6 +281,24 @@ func _make_manifest() -> Dictionary:
 			_make_asset("map_0008_collision", 8, attributes_b, bdhc_b),
 			_make_asset("map_0009_collision", 9, attributes_b, bdhc_c),
 		],
+		"field_features": {
+			"schema_version": 1,
+			"source_selection": "first_warp_id_at_tile",
+			"default_header_id": null,
+			"header_ids": [],
+			"warp_count": 0,
+			"ordinary_warp_count": 0,
+			"special_return_count": 0,
+			"dynamic_warp_count": 0,
+			"warps": [],
+		},
+		"map_animation_format": {
+			"schema_version": 1,
+			"source_fps": 30,
+			"native_format": "nsbca",
+			"unsupported_formats": ["nsbta", "nsbtp"],
+			"playback_scope": "automatic_loops_and_warp_doors",
+		},
 		"cells": [
 			{
 				"x": 0,

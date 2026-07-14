@@ -184,8 +184,8 @@ func _discover_manifest_records() -> Array[Dictionary]:
 	var catalog := _load_json_object(CATALOG_PATH, "Matrix catalog")
 	if _failed:
 		return records
-	if int(catalog.get("schema_version", -1)) != 2:
-		_fail("Matrix catalog schema 2 is required.")
+	if int(catalog.get("schema_version", -1)) != 3:
+		_fail("Matrix catalog schema 3 is required.")
 		return records
 	var summary_value: Variant = catalog.get("summary", null)
 	if typeof(summary_value) != TYPE_DICTIONARY:
@@ -306,8 +306,8 @@ func _collect_asset_paths(manifest_records: Array[Dictionary]) -> Array[String]:
 		var manifest := _load_json_object(manifest_path, "Manifest")
 		if _failed:
 			return asset_paths
-		if int(manifest.get("schema_version", -1)) != 3:
-			_fail("Manifest schema 3 is required: %s" % manifest_path)
+		if int(manifest.get("schema_version", -1)) != 4:
+			_fail("Manifest schema 4 is required: %s" % manifest_path)
 			return asset_paths
 		var assets_value: Variant = manifest.get("assets", null)
 		if typeof(assets_value) != TYPE_DICTIONARY:

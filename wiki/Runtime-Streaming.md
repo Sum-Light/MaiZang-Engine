@@ -25,9 +25,10 @@ game chooses their environment through the entry MapHeader.
 
 The streamer loads one destination manifest per process start. Terrain and
 building paths remain relative to that manifest, so destination caches stay
-isolated while external materials are shared globally. Manifest schema 3 also
-contains the packed tile-attribute and BDHC collision assets for that
-destination. The debug selector does not hot-swap an active streamer; this
+isolated while external materials are shared globally. Manifest schema 4 also
+contains the packed tile-attribute and BDHC collision assets plus Header-scoped
+Warp events and MapProp animation descriptors for that destination. The debug
+selector does not hot-swap an active streamer; this
 keeps outstanding threaded requests and collision data from one matrix from
 crossing into another matrix lifecycle.
 
@@ -76,6 +77,41 @@ a complete streamer lifecycle boundary rather than an in-place world swap, so
 old chunk nodes and strong `PackedScene` references are released first. The
 panel never writes ProjectSettings or `project.godot`.
 
+## Warp Transitions
+
+Static ordinary Warp events are indexed once by `(Header ID, world tile)`.
+When `a.dat` reports a transition behavior, the player emits a strict special
+action; `PlatinumWarpController` resolves the source Warp, locks input, plays a
+registered door-open animation when present, fades out, and queues a separate
+one-shot world-transition request before reloading `main.tscn`. The new
+streamer consumes that request and preserves destination Header, Warp, facing,
+cell, and tile context. It fades in before playing the target door-close
+animation and then releases input.
+
+Warp lookup uses the same transition origin as collision resolution. A
+directional or automatic transition owned by the current tile selects that
+tile; otherwise lookup uses the adjacent tile being entered, even when the
+current tile also contains a Warp event. This keeps adjacent door pairs from
+incorrectly resolving back through the tile the player is leaving.
+The direction table follows Platinum's tile behaviors: east/west/south
+entrances and Warps (`0x62/0x63/0x65`, `0x6C/0x6D/0x6F`) require the matching
+movement direction, while north entrance/Warp behaviors (`0x64`, `0x6E`) are
+automatic current-tile transitions.
+
+Header context is attached to the arrival cell so matrices reused by multiple
+MapHeaders do not immediately fall back to the cell's default Header. Crossing
+into another matrix cell adopts that cell's Header. Script-mutated Warps,
+Turnback Cave state, special returns, missing targets, and unresolved
+destinations fail closed. NPC/object events are not loaded by this system.
+
+An arrival placed directly on automatic transition behavior `0x67` or `0x6E`
+receives a scoped one-step escape: only that current-tile transition is ignored
+while the player remains on the arrival tile, and all target-tile collision and
+special behavior still applies. The exception clears after leaving the tile.
+Arrival door-close playback waits for the initial chunks to settle; asset-load
+failure or shutdown settles the wait as failed, skips the unavailable door
+animation, and still completes fade/input release instead of trapping control.
+
 ## Resource Lifecycle
 
 1. A player-cell change computes active, prefetch, and retention regions.
@@ -85,8 +121,10 @@ panel never writes ProjectSettings or `project.godot`.
 4. Sub-threaded loading stays disabled because it leaked renderer resources in
    Godot 4.7 during repeated command-line test shutdowns.
 5. A chunk is instantiated only when all terrain and building scenes are ready.
-6. Chunks outside radius 3 are queued for deletion.
-7. Loaded `PackedScene` records outside radius 3 are removed so long-distance
+6. Animated MapProps register a stable destination/cell/building ID with one
+   central 30 Hz controller; doors also enter a fixed tile index.
+7. Chunks outside radius 3 explicitly unregister those IDs before deletion.
+8. Loaded `PackedScene` records outside radius 3 are removed so long-distance
    traversal does not accumulate the entire world in memory.
 
 External texture and material resources remain shared through Godot's resource
@@ -109,6 +147,14 @@ and retains both `owner_cell` and `world_position`. Lookup is O(1) and is not
 restricted to the owner cell, which covers center-origin prop positions that
 land in an adjacent matrix cell.
 
+MapProp animation does not scan the scene tree per frame. Registration resolves
+the imported `AnimationPlayer` once and stores weak instance references. The
+controller advances loaded automatic NSBCA loops at the source 30 Hz phase and
+runs door one-shots on demand. Chunk unload restores player state and drops all
+animation/door indices. JSON numeric fields are normalized once at registration
+only when they are finite exact integers; fractional or malformed descriptors
+fail closed. Unsupported NSBTA/NSBTP descriptors remain inert.
+
 ## Collision Queries
 
 Each exported `a.dat` terrain-attribute record is a row-major little-endian
@@ -122,7 +168,8 @@ blocked until an executor handles them.
 Special behavior is evaluated before bit 15. A directional ledge approached
 correctly returns `jump` or `jump_two` and a BDHC-resolved landing two tiles
 away; the wrong direction is blocked. Sea, water, and waterfall behaviors
-return `requires_surf`. Transitions and warps, ice or other forced movement,
+return `requires_surf`. Static ordinary transitions and Warps are handed to
+the Warp controller; ice or other forced movement,
 dynamic mechanisms, Rock Climb, bicycle ramps and bridges, and explicitly
 unsupported walking behaviors all return named `special` actions and fail
 closed. If no special behavior applies, bit 15, directional barriers from both

@@ -42,6 +42,23 @@ only for an intentional rebuild. Never run
 `new-game-project/assets/platinum` and the generated source has passed its
 summary checks.
 
+Direct sync keeps the strict source-record hash pass. The all-matrix
+orchestrator can pass the SHA-256 of an already validated dedupe marker so sync
+does not hash that source tree again. A forced sync then reconciles exact marker
+records: unchanged GLB/PNG files retain their `.import` sidecars, changed or
+deleted assets lose theirs, and same-volume hard links reuse the trusted source
+hash. `.sync-in-progress.json` makes an interrupted destination recoverable on
+the next forced run. Run `tools/test_dspre_sync_incremental.ps1` for this focused
+contract; complete validation still recalculates every managed file hash.
+
+When a complete material build already exists, use
+`configure_dspre_godot_materials.ps1 -SkipMaterialBuild` for focused recovery.
+It batches missing external mappings in groups of at most 96 assets, invalidates
+only changed scene caches, repairs only invalid texture settings, and defers
+both repair classes into one Godot import. Texture configuration includes the
+existing Dawn global PNG as well as matrix textures. Full mode remains the
+conservative path for an intentional complete material/import rebuild.
+
 ## Validation
 
 Fast repository checks:
@@ -61,7 +78,10 @@ The full validator first runs
 `tools/validate_dspre_matrix_catalog.ps1 -RequireComplete`, then validates all
 lossless/no-mipmap texture imports, external materials, the matrix `0000`
 streaming baseline, default and command-line debug destinations, and the
-in-game F2 destination reload path.
+in-game F2 destination reload path. Focused field-feature and MapProp-animation
+tests cover Warp endpoint resolution, dynamic fail-closed metadata, 30 Hz
+animation timing, and one-shot transition handoff; the real renderer test uses
+a static BCA door Warp from matrix `0007` to matrix `0086`.
 
 Expected Godot baselines:
 

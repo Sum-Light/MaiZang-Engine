@@ -69,9 +69,10 @@ The query applies these rules in order:
 2. Current and destination low-byte behaviors are classified before bit 15.
    A correctly approached ledge returns `jump` or `jump_two` with a
    BDHC-resolved landing two tiles away.
-3. Behaviors requiring Surf, transitions or warps, forced ice movement,
-   dynamic mechanisms, Rock Climb, or a bicycle return `special` and remain
-   blocked until those action executors exist.
+3. Static ordinary transitions and Warps return `special/transition` and are
+   handed to `PlatinumWarpController`; Surf, forced ice movement, dynamic
+   mechanisms, Rock Climb, bicycles, special returns, and mutable Warps remain
+   blocked until their executors or saved-state providers exist.
 4. If no special behavior applies, destination `a.dat` bit 15 (`0x8000`) must
    be clear and directional behavior must permit both exit and entry.
 5. The destination `h.bhc` BDHC height must exist and differ from the current
@@ -86,6 +87,17 @@ Losing or replacing it before, during, or between those callbacks rejects the
 step or cancels the complete atomic action back to its origin, so preflight
 state from one collision world cannot be committed with another world's height
 samples. A dedicated wall-bump animation is not implemented yet.
+
+## Warp Handoff
+
+Only a strictly typed `special/transition` result can emit
+`special_action_requested`. The Warp controller locks player input before any
+door animation or fade, and the transition request is consumed exactly once by
+the replacement scene. Arrival uses the destination Warp's tile and the source
+movement facing, preserves the destination Header for reused matrices, and
+suppresses immediate retrigger until the player leaves the arrival tile.
+Reload failure cancels the queued request and restores input in the source
+scene.
 
 For an accepted step, X/Z still follow the fixed 16-tick walk or 8-tick run
 timeline. BDHC is sampled again on every physics tick using the current Y as

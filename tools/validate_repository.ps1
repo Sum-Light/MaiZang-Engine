@@ -33,22 +33,22 @@ if ($LASTEXITCODE -ne 0) {
 	throw "DSPRE collision support test failed."
 }
 
-$syncScriptPath = Join-Path $ProjectRoot "tools\sync_dspre_godot_assets.ps1"
-$syncScriptText = [IO.File]::ReadAllText($syncScriptPath, [Text.Encoding]::UTF8)
-$hardLinkPreflightIndex = $syncScriptText.IndexOf(
-    'if ($Mode -eq "HardLink" -and -not $canHardLink)',
-    [StringComparison]::Ordinal
-)
-$destinationMutationIndex = $syncScriptText.IndexOf(
-    'if (Test-Path -LiteralPath $resolvedDestination)',
-    [StringComparison]::Ordinal
-)
-if (
-    $hardLinkPreflightIndex -lt 0 -or
-    $destinationMutationIndex -lt 0 -or
-    $hardLinkPreflightIndex -gt $destinationMutationIndex
-) {
-    throw "Hard-link compatibility must be preflighted before the sync destination can be removed."
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_dspre_field_feature_support.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE field feature support test failed."
+}
+
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_dspre_map_animation_support.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE map animation support test failed."
+}
+
+& powershell.exe -NoProfile -ExecutionPolicy Bypass `
+    -File (Join-Path $ProjectRoot "tools\test_dspre_sync_incremental.ps1")
+if ($LASTEXITCODE -ne 0) {
+    throw "DSPRE incremental sync test failed."
 }
 
 $skillPath = Join-Path $ProjectRoot ".codex\skills\maizang-engine-godot"
@@ -173,6 +173,14 @@ if ($Full) {
     if ($LASTEXITCODE -ne 0) {
         throw "Player collision test failed."
     }
+    & $GodotPath --headless --path $godotProject --script "res://tests/map_prop_animation_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "MapProp animation test failed."
+    }
+    & $GodotPath --headless --path $godotProject --script "res://tests/world_transition_runtime_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "World transition runtime test failed."
+    }
     & $GodotPath --headless --path $godotProject --script "res://tools/validate_shared_materials.gd"
     if ($LASTEXITCODE -ne 0) {
         throw "Shared material validation failed."
@@ -194,6 +202,10 @@ if ($Full) {
         --capture-panel=res://captures/runtime_debug_jump_panel.png
     if ($LASTEXITCODE -ne 0) {
         throw "Runtime debug jump test failed."
+    }
+    & $GodotPath --path $godotProject --audio-driver Dummy --rendering-method gl_compatibility --rendering-driver opengl3 --script "res://tests/warp_transition_integration_test.gd"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Warp transition integration test failed."
     }
 }
 

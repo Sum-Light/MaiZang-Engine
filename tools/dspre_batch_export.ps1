@@ -137,6 +137,144 @@ function Get-ValidGlbs {
     )
 }
 
+function Get-GlbAnimationMetadata {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$Path
+    )
+
+    return @(Get-DspreGlbAnimationMetadata -Path $Path)
+}
+
+function New-DspreBuildingAnimationDescriptor {
+    param(
+        [int]$ModelId,
+        [hashtable]$ModelsById,
+        [hashtable]$DoorsById
+    )
+
+    if (-not $ModelsById.ContainsKey($ModelId)) {
+        return $null
+    }
+    $model = $ModelsById[$ModelId]
+    $isDoor = $DoorsById.ContainsKey($ModelId)
+    $sourceSlots = @($model.slots)
+    $sourcePlayback = [string]$model.playback
+    $runtimePlayback = $sourcePlayback
+    if ($runtimePlayback -eq "automatic_loop") {
+        $runtimePlayback = if (
+            $sourceSlots.Count -eq 1 -and
+            [int]$sourceSlots[0].slot -eq 0 -and
+            [string]$sourceSlots[0].import_disposition -eq "native_gltf"
+        ) {
+            "automatic_loop"
+        }
+        else {
+            "deferred"
+        }
+    }
+    $slots = [Collections.Generic.List[object]]::new()
+    foreach ($sourceSlot in $sourceSlots) {
+        $slot = [int]$sourceSlot.slot
+        $role = "deferred"
+        $eligible = $false
+        if ($runtimePlayback -eq "automatic_loop" -and $slot -eq 0) {
+            $role = "loop"
+            $eligible = $true
+        }
+        elseif ($isDoor -and $slot -eq 0) {
+            $role = "open"
+            $eligible = $true
+        }
+        elseif ($isDoor -and $slot -eq 1) {
+            $role = "close"
+            $eligible = $true
+        }
+        $runtimeSupport = if (
+            $eligible -and [string]$sourceSlot.import_disposition -eq "native_gltf"
+        ) {
+            "native_gltf"
+        }
+        else {
+            "unsupported_deferred"
+        }
+        $slots.Add([pscustomobject][ordered]@{
+            slot = $slot
+            archive_id = [int]$sourceSlot.archive_id
+            magic = [string]$sourceSlot.magic
+            source_format = [string]$sourceSlot.source_format
+            runtime_support = $runtimeSupport
+            role = $role
+            animation_name = ""
+            source_frame_count = 0
+            gltf_fps = 0
+            gltf_duration_seconds = 0.0
+            duration_seconds = 0.0
+        })
+    }
+    $autoPlaySlot = -1
+    if ($runtimePlayback -eq "automatic_loop") {
+        $first = @($slots | Where-Object { [int]$_.slot -eq 0 })
+        if ($first.Count -eq 1 -and [string]$first[0].runtime_support -eq "native_gltf") {
+            $autoPlaySlot = 0
+        }
+    }
+    return [pscustomobject][ordered]@{
+        schema_version = 1
+        model_id = $ModelId
+        playback = $sourcePlayback
+        runtime_playback = $runtimePlayback
+        flags = [int]$model.flags
+        is_door = $isDoor
+        door_name = if ($isDoor) { [string]$DoorsById[$ModelId].name } else { $null }
+        auto_play_slot = $autoPlaySlot
+        slots = @($slots)
+    }
+}
+
+function Complete-DspreBuildingAnimationMetadata {
+    param(
+        [Parameter(Mandatory)]
+        $Asset,
+        [Parameter(Mandatory)]
+        [IO.FileInfo[]]$Glbs
+    )
+
+    if ($null -eq $Asset.map_animation) {
+        return
+    }
+    $nativeSlots = @(
+        $Asset.map_animation.slots |
+            Where-Object { [string]$_.runtime_support -eq "native_gltf" } |
+            Sort-Object { [int]$_.slot }
+    )
+    if ($nativeSlots.Count -eq 0) {
+        return
+    }
+    $animations = [Collections.Generic.List[object]]::new()
+    foreach ($glb in $Glbs) {
+        foreach ($animation in @(Get-GlbAnimationMetadata -Path $glb.FullName)) {
+            $animations.Add($animation)
+        }
+    }
+    if ($animations.Count -ne $nativeSlots.Count) {
+        throw "Building asset '$($Asset.key)' expected $($nativeSlots.Count) native animations but apicula produced $($animations.Count)."
+    }
+    for ($index = 0; $index -lt $nativeSlots.Count; $index++) {
+        $nativeSlots[$index].animation_name = [string]$animations[$index].name
+        $nativeSlots[$index].source_frame_count = [int]$animations[$index].source_frame_count
+        $nativeSlots[$index].gltf_fps = [int]$animations[$index].gltf_fps
+        $nativeSlots[$index].gltf_duration_seconds = [double]$animations[$index].gltf_duration_seconds
+        $nativeSlots[$index].duration_seconds = if ([string]$nativeSlots[$index].role -eq "loop") {
+            [int]$animations[$index].source_frame_count / 30.0
+        }
+        else {
+            ([int]$animations[$index].source_frame_count - 1) / 30.0
+        }
+    }
+}
+
 function Assert-CurrentRawDestination {
     [CmdletBinding()]
     param(
@@ -179,7 +317,7 @@ function Assert-CurrentRawDestination {
     $null = Assert-DspreCollisionManifest `
         -Manifest $manifest `
         -Label "Raw destination $ExpectedVariant" `
-        -ExpectedManifestSchema 2
+        -ExpectedManifestSchema 3
 
     $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
         [string]$manifest.matrix.variant
@@ -309,6 +447,55 @@ function Get-ForwardRelativePath {
     return [Uri]::UnescapeDataString($baseUri.MakeRelativeUri($fileUri).ToString())
 }
 
+function Test-DsprePreviousAssetReuse {
+    param(
+        $PreviousAsset,
+        $CurrentAsset,
+        [string]$MatrixOutputRoot,
+        [string]$ExpectedOutputDirectory,
+        [string]$Kind
+    )
+
+    if (
+        $null -eq $PreviousAsset -or
+        [string]$PreviousAsset.status -ne "exported" -or
+        [string]$PreviousAsset.key -ne [string]$CurrentAsset.key
+    ) {
+        return $false
+    }
+    if ($Kind -eq "terrain") {
+        if (
+            [int]$PreviousAsset.map_id -ne [int]$CurrentAsset.map_id -or
+            [int]$PreviousAsset.texture_id -ne [int]$CurrentAsset.texture_id
+        ) {
+            return $false
+        }
+    }
+    elseif (
+        [int]$PreviousAsset.model_id -ne [int]$CurrentAsset.model_id -or
+        [int]$PreviousAsset.texture_id -ne [int]$CurrentAsset.texture_id
+    ) {
+        return $false
+    }
+
+    $declared = @($PreviousAsset.output_glbs)
+    if ($declared.Count -eq 0 -or -not (Test-Path -LiteralPath $ExpectedOutputDirectory -PathType Container)) {
+        return $false
+    }
+    $expectedRoot = [IO.Path]::GetFullPath($ExpectedOutputDirectory).TrimEnd('\', '/')
+    $expectedPrefix = $expectedRoot + [IO.Path]::DirectorySeparatorChar
+    foreach ($relativePath in $declared) {
+        $fullPath = [IO.Path]::GetFullPath((Join-Path $MatrixOutputRoot ([string]$relativePath)))
+        if (
+            -not $fullPath.StartsWith($expectedPrefix, [StringComparison]::OrdinalIgnoreCase) -or
+            -not (Test-GlbFile $fullPath)
+        ) {
+            return $false
+        }
+    }
+    return $true
+}
+
 function Complete-Conversion {
     param(
         [pscustomobject]$RunningItem,
@@ -322,10 +509,26 @@ function Complete-Conversion {
     $glbs = @(Get-ValidGlbs $job.OutputDirectory)
 
     if ($glbs.Count -gt 0) {
-        $job.Asset.status = "exported"
-        $job.Asset.output_glbs = @(
-            $glbs | ForEach-Object { Get-ForwardRelativePath $MatrixOutputRoot $_.FullName }
-        )
+        try {
+            if ($job.Kind -eq "building") {
+                Complete-DspreBuildingAnimationMetadata -Asset $job.Asset -Glbs $glbs
+            }
+            $job.Asset.status = "exported"
+            $job.Asset.output_glbs = @(
+                $glbs | ForEach-Object { Get-ForwardRelativePath $MatrixOutputRoot $_.FullName }
+            )
+        }
+        catch {
+            $job.Asset.status = "failed"
+            $job.Asset.error = $_.Exception.Message
+            $Failures.Add([pscustomobject][ordered]@{
+                key = $job.Key
+                kind = $job.Kind
+                message = $_.Exception.Message
+                stdout_log = Get-ForwardRelativePath $MatrixOutputRoot $RunningItem.StdoutPath
+                stderr_log = Get-ForwardRelativePath $MatrixOutputRoot $RunningItem.StderrPath
+            })
+        }
     }
     else {
         $job.Asset.status = "failed"
@@ -416,6 +619,9 @@ $areaDataRoot = Resolve-ExistingDirectory (Join-Path $unpackedRoot "areaData") "
 $matricesRoot = Resolve-ExistingDirectory (Join-Path $unpackedRoot "matrices") "Matrix directory"
 $arm9Path = Resolve-ExistingFile (Join-Path $DspreContents "arm9\arm9.bin") "ARM9 binary"
 $mapNamesPath = Resolve-ExistingFile (Join-Path $DspreContents "files\fielddata\maptable\mapname.bin") "Map names table"
+$zoneEventPath = Resolve-ExistingFile (Join-Path $DspreContents "files\fielddata\eventdata\zone_event.narc") "zone_event NARC"
+$mapAnimationListPath = Resolve-ExistingFile (Join-Path $DspreContents "files\arc\bm_anime_list.narc") "bm_anime_list NARC"
+$mapAnimationPath = Resolve-ExistingFile (Join-Path $DspreContents "files\arc\bm_anime.narc") "bm_anime NARC"
 $matrixPath = Resolve-ExistingFile (Join-Path $matricesRoot ("{0:D4}" -f $MatrixId)) "Matrix file"
 
 $matrixVariantName = if ($AreaDataId -ge 0) {
@@ -434,6 +640,9 @@ $matrixWorkRoot = Assert-DspreSafeRecursiveDeletePath `
 $mapModelsWorkRoot = Assert-DspreSafeRecursiveDeletePath `
     -Path (Join-Path $matrixWorkRoot "map_models") `
     -AllowedRoot $workspaceRoot
+$mapAnimationsWorkRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path (Join-Path $matrixWorkRoot "map_animations") `
+    -AllowedRoot $workspaceRoot
 
 Write-Host "Reading DSPRE data..."
 $arm9 = [IO.File]::ReadAllBytes($arm9Path)
@@ -443,15 +652,33 @@ if ($HeaderTableOffset -lt 0 -or $headerEnd -gt $arm9.Length) {
     throw "Header table does not fit in ARM9. Offset: 0x$($HeaderTableOffset.ToString('X')); headers: $headerCount"
 }
 
-$headers = New-Object object[] $headerCount
-for ($headerId = 0; $headerId -lt $headerCount; $headerId++) {
-    $offset = [int]($HeaderTableOffset + 24L * $headerId)
-    $headers[$headerId] = [pscustomobject][ordered]@{
-        id = $headerId
-        area_data_id = [int]$arm9[$offset]
-        matrix_id = Get-U16 $arm9 ($offset + 2)
-        location_name_id = [int]$arm9[$offset + 18]
-    }
+$headers = @(ConvertFrom-DspreMapHeaderTable `
+    -Arm9Bytes $arm9 `
+    -Offset $HeaderTableOffset `
+    -HeaderCount $headerCount)
+$zoneEventArchive = Read-DspreNarcArchive `
+    -Path $zoneEventPath `
+    -AllowedRoot $DspreContents `
+    -Label "zone_event NARC"
+$mapAnimationListArchive = Read-DspreNarcArchive `
+    -Path $mapAnimationListPath `
+    -AllowedRoot $DspreContents `
+    -Label "bm_anime_list NARC"
+$mapAnimationArchive = Read-DspreNarcArchive `
+    -Path $mapAnimationPath `
+    -AllowedRoot $DspreContents `
+    -Label "bm_anime NARC"
+$mapAnimationCatalog = ConvertFrom-DspreMapAnimationArchives `
+    -AnimeListArchive $mapAnimationListArchive `
+    -AnimeArchive $mapAnimationArchive `
+    -Label "DSPRE MapProp animations"
+$mapAnimationModelsById = @{}
+foreach ($modelAnimation in @($mapAnimationCatalog.models)) {
+    $mapAnimationModelsById[[int]$modelAnimation.model_id] = $modelAnimation
+}
+$mapAnimationDoorsById = @{}
+foreach ($doorAnimation in @($mapAnimationCatalog.doors)) {
+    $mapAnimationDoorsById[[int]$doorAnimation.model_id] = $doorAnimation
 }
 
 $areaData = @{}
@@ -514,7 +741,7 @@ else {
     $ExporterSha256 = Assert-DspreSha256Fingerprint $ExporterSha256 "Batch exporter fingerprint"
 }
 if ([string]::IsNullOrWhiteSpace($SupportToolSha256)) {
-    $SupportToolSha256 = Get-DspreToolFileFingerprint -Path $supportToolPath
+    $SupportToolSha256 = Get-DspreSupportBundleFingerprint -ToolsRoot $PSScriptRoot
 }
 else {
     $SupportToolSha256 = Assert-DspreSha256Fingerprint $SupportToolSha256 "Collision support tool fingerprint"
@@ -648,6 +875,61 @@ if (-not $hasHeaders) {
 }
 
 $expectedAreaDataId = if ($hasHeaders) { $null } else { $fallbackHeader.area_data_id }
+$previousRawManifest = $null
+$previousAssetsByKey = @{}
+if (-not $Force -and (Test-Path -LiteralPath $matrixOutputRoot -PathType Container)) {
+    try {
+        $previousManifestPath = Join-Path $matrixOutputRoot "manifest.json"
+        $previousMarkerPath = Join-Path $matrixOutputRoot ".export-complete.json"
+        if (
+            (Test-Path -LiteralPath $previousManifestPath -PathType Leaf) -and
+            (Test-Path -LiteralPath $previousMarkerPath -PathType Leaf)
+        ) {
+            $candidateManifest = [IO.File]::ReadAllText(
+                $previousManifestPath,
+                [Text.Encoding]::UTF8
+            ) | ConvertFrom-Json
+            $candidateMarker = [IO.File]::ReadAllText(
+                $previousMarkerPath,
+                [Text.Encoding]::UTF8
+            ) | ConvertFrom-Json
+            $conversionContractMatches = if (
+                $null -ne $candidateMarker.PSObject.Properties["model_conversion_contract_version"]
+            ) {
+                [int]$candidateMarker.model_conversion_contract_version -eq
+                    $script:DspreModelConversionContractVersion
+            }
+            else {
+                [int]$candidateManifest.schema_version -eq 2 -and
+                    [int]$candidateMarker.export_contract_version -eq 3
+            }
+            if (
+                [int]$candidateMarker.matrix_id -eq $MatrixId -and
+                [string]$candidateMarker.variant -eq $matrixVariantName -and
+                $conversionContractMatches -and
+                [string]$candidateMarker.dspre_source_sha256 -eq $DspreSourceSha256 -and
+                [string]$candidateMarker.apicula_sha256 -eq $ApiculaSha256 -and
+                [string]$candidateMarker.manifest_sha256 -eq (
+                    Get-FileHash -LiteralPath $previousManifestPath -Algorithm SHA256
+                ).Hash.ToLowerInvariant()
+            ) {
+                $null = Assert-DspreStageFileRecords `
+                    -RootPath $matrixOutputRoot `
+                    -ExpectedRecords @($candidateMarker.files) `
+                    -ExcludedRelativePaths @(".export-complete.json") `
+                    -Label "Previous raw destination $matrixVariantName"
+                $previousRawManifest = $candidateManifest
+                foreach ($asset in @($candidateManifest.assets.terrain) + @($candidateManifest.assets.buildings)) {
+                    $previousAssetsByKey[[string]$asset.key] = $asset
+                }
+            }
+        }
+    }
+    catch {
+        $previousRawManifest = $null
+        $previousAssetsByKey.Clear()
+    }
+}
 if (-not $Force) {
     $existingSummary = $null
     $reuseFailure = ""
@@ -825,6 +1107,10 @@ for ($index = 0; $index -lt $cellCount; $index++) {
                 texture_id = $area.building_texture_id
                 source_model = Join-Path $buildingModelsRoot ("{0:D4}" -f $building.model_id)
                 source_texture = Join-Path $buildingTexturesRoot ("{0:D4}" -f $area.building_texture_id)
+                map_animation = New-DspreBuildingAnimationDescriptor `
+                    -ModelId ([int]$building.model_id) `
+                    -ModelsById $mapAnimationModelsById `
+                    -DoorsById $mapAnimationDoorsById
                 status = "pending"
                 output_glbs = @()
                 error = $null
@@ -859,7 +1145,7 @@ for ($index = 0; $index -lt $cellCount; $index++) {
         building_texture_id = $area.building_texture_id
         terrain_asset_key = $terrainKey
         collision_asset_key = [string]$mapCache[$mapId].collision.key
-        buildings = $cellBuildings
+        buildings = @($cellBuildings | ForEach-Object { $_ })
     })
 }
 
@@ -870,12 +1156,26 @@ Clear-DirectoryUnderRoot $matrixWorkRoot $workspaceRoot
 $mapModelsWorkRoot = Assert-DspreSafeRecursiveDeletePath `
     -Path (Join-Path $matrixWorkRoot "map_models") `
     -AllowedRoot $workspaceRoot
-New-Item -ItemType Directory -Path $mapModelsWorkRoot -Force | Out-Null
-Clear-DirectoryUnderRoot $matrixOutputRoot $workspaceRoot
-foreach ($directory in @($terrainOutputRoot, $buildingOutputRoot, $logsRoot)) {
+$mapAnimationsWorkRoot = Assert-DspreSafeRecursiveDeletePath `
+    -Path (Join-Path $matrixWorkRoot "map_animations") `
+    -AllowedRoot $workspaceRoot
+New-Item -ItemType Directory -Path $mapModelsWorkRoot, $mapAnimationsWorkRoot -Force | Out-Null
+if (Test-Path -LiteralPath $matrixOutputRoot -PathType Container) {
+    $null = Assert-DspreTreeHasNoReparsePoints `
+        -RootPath $matrixOutputRoot `
+        -Label "Raw destination reuse root"
+    foreach ($rootFile in Get-ChildItem -LiteralPath $matrixOutputRoot -File -Force) {
+        Remove-Item -LiteralPath $rootFile.FullName -Force
+    }
+}
+else {
+    New-Item -ItemType Directory -Path $matrixOutputRoot -Force | Out-Null
+}
+foreach ($directory in @($terrainOutputRoot, $buildingOutputRoot)) {
     $null = Assert-DspreSafeRecursiveDeletePath -Path $directory -AllowedRoot $workspaceRoot
     New-Item -ItemType Directory -Path $directory -Force | Out-Null
 }
+Clear-DirectoryUnderRoot $logsRoot $workspaceRoot
 $expectedTerrainDirectories = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 foreach ($key in $terrainAssets.Keys) {
     $null = $expectedTerrainDirectories.Add([string]$key)
@@ -889,6 +1189,19 @@ Remove-StaleAssetDirectories $buildingOutputRoot $expectedBuildingDirectories $w
 
 $conversionJobs = New-Object System.Collections.Generic.List[object]
 foreach ($asset in @($terrainAssets.Values | Sort-Object key)) {
+    $outputDirectory = Join-Path $terrainOutputRoot $asset.key
+    $previousAsset = $previousAssetsByKey[[string]$asset.key]
+    if (Test-DsprePreviousAssetReuse `
+        -PreviousAsset $previousAsset `
+        -CurrentAsset $asset `
+        -MatrixOutputRoot $matrixOutputRoot `
+        -ExpectedOutputDirectory $outputDirectory `
+        -Kind "terrain"
+    ) {
+        $asset.status = "exported"
+        $asset.output_glbs = @($previousAsset.output_glbs | ForEach-Object { [string]$_ })
+        continue
+    }
     $mapInfo = $mapCache[$asset.map_id]
     $modelPath = Assert-DspreSafeRecursiveDeletePath `
         -Path (Join-Path $mapModelsWorkRoot ("{0}.nsbmd" -f $asset.key)) `
@@ -897,7 +1210,6 @@ foreach ($asset in @($terrainAssets.Values | Sort-Object key)) {
     [Buffer]::BlockCopy($mapInfo.bytes, $mapInfo.model_offset, $modelBytes, 0, $mapInfo.model_length)
     [IO.File]::WriteAllBytes($modelPath, $modelBytes)
     $asset.source_texture = Resolve-ExistingFile $asset.source_texture "Map texture $($asset.texture_id)"
-    $outputDirectory = Join-Path $terrainOutputRoot $asset.key
     Clear-DirectoryUnderRoot $outputDirectory $workspaceRoot
     $conversionJobs.Add([pscustomobject][ordered]@{
         Kind = "terrain"
@@ -909,16 +1221,55 @@ foreach ($asset in @($terrainAssets.Values | Sort-Object key)) {
     })
 }
 
+$animationMemberPaths = @{}
 foreach ($asset in @($buildingAssets.Values | Sort-Object key)) {
     $asset.source_model = Resolve-ExistingFile $asset.source_model "Building model $($asset.model_id)"
     $asset.source_texture = Resolve-ExistingFile $asset.source_texture "Building texture $($asset.texture_id)"
+    $animationPaths = [Collections.Generic.List[string]]::new()
+    if ($null -ne $asset.map_animation) {
+        foreach ($slot in @(
+            $asset.map_animation.slots |
+                Where-Object { [string]$_.runtime_support -eq "native_gltf" } |
+                Sort-Object { [int]$_.slot }
+        )) {
+            $archiveId = [int]$slot.archive_id
+            if (-not $animationMemberPaths.ContainsKey($archiveId)) {
+                $memberPath = Join-Path $mapAnimationsWorkRoot ("animation_{0:D3}.nsbca" -f $archiveId)
+                $exportedMember = Export-DspreMapAnimationMember `
+                    -AnimeArchive $mapAnimationArchive `
+                    -MemberId $archiveId `
+                    -OutputPath $memberPath `
+                    -WorkRoot $matrixWorkRoot
+                if ([string]$exportedMember.import_disposition -ne "native_gltf") {
+                    throw "MapProp animation $archiveId is not a native glTF animation."
+                }
+                $animationMemberPaths[$archiveId] = [string]$exportedMember.path
+            }
+            $animationPaths.Add([string]$animationMemberPaths[$archiveId])
+        }
+    }
     $outputDirectory = Join-Path $buildingOutputRoot $asset.key
+    $previousAsset = $previousAssetsByKey[[string]$asset.key]
+    if (
+        $animationPaths.Count -eq 0 -and
+        (Test-DsprePreviousAssetReuse `
+            -PreviousAsset $previousAsset `
+            -CurrentAsset $asset `
+            -MatrixOutputRoot $matrixOutputRoot `
+            -ExpectedOutputDirectory $outputDirectory `
+            -Kind "building")
+    ) {
+        $asset.status = "exported"
+        $asset.output_glbs = @($previousAsset.output_glbs | ForEach-Object { [string]$_ })
+        continue
+    }
     Clear-DirectoryUnderRoot $outputDirectory $workspaceRoot
     $conversionJobs.Add([pscustomobject][ordered]@{
         Kind = "building"
         Key = $asset.key
         ModelPath = $asset.source_model
         TexturePath = $asset.source_texture
+        AnimationPaths = @($animationPaths)
         OutputDirectory = $outputDirectory
         Asset = $asset
     })
@@ -951,7 +1302,16 @@ foreach ($job in $conversionJobs) {
             Remove-Item -LiteralPath $logPath -Force
         }
     }
-    $arguments = 'convert "{0}" "{1}" -f glb -o "{2}" --overwrite' -f $job.ModelPath, $job.TexturePath, $job.OutputDirectory
+    $conversionInputs = [Collections.Generic.List[string]]::new()
+    $conversionInputs.Add([string]$job.ModelPath)
+    $conversionInputs.Add([string]$job.TexturePath)
+    if ($null -ne $job.PSObject.Properties["AnimationPaths"]) {
+        foreach ($animationPath in @($job.AnimationPaths)) {
+            $conversionInputs.Add([string]$animationPath)
+        }
+    }
+    $quotedInputs = @($conversionInputs | ForEach-Object { '"{0}"' -f $_ }) -join " "
+    $arguments = 'convert {0} -f glb -o "{1}" --overwrite' -f $quotedInputs, $job.OutputDirectory
     $process = Start-Process -FilePath $ApiculaPath -ArgumentList $arguments -PassThru -WindowStyle Hidden -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
     $running.Add([pscustomobject][ordered]@{
         Job = $job
@@ -979,18 +1339,52 @@ Write-Progress -Activity "Exporting DSPRE models" -Completed
 $terrainArray = @($terrainAssets.Values | Sort-Object key)
 $buildingArray = @($buildingAssets.Values | Sort-Object key)
 $collisionArray = @($collisionAssets.Values | Sort-Object map_id)
+$fieldFeatureCells = @($cells | ForEach-Object { $_ })
+$fieldFeatures = ConvertTo-DspreWarpFieldFeatures `
+    -Headers $headers `
+    -ZoneEventArchive $zoneEventArchive `
+    -MatricesRoot $matricesRoot `
+    -MatrixId $MatrixId `
+    -Variant $matrixVariantName `
+    -AreaDataId $expectedAreaDataId `
+    -DefaultHeaderId $(if ($hasHeaders) { -1 } else { [int]$fallbackHeader.id }) `
+    -Cells $fieldFeatureCells
+$animatedBuildingAssets = @($buildingArray | Where-Object { $null -ne $_.map_animation })
+$automaticAnimationAssets = @(
+    $animatedBuildingAssets |
+        Where-Object { [string]$_.map_animation.playback -eq "automatic_loop" }
+)
+$doorAnimationAssets = @(
+    $animatedBuildingAssets |
+        Where-Object { [bool]$_.map_animation.is_door }
+)
+$nativeAnimationClips = 0
+$unsupportedAnimationClips = 0
+foreach ($asset in $animatedBuildingAssets) {
+    $nativeAnimationClips += @(
+        $asset.map_animation.slots |
+            Where-Object { [string]$_.runtime_support -eq "native_gltf" }
+    ).Count
+    $unsupportedAnimationClips += @(
+        $asset.map_animation.slots |
+            Where-Object { [string]$_.runtime_support -ne "native_gltf" }
+    ).Count
+}
 $exportedCount = @($terrainArray + $buildingArray | Where-Object { $_.status -eq "exported" }).Count
 $skippedCount = @($terrainArray + $buildingArray | Where-Object { $_.status -eq "skipped_existing" }).Count
 $failedCount = @($terrainArray + $buildingArray | Where-Object { $_.status -eq "failed" }).Count
 
 $manifest = [pscustomobject][ordered]@{
-    schema_version = 2
+    schema_version = 3
     generated_utc = [DateTime]::UtcNow.ToString("o")
     source = [pscustomobject][ordered]@{
         dspre_contents = $DspreContents
         apicula = $ApiculaPath
         area_overrides = $AreaOverridesPath
         header_table_offset = ("0x{0:X}" -f $HeaderTableOffset)
+        zone_event_archive = "files/fielddata/eventdata/zone_event.narc"
+        map_animation_list_archive = "files/arc/bm_anime_list.narc"
+        map_animation_archive = "files/arc/bm_anime.narc"
     }
     matrix = [pscustomobject][ordered]@{
         id = $MatrixId
@@ -1010,6 +1404,15 @@ $manifest = [pscustomobject][ordered]@{
         terrain_attribute_tiles = 1024 * $collisionArray.Count
         bdhc_assets = $collisionArray.Count
         building_instances = [int](($cells | ForEach-Object { $_.buildings.Count } | Measure-Object -Sum).Sum)
+        warp_events = [int]$fieldFeatures.warp_count
+        ordinary_warps = [int]$fieldFeatures.ordinary_warp_count
+        special_returns = [int]$fieldFeatures.special_return_count
+        dynamic_warps = [int]$fieldFeatures.dynamic_warp_count
+        animated_building_assets = $animatedBuildingAssets.Count
+        automatic_animation_assets = $automaticAnimationAssets.Count
+        door_animation_assets = $doorAnimationAssets.Count
+        native_animation_clips = $nativeAnimationClips
+        unsupported_animation_clips = $unsupportedAnimationClips
         exported = $exportedCount
         skipped_existing = $skippedCount
         failed = $failedCount
@@ -1033,8 +1436,27 @@ $manifest = [pscustomobject][ordered]@{
         map_prop_collision = "cell_terrain_attributes"
     }
     collision_assets = $collisionArray
-    cells = $cells
+    field_features = $fieldFeatures
+    map_animation_format = [pscustomobject][ordered]@{
+        schema_version = 1
+        source_fps = 30
+        native_format = "nsbca"
+        unsupported_formats = @("nsbta", "nsbtp")
+        playback_scope = "automatic_loops_and_warp_doors"
+    }
+    cells = @($cells | ForEach-Object { $_ })
     failures = $failures
+}
+if ($failedCount -eq 0) {
+    try {
+        $null = Assert-DspreCollisionManifest `
+            -Manifest $manifest `
+            -Label "Raw destination $matrixVariantName" `
+            -ExpectedManifestSchema 3
+    }
+    catch {
+        throw "Raw destination $matrixVariantName validation failed: $($_.Exception.Message)`n$($_.ScriptStackTrace)"
+    }
 }
 
 $utf8NoBom = New-Object Text.UTF8Encoding($false)
@@ -1052,6 +1474,15 @@ $summaryPath = Join-Path $matrixOutputRoot "summary.json"
     terrain_attribute_tiles = 1024 * $collisionArray.Count
     bdhc_assets = $collisionArray.Count
     building_instances = $manifest.summary.building_instances
+    warp_events = [int]$fieldFeatures.warp_count
+    ordinary_warps = [int]$fieldFeatures.ordinary_warp_count
+    special_returns = [int]$fieldFeatures.special_return_count
+    dynamic_warps = [int]$fieldFeatures.dynamic_warp_count
+    animated_building_assets = $animatedBuildingAssets.Count
+    automatic_animation_assets = $automaticAnimationAssets.Count
+    door_animation_assets = $doorAnimationAssets.Count
+    native_animation_clips = $nativeAnimationClips
+    unsupported_animation_clips = $unsupportedAnimationClips
     exported = $exportedCount
     skipped_existing = $skippedCount
     failed = $failedCount
@@ -1067,6 +1498,7 @@ if ($failedCount -eq 0) {
     [IO.File]::WriteAllText($exportMarkerPath, ([pscustomobject][ordered]@{
         schema_version = 2
         export_contract_version = 3
+        model_conversion_contract_version = $script:DspreModelConversionContractVersion
         matrix_id = $MatrixId
         variant = $matrixVariantName
         area_data_id = if ($hasHeaders) { $null } else { $fallbackHeader.area_data_id }

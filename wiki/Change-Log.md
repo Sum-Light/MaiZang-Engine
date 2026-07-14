@@ -12,6 +12,15 @@
 - Re-hash and close the compiled spec, authoring input set, and test-record joins; reject substituted declarations, noncanonical manifests, and every pre-P7 scenario fixture path with `P2D_SETUP_COMPILER_UNAVAILABLE_P7` and no output.
 - Add a closed requirement-manifest schema, verified clean source/test evidence, staged review and scope-gate integration, and 118 focused checks while keeping P2 at `6/16` and Todo 6 explicitly open until P7 owns the production setup builder and validator.
 
+## 2026-07-14 - Add static Warp and MapProp animation runtime
+
+- Export Header-scoped `zone_event` Warp endpoints without NPCs, resolve all ordinary ready destinations, and retain script-mutated and special-return records as explicit fail-closed data in raw schema 3, destination schema 4, and catalog schema 3.
+- Parse `bm_anime` model/door descriptors, embed native NSBCA clips in existing building GLBs, separate source playback from executable runtime playback, and run `N / 30` loops plus `(N - 1) / 30` door one-shots from one weak-reference controller; preserve mixed material animation and NSBTA/NSBTP as deferred, with versioned model-conversion reuse.
+- Add input-locked fade/reload Warp handoff with destination Header/facing preservation, source-accurate directional/current-tile event selection, automatic-landing one-step escape, failure-settled arrival input release, indexed door lookup, and a real reciprocal transition between matrix `0007` and `0086` without runtime scene scans or performance probes.
+- Normalize finite exact JSON integers once when registering MapProp animation descriptors while rejecting fractional values, keeping generated manifests strict without adding per-frame parsing or probes.
+- Reconcile forced Godot syncs incrementally from validated marker records, preserving unchanged assets and import sidecars, removing changed/stale sidecars, reusing hard-link hashes, and recovering interrupted transactions without weakening direct sync or final full-hash validation.
+- Make interrupted-import recovery batch up to 96 missing GLB mappings, invalidate only changed scene and texture caches, defer focused texture repair into one combined import, and include the Dawn global PNG; the real rebuild converged from 45 initial imports, 876 stale mappings, and 1,999 invalid matrix texture settings to 2,042 mappings, 4,567 configured textures, and 1,804 materials.
+
 ## 2026-07-14 - Compile deterministic battle P2 specs
 
 - Add bounded immutable Repository/Worktree/Staged views and a deterministic compiler that closes global/scoped IDs, cues, five authoring sets, bidirectional handler/resolver/event and formula-rounding links, RNG draws, resolver graphs, maturity-gated test requirements, and phase-owned emissions with stably ordered diagnostics.

@@ -47,15 +47,20 @@ const SLIDE_DIRECTIONS := {
 const CURRENT_TRANSITION_DIRECTIONS := {
 	0x5E: Vector2i.RIGHT,
 	0x5F: Vector2i.LEFT,
-	0x62: Vector2i.UP,
-	0x63: Vector2i.DOWN,
-	0x64: Vector2i.LEFT,
-	0x65: Vector2i.RIGHT,
+	0x62: Vector2i.RIGHT,
+	0x63: Vector2i.LEFT,
+	0x65: Vector2i.DOWN,
 	0x6C: Vector2i.RIGHT,
 	0x6D: Vector2i.LEFT,
-	0x6E: Vector2i.DOWN,
+	0x6F: Vector2i.DOWN,
 }
-const CURRENT_AUTOMATIC_TRANSITIONS := {0x67: true, 0x6A: true, 0x6B: true, 0x6F: true}
+const CURRENT_AUTOMATIC_TRANSITIONS := {
+	0x64: true,
+	0x67: true,
+	0x6A: true,
+	0x6B: true,
+	0x6E: true,
+}
 const TRANSITION_BEHAVIORS := {
 	0x5E: true, 0x5F: true,
 	0x62: true, 0x63: true, 0x64: true, 0x65: true,
@@ -83,8 +88,8 @@ var _decode_failures := 0
 
 func configure(manifest: Dictionary) -> String:
 	clear()
-	if int(manifest.get("schema_version", -1)) != 3:
-		return "Collision runtime requires destination manifest schema 3."
+	if int(manifest.get("schema_version", -1)) != 4:
+		return "Collision runtime requires destination manifest schema 4."
 	var format: Dictionary = manifest.get("collision_format", {})
 	if (
 		int(format.get("schema_version", -1)) != 1
@@ -280,7 +285,12 @@ func sample_ground_height(world_position: Vector3, reference_height: float) -> V
 	return selected_height
 
 
-func resolve_step(origin: Vector3, direction: Vector2i, context: Dictionary = {}) -> Dictionary:
+func resolve_step(
+	origin: Vector3,
+	direction: Vector2i,
+	context: Dictionary = {},
+	ignore_current_transition: bool = false
+) -> Dictionary:
 	var next_context := _normalized_step_context(context)
 	if absi(direction.x) + absi(direction.y) != 1:
 		return _blocked_step(origin, "invalid_direction", -1, -1, 0.0, next_context)
@@ -296,7 +306,13 @@ func resolve_step(origin: Vector3, direction: Vector2i, context: Dictionary = {}
 	var current_behavior := int(current_attributes) & BEHAVIOR_MASK
 	var target_behavior := int(target_attributes) & BEHAVIOR_MASK
 	var special := _resolve_special_behavior(
-		origin, direction, current_behavior, target_behavior, int(target_attributes), next_context
+		origin,
+		direction,
+		current_behavior,
+		target_behavior,
+		int(target_attributes),
+		next_context,
+		ignore_current_transition
 	)
 	if not special.is_empty():
 		return special
@@ -493,15 +509,16 @@ func _resolve_special_behavior(
 	current_behavior: int,
 	target_behavior: int,
 	target_attributes: int,
-	next_context: Dictionary
+	next_context: Dictionary,
+	ignore_current_transition: bool
 ) -> Dictionary:
-	if CURRENT_TRANSITION_DIRECTIONS.has(current_behavior):
+	if not ignore_current_transition and CURRENT_TRANSITION_DIRECTIONS.has(current_behavior):
 		var transition_direction: Vector2i = CURRENT_TRANSITION_DIRECTIONS[current_behavior]
 		if direction == transition_direction:
 			return _special_step(
 				origin, "transition", target_attributes, target_behavior, next_context
 			)
-	if CURRENT_AUTOMATIC_TRANSITIONS.has(current_behavior):
+	if not ignore_current_transition and CURRENT_AUTOMATIC_TRANSITIONS.has(current_behavior):
 		return _special_step(origin, "transition", target_attributes, target_behavior, next_context)
 
 	var jump_action := ""

@@ -157,9 +157,10 @@ The exporter automatically discovers the generated AreaData resolution file
 and verifies its DSPRE source and header-table offset. Matrices with multiple
 linked areas also require `-AreaDataId`.
 
-Raw manifests use schema `2`. The dedupe stage validates that schema, preserves
-the collision payload unchanged, adds `material_dedupe`, and emits destination
-manifest schema `3`. `matrix_catalog.json` uses schema `2`; all Godot-side
+Raw manifests use schema `3`. The dedupe stage validates that schema, preserves
+the collision, Warp, and MapProp-animation payloads unchanged, adds
+`material_dedupe`, and emits destination manifest schema `4`.
+`matrix_catalog.json` uses schema `3`; all Godot-side
 material, texture, streaming, and validation consumers require those exact
 versions. Per-destination `material_catalog.json` uses schema `1`.
 Every material entry must contain an object signature, and every GLB must bind
@@ -187,6 +188,34 @@ BDHC uses signed 20.12 fixed point, a map-center X/Z origin, 16 source units per
 tile, and 16 source units per Godot world unit. BDHC plate heights are absolute
 field heights: matrix altitude remains visual placement metadata and must not
 be added to a sampled collision height.
+
+`field_features` schema `1` exports only Warp records from each Header's
+`zone_event.narc` member; NPC/object, coordinate, and background events remain
+out of scope. Each Warp keeps its source Header/event/ID/cell/tile, raw target,
+resolved target Header/Warp/destination, and reciprocal flag. Script-mutated
+and special-return records are retained but marked fail-closed. Catalog schema
+`3` adds the complete Header-to-destination index needed to resolve a Warp
+without scanning manifests at runtime.
+
+Building assets may also carry a `map_animation` schema `1` descriptor derived
+from `bm_anime_list.narc` and `bm_anime.narc`. Native NSBCA clips are passed to
+`apicula` with the model and embedded in the existing building GLB; their
+source 30 Hz frame count and glTF 60 Hz key timing are recorded explicitly.
+Automatic loops and door open/close slots are runnable. NSBTA and NSBTP slots
+remain declared as `unsupported_deferred`; they are not silently approximated.
+
+`playback` preserves the source descriptor's intent, while `runtime_playback`
+states what this build can execute. An automatic model runs only when it has
+exactly one native NSBCA slot; a model that mixes NSBCA with material animation
+is deferred as a whole instead of partially animating. A loop with `N` source
+frames has a wall-clock period of `N / 30` seconds, while a door one-shot ends
+on its last source frame after `(N - 1) / 30` seconds.
+
+Raw completion markers bind reusable GLBs to
+`model_conversion_contract_version = 1`. A marker without that field is
+accepted only for the one-time compatible schema-2/export-contract-3 static
+GLB predecessor. Any future change to model or animation conversion semantics
+must increment the conversion contract so stale GLBs cannot be reused.
 
 Generated layout:
 
@@ -227,11 +256,12 @@ geometry chunks remain byte-identical. Matrix `0000` remains the reference
 for the before/after figures below:
 Zero-texture GLBs are valid and retain zero-byte texture-pool totals.
 
-Before touching GLBs, the stage validates manifest schema `2`, every packed
+Before touching GLBs, the stage validates raw manifest schema `3`, every packed
 terrain/BDHC length and hash, BDHC indices and strip ordering, cell references,
-and building scale/collision descriptors. Its schema `3` output is revalidated
+Warp endpoints, animation descriptors, and building scale/collision metadata.
+Its schema `4` output is revalidated
 by the orchestrator, so material processing cannot silently drop collision
-data.
+or field-feature data.
 
 | Metric | Before | After |
 |---|---:|---:|
@@ -250,13 +280,27 @@ when source and destination are on the same volume, and otherwise copies. Its
 GLB and PNG checks come from the manifest instead of fixed matrix `0000`
 counts. Matrix ID and AreaData suffixes must agree with the manifest before the
 destination is created, and source/destination path overlap is rejected before
-any existing output can be removed. The source dedupe marker, manifest hash,
-GLB/PNG sets, material catalog, destination manifest schema `3`, complete
-collision contract, tool hashes, and dedupe marker's exact file records are
-fully preflighted before an existing destination can be removed. The completed
-sync is compared byte-for-byte with that source set before its marker is
-published. Sync copies the manifest itself, so the embedded Base64 payloads and
-their hashes cross into Godot without a separate sidecar lifecycle.
+any existing output can be changed. The source dedupe marker, manifest hash,
+GLB/PNG sets, material catalog, destination manifest schema `4`, complete
+collision/Warp/animation contracts, tool hashes, and dedupe marker's exact file
+records are fully preflighted first. A direct sync always validates the source's
+complete file records. The all-matrix orchestrator may instead pass the
+SHA-256 of the dedupe marker it already validated, allowing sync to trust those
+bound records without hashing the same source tree again.
+
+With `-Force`, sync reconciles the destination from the old and new marker
+records instead of replacing the complete directory. Equal path/length/SHA-256
+records are retained, including their GLB or PNG `.import` sidecars; changed or
+deleted assets and their sidecars are removed, while new or changed files are
+hard-linked on the same volume or copied and verified otherwise. A hard link
+reuses the source record's content hash and checks its linked length rather than
+hashing the same bytes again. The `.sync-in-progress.json` transaction marker
+is written before mutation; a later forced run detects it, discards the partial
+destination, and rebuilds that destination safely. The completion marker is
+still written last, and complete catalog validation still recomputes all
+managed file hashes. Sync copies the manifest itself, so the embedded Base64
+payloads and their hashes cross into Godot without a separate sidecar
+lifecycle.
 
 ### 4. Import Shared Materials and Lossless Textures
 
@@ -273,10 +317,21 @@ all destination textures with lossless compression and no mipmaps. One initial
 import and one final reimport cover the complete catalog. If a complete builder
 run succeeds but later sidecar or import work is interrupted,
 `configure_dspre_godot_materials.ps1 -SkipMaterialBuild` resumes only after the
-physical shared-material count matches the catalog.
+physical shared-material count matches the catalog. That focused recovery path
+batches missing external-material mappings in groups of at most 96 GLBs,
+invalidates only the scene caches whose mappings changed, and calls texture
+configuration with `-RepairInvalidOnly -DeferReimport`. Scene and texture cache
+repairs therefore share one final Godot import instead of starting one import
+per asset or repair class. The texture set includes the existing global
+`characters/dawn_overworld.png` alongside every matrix texture, so the same
+lossless/no-mipmap contract covers the whole Platinum asset root.
+
 If an open editor rewrites a subset of material or texture import sidecars
-during reimport, the workflow retries only those missing mappings or invalid
-texture settings and then revalidates the complete catalog.
+during reimport, the workflow again repairs only those missing mappings or
+invalid settings and then revalidates the complete catalog. Normal full mode
+remains conservative: it rebuilds or verifies all shared materials, rewrites
+all catalog mappings and texture settings, invalidates the corresponding
+caches, and performs complete post-import validation.
 
 ### 5. Import the Local Player Sprite
 

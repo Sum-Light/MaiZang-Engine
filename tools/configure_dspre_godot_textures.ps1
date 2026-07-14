@@ -85,8 +85,8 @@ function Get-TextureDestinations {
             throw "Matrix catalog destination $key reuses a manifest: $manifestPath"
         }
         $manifest = Read-JsonFile $manifestPath "Destination $key manifest"
-        if ([int]$manifest.schema_version -ne 3) {
-            throw "Destination $key manifest schema 3 is required."
+        if ([int]$manifest.schema_version -ne 4) {
+            throw "Destination $key manifest schema 4 is required."
         }
         $dedupe = Get-RequiredProperty $manifest "material_dedupe" "Destination $key manifest"
         $expectedPngCount = [int](Get-RequiredProperty $dedupe "unique_images" "Destination $key material_dedupe")
@@ -134,22 +134,28 @@ function Test-TextureImportSettings {
 if (-not (Test-Path -LiteralPath (Join-Path $ProjectRoot "project.godot") -PathType Leaf)) {
     throw "Godot project was not found: $ProjectRoot"
 }
-if ($DeferReimport -and $RepairInvalidOnly) {
-    throw "RepairInvalidOnly cannot be combined with DeferReimport."
-}
 if (-not (Test-Path -LiteralPath $GodotPath -PathType Leaf)) {
     throw "Godot executable was not found: $GodotPath"
 }
 
 $catalog = Read-JsonFile $catalogPath "Matrix catalog"
-if ([int]$catalog.schema_version -ne 2) {
-    throw "Matrix catalog schema 2 is required."
+if ([int]$catalog.schema_version -ne 3) {
+    throw "Matrix catalog schema 3 is required."
 }
 $textureDestinations = @(Get-TextureDestinations $catalog $platinumRoot)
 $expectedTextureCount = 0
 foreach ($destination in $textureDestinations) {
     $expectedTextureCount += $destination.ExpectedPngCount
 }
+$globalTexturePaths = @(
+    Join-Path $platinumRoot "characters\dawn_overworld.png"
+)
+foreach ($globalTexturePath in $globalTexturePaths) {
+    if (-not (Test-Path -LiteralPath $globalTexturePath -PathType Leaf)) {
+        throw "Required global Platinum texture was not found: $globalTexturePath"
+    }
+}
+$expectedTextureCount += $globalTexturePaths.Count
 
 $pngFiles = @()
 $importFiles = @()
@@ -159,10 +165,16 @@ do {
         foreach ($destination in $textureDestinations) {
             Get-ChildItem -LiteralPath $destination.TextureRoot -Filter "*.png" -File
         }
+        foreach ($globalTexturePath in $globalTexturePaths) {
+            Get-Item -LiteralPath $globalTexturePath -ErrorAction SilentlyContinue
+        }
     )
     $importFiles = @(
         foreach ($destination in $textureDestinations) {
             Get-ChildItem -LiteralPath $destination.TextureRoot -Filter "*.png.import" -File
+        }
+        foreach ($globalTexturePath in $globalTexturePaths) {
+            Get-Item -LiteralPath "$globalTexturePath.import" -ErrorAction SilentlyContinue
         }
     )
     if ($pngFiles.Count -eq $expectedTextureCount -and $importFiles.Count -eq $expectedTextureCount) {

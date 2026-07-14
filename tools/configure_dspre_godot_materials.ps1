@@ -83,8 +83,8 @@ function Get-MatrixDestinations {
             throw "Matrix catalog destination $key reuses a manifest: $manifestPath"
         }
         $manifest = Read-JsonFile $manifestPath "Destination $key manifest"
-        if ([int]$manifest.schema_version -ne 3) {
-            throw "Destination $key manifest schema 3 is required."
+        if ([int]$manifest.schema_version -ne 4) {
+            throw "Destination $key manifest schema 4 is required."
         }
         $variantRoot = Split-Path -Parent $manifestPath
 
@@ -183,8 +183,8 @@ if (-not (Test-Path -LiteralPath $GodotPath -PathType Leaf)) {
 }
 
 $catalog = Read-JsonFile $catalogPath "Matrix catalog"
-if ([int]$catalog.schema_version -ne 2) {
-    throw "Matrix catalog schema 2 is required."
+if ([int]$catalog.schema_version -ne 3) {
+    throw "Matrix catalog schema 3 is required."
 }
 $matrixDestinations = @(Get-MatrixDestinations $catalog $platinumRoot)
 $expectedGlbCount = 0
@@ -225,6 +225,7 @@ else {
 
 $configuredImports = New-Object System.Collections.Generic.List[IO.FileInfo]
 $allGlbImports = New-Object System.Collections.Generic.List[IO.FileInfo]
+$importsNeedingReimport = New-Object System.Collections.Generic.List[IO.FileInfo]
 foreach ($destination in $matrixDestinations) {
     foreach ($glbPath in $destination.GlbPaths) {
         $importPath = "$glbPath.import"
@@ -248,24 +249,36 @@ if ($LimitAssets -le 0 -and $configuredImports.Count -ne $expectedGlbCount) {
         }
     )
     Write-Warning "Retrying external material mappings for $($missingImports.Count) GLBs."
-    $retryArguments = @(
+    $retryBaseArguments = @(
         "--headless",
         "--path", $ProjectRoot,
         "--script", "res://tools/build_shared_materials.gd",
         "--",
         "--reuse-existing-materials"
     )
+    $retryAssetArguments = New-Object System.Collections.Generic.List[string]
     foreach ($importFile in $missingImports) {
         $glbPath = $importFile.FullName.Substring(0, $importFile.FullName.Length - ".import".Length)
         if (-not $glbPath.StartsWith($ProjectRoot + '\', [StringComparison]::OrdinalIgnoreCase)) {
             throw "GLB import resolves outside the Godot project: $($importFile.FullName)"
         }
         $resourcePath = "res://" + $glbPath.Substring($ProjectRoot.Length + 1).Replace('\', '/')
-        $retryArguments += "--asset=$resourcePath"
+        $retryAssetArguments.Add("--asset=$resourcePath")
+        $importsNeedingReimport.Add($importFile)
     }
-    & $GodotPath @retryArguments
-    if ($LASTEXITCODE -ne 0) {
-        throw "Focused shared material retry failed with exit code $LASTEXITCODE."
+    $retryBatchSize = 96
+    for ($offset = 0; $offset -lt $retryAssetArguments.Count; $offset += $retryBatchSize) {
+        $lastIndex = [Math]::Min(
+            $retryAssetArguments.Count - 1,
+            $offset + $retryBatchSize - 1
+        )
+        $retryArguments = @($retryBaseArguments) + @(
+            $retryAssetArguments[$offset..$lastIndex]
+        )
+        & $GodotPath @retryArguments
+        if ($LASTEXITCODE -ne 0) {
+            throw "Focused shared material retry failed for assets $offset..$lastIndex with exit code $LASTEXITCODE."
+        }
     }
     $configuredImports.Clear()
     foreach ($importFile in $allGlbImports) {
@@ -282,8 +295,14 @@ if ($LimitAssets -gt 0 -and $configuredImports.Count -lt [Math]::Min($LimitAsset
     throw "Expected at least $([Math]::Min($LimitAssets, $expectedGlbCount)) configured GLBs, found $($configuredImports.Count)."
 }
 
+if (-not $SkipMaterialBuild) {
+    foreach ($importFile in $configuredImports) {
+        $importsNeedingReimport.Add($importFile)
+    }
+}
+
 $removedSceneCaches = 0
-foreach ($importFile in $configuredImports) {
+foreach ($importFile in $importsNeedingReimport) {
     $text = Get-Content -LiteralPath $importFile.FullName -Raw
     $match = [regex]::Match($text, '(?m)^path="([^"]+\.scn)"$')
     if (-not $match.Success) {
@@ -304,12 +323,17 @@ foreach ($importFile in $configuredImports) {
     }
 }
 
-& (Join-Path $PSScriptRoot "configure_dspre_godot_textures.ps1") `
-    -ProjectRoot $ProjectRoot `
-    -GodotPath $GodotPath `
-    -DeferReimport
+$textureArguments = @{
+    ProjectRoot = $ProjectRoot
+    GodotPath = $GodotPath
+    DeferReimport = $true
+}
+if ($SkipMaterialBuild) {
+    $textureArguments.RepairInvalidOnly = $true
+}
+& (Join-Path $PSScriptRoot "configure_dspre_godot_textures.ps1") @textureArguments
 
-Write-Host "Configured $($configuredImports.Count) of $expectedGlbCount GLBs across $($matrixDestinations.Count) destinations and removed $removedSceneCaches stale scene caches."
+Write-Host "Configured $($configuredImports.Count) of $expectedGlbCount GLBs across $($matrixDestinations.Count) destinations and removed $removedSceneCaches changed scene caches."
 & $GodotPath --headless --path $ProjectRoot --import
 if ($LASTEXITCODE -ne 0) {
     throw "Godot reimport failed with exit code $LASTEXITCODE."

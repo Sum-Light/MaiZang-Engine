@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 signal step_advanced(step_frame: int, step_duration: int, world_position: Vector3, sprite_frame: int)
 signal turn_advanced(turn_frame: int, turn_duration: int, world_position: Vector3, sprite_frame: int)
+signal special_action_requested(origin: Vector3, direction: Vector2i, special_result: Dictionary)
 
 enum Facing {
 	DOWN,
@@ -63,6 +64,8 @@ var _has_animation_sheet := false
 var _collision_provider: Node
 var _collision_context := {"locomotion": "walk", "bridge_layer": "unknown"}
 var _pending_collision_context := _collision_context.duplicate()
+var _input_enabled := true
+var _special_action_latched := false
 
 @onready var _sprite := $Sprite3D as Sprite3D
 
@@ -73,6 +76,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not _input_enabled:
+		return
 	if _motion_state == MotionState.TURNING:
 		_advance_turn()
 		return
@@ -83,6 +88,7 @@ func _physics_process(delta: float) -> void:
 	var input_axes := _read_input_axes()
 	var direction := select_cardinal_direction(input_axes, _accepted_input_axes, _move_direction)
 	if direction.is_zero_approx():
+		_special_action_latched = false
 		_settle_idle()
 		return
 
@@ -187,6 +193,31 @@ func set_collision_provider(provider: Node) -> void:
 	_collision_provider = provider
 
 
+func set_input_enabled(enabled: bool) -> void:
+	if _input_enabled == enabled:
+		return
+	_input_enabled = enabled
+	_special_action_latched = false
+	if enabled:
+		return
+	if is_stepping():
+		_cancel_step()
+		return
+	if is_turning():
+		_cancel_turn()
+		return
+	velocity = Vector3.ZERO
+	_accepted_input_axes = Vector2.ZERO
+	_move_direction = Vector2.ZERO
+	_previous_action = ActionKind.STOP
+	if is_instance_valid(_sprite):
+		_settle_idle()
+
+
+func is_input_enabled() -> bool:
+	return _input_enabled
+
+
 func get_collision_context() -> Dictionary:
 	return _collision_context.duplicate(true)
 
@@ -221,6 +252,7 @@ func teleport_to_grid(
 	_animation_running = false
 	_gait_frame = 0
 	_run_stop_frame = 0
+	_special_action_latched = false
 	_collision_context = _normalized_collision_context(collision_context)
 	_pending_collision_context = _collision_context.duplicate()
 	if is_instance_valid(_sprite):
@@ -300,6 +332,16 @@ func _begin_step(direction: Vector2, next_facing: int) -> bool:
 	var action_value: Variant = step_result.get("action", null)
 	var target_value: Variant = step_result.get("target", null)
 	var landing_target_value: Variant = step_result.get("landing_target", null)
+	if _is_valid_transition_action(step_result, _step_origin):
+		_stop_before_step()
+		if not _special_action_latched:
+			_special_action_latched = true
+			special_action_requested.emit(
+				_step_origin,
+				step_direction,
+				step_result.duplicate(true)
+			)
+		return false
 	if (
 		typeof(ok_value) != TYPE_BOOL
 		or not ok_value
@@ -337,6 +379,7 @@ func _begin_step(direction: Vector2, next_facing: int) -> bool:
 	_action_frame = 0
 	_action_duration = RUN_STEP_FRAMES if wants_to_run else WALK_STEP_FRAMES
 	_step_running = wants_to_run
+	_special_action_latched = false
 	return true
 
 
@@ -423,6 +466,22 @@ func _cancel_step() -> void:
 	_update_sprite_frame()
 
 
+func _cancel_turn() -> void:
+	velocity = Vector3.ZERO
+	_motion_state = MotionState.READY
+	_previous_action = ActionKind.STOP
+	_accepted_input_axes = Vector2.ZERO
+	_move_direction = Vector2.ZERO
+	_action_frame = 0
+	_action_duration = WALK_STEP_FRAMES
+	_step_running = false
+	_animation_running = false
+	_gait_frame = _align_gait_to_idle(_gait_frame)
+	_run_stop_frame = 0
+	if is_instance_valid(_sprite):
+		_update_sprite_frame()
+
+
 func _stop_before_step() -> void:
 	_previous_action = ActionKind.STOP
 	_step_target = _step_origin
@@ -459,6 +518,45 @@ func _is_valid_normal_step_target(target: Vector3, direction: Vector2i) -> bool:
 		and is_equal_approx(target.x, _step_origin.x + direction.x * GRID_CELL_SIZE)
 		and is_equal_approx(target.z, _step_origin.z + direction.y * GRID_CELL_SIZE)
 	)
+
+
+func _is_valid_transition_action(result: Dictionary, origin: Vector3) -> bool:
+	var ok_value: Variant = result.get("ok", null)
+	var blocked_value: Variant = result.get("blocked", null)
+	var disposition_value: Variant = result.get("disposition", null)
+	var action_value: Variant = result.get("action", null)
+	var reason_value: Variant = result.get("reason", null)
+	var target_value: Variant = result.get("target", null)
+	var landing_target_value: Variant = result.get("landing_target", false)
+	var forced_direction_value: Variant = result.get("forced_direction", false)
+	var attributes_value: Variant = result.get("attributes", null)
+	var behavior_value: Variant = result.get("behavior", null)
+	var height_delta_value: Variant = result.get("height_delta", null)
+	var next_context_value: Variant = result.get("next_context", null)
+	if (
+		typeof(ok_value) != TYPE_BOOL
+		or not ok_value
+		or typeof(blocked_value) != TYPE_BOOL
+		or not blocked_value
+		or typeof(disposition_value) != TYPE_STRING
+		or disposition_value != "special"
+		or typeof(action_value) != TYPE_STRING
+		or action_value != "transition"
+		or typeof(reason_value) != TYPE_STRING
+		or reason_value != "special_behavior"
+		or not target_value is Vector3
+		or not (target_value as Vector3).is_equal_approx(origin)
+		or not _is_finite_vector3(target_value as Vector3)
+		or landing_target_value != null
+		or forced_direction_value != null
+		or typeof(attributes_value) != TYPE_INT
+		or typeof(behavior_value) != TYPE_INT
+		or typeof(height_delta_value) not in [TYPE_INT, TYPE_FLOAT]
+		or not is_zero_approx(float(height_delta_value))
+		or not next_context_value is Dictionary
+	):
+		return false
+	return _is_valid_collision_context(next_context_value as Dictionary)
 
 
 func _is_valid_collision_context(context: Dictionary) -> bool:

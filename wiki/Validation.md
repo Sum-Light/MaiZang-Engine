@@ -23,6 +23,15 @@ parser test:
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\tools\test_dspre_collision_support.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\test_dspre_field_feature_support.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\test_dspre_map_animation_support.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\test_dspre_sync_incremental.ps1
 ```
 
 It synthesizes a land-data file in memory and verifies exact Base64 retention
@@ -53,6 +62,16 @@ all-or-nothing around junctions and that direct batch reuse is wired to a
 whole-destination contract; Godot `.import` sidecars remain an explicit
 exception.
 
+The focused incremental-sync test proves that direct sync retains its strict
+source-record validation while the all-matrix caller can bind the already
+validated dedupe marker by SHA-256. It verifies that forced reconciliation
+retains unchanged GLB/PNG files and their `.import` sidecars, clears sidecars
+for changed or deleted assets, uses the hard-link path without a redundant
+destination hash, and recovers an interrupted `.sync-in-progress.json`
+transaction. It also rejects a mutated trusted marker and unexpected managed
+files before changing the destination. These focused checks optimize rebuilds;
+complete matrix-catalog validation still hashes every managed stage file.
+
 ## Collision and Height Validation
 
 The Godot collision subsystem has two asset-independent focused tests:
@@ -67,16 +86,16 @@ The Godot collision subsystem has two asset-independent focused tests:
   --script res://tests/player_collision_test.gd
 ```
 
-The first decodes schema-3 Base64 payloads and covers static collision bit
+The first decodes schema-4 Base64 payloads and covers static collision bit
 `0x8000`, directional barriers, overlapping BDHC plate selection with explicit
 bridge-layer context, and the exact 20-source-unit (`1.25` world-unit) height
 discontinuity. It also verifies that walk movement fails closed on sea-water
 behavior, a directional ledge can override bit 15 and report a two-grid landing,
 unknown and ice behaviors report unsupported special actions, and map props are
 indexed by global tile even when their anchors extend into another matrix cell.
-These results only expose requirements to later locomotion systems; the test
-does not claim that Surf, Warp, ice movement, or the ledge-jump animation is
-implemented. It additionally covers collision-cache pruning independent of
+These results only expose requirements to action executors. Static ordinary
+Warp is implemented separately; Surf, ice movement, and ledge-jump animation
+are not. The test additionally covers collision-cache pruning independent of
 rendered chunks, including an ambiguous inner bridge that must return
 `requires_bridge_context` until a trusted layer is supplied. The second test
 verifies missing, incomplete, malformed, mid-step-lost, mid-step-replaced, and
@@ -103,6 +122,33 @@ it requires 176 source collision assets, at least one decoded retained asset,
 zero decode failures, a known `a.dat` blocked step, and BDHC-derived spawn and
 movement heights. Matrix altitude affects visual placement only; validation
 explicitly rejects adding it to the absolute BDHC ground height.
+
+## Warp and MapProp Animation Validation
+
+The focused field-feature test decodes synthetic `zone_event` members, proves
+Warp ID/order and source/destination coordinate resolution, exports no NPC
+objects, and checks source-derived dynamic Warp metadata. The map-animation
+support test validates all 590 descriptor members, 98 animation members, 20
+door mappings, BCA/BTA/BTP identification, and atomic archive extraction.
+
+Two asset-independent Godot tests cover the central 30 Hz map-animation clock,
+weak-reference unload, automatic loop phase, door one-shots, unsupported
+BTA/BTP slots, JSON-round-tripped exact integer fields with fractional rejection,
+strict transition requests, reload rollback, and player signal validation. The
+real OpenGL integration test starts below model-441's door in
+matrix `0007`, walks into static Header `203` Warp `4`, and requires a complete
+door/fade reload to matrix `0086` Header `295` Warp `4`. It then verifies the
+arrival Header survives a shared destination context and the reciprocal Warp
+resolves without a scene-tree scan.
+
+Coordinate coverage also proves that an entered adjacent Warp is selected
+instead of an unrelated Warp on the current tile, except when directional or
+automatic current-tile behavior is the transition source. Collision/runtime
+coverage fixes Platinum's east/west/south directional and north automatic
+Warp behavior table and exercises automatic arrival behaviors `0x67` and
+`0x6E`: the
+one-step escape ignores only the current transition, preserves target special
+rules, remains active on the arrival tile, and clears after the player leaves.
 
 ## Shared Material Validation
 
@@ -135,6 +181,17 @@ The material-signature test also compares equivalent compressed and
 uncompressed texture images, proving that shared-material reuse decompresses
 before RGBA8 pixel comparison.
 
+The focused `-SkipMaterialBuild` recovery path still finishes with a complete
+mapping, texture-setting, and shared-material validation. During the Warp and
+MapProp-animation rebuild, the initial Godot pass imported 45 changed assets;
+focused recovery found 876 stale GLB mappings and 1,999 historical matrix
+texture sidecars with invalid settings. It repaired mappings in batches of at
+most 96, changed only the affected scene and texture caches, included the Dawn
+global PNG, and converged to 2,042 external GLB mappings, 4,567 configured
+textures, and 1,804 shared materials after one combined deferred import. These
+measured counts describe that local rebuild; catalog-derived counts remain the
+validation authority for later source revisions.
+
 ## Matrix Catalog Validation
 
 ```powershell
@@ -148,10 +205,11 @@ occupied cells, unique manifest-relative GLB paths, GLB headers, stage-complete
 manifest hashes, current dedupe/sync tool hashes, exact marker-recorded file
 sets and content, recomputed summary counts, and the 13 unresolved records with
 no runnable destination. Complete mode first requires the generated and Godot
-catalog files to exist and be byte-identical. It requires catalog schema `2`,
+catalog files to exist and be byte-identical. It requires catalog schema `3`,
 downstream marker schema `2`, material-catalog schema `1`, and destination
-manifest schema `3`, then validates every embedded collision payload through
-the shared parser. The complete count contract is 637 globally unique and 647
+manifest schema `4`, then validates every embedded collision, Warp, Header,
+and animation descriptor through the shared parsers. The collision count
+contract is 637 globally unique and 647
 destination-scoped collision assets, with exactly 1,024 terrain tiles and one
 BDHC payload per destination-scoped asset. This yields 662,528
 destination-scoped terrain tiles and 647 destination-scoped BDHC payloads.
@@ -172,8 +230,9 @@ catalog. Repeated surface bindings may share one material key; the output count
 tracks the unique bound keys, matching the Godot consumer.
 
 `validate_repository.ps1 -Full` also requires every destination PNG import
-sidecar to retain lossless compression, disabled mipmaps, and disabled 3D
-texture compression before it starts the Godot material and runtime tests.
+sidecar plus the Dawn global PNG to retain lossless compression, disabled
+mipmaps, and disabled 3D texture compression before it starts the Godot
+material and runtime tests.
 It runs the collision-map and player-collision tests before the real renderer
 smoke tests.
 The fast validation also guards the destructive sync ordering: an explicitly
@@ -197,7 +256,7 @@ The test verifies:
 
 - Explicit matrix `0000` startup independent of developer ProjectSettings.
 - 468 manifest cells.
-- Destination manifest schema `3` and 176 map-ID collision assets.
+- Destination manifest schema `4` and 176 map-ID collision assets.
 - Lazy Base64 collision decode with zero failures and retention independent of
   rendered `PackedScene` resources.
 - A known real `a.dat` collision bit blocks its cardinal step.

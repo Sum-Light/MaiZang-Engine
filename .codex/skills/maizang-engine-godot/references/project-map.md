@@ -5,8 +5,11 @@
 | Path | Owner and purpose |
 |---|---|
 | `new-game-project/battle/` | Isolated battle business root; Q0 owns the editor-only quick start, text smoke shell, battle-local tests/tools, and future battle implementation without world-runtime dependencies |
-| `new-game-project/scripts/platinum_world_streamer.gd` | Catalog destination selection, manifest loading, asynchronous visual cache, collision query delegation, chunk lifecycle, placement |
+| `new-game-project/scripts/platinum_world_streamer.gd` | Catalog/Header destination selection, manifest loading, asynchronous visual cache, collision/Warp delegation, animated MapProp registration, chunk lifecycle, placement |
 | `new-game-project/scripts/platinum_collision_map.gd` | Lazy terrain-attribute and BDHC decode, walking behavior classification, height/step queries, bridge context, global MapProp anchor index |
+| `new-game-project/scripts/platinum_warp_controller.gd` | Static Warp execution, input lock, door animation, fade, and one-shot scene-reload handoff |
+| `new-game-project/scripts/world_transition_request.gd` | Strict process-local Warp destination handoff across a main-scene reload |
+| `new-game-project/scripts/platinum_map_animation_controller.gd` | Explicitly registered 30 Hz NSBCA loops and door one-shots using weak instance ownership |
 | `new-game-project/scripts/debug_destination_resolver.gd` | Side-effect-free catalog, manifest, AreaData, cell, and tile resolution shared by startup and in-game jumps |
 | `new-game-project/scripts/debug_destination_request.gd` | One-shot process-local destination handoff across a complete main-scene reload |
 | `new-game-project/scripts/debug_destination_panel.gd` | Native-resolution F2 modal, paused input ownership, validation feedback, and reload submission |
@@ -17,11 +20,13 @@
 | `new-game-project/tools/` | Godot-side shared-material generation and validation |
 | `new-game-project/tools/material_catalog_support.gd` | Exact catalog/GLB material binding and content comparison helpers |
 | `tools/dspre_batch_export.ps1` | DSPRE binary data to isolated terrain/building GLBs and manifest |
-| `tools/dspre_collision_support.ps1` | Packed land-data parsing, collision manifest validation, and deterministic source/tool fingerprints |
+| `tools/dspre_collision_support.ps1` | Packed land-data plus field-feature/animation manifest validation and deterministic source/tool fingerprints |
+| `tools/dspre_field_feature_support.ps1` | MapHeader event archive parsing, static/dynamic Warp classification, and endpoint resolution |
+| `tools/dspre_map_animation_support.ps1` | `bm_anime` descriptor parsing and atomic Nitro animation-member extraction |
 | `tools/resolve_dspre_matrix_areas.ps1` | Strict MapHeader, duplicate-map, and Nitro texture/palette AreaData resolution |
 | `tools/dspre_export_all_matrices.ps1` | Resumable all-matrix export, dedupe, sync, catalog, and Godot import orchestration |
 | `tools/dedupe_dspre_materials.ps1` | Shared texture pool, material signatures, GLB JSON rewrite |
-| `tools/sync_dspre_godot_assets.ps1` | Local generated output to ignored Godot asset tree |
+| `tools/sync_dspre_godot_assets.ps1` | Transactional generated-output reconciliation into the ignored Godot asset tree, preserving unchanged import sidecars |
 | `tools/configure_dspre_godot_materials.ps1` | External material mappings and scene reimport |
 | `tools/configure_dspre_godot_textures.ps1` | Lossless, no-mipmap texture import |
 | `tools/import_player_sprite.ps1` | Local Dawn walk/run atlas extraction and color-key transparency |
@@ -43,6 +48,8 @@
 - Default start cell `(3, 27)`
 - Default debug destination: matrix `0000`, automatic AreaData, cell `(3, 27)`, tile `(16, 16)`
 - In-game debug destination shortcut: `F2`, validated one-shot full-scene reload
+- Static Warp transitions: Header-scoped one-shot reload; dynamic/special Warp records fail closed
+- MapProp animation clock: 30 Hz, explicit loaded-instance registration; NSBCA automatic/door clips only
 - Battle development entry: Inspector tool button in `res://battle/quick_start/battle_quick_start.tscn`; Q0 launches only the independent synthetic text smoke shell
 - Load radius 1, prefetch radius 2, unload/retention radius 3
 

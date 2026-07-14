@@ -1,5 +1,10 @@
 Set-StrictMode -Version Latest
 
+$script:DspreModelConversionContractVersion = 1
+
+. (Join-Path $PSScriptRoot "dspre_field_feature_support.ps1")
+. (Join-Path $PSScriptRoot "dspre_map_animation_support.ps1")
+
 function Assert-DspreSafeRecursiveDeletePath {
     [CmdletBinding()]
     param(
@@ -237,6 +242,35 @@ function Get-DspreToolFileFingerprint {
     return [string](Get-DspreFileFingerprintRecord -Path $Path).sha256
 }
 
+function Get-DspreSupportBundleFingerprint {
+    [CmdletBinding()]
+    param(
+        [string]$ToolsRoot = $PSScriptRoot
+    )
+
+    $records = foreach ($name in @(
+        "dspre_collision_support.ps1",
+        "dspre_field_feature_support.ps1",
+        "dspre_map_animation_support.ps1"
+    )) {
+        $path = Join-Path $ToolsRoot $name
+        [pscustomobject][ordered]@{
+            name = $name
+            sha256 = Get-DspreToolFileFingerprint -Path $path
+        }
+    }
+    $json = $records | ConvertTo-Json -Compress
+    $sha = [Security.Cryptography.SHA256]::Create()
+    try {
+        return ([BitConverter]::ToString(
+            $sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($json))
+        ) -replace "-", "").ToLowerInvariant()
+    }
+    finally {
+        $sha.Dispose()
+    }
+}
+
 function Get-DspreContentFingerprint {
     [CmdletBinding()]
     param([Parameter(Mandatory)][string]$RootPath)
@@ -338,6 +372,7 @@ function Assert-DspreRawExportMarker {
     $requiredProperties = @(
         "schema_version",
         "export_contract_version",
+        "model_conversion_contract_version",
         "matrix_id",
         "variant",
         "area_data_id",
@@ -357,8 +392,12 @@ function Assert-DspreRawExportMarker {
         }
     }
 
-    if ([int]$Marker.schema_version -ne 2 -or [int]$Marker.export_contract_version -ne 3) {
-        throw "$Label must use marker schema 2 and export contract 3."
+    if (
+        [int]$Marker.schema_version -ne 2 -or
+        [int]$Marker.export_contract_version -ne 3 -or
+        [int]$Marker.model_conversion_contract_version -ne $script:DspreModelConversionContractVersion
+    ) {
+        throw "$Label must use marker schema 2, export contract 3, and model conversion contract $script:DspreModelConversionContractVersion."
     }
 
     $filePaths = [Collections.Generic.HashSet[string]]::new(
@@ -521,7 +560,7 @@ function Assert-DspreUnrequestedRawMarkersCurrent {
             $null = Assert-DspreCollisionManifest `
                 -Manifest $manifest `
                 -Label "Raw destination $variantName" `
-                -ExpectedManifestSchema 2
+                -ExpectedManifestSchema 3
             $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
                 [string]$manifest.matrix.variant
             }
@@ -845,6 +884,24 @@ function Assert-DspreCollisionManifest {
     if ($ExpectedManifestSchema -ge 0 -and [int]$Manifest.schema_version -ne $ExpectedManifestSchema) {
         throw "$Label schema must be $ExpectedManifestSchema; found $($Manifest.schema_version)."
     }
+    if ([int]$Manifest.schema_version -ge 3) {
+        try {
+            $null = Assert-DspreFieldFeatures `
+                -FieldFeatures $Manifest.field_features `
+                -Label "$Label field features"
+        }
+        catch {
+            throw "$Label field-feature validation failed: $($_.Exception.Message)"
+        }
+        try {
+            $null = Assert-DspreMapAnimationManifest `
+                -Manifest $Manifest `
+                -Label "$Label map animations"
+        }
+        catch {
+            throw "$Label map-animation validation failed: $($_.Exception.Message)"
+        }
+    }
     $format = $Manifest.collision_format
     if (
         [int]$format.schema_version -ne 1 -or
@@ -947,7 +1004,7 @@ function Assert-DspreCollisionManifest {
     }
 
     $referencedKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
-    foreach ($cell in @($Manifest.cells)) {
+    foreach ($cell in $Manifest.cells) {
         $key = [string]$cell.collision_asset_key
         if (-not $assetsByKey.ContainsKey($key)) {
             throw "$Label cell $($cell.x),$($cell.y) references missing collision asset $key."
@@ -956,7 +1013,7 @@ function Assert-DspreCollisionManifest {
             throw "$Label cell $($cell.x),$($cell.y) collision map does not match its map ID."
         }
         $null = $referencedKeys.Add($key)
-        foreach ($building in @($cell.buildings)) {
+        foreach ($building in $cell.buildings) {
             if (
                 [string]$building.collision.mode -ne "cell_terrain_attributes" -or
                 $null -eq $building.scale_fx32
@@ -976,6 +1033,191 @@ function Assert-DspreCollisionManifest {
         collision_assets = $assets.Count
         terrain_attribute_tiles = 1024 * $assets.Count
         bdhc_assets = $assets.Count
-        referenced_cells = @($Manifest.cells).Count
+        referenced_cells = [int]$Manifest.cells.Count
     }
+}
+
+function Assert-DspreMapAnimationManifest {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        $Manifest,
+        [string]$Label = "DSPRE map animations"
+    )
+
+    $format = $Manifest.map_animation_format
+    if (
+        $null -eq $format -or
+        [int]$format.schema_version -ne 1 -or
+        [int]$format.source_fps -ne 30 -or
+        [string]$format.native_format -ne "nsbca" -or
+        [string]$format.playback_scope -ne "automatic_loops_and_warp_doors"
+    ) {
+        throw "$Label has an unsupported map-animation format."
+    }
+    $unsupportedFormats = @($format.unsupported_formats | ForEach-Object { [string]$_ })
+    if ($unsupportedFormats.Count -ne 2 -or "nsbta" -notin $unsupportedFormats -or "nsbtp" -notin $unsupportedFormats) {
+        throw "$Label must preserve the unsupported NSBTA/NSBTP boundary."
+    }
+
+    $animatedAssets = 0
+    $automaticAssets = 0
+    $doorAssets = 0
+    $nativeClips = 0
+    $unsupportedClips = 0
+    foreach ($asset in @($Manifest.assets.buildings)) {
+        $descriptor = $asset.map_animation
+        if ($null -eq $descriptor) {
+            continue
+        }
+        $animatedAssets++
+        if (
+            [int]$descriptor.schema_version -ne 1 -or
+            [int]$descriptor.model_id -ne [int]$asset.model_id -or
+            [string]$descriptor.playback -notin @("automatic_loop", "deferred") -or
+            [string]$descriptor.runtime_playback -notin @("automatic_loop", "deferred") -or
+            [int]$descriptor.flags -notin @(0, 2, 3) -or
+            $descriptor.is_door -isnot [bool] -or
+            [int]$descriptor.auto_play_slot -notin @(-1, 0)
+        ) {
+            throw "$Label asset '$($asset.key)' has an invalid descriptor header."
+        }
+        if (
+            ([int]$descriptor.flags -eq 0) -ne
+            ([string]$descriptor.playback -eq "automatic_loop") -or
+            [string]$descriptor.runtime_playback -eq "automatic_loop" -and
+            [string]$descriptor.playback -ne "automatic_loop"
+        ) {
+            throw "$Label asset '$($asset.key)' source and runtime playback disagree."
+        }
+        if ([string]$descriptor.playback -eq "automatic_loop") {
+            $automaticAssets++
+        }
+        if ([bool]$descriptor.is_door) {
+            $doorAssets++
+            if ([string]::IsNullOrWhiteSpace([string]$descriptor.door_name)) {
+                throw "$Label door asset '$($asset.key)' has no door name."
+            }
+        }
+        elseif ($null -ne $descriptor.door_name) {
+            throw "$Label non-door asset '$($asset.key)' declares a door name."
+        }
+
+        $slots = @($descriptor.slots)
+        if ($slots.Count -lt 1 -or $slots.Count -gt 4) {
+            throw "$Label asset '$($asset.key)' has an invalid slot count."
+        }
+        if ([string]$descriptor.runtime_playback -eq "automatic_loop" -and $slots.Count -ne 1) {
+            throw "$Label asset '$($asset.key)' cannot partially run a mixed automatic animation."
+        }
+        $slotIds = [Collections.Generic.HashSet[int]]::new()
+        foreach ($slot in $slots) {
+            $slotId = [int]$slot.slot
+            $support = [string]$slot.runtime_support
+            if (
+                $slotId -lt 0 -or $slotId -gt 3 -or -not $slotIds.Add($slotId) -or
+                [int]$slot.archive_id -lt 0 -or [int]$slot.archive_id -ge 98 -or
+                [string]$slot.source_format -notin @("nsbca", "nsbta", "nsbtp") -or
+                [string]$slot.role -notin @("loop", "open", "close", "deferred") -or
+                $support -notin @("native_gltf", "unsupported_deferred")
+            ) {
+                throw "$Label asset '$($asset.key)' has an invalid animation slot."
+            }
+            if ($support -eq "native_gltf") {
+                $nativeClips++
+                $expectedDuration = if ([string]$slot.role -eq "loop") {
+                    [int]$slot.source_frame_count / 30.0
+                }
+                else {
+                    ([int]$slot.source_frame_count - 1) / 30.0
+                }
+                if (
+                    [string]$slot.source_format -ne "nsbca" -or
+                    [string]::IsNullOrWhiteSpace([string]$slot.animation_name) -or
+                    [int]$slot.source_frame_count -lt 2 -or
+                    [int]$slot.gltf_fps -ne 60 -or
+                    [double]$slot.gltf_duration_seconds -le 0 -or
+                    [Math]::Abs(
+                        [double]$slot.gltf_duration_seconds -
+                        (([int]$slot.source_frame_count - 1) / 60.0)
+                    ) -gt 0.000001 -or
+                    [Math]::Abs(
+                        [double]$slot.duration_seconds -
+                        $expectedDuration
+                    ) -gt 0.000001
+                ) {
+                    throw "$Label asset '$($asset.key)' has incomplete native animation metadata."
+                }
+            }
+            else {
+                $unsupportedClips++
+                if (
+                    -not [string]::IsNullOrEmpty([string]$slot.animation_name) -or
+                    [int]$slot.source_frame_count -ne 0 -or
+                    [int]$slot.gltf_fps -ne 0 -or
+                    [double]$slot.gltf_duration_seconds -ne 0 -or
+                    [double]$slot.duration_seconds -ne 0
+                ) {
+                    throw "$Label asset '$($asset.key)' material/deferred slot must remain unbound."
+                }
+            }
+        }
+        if (
+            [string]$descriptor.runtime_playback -eq "automatic_loop" -and
+            [int]$descriptor.auto_play_slot -eq 0 -and
+            @($slots | Where-Object {
+                [int]$_.slot -eq 0 -and
+                [string]$_.role -eq "loop" -and
+                [string]$_.runtime_support -eq "native_gltf"
+            }).Count -ne 1
+        ) {
+            throw "$Label asset '$($asset.key)' has an invalid automatic slot."
+        }
+        if (
+            [string]$descriptor.runtime_playback -eq "deferred" -and
+            [int]$descriptor.auto_play_slot -ne -1
+        ) {
+            throw "$Label asset '$($asset.key)' deferred runtime playback cannot auto-play."
+        }
+    }
+
+    if (
+        [int]$Manifest.summary.animated_building_assets -ne $animatedAssets -or
+        [int]$Manifest.summary.automatic_animation_assets -ne $automaticAssets -or
+        [int]$Manifest.summary.door_animation_assets -ne $doorAssets -or
+        [int]$Manifest.summary.native_animation_clips -ne $nativeClips -or
+        [int]$Manifest.summary.unsupported_animation_clips -ne $unsupportedClips
+    ) {
+        throw "$Label summary does not match its building animation descriptors."
+    }
+    return [pscustomobject]@{
+        animated_assets = $animatedAssets
+        automatic_assets = $automaticAssets
+        door_assets = $doorAssets
+        native_clips = $nativeClips
+        unsupported_clips = $unsupportedClips
+    }
+}
+
+function ConvertTo-DspreMapAnimationContractJson {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        $Manifest
+    )
+
+    $assets = [Collections.Generic.List[object]]::new()
+    foreach ($asset in @($Manifest.assets.buildings | Sort-Object { [string]$_.key })) {
+        if ($null -eq $asset.map_animation) {
+            continue
+        }
+        $assets.Add([pscustomobject][ordered]@{
+            key = [string]$asset.key
+            map_animation = $asset.map_animation
+        })
+    }
+    return ([pscustomobject][ordered]@{
+        map_animation_format = $Manifest.map_animation_format
+        assets = @($assets | ForEach-Object { $_ })
+    } | ConvertTo-Json -Depth 30 -Compress)
 }

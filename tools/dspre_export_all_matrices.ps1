@@ -159,6 +159,25 @@ function Get-DefaultCell {
     return [pscustomobject][ordered]@{ x = [int]$selected.x; y = [int]$selected.y }
 }
 
+function Get-OptionalSummaryCount {
+    param($Summary, [string]$Name, [string]$Label)
+
+    $property = $Summary.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return 0
+    }
+    $value = $property.Value
+    if (
+        $null -eq $value -or
+        [double]$value -ne [long]$value -or
+        [long]$value -lt 0 -or
+        [long]$value -gt [int]::MaxValue
+    ) {
+        throw "$Label summary '$Name' must be a non-negative integer."
+    }
+    return [int]$value
+}
+
 function Get-ReadyStatus {
     param($Manifest)
 
@@ -470,12 +489,28 @@ function Test-DedupeComplete {
     try {
         $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
+        $sourceManifestDocument = [IO.File]::ReadAllText(
+            $SourceManifest,
+            [Text.Encoding]::UTF8
+        ) | ConvertFrom-Json
         $summary = [IO.File]::ReadAllText($summaryPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $catalog = [IO.File]::ReadAllText($catalogPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
         $catalogMaterials = @($catalog.materials)
         if (
             [int]$marker.schema_version -ne 2 -or
             [string]$marker.dedupe_tool_sha256 -ne $ExpectedDedupeToolSha256
+        ) {
+            return $false
+        }
+        if (
+            [int]$sourceManifestDocument.schema_version -ne 3 -or
+            [int]$manifest.schema_version -ne 4 -or
+            [int]$sourceManifestDocument.field_features.schema_version -ne 1 -or
+            [int]$manifest.field_features.schema_version -ne 1 -or
+            ($sourceManifestDocument.field_features | ConvertTo-Json -Depth 30 -Compress) -ne
+            ($manifest.field_features | ConvertTo-Json -Depth 30 -Compress) -or
+            (ConvertTo-DspreMapAnimationContractJson $sourceManifestDocument) -ne
+            (ConvertTo-DspreMapAnimationContractJson $manifest)
         ) {
             return $false
         }
@@ -512,9 +547,13 @@ function Test-DedupeComplete {
                 [int]$catalog.summary.unique_materials -eq $catalogMaterials.Count
         }
         $null = Assert-DspreCollisionManifest `
+            -Manifest $sourceManifestDocument `
+            -Label "Raw source for $ExpectedVariant" `
+            -ExpectedManifestSchema 3
+        $null = Assert-DspreCollisionManifest `
             -Manifest $manifest `
             -Label "Deduplicated destination $ExpectedVariant" `
-            -ExpectedManifestSchema 3
+            -ExpectedManifestSchema 4
         $materialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
         foreach ($material in $catalogMaterials) {
             if (
@@ -709,6 +748,8 @@ function Test-SyncComplete {
         ) | ConvertFrom-Json
         $destination = [IO.File]::ReadAllText($destinationManifest, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
+        $source = [IO.File]::ReadAllText($SourceManifest, [Text.Encoding]::UTF8) |
+            ConvertFrom-Json
         $destinationVariant = if ($null -ne $destination.matrix.PSObject.Properties["variant"]) {
             [string]$destination.matrix.variant
         }
@@ -744,14 +785,20 @@ function Test-SyncComplete {
             return $false
         }
         if ($MarkerOnly) {
-            return @($marker.files).Count -gt 0 -and
+            return [int]$source.schema_version -eq 4 -and
+                [int]$destination.schema_version -eq 4 -and
+                @($marker.files).Count -gt 0 -and
                 [int]$marker.glbs -gt 0 -and
                 [int]$marker.textures -ge 0
         }
         $null = Assert-DspreCollisionManifest `
+            -Manifest $source `
+            -Label "Deduplicated source $ExpectedVariant" `
+            -ExpectedManifestSchema 4
+        $null = Assert-DspreCollisionManifest `
             -Manifest $destination `
             -Label "Godot destination $ExpectedVariant" `
-            -ExpectedManifestSchema 3
+            -ExpectedManifestSchema 4
         $destinationRecords = @(Assert-StageFileRecords `
             -RootPath $DestinationRoot `
             -ExpectedRecords @($marker.files) `
@@ -821,6 +868,12 @@ function Test-RawMarkerCurrent {
             ConvertFrom-Json
         $marker = [IO.File]::ReadAllText($markerPath, [Text.Encoding]::UTF8) |
             ConvertFrom-Json
+        if (
+            [int]$manifest.schema_version -ne 3 -or
+            [int]$manifest.field_features.schema_version -ne 1
+        ) {
+            return $false
+        }
         $manifestVariant = if ($null -ne $manifest.matrix.PSObject.Properties["variant"]) {
             [string]$manifest.matrix.variant
         }
@@ -852,6 +905,10 @@ function Test-RawMarkerCurrent {
             -Label "Raw destination $ExpectedVariant marker") -and
             @($marker.files).Count -gt 0 -and
             [int]$summary.failed -eq 0 -and
+            [int]$summary.warp_events -eq [int]$manifest.field_features.warp_count -and
+            [int]$summary.ordinary_warps -eq [int]$manifest.field_features.ordinary_warp_count -and
+            [int]$summary.special_returns -eq [int]$manifest.field_features.special_return_count -and
+            [int]$summary.dynamic_warps -eq [int]$manifest.field_features.dynamic_warp_count -and
             [int]$manifest.matrix.id -eq $ExpectedMatrixId -and
             $manifestVariant -eq $ExpectedVariant -and
             $areaMatches
@@ -1036,11 +1093,23 @@ $syncToolPath = Resolve-ExistingFile (Join-Path $PSScriptRoot "sync_dspre_godot_
 Write-Host "Fingerprinting DSPRE contents once for all matrix variants..."
 $dspreSourceSha256 = Get-DspreContentFingerprint -RootPath $DspreContents
 $exporterSha256 = Get-DspreToolFileFingerprint -Path $batchExporterPath
-$supportToolSha256 = Get-DspreToolFileFingerprint -Path $supportToolPath
+$supportToolSha256 = Get-DspreSupportBundleFingerprint -ToolsRoot $PSScriptRoot
 $dedupeToolSha256 = Get-DspreToolFileFingerprint -Path $dedupeToolPath
 $syncToolSha256 = Get-DspreToolFileFingerprint -Path $syncToolPath
 $apiculaSha256 = Get-DspreToolFileFingerprint -Path $ApiculaPath
 $areaResolutionSha256 = Get-DspreAreaResolutionFingerprint -Path $resolutionPath
+$arm9Path = Resolve-ExistingFile (Join-Path $DspreContents "arm9\arm9.bin") "ARM9 binary"
+$mapNamesPath = Resolve-ExistingFile `
+    (Join-Path $DspreContents "files\fielddata\maptable\mapname.bin") `
+    "Map names table"
+$sourceHeaderCount = [int]((Get-Item -LiteralPath $mapNamesPath).Length / 16)
+$sourceMapHeaders = @(ConvertFrom-DspreMapHeaderTable `
+    -Arm9Bytes ([IO.File]::ReadAllBytes($arm9Path)) `
+    -Offset 0xE56F0 `
+    -HeaderCount $sourceHeaderCount)
+if ($sourceMapHeaders.Count -ne 593) {
+    throw "The Platinum source must contain exactly 593 MapHeaders; found $($sourceMapHeaders.Count)."
+}
 $unresolvedById = @{}
 foreach ($record in @($resolution.unresolved)) {
     $unresolvedById[[int]$record.matrix_id] = $record
@@ -1215,7 +1284,7 @@ foreach ($variantRecord in $readyRequestedVariants) {
             $null = Assert-DspreCollisionManifest `
                 -Manifest $existingRawManifest `
                 -Label "Raw destination $variantName" `
-                -ExpectedManifestSchema 2
+                -ExpectedManifestSchema 3
             $manifestVariant = if (
                 $null -ne $existingRawManifest.matrix.PSObject.Properties["variant"]
             ) {
@@ -1272,7 +1341,7 @@ foreach ($variantRecord in $readyRequestedVariants) {
             SupportToolSha256 = $supportToolSha256
             ApiculaSha256 = $apiculaSha256
             AreaResolutionSha256 = $areaResolutionSha256
-            Force = $true
+            Force = [bool]$RebuildExisting
         }
         if ($variantName -match '_area_\d{4}$') {
             $exportArguments.AreaDataId = [int]$variantRecord.area_data_id
@@ -1292,7 +1361,7 @@ foreach ($variantRecord in $readyRequestedVariants) {
     $null = Assert-DspreCollisionManifest `
         -Manifest $rawManifestDocument `
         -Label "Raw destination $variantName" `
-        -ExpectedManifestSchema 2
+        -ExpectedManifestSchema 3
     $rawManifestVariant = if ($null -ne $rawManifestDocument.matrix.PSObject.Properties["variant"]) {
         [string]$rawManifestDocument.matrix.variant
     }
@@ -1376,11 +1445,17 @@ foreach ($variantRecord in $readyRequestedVariants) {
             $syncToolSha256
     }
     if ($RebuildExisting -or $dedupWasRebuilt -or -not $syncComplete) {
+        $dedupeMarkerPath = Join-Path $dedupMatrixRoot ".dedupe-complete.json"
+        $dedupeMarkerSha256 = (
+            Get-FileHash -LiteralPath $dedupeMarkerPath -Algorithm SHA256
+        ).Hash.ToLowerInvariant()
         Invoke-ProjectScript (Join-Path $PSScriptRoot "sync_dspre_godot_assets.ps1") @{
             SourceRoot = $dedupMatrixRoot
             ProjectRoot = $projectRoot
             DedupeToolSha256 = $dedupeToolSha256
             SyncToolSha256 = $syncToolSha256
+            TrustSourceMarkerRecords = $true
+            ExpectedDedupeMarkerSha256 = $dedupeMarkerSha256
             Force = (Test-Path -LiteralPath $godotMatrixRoot)
         }
         $syncComplete = Test-SyncComplete `
@@ -1408,10 +1483,19 @@ $textureKeys = New-Object System.Collections.Generic.HashSet[string]([StringComp
 $materialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $matrixEntries = New-Object System.Collections.Generic.List[object]
 $destinationEntries = New-Object System.Collections.Generic.List[object]
+$headerEntries = New-Object System.Collections.Generic.List[object]
+$warpIds = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $totalCells = 0
 $totalBuildings = 0
 $totalGlbs = 0
 $totalDestinationCollisionAssets = 0
+$totalWarpEvents = 0
+$totalOrdinaryWarps = 0
+$totalSpecialReturns = 0
+$totalDynamicWarps = 0
+$totalAnimatedBuildingAssets = 0
+$totalNativeAnimationClips = 0
+$totalUnsupportedAnimationClips = 0
 $readyMatrixCount = 0
 $readyDestinationCount = 0
 $notExportedMatrixCount = 0
@@ -1449,7 +1533,13 @@ foreach ($matrixId in $allMatrixIds) {
         $null = Assert-DspreCollisionManifest `
             -Manifest $manifest `
             -Label "Catalog destination $variantName" `
-            -ExpectedManifestSchema 3
+            -ExpectedManifestSchema 4
+        $fieldStats = [pscustomobject]@{
+            warps = [int]$manifest.field_features.warp_count
+            ordinary_warps = [int]$manifest.field_features.ordinary_warp_count
+            special_returns = [int]$manifest.field_features.special_return_count
+            dynamic_warps = [int]$manifest.field_features.dynamic_warp_count
+        }
         $materialCatalog = [IO.File]::ReadAllText(
             $materialCatalogPath,
             [Text.Encoding]::UTF8
@@ -1490,8 +1580,50 @@ foreach ($matrixId in $allMatrixIds) {
         $glbCount = [int]$materialCatalog.summary.glbs
         $buildingCount = [int]$manifest.summary.building_instances
         $collisionCount = @($manifest.collision_assets).Count
+        $warpCount = [int]$fieldStats.warps
+        $ordinaryWarpCount = [int]$fieldStats.ordinary_warps
+        $specialReturnCount = [int]$fieldStats.special_returns
+        $dynamicWarpCount = [int]$fieldStats.dynamic_warps
+        if (
+            [int]$manifest.summary.warp_events -ne $warpCount -or
+            [int]$manifest.summary.ordinary_warps -ne $ordinaryWarpCount -or
+            [int]$manifest.summary.special_returns -ne $specialReturnCount -or
+            [int]$manifest.summary.dynamic_warps -ne $dynamicWarpCount
+        ) {
+            throw "Catalog destination $variantName field-feature summary is inconsistent."
+        }
+        $animatedBuildingAssetCount = Get-OptionalSummaryCount `
+            -Summary $manifest.summary `
+            -Name "animated_building_assets" `
+            -Label "Catalog destination $variantName"
+        $nativeAnimationClipCount = Get-OptionalSummaryCount `
+            -Summary $manifest.summary `
+            -Name "native_animation_clips" `
+            -Label "Catalog destination $variantName"
+        $unsupportedAnimationClipCount = Get-OptionalSummaryCount `
+            -Summary $manifest.summary `
+            -Name "unsupported_animation_clips" `
+            -Label "Catalog destination $variantName"
+        foreach ($warp in @($manifest.field_features.warps)) {
+            if (-not $warpIds.Add([string]$warp.id)) {
+                throw "Warp ID is duplicated across runnable destinations: $($warp.id)"
+            }
+            if (
+                [string]$warp.source.variant -ne $variantName -or
+                [int]$warp.source.matrix_id -ne $matrixId
+            ) {
+                throw "Warp $($warp.id) source does not match destination $variantName."
+            }
+        }
         $totalGlbs += $glbCount
         $totalDestinationCollisionAssets += $collisionCount
+        $totalWarpEvents += $warpCount
+        $totalOrdinaryWarps += $ordinaryWarpCount
+        $totalSpecialReturns += $specialReturnCount
+        $totalDynamicWarps += $dynamicWarpCount
+        $totalAnimatedBuildingAssets += $animatedBuildingAssetCount
+        $totalNativeAnimationClips += $nativeAnimationClipCount
+        $totalUnsupportedAnimationClips += $unsupportedAnimationClipCount
         $readyDestinationCount++
         $destinationKeys.Add($variantName)
         $destinationEntries.Add([pscustomobject][ordered]@{
@@ -1515,6 +1647,13 @@ foreach ($matrixId in $allMatrixIds) {
             terrain_attribute_tiles = [int]$manifest.summary.terrain_attribute_tiles
             bdhc_assets = [int]$manifest.summary.bdhc_assets
             building_instances = $buildingCount
+            warp_events = $warpCount
+            ordinary_warps = $ordinaryWarpCount
+            special_returns = $specialReturnCount
+            dynamic_warps = $dynamicWarpCount
+            animated_building_assets = $animatedBuildingAssetCount
+            native_animation_clips = $nativeAnimationClipCount
+            unsupported_animation_clips = $unsupportedAnimationClipCount
             glbs = $glbCount
             textures = [int]$materialCatalog.summary.unique_images
             materials = [int]$materialCatalog.summary.unique_materials
@@ -1548,8 +1687,55 @@ foreach ($matrixId in $allMatrixIds) {
     })
 }
 
+$destinationsByMatrix = @{}
+foreach ($destination in $destinationEntries) {
+    $matrixKey = [string][int]$destination.matrix_id
+    if (-not $destinationsByMatrix.ContainsKey($matrixKey)) {
+        $destinationsByMatrix[$matrixKey] = [Collections.Generic.List[object]]::new()
+    }
+    $destinationsByMatrix[$matrixKey].Add($destination)
+}
+foreach ($header in $sourceMapHeaders) {
+    $headerId = [int]$header.id
+    $matrixId = [int]$header.matrix_id
+    $matrixKey = [string]$matrixId
+    if (-not $destinationsByMatrix.ContainsKey($matrixKey)) {
+        throw "MapHeader $headerId points to matrix $matrixId without a runnable destination."
+    }
+    $matrixDestinations = @($destinationsByMatrix[$matrixKey])
+    $areaDestinations = @(
+        $matrixDestinations | Where-Object {
+            $null -ne $_.area_data_id -and
+            [int]$_.area_data_id -eq [int]$header.area_data_id
+        }
+    )
+    $destination = if ($areaDestinations.Count -eq 1) {
+        $areaDestinations[0]
+    }
+    elseif (
+        $areaDestinations.Count -eq 0 -and
+        $matrixDestinations.Count -eq 1 -and
+        $null -eq $matrixDestinations[0].area_data_id
+    ) {
+        $matrixDestinations[0]
+    }
+    else {
+        throw "MapHeader $headerId does not resolve uniquely for matrix $matrixId AreaData $($header.area_data_id)."
+    }
+    $headerEntries.Add([pscustomobject][ordered]@{
+        header_id = $headerId
+        destination_key = [string]$destination.key
+        matrix_id = $matrixId
+        area_data_id = [int]$header.area_data_id
+    })
+}
+
+if ($headerEntries.Count -ne 593 -or $totalWarpEvents -ne 1213) {
+    throw "Runnable field-feature totals are unexpected: $($headerEntries.Count)/593 headers and $totalWarpEvents/1213 warps."
+}
+
 $catalog = [pscustomobject][ordered]@{
-    schema_version = 2
+    schema_version = 3
     generated_utc = [DateTime]::UtcNow.ToString("o")
     summary = [pscustomobject][ordered]@{
         source_matrices = $allMatrixIds.Count
@@ -1562,6 +1748,14 @@ $catalog = [pscustomobject][ordered]@{
         building_instances = $totalBuildings
         destination_scoped_glbs = $totalGlbs
         destination_scoped_collision_assets = $totalDestinationCollisionAssets
+        headers = $headerEntries.Count
+        warp_events = $totalWarpEvents
+        ordinary_warps = $totalOrdinaryWarps
+        special_returns = $totalSpecialReturns
+        dynamic_warps = $totalDynamicWarps
+        animated_building_assets = $totalAnimatedBuildingAssets
+        native_animation_clips = $totalNativeAnimationClips
+        unsupported_animation_clips = $totalUnsupportedAnimationClips
         unique_terrain_assets = $terrainKeys.Count
         unique_building_assets = $buildingKeys.Count
         unique_collision_assets = $collisionKeys.Count
@@ -1570,6 +1764,7 @@ $catalog = [pscustomobject][ordered]@{
     }
     matrices = @($matrixEntries | ForEach-Object { $_ })
     destinations = @($destinationEntries | ForEach-Object { $_ })
+    headers = @($headerEntries | Sort-Object header_id | ForEach-Object { $_ })
 }
 $catalogJson = $catalog | ConvertTo-Json -Depth 12
 
@@ -1602,8 +1797,8 @@ if ((Get-DspreContentFingerprint -RootPath $DspreContents) -ne $dspreSourceSha25
 if ((Get-DspreToolFileFingerprint -Path $batchExporterPath) -ne $exporterSha256) {
     $changedInputs.Add("batch exporter")
 }
-if ((Get-DspreToolFileFingerprint -Path $supportToolPath) -ne $supportToolSha256) {
-    $changedInputs.Add("collision support tool")
+if ((Get-DspreSupportBundleFingerprint -ToolsRoot $PSScriptRoot) -ne $supportToolSha256) {
+    $changedInputs.Add("DSPRE support bundle")
 }
 if ((Get-DspreToolFileFingerprint -Path $dedupeToolPath) -ne $dedupeToolSha256) {
     $changedInputs.Add("material dedupe tool")

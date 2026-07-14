@@ -5,11 +5,11 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `47371cbd86329ba0bd95a95680c8c8133adaf8090fa6d25c55b0e8dbad8a9590`
-- Fingerprinted files: 224
-- Godot runtime scripts: 7
-- Godot test scripts: 8
-- PowerShell tools: 16
+- Source fingerprint: `420943b57edcfb013c86081aa8660bb561b0c59bfb57e616769a5c5473c64c95`
+- Fingerprinted files: 241
+- Godot runtime scripts: 10
+- Godot test scripts: 11
+- PowerShell tools: 21
 
 ## Runtime Baseline
 
@@ -19,28 +19,30 @@
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
-- Matrix catalog: 0 source matrices, 0 ready matrices, 0 runnable destinations, and 0 unresolved source records.
+- Matrix catalog: 289 source matrices, 276 ready matrices, 278 runnable destinations, and 13 unresolved source records.
 - Debug destination: `F2` validates an in-game selection and reloads the main scene through a one-shot process-local request.
-- Global asset variants: 0 terrain and 0 building/texture pairs.
-- Collision assets: 0 unique maps across 0 destination-scoped records.
+- Global asset variants: 645 terrain and 764 building/texture pairs.
+- Collision assets: 637 unique maps across 647 destination-scoped records.
 - Collision runtime: lazy `a.dat`/BDHC cache, absolute height sampling, walking behavior actions, and fail-closed unsupported special movement.
-- Building instances across ready matrices: 0.
-- Shared resources: 0 unique texture hashes and 0 external materials.
+- Warp runtime: 593 Headers and 1213 records; 1087 static ordinary Warps executable, with 120 dynamic and 6 special-return records fail-closed.
+- MapProp animation: 308 destination-scoped animated assets, 148 native NSBCA clips, and 377 deferred NSBTA/NSBTP clips.
+- Building instances across ready matrices: 3041.
+- Shared resources: 1722 unique texture hashes and 1804 external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
 - Coordinates: 32 world units per cell, 0.5 per altitude unit, model scale `1 / 16`.
 
 ## Local Asset Cache
 
-- Status: not present; rebuild from a local DSPRE project.
-- Occupied cells across ready matrices: 0
-- Destination-scoped GLBs: 0
-- Destination-scoped PNG files: 0
-- Unique texture hashes: 0
-- Shared materials found: 0
-- Building instances found: 0
+- Status: catalog present locally (ignored by Git).
+- Occupied cells across ready matrices: 1153
+- Destination-scoped GLBs: 2042
+- Destination-scoped PNG files: 4566
+- Unique texture hashes: 1722
+- Shared materials found: 1804
+- Building instances found: 3041
 - Dawn sprite atlas: present locally (ignored by Git).
 
 ## Next Engineering Milestone
 
-Add dynamic map features, warps, and scripted collision overrides on top of the
-static terrain-attribute and BDHC query service.
+Add saved-state/script providers for dynamic and special Warps, then implement
+NSBTA/NSBTP and field texture animation before NPC/object event execution.

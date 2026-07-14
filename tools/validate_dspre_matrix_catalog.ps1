@@ -49,6 +49,25 @@ function Read-JsonFile {
     return [IO.File]::ReadAllText($Path, [Text.Encoding]::UTF8) | ConvertFrom-Json
 }
 
+function Get-OptionalSummaryCount {
+    param($Summary, [string]$Name, [string]$Label)
+
+    $property = $Summary.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return 0
+    }
+    $value = $property.Value
+    if (
+        $null -eq $value -or
+        [double]$value -ne [long]$value -or
+        [long]$value -lt 0 -or
+        [long]$value -gt [int]::MaxValue
+    ) {
+        throw "$Label summary '$Name' must be a non-negative integer."
+    }
+    return [int]$value
+}
+
 function Assert-FilesByteIdentical {
     param(
         [string]$ExpectedPath,
@@ -106,6 +125,72 @@ function Test-GlbFile {
     finally {
         $stream.Dispose()
     }
+}
+
+function Assert-AssetMapAnimationGlbs {
+    param(
+        $Asset,
+        [string]$DestinationRoot,
+        [string]$Label
+    )
+
+    if (
+        $null -eq $Asset.PSObject.Properties["map_animation"] -or
+        $null -eq $Asset.map_animation
+    ) {
+        return 0
+    }
+    $expectedSlots = @(
+        $Asset.map_animation.slots |
+            Where-Object { [string]$_.runtime_support -eq "native_gltf" }
+    )
+    if ($expectedSlots.Count -eq 0) {
+        return 0
+    }
+    $actualByName = @{}
+    $destinationPrefix = [IO.Path]::GetFullPath($DestinationRoot).TrimEnd('\') + '\'
+    foreach ($relativePath in @($Asset.output_glbs)) {
+        $glbPath = [IO.Path]::GetFullPath(
+            (Join-Path $DestinationRoot ([string]$relativePath).Replace('/', '\'))
+        )
+        if (-not $glbPath.StartsWith($destinationPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+            throw "$Label animation GLB escapes its destination: $relativePath"
+        }
+        foreach ($animation in @(Get-DspreGlbAnimationMetadata -Path $glbPath)) {
+            $name = [string]$animation.name
+            if ($actualByName.ContainsKey($name)) {
+                throw "$Label contains duplicate GLB animation '$name'."
+            }
+            $actualByName[$name] = $animation
+        }
+    }
+    if ($actualByName.Count -ne $expectedSlots.Count) {
+        throw "$Label GLB animation count does not match its manifest descriptor."
+    }
+    foreach ($slot in $expectedSlots) {
+        $name = [string]$slot.animation_name
+        if (-not $actualByName.ContainsKey($name)) {
+            throw "$Label GLB is missing declared animation '$name'."
+        }
+        $actual = $actualByName[$name]
+        $expectedDuration = if ([string]$slot.role -eq "loop") {
+            [int]$slot.source_frame_count / 30.0
+        }
+        else {
+            ([int]$slot.source_frame_count - 1) / 30.0
+        }
+        if (
+            [int]$actual.source_frame_count -ne [int]$slot.source_frame_count -or
+            [int]$actual.gltf_fps -ne [int]$slot.gltf_fps -or
+            [Math]::Abs(
+                [double]$actual.gltf_duration_seconds - [double]$slot.gltf_duration_seconds
+            ) -gt 0.000001 -or
+            [Math]::Abs([double]$slot.duration_seconds - $expectedDuration) -gt 0.000001
+        ) {
+            throw "$Label animation '$name' timing differs from its GLB."
+        }
+    }
+    return $expectedSlots.Count
 }
 
 function Assert-TreeHasNoReparsePoints {
@@ -420,7 +505,7 @@ function Assert-GeneratedDestinationStages {
         $null = Assert-DspreCollisionManifest `
             -Manifest $rawManifest `
             -Label "Generated raw destination $key" `
-            -ExpectedManifestSchema 2
+            -ExpectedManifestSchema 3
 		$rawManifestHash = (
 			Get-FileHash -LiteralPath $rawManifestPath -Algorithm SHA256
 		).Hash.ToLowerInvariant()
@@ -469,7 +554,11 @@ function Assert-GeneratedDestinationStages {
             -not (Test-AreaDataIdsEqual $expectedArea $rawSummaryArea) -or
             [int]$rawSummary.failed -ne 0 -or
             [int]$rawSummary.occupied_cells -ne @($rawManifest.cells).Count -or
-            [int]$rawSummary.collision_assets -ne @($rawManifest.collision_assets).Count
+            [int]$rawSummary.collision_assets -ne @($rawManifest.collision_assets).Count -or
+            [int]$rawSummary.warp_events -ne [int]$rawManifest.field_features.warp_count -or
+            [int]$rawSummary.ordinary_warps -ne [int]$rawManifest.field_features.ordinary_warp_count -or
+            [int]$rawSummary.special_returns -ne [int]$rawManifest.field_features.special_return_count -or
+            [int]$rawSummary.dynamic_warps -ne [int]$rawManifest.field_features.dynamic_warp_count
         ) {
             throw "Generated raw destination $key does not match its resolution record."
         }
@@ -489,7 +578,15 @@ function Assert-GeneratedDestinationStages {
         $null = Assert-DspreCollisionManifest `
             -Manifest $dedupManifest `
             -Label "Generated dedupe destination $key" `
-            -ExpectedManifestSchema 3
+            -ExpectedManifestSchema 4
+        if (
+            ($rawManifest.field_features | ConvertTo-Json -Depth 30 -Compress) -ne
+            ($dedupManifest.field_features | ConvertTo-Json -Depth 30 -Compress) -or
+            (ConvertTo-DspreMapAnimationContractJson $rawManifest) -ne
+            (ConvertTo-DspreMapAnimationContractJson $dedupManifest)
+        ) {
+            throw "Generated dedupe destination $key changed field-feature or map-animation metadata."
+        }
         $dedupManifestHash = (
             Get-FileHash -LiteralPath $dedupManifestPath -Algorithm SHA256
         ).Hash.ToLowerInvariant()
@@ -566,8 +663,7 @@ function Assert-GeneratedDestinationStages {
 
 $exporterSha256 = Get-DspreToolFileFingerprint `
     -Path (Join-Path $PSScriptRoot "dspre_batch_export.ps1")
-$supportToolSha256 = Get-DspreToolFileFingerprint `
-    -Path (Join-Path $PSScriptRoot "dspre_collision_support.ps1")
+$supportToolSha256 = Get-DspreSupportBundleFingerprint -ToolsRoot $PSScriptRoot
 $dedupeToolSha256 = Get-DspreToolFileFingerprint `
     -Path (Join-Path $PSScriptRoot "dedupe_dspre_materials.ps1")
 $syncToolSha256 = Get-DspreToolFileFingerprint `
@@ -580,11 +676,12 @@ if ($RequireComplete) {
         -Label "Generated and Godot matrix catalogs"
 }
 $catalog = Read-JsonFile $catalogPath "Godot matrix catalog"
-if ([int]$catalog.schema_version -ne 2) {
+if ([int]$catalog.schema_version -ne 3) {
     throw "Unsupported matrix catalog schema: $($catalog.schema_version)"
 }
 $matrixEntries = @($catalog.matrices)
 $destinations = @($catalog.destinations)
+$catalogHeaders = @($catalog.headers)
 if ($matrixEntries.Count -ne [int]$catalog.summary.source_matrices) {
     throw "Matrix catalog entry count does not match source_matrices."
 }
@@ -600,8 +697,18 @@ $collisionKeys = New-Object System.Collections.Generic.HashSet[string]([StringCo
 $collisionFingerprints = @{}
 $textureKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
 $materialKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+$headerOwners = @{}
+$warpIds = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)
+$warpRecords = New-Object System.Collections.Generic.List[object]
 $recalculatedGlbs = 0
 $recalculatedDestinationCollisionAssets = 0
+$recalculatedWarpEvents = 0
+$recalculatedOrdinaryWarps = 0
+$recalculatedSpecialReturns = 0
+$recalculatedDynamicWarps = 0
+$recalculatedAnimatedBuildingAssets = 0
+$recalculatedNativeAnimationClips = 0
+$recalculatedUnsupportedAnimationClips = 0
 foreach ($matrix in $matrixEntries) {
     if (-not $matrixIds.Add([int]$matrix.id)) {
         throw "Duplicate matrix catalog ID: $($matrix.id)"
@@ -654,7 +761,13 @@ foreach ($destination in $destinations) {
     $collisionStats = Assert-DspreCollisionManifest `
         -Manifest $manifest `
         -Label "Destination $key" `
-        -ExpectedManifestSchema 3
+        -ExpectedManifestSchema 4
+    $fieldStats = [pscustomobject]@{
+        warps = [int]$manifest.field_features.warp_count
+        ordinary_warps = [int]$manifest.field_features.ordinary_warp_count
+        special_returns = [int]$manifest.field_features.special_return_count
+        dynamic_warps = [int]$manifest.field_features.dynamic_warp_count
+    }
     if ([int]$manifest.matrix.id -ne [int]$destination.matrix_id) {
         throw "Destination $key matrix ID does not match its manifest."
     }
@@ -708,13 +821,57 @@ foreach ($destination in $destinations) {
         [int]$destination.collision_assets -ne [int]$collisionStats.collision_assets -or
         [int]$destination.terrain_attribute_tiles -ne [int]$collisionStats.terrain_attribute_tiles -or
         [int]$destination.bdhc_assets -ne [int]$collisionStats.bdhc_assets -or
-        [int]$destination.building_instances -ne [int]$manifest.summary.building_instances
+        [int]$destination.building_instances -ne [int]$manifest.summary.building_instances -or
+        [int]$destination.warp_events -ne [int]$fieldStats.warps -or
+        [int]$destination.ordinary_warps -ne [int]$fieldStats.ordinary_warps -or
+        [int]$destination.special_returns -ne [int]$fieldStats.special_returns -or
+        [int]$destination.dynamic_warps -ne [int]$fieldStats.dynamic_warps
     ) {
         throw "Destination $key metadata does not match its manifest."
+    }
+    if (
+        [int]$manifest.summary.warp_events -ne [int]$fieldStats.warps -or
+        [int]$manifest.summary.ordinary_warps -ne [int]$fieldStats.ordinary_warps -or
+        [int]$manifest.summary.special_returns -ne [int]$fieldStats.special_returns -or
+        [int]$manifest.summary.dynamic_warps -ne [int]$fieldStats.dynamic_warps
+    ) {
+        throw "Destination $key field-feature summary is inconsistent."
+    }
+    $animatedBuildingAssetCount = Get-OptionalSummaryCount `
+        -Summary $manifest.summary `
+        -Name "animated_building_assets" `
+        -Label "Destination $key"
+    $nativeAnimationClipCount = Get-OptionalSummaryCount `
+        -Summary $manifest.summary `
+        -Name "native_animation_clips" `
+        -Label "Destination $key"
+    $unsupportedAnimationClipCount = Get-OptionalSummaryCount `
+        -Summary $manifest.summary `
+        -Name "unsupported_animation_clips" `
+        -Label "Destination $key"
+    if (
+        [int]$destination.animated_building_assets -ne $animatedBuildingAssetCount -or
+        [int]$destination.native_animation_clips -ne $nativeAnimationClipCount -or
+        [int]$destination.unsupported_animation_clips -ne $unsupportedAnimationClipCount
+    ) {
+        throw "Destination $key animation summary does not match its manifest."
+    }
+    foreach ($warp in @($manifest.field_features.warps)) {
+        if (-not $warpIds.Add([string]$warp.id)) {
+            throw "Warp ID is duplicated across destinations: $($warp.id)"
+        }
+        if (
+            [string]$warp.source.variant -ne $key -or
+            [int]$warp.source.matrix_id -ne [int]$destination.matrix_id
+        ) {
+            throw "Warp $($warp.id) source does not match destination $key."
+        }
+        $warpRecords.Add([pscustomobject]@{ owner = $key; warp = $warp })
     }
 
     $assetRecords = @($manifest.assets.terrain) + @($manifest.assets.buildings)
     $declaredGlbs = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::OrdinalIgnoreCase)
+    $validatedNativeAnimationClips = 0
     foreach ($asset in $assetRecords) {
         foreach ($relativePath in @($asset.output_glbs)) {
             $assetPath = [IO.Path]::GetFullPath(
@@ -733,6 +890,13 @@ foreach ($destination in $destinations) {
                 throw "Destination $key declares a GLB more than once: $relativePath"
             }
         }
+        $validatedNativeAnimationClips += Assert-AssetMapAnimationGlbs `
+            -Asset $asset `
+            -DestinationRoot $destinationRoot `
+            -Label "Destination $key asset $($asset.key)"
+    }
+    if ($validatedNativeAnimationClips -ne $nativeAnimationClipCount) {
+        throw "Destination $key validated native animation count disagrees with its manifest."
     }
     $actualGlbFiles = @(
         Get-ChildItem -LiteralPath $destinationRoot -Recurse -Filter "*.glb" -File
@@ -897,6 +1061,13 @@ foreach ($destination in $destinations) {
     }
     $recalculatedGlbs += $actualGlbs
     $recalculatedDestinationCollisionAssets += [int]$collisionStats.collision_assets
+    $recalculatedWarpEvents += [int]$fieldStats.warps
+    $recalculatedOrdinaryWarps += [int]$fieldStats.ordinary_warps
+    $recalculatedSpecialReturns += [int]$fieldStats.special_returns
+    $recalculatedDynamicWarps += [int]$fieldStats.dynamic_warps
+    $recalculatedAnimatedBuildingAssets += $animatedBuildingAssetCount
+    $recalculatedNativeAnimationClips += $nativeAnimationClipCount
+    $recalculatedUnsupportedAnimationClips += $unsupportedAnimationClipCount
     $destinationByKey[$key] = $destination
     if ($RequireComplete) {
         $dedupeMarkerPath = Join-Path $destinationRoot ".dedupe-complete.json"
@@ -947,6 +1118,60 @@ foreach ($destination in $destinations) {
 		$syncedDedupeMarkerSha256ByKey[$key] = (
 			Get-FileHash -LiteralPath $dedupeMarkerPath -Algorithm SHA256
 		).Hash.ToLowerInvariant()
+    }
+}
+
+$catalogHeaderIds = New-Object System.Collections.Generic.HashSet[int]
+$previousHeaderId = -1
+foreach ($header in $catalogHeaders) {
+    $headerId = [int]$header.header_id
+    $headerKey = [string]$headerId
+    if (
+        $headerId -lt 0 -or
+        $headerId -gt 0xFFFF -or
+        $headerId -le $previousHeaderId -or
+        -not $catalogHeaderIds.Add($headerId) -or
+        -not $destinationByKey.ContainsKey([string]$header.destination_key)
+    ) {
+        throw "Matrix catalog contains an invalid, unsorted, duplicate, or unroutable MapHeader: $headerId"
+    }
+    $destination = $destinationByKey[[string]$header.destination_key]
+    if (
+        [int]$header.matrix_id -ne [int]$destination.matrix_id -or
+        ($null -ne $destination.area_data_id -and
+            [int]$header.area_data_id -ne [int]$destination.area_data_id)
+    ) {
+        throw "Matrix catalog MapHeader $headerId route does not match its destination."
+    }
+    $headerOwners[$headerKey] = [pscustomobject]@{
+        destination_key = [string]$header.destination_key
+        matrix_id = [int]$header.matrix_id
+        area_data_id = [int]$header.area_data_id
+    }
+    $previousHeaderId = $headerId
+}
+if ($catalogHeaderIds.Count -ne $catalogHeaders.Count) {
+    throw "Matrix catalog MapHeader index contains inconsistent records."
+}
+foreach ($record in $warpRecords) {
+    $warp = $record.warp
+    $sourceHeaderKey = [string][int]$warp.source.header_id
+    if (
+        -not $headerOwners.ContainsKey($sourceHeaderKey) -or
+        [string]$headerOwners[$sourceHeaderKey].destination_key -ne [string]$record.owner
+    ) {
+        throw "Warp $($warp.id) source Header is not owned by its destination."
+    }
+    if ([string]$warp.kind -eq "map_warp") {
+        $destinationHeaderKey = [string][int]$warp.destination.header_id
+        if (
+            -not $destinationKeys.Contains([string]$warp.destination.variant) -or
+            -not $headerOwners.ContainsKey($destinationHeaderKey) -or
+            [string]$headerOwners[$destinationHeaderKey].destination_key -ne [string]$warp.destination.variant -or
+            [int]$headerOwners[$destinationHeaderKey].matrix_id -ne [int]$warp.destination.matrix_id
+        ) {
+            throw "Warp $($warp.id) destination does not match the catalog Header index."
+        }
     }
 }
 
@@ -1029,6 +1254,14 @@ if (
     $recalculatedBuildings -ne [int]$catalog.summary.building_instances -or
     $recalculatedGlbs -ne [int]$catalog.summary.destination_scoped_glbs -or
     $recalculatedDestinationCollisionAssets -ne [int]$catalog.summary.destination_scoped_collision_assets -or
+    $headerOwners.Count -ne [int]$catalog.summary.headers -or
+    $recalculatedWarpEvents -ne [int]$catalog.summary.warp_events -or
+    $recalculatedOrdinaryWarps -ne [int]$catalog.summary.ordinary_warps -or
+    $recalculatedSpecialReturns -ne [int]$catalog.summary.special_returns -or
+    $recalculatedDynamicWarps -ne [int]$catalog.summary.dynamic_warps -or
+    $recalculatedAnimatedBuildingAssets -ne [int]$catalog.summary.animated_building_assets -or
+    $recalculatedNativeAnimationClips -ne [int]$catalog.summary.native_animation_clips -or
+    $recalculatedUnsupportedAnimationClips -ne [int]$catalog.summary.unsupported_animation_clips -or
     $terrainKeys.Count -ne [int]$catalog.summary.unique_terrain_assets -or
     $buildingKeys.Count -ne [int]$catalog.summary.unique_building_assets -or
     $collisionKeys.Count -ne [int]$catalog.summary.unique_collision_assets -or
@@ -1039,9 +1272,38 @@ if (
 }
 
 if ($RequireComplete) {
+    if ($headerOwners.Count -ne 593 -or $recalculatedWarpEvents -ne 1213) {
+        throw "Complete field-feature totals are unexpected: $($headerOwners.Count)/593 headers and $recalculatedWarpEvents/1213 warps."
+    }
     $resolution = Read-JsonFile $ResolutionPath "Matrix AreaData resolution"
     if ([int]$resolution.schema_version -ne 1) {
         throw "Unsupported Matrix AreaData resolution schema: $($resolution.schema_version)"
+    }
+    $sourceRoot = [IO.Path]::GetFullPath([string]$resolution.source.dspre_contents)
+    $arm9Path = Join-Path $sourceRoot "arm9\arm9.bin"
+    $mapNamesPath = Join-Path $sourceRoot "files\fielddata\maptable\mapname.bin"
+    if (
+        -not (Test-Path -LiteralPath $arm9Path -PathType Leaf) -or
+        -not (Test-Path -LiteralPath $mapNamesPath -PathType Leaf)
+    ) {
+        throw "Complete MapHeader validation cannot read the DSPRE source."
+    }
+    $sourceHeaders = @(ConvertFrom-DspreMapHeaderTable `
+        -Arm9Bytes ([IO.File]::ReadAllBytes($arm9Path)) `
+        -Offset 0xE56F0 `
+        -HeaderCount ([int]((Get-Item -LiteralPath $mapNamesPath).Length / 16)))
+    if ($sourceHeaders.Count -ne $catalogHeaders.Count) {
+        throw "Matrix catalog MapHeader count differs from the DSPRE source."
+    }
+    foreach ($sourceHeader in $sourceHeaders) {
+        $headerKey = [string][int]$sourceHeader.id
+        if (
+            -not $headerOwners.ContainsKey($headerKey) -or
+            [int]$headerOwners[$headerKey].matrix_id -ne [int]$sourceHeader.matrix_id -or
+            [int]$headerOwners[$headerKey].area_data_id -ne [int]$sourceHeader.area_data_id
+        ) {
+            throw "Matrix catalog MapHeader $($sourceHeader.id) differs from the DSPRE source table."
+        }
     }
     $areaResolutionSha256 = Get-DspreAreaResolutionFingerprint -Path $ResolutionPath
     $expectedKeys = New-Object System.Collections.Generic.HashSet[string]([StringComparer]::Ordinal)

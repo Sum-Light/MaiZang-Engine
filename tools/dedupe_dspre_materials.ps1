@@ -410,7 +410,7 @@ $manifest = [IO.File]::ReadAllText($manifestPath, [Text.Encoding]::UTF8) | Conve
 $null = Assert-DspreCollisionManifest `
     -Manifest $manifest `
     -Label "Source export manifest" `
-    -ExpectedManifestSchema 2
+    -ExpectedManifestSchema 3
 $sourceManifestSha256 = Get-Sha256File $manifestPath
 $sourceMarkerPath = Join-Path $SourceRoot ".export-complete.json"
 if (-not (Test-Path -LiteralPath $sourceMarkerPath -PathType Leaf)) {
@@ -661,7 +661,7 @@ $catalog = [pscustomobject][ordered]@{
 $catalogPath = Join-Path $OutputRoot "material_catalog.json"
 [IO.File]::WriteAllText($catalogPath, ($catalog | ConvertTo-Json -Depth 30 -Compress), $utf8NoBom)
 
-$manifest.schema_version = 3
+$manifest.schema_version = 4
 $manifest.generated_utc = [DateTime]::UtcNow.ToString("o")
 $manifest | Add-Member -Force -NotePropertyName "material_dedupe" -NotePropertyValue ([pscustomobject][ordered]@{
     catalog = "material_catalog.json"

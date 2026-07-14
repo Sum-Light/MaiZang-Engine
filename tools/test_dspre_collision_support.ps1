@@ -93,11 +93,37 @@ if ([BitConverter]::ToInt32($packedBdhc, 16) -ne -1048576) {
 }
 
 $manifest = [pscustomobject]@{
-    schema_version = 2
+    schema_version = 3
     summary = [pscustomobject]@{
         collision_assets = 1
         terrain_attribute_tiles = 1024
         bdhc_assets = 1
+        animated_building_assets = 0
+        automatic_animation_assets = 0
+        door_animation_assets = 0
+        native_animation_clips = 0
+        unsupported_animation_clips = 0
+    }
+    field_features = [pscustomobject]@{
+        schema_version = 1
+        source_selection = "first_warp_id_at_tile"
+        header_ids = @()
+        default_header_id = $null
+        warps = @()
+        warp_count = 0
+        ordinary_warp_count = 0
+        special_return_count = 0
+        dynamic_warp_count = 0
+    }
+    map_animation_format = [pscustomobject]@{
+        schema_version = 1
+        source_fps = 30
+        native_format = "nsbca"
+        unsupported_formats = @("nsbta", "nsbtp")
+        playback_scope = "automatic_loops_and_warp_doors"
+    }
+    assets = [pscustomobject]@{
+        buildings = @()
     }
     collision_format = [pscustomobject]@{
         schema_version = 1
@@ -125,7 +151,7 @@ $manifest = [pscustomobject]@{
         })
     })
 }
-$stats = Assert-DspreCollisionManifest -Manifest $manifest -ExpectedManifestSchema 2
+$stats = Assert-DspreCollisionManifest -Manifest $manifest -ExpectedManifestSchema 3
 if ([int]$stats.collision_assets -ne 1 -or [int]$stats.referenced_cells -ne 1) {
     throw "Synthetic collision manifest returned incorrect coverage."
 }
@@ -226,6 +252,7 @@ try {
     $rawMarker = [pscustomobject][ordered]@{
         schema_version = 2
         export_contract_version = 3
+        model_conversion_contract_version = 1
         matrix_id = 1
         variant = "matrix_0001_area_0007"
         area_data_id = 7
@@ -271,6 +298,7 @@ try {
     foreach ($invalidMarker in @(
         [pscustomobject]@{ Property = "schema_version"; Value = 1; Label = "raw marker schema" },
         [pscustomobject]@{ Property = "export_contract_version"; Value = 2; Label = "raw export contract" },
+        [pscustomobject]@{ Property = "model_conversion_contract_version"; Value = 2; Label = "model conversion contract" },
         [pscustomobject]@{ Property = "matrix_id"; Value = 2; Label = "raw marker matrix" },
         [pscustomobject]@{ Property = "variant"; Value = "matrix_0001"; Label = "raw marker variant" },
         [pscustomobject]@{ Property = "area_data_id"; Value = 8; Label = "raw marker AreaData" },
@@ -565,6 +593,7 @@ try {
         throw "The Godot sync script did not parse for focused helper tests."
     }
     foreach ($functionName in @(
+        "Test-GodotImportSidecarArtifact",
         "Get-StageFilesWithoutReparsePoints",
         "Get-StageFileRecords",
         "Assert-StageFileRecords"
@@ -821,6 +850,18 @@ $orchestratorText = [IO.File]::ReadAllText(
     (Join-Path $PSScriptRoot "dspre_export_all_matrices.ps1"),
     [Text.Encoding]::UTF8
 )
+if (
+    $orchestratorText.IndexOf('Force = [bool]$RebuildExisting', [StringComparison]::Ordinal) -lt 0 -or
+    $orchestratorText.IndexOf('Force = $true', [StringComparison]::Ordinal) -ge 0
+) {
+    throw "Normal stale-contract rebuilds must retain asset-level GLB reuse unless -RebuildExisting is explicit."
+}
+if (
+    $batchConsumerText.IndexOf('runtime_playback = $runtimePlayback', [StringComparison]::Ordinal) -lt 0 -or
+    $batchConsumerText.IndexOf('$sourceSlots.Count -eq 1', [StringComparison]::Ordinal) -lt 0
+) {
+    throw "Mixed or material-only automatic MapProp animation must remain wholly deferred."
+}
 $markerOnlyChecks = [regex]::Matches($orchestratorText, '(?m)^\s+-MarkerOnly\s*$').Count
 if ($markerOnlyChecks -lt 4) {
     throw "The all-matrix pipeline does not use lightweight post-stage and publication checks."
