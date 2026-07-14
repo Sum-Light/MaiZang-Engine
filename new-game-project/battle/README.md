@@ -6,7 +6,7 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0, P0, and P1 are complete. P2 is in progress (`2/16`). The pure foundation
+Q0, P0, and P1 are complete. P2 is in progress (`4/16`). The pure foundation
 and protocol/command contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
@@ -16,8 +16,9 @@ still does not contain a catalog, configured battle state, playable battle,
 world integration, network stack, model, texture, animation, audio, or battle
 camera.
 
-The first P2 slice establishes append-only stable-ID and presentation-cue
-authoring contracts. Mechanism specs, fixture compilation, runtime trace, and
+The first two P2 slices establish append-only stable-ID/presentation contracts
+and five strict spec schemas with validator-owned maturity. The authoring sets
+remain empty; cross-file compilation, fixture compilation, runtime trace, and
 coverage reports remain later P2 work. P2 does not change the editor entry or
 connect the world.
 
@@ -286,7 +287,7 @@ forwarded to the P0 source-audit test when an explicit clean-source override
 is needed. The verified work item records the clean source test-loop evidence
 as structural context rather than a Godot CLI oracle.
 
-## P2 Stable IDs And Presentation Contracts
+## P2 Authoring Contracts
 
 `specs/id_manifests/battle_stable_ids.json` owns the fixed 15-domain registry
 for mechanism, scoped branch, event, handler, resolver, scoped phase, scoped
@@ -312,6 +313,31 @@ manifest generation exactly once; unchanged content cannot advance it. The
 scope gate invokes the same validator, including staged-blob validation, and
 rejects an index/worktree split across the reviewed gate scripts and schemas.
 
+`MechanismSpec`, `EventSchema`, `HandlerBinding`, `ResolverSpec`, and
+`TestManifestEntry` each use one zero-padded ten-digit ID per file under their
+dedicated `specs/` directory. Every root and nested object is closed, every
+array is bounded, and authoring rejects floats, nulls, paths, expressions,
+runtime objects, and `computed_status`. The current repository intentionally
+contains no entries in these five directories.
+
+Mechanisms separate stable identity from execution order. Typed input and
+intermediate slots carry units, ranges, intermediate width, negative-value,
+rounding, overflow, and divide-by-zero policy. One `execution_steps` plan
+orders formula stages, repeatable event emissions, RNG draws, mutations, and
+commands without reusing append-only IDs as positions. Events require a final
+stable tie-break, explicit aggregation/short-circuit semantics, bounded recall,
+rounding ownership, and trace policy. Handler RNG references, resolver phase
+order/reentry/emission bounds, scenario fixture identity, and required test
+oracles are checked locally; P2C owns global ID/context/registry joins.
+
+Authoring declares `target_maturity`; only the validator returns
+`computed_status` through the continuous `DISCOVERED -> SPECIFIED ->
+IMPLEMENTED -> VERIFIED -> RELEASED` gates. The current CLI can prove only
+`DISCOVERED`, because P2C has not compiled cross-references or implementation
+bindings. Merely adding a handler or test file cannot promote maturity. All
+three CLI views hash the complete five-set input deterministically; staged
+validation first enforces the P2A reviewed-surface parity.
+
 Run the focused checks with:
 
 ```powershell
@@ -319,6 +345,13 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_id_presentation_contract_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_spec_contract_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_id_manifests.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_spec_contracts.ps1 `
   -Mode Repository
 ```

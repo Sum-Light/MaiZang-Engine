@@ -1,0 +1,589 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/mechanism_spec.schema.json",
+  "title": "MechanismSpec",
+  "$comment": "The P2B executable validator proves the ten-digit filename matches mechanism_id and enforces local structure, order, and maturity rules. Cross-file reference compilation remains P2C. Authoring must never contain computed_status.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "mechanism_id",
+    "debug_key",
+    "spec_schema_version",
+    "behavior_version",
+    "ruleset_mode",
+    "ruleset_ids",
+    "feature_pack_ids",
+    "owner_module",
+    "target_maturity",
+    "project_requirement_keys",
+    "evidence_ids",
+    "entry_kind",
+    "resolver_id",
+    "phase_id",
+    "subphase_id",
+    "preconditions",
+    "inputs",
+    "read_set",
+    "write_set",
+    "history_reads",
+    "history_writes",
+    "counter_reads",
+    "counter_writes",
+    "ordering_key",
+    "short_circuit",
+    "reentry_policy",
+    "execution_steps",
+    "coverage_targets",
+    "parameter_slots",
+    "formula_stages",
+    "rng_draws",
+    "resolver_ids",
+    "event_ids",
+    "handler_ids",
+    "state_op_ids",
+    "command_ids",
+    "presentation_cue_ids",
+    "result_type",
+    "mutation_contracts",
+    "command_contracts",
+    "error_contracts",
+    "atomicity_policy",
+    "test_requirements"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "MECHANISM_SPEC"},
+    "mechanism_id": {"$ref": "#/$defs/stable_id"},
+    "debug_key": {"$ref": "#/$defs/debug_key"},
+    "spec_schema_version": {"$ref": "#/$defs/version"},
+    "behavior_version": {"$ref": "#/$defs/version"},
+    "ruleset_mode": {"enum": ["ALL", "EXPLICIT"]},
+    "ruleset_ids": {"$ref": "#/$defs/stable_id_set"},
+    "feature_pack_ids": {"$ref": "#/$defs/stable_id_set"},
+    "owner_module": {"$ref": "#/$defs/stable_key"},
+    "target_maturity": {"$ref": "#/$defs/maturity"},
+    "project_requirement_keys": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9_.-]*$", "maxLength": 128}
+    },
+    "evidence_ids": {
+      "$comment": "Evidence IDs are resolved by the later SourceEvidence catalog and are not members of the P2A runtime stable-ID registry.",
+      "$ref": "#/$defs/stable_id_set"
+    },
+    "entry_kind": {"enum": ["RESOLVER", "EVENT_HANDLER", "LIFECYCLE", "DOMAIN_SERVICE", "OUTCOME"]},
+    "resolver_id": {"$ref": "#/$defs/optional_id"},
+    "phase_id": {"$ref": "#/$defs/optional_id"},
+    "subphase_id": {"$ref": "#/$defs/optional_id"},
+    "preconditions": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/precondition"}
+    },
+    "inputs": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/input_field"}
+    },
+    "read_set": {"$ref": "#/$defs/stable_key_set"},
+    "write_set": {"$ref": "#/$defs/stable_key_set"},
+    "history_reads": {"$ref": "#/$defs/stable_key_set"},
+    "history_writes": {"$ref": "#/$defs/stable_key_set"},
+    "counter_reads": {"$ref": "#/$defs/stable_key_set"},
+    "counter_writes": {"$ref": "#/$defs/stable_key_set"},
+    "ordering_key": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/order_term"}
+    },
+    "short_circuit": {"$ref": "#/$defs/short_circuit"},
+    "reentry_policy": {"$ref": "#/$defs/reentry_policy"},
+    "execution_steps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 512,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/execution_step"}
+    },
+    "coverage_targets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/coverage_target"}
+    },
+    "parameter_slots": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/parameter_slot"}
+    },
+    "formula_stages": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/formula_stage"}
+    },
+    "rng_draws": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/rng_draw"}
+    },
+    "resolver_ids": {"$ref": "#/$defs/stable_id_set"},
+    "event_ids": {"$ref": "#/$defs/stable_id_set"},
+    "handler_ids": {"$ref": "#/$defs/stable_id_set"},
+    "state_op_ids": {"$ref": "#/$defs/stable_id_set"},
+    "command_ids": {"$ref": "#/$defs/stable_id_set"},
+    "presentation_cue_ids": {"$ref": "#/$defs/stable_id_set"},
+    "result_type": {"$ref": "#/$defs/type_name"},
+    "mutation_contracts": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/mutation_contract"}
+    },
+    "command_contracts": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/command_contract"}
+    },
+    "error_contracts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/error_contract"}
+    },
+    "atomicity_policy": {"$ref": "#/$defs/atomicity_policy"},
+    "test_requirements": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/test_requirement"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"ruleset_mode": {"const": "ALL"}}, "required": ["ruleset_mode"]},
+      "then": {"properties": {"ruleset_ids": {"maxItems": 0}}},
+      "else": {"properties": {"ruleset_ids": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"entry_kind": {"const": "RESOLVER"}}, "required": ["entry_kind"]},
+      "then": {
+        "properties": {
+          "resolver_id": {"minimum": 1},
+          "phase_id": {"minimum": 1}
+        }
+      }
+    },
+    {
+      "anyOf": [
+        {"properties": {"project_requirement_keys": {"minItems": 1}}},
+        {"properties": {"evidence_ids": {"minItems": 1}}}
+      ]
+    }
+  ],
+  "$defs": {
+    "stable_id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "optional_id": {"type": "integer", "minimum": 0, "maximum": 2147483647},
+    "version": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "debug_key": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "maxLength": 128
+    },
+    "stable_key": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z][A-Z0-9_]*)*$",
+      "maxLength": 160
+    },
+    "field_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 64},
+    "type_name": {"type": "string", "pattern": "^(?![A-Za-z0-9_]*(?:Dictionary|Variant|Node|Resource|Callable))[A-Z][A-Za-z0-9_]*$", "maxLength": 128},
+    "maturity": {"enum": ["DISCOVERED", "SPECIFIED", "IMPLEMENTED", "VERIFIED", "RELEASED"]},
+    "stable_id_set": {
+      "type": "array",
+      "maxItems": 4096,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "stable_key_set": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_key"}
+    },
+    "oracle_kind": {
+      "enum": [
+        "FORMULA",
+        "RESOLVER_PHASE",
+        "EVENT_HANDLER",
+        "RNG",
+        "STATE_MUTATION",
+        "COMMAND_PRESENTATION",
+        "AUDIENCE",
+        "GAMEPLAY_INTERRUPTION",
+        "SETTLEMENT_DECISION",
+        "SCENARIO",
+        "REPLAY",
+        "PERFORMANCE"
+      ]
+    },
+    "rounding_mode": {
+      "enum": ["FLOOR", "CEIL", "TOWARD_ZERO", "AWAY_FROM_ZERO", "NEAREST_TIES_DOWN", "NEAREST_TIES_UP"]
+    },
+    "unit": {
+      "enum": ["NONE", "COUNT", "HP", "TURN", "TICK", "PERCENT_BASIS_POINTS", "RATIO_NUMERATOR", "RATIO_DENOMINATOR"]
+    },
+    "precondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "subject", "value_kind", "stable_domain", "stable_id", "minimum", "maximum"],
+      "properties": {
+        "kind": {"$ref": "#/$defs/stable_key"},
+        "subject": {"enum": ["ACTOR", "TARGET", "SOURCE", "OWNER", "SIDE", "POSITION", "BATTLE", "NONE"]},
+        "value_kind": {"enum": ["NONE", "STABLE_ID", "PUBLIC_INT", "PUBLIC_BOOL"]},
+        "stable_domain": {"enum": ["ENTITY", "EFFECT", "ITEM", "MOVE", "MESSAGE", "NONE"]},
+        "stable_id": {"$ref": "#/$defs/optional_id"},
+        "minimum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "maximum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647}
+      }
+    },
+    "input_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slot_id", "field_name", "value_kind", "stable_domain", "minimum", "maximum", "unit", "ownership", "required", "cardinality", "max_items"],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/stable_id"},
+        "field_name": {"$ref": "#/$defs/field_name"},
+        "value_kind": {"enum": ["STABLE_ID", "SIGNED_INT", "BOOL"]},
+        "stable_domain": {"enum": ["ENTITY", "EFFECT", "ITEM", "MOVE", "MESSAGE", "NONE"]},
+        "minimum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "maximum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "unit": {"$ref": "#/$defs/unit"},
+        "ownership": {"enum": ["INPUT_DTO", "BATTLE_STATE", "CATALOG", "RULE_PROFILE", "SYNTHETIC_FIXTURE"]},
+        "required": {"type": "boolean"},
+        "cardinality": {"enum": ["ONE", "MANY"]},
+        "max_items": {"type": "integer", "minimum": 1, "maximum": 256}
+      }
+    },
+    "order_term": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_key", "direction", "source"],
+      "properties": {
+        "field_key": {"$ref": "#/$defs/stable_key"},
+        "direction": {"enum": ["ASC", "DESC"]},
+        "source": {"enum": ["INPUT", "STATE", "CATALOG", "INSTANCE", "STABLE_ID"]}
+      }
+    },
+    "short_circuit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "result_key"],
+      "properties": {
+        "policy": {"enum": ["NONE", "FIRST_ACCEPT", "FIRST_DENY", "STOP_ON_ERROR", "STOP_ON_TERMINAL"]},
+        "result_key": {"$ref": "#/$defs/stable_key"}
+      }
+    },
+    "reentry_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "maximum_depth", "same_instance_recall"],
+      "properties": {
+        "policy": {"enum": ["DENY", "ALLOW_NESTED", "ALLOW_RECALL", "ALLOW_SAME_INSTANCE_ONCE"]},
+        "maximum_depth": {"type": "integer", "minimum": 0, "maximum": 64},
+        "same_instance_recall": {"type": "boolean"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"policy": {"const": "DENY"}}, "required": ["policy"]},
+          "then": {
+            "properties": {
+              "maximum_depth": {"const": 0},
+              "same_instance_recall": {"const": false}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"policy": {"const": "ALLOW_NESTED"}}, "required": ["policy"]},
+          "then": {
+            "properties": {
+              "maximum_depth": {"minimum": 1},
+              "same_instance_recall": {"const": false}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"policy": {"const": "ALLOW_RECALL"}}, "required": ["policy"]},
+          "then": {
+            "properties": {
+              "maximum_depth": {"minimum": 1},
+              "same_instance_recall": {"const": true}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"policy": {"const": "ALLOW_SAME_INSTANCE_ONCE"}}, "required": ["policy"]},
+          "then": {
+            "properties": {
+              "maximum_depth": {"const": 1},
+              "same_instance_recall": {"const": true}
+            }
+          }
+        }
+      ]
+    },
+    "execution_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step_order", "step_kind", "reference_id", "condition_kind"],
+      "properties": {
+        "step_order": {"type": "integer", "minimum": 1, "maximum": 4096},
+        "step_kind": {"enum": ["FORMULA_STAGE", "EVENT_EMISSION", "RNG_DRAW", "STATE_MUTATION", "COMMAND_EMISSION"]},
+        "reference_id": {"$ref": "#/$defs/stable_id"},
+        "condition_kind": {"$ref": "#/$defs/stable_key"}
+      }
+    },
+    "coverage_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branch_id", "kind", "condition_kind", "required_oracle_kinds", "required_for_active_ruleset"],
+      "properties": {
+        "branch_id": {"$ref": "#/$defs/stable_id"},
+        "kind": {"enum": ["NORMAL", "BOUNDARY", "INTERACTION", "REJECTION", "ERROR", "REPLAY"]},
+        "condition_kind": {"$ref": "#/$defs/stable_key"},
+        "required_oracle_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/oracle_kind"}
+        },
+        "required_for_active_ruleset": {"type": "boolean"}
+      }
+    },
+    "parameter_slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slot_id", "debug_key", "value_kind", "stable_domain", "minimum", "maximum", "unit", "source_kind", "required"],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/stable_id"},
+        "debug_key": {"$ref": "#/$defs/debug_key"},
+        "value_kind": {"enum": ["SIGNED_INT", "STABLE_ID", "RATIO"]},
+        "stable_domain": {"enum": ["ENTITY", "EFFECT", "ITEM", "MOVE", "MESSAGE", "NONE"]},
+        "minimum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "maximum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "unit": {"$ref": "#/$defs/unit"},
+        "source_kind": {"enum": ["DEFINITION", "RULESET", "FEATURE_PACK", "SYNTHETIC_FIXTURE"]},
+        "required": {"type": "boolean"}
+      }
+    },
+    "formula_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage_id", "debug_key", "operation", "operand_slot_ids", "operand_units", "output_slot_id", "result_unit", "intermediate_width_bits", "negative_value_policy", "result_minimum", "result_maximum", "parameter_slot_ids", "modifier_event_id", "modifier_aggregation", "rounding_mode", "rounding_schedule", "operation_order", "clamp_min_source", "clamp_max_source", "overflow_policy", "divide_by_zero_policy", "trace_field_keys"],
+      "properties": {
+        "stage_id": {"$ref": "#/$defs/stable_id"},
+        "debug_key": {"$ref": "#/$defs/debug_key"},
+        "operation": {"enum": ["ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "MULTIPLY_DIVIDE", "FOLD_MODIFIERS", "CLAMP", "SELECT"]},
+        "operand_slot_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/stable_id"}
+        },
+        "operand_units": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {"$ref": "#/$defs/unit"}
+        },
+        "output_slot_id": {"$ref": "#/$defs/stable_id"},
+        "result_unit": {"$ref": "#/$defs/unit"},
+        "intermediate_width_bits": {"enum": [32, 64]},
+        "negative_value_policy": {"enum": ["ALLOW", "REJECT", "CLAMP_TO_ZERO"]},
+        "result_minimum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "result_maximum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "parameter_slot_ids": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/stable_id"}
+        },
+        "modifier_event_id": {"$ref": "#/$defs/optional_id"},
+        "modifier_aggregation": {"enum": ["NONE", "ADD", "MULTIPLY", "FOLD_ORDERED"]},
+        "rounding_mode": {"$ref": "#/$defs/rounding_mode"},
+        "rounding_schedule": {"enum": ["AFTER_EACH_MODIFIER", "AFTER_EACH_OPERATION", "AT_STAGE_END"]},
+        "operation_order": {"enum": ["LEFT_TO_RIGHT", "MULTIPLY_THEN_DIVIDE", "PAIRWISE"]},
+        "clamp_min_source": {"$ref": "#/$defs/stable_key"},
+        "clamp_max_source": {"$ref": "#/$defs/stable_key"},
+        "overflow_policy": {"enum": ["ERROR", "SATURATE", "CLAMP_BEFORE_OPERATION"]},
+        "divide_by_zero_policy": {"enum": ["ERROR", "REJECT_BRANCH"]},
+        "trace_field_keys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/stable_key"}
+        }
+      }
+    },
+    "rng_draw": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism_id", "draw_id", "stream_id", "tag_id", "draw_order", "consume_condition", "sample_kind", "minimum_inclusive", "maximum_exclusive", "candidate_order", "draw_count_minimum", "draw_count_maximum", "failure_semantics", "trace_fields"],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "draw_id": {"$ref": "#/$defs/stable_id"},
+        "stream_id": {"$ref": "#/$defs/stable_id"},
+        "tag_id": {"$ref": "#/$defs/stable_id"},
+        "draw_order": {"type": "integer", "minimum": 1, "maximum": 4096},
+        "consume_condition": {"$ref": "#/$defs/stable_key"},
+        "sample_kind": {"enum": ["BOUNDED_INT", "ORDERED_CANDIDATE", "WEIGHTED_CANDIDATE", "BOOLEAN"]},
+        "minimum_inclusive": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "maximum_exclusive": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "candidate_order": {"enum": ["CANONICAL_ID_ASC", "SPEC_ORDER", "SORT_KEY_ASC", "NOT_APPLICABLE"]},
+        "draw_count_minimum": {"type": "integer", "minimum": 0, "maximum": 64},
+        "draw_count_maximum": {"type": "integer", "minimum": 0, "maximum": 64},
+        "failure_semantics": {"enum": ["NO_CONSUME_ERROR", "CONSUME_ERROR", "NO_CONSUME_EMPTY", "CONSUME_EMPTY"]},
+        "trace_fields": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/stable_key"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"sample_kind": {"const": "BOOLEAN"}}, "required": ["sample_kind"]},
+          "then": {
+            "properties": {
+              "minimum_inclusive": {"const": 0},
+              "maximum_exclusive": {"const": 2},
+              "candidate_order": {"const": "NOT_APPLICABLE"},
+              "draw_count_minimum": {"const": 1},
+              "draw_count_maximum": {"const": 1}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"sample_kind": {"const": "BOUNDED_INT"}}, "required": ["sample_kind"]},
+          "then": {
+            "properties": {
+              "candidate_order": {"const": "NOT_APPLICABLE"},
+              "draw_count_minimum": {"const": 1},
+              "draw_count_maximum": {"const": 1}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sample_kind": {"enum": ["ORDERED_CANDIDATE", "WEIGHTED_CANDIDATE"]}
+            },
+            "required": ["sample_kind"]
+          },
+          "then": {
+          "properties": {
+            "minimum_inclusive": {"const": 0},
+            "candidate_order": {"not": {"const": "NOT_APPLICABLE"}},
+              "draw_count_minimum": {"const": 0},
+              "draw_count_maximum": {"const": 1}
+            }
+          }
+        }
+      ]
+    },
+    "mutation_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_op_id", "mutation_service_key", "atomic_group_id", "before_field_keys", "after_field_keys", "idempotency_policy", "failure_boundary"],
+      "properties": {
+        "state_op_id": {"$ref": "#/$defs/stable_id"},
+        "mutation_service_key": {"$ref": "#/$defs/stable_key"},
+        "atomic_group_id": {"$ref": "#/$defs/stable_id"},
+        "before_field_keys": {"$ref": "#/$defs/stable_key_set"},
+        "after_field_keys": {"$ref": "#/$defs/stable_key_set"},
+        "idempotency_policy": {"enum": ["NOT_IDEMPOTENT", "REJECT_DUPLICATE", "IDEMPOTENT_BY_OPERATION_ID"]},
+        "failure_boundary": {"enum": ["BEFORE_GROUP", "ATOMIC_GROUP", "TERMINATE_ON_INVARIANT"]}
+      }
+    },
+    "command_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command_id", "audience", "presentation_cue_ids", "barrier_policy", "optional_visual", "emission_order"],
+      "properties": {
+        "command_id": {"$ref": "#/$defs/stable_id"},
+        "audience": {"enum": ["AUTHORITY_ONLY", "OWNER", "OPPONENT", "PUBLIC", "SPECTATOR", "DEBUG_TEST"]},
+        "presentation_cue_ids": {"$ref": "#/$defs/stable_id_set"},
+        "barrier_policy": {"enum": ["NONE", "OPTIONAL", "REQUIRED_LOCAL_ONLY"]},
+        "optional_visual": {"type": "boolean"},
+        "emission_order": {"type": "integer", "minimum": 1, "maximum": 4096}
+      }
+    },
+    "error_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["error_code", "category", "mutation_policy", "rng_policy", "termination_policy"],
+      "properties": {
+        "error_code": {"$ref": "#/$defs/stable_key"},
+        "category": {"enum": ["EXPECTED_REJECTION", "DATA_ERROR", "INVARIANT_FAILURE", "CAPACITY_FAILURE"]},
+        "mutation_policy": {"enum": ["NONE_COMMITTED", "PRIOR_ATOMIC_GROUPS_RETAINED", "TERMINATE_BATTLE"]},
+        "rng_policy": {"enum": ["NO_CONSUME", "PRIOR_DRAWS_RETAINED"]},
+        "termination_policy": {"enum": ["CONTINUE", "ABORT_ACTION", "END_BATTLE_ERROR"]}
+      }
+    },
+    "atomicity_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validation_policy", "rollback_policy", "command_capacity_preflight"],
+      "properties": {
+        "validation_policy": {"enum": ["VALIDATE_ALL_BEFORE_MUTATION", "VALIDATE_PER_ATOMIC_GROUP"]},
+        "rollback_policy": {"enum": ["NO_MUTATION_ON_FAILURE", "ATOMIC_GROUP_BOUNDARY", "TERMINATE_ON_INVARIANT"]},
+        "command_capacity_preflight": {"type": "boolean"}
+      }
+    },
+    "test_requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test_kind", "required_oracle_kinds", "minimum_cases", "required_for_target_maturity"],
+      "properties": {
+        "test_kind": {"enum": ["FORMULA_UNIT", "RESOLVER_PHASE", "EVENT_HANDLER", "RNG", "STATE_MUTATION", "COMMAND_PRESENTATION", "AUDIENCE", "GAMEPLAY_INTERRUPTION", "SETTLEMENT_DECISION", "SCENARIO", "REPLAY", "PERFORMANCE"]},
+        "required_oracle_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/oracle_kind"}
+        },
+        "minimum_cases": {"type": "integer", "minimum": 1, "maximum": 65535},
+        "required_for_target_maturity": {"$ref": "#/$defs/maturity"}
+      },
+      "allOf": [
+        {"if": {"properties": {"test_kind": {"const": "FORMULA_UNIT"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "FORMULA"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "RESOLVER_PHASE"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "RESOLVER_PHASE"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "EVENT_HANDLER"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "EVENT_HANDLER"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "RNG"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "RNG"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "STATE_MUTATION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "STATE_MUTATION"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "COMMAND_PRESENTATION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "COMMAND_PRESENTATION"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "AUDIENCE"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "AUDIENCE"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "GAMEPLAY_INTERRUPTION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "GAMEPLAY_INTERRUPTION"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "SETTLEMENT_DECISION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "SETTLEMENT_DECISION"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "SCENARIO"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "SCENARIO"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "REPLAY"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "REPLAY"}}}}},
+        {"if": {"properties": {"test_kind": {"const": "PERFORMANCE"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "PERFORMANCE"}}}}}
+      ]
+    }
+  }
+}

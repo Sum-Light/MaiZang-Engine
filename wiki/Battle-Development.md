@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | In progress (2/16) | Append-only stable-ID registry and presentation tag/payload/cue contracts; mechanism schemas, trace, coverage, and fixture compiler remain |
+| P2 | In progress (4/16) | Append-only ID/presentation contracts plus five strict authoring schemas and validator-owned maturity; compiler, trace, coverage, and fixtures remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -310,21 +310,75 @@ verified work item uses a clean typed-ID/invalid-sentinel source only as
 structural evidence; append-only history and cue semantics remain Godot
 contracts and project decisions.
 
+## P2 Strict Spec And Maturity Contracts
+
+P2 checklist items three and four are complete. Five strict Draft 2020-12
+schemas define `MechanismSpec`, `EventSchema`, `HandlerBinding`,
+`ResolverSpec`, and `TestManifestEntry`. Future authoring uses exactly one
+zero-padded ten-digit primary ID per file under `specs/mechanisms/`,
+`specs/events/`, `specs/handlers/`, `specs/resolvers/`, or `specs/tests/`.
+All roots and nested objects are closed, arrays are bounded, values are strict
+UTF-8 integers/booleans/strings, and null, float, path, expression, runtime
+object, unknown field, and authored `computed_status` values fail closed. The
+five authoring sets remain intentionally empty in this slice.
+
+Mechanism authoring separates append-only identity from behavior order.
+Inputs and formula outputs have typed local slots; every formula declares
+operand/result units, result range, 32/64-bit intermediate width, negative
+handling, exact rounding point, clamp, overflow, divide-by-zero, parameter,
+trace, and optional modifier-event semantics. A unified ordered plan places
+formula stages, repeatable event emissions, RNG draws, state mutations, and
+commands. Stable stage/draw/opcode IDs may be appended without forcing their
+execution position. Local validation also closes branch/oracle requirements,
+RNG sample/bounds/count combinations, mutation/command references, error
+semantics, atomicity, and test obligations.
+
+Event schemas require PascalCase typed contexts, narrow reads/writes,
+aggregation and compatible short-circuit rules, a final `INSTANCE_ID ASC`
+stable tie-break, bounded same-instance recall, explicit rounding ownership,
+and trace policy. Handler bindings use registry keys rather than paths and
+constrain queries, mutations, mechanisms, and scoped RNG draws. Resolver
+phases use independent `phase_id` and `phase_order`, bounded reentry/nesting,
+local emission and interruption phases, errors, termination, and covered
+mechanisms. Scenario tests alone use `fixture_id == test_id` in P2B; all other
+test kinds use zero until the P2 fixture compiler defines their later binding
+contract.
+
+`target_maturity` is authoring; `computed_status` is validator output only.
+Promotion is continuous through `DISCOVERED`, `SPECIFIED`, `IMPLEMENTED`,
+`VERIFIED`, and `RELEASED`, with deterministic blocker codes and a hard target
+failure. The P2B CLI intentionally supplies only discovery facts: global
+cross-references, implementation bindings, evidence joins, execution results,
+and release gates belong to later P2 slices. A source/handler filename alone
+cannot promote a mechanism. Repository and Worktree enumerate the complete
+five authoring sets; Staged reads exact index blobs and first enforces P2A
+review-surface parity. The current empty-set canonical input hash is
+`32857c87d8e374886c91e9a65a2eed546478930d640d5ba4ecf006c18a1fa821`.
+
+The 499-check PowerShell suite executes all five valid synthetic contracts,
+recursive internal-schema references and nested closure, local semantic
+contradictions, the complete maturity lattice, ID/order independence,
+repeatable event emission, formula unit flow, runtime-type boundaries,
+Repository/Worktree/Staged isolation, ACTIVE filename/debug identity, staged
+review parity, read-only behavior, and Windows reparse rejection. The work
+item binds clean Section, event-handler-table, and source-test evidence as
+structural context without treating source code as a Godot schema oracle.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
 items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, P1 is
-`17/17`, and P2 is `2/16`. Current mainline progress is therefore `64/465`
-items (`13.8%`), with `3/20` phases complete and P2 in progress. This count
+`17/17`, and P2 is `4/16`. Current mainline progress is therefore `66/465`
+items (`14.2%`), with `3/20` phases complete and P2 in progress. This count
 advances only after a checklist item has implementation, focused verification,
 Wiki/Skill memory, and a focused commit.
 
-The first two P2 items are now closed: append-only/tombstone-safe mechanism
-and runtime ID domains, plus the presentation cue/payload/tag manifest. The
-next P2 slice defines strict `MechanismSpec`, `EventSchema`, `HandlerBinding`,
-`ResolverSpec`, and `TestManifestEntry` authoring contracts and makes
-`computed_status` validator-owned.
+The first four P2 items are now closed: append-only/tombstone-safe mechanism
+and runtime ID domains, the presentation cue/payload/tag manifest, five strict
+authoring schemas, and validator-owned maturity. The next P2 slice implements
+the deterministic spec compiler, global cross-reference checks, sorting, and
+canonical runtime manifest hash.
 
 ## Editor Entry
 
@@ -391,6 +445,9 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_id_presentation_contract_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_spec_contract_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_catalog\importers\build_p0_source_audit.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
@@ -442,3 +499,6 @@ read-only root gate without requiring Platinum assets.
 The P2 ID/presentation suite executes 75 checks across strict structure,
 canonical hashes, append-only evolution, tombstones, scoped IDs, cue/payload
 cross-references, staged-index isolation, and semantic scope-gate integration.
+The P2 strict-spec suite executes 499 checks across all five authoring shapes,
+recursive schema closure, local topology and ordering, maturity promotion,
+three Git views, ACTIVE identity, read-only validation, and reparse rejection.

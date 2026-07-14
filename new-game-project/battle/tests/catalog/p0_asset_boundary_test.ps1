@@ -97,8 +97,18 @@ Assert-CandidateFails `
 foreach ($approvedP2Path in @(
     "new-game-project/battle/specs/id_manifests/battle_stable_ids.json",
     "new-game-project/battle/specs/presentation/presentation_contracts.json",
+    "new-game-project/battle/specs/mechanisms/0000000001.mechanism_spec.json",
+    "new-game-project/battle/specs/events/0000000001.event_schema.json",
+    "new-game-project/battle/specs/handlers/0000000001.handler_binding.json",
+    "new-game-project/battle/specs/resolvers/0000000001.resolver_spec.json",
+    "new-game-project/battle/specs/tests/0000000001.test_manifest_entry.json",
     "new-game-project/battle/tools/battle_specs/schemas/stable_id_manifest.schema.json",
-    "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json"
+    "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/mechanism_spec.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/event_schema.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/handler_binding.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/resolver_spec.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/test_manifest_entry.schema.json"
 )) {
     Assert-CandidatePasses -Path $approvedP2Path -Text '{"schema_version":1}' `
         -Label "approved P2 JSON path $approvedP2Path"
@@ -107,7 +117,12 @@ foreach ($unapprovedP2Path in @(
     "new-game-project/battle/specs/id_manifests/nearby.json",
     "new-game-project/battle/specs/presentation/nearby.json",
     "new-game-project/battle/specs/mechanisms/rogue.json",
-    "new-game-project/battle/tools/battle_specs/schemas/rogue.schema.json"
+    "new-game-project/battle/specs/mechanisms/1.mechanism_spec.json",
+    "new-game-project/battle/specs/mechanisms/0000000001.event_schema.json",
+    "new-game-project/battle/specs/mechanisms/nested/0000000001.mechanism_spec.json",
+    "new-game-project/battle/specs/Events/0000000001.event_schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/rogue.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/mechanism_specs.schema.json"
 )) {
     Assert-CandidateFails -Path $unapprovedP2Path -Text '{}' `
         -MessagePattern "BATTLE_ASSET_JSON_PATH_NOT_ALLOWED" `

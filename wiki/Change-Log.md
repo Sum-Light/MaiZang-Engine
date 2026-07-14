@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Define battle P2 strict specs and maturity
+
+- Add closed, bounded authoring schemas for mechanisms, events, handler bindings, resolvers, and test entries, with typed formula slots, an ID-independent execution plan, bounded reentry/RNG semantics, and one ten-digit primary-ID file contract.
+- Add deterministic Repository/Worktree/Staged validation, ACTIVE filename/debug identity checks, validator-owned five-level maturity with hard target failures, reviewed-surface parity, and read-only/reparse-safe traversal while leaving all gameplay authoring sets empty.
+- Add a clean-source-evidence work item and 499 adversarial checks across recursive schema closure, local topology, maturity, Git-index isolation, and path safety; advance P2 to `4/16` and the mainline to `66/465` (`14.2%`).
+
 ## 2026-07-14 - Establish battle P2 ID and presentation contracts
 
 - Add a fixed 15-domain stable-ID authoring registry with owner-checked global/mechanism/resolver scopes, positive signed-32 IDs, append-only history, retained tombstones, and alias-preserving renames without allocating gameplay values.

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/test_manifest_entry.schema.json",
+  "title": "TestManifestEntry",
+  "$comment": "The P2B executable validator proves the ten-digit filename matches test_id, enforces local array order, and requires fixture_id to equal test_id for SCENARIO entries. Cross-file reference compilation remains P2C; JSON Schema requires a positive fixture only for SCENARIO entries and the invalid sentinel for every other test kind.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "test_id",
+    "debug_key",
+    "schema_version",
+    "test_kind",
+    "fixture_id",
+    "coverage_targets",
+    "expected_event_ids",
+    "expected_handler_ids",
+    "expected_state_op_ids",
+    "expected_command_ids",
+    "required_oracle_kinds"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "TEST_MANIFEST_ENTRY"},
+    "test_id": {"$ref": "#/$defs/stable_id"},
+    "debug_key": {"$ref": "#/$defs/debug_key"},
+    "schema_version": {"$ref": "#/$defs/version"},
+    "test_kind": {"$ref": "#/$defs/test_kind"},
+    "fixture_id": {"$ref": "#/$defs/optional_id"},
+    "coverage_targets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/coverage_target"}
+    },
+    "expected_event_ids": {"$ref": "#/$defs/stable_id_set"},
+    "expected_handler_ids": {"$ref": "#/$defs/stable_id_set"},
+    "expected_state_op_ids": {"$ref": "#/$defs/stable_id_set"},
+    "expected_command_ids": {"$ref": "#/$defs/stable_id_set"},
+    "required_oracle_kinds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/oracle_kind"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "test_kind": {"const": "SCENARIO"}
+        },
+        "required": ["test_kind"]
+      },
+      "then": {"properties": {"fixture_id": {"minimum": 1}}},
+      "else": {"properties": {"fixture_id": {"const": 0}}}
+    },
+    {"if": {"properties": {"test_kind": {"const": "FORMULA_UNIT"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "FORMULA"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "RESOLVER_PHASE"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "RESOLVER_PHASE"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "EVENT_HANDLER"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "EVENT_HANDLER"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "RNG"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "RNG"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "STATE_MUTATION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "STATE_MUTATION"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "COMMAND_PRESENTATION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "COMMAND_PRESENTATION"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "AUDIENCE"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "AUDIENCE"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "GAMEPLAY_INTERRUPTION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "GAMEPLAY_INTERRUPTION"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "SETTLEMENT_DECISION"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "SETTLEMENT_DECISION"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "SCENARIO"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "SCENARIO"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "REPLAY"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "REPLAY"}}}}},
+    {"if": {"properties": {"test_kind": {"const": "PERFORMANCE"}}, "required": ["test_kind"]}, "then": {"properties": {"required_oracle_kinds": {"contains": {"const": "PERFORMANCE"}}}}}
+  ],
+  "$defs": {
+    "stable_id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "optional_id": {"type": "integer", "minimum": 0, "maximum": 2147483647},
+    "version": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "debug_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128},
+    "test_kind": {
+      "enum": ["FORMULA_UNIT", "RESOLVER_PHASE", "EVENT_HANDLER", "RNG", "STATE_MUTATION", "COMMAND_PRESENTATION", "AUDIENCE", "GAMEPLAY_INTERRUPTION", "SETTLEMENT_DECISION", "SCENARIO", "REPLAY", "PERFORMANCE"]
+    },
+    "oracle_kind": {
+      "enum": ["FORMULA", "RESOLVER_PHASE", "EVENT_HANDLER", "RNG", "STATE_MUTATION", "COMMAND_PRESENTATION", "AUDIENCE", "GAMEPLAY_INTERRUPTION", "SETTLEMENT_DECISION", "SCENARIO", "REPLAY", "PERFORMANCE"]
+    },
+    "stable_id_set": {
+      "type": "array",
+      "maxItems": 512,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "coverage_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism_id", "branch_id"],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "branch_id": {"$ref": "#/$defs/stable_id"}
+      }
+    }
+  }
+}

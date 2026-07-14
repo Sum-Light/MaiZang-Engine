@@ -37,12 +37,24 @@ function Test-BattleAllowedJsonPath {
     if ($RelativePath -cmatch '^new-game-project/battle/manifests/work_items/[A-Z0-9_.-]+\.json$') {
         return $true
     }
+    if ($RelativePath -cmatch '^new-game-project/battle/specs/mechanisms/[0-9]{10}\.mechanism_spec\.json$' -or
+        $RelativePath -cmatch '^new-game-project/battle/specs/events/[0-9]{10}\.event_schema\.json$' -or
+        $RelativePath -cmatch '^new-game-project/battle/specs/handlers/[0-9]{10}\.handler_binding\.json$' -or
+        $RelativePath -cmatch '^new-game-project/battle/specs/resolvers/[0-9]{10}\.resolver_spec\.json$' -or
+        $RelativePath -cmatch '^new-game-project/battle/specs/tests/[0-9]{10}\.test_manifest_entry\.json$') {
+        return $true
+    }
     if ($RelativePath -cmatch '^new-game-project/battle/tools/battle_catalog/schemas/[a-z0-9_]+\.schema\.json$') {
         return $true
     }
     if ($RelativePath -in @(
         "new-game-project/battle/tools/battle_specs/schemas/stable_id_manifest.schema.json",
-        "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json"
+        "new-game-project/battle/tools/battle_specs/schemas/presentation_contracts.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/mechanism_spec.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/event_schema.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/handler_binding.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/resolver_spec.schema.json",
+        "new-game-project/battle/tools/battle_specs/schemas/test_manifest_entry.schema.json"
     )) {
         return $true
     }

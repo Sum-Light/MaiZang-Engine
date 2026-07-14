@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/event_schema.schema.json",
+  "title": "EventSchema",
+  "$comment": "The P2B executable validator proves the ten-digit filename matches event_id and enforces local structure and ordering. Cross-file reference and handler-context compilation remains P2C.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_kind",
+    "event_id",
+    "debug_key",
+    "schema_version",
+    "behavior_version",
+    "context_type",
+    "readable_fields",
+    "writable_operations",
+    "aggregation_policy",
+    "sort_key",
+    "short_circuit_rule",
+    "nested_event_ids",
+    "same_instance_recall_policy",
+    "maximum_same_instance_recalls",
+    "activation_visibility",
+    "removal_visibility",
+    "rounding_stage_ids",
+    "rounding_mode",
+    "rounding_schedule",
+    "trace_policy"
+  ],
+  "properties": {
+    "artifact_kind": {"const": "EVENT_SCHEMA"},
+    "event_id": {"$ref": "#/$defs/stable_id"},
+    "debug_key": {"$ref": "#/$defs/debug_key"},
+    "schema_version": {"$ref": "#/$defs/version"},
+    "behavior_version": {"$ref": "#/$defs/version"},
+    "context_type": {"$ref": "#/$defs/type_name"},
+    "readable_fields": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/readable_field"}
+    },
+    "writable_operations": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/writable_operation"}
+    },
+    "aggregation_policy": {"enum": ["VISIT_ALL", "FIRST_DENY", "FIRST_ACCEPT", "FOLD_MODIFIERS", "REPLACE_LAST"]},
+    "sort_key": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/sort_term"}
+    },
+    "short_circuit_rule": {"enum": ["NONE", "ON_DENY", "ON_ACCEPT", "ON_ERROR", "ON_TERMINAL_RESULT"]},
+    "nested_event_ids": {"$ref": "#/$defs/stable_id_set"},
+    "same_instance_recall_policy": {"enum": ["DENY", "ALLOW_ONCE", "ALLOW_BOUNDED"]},
+    "maximum_same_instance_recalls": {"type": "integer", "minimum": 0, "maximum": 64},
+    "activation_visibility": {"enum": ["IMMEDIATE_IF_NOT_VISITED", "NEXT_NESTED_EVENT", "NEXT_DISPATCH"]},
+    "removal_visibility": {"enum": ["IMMEDIATE", "AFTER_CURRENT_EVENT", "NEXT_DISPATCH"]},
+    "rounding_stage_ids": {"$ref": "#/$defs/stable_id_set"},
+    "rounding_mode": {"enum": ["NONE", "FLOOR", "CEIL", "TOWARD_ZERO", "AWAY_FROM_ZERO", "NEAREST_TIES_DOWN", "NEAREST_TIES_UP"]},
+    "rounding_schedule": {"enum": ["NONE", "AFTER_EACH_MODIFIER", "AFTER_EACH_OPERATION", "AT_STAGE_END"]},
+    "trace_policy": {"$ref": "#/$defs/trace_policy"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"rounding_mode": {"const": "NONE"}}, "required": ["rounding_mode"]},
+      "then": {
+        "properties": {
+          "rounding_stage_ids": {"maxItems": 0},
+          "rounding_schedule": {"const": "NONE"}
+        }
+      },
+      "else": {
+        "properties": {
+          "rounding_stage_ids": {"minItems": 1},
+          "rounding_schedule": {"enum": ["AFTER_EACH_MODIFIER", "AFTER_EACH_OPERATION", "AT_STAGE_END"]}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"same_instance_recall_policy": {"const": "DENY"}}, "required": ["same_instance_recall_policy"]},
+      "then": {"properties": {"maximum_same_instance_recalls": {"const": 0}}}
+    },
+    {
+      "if": {"properties": {"same_instance_recall_policy": {"const": "ALLOW_ONCE"}}, "required": ["same_instance_recall_policy"]},
+      "then": {"properties": {"maximum_same_instance_recalls": {"const": 1}}}
+    },
+    {
+      "if": {"properties": {"same_instance_recall_policy": {"const": "ALLOW_BOUNDED"}}, "required": ["same_instance_recall_policy"]},
+      "then": {"properties": {"maximum_same_instance_recalls": {"minimum": 2}}}
+    },
+    {
+      "if": {"properties": {"aggregation_policy": {"const": "FIRST_DENY"}}, "required": ["aggregation_policy"]},
+      "then": {"properties": {"short_circuit_rule": {"const": "ON_DENY"}}}
+    },
+    {
+      "if": {"properties": {"aggregation_policy": {"const": "FIRST_ACCEPT"}}, "required": ["aggregation_policy"]},
+      "then": {"properties": {"short_circuit_rule": {"const": "ON_ACCEPT"}}}
+    },
+    {
+      "if": {
+        "properties": {
+          "aggregation_policy": {"enum": ["VISIT_ALL", "FOLD_MODIFIERS", "REPLACE_LAST"]}
+        },
+        "required": ["aggregation_policy"]
+      },
+      "then": {
+        "properties": {
+          "short_circuit_rule": {"enum": ["NONE", "ON_ERROR", "ON_TERMINAL_RESULT"]}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stable_id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "version": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "debug_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$", "maxLength": 128},
+    "stable_key": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*(\\.[A-Z][A-Z0-9_]*)*$", "maxLength": 160},
+    "field_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 64},
+    "type_name": {"type": "string", "pattern": "^(?![A-Za-z0-9_]*(?:Dictionary|Variant|Node|Resource|Callable))[A-Z][A-Za-z0-9_]*$", "maxLength": 128},
+    "stable_id_set": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "readable_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_name", "value_kind", "stable_domain", "minimum", "maximum", "source", "visibility"],
+      "properties": {
+        "field_name": {"$ref": "#/$defs/field_name"},
+        "value_kind": {"enum": ["STABLE_ID", "SIGNED_INT", "BOOL"]},
+        "stable_domain": {"enum": ["ENTITY", "EFFECT", "ITEM", "MOVE", "MESSAGE", "NONE"]},
+        "minimum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "maximum": {"type": "integer", "minimum": -2147483648, "maximum": 2147483647},
+        "source": {"enum": ["CONTEXT", "BATTLE_READ_API", "CATALOG", "EFFECT_INSTANCE"]},
+        "visibility": {"enum": ["AUTHORITY_ONLY", "OWNER", "OPPONENT", "PUBLIC", "DEBUG_TEST"]}
+      }
+    },
+    "writable_operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_key", "argument_type", "result_type", "mutation_class"],
+      "properties": {
+        "operation_key": {"$ref": "#/$defs/stable_key"},
+        "argument_type": {"$ref": "#/$defs/type_name"},
+        "result_type": {"$ref": "#/$defs/type_name"},
+        "mutation_class": {"enum": ["RELAY_VALUE", "DENY", "ACCEPT", "REPLACE_TARGET", "ACCUMULATE", "CONTEXT_RESULT"]}
+      }
+    },
+    "sort_term": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field_key", "direction", "source"],
+      "properties": {
+        "field_key": {"$ref": "#/$defs/stable_key"},
+        "direction": {"enum": ["ASC", "DESC"]},
+        "source": {"enum": ["EVENT_SCHEMA", "HANDLER_BINDING", "OWNER", "EFFECT_INSTANCE", "STABLE_ID"]}
+      }
+    },
+    "trace_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "record_context_hash", "record_handler_order", "record_short_circuit", "trace_field_keys"],
+      "properties": {
+        "level": {"enum": ["OFF", "ERRORS", "DETERMINISM", "FULL"]},
+        "record_context_hash": {"type": "boolean"},
+        "record_handler_order": {"type": "boolean"},
+        "record_short_circuit": {"type": "boolean"},
+        "trace_field_keys": {
+          "type": "array",
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/stable_key"}
+        }
+      }
+    }
+  }
+}

@@ -294,6 +294,8 @@ function Test-P2ContractsRelevant {
 
 $p2ContractGatePath = Join-Path $PSScriptRoot `
     "battle_specs\validators\validate_p2_id_manifests.ps1"
+$p2SpecGatePath = Join-Path $PSScriptRoot `
+    "battle_specs\validators\validate_p2_spec_contracts.ps1"
 foreach ($contractMode in @("Staged", "Worktree")) {
     if ($contractMode -eq "Staged" -and $Mode -notin @("Staged", "All")) {
         continue
@@ -308,6 +310,10 @@ foreach ($contractMode in @("Staged", "Worktree")) {
         throw "P2 ID/presentation contract gate was not found: $p2ContractGatePath"
     }
     & $p2ContractGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
+    if (-not (Test-Path -LiteralPath $p2SpecGatePath -PathType Leaf)) {
+        throw "P2 strict spec contract gate was not found: $p2SpecGatePath"
+    }
+    & $p2SpecGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
 }
 
 $dependencyGatePath = Join-Path $PSScriptRoot "check_battle_dependencies.ps1"
