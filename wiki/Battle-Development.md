@@ -20,7 +20,7 @@ directory.
 | Q0 | Complete | Inspector quick-start button, independent text smoke shell, nested asset ignores, scope gate, and scene/scope tests |
 | P0 | Complete | Frozen scope/contracts, 6,559-entry source audit, staged asset gate, and explicit synthetic/production source boundary |
 | P1 | Complete (17/17) | Foundation, protocol/command envelopes, empty engine, authority/session lifecycle, aggregate runner, and no-asset headless gate |
-| P2 | In progress (4/16) | Append-only ID/presentation contracts plus five strict authoring schemas and validator-owned maturity; compiler, trace, coverage, and fixtures remain |
+| P2 | In progress (6/16) | ID/presentation and strict authoring contracts plus deterministic cross-reference compiler/runtime catalog; trace, coverage, and fixtures remain |
 | P3-P18 | Not started | Data, engine, rules, AI, settlement, replay, and full text interaction |
 | N0 | Deferred | Network admission work after the complete local implementation |
 
@@ -340,7 +340,9 @@ and trace policy. Handler bindings use registry keys rather than paths and
 constrain queries, mutations, mechanisms, and scoped RNG draws. Resolver
 phases use independent `phase_id` and `phase_order`, bounded reentry/nesting,
 local emission and interruption phases, errors, termination, and covered
-mechanisms. Scenario tests alone use `fixture_id == test_id` in P2B; all other
+mechanisms. Resolver-level `mechanism_ids` owns direct and indirect links;
+phase arrays are scheduled subsets and are not required to form an exact root
+union. Scenario tests alone use `fixture_id == test_id` in P2B; all other
 test kinds use zero until the P2 fixture compiler defines their later binding
 contract.
 
@@ -355,7 +357,7 @@ five authoring sets; Staged reads exact index blobs and first enforces P2A
 review-surface parity. The current empty-set canonical input hash is
 `32857c87d8e374886c91e9a65a2eed546478930d640d5ba4ecf006c18a1fa821`.
 
-The 499-check PowerShell suite executes all five valid synthetic contracts,
+The 508-check PowerShell suite executes all five valid synthetic contracts,
 recursive internal-schema references and nested closure, local semantic
 contradictions, the complete maturity lattice, ID/order independence,
 repeatable event emission, formula unit flow, runtime-type boundaries,
@@ -364,21 +366,91 @@ review parity, read-only behavior, and Windows reparse rejection. The work
 item binds clean Section, event-handler-table, and source-test evidence as
 structural context without treating source code as a Godot schema oracle.
 
+## P2 Deterministic Spec Compiler
+
+P2 checklist item five and deterministic completion gate G01 are complete.
+The compiler consumes one immutable Repository, Worktree, or Staged view and
+validates the stable registry, presentation contracts, and all five authoring
+sets exactly once. All modes capture the bounded candidate path set and bytes
+when the view is constructed; Worktree and Staged also retain captured `HEAD`
+baseline bytes for history checks. A file is limited to 512 KiB, a candidate
+set to 65,535 paths, and candidate plus baseline storage to 64 MiB. Staged
+checks each blob size before reading its exact OID. Git metadata is pathspec-
+limited and output-bounded. No-follow handles reject reparse objects and any
+final path that differs from the captured repository root plus lexical
+relative path. The shared execution surface, including `battle/.gitignore`,
+rejects untracked, deleted, nonregular, reparse, unmerged, or index/worktree-
+split compiler inputs. Ordinal path enumeration is explicit on PowerShell 5.1.
+
+Global compilation closes ACTIVE global and scoped IDs, required authoring
+artifacts, presentation cues, mechanism/resolver/phase/subphase membership,
+event and handler context/capability links, bidirectional owner-qualified
+formula/event rounding, scoped RNG draws, mutation
+services, command contracts, resolver emission/interruption/nesting graphs,
+test branch/oracle/expected-ID ownership, maturity-gated distinct test cases,
+and emission-phase event ownership. Handler, resolver, phase, event, and
+mechanism back-references are bidirectional. Resolver cycles and missing
+versioned ruleset providers fail closed. Diagnostics collect before failure
+and sort by pass, artifact, primary ID, field, target scope/ID, code, and
+detail. Successful closure promotes a mechanism only through requirements it
+actually satisfies and never beyond `SPECIFIED`; implementation, dependency,
+executed-test, coverage, evidence, and release facts remain false.
+
+`spec_manifest.json` is a closed canonical index of artifact IDs, behavior/
+schema versions, source hashes, and mechanism maturity, not a second copy of
+authoring truth. `runtime_manifest.json` contains only operational mechanism,
+event, handler, and resolver tables, binds the spec-manifest hash, and excludes
+paths, debug/owner labels, evidence, project requirements, tests, maturity,
+timestamps, GUIDs, definition values, and object instances. Primary tables
+sort by numeric ID, resolver phases by `phase_order` then `phase_id`, and
+semantic arrays retain declared order. Canonical output is compact ordinal-key
+UTF-8 without BOM and with exactly one trailing LF.
+
+The CLI is read-only by default and its public action accepts only project
+root, view mode, and output/verify directory, never an injected view, spec set,
+or compilation object. Explicit output and verification are confined to
+immutable child directories with existing parents below the system temp
+directory or ignored `battle/generated/battle_specs/`. Project-local directory
+and file targets must all pass `git check-ignore --no-index`. Both files use
+exclusive create-new handles, stable two-file reads, and a sibling staging
+directory published with one directory rename; exact repeats are idempotent
+and different or incomplete existing pairs are never overwritten. The
+compiler has no deletion path: failures retain evidence for diagnosis and a
+retry uses a new GUID. Project-local paths cannot be reclassified as temp
+output even when a CI clone lives below `%TEMP%`. The current empty input hash
+remains
+`32857c87d8e374886c91e9a65a2eed546478930d640d5ba4ecf006c18a1fa821`;
+its compiled spec/runtime hashes are respectively
+`9f35401d489d6a0e55c2514fe8325850dc353c8b907f919fcd30dccfd6a87b57`
+and
+`5d3971516b957d9f58986eba6d5b8e741dc8da8b609c234ffb8b7222e00b9d39`.
+The 69-check repository-view suite covers captured/cloned worktree, HEAD, and
+index bytes; per-file/path/aggregate/Git-output limits; ordinal paths; invalid
+UTF-8; no-follow final-path containment; reparse/nonregular/unmerged states;
+and reviewed surface/ignore parity. The 632-check compiler suite covers both
+output schemas and all cross-schema pointers, a complete synthetic graph,
+schema projections, maturity threshold independence, test-requirement and
+phase-event ownership, semantic ordering, deterministic diagnostics, closed
+public actions, no-write operation, byte-identical double output, stable
+locked verification, tamper/oversize detection, immutable publication, output
+boundaries, ignored-path enforcement, and all major reference failures.
+
 ## Quantified Progress
 
 The local implementation mainline contains `465` checklist items across Q0
 and P0-P18. The separately deferred N0 network phase and nine shared preamble
 items are excluded from this denominator. Q0 is `23/23`, P0 is `22/22`, P1 is
-`17/17`, and P2 is `4/16`. Current mainline progress is therefore `66/465`
-items (`14.2%`), with `3/20` phases complete and P2 in progress. This count
+`17/17`, and P2 is `6/16`. Current mainline progress is therefore `68/465`
+items (`14.6%`), with `3/20` phases complete and P2 in progress. This count
 advances only after a checklist item has implementation, focused verification,
 Wiki/Skill memory, and a focused commit.
 
-The first four P2 items are now closed: append-only/tombstone-safe mechanism
-and runtime ID domains, the presentation cue/payload/tag manifest, five strict
-authoring schemas, and validator-owned maturity. The next P2 slice implements
-the deterministic spec compiler, global cross-reference checks, sorting, and
-canonical runtime manifest hash.
+P2 Todo1-5 and deterministic completion gate G01 are now closed: append-only/
+tombstone-safe mechanism and runtime ID domains, the presentation cue/payload/
+tag manifest, five strict authoring schemas, validator-owned maturity, the
+deterministic spec compiler, and byte-identical spec/runtime manifest output.
+Todo6 remains next: the fixture compiler and trace probe, still without
+coupling the battle module to the MaiZang world runtime.
 
 ## Editor Entry
 
@@ -448,6 +520,16 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_spec_contract_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_repository_view_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_spec_compiler_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_specs.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_catalog\importers\build_p0_source_audit.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
@@ -499,6 +581,16 @@ read-only root gate without requiring Platinum assets.
 The P2 ID/presentation suite executes 75 checks across strict structure,
 canonical hashes, append-only evolution, tombstones, scoped IDs, cue/payload
 cross-references, staged-index isolation, and semantic scope-gate integration.
-The P2 strict-spec suite executes 499 checks across all five authoring shapes,
+The P2 strict-spec suite executes 508 checks across all five authoring shapes,
 recursive schema closure, local topology and ordering, maturity promotion,
 three Git views, ACTIVE identity, read-only validation, and reparse rejection.
+The P2 repository-view suite executes 69 checks across captured and cloned
+worktree/HEAD/index bytes, bounded allocation, ordinal paths, invalid
+encodings, no-follow redirects, reparse points, review/ignore surface parity,
+Git modes, and unmerged indexes without mutating Git.
+The P2 compiler suite executes 632 checks across recursive output-schema
+closure and cross-schema pointers, a closed synthetic graph, runtime
+projection, canonical double output, deterministic errors, global/scoped/test
+and phase-event references, maturity thresholds, closed no-write/write/verify
+actions, stable locked pairs, immutable ignored output, tamper/oversize
+detection, and pair preflight.

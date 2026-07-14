@@ -22,7 +22,7 @@
     "maximum_same_instance_recalls",
     "activation_visibility",
     "removal_visibility",
-    "rounding_stage_ids",
+    "rounding_stage_refs",
     "rounding_mode",
     "rounding_schedule",
     "trace_policy"
@@ -60,7 +60,12 @@
     "maximum_same_instance_recalls": {"type": "integer", "minimum": 0, "maximum": 64},
     "activation_visibility": {"enum": ["IMMEDIATE_IF_NOT_VISITED", "NEXT_NESTED_EVENT", "NEXT_DISPATCH"]},
     "removal_visibility": {"enum": ["IMMEDIATE", "AFTER_CURRENT_EVENT", "NEXT_DISPATCH"]},
-    "rounding_stage_ids": {"$ref": "#/$defs/stable_id_set"},
+    "rounding_stage_refs": {
+      "type": "array",
+      "maxItems": 256,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/rounding_stage_ref"}
+    },
     "rounding_mode": {"enum": ["NONE", "FLOOR", "CEIL", "TOWARD_ZERO", "AWAY_FROM_ZERO", "NEAREST_TIES_DOWN", "NEAREST_TIES_UP"]},
     "rounding_schedule": {"enum": ["NONE", "AFTER_EACH_MODIFIER", "AFTER_EACH_OPERATION", "AT_STAGE_END"]},
     "trace_policy": {"$ref": "#/$defs/trace_policy"}
@@ -70,13 +75,13 @@
       "if": {"properties": {"rounding_mode": {"const": "NONE"}}, "required": ["rounding_mode"]},
       "then": {
         "properties": {
-          "rounding_stage_ids": {"maxItems": 0},
+          "rounding_stage_refs": {"maxItems": 0},
           "rounding_schedule": {"const": "NONE"}
         }
       },
       "else": {
         "properties": {
-          "rounding_stage_ids": {"minItems": 1},
+          "rounding_stage_refs": {"minItems": 1},
           "rounding_schedule": {"enum": ["AFTER_EACH_MODIFIER", "AFTER_EACH_OPERATION", "AT_STAGE_END"]}
         }
       }
@@ -127,6 +132,15 @@
       "maxItems": 256,
       "uniqueItems": true,
       "items": {"$ref": "#/$defs/stable_id"}
+    },
+    "rounding_stage_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mechanism_id", "stage_id"],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "stage_id": {"$ref": "#/$defs/stable_id"}
+      }
     },
     "readable_field": {
       "type": "object",

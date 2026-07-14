@@ -6,7 +6,7 @@ directory must leave the existing MaiZang world runtime unchanged.
 
 ## Current Status
 
-Q0, P0, and P1 are complete. P2 is in progress (`4/16`). The pure foundation
+Q0, P0, and P1 are complete. P2 is in progress (`6/16`). The pure foundation
 and protocol/command contracts define nine independent contract versions,
 stable IDs and diagnostics, typed results, checked integer/fixed-ratio math,
 canonical bytes and SHA-256, fail-closed step envelopes, ordered command
@@ -16,11 +16,11 @@ still does not contain a catalog, configured battle state, playable battle,
 world integration, network stack, model, texture, animation, audio, or battle
 camera.
 
-The first two P2 slices establish append-only stable-ID/presentation contracts
-and five strict spec schemas with validator-owned maturity. The authoring sets
-remain empty; cross-file compilation, fixture compilation, runtime trace, and
-coverage reports remain later P2 work. P2 does not change the editor entry or
-connect the world.
+The first three P2 slices establish append-only stable-ID/presentation
+contracts, five strict spec schemas with validator-owned maturity, and the
+deterministic cross-file compiler. The authoring sets remain empty; fixture
+compilation, runtime trace, and coverage reports remain later P2 work. P2 does
+not change the editor entry or connect the world.
 
 Open `res://battle/quick_start/battle_quick_start.tscn`, select its root node,
 and use the `Quick Start Text Battle` Inspector tool button. The button only
@@ -328,15 +328,53 @@ commands without reusing append-only IDs as positions. Events require a final
 stable tie-break, explicit aggregation/short-circuit semantics, bounded recall,
 rounding ownership, and trace policy. Handler RNG references, resolver phase
 order/reentry/emission bounds, scenario fixture identity, and required test
-oracles are checked locally; P2C owns global ID/context/registry joins.
+oracles are checked locally; P2C closes their global ID/context/registry joins,
+maturity-gated test requirements, and phase-local event ownership. Resolver
+root `mechanism_ids` includes direct and indirect ownership; each phase is a
+scheduled subset and need not make the root an exact phase union.
 
 Authoring declares `target_maturity`; only the validator returns
 `computed_status` through the continuous `DISCOVERED -> SPECIFIED ->
 IMPLEMENTED -> VERIFIED -> RELEASED` gates. The current CLI can prove only
-`DISCOVERED`, because P2C has not compiled cross-references or implementation
-bindings. Merely adding a handler or test file cannot promote maturity. All
-three CLI views hash the complete five-set input deterministically; staged
-validation first enforces the P2A reviewed-surface parity.
+`DISCOVERED`; the P2C compiler promotes a mechanism to at most `SPECIFIED`
+after every stable ID, scoped branch/draw/phase, cue, artifact, context,
+capability, owner-qualified formula/event rounding link, resolver graph, and
+test-coverage reference closes. Implementation
+bindings, executed tests, evidence freshness, coverage, and release facts stay
+false. Merely adding a handler or test file cannot promote maturity. All three
+CLI views hash the complete five-set input deterministically; staged validation
+reads captured index blobs and enforces the full reviewed execution surface.
+
+`compile_p2_specs.ps1` emits an in-memory `COMPILED_SPEC_MANIFEST` index and a
+compact `RUNTIME_RULE_CATALOG`. Primary tables sort by numeric stable ID;
+resolver phases sort by `phase_order` then `phase_id`; semantic execution,
+formula, RNG, event, mutation, and command arrays retain declaration order.
+Canonical JSON uses ordinal object keys, strict UTF-8 without BOM, and exactly
+one trailing LF. The runtime catalog is bound to the spec-manifest SHA-256 and
+cannot represent paths, debug/owner metadata, evidence, tests, maturity,
+timestamps, GUIDs, or runtime object instances.
+
+The compiler performs no writes by default. All three views capture bounded
+candidate bytes at construction: each file is at most 512 KiB, the candidate
+path count is at most 65,535, and candidate plus baseline bytes are at most
+64 MiB. Git blobs are size-checked before loading. No-follow handles verify
+each final path beneath the captured root and hold artifact pairs against
+write/delete races.
+
+`-OutputDirectory` accepts only a child with an existing parent below the
+system temp directory or the ignored `battle/generated/battle_specs/`
+boundary. Staged mode also requires the indexed `.gitignore` to match the
+worktree rule used by `git check-ignore`. The compiler creates both files with
+exclusive new-file handles in a sibling staging directory and publishes them
+with one directory rename. Output directories are immutable: an exact repeat
+is idempotent and any different or incomplete pair is rejected. It never
+deletes on failure; retained staging/output evidence is ignored and uses a new
+GUID on retry. `-VerifyDirectory` compares both locked files byte-for-byte with
+a fresh compile. The current empty five-set input
+compiles to spec hash
+`9f35401d489d6a0e55c2514fe8325850dc353c8b907f919fcd30dccfd6a87b57`
+and runtime hash
+`5d3971516b957d9f58986eba6d5b8e741dc8da8b609c234ffb8b7222e00b9d39`.
 
 Run the focused checks with:
 
@@ -348,10 +386,20 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tests\specs\p2_spec_contract_test.ps1
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_repository_view_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tests\specs\p2_spec_compiler_test.ps1
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_id_manifests.ps1 `
   -Mode Repository
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass `
   -File .\new-game-project\battle\tools\battle_specs\validators\validate_p2_spec_contracts.ps1 `
+  -Mode Repository
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\new-game-project\battle\tools\battle_specs\compilers\compile_p2_specs.ps1 `
   -Mode Repository
 ```

@@ -1,5 +1,8 @@
 [CmdletBinding()]
-param([string]$ProjectRoot = "")
+param(
+    [string]$ProjectRoot = "",
+    [switch]$LoadFixturesOnly
+)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
@@ -317,7 +320,7 @@ function New-EventSchema {
         maximum_same_instance_recalls = 0
         activation_visibility = "NEXT_DISPATCH"
         removal_visibility = "AFTER_CURRENT_EVENT"
-        rounding_stage_ids = [object[]]@()
+        rounding_stage_refs = [object[]]@()
         rounding_mode = "NONE"
         rounding_schedule = "NONE"
         trace_policy = [pscustomobject][ordered]@{
@@ -719,6 +722,10 @@ function Test-StrictSchemaNode {
     }
 }
 
+if ($LoadFixturesOnly) {
+    return
+}
+
 $contracts = @(
     [pscustomobject]@{
         Name = "MechanismSpec"
@@ -1054,7 +1061,9 @@ Assert-Throws -Label "event sort field uniqueness" `
         Test-P2EventSchema $candidate
     }
 $candidate = New-EventSchema
-$candidate.rounding_stage_ids = [object[]]@(1)
+$candidate.rounding_stage_refs = [object[]]@(
+    [pscustomobject][ordered]@{ mechanism_id = 1; stage_id = 1 }
+)
 Assert-Throws -Label "event NONE rounding consistency" `
     -MessagePattern "P2_EVENT_ROUNDING_NONE" -Action {
         Test-P2EventSchema $candidate
@@ -1064,6 +1073,26 @@ $candidate.rounding_mode = "FLOOR"
 $candidate.rounding_schedule = "AT_STAGE_END"
 Assert-Throws -Label "event active rounding requires stages" `
     -MessagePattern "P2_EVENT_ROUNDING_REQUIRED" -Action {
+        Test-P2EventSchema $candidate
+    }
+$candidate = New-EventSchema
+$candidate.rounding_stage_refs = [object[]]@(
+    [pscustomobject][ordered]@{ mechanism_id = 1; stage_id = 1 }
+)
+$candidate.rounding_mode = "FLOOR"
+$candidate.rounding_schedule = "AT_STAGE_END"
+Assert-Passes -Label "event scoped rounding stage" -Action {
+    Test-P2EventSchema $candidate
+}
+$candidate = New-EventSchema
+$candidate.rounding_stage_refs = [object[]]@(
+    [pscustomobject][ordered]@{ mechanism_id = 1; stage_id = 2 },
+    [pscustomobject][ordered]@{ mechanism_id = 1; stage_id = 1 }
+)
+$candidate.rounding_mode = "FLOOR"
+$candidate.rounding_schedule = "AT_STAGE_END"
+Assert-Throws -Label "event scoped rounding order" `
+    -MessagePattern "P2_EVENT_ROUNDING_STAGE_ORDER" -Action {
         Test-P2EventSchema $candidate
     }
 $candidate = New-EventSchema

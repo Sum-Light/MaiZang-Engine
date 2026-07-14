@@ -62,6 +62,7 @@
     },
     "termination_behavior": {"$ref": "#/$defs/termination_behavior"},
     "mechanism_ids": {
+      "$comment": "Resolver-wide direct and indirect mechanism ownership. Every phase mechanism must appear here, but this set is not required to equal the union of scheduled phase members.",
       "type": "array",
       "minItems": 1,
       "maxItems": 512,
@@ -107,6 +108,7 @@
         "reentry_policy": {"enum": ["DENY", "ALLOW_ONCE", "ALLOW_BOUNDED", "RESUME_ONLY"]},
         "maximum_reentries": {"type": "integer", "minimum": 0, "maximum": 64},
         "mechanism_ids": {
+          "$comment": "Mechanisms scheduled in this phase; this array is a subset of resolver-level mechanism_ids.",
           "type": "array",
           "minItems": 1,
           "maxItems": 256,

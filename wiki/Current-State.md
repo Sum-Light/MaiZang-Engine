@@ -5,8 +5,8 @@
 ## Repository
 
 - Branch: `master`
-- Source fingerprint: `a476a8142f062bfd408da8e7930f413c6daa5db757728e48b00403e2b293d2e5`
-- Fingerprinted files: 207
+- Source fingerprint: `128083833b0bf32b86dec7b548e6f5e4edea7d6e4cec0e1cff78f3339220da2c`
+- Fingerprinted files: 212
 - Godot runtime scripts: 7
 - Godot test scripts: 8
 - PowerShell tools: 16
@@ -19,25 +19,25 @@
 - Camera: orthographic size `11.24` by default; `F1` toggles FOV-75 perspective.
 - Camera transform: orthographic distance `16`, perspective distance `8`, yaw `0`, pitch `50`, wheel step `5`.
 - Main matrix: `0000` (`30 x 30` with 468 occupied cells).
-- Matrix catalog: 289 source matrices, 276 ready matrices, 278 runnable destinations, and 13 unresolved source records.
+- Matrix catalog: 0 source matrices, 0 ready matrices, 0 runnable destinations, and 0 unresolved source records.
 - Debug destination: `F2` validates an in-game selection and reloads the main scene through a one-shot process-local request.
-- Global asset variants: 645 terrain and 764 building/texture pairs.
-- Collision assets: 637 unique maps across 647 destination-scoped records.
+- Global asset variants: 0 terrain and 0 building/texture pairs.
+- Collision assets: 0 unique maps across 0 destination-scoped records.
 - Collision runtime: lazy `a.dat`/BDHC cache, absolute height sampling, walking behavior actions, and fail-closed unsupported special movement.
-- Building instances across ready matrices: 3041.
-- Shared resources: 1722 unique texture hashes and 1804 external materials.
+- Building instances across ready matrices: 0.
+- Shared resources: 0 unique texture hashes and 0 external materials.
 - Streaming: radius 1 active, radius 2 prefetch, radius 3 retention.
 - Coordinates: 32 world units per cell, 0.5 per altitude unit, model scale `1 / 16`.
 
 ## Local Asset Cache
 
-- Status: catalog present locally (ignored by Git).
-- Occupied cells across ready matrices: 1153
-- Destination-scoped GLBs: 2042
-- Destination-scoped PNG files: 4566
-- Unique texture hashes: 1722
-- Shared materials found: 1804
-- Building instances found: 3041
+- Status: not present; rebuild from a local DSPRE project.
+- Occupied cells across ready matrices: 0
+- Destination-scoped GLBs: 0
+- Destination-scoped PNG files: 0
+- Unique texture hashes: 0
+- Shared materials found: 0
+- Building instances found: 0
 - Dawn sprite atlas: present locally (ignored by Git).
 
 ## Next Engineering Milestone

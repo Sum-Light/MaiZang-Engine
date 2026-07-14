@@ -1386,7 +1386,7 @@ function Test-P2EventSchema {
         "writable_operations", "aggregation_policy", "sort_key",
         "short_circuit_rule", "nested_event_ids", "same_instance_recall_policy",
         "maximum_same_instance_recalls", "activation_visibility",
-        "removal_visibility", "rounding_stage_ids", "rounding_mode",
+        "removal_visibility", "rounding_stage_refs", "rounding_mode",
         "rounding_schedule", "trace_policy"
     ) "EventSchema"
     $null = Get-P2Enum $root.artifact_kind "EventSchema.artifact_kind" @(
@@ -1535,8 +1535,27 @@ function Test-P2EventSchema {
         "EventSchema.removal_visibility" @(
             "IMMEDIATE", "AFTER_CURRENT_EVENT", "NEXT_DISPATCH"
         )
-    $null = Get-P2SpecIdArray $root.rounding_stage_ids `
-        "EventSchema.rounding_stage_ids" -MaximumCount 256
+    Assert-P2SpecUniqueObjects $root.rounding_stage_refs `
+        "EventSchema.rounding_stage_refs" 0 256
+    $previousRoundingMechanismId = 0L
+    $previousRoundingStageId = 0L
+    foreach ($itemValue in @($root.rounding_stage_refs)) {
+        $item = [PSCustomObject]$itemValue
+        Assert-P2ExactProperties $item @("mechanism_id", "stage_id") `
+            "EventSchema rounding stage reference"
+        $roundingMechanismId = Get-P2Integer $item.mechanism_id `
+            "rounding stage mechanism_id" 1 $script:P2MaxId
+        $roundingStageId = Get-P2Integer $item.stage_id `
+            "rounding stage stage_id" 1 $script:P2MaxId
+        Assert-P2Condition (
+            $roundingMechanismId -gt $previousRoundingMechanismId -or
+            ($roundingMechanismId -eq $previousRoundingMechanismId -and
+                $roundingStageId -gt $previousRoundingStageId)
+        ) "P2_EVENT_ROUNDING_STAGE_ORDER" `
+            "rounding_stage_refs must be ordered by mechanism_id and stage_id."
+        $previousRoundingMechanismId = $roundingMechanismId
+        $previousRoundingStageId = $roundingStageId
+    }
     $roundingMode = Get-P2Enum $root.rounding_mode `
         "EventSchema.rounding_mode" @(
             "NONE", "FLOOR", "CEIL", "TOWARD_ZERO", "AWAY_FROM_ZERO",
@@ -1548,14 +1567,14 @@ function Test-P2EventSchema {
         )
     if ($roundingMode -ceq "NONE") {
         Assert-P2Condition (
-            @($root.rounding_stage_ids).Count -eq 0 -and
+            @($root.rounding_stage_refs).Count -eq 0 -and
             $roundingSchedule -ceq "NONE"
         ) "P2_EVENT_ROUNDING_NONE" `
             "NONE rounding requires no stages and schedule NONE."
     }
     else {
         Assert-P2Condition (
-            @($root.rounding_stage_ids).Count -gt 0 -and
+            @($root.rounding_stage_refs).Count -gt 0 -and
             $roundingSchedule -cne "NONE"
         ) "P2_EVENT_ROUNDING_REQUIRED" `
             "Active rounding requires stages and a non-NONE schedule."

@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maizang.invalid/battle/schemas/compiled_spec_manifest.schema.json",
+  "title": "CompiledSpecManifest",
+  "$comment": "Generated P2C index only. The compiler emits each artifact array in ascending primary-ID order and computes every canonical_authoring_sha256 over canonical authoring JSON. Source paths, timestamps, machine identity, evidence payloads, and runtime objects are forbidden by the closed shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_kind",
+    "schema_version",
+    "compiler_contract_version",
+    "stable_id_manifest_sha256",
+    "presentation_contracts_sha256",
+    "authoring_input_set_sha256",
+    "mechanisms",
+    "events",
+    "handlers",
+    "resolvers",
+    "tests"
+  ],
+  "properties": {
+    "manifest_kind": {"const": "COMPILED_SPEC_MANIFEST"},
+    "schema_version": {"const": 1},
+    "compiler_contract_version": {"const": 1},
+    "stable_id_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "presentation_contracts_sha256": {"$ref": "#/$defs/sha256"},
+    "authoring_input_set_sha256": {"$ref": "#/$defs/sha256"},
+    "mechanisms": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/mechanism_index"}
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/event_index"}
+    },
+    "handlers": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/handler_index"}
+    },
+    "resolvers": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/resolver_index"}
+    },
+    "tests": {
+      "type": "array",
+      "maxItems": 65535,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/test_index"}
+    }
+  },
+  "$defs": {
+    "stable_id": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "version": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "target_maturity": {
+      "enum": ["DISCOVERED", "SPECIFIED", "IMPLEMENTED", "VERIFIED", "RELEASED"]
+    },
+    "p2c_computed_status": {
+      "$comment": "P2C can prove discovery and specification closure only. Later phases own implementation, verification, and release promotion.",
+      "enum": ["DISCOVERED", "SPECIFIED"]
+    },
+    "mechanism_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mechanism_id",
+        "spec_schema_version",
+        "behavior_version",
+        "canonical_authoring_sha256",
+        "target_maturity",
+        "computed_status"
+      ],
+      "properties": {
+        "mechanism_id": {"$ref": "#/$defs/stable_id"},
+        "spec_schema_version": {"$ref": "#/$defs/version"},
+        "behavior_version": {"$ref": "#/$defs/version"},
+        "canonical_authoring_sha256": {"$ref": "#/$defs/sha256"},
+        "target_maturity": {"$ref": "#/$defs/target_maturity"},
+        "computed_status": {"$ref": "#/$defs/p2c_computed_status"}
+      }
+    },
+    "event_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "schema_version", "behavior_version", "canonical_authoring_sha256"],
+      "properties": {
+        "event_id": {"$ref": "#/$defs/stable_id"},
+        "schema_version": {"$ref": "#/$defs/version"},
+        "behavior_version": {"$ref": "#/$defs/version"},
+        "canonical_authoring_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "handler_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handler_id", "schema_version", "behavior_version", "canonical_authoring_sha256"],
+      "properties": {
+        "handler_id": {"$ref": "#/$defs/stable_id"},
+        "schema_version": {"$ref": "#/$defs/version"},
+        "behavior_version": {"$ref": "#/$defs/version"},
+        "canonical_authoring_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "resolver_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resolver_id", "schema_version", "behavior_version", "canonical_authoring_sha256"],
+      "properties": {
+        "resolver_id": {"$ref": "#/$defs/stable_id"},
+        "schema_version": {"$ref": "#/$defs/version"},
+        "behavior_version": {"$ref": "#/$defs/version"},
+        "canonical_authoring_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "test_index": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test_id", "schema_version", "canonical_authoring_sha256"],
+      "properties": {
+        "test_id": {"$ref": "#/$defs/stable_id"},
+        "schema_version": {"$ref": "#/$defs/version"},
+        "canonical_authoring_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-07-14 - Compile deterministic battle P2 specs
+
+- Add bounded immutable Repository/Worktree/Staged views and a deterministic compiler that closes global/scoped IDs, cues, five authoring sets, bidirectional handler/resolver/event and formula-rounding links, RNG draws, resolver graphs, maturity-gated test requirements, and phase-owned emissions with stably ordered diagnostics.
+- Add closed compiled-index and runtime-catalog schemas, numeric-ID and explicit behavior sorting, canonical SHA-256 binding, closed public actions, no-follow final-path handles, stable pair reads, staged ignore parity, immutable ignored/temp-only publication, and fail-closed ruleset/maturity boundaries.
+- Add 69 repository-view and 632 compiler checks plus 508 strict-spec checks; prove two byte-identical outputs, advance P2 through Todo1-5 plus G01 to `6/16`, and advance the mainline to `68/465` (`14.6%`) without adding gameplay data or coupling the world runtime.
+
 ## 2026-07-14 - Define battle P2 strict specs and maturity
 
 - Add closed, bounded authoring schemas for mechanisms, events, handler bindings, resolvers, and test entries, with typed formula slots, an ID-independent execution plan, bounded reentry/RNG semantics, and one ten-digit primary-ID file contract.

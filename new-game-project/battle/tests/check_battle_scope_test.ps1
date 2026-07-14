@@ -77,6 +77,27 @@ try {
         throw "Scope checker rejected an allowed staged battle change."
     }
 
+    foreach ($forbiddenGovernancePath in @(
+        ".codex/skills/maizang-engine-godot/references/project-map.md",
+        "wiki/Architecture.md",
+        "wiki/_Sidebar.md"
+    )) {
+        $name = "forbidden-governance-" + (
+            [IO.Path]::GetFileNameWithoutExtension($forbiddenGovernancePath)
+        )
+        $forbiddenGovernance = New-TestRepository $name
+        Write-TestFile $forbiddenGovernance `
+            "new-game-project/battle/README.md"
+        Write-TestFile $forbiddenGovernance $forbiddenGovernancePath
+        & git -C $forbiddenGovernance add --all
+        if ((Invoke-Checker $forbiddenGovernance "Staged") -eq 0) {
+            throw (
+                "Scope checker accepted contract-external governance path " +
+                $forbiddenGovernancePath
+            )
+        }
+    }
+
     $splitIndex = New-TestRepository "split-index-dependency"
     & git -C $splitIndex add --all
     & git -C $splitIndex commit --quiet -m "Add valid dependency baseline"

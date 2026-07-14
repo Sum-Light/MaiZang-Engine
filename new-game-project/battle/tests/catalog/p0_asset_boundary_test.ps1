@@ -108,7 +108,9 @@ foreach ($approvedP2Path in @(
     "new-game-project/battle/tools/battle_specs/schemas/event_schema.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/handler_binding.schema.json",
     "new-game-project/battle/tools/battle_specs/schemas/resolver_spec.schema.json",
-    "new-game-project/battle/tools/battle_specs/schemas/test_manifest_entry.schema.json"
+    "new-game-project/battle/tools/battle_specs/schemas/test_manifest_entry.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/compiled_spec_manifest.schema.json",
+    "new-game-project/battle/tools/battle_specs/schemas/runtime_rule_catalog_manifest.schema.json"
 )) {
     Assert-CandidatePasses -Path $approvedP2Path -Text '{"schema_version":1}' `
         -Label "approved P2 JSON path $approvedP2Path"

@@ -33,13 +33,10 @@ $blockedAssetExtensions = @(
     ".woff2", ".xci", ".xcf", ".xz", ".zip", ".zst"
 )
 $governancePaths = @(
-    ".codex/skills/maizang-engine-godot/references/project-map.md",
     ".codex/skills/maizang-engine-godot/references/project-state.md",
-    "wiki/Architecture.md",
     "wiki/Battle-Development.md",
     "wiki/Change-Log.md",
-    "wiki/Current-State.md",
-    "wiki/_Sidebar.md"
+    "wiki/Current-State.md"
 )
 
 function Invoke-GitLines {
@@ -296,6 +293,8 @@ $p2ContractGatePath = Join-Path $PSScriptRoot `
     "battle_specs\validators\validate_p2_id_manifests.ps1"
 $p2SpecGatePath = Join-Path $PSScriptRoot `
     "battle_specs\validators\validate_p2_spec_contracts.ps1"
+$p2CompilerGatePath = Join-Path $PSScriptRoot `
+    "battle_specs\compilers\compile_p2_specs.ps1"
 foreach ($contractMode in @("Staged", "Worktree")) {
     if ($contractMode -eq "Staged" -and $Mode -notin @("Staged", "All")) {
         continue
@@ -314,6 +313,10 @@ foreach ($contractMode in @("Staged", "Worktree")) {
         throw "P2 strict spec contract gate was not found: $p2SpecGatePath"
     }
     & $p2SpecGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
+    if (-not (Test-Path -LiteralPath $p2CompilerGatePath -PathType Leaf)) {
+        throw "P2 spec compiler gate was not found: $p2CompilerGatePath"
+    }
+    & $p2CompilerGatePath -ProjectRoot $ProjectRoot -Mode $contractMode
 }
 
 $dependencyGatePath = Join-Path $PSScriptRoot "check_battle_dependencies.ps1"

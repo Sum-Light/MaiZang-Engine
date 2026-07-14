@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "work_item_id": "P2.SPEC_COMPILER",
+  "godot_contract_refs": [
+    {
+      "document": "18-mechanism-specification-and-traceability.md",
+      "section": "Deterministic spec compiler, cross-reference closure, runtime metadata, and canonical hashing",
+      "sha256": "8e38bf63cb8e05323473323540cb98f9c2406a479afd65fe97784a88762bd242"
+    },
+    {
+      "document": "22-full-data-and-text-battle-implementation-todo.md",
+      "section": "P2 spec compiler and byte-identical manifest completion gate",
+      "sha256": "ef297439e993fa007aa06bd470d91b397272098eb419e52432293e4ca8485419"
+    }
+  ],
+  "source_evidence_refs": [
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/event/btl_EventFactor.h",
+      "symbol": "EventFactor::EventHandlerArgs, EventHandler, and EventHandlerTable",
+      "sha256": "acfb2210dfadf6478f497999df1273c51f986bc786e72273b30bb93516169071"
+    },
+    {
+      "source_kind": "SOURCE_CODE",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_logic/section/btl_Section_AddSick.h",
+      "symbol": "Section_AddSick::Description, Result, and Execute",
+      "sha256": "9271e3b4e300dac52f26c8eb2d0fb33fc8d0048918c8ced0a3bc30a200336e5a"
+    }
+  ],
+  "source_test_evidence_refs": [
+    {
+      "source_kind": "SOURCE_TEST",
+      "source_repository": "battlelogic",
+      "relative_path": "programs/include/battle_unit_test/test_modules/script.h",
+      "symbol": "script_test::Script",
+      "sha256": "76945fd14a283c7522e2e1063d03f30a940f8fbdd3fdd387b08dfb677f177624"
+    }
+  ],
+  "licensed_data_refs": [],
+  "mechanism_ids": [],
+  "coverage_targets": [],
+  "target_godot_types": [],
+  "fixture_ids": [],
+  "presentation_cue_ids": [],
+  "known_ambiguities": [
+    "The clean EventFactor and Section sources are structural evidence for event-handler dispatch and typed resolver flow only; they do not define the Godot compiler fields, ordering, hashes, or maturity policy.",
+    "P2C proves strict authoring and global cross-reference closure and therefore promotes at most SPECIFIED; implementation bindings, executed tests, evidence freshness, coverage, and release promotion remain later P2 work.",
+    "EXPLICIT ruleset references fail closed until a versioned ruleset provider exists; ACTIVE feature IDs can be gated structurally, while feature implementation is deferred to its owning phase.",
+    "The tracked five-set authoring input remains empty, so committed source contains schemas and compiler logic but no proprietary or generated battle data.",
+    "Mechanism test requirements close static manifest coverage by exact kind, declared ACTIVE branch, distinct test ID, maturity threshold, and oracle superset; executed/passed evidence remains deferred and computed maturity is independently capped.",
+    "Resolver-level mechanism ownership may include indirect associations; scheduled phase mechanism_ids remain a validated subset rather than an exact derived union.",
+    "spec_manifest.json and runtime_manifest.json are reproducible local outputs under the ignored battle/generated/battle_specs boundary or the system temp directory, use bounded no-follow immutable publication, and are never committed as source truth.",
+    "The runtime catalog intentionally excludes authoring paths, debug and owner labels, evidence, project requirements, tests, target/computed maturity, timestamps, GUIDs, and runtime object instances."
+  ],
+  "completion_status": "VERIFIED"
+}
